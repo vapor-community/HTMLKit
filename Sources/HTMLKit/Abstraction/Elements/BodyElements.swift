@@ -231,12 +231,8 @@ extension Article: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
     public func enterKeyHint(_ value: Values.Hint) -> Article {
         return mutate(enterkeyhint: value.rawValue)
     }
-
-    public func hidden() -> Article {
-        return mutate(hidden: "hidden")
-    }
     
-    public func hidden(_ condition: Bool) -> Article {
+    public func hidden(_ condition: Bool = true) -> Article {
         
         if condition {
             return mutate(hidden: "hidden")
@@ -335,11 +331,7 @@ extension Article: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
         return mutate(translate: value.rawValue)
     }
     
-    public func inert() -> Article {
-        return mutate(inert: "inert")
-    }
-    
-    public func inert(_ condition: Bool) -> Article {
+    public func inert(_ condition: Bool = true) -> Article {
 
         if condition {
             return mutate(inert: "inert")
@@ -539,12 +531,8 @@ extension Section: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
     public func enterKeyHint(_ value: Values.Hint) -> Section {
         return mutate(enterkeyhint: value.rawValue)
     }
-
-    public func hidden() -> Section {
-        return mutate(hidden: "hidden")
-    }
     
-    public func hidden(_ condition: Bool) -> Section {
+    public func hidden(_ condition: Bool = true) -> Section {
         
         if condition {
             return mutate(hidden: "hidden")
@@ -643,11 +631,7 @@ extension Section: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
         return mutate(translate: value.rawValue)
     }
     
-    public func inert() -> Section {
-        return mutate(inert: "inert")
-    }
-    
-    public func inert(_ condition: Bool) -> Section {
+    public func inert(_ condition: Bool = true) -> Section {
 
         if condition {
             return mutate(inert: "inert")
@@ -849,12 +833,8 @@ extension Navigation: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
     public func enterKeyHint(_ value: Values.Hint) -> Navigation {
         return mutate(enterkeyhint: value.rawValue)
     }
-
-    public func hidden() -> Navigation {
-        return mutate(hidden: "hidden")
-    }
     
-    public func hidden(_ condition: Bool) -> Navigation {
+    public func hidden(_ condition: Bool = true) -> Navigation {
         
         if condition {
             return mutate(hidden: "hidden")
@@ -953,11 +933,7 @@ extension Navigation: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
         return mutate(translate: value.rawValue)
     }
     
-    public func inert() -> Navigation {
-        return mutate(inert: "inert")
-    }
-    
-    public func inert(_ condition: Bool) -> Navigation {
+    public func inert(_ condition: Bool = true) -> Navigation {
 
         if condition {
             return mutate(inert: "inert")
@@ -1155,12 +1131,8 @@ extension Aside: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
     public func enterKeyHint(_ value: Values.Hint) -> Aside {
         return mutate(enterkeyhint: value.rawValue)
     }
-
-    public func hidden() -> Aside {
-        return mutate(hidden: "hidden")
-    }
     
-    public func hidden(_ condition: Bool) -> Aside {
+    public func hidden(_ condition: Bool = true) -> Aside {
         
         if condition {
             return mutate(hidden: "hidden")
@@ -1259,11 +1231,7 @@ extension Aside: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(translate: value.rawValue)
     }
     
-    public func inert() -> Aside {
-        return mutate(inert: "inert")
-    }
-    
-    public func inert(_ condition: Bool) -> Aside {
+    public func inert(_ condition: Bool = true) -> Aside {
 
         if condition {
             return mutate(inert: "inert")
@@ -1459,11 +1427,7 @@ extension Heading1: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(enterkeyhint: value.rawValue)
     }
     
-    public func hidden() -> Heading1 {
-        return mutate(hidden: "hidden")
-    }
-    
-    public func hidden(_ condition: Bool) -> Heading1 {
+    public func hidden(_ condition: Bool = true) -> Heading1 {
         
         if condition {
             return mutate(hidden: "hidden")
@@ -1562,11 +1526,7 @@ extension Heading1: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(translate: value.rawValue)
     }
     
-    public func inert() -> Heading1 {
-        return mutate(inert: "inert")
-    }
-    
-    public func inert(_ condition: Bool) -> Heading1 {
+    public func inert(_ condition: Bool = true) -> Heading1 {
 
         if condition {
             return mutate(inert: "inert")
@@ -1769,11 +1729,7 @@ extension Heading2: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(enterkeyhint: value.rawValue)
     }
     
-    public func hidden() -> Heading2 {
-        return mutate(hidden: "hidden")
-    }
-    
-    public func hidden(_ condition: Bool) -> Heading2 {
+    public func hidden(_ condition: Bool = true) -> Heading2 {
         
         if condition {
             return mutate(hidden: "hidden")
@@ -1872,11 +1828,7 @@ extension Heading2: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(translate: value.rawValue)
     }
     
-    public func inert() -> Heading2 {
-        return mutate(inert: "inert")
-    }
-    
-    public func inert(_ condition: Bool) -> Heading2 {
+    public func inert(_ condition: Bool = true) -> Heading2 {
 
         if condition {
             return mutate(inert: "inert")
@@ -2078,12 +2030,8 @@ extension Heading3: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
     public func enterKeyHint(_ value: Values.Hint) -> Heading3 {
         return mutate(enterkeyhint: value.rawValue)
     }
-
-    public func hidden() -> Heading3 {
-        return mutate(hidden: "hidden")
-    }
     
-    public func hidden(_ condition: Bool) -> Heading3 {
+    public func hidden(_ condition: Bool = true) -> Heading3 {
         
         if condition {
             return mutate(hidden: "hidden")
@@ -2182,11 +2130,7 @@ extension Heading3: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(translate: value.rawValue)
     }
     
-    public func inert() -> Heading3 {
-        return mutate(inert: "inert")
-    }
-    
-    public func inert(_ condition: Bool) -> Heading3 {
+    public func inert(_ condition: Bool = true) -> Heading3 {
 
         if condition {
             return mutate(inert: "inert")
@@ -2388,12 +2332,8 @@ extension Heading4: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
     public func enterKeyHint(_ value: Values.Hint) -> Heading4 {
         return mutate(enterkeyhint: value.rawValue)
     }
-
-    public func hidden() -> Heading4 {
-        return mutate(hidden: "hidden")
-    }
     
-    public func hidden(_ condition: Bool) -> Heading4 {
+    public func hidden(_ condition: Bool = true) -> Heading4 {
         
         if condition {
             return mutate(hidden: "hidden")
@@ -2492,11 +2432,7 @@ extension Heading4: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(translate: value.rawValue)
     }
     
-    public func inert() -> Heading4 {
-        return mutate(inert: "inert")
-    }
-    
-    public func inert(_ condition: Bool) -> Heading4 {
+    public func inert(_ condition: Bool = true) -> Heading4 {
 
         if condition {
             return mutate(inert: "inert")
@@ -2698,12 +2634,8 @@ extension Heading5: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
     public func enterKeyHint(_ value: Values.Hint) -> Heading5 {
         return mutate(enterkeyhint: value.rawValue)
     }
-
-    public func hidden() -> Heading5 {
-        return mutate(hidden: "hidden")
-    }
     
-    public func hidden(_ condition: Bool) -> Heading5 {
+    public func hidden(_ condition: Bool = true) -> Heading5 {
         
         if condition {
             return mutate(hidden: "hidden")
@@ -2802,11 +2734,7 @@ extension Heading5: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(translate: value.rawValue)
     }
     
-    public func inert() -> Heading5 {
-        return mutate(inert: "inert")
-    }
-    
-    public func inert(_ condition: Bool) -> Heading5 {
+    public func inert(_ condition: Bool = true) -> Heading5 {
 
         if condition {
             return mutate(inert: "inert")
@@ -3008,12 +2936,8 @@ extension Heading6: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
     public func enterKeyHint(_ value: Values.Hint) -> Heading6 {
         return mutate(enterkeyhint: value.rawValue)
     }
-
-    public func hidden() -> Heading6 {
-        return mutate(hidden: "hidden")
-    }
     
-    public func hidden(_ condition: Bool) -> Heading6 {
+    public func hidden(_ condition: Bool = true) -> Heading6 {
         
         if condition {
             return mutate(hidden: "hidden")
@@ -3112,11 +3036,7 @@ extension Heading6: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(translate: value.rawValue)
     }
     
-    public func inert() -> Heading6 {
-        return mutate(inert: "inert")
-    }
-    
-    public func inert(_ condition: Bool) -> Heading6 {
+    public func inert(_ condition: Bool = true) -> Heading6 {
 
         if condition {
             return mutate(inert: "inert")
@@ -3323,12 +3243,8 @@ extension HeadingGroup: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttri
     public func enterKeyHint(_ value: Values.Hint) -> HeadingGroup {
         return mutate(enterkeyhint: value.rawValue)
     }
-
-    public func hidden() -> HeadingGroup {
-        return mutate(hidden: "hidden")
-    }
     
-    public func hidden(_ condition: Bool) -> HeadingGroup {
+    public func hidden(_ condition: Bool = true) -> HeadingGroup {
         
         if condition {
             return mutate(hidden: "hidden")
@@ -3427,11 +3343,7 @@ extension HeadingGroup: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttri
         return mutate(translate: value.rawValue)
     }
     
-    public func inert() -> HeadingGroup {
-        return mutate(inert: "inert")
-    }
-    
-    public func inert(_ condition: Bool) -> HeadingGroup {
+    public func inert(_ condition: Bool = true) -> HeadingGroup {
 
         if condition {
             return mutate(inert: "inert")
@@ -3627,12 +3539,8 @@ extension Header: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
     public func enterKeyHint(_ value: Values.Hint) -> Header {
         return mutate(enterkeyhint: value.rawValue)
     }
-
-    public func hidden() -> Header {
-        return mutate(hidden: "hidden")
-    }
     
-    public func hidden(_ condition: Bool) -> Header {
+    public func hidden(_ condition: Bool = true) -> Header {
         
         if condition {
             return mutate(hidden: "hidden")
@@ -3731,11 +3639,7 @@ extension Header: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
         return mutate(translate: value.rawValue)
     }
     
-    public func inert() -> Header {
-        return mutate(inert: "inert")
-    }
-    
-    public func inert(_ condition: Bool) -> Header {
+    public func inert(_ condition: Bool = true) -> Header {
 
         if condition {
             return mutate(inert: "inert")
@@ -3929,12 +3833,8 @@ extension Footer: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
     public func enterKeyHint(_ value: Values.Hint) -> Footer {
         return mutate(enterkeyhint: value.rawValue)
     }
-
-    public func hidden() -> Footer {
-        return mutate(hidden: "hidden")
-    }
     
-    public func hidden(_ condition: Bool) -> Footer {
+    public func hidden(_ condition: Bool = true) -> Footer {
         
         if condition {
             return mutate(hidden: "hidden")
@@ -4033,11 +3933,7 @@ extension Footer: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
         return mutate(translate: value.rawValue)
     }
     
-    public func inert() -> Footer {
-        return mutate(inert: "inert")
-    }
-    
-    public func inert(_ condition: Bool) -> Footer {
+    public func inert(_ condition: Bool = true) -> Footer {
 
         if condition {
             return mutate(inert: "inert")
@@ -4163,7 +4059,7 @@ extension Footer: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
 ///     Anchor() {
 ///         "Lorem ipsum"
 ///     }
-///     .reference("mailto:lorem@ispum.de")
+///     .reference("mailto:lorem@ipsum.de")
 /// }
 /// ```
 public struct Address: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
@@ -4238,12 +4134,8 @@ extension Address: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
     public func enterKeyHint(_ value: Values.Hint) -> Address {
         return mutate(enterkeyhint: value.rawValue)
     }
-
-    public func hidden() -> Address {
-        return mutate(hidden: "hidden")
-    }
     
-    public func hidden(_ condition: Bool) -> Address {
+    public func hidden(_ condition: Bool = true) -> Address {
         
         if condition {
             return mutate(hidden: "hidden")
@@ -4342,11 +4234,7 @@ extension Address: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
         return mutate(translate: value.rawValue)
     }
     
-    public func inert() -> Address {
-        return mutate(inert: "inert")
-    }
-    
-    public func inert(_ condition: Bool) -> Address {
+    public func inert(_ condition: Bool = true) -> Address {
 
         if condition {
             return mutate(inert: "inert")
@@ -4541,12 +4429,8 @@ extension Paragraph: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
     public func enterKeyHint(_ value: Values.Hint) -> Paragraph {
         return mutate(enterkeyhint: value.rawValue)
     }
-
-    public func hidden() -> Paragraph {
-        return mutate(hidden: "hidden")
-    }
     
-    public func hidden(_ condition: Bool) -> Paragraph {
+    public func hidden(_ condition: Bool = true) -> Paragraph {
         
         if condition {
             return mutate(hidden: "hidden")
@@ -4645,11 +4529,7 @@ extension Paragraph: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(translate: value.rawValue)
     }
     
-    public func inert() -> Paragraph {
-        return mutate(inert: "inert")
-    }
-    
-    public func inert(_ condition: Bool) -> Paragraph {
+    public func inert(_ condition: Bool = true) -> Paragraph {
 
         if condition {
             return mutate(inert: "inert")
@@ -4848,12 +4728,8 @@ extension HorizontalRule: GlobalAttributes, GlobalEventAttributes, GlobalAriaAtt
     public func enterKeyHint(_ value: Values.Hint) -> HorizontalRule {
         return mutate(enterkeyhint: value.rawValue)
     }
-
-    public func hidden() -> HorizontalRule {
-        return mutate(hidden: "hidden")
-    }
     
-    public func hidden(_ condition: Bool) -> HorizontalRule {
+    public func hidden(_ condition: Bool = true) -> HorizontalRule {
         
         if condition {
             return mutate(hidden: "hidden")
@@ -4952,11 +4828,7 @@ extension HorizontalRule: GlobalAttributes, GlobalEventAttributes, GlobalAriaAtt
         return mutate(translate: value.rawValue)
     }
     
-    public func inert() -> HorizontalRule {
-        return mutate(inert: "inert")
-    }
-    
-    public func inert(_ condition: Bool) -> HorizontalRule {
+    public func inert(_ condition: Bool = true) -> HorizontalRule {
 
         if condition {
             return mutate(inert: "inert")
@@ -5157,12 +5029,8 @@ extension PreformattedText: GlobalAttributes, GlobalEventAttributes, GlobalAriaA
     public func enterKeyHint(_ value: Values.Hint) -> PreformattedText {
         return mutate(enterkeyhint: value.rawValue)
     }
-
-    public func hidden() -> PreformattedText {
-        return mutate(hidden: "hidden")
-    }
     
-    public func hidden(_ condition: Bool) -> PreformattedText {
+    public func hidden(_ condition: Bool = true) -> PreformattedText {
         
         if condition {
             return mutate(hidden: "hidden")
@@ -5261,11 +5129,7 @@ extension PreformattedText: GlobalAttributes, GlobalEventAttributes, GlobalAriaA
         return mutate(translate: value.rawValue)
     }
     
-    public func inert() -> PreformattedText {
-        return mutate(inert: "inert")
-    }
-    
-    public func inert(_ condition: Bool) -> PreformattedText {
+    public func inert(_ condition: Bool = true) -> PreformattedText {
 
         if condition {
             return mutate(inert: "inert")
@@ -5460,12 +5324,8 @@ extension Blockquote: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
     public func enterKeyHint(_ value: Values.Hint) -> Blockquote {
         return mutate(enterkeyhint: value.rawValue)
     }
-
-    public func hidden() -> Blockquote {
-        return mutate(hidden: "hidden")
-    }
     
-    public func hidden(_ condition: Bool) -> Blockquote {
+    public func hidden(_ condition: Bool = true) -> Blockquote {
         
         if condition {
             return mutate(hidden: "hidden")
@@ -5564,11 +5424,7 @@ extension Blockquote: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
         return mutate(translate: value.rawValue)
     }
     
-    public func inert() -> Blockquote {
-        return mutate(inert: "inert")
-    }
-    
-    public func inert(_ condition: Bool) -> Blockquote {
+    public func inert(_ condition: Bool = true) -> Blockquote {
 
         if condition {
             return mutate(inert: "inert")
@@ -5779,12 +5635,8 @@ extension OrderedList: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
     public func enterKeyHint(_ value: Values.Hint) -> OrderedList {
         return mutate(enterkeyhint: value.rawValue)
     }
-
-    public func hidden() -> OrderedList {
-        return mutate(hidden: "hidden")
-    }
     
-    public func hidden(_ condition: Bool) -> OrderedList {
+    public func hidden(_ condition: Bool = true) -> OrderedList {
         
         if condition {
             return mutate(hidden: "hidden")
@@ -5883,11 +5735,7 @@ extension OrderedList: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
         return mutate(translate: value.rawValue)
     }
     
-    public func inert() -> OrderedList {
-        return mutate(inert: "inert")
-    }
-    
-    public func inert(_ condition: Bool) -> OrderedList {
+    public func inert(_ condition: Bool = true) -> OrderedList {
 
         if condition {
             return mutate(inert: "inert")
@@ -6099,12 +5947,8 @@ extension UnorderedList: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttr
     public func enterKeyHint(_ value: Values.Hint) -> UnorderedList {
         return mutate(enterkeyhint: value.rawValue)
     }
-
-    public func hidden() -> UnorderedList {
-        return mutate(hidden: "hidden")
-    }
     
-    public func hidden(_ condition: Bool) -> UnorderedList {
+    public func hidden(_ condition: Bool = true) -> UnorderedList {
         
         if condition {
             return mutate(hidden: "hidden")
@@ -6203,11 +6047,7 @@ extension UnorderedList: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttr
         return mutate(translate: value.rawValue)
     }
     
-    public func inert() -> UnorderedList {
-        return mutate(inert: "inert")
-    }
-    
-    public func inert(_ condition: Bool) -> UnorderedList {
+    public func inert(_ condition: Bool = true) -> UnorderedList {
 
         if condition {
             return mutate(inert: "inert")
@@ -6414,11 +6254,7 @@ extension Menu: GlobalAttributes {
         return mutate(enterkeyhint: value.rawValue)
     }
     
-    public func hidden() -> Menu {
-        return mutate(hidden: "hidden")
-    }
-    
-    public func hidden(_ condition: Bool) -> Menu {
+    public func hidden(_ condition: Bool = true) -> Menu {
         
         if condition {
             return mutate(hidden: "hidden")
@@ -6517,11 +6353,7 @@ extension Menu: GlobalAttributes {
         return mutate(translate: value.rawValue)
     }
     
-    public func inert() -> Menu {
-        return mutate(inert: "inert")
-    }
-    
-    public func inert(_ condition: Bool) -> Menu {
+    public func inert(_ condition: Bool = true) -> Menu {
 
         if condition {
             return mutate(inert: "inert")
@@ -6627,12 +6459,8 @@ extension DescriptionList: GlobalAttributes, GlobalEventAttributes, GlobalAriaAt
     public func enterKeyHint(_ value: Values.Hint) -> DescriptionList {
         return mutate(enterkeyhint: value.rawValue)
     }
-
-    public func hidden() -> DescriptionList {
-        return mutate(hidden: "hidden")
-    }
     
-    public func hidden(_ condition: Bool) -> DescriptionList {
+    public func hidden(_ condition: Bool = true) -> DescriptionList {
         
         if condition {
             return mutate(hidden: "hidden")
@@ -6731,11 +6559,7 @@ extension DescriptionList: GlobalAttributes, GlobalEventAttributes, GlobalAriaAt
         return mutate(translate: value.rawValue)
     }
     
-    public func inert() -> DescriptionList {
-        return mutate(inert: "inert")
-    }
-    
-    public func inert(_ condition: Bool) -> DescriptionList {
+    public func inert(_ condition: Bool = true) -> DescriptionList {
 
         if condition {
             return mutate(inert: "inert")
@@ -6856,7 +6680,7 @@ extension DescriptionList: GlobalAttributes, GlobalEventAttributes, GlobalAriaAt
 /// ```swift
 /// Figure {
 ///     Image()
-///         .source(...png)
+///         .source("...png")
 ///         .alternate("Lorem ipsum...")
 ///     FigureCaption {
 ///         "Lorem ipsum..."
@@ -6935,12 +6759,8 @@ extension Figure: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
     public func enterKeyHint(_ value: Values.Hint) -> Figure {
         return mutate(enterkeyhint: value.rawValue)
     }
-
-    public func hidden() -> Figure {
-        return mutate(hidden: "hidden")
-    }
     
-    public func hidden(_ condition: Bool) -> Figure {
+    public func hidden(_ condition: Bool = true) -> Figure {
         
         if condition {
             return mutate(hidden: "hidden")
@@ -7039,11 +6859,7 @@ extension Figure: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
         return mutate(translate: value.rawValue)
     }
     
-    public func inert() -> Figure {
-        return mutate(inert: "inert")
-    }
-    
-    public func inert(_ condition: Bool) -> Figure {
+    public func inert(_ condition: Bool = true) -> Figure {
 
         if condition {
             return mutate(inert: "inert")
@@ -7240,12 +7056,8 @@ extension Anchor: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
     public func enterKeyHint(_ value: Values.Hint) -> Anchor {
         return mutate(enterkeyhint: value.rawValue)
     }
-
-    public func hidden() -> Anchor {
-        return mutate(hidden: "hidden")
-    }
     
-    public func hidden(_ condition: Bool) -> Anchor {
+    public func hidden(_ condition: Bool = true) -> Anchor {
         
         if condition {
             return mutate(hidden: "hidden")
@@ -7344,11 +7156,7 @@ extension Anchor: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return mutate(translate: value.rawValue)
     }
     
-    public func inert() -> Anchor {
-        return mutate(inert: "inert")
-    }
-    
-    public func inert(_ condition: Bool) -> Anchor {
+    public func inert(_ condition: Bool = true) -> Anchor {
 
         if condition {
             return mutate(inert: "inert")
@@ -7590,12 +7398,8 @@ extension Emphasize: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
     public func enterKeyHint(_ value: Values.Hint) -> Emphasize {
         return mutate(enterkeyhint: value.rawValue)
     }
-
-    public func hidden() -> Emphasize {
-        return mutate(hidden: "hidden")
-    }
     
-    public func hidden(_ condition: Bool) -> Emphasize {
+    public func hidden(_ condition: Bool = true) -> Emphasize {
         
         if condition {
             return mutate(hidden: "hidden")
@@ -7694,11 +7498,7 @@ extension Emphasize: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(translate: value.rawValue)
     }
     
-    public func inert() -> Emphasize {
-        return mutate(inert: "inert")
-    }
-    
-    public func inert(_ condition: Bool) -> Emphasize {
+    public func inert(_ condition: Bool = true) -> Emphasize {
 
         if condition {
             return mutate(inert: "inert")
@@ -7895,12 +7695,8 @@ extension Strong: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
     public func enterKeyHint(_ value: Values.Hint) -> Strong {
         return mutate(enterkeyhint: value.rawValue)
     }
-
-    public func hidden() -> Strong {
-        return mutate(hidden: "hidden")
-    }
     
-    public func hidden(_ condition: Bool) -> Strong {
+    public func hidden(_ condition: Bool = true) -> Strong {
         
         if condition {
             return mutate(hidden: "hidden")
@@ -7999,11 +7795,7 @@ extension Strong: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
         return mutate(translate: value.rawValue)
     }
     
-    public func inert() -> Strong {
-        return mutate(inert: "inert")
-    }
-    
-    public func inert(_ condition: Bool) -> Strong {
+    public func inert(_ condition: Bool = true) -> Strong {
 
         if condition {
             return mutate(inert: "inert")
@@ -8200,12 +7992,8 @@ extension Small: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
     public func enterKeyHint(_ value: Values.Hint) -> Small {
         return mutate(enterkeyhint: value.rawValue)
     }
-
-    public func hidden() -> Small {
-        return mutate(hidden: "hidden")
-    }
     
-    public func hidden(_ condition: Bool) -> Small {
+    public func hidden(_ condition: Bool = true) -> Small {
         
         if condition {
             return mutate(hidden: "hidden")
@@ -8304,11 +8092,7 @@ extension Small: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(translate: value.rawValue)
     }
     
-    public func inert() -> Small {
-        return mutate(inert: "inert")
-    }
-    
-    public func inert(_ condition: Bool) -> Small {
+    public func inert(_ condition: Bool = true) -> Small {
 
         if condition {
             return mutate(inert: "inert")
@@ -8512,12 +8296,8 @@ extension StrikeThrough: GlobalAttributes, GlobalEventAttributes {
     public func enterKeyHint(_ value: Values.Hint) -> StrikeThrough {
         return mutate(enterkeyhint: value.rawValue)
     }
-
-    public func hidden() -> StrikeThrough {
-        return mutate(hidden: "hidden")
-    }
     
-    public func hidden(_ condition: Bool) -> StrikeThrough {
+    public func hidden(_ condition: Bool = true) -> StrikeThrough {
         
         if condition {
             return mutate(hidden: "hidden")
@@ -8616,11 +8396,7 @@ extension StrikeThrough: GlobalAttributes, GlobalEventAttributes {
         return mutate(translate: value.rawValue)
     }
     
-    public func inert() -> StrikeThrough {
-        return mutate(inert: "inert")
-    }
-    
-    public func inert(_ condition: Bool) -> StrikeThrough {
+    public func inert(_ condition: Bool = true) -> StrikeThrough {
 
         if condition {
             return mutate(inert: "inert")
@@ -8756,12 +8532,8 @@ extension Main: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
     public func enterKeyHint(_ value: Values.Hint) -> Main {
         return mutate(enterkeyhint: value.rawValue)
     }
-
-    public func hidden() -> Main {
-        return mutate(hidden: "hidden")
-    }
     
-    public func hidden(_ condition: Bool) -> Main {
+    public func hidden(_ condition: Bool = true) -> Main {
         
         if condition {
             return mutate(hidden: "hidden")
@@ -8860,11 +8632,7 @@ extension Main: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(translate: value.rawValue)
     }
     
-    public func inert() -> Main {
-        return mutate(inert: "inert")
-    }
-    
-    public func inert(_ condition: Bool) -> Main {
+    public func inert(_ condition: Bool = true) -> Main {
 
         if condition {
             return mutate(inert: "inert")
@@ -9067,11 +8835,7 @@ extension Search: GlobalAttributes {
         return mutate(enterkeyhint: value.rawValue)
     }
     
-    public func hidden() -> Search {
-        return mutate(hidden: "hidden")
-    }
-    
-    public func hidden(_ condition: Bool) -> Search {
+    public func hidden(_ condition: Bool = true) -> Search {
         
         if condition {
             return mutate(hidden: "hidden")
@@ -9170,11 +8934,7 @@ extension Search: GlobalAttributes {
         return mutate(translate: value.rawValue)
     }
     
-    public func inert() -> Search {
-        return mutate(inert: "inert")
-    }
-    
-    public func inert(_ condition: Bool) -> Search {
+    public func inert(_ condition: Bool = true) -> Search {
 
         if condition {
             return mutate(inert: "inert")
@@ -9210,9 +8970,8 @@ public struct Division: ContentNode, HtmlElement, BodyElement, FormElement, Figu
     internal var content: [Content]
 
     /// Create a division.
-    ///
-    /// - Parameters:
-    ///   - content: The division's content.
+    /// 
+    /// - Parameter content: The division's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
         self.content = content()
     }
@@ -9274,12 +9033,8 @@ extension Division: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
     public func enterKeyHint(_ value: Values.Hint) -> Division {
         return mutate(enterkeyhint: value.rawValue)
     }
-
-    public func hidden() -> Division {
-        return mutate(hidden: "hidden")
-    }
     
-    public func hidden(_ condition: Bool) -> Division {
+    public func hidden(_ condition: Bool = true) -> Division {
         
         if condition {
             return mutate(hidden: "hidden")
@@ -9378,11 +9133,7 @@ extension Division: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(translate: value.rawValue)
     }
     
-    public func inert() -> Division {
-        return mutate(inert: "inert")
-    }
-    
-    public func inert(_ condition: Bool) -> Division {
+    public func inert(_ condition: Bool = true) -> Division {
 
         if condition {
             return mutate(inert: "inert")
@@ -9582,12 +9333,8 @@ extension Definition: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
     public func enterKeyHint(_ value: Values.Hint) -> Definition {
         return mutate(enterkeyhint: value.rawValue)
     }
-
-    public func hidden() -> Definition {
-        return mutate(hidden: "hidden")
-    }
     
-    public func hidden(_ condition: Bool) -> Definition {
+    public func hidden(_ condition: Bool = true) -> Definition {
         
         if condition {
             return mutate(hidden: "hidden")
@@ -9686,11 +9433,7 @@ extension Definition: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
         return mutate(translate: value.rawValue)
     }
     
-    public func inert() -> Definition {
-        return mutate(inert: "inert")
-    }
-    
-    public func inert(_ condition: Bool) -> Definition {
+    public func inert(_ condition: Bool = true) -> Definition {
 
         if condition {
             return mutate(inert: "inert")
@@ -9888,12 +9631,8 @@ extension Cite: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
     public func enterKeyHint(_ value: Values.Hint) -> Cite {
         return mutate(enterkeyhint: value.rawValue)
     }
-
-    public func hidden() -> Cite {
-        return mutate(hidden: "hidden")
-    }
     
-    public func hidden(_ condition: Bool) -> Cite {
+    public func hidden(_ condition: Bool = true) -> Cite {
         
         if condition {
             return mutate(hidden: "hidden")
@@ -9992,11 +9731,7 @@ extension Cite: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(translate: value.rawValue)
     }
     
-    public func inert() -> Cite {
-        return mutate(inert: "inert")
-    }
-    
-    public func inert(_ condition: Bool) -> Cite {
+    public func inert(_ condition: Bool = true) -> Cite {
 
         if condition {
             return mutate(inert: "inert")
@@ -10194,11 +9929,7 @@ extension ShortQuote: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
         return mutate(enterkeyhint: value.rawValue)
     }
 
-    public func hidden() -> ShortQuote {
-        return mutate(hidden: "hidden")
-    }
-
-    public func hidden(_ condition: Bool) -> ShortQuote {
+    public func hidden(_ condition: Bool = true) -> ShortQuote {
         
         if condition {
             return mutate(hidden: "hidden")
@@ -10297,11 +10028,7 @@ extension ShortQuote: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
         return mutate(translate: value.rawValue)
     }
     
-    public func inert() -> ShortQuote {
-        return mutate(inert: "inert")
-    }
-    
-    public func inert(_ condition: Bool) -> ShortQuote {
+    public func inert(_ condition: Bool = true) -> ShortQuote {
 
         if condition {
             return mutate(inert: "inert")
@@ -10439,9 +10166,9 @@ public struct Abbreviation: ContentNode, HtmlElement, BodyElement, FormElement, 
 
     internal var content: [Content]
 
-    /// Create a abbreviation
+    /// Create a abbreviation.
     ///
-    /// - Parameter content: The abbreviation's content
+    /// - Parameter content: The abbreviation's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
         self.content = content()
     }
@@ -10503,12 +10230,8 @@ extension Abbreviation: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttri
     public func enterKeyHint(_ value: Values.Hint) -> Abbreviation {
         return mutate(enterkeyhint: value.rawValue)
     }
-
-    public func hidden() -> Abbreviation {
-        return mutate(hidden: "hidden")
-    }
     
-    public func hidden(_ condition: Bool) -> Abbreviation {
+    public func hidden(_ condition: Bool = true) -> Abbreviation {
         
         if condition {
             return mutate(hidden: "hidden")
@@ -10607,11 +10330,7 @@ extension Abbreviation: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttri
         return mutate(translate: value.rawValue)
     }
     
-    public func inert() -> Abbreviation {
-        return mutate(inert: "inert")
-    }
-    
-    public func inert(_ condition: Bool) -> Abbreviation {
+    public func inert(_ condition: Bool = true) -> Abbreviation {
 
         if condition {
             return mutate(inert: "inert")
@@ -10810,11 +10529,7 @@ extension Ruby: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(enterkeyhint: value.rawValue)
     }
     
-    public func hidden() -> Ruby {
-        return mutate(hidden: "hidden")
-    }
-    
-    public func hidden(_ condition: Bool) -> Ruby {
+    public func hidden(_ condition: Bool = true) -> Ruby {
         
         if condition {
             return mutate(hidden: "hidden")
@@ -10913,11 +10628,7 @@ extension Ruby: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(translate: value.rawValue)
     }
     
-    public func inert() -> Ruby {
-        return mutate(inert: "inert")
-    }
-    
-    public func inert(_ condition: Bool) -> Ruby {
+    public func inert(_ condition: Bool = true) -> Ruby {
 
         if condition {
             return mutate(inert: "inert")
@@ -11117,12 +10828,8 @@ extension Data: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, V
     public func enterKeyHint(_ value: Values.Hint) -> Data {
         return mutate(enterkeyhint: value.rawValue)
     }
-
-    public func hidden() -> Data {
-        return mutate(hidden: "hidden")
-    }
     
-    public func hidden(_ condition: Bool) -> Data {
+    public func hidden(_ condition: Bool = true) -> Data {
         
         if condition {
             return mutate(hidden: "hidden")
@@ -11221,11 +10928,7 @@ extension Data: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, V
         return mutate(translate: value.rawValue)
     }
     
-    public func inert() -> Data {
-        return mutate(inert: "inert")
-    }
-    
-    public func inert(_ condition: Bool) -> Data {
+    public func inert(_ condition: Bool = true) -> Data {
 
         if condition {
             return mutate(inert: "inert")
@@ -11437,12 +11140,8 @@ extension Time: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, D
     public func enterKeyHint(_ value: Values.Hint) -> Time {
         return mutate(enterkeyhint: value.rawValue)
     }
-
-    public func hidden() -> Time {
-        return mutate(hidden: "hidden")
-    }
     
-    public func hidden(_ condition: Bool) -> Time {
+    public func hidden(_ condition: Bool = true) -> Time {
         
         if condition {
             return mutate(hidden: "hidden")
@@ -11541,11 +11240,7 @@ extension Time: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, D
         return mutate(translate: value.rawValue)
     }
     
-    public func inert() -> Time {
-        return mutate(inert: "inert")
-    }
-    
-    public func inert(_ condition: Bool) -> Time {
+    public func inert(_ condition: Bool = true) -> Time {
 
         if condition {
             return mutate(inert: "inert")
@@ -11748,12 +11443,8 @@ extension Code: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
     public func enterKeyHint(_ value: Values.Hint) -> Code {
         return mutate(enterkeyhint: value.rawValue)
     }
-
-    public func hidden() -> Code {
-        return mutate(hidden: "hidden")
-    }
     
-    public func hidden(_ condition: Bool) -> Code {
+    public func hidden(_ condition: Bool = true) -> Code {
         
         if condition {
             return mutate(hidden: "hidden")
@@ -11852,11 +11543,7 @@ extension Code: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(translate: value.rawValue)
     }
     
-    public func inert() -> Code {
-        return mutate(inert: "inert")
-    }
-    
-    public func inert(_ condition: Bool) -> Code {
+    public func inert(_ condition: Bool = true) -> Code {
 
         if condition {
             return mutate(inert: "inert")
@@ -11970,7 +11657,7 @@ extension Code: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
     }
 }
 
-/// The element represents a variable.
+/// An element that represents a variable.
 ///
 /// Use `Variable` to denote a value that can change or vary.
 ///
@@ -12055,12 +11742,8 @@ extension Variable: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
     public func enterKeyHint(_ value: Values.Hint) -> Variable {
         return mutate(enterkeyhint: value.rawValue)
     }
-
-    public func hidden() -> Variable {
-        return mutate(hidden: "hidden")
-    }
     
-    public func hidden(_ condition: Bool) -> Variable {
+    public func hidden(_ condition: Bool = true) -> Variable {
         
         if condition {
             return mutate(hidden: "hidden")
@@ -12159,11 +11842,7 @@ extension Variable: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(translate: value.rawValue)
     }
     
-    public func inert() -> Variable {
-        return mutate(inert: "inert")
-    }
-    
-    public func inert(_ condition: Bool) -> Variable {
+    public func inert(_ condition: Bool = true) -> Variable {
 
         if condition {
             return mutate(inert: "inert")
@@ -12358,12 +12037,8 @@ extension SampleOutput: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttri
     public func enterKeyHint(_ value: Values.Hint) -> SampleOutput {
         return mutate(enterkeyhint: value.rawValue)
     }
-
-    public func hidden() -> SampleOutput {
-        return mutate(hidden: "hidden")
-    }
     
-    public func hidden(_ condition: Bool) -> SampleOutput {
+    public func hidden(_ condition: Bool = true) -> SampleOutput {
         
         if condition {
             return mutate(hidden: "hidden")
@@ -12462,11 +12137,7 @@ extension SampleOutput: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttri
         return mutate(translate: value.rawValue)
     }
     
-    public func inert() -> SampleOutput {
-        return mutate(inert: "inert")
-    }
-    
-    public func inert(_ condition: Bool) -> SampleOutput {
+    public func inert(_ condition: Bool = true) -> SampleOutput {
 
         if condition {
             return mutate(inert: "inert")
@@ -12665,12 +12336,8 @@ extension KeyboardInput: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttr
     public func enterKeyHint(_ value: Values.Hint) -> KeyboardInput {
         return mutate(enterkeyhint: value.rawValue)
     }
-
-    public func hidden() -> KeyboardInput {
-        return mutate(hidden: "hidden")
-    }
     
-    public func hidden(_ condition: Bool) -> KeyboardInput {
+    public func hidden(_ condition: Bool = true) -> KeyboardInput {
         
         if condition {
             return mutate(hidden: "hidden")
@@ -12769,11 +12436,7 @@ extension KeyboardInput: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttr
         return mutate(translate: value.rawValue)
     }
     
-    public func inert() -> KeyboardInput {
-        return mutate(inert: "inert")
-    }
-    
-    public func inert(_ condition: Bool) -> KeyboardInput {
+    public func inert(_ condition: Bool = true) -> KeyboardInput {
 
         if condition {
             return mutate(inert: "inert")
@@ -12887,7 +12550,7 @@ extension KeyboardInput: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttr
     }
 }
 
-/// The element represents a subscript text.
+/// An element that represents a subscript text.
 ///
 /// Use `Subscript` to display text slightly blow the baseline.
 ///
@@ -12908,7 +12571,7 @@ public struct Subscript: ContentNode, HtmlElement, BodyElement, FormElement, Fig
 
     internal var content: [Content]
 
-    /// Createa a subscript.
+    /// Create a subscript.
     ///
     /// - Parameter content: The subscript's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
@@ -12972,12 +12635,8 @@ extension Subscript: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
     public func enterKeyHint(_ value: Values.Hint) -> Subscript {
         return mutate(enterkeyhint: value.rawValue)
     }
-
-    public func hidden() -> Subscript {
-        return mutate(hidden: "hidden")
-    }
     
-    public func hidden(_ condition: Bool) -> Subscript {
+    public func hidden(_ condition: Bool = true) -> Subscript {
         
         if condition {
             return mutate(hidden: "hidden")
@@ -13075,11 +12734,7 @@ extension Subscript: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(translate: value.rawValue)
     }
     
-    public func inert() -> Subscript {
-        return mutate(inert: "inert")
-    }
-    
-    public func inert(_ condition: Bool) -> Subscript {
+    public func inert(_ condition: Bool = true) -> Subscript {
 
         if condition {
             return mutate(inert: "inert")
@@ -13278,12 +12933,8 @@ extension Superscript: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
     public func enterKeyHint(_ value: Values.Hint) -> Superscript {
         return mutate(enterkeyhint: value.rawValue)
     }
-
-    public func hidden() -> Superscript {
-        return mutate(hidden: "hidden")
-    }
     
-    public func hidden(_ condition: Bool) -> Superscript {
+    public func hidden(_ condition: Bool = true) -> Superscript {
         
         if condition {
             return mutate(hidden: "hidden")
@@ -13382,11 +13033,7 @@ extension Superscript: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
         return mutate(translate: value.rawValue)
     }
     
-    public func inert() -> Superscript {
-        return mutate(inert: "inert")
-    }
-    
-    public func inert(_ condition: Bool) -> Superscript {
+    public func inert(_ condition: Bool = true) -> Superscript {
 
         if condition {
             return mutate(inert: "inert")
@@ -13585,12 +13232,8 @@ extension Italic: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
     public func enterKeyHint(_ value: Values.Hint) -> Italic {
         return mutate(enterkeyhint: value.rawValue)
     }
-
-    public func hidden() -> Italic {
-        return mutate(hidden: "hidden")
-    }
     
-    public func hidden(_ condition: Bool) -> Italic {
+    public func hidden(_ condition: Bool = true) -> Italic {
         
         if condition {
             return mutate(hidden: "hidden")
@@ -13689,11 +13332,7 @@ extension Italic: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
         return mutate(translate: value.rawValue)
     }
     
-    public func inert() -> Italic {
-        return mutate(inert: "inert")
-    }
-    
-    public func inert(_ condition: Bool) -> Italic {
+    public func inert(_ condition: Bool = true) -> Italic {
 
         if condition {
             return mutate(inert: "inert")
@@ -13816,7 +13455,7 @@ extension Italic: Localizable {
 
 /// An element that represents a text emphasis.
 ///
-/// Use `Italic` to style some text bold.
+/// Use `Bold` to style some text bold.
 ///
 /// ```swift
 /// Paragraph {
@@ -13824,7 +13463,7 @@ extension Italic: Localizable {
 ///     Bold {
 ///         "Lorem ipsum..."
 ///     }
-///     "Lorem ipsum...
+///     "Lorem ipsum..."
 /// }
 /// ```
 public struct Bold: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
@@ -13899,12 +13538,8 @@ extension Bold: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
     public func enterKeyHint(_ value: Values.Hint) -> Bold {
         return mutate(enterkeyhint: value.rawValue)
     }
-
-    public func hidden() -> Bold {
-        return mutate(hidden: "hidden")
-    }
     
-    public func hidden(_ condition: Bool) -> Bold {
+    public func hidden(_ condition: Bool = true) -> Bold {
         
         if condition {
             return mutate(hidden: "hidden")
@@ -14003,11 +13638,7 @@ extension Bold: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(translate: value.rawValue)
     }
     
-    public func inert() -> Bold {
-        return mutate(inert: "inert")
-    }
-    
-    public func inert(_ condition: Bool) -> Bold {
+    public func inert(_ condition: Bool = true) -> Bold {
 
         if condition {
             return mutate(inert: "inert")
@@ -14138,7 +13769,7 @@ extension Bold: Localizable {
 ///     Underline {
 ///         "Lorem ipsum..."
 ///     }
-///     "Lorem ipsum...
+///     "Lorem ipsum..."
 /// }
 /// ```
 public struct Underline: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
@@ -14213,12 +13844,8 @@ extension Underline: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
     public func enterKeyHint(_ value: Values.Hint) -> Underline {
         return mutate(enterkeyhint: value.rawValue)
     }
-
-    public func hidden() -> Underline {
-        return mutate(hidden: "hidden")
-    }
     
-    public func hidden(_ condition: Bool) -> Underline {
+    public func hidden(_ condition: Bool = true) -> Underline {
         
         if condition {
             return mutate(hidden: "hidden")
@@ -14317,11 +13944,7 @@ extension Underline: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(translate: value.rawValue)
     }
     
-    public func inert() -> Underline {
-        return mutate(inert: "inert")
-    }
-    
-    public func inert(_ condition: Bool) -> Underline {
+    public func inert(_ condition: Bool = true) -> Underline {
 
         if condition {
             return mutate(inert: "inert")
@@ -14527,12 +14150,8 @@ extension Mark: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
     public func enterKeyHint(_ value: Values.Hint) -> Mark {
         return mutate(enterkeyhint: value.rawValue)
     }
-
-    public func hidden() -> Mark {
-        return mutate(hidden: "hidden")
-    }
     
-    public func hidden(_ condition: Bool) -> Mark {
+    public func hidden(_ condition: Bool = true) -> Mark {
         
         if condition {
             return mutate(hidden: "hidden")
@@ -14631,11 +14250,7 @@ extension Mark: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(translate: value.rawValue)
     }
     
-    public func inert() -> Mark {
-        return mutate(inert: "inert")
-    }
-    
-    public func inert(_ condition: Bool) -> Mark {
+    public func inert(_ condition: Bool = true) -> Mark {
 
         if condition {
             return mutate(inert: "inert")
@@ -14834,12 +14449,8 @@ extension Bdi: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
     public func enterKeyHint(_ value: Values.Hint) -> Bdi {
         return mutate(enterkeyhint: value.rawValue)
     }
-
-    public func hidden() -> Bdi {
-        return mutate(hidden: "hidden")
-    }
     
-    public func hidden(_ condition: Bool) -> Bdi {
+    public func hidden(_ condition: Bool = true) -> Bdi {
         
         if condition {
             return mutate(hidden: "hidden")
@@ -14938,11 +14549,7 @@ extension Bdi: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(translate: value.rawValue)
     }
     
-    public func inert() -> Bdi {
-        return mutate(inert: "inert")
-    }
-    
-    public func inert(_ condition: Bool) -> Bdi {
+    public func inert(_ condition: Bool = true) -> Bdi {
 
         if condition {
             return mutate(inert: "inert")
@@ -15135,12 +14742,8 @@ extension Bdo: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
     public func enterKeyHint(_ value: Values.Hint) -> Bdo {
         return mutate(enterkeyhint: value.rawValue)
     }
-
-    public func hidden() -> Bdo {
-        return mutate(hidden: "hidden")
-    }
     
-    public func hidden(_ condition: Bool) -> Bdo {
+    public func hidden(_ condition: Bool = true) -> Bdo {
         
         if condition {
             return mutate(hidden: "hidden")
@@ -15239,11 +14842,7 @@ extension Bdo: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(translate: value.rawValue)
     }
     
-    public func inert() -> Bdo {
-        return mutate(inert: "inert")
-    }
-    
-    public func inert(_ condition: Bool) -> Bdo {
+    public func inert(_ condition: Bool = true) -> Bdo {
 
         if condition {
             return mutate(inert: "inert")
@@ -15438,12 +15037,8 @@ extension Span: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
     public func enterKeyHint(_ value: Values.Hint) -> Span {
         return mutate(enterkeyhint: value.rawValue)
     }
-
-    public func hidden() -> Span {
-        return mutate(hidden: "hidden")
-    }
     
-    public func hidden(_ condition: Bool) -> Span {
+    public func hidden(_ condition: Bool = true) -> Span {
         
         if condition {
             return mutate(hidden: "hidden")
@@ -15542,11 +15137,7 @@ extension Span: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(translate: value.rawValue)
     }
     
-    public func inert() -> Span {
-        return mutate(inert: "inert")
-    }
-    
-    public func inert(_ condition: Bool) -> Span {
+    public func inert(_ condition: Bool = true) -> Span {
 
         if condition {
             return mutate(inert: "inert")
@@ -15732,12 +15323,8 @@ extension LineBreak: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
     public func enterKeyHint(_ value: Values.Hint) -> LineBreak {
         return mutate(enterkeyhint: value.rawValue)
     }
-
-    public func hidden() -> LineBreak {
-        return mutate(hidden: "hidden")
-    }
     
-    public func hidden(_ condition: Bool) -> LineBreak {
+    public func hidden(_ condition: Bool = true) -> LineBreak {
         
         if condition {
             return mutate(hidden: "hidden")
@@ -15836,11 +15423,7 @@ extension LineBreak: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(translate: value.rawValue)
     }
     
-    public func inert() -> LineBreak {
-        return mutate(inert: "inert")
-    }
-    
-    public func inert(_ condition: Bool) -> LineBreak {
+    public func inert(_ condition: Bool = true) -> LineBreak {
 
         if condition {
             return mutate(inert: "inert")
@@ -16030,12 +15613,8 @@ extension WordBreak: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
     public func enterKeyHint(_ value: Values.Hint) -> WordBreak {
         return mutate(enterkeyhint: value.rawValue)
     }
-
-    public func hidden() -> WordBreak {
-        return mutate(hidden: "hidden")
-    }
     
-    public func hidden(_ condition: Bool) -> WordBreak {
+    public func hidden(_ condition: Bool = true) -> WordBreak {
         
         if condition {
             return mutate(hidden: "hidden")
@@ -16134,11 +15713,7 @@ extension WordBreak: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(translate: value.rawValue)
     }
     
-    public func inert() -> WordBreak {
-        return mutate(inert: "inert")
-    }
-    
-    public func inert(_ condition: Bool) -> WordBreak {
+    public func inert(_ condition: Bool = true) -> WordBreak {
 
         if condition {
             return mutate(inert: "inert")
@@ -16333,12 +15908,8 @@ extension InsertedText: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttri
     public func enterKeyHint(_ value: Values.Hint) -> InsertedText {
         return mutate(enterkeyhint: value.rawValue)
     }
-
-    public func hidden() -> InsertedText {
-        return mutate(hidden: "hidden")
-    }
     
-    public func hidden(_ condition: Bool) -> InsertedText {
+    public func hidden(_ condition: Bool = true) -> InsertedText {
         
         if condition {
             return mutate(hidden: "hidden")
@@ -16437,11 +16008,7 @@ extension InsertedText: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttri
         return mutate(translate: value.rawValue)
     }
     
-    public func inert() -> InsertedText {
-        return mutate(inert: "inert")
-    }
-    
-    public func inert(_ condition: Bool) -> InsertedText {
+    public func inert(_ condition: Bool = true) -> InsertedText {
 
         if condition {
             return mutate(inert: "inert")
@@ -16644,12 +16211,8 @@ extension DeletedText: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
     public func enterKeyHint(_ value: Values.Hint) -> DeletedText {
         return mutate(enterkeyhint: value.rawValue)
     }
-
-    public func hidden() -> DeletedText {
-        return mutate(hidden: "hidden")
-    }
     
-    public func hidden(_ condition: Bool) -> DeletedText {
+    public func hidden(_ condition: Bool = true) -> DeletedText {
         
         if condition {
             return mutate(hidden: "hidden")
@@ -16748,11 +16311,7 @@ extension DeletedText: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
         return mutate(translate: value.rawValue)
     }
     
-    public func inert() -> DeletedText {
-        return mutate(inert: "inert")
-    }
-    
-    public func inert(_ condition: Bool) -> DeletedText {
+    public func inert(_ condition: Bool = true) -> DeletedText {
 
         if condition {
             return mutate(inert: "inert")
@@ -16882,10 +16441,10 @@ extension DeletedText: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
 /// Picture {
 ///     Source()
 ///         .sourceSet("...jpg")
-///         .media("(orientation: portrait)"
+///         .media("(orientation: portrait)")
 ///     Image()
 ///         .source("...jpg")
-///         .alternate("Lorem ipsum..."
+///         .alternate("Lorem ipsum...")
 /// }
 /// ```
 public struct Picture: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
@@ -16960,12 +16519,8 @@ extension Picture: GlobalAttributes, GlobalEventAttributes {
     public func enterKeyHint(_ value: Values.Hint) -> Picture {
         return mutate(enterkeyhint: value.rawValue)
     }
-
-    public func hidden() -> Picture {
-        return mutate(hidden: "hidden")
-    }
     
-    public func hidden(_ condition: Bool) -> Picture {
+    public func hidden(_ condition: Bool = true) -> Picture {
         
         if condition {
             return mutate(hidden: "hidden")
@@ -17064,11 +16619,7 @@ extension Picture: GlobalAttributes, GlobalEventAttributes {
         return mutate(translate: value.rawValue)
     }
     
-    public func inert() -> Picture {
-        return mutate(inert: "inert")
-    }
-    
-    public func inert(_ condition: Bool) -> Picture {
+    public func inert(_ condition: Bool = true) -> Picture {
 
         if condition {
             return mutate(inert: "inert")
@@ -17148,7 +16699,7 @@ public struct Image: EmptyNode, HtmlElement, BodyElement, FormElement, FigureEle
     }
 }
 
-extension Image: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, AlternateAttribute, SourceAttribute, SizesAttribute, WidthAttribute, HeightAttribute, ReferrerPolicyAttribute, FetchPriorityAttribute & LoadingAttribute & SourceSetAttribute & DecodingAttribute & IsMapAttribute & UseMapAttribute, CrossOriginAttribute {
+extension Image: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, AlternateAttribute, SourceAttribute, SizesAttribute, WidthAttribute, HeightAttribute, ReferrerPolicyAttribute, FetchPriorityAttribute, LoadingAttribute, SourceSetAttribute, DecodingAttribute, IsMapAttribute, UseMapAttribute, CrossOriginAttribute {
     
     public func accessKey(_ value: Character) -> Image {
         return mutate(accesskey: value)
@@ -17185,12 +16736,8 @@ extension Image: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
     public func enterKeyHint(_ value: Values.Hint) -> Image {
         return mutate(enterkeyhint: value.rawValue)
     }
-
-    public func hidden() -> Image {
-        return mutate(hidden: "hidden")
-    }
     
-    public func hidden(_ condition: Bool) -> Image {
+    public func hidden(_ condition: Bool = true) -> Image {
         
         if condition {
             return mutate(hidden: "hidden")
@@ -17292,12 +16839,8 @@ extension Image: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
     public func translate(_ value: Values.Decision) -> Image {
         return mutate(translate: value.rawValue)
     }
-
-    public func inert() -> Image {
-        return mutate(inert: "inert")
-    }
     
-    public func inert(_ condition: Bool) -> Image {
+    public func inert(_ condition: Bool = true) -> Image {
 
         if condition {
             return mutate(inert: "inert")
@@ -17517,7 +17060,7 @@ public struct InlineFrame: ContentNode, HtmlElement, BodyElement, FormElement, F
     }
 }
 
-extension InlineFrame: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, SourceAttribute, NameAttribute, WidthAttribute, HeightAttribute, ReferrerPolicyAttribute & LoadingAttribute & SandboxAttribute, SourceDocumentAttribute {
+extension InlineFrame: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, SourceAttribute, NameAttribute, WidthAttribute, HeightAttribute, ReferrerPolicyAttribute, LoadingAttribute, SandboxAttribute, SourceDocumentAttribute {
     
     public func accessKey(_ value: Character) -> InlineFrame {
         return mutate(accesskey: value)
@@ -17550,12 +17093,8 @@ extension InlineFrame: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
     public func enterKeyHint(_ value: Values.Hint) -> InlineFrame {
         return mutate(enterkeyhint: value.rawValue)
     }
-
-    public func hidden() -> InlineFrame {
-        return mutate(hidden: "hidden")
-    }
     
-    public func hidden(_ condition: Bool) -> InlineFrame {
+    public func hidden(_ condition: Bool = true) -> InlineFrame {
         
         if condition {
             return mutate(hidden: "hidden")
@@ -17653,12 +17192,8 @@ extension InlineFrame: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
     public func translate(_ value: Values.Decision) -> InlineFrame {
         return mutate(translate: value.rawValue)
     }
-
-    public func inert() -> InlineFrame {
-        return mutate(inert: "inert")
-    }
     
-    public func inert(_ condition: Bool) -> InlineFrame {
+    public func inert(_ condition: Bool = true) -> InlineFrame {
 
         if condition {
             return mutate(inert: "inert")
@@ -17890,12 +17425,8 @@ extension Embed: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
     public func enterKeyHint(_ value: Values.Hint) -> Embed {
         return mutate(enterkeyhint: value.rawValue)
     }
-
-    public func hidden() -> Embed {
-        return mutate(hidden: "hidden")
-    }
     
-    public func hidden(_ condition: Bool) -> Embed {
+    public func hidden(_ condition: Bool = true) -> Embed {
         
         if condition {
             return mutate(hidden: "hidden")
@@ -17994,11 +17525,7 @@ extension Embed: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return mutate(translate: value.rawValue)
     }
     
-    public func inert() -> Embed {
-        return mutate(inert: "inert")
-    }
-    
-    public func inert(_ condition: Bool) -> Embed {
+    public func inert(_ condition: Bool = true) -> Embed {
 
         if condition {
             return mutate(inert: "inert")
@@ -18140,7 +17667,7 @@ extension Embed: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
 /// Object {
 /// }
 /// .data("...html")
-/// .type(.html")
+/// .type(.html)
 /// ```
 public struct Object: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
     
@@ -18214,12 +17741,8 @@ extension Object: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
     public func enterKeyHint(_ value: Values.Hint) -> Object {
         return mutate(enterkeyhint: value.rawValue)
     }
-
-    public func hidden() -> Object {
-        return mutate(hidden: "hidden")
-    }
     
-    public func hidden(_ condition: Bool) -> Object {
+    public func hidden(_ condition: Bool = true) -> Object {
         
         if condition {
             return mutate(hidden: "hidden")
@@ -18318,11 +17841,7 @@ extension Object: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return mutate(translate: value.rawValue)
     }
     
-    public func inert() -> Object {
-        return mutate(inert: "inert")
-    }
-    
-    public func inert(_ condition: Bool) -> Object {
+    public func inert(_ condition: Bool = true) -> Object {
 
         if condition {
             return mutate(inert: "inert")
@@ -18543,12 +18062,8 @@ extension Video: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
     public func enterKeyHint(_ value: Values.Hint) -> Video {
         return mutate(enterkeyhint: value.rawValue)
     }
-
-    public func hidden() -> Video {
-        return mutate(hidden: "hidden")
-    }
     
-    public func hidden(_ condition: Bool) -> Video {
+    public func hidden(_ condition: Bool = true) -> Video {
         
         if condition {
             return mutate(hidden: "hidden")
@@ -18647,11 +18162,7 @@ extension Video: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return mutate(translate: value.rawValue)
     }
     
-    public func inert() -> Video {
-        return mutate(inert: "inert")
-    }
-    
-    public func inert(_ condition: Bool) -> Video {
+    public func inert(_ condition: Bool = true) -> Video {
 
         if condition {
             return mutate(inert: "inert")
@@ -18668,11 +18179,7 @@ extension Video: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return mutate(source: value)
     }
     
-    public func autoplay() -> Video {
-        return mutate(autoplay: "autoplay")
-    }
-    
-    public func autoplay(_ condition: Bool) -> Video {
+    public func autoplay(_ condition: Bool = true) -> Video {
         
         if condition {
             return mutate(autoplay: "autoplay")
@@ -18915,12 +18422,8 @@ extension Audio: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
     public func enterKeyHint(_ value: Values.Hint) -> Audio {
         return mutate(enterkeyhint: value.rawValue)
     }
-
-    public func hidden() -> Audio {
-        return mutate(hidden: "hidden")
-    }
     
-    public func hidden(_ condition: Bool) -> Audio {
+    public func hidden(_ condition: Bool = true) -> Audio {
         
         if condition {
             return mutate(hidden: "hidden")
@@ -19019,11 +18522,7 @@ extension Audio: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return mutate(translate: value.rawValue)
     }
     
-    public func inert() -> Audio {
-        return mutate(inert: "inert")
-    }
-    
-    public func inert(_ condition: Bool) -> Audio {
+    public func inert(_ condition: Bool = true) -> Audio {
 
         if condition {
             return mutate(inert: "inert")
@@ -19040,11 +18539,7 @@ extension Audio: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return mutate(source: value)
     }
     
-    public func autoplay() -> Audio {
-        return mutate(autoplay: "autoplay")
-    }
-    
-    public func autoplay(_ condition: Bool) -> Audio {
+    public func autoplay(_ condition: Bool = true) -> Audio {
         
         if condition {
             return mutate(autoplay: "autoplay")
@@ -19185,12 +18680,12 @@ extension Audio: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
 ///
 /// ```swift
 /// Image()
-///     .source(...png)
+///     .source("...png")
 ///     .useMap("lorem")
 /// Map {
 ///     Area()
 ///         .shape(.circle)
-///         .coordinates(10, 10, 10 ,10)
+///         .coordinates("10, 10, 10 ,10")
 ///         .alternate("Lorem ipsum...")
 ///         .reference("https://...")
 /// }
@@ -19268,12 +18763,8 @@ extension Map: GlobalAttributes, GlobalEventAttributes, NameAttribute {
     public func enterKeyHint(_ value: Values.Hint) -> Map {
         return mutate(enterkeyhint: value.rawValue)
     }
-
-    public func hidden() -> Map {
-        return mutate(hidden: "hidden")
-    }
     
-    public func hidden(_ condition: Bool) -> Map {
+    public func hidden(_ condition: Bool = true) -> Map {
         
         if condition {
             return mutate(hidden: "hidden")
@@ -19372,11 +18863,7 @@ extension Map: GlobalAttributes, GlobalEventAttributes, NameAttribute {
         return mutate(translate: value.rawValue)
     }
     
-    public func inert() -> Map {
-        return mutate(inert: "inert")
-    }
-    
-    public func inert(_ condition: Bool) -> Map {
+    public func inert(_ condition: Bool = true) -> Map {
 
         if condition {
             return mutate(inert: "inert")
@@ -19505,12 +18992,8 @@ extension Form: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, A
     public func enterKeyHint(_ value: Values.Hint) -> Form {
         return mutate(enterkeyhint: value.rawValue)
     }
-
-    public func hidden() -> Form {
-        return mutate(hidden: "hidden")
-    }
     
-    public func hidden(_ condition: Bool) -> Form {
+    public func hidden(_ condition: Bool = true) -> Form {
         
         if condition {
             return mutate(hidden: "hidden")
@@ -19609,11 +19092,7 @@ extension Form: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, A
         return mutate(translate: value.rawValue)
     }
     
-    public func inert() -> Form {
-        return mutate(inert: "inert")
-    }
-    
-    public func inert(_ condition: Bool) -> Form {
+    public func inert(_ condition: Bool = true) -> Form {
 
         if condition {
             return mutate(inert: "inert")
@@ -19783,7 +19262,7 @@ extension Form: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, A
 ///     Option()
 ///         .value("lorem")
 /// }
-/// .id("lorem)
+/// .id("lorem")
 /// ```
 public struct DataList: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
@@ -19857,12 +19336,8 @@ extension DataList: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
     public func enterKeyHint(_ value: Values.Hint) -> DataList {
         return mutate(enterkeyhint: value.rawValue)
     }
-
-    public func hidden() -> DataList {
-        return mutate(hidden: "hidden")
-    }
     
-    public func hidden(_ condition: Bool) -> DataList {
+    public func hidden(_ condition: Bool = true) -> DataList {
         
         if condition {
             return mutate(hidden: "hidden")
@@ -19961,11 +19436,7 @@ extension DataList: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(translate: value.rawValue)
     }
     
-    public func inert() -> DataList {
-        return mutate(inert: "inert")
-    }
-    
-    public func inert(_ condition: Bool) -> DataList {
+    public func inert(_ condition: Bool = true) -> DataList {
 
         if condition {
             return mutate(inert: "inert")
@@ -20162,12 +19633,8 @@ extension Output: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
     public func enterKeyHint(_ value: Values.Hint) -> Output {
         return mutate(enterkeyhint: value.rawValue)
     }
-
-    public func hidden() -> Output {
-        return mutate(hidden: "hidden")
-    }
     
-    public func hidden(_ condition: Bool) -> Output {
+    public func hidden(_ condition: Bool = true) -> Output {
         
         if condition {
             return mutate(hidden: "hidden")
@@ -20266,11 +19733,7 @@ extension Output: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return mutate(translate: value.rawValue)
     }
     
-    public func inert() -> Output {
-        return mutate(inert: "inert")
-    }
-    
-    public func inert(_ condition: Bool) -> Output {
+    public func inert(_ condition: Bool = true) -> Output {
 
         if condition {
             return mutate(inert: "inert")
@@ -20479,12 +19942,8 @@ extension Progress: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
     public func enterKeyHint(_ value: Values.Hint) -> Progress {
         return mutate(enterkeyhint: value.rawValue)
     }
-
-    public func hidden() -> Progress {
-        return mutate(hidden: "hidden")
-    }
     
-    public func hidden(_ condition: Bool) -> Progress {
+    public func hidden(_ condition: Bool = true) -> Progress {
         
         if condition {
             return mutate(hidden: "hidden")
@@ -20583,11 +20042,7 @@ extension Progress: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(translate: value.rawValue)
     }
     
-    public func inert() -> Progress {
-        return mutate(inert: "inert")
-    }
-    
-    public func inert(_ condition: Bool) -> Progress {
+    public func inert(_ condition: Bool = true) -> Progress {
 
         if condition {
             return mutate(inert: "inert")
@@ -20803,12 +20258,8 @@ extension Meter: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
     public func enterKeyHint(_ value: Values.Hint) -> Meter {
         return mutate(enterkeyhint: value.rawValue)
     }
-
-    public func hidden() -> Meter {
-        return mutate(hidden: "hidden")
-    }
     
-    public func hidden(_ condition: Bool) -> Meter {
+    public func hidden(_ condition: Bool = true) -> Meter {
         
         if condition {
             return mutate(hidden: "hidden")
@@ -20907,11 +20358,7 @@ extension Meter: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return mutate(translate: value.rawValue)
     }
     
-    public func inert() -> Meter {
-        return mutate(inert: "inert")
-    }
-    
-    public func inert(_ condition: Bool) -> Meter {
+    public func inert(_ condition: Bool = true) -> Meter {
 
         if condition {
             return mutate(inert: "inert")
@@ -21144,12 +20591,8 @@ extension Details: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
     public func enterKeyHint(_ value: Values.Hint) -> Details {
         return mutate(enterkeyhint: value.rawValue)
     }
-
-    public func hidden() -> Details {
-        return mutate(hidden: "hidden")
-    }
     
-    public func hidden(_ condition: Bool) -> Details {
+    public func hidden(_ condition: Bool = true) -> Details {
         
         if condition {
             return mutate(hidden: "hidden")
@@ -21248,11 +20691,7 @@ extension Details: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
         return mutate(translate: value.rawValue)
     }
     
-    public func inert() -> Details {
-        return mutate(inert: "inert")
-    }
-    
-    public func inert(_ condition: Bool) -> Details {
+    public func inert(_ condition: Bool = true) -> Details {
 
         if condition {
             return mutate(inert: "inert")
@@ -21460,12 +20899,8 @@ extension Dialog: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
     public func enterKeyHint(_ value: Values.Hint) -> Dialog {
         return mutate(enterkeyhint: value.rawValue)
     }
-
-    public func hidden() -> Dialog {
-        return mutate(hidden: "hidden")
-    }
     
-    public func hidden(_ condition: Bool) -> Dialog {
+    public func hidden(_ condition: Bool = true) -> Dialog {
         
         if condition {
             return mutate(hidden: "hidden")
@@ -21564,11 +20999,7 @@ extension Dialog: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return mutate(translate: value.rawValue)
     }
     
-    public func inert() -> Dialog {
-        return mutate(inert: "inert")
-    }
-    
-    public func inert(_ condition: Bool) -> Dialog {
+    public func inert(_ condition: Bool = true) -> Dialog {
 
         if condition {
             return mutate(inert: "inert")
@@ -21775,12 +21206,8 @@ extension Script: GlobalAttributes, GlobalEventAttributes, AsynchronouslyAttribu
     public func enterKeyHint(_ value: Values.Hint) -> Script {
         return mutate(enterkeyhint: value.rawValue)
     }
-
-    public func hidden() -> Script {
-        return mutate(hidden: "hidden")
-    }
     
-    public func hidden(_ condition: Bool) -> Script {
+    public func hidden(_ condition: Bool = true) -> Script {
         
         if condition {
             return mutate(hidden: "hidden")
@@ -21887,11 +21314,7 @@ extension Script: GlobalAttributes, GlobalEventAttributes, AsynchronouslyAttribu
         return mutate(translate: value.rawValue)
     }
     
-    public func inert() -> Script {
-        return mutate(inert: "inert")
-    }
-    
-    public func inert(_ condition: Bool) -> Script {
+    public func inert(_ condition: Bool = true) -> Script {
 
         if condition {
             return mutate(inert: "inert")
@@ -22040,12 +21463,8 @@ extension NoScript: GlobalAttributes, GlobalEventAttributes {
     public func enterKeyHint(_ value: Values.Hint) -> NoScript {
         return mutate(enterkeyhint: value.rawValue)
     }
-
-    public func hidden() -> NoScript {
-        return mutate(hidden: "hidden")
-    }
     
-    public func hidden(_ condition: Bool) -> NoScript {
+    public func hidden(_ condition: Bool = true) -> NoScript {
         
         if condition {
             return mutate(hidden: "hidden")
@@ -22144,11 +21563,7 @@ extension NoScript: GlobalAttributes, GlobalEventAttributes {
         return mutate(translate: value.rawValue)
     }
     
-    public func inert() -> NoScript {
-        return mutate(inert: "inert")
-    }
-    
-    public func inert(_ condition: Bool) -> NoScript {
+    public func inert(_ condition: Bool = true) -> NoScript {
 
         if condition {
             return mutate(inert: "inert")
@@ -22274,12 +21689,8 @@ extension Template: GlobalAttributes, GlobalEventAttributes, ShadowRootModeAttri
     public func enterKeyHint(_ value: Values.Hint) -> Template {
         return mutate(enterkeyhint: value.rawValue)
     }
-
-    public func hidden() -> Template {
-        return mutate(hidden: "hidden")
-    }
     
-    public func hidden(_ condition: Bool) -> Template {
+    public func hidden(_ condition: Bool = true) -> Template {
         
         if condition {
             return mutate(hidden: "hidden")
@@ -22378,11 +21789,7 @@ extension Template: GlobalAttributes, GlobalEventAttributes, ShadowRootModeAttri
         return mutate(translate: value.rawValue)
     }
     
-    public func inert() -> Template {
-        return mutate(inert: "inert")
-    }
-    
-    public func inert(_ condition: Bool) -> Template {
+    public func inert(_ condition: Bool = true) -> Template {
 
         if condition {
             return mutate(inert: "inert")
@@ -22501,12 +21908,8 @@ extension Canvas: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
     public func enterKeyHint(_ value: Values.Hint) -> Canvas {
         return mutate(enterkeyhint: value.rawValue)
     }
-
-    public func hidden() -> Canvas {
-        return mutate(hidden: "hidden")
-    }
     
-    public func hidden(_ condition: Bool) -> Canvas {
+    public func hidden(_ condition: Bool = true) -> Canvas {
         
         if condition {
             return mutate(hidden: "hidden")
@@ -22605,11 +22008,7 @@ extension Canvas: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return mutate(translate: value.rawValue)
     }
     
-    public func inert() -> Canvas {
-        return mutate(inert: "inert")
-    }
-    
-    public func inert(_ condition: Bool) -> Canvas {
+    public func inert(_ condition: Bool = true) -> Canvas {
 
         if condition {
             return mutate(inert: "inert")
@@ -22731,7 +22130,7 @@ extension Canvas: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
     }
 }
 
-/// An element that represents a data table
+/// An element that represents a data table.
 ///
 /// Use `Table` to present structured data.
 ///
@@ -22819,12 +22218,8 @@ extension Table: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
     public func enterKeyHint(_ value: Values.Hint) -> Table {
         return mutate(enterkeyhint: value.rawValue)
     }
-
-    public func hidden() -> Table {
-        return mutate(hidden: "hidden")
-    }
     
-    public func hidden(_ condition: Bool) -> Table {
+    public func hidden(_ condition: Bool = true) -> Table {
         
         if condition {
             return mutate(hidden: "hidden")
@@ -22923,11 +22318,7 @@ extension Table: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return mutate(translate: value.rawValue)
     }
     
-    public func inert() -> Table {
-        return mutate(inert: "inert")
-    }
-    
-    public func inert(_ condition: Bool) -> Table {
+    public func inert(_ condition: Bool = true) -> Table {
 
         if condition {
             return mutate(inert: "inert")
@@ -23262,11 +22653,7 @@ extension Slot: GlobalAttributes, NameAttribute {
         return mutate(enterkeyhint: value.rawValue)
     }
     
-    public func hidden() -> Slot {
-        return mutate(hidden: "hidden")
-    }
-    
-    public func hidden(_ condition: Bool) -> Slot {
+    public func hidden(_ condition: Bool = true) -> Slot {
         
         if condition {
             return mutate(hidden: "hidden")
@@ -23365,11 +22752,7 @@ extension Slot: GlobalAttributes, NameAttribute {
         return mutate(translate: value.rawValue)
     }
     
-    public func inert() -> Slot {
-        return mutate(inert: "inert")
-    }
-    
-    public func inert(_ condition: Bool) -> Slot {
+    public func inert(_ condition: Bool = true) -> Slot {
 
         if condition {
             return mutate(inert: "inert")

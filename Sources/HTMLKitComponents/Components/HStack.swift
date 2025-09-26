@@ -112,11 +112,7 @@ extension HStack: ViewModifier {
         return self.mutate(zindex: index.value)
     }
     
-    public func hidden() -> HStack {
-        return self.mutate(viewstate: Tokens.ViewState.hidden.value)
-    }
-    
-    public func hidden(_ condition: Bool) -> HStack {
+    public func hidden(_ condition: Bool = true) -> HStack {
         
         if condition {
             return self.mutate(viewstate: Tokens.ViewState.hidden.value)

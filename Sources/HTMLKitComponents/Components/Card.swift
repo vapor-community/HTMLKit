@@ -99,11 +99,7 @@ extension Card: ViewModifier {
         return self.mutate(backgroundcolor: color.value)
     }
     
-    public func hidden() -> Card {
-        return self.mutate(viewstate: Tokens.ViewState.hidden.value)
-    }
-    
-    public func hidden(_ condition: Bool) -> Card {
+    public func hidden(_ condition: Bool = true) -> Card {
         
         if condition {
             return self.mutate(viewstate: Tokens.ViewState.hidden.value)

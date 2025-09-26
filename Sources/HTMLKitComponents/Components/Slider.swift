@@ -52,7 +52,7 @@ public struct Slider: View, Modifiable, Identifiable {
 
 extension Slider: InputModifier {
     
-    public func disabled(_ condition: Bool) -> Slider {
+    public func disabled(_ condition: Bool = true) -> Slider {
         
         if condition {
             return self.mutate(inputstate: Tokens.ViewState.disabled.value)
@@ -76,11 +76,7 @@ extension Slider: ViewModifier {
         return self.mutate(zindex: index.value)
     }
     
-    public func hidden() -> Slider {
-        return self.mutate(viewstate: Tokens.ViewState.hidden.value)
-    }
-    
-    public func hidden(_ condition: Bool) -> Slider {
+    public func hidden(_ condition: Bool = true) -> Slider {
         
         if condition {
             return self.mutate(viewstate: Tokens.ViewState.hidden.value)

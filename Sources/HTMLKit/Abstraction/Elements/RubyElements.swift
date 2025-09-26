@@ -93,12 +93,8 @@ extension RubyText: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
     public func enterKeyHint(_ value: Values.Hint) -> RubyText {
         return mutate(enterkeyhint: value.rawValue)
     }
-
-    public func hidden() -> RubyText {
-        return mutate(hidden: "hidden")
-    }
     
-    public func hidden(_ condition: Bool) -> RubyText {
+    public func hidden(_ condition: Bool = true) -> RubyText {
         
         if condition {
             return mutate(hidden: "hidden")
@@ -197,11 +193,7 @@ extension RubyText: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(translate: value.rawValue)
     }
     
-    public func inert() -> RubyText {
-        return mutate(inert: "inert")
-    }
-    
-    public func inert(_ condition: Bool) -> RubyText {
+    public func inert(_ condition: Bool = true) -> RubyText {
 
         if condition {
             return mutate(inert: "inert")
@@ -405,12 +397,8 @@ extension RubyPronunciation: GlobalAttributes, GlobalEventAttributes, GlobalAria
     public func enterKeyHint(_ value: Values.Hint) -> RubyPronunciation {
         return mutate(enterkeyhint: value.rawValue)
     }
-
-    public func hidden() -> RubyPronunciation {
-        return mutate(hidden: "hidden")
-    }
     
-    public func hidden(_ condition: Bool) -> RubyPronunciation {
+    public func hidden(_ condition: Bool = true) -> RubyPronunciation {
         
         if condition {
             return mutate(hidden: "hidden")
@@ -509,11 +497,7 @@ extension RubyPronunciation: GlobalAttributes, GlobalEventAttributes, GlobalAria
         return mutate(translate: value.rawValue)
     }
     
-    public func inert() -> RubyPronunciation {
-        return mutate(inert: "inert")
-    }
-    
-    public func inert(_ condition: Bool) -> RubyPronunciation {
+    public func inert(_ condition: Bool = true) -> RubyPronunciation {
 
         if condition {
             return mutate(inert: "inert")

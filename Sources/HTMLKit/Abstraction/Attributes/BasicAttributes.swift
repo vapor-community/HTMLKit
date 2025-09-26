@@ -15,7 +15,7 @@ public protocol AccessKeyAttribute: Attribute {
     /// Anchor {
     ///     "Lorem ipsum..."
     /// }
-    /// .accessKey="A"
+    /// .accessKey("A")
     /// ```
     ///
     /// - Parameter value: The key to press.
@@ -117,7 +117,7 @@ extension ActionAttribute where Self: EmptyNode {
 @_documentation(visibility: internal)
 public protocol AlternateAttribute: Attribute {
     
-    /// Provide an alternative information
+    /// Provide an alternative information.
     ///
     /// ```swift
     /// Image()
@@ -129,7 +129,7 @@ public protocol AlternateAttribute: Attribute {
     /// - Returns: The element
     func alternate(_ value: String) -> Self
     
-    /// Provide an alternative information
+    /// Provide an alternative information.
     /// 
     /// ```swift
     /// Image()
@@ -355,16 +355,6 @@ public protocol AutoplayAttribute: Attribute {
     /// Video {
     ///     Source()
     /// }
-    /// .autoplay()
-    /// ```
-    func autoplay() -> Self
-    
-    /// Mark the video as autoplay.
-    ///
-    /// ```swift
-    /// Video {
-    ///     Source()
-    /// }
     /// .autoplay(true)
     /// ```
     ///
@@ -423,16 +413,7 @@ extension CharsetAttribute where Self: EmptyNode {
 @_documentation(visibility: internal)
 public protocol CheckedAttribute: Attribute {
     
-    /// Mark an input as pre-selected
-    ///
-    /// ```swift
-    /// Input()
-    ///     .type(.radio)
-    ///     .checked()
-    /// ```
-    func checked() -> Self
-    
-    /// Mark an input as pre-selected
+    /// Mark an input as pre-selected.
     ///
     /// ```swift
     /// Input()
@@ -697,7 +678,7 @@ extension EditAttribute where Self: EmptyNode {
 @_documentation(visibility: internal)
 public protocol ControlsAttribute: Attribute {
     
-    /// Display the controls
+    /// Display the controls.
     ///
     /// ```swift
     /// Audio {
@@ -949,14 +930,6 @@ extension DirectionAttribute where Self: EmptyNode {
 /// A type that provides the `disabled` modifier.
 @_documentation(visibility: internal)
 public protocol DisabledAttribute: Attribute {
-    
-    /// Disable the element.
-    ///
-    /// ```swift
-    /// Input()
-    ///     .disabled()
-    /// ```
-    func disabled() -> Self
     
     /// Disable the element.
     ///
@@ -1314,18 +1287,6 @@ extension HeightAttribute where Self: EmptyNode {
 /// A type that provides the `hidden` modifier.
 @_documentation(visibility: internal)
 public protocol HiddenAttribute: Attribute {
-    
-       /// Hide an element.
-       ///
-       /// ```swift
-       /// Paragraph {
-       ///     "Lorem ipsum..."
-       /// }
-       /// .hidden()
-       /// ```
-       ///
-       /// - Returns: The element
-    func hidden() -> Self
     
     /// Hide an element.
     ///
@@ -1892,7 +1853,7 @@ public protocol KindAttribute: Attribute {
     ///
     /// ```swift
     /// Track()
-    ///     .src(...vtt)
+    ///     .source("...vtt")
     ///     .kind(.chapters)
     /// ```
     ///
@@ -1924,7 +1885,7 @@ public protocol LabelAttribute: Attribute {
     ///
     /// ```swift
     /// Track()
-    ///     .src(...vtt)
+    ///     .source("...vtt")
     ///     .kind(.chapters)
     ///     .label("lorem")
     /// ```
@@ -2017,7 +1978,7 @@ extension ListAttribute where Self: EmptyNode {
 @_documentation(visibility: internal)
 public protocol LoopAttribute: Attribute {
     
-    /// Activate auto play
+    /// Activate autoplay.
     /// 
     /// It specifies that the element will start over again, every time it is finished.
     ///
@@ -2701,9 +2662,10 @@ extension PosterAttribute where Self: EmptyNode {
 }
 
 /// A type that provides the `playInline` modifier.
+@_documentation(visibility: internal)
 public protocol PlaysInlineAttribute: Attribute {
     
-    /// Enables inline playback
+    /// Enables inline playback.
     ///
     /// It specifies that the element should not use the native fullscreen mode when playing.
     ///
@@ -2742,7 +2704,7 @@ public protocol PreloadAttribute: Attribute {
     /// ```swift
     /// Video {
     ///     Source()
-    ///         .source("")
+    ///         .source("https://...")
     ///         .type(.mp4)
     /// }
     /// .preload(.auto)
@@ -2770,17 +2732,7 @@ extension PreloadAttribute where Self: EmptyNode {
 
 /// A type that provides the `readonly` modifier.
 @_documentation(visibility: internal)
-public protocol ReadyOnlyAttribute: Attribute {
-    
-    /// Mark the input as read only.
-    ///
-    /// ```swift
-    /// Input()
-    ///     .readonly()
-    /// ```
-    ///
-    /// - Returns: The element
-    func readonly() -> Self
+public protocol ReadOnlyAttribute: Attribute {
     
     /// Mark the input as read only based on a condition.
     ///
@@ -2795,14 +2747,14 @@ public protocol ReadyOnlyAttribute: Attribute {
     func readonly(_ condition: Bool) -> Self
 }
 
-extension ReadyOnlyAttribute where Self: ContentNode {
+extension ReadOnlyAttribute where Self: ContentNode {
     
     internal func mutate(readonly value: String) -> Self {
         return self.mutate(key: "readonly", value: value)
     }
 }
 
-extension ReadyOnlyAttribute where Self: EmptyNode {
+extension ReadOnlyAttribute where Self: EmptyNode {
     
     internal func mutate(readonly value: String) -> Self {
         return self.mutate(key: "readonly", value: value)
@@ -2873,16 +2825,6 @@ extension RelationshipAttribute where Self: EmptyNode {
 /// A type that provides the `required` modifier.
 @_documentation(visibility: internal)
 public protocol RequiredAttribute: Attribute {
-    
-    /// Mark an input as required.
-    ///
-    /// ```swift
-    /// Input()
-    ///     .required()
-    /// ```
-    ///
-    /// - Returns: The element
-    func required() -> Self
     
     /// Mark an input as required based on a condition.
     ///
@@ -3336,7 +3278,7 @@ public protocol SourceAttribute: Attribute {
     /// Audio {
     ///     Source()
     ///         .type(.mpeg)
-    ///         .source(....mpeg)
+    ///         .source("...mpeg")
     /// }
     /// ```
     /// - Parameter url: The url to load from.
@@ -3350,7 +3292,7 @@ public protocol SourceAttribute: Attribute {
     /// Audio {
     ///     Source()
     ///         .type(.mpeg)
-    ///         .source()
+    ///         .source("...mpeg")
     /// }
     /// ```
     /// - Parameter url: The url to load from.
@@ -4017,17 +3959,6 @@ extension ShadowRootModeAttribute where Self: ContentNode {
 @_documentation(visibility: internal)
 public protocol InertAttribute: Attribute {
     
-    /// Disable the element and the content of the element.
-    ///
-    /// ```swift
-    /// Division {
-    /// }
-    /// .inert()
-    /// ```
-    ///
-    /// - Returns: The element
-    func inert() -> Self
-    
     /// Disable the element and the content of the element based on a condition.
     ///
     /// ```swift
@@ -4275,14 +4206,14 @@ public protocol PopoverTargetAttribute: Attribute {
     func popoverTarget(_ id: String) -> Self
 }
 
-extension PopoverAttribute where Self: ContentNode {
+extension PopoverTargetAttribute where Self: ContentNode {
     
     internal func mutate(popovertarget value: String) -> Self {
         return self.mutate(key: "popovertarget", value: value)
     }
 }
 
-extension PopoverAttribute where Self: EmptyNode {
+extension PopoverTargetAttribute where Self: EmptyNode {
     
     internal func mutate(popovertarget value: String) -> Self {
         return self.mutate(key: "popovertarget", value: value)
@@ -4309,14 +4240,14 @@ public protocol PopoverActionAttribute: Attribute {
     func popoverAction(_ action: Values.Popover.Action) -> Self
 }
 
-extension PopoverAttribute where Self: ContentNode {
+extension PopoverActionAttribute where Self: ContentNode {
     
     internal func mutate(popoveraction value: String) -> Self {
         return self.mutate(key: "popovertargetaction", value: value)
     }
 }
 
-extension PopoverAttribute where Self: EmptyNode {
+extension PopoverActionAttribute where Self: EmptyNode {
     
     internal func mutate(popoveraction value: String) -> Self {
         return self.mutate(key: "popovertargetaction", value: value)

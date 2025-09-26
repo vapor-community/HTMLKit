@@ -23,9 +23,6 @@ public protocol ViewModifier {
     func backgroundColor(_ color: Tokens.BackgroundColor) -> Self
     
     /// Hide the view.
-    func hidden() -> Self
-    
-    /// Hide the view.
     ///
     /// - Parameter condition: Whether to hide the view.
     ///

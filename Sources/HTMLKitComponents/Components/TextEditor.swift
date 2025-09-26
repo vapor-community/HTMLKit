@@ -100,7 +100,7 @@ public struct TextEditor: View, Modifiable, Identifiable {
 
 extension TextEditor: InputModifier {
     
-    public func disabled(_ condition: Bool) -> TextEditor {
+    public func disabled(_ condition: Bool = true) -> TextEditor {
         
         if condition {
             return self.mutate(inputstate: Tokens.ViewState.disabled.value)
@@ -124,11 +124,7 @@ extension TextEditor: ViewModifier {
         return self.mutate(zindex: index.value)
     }
     
-    public func hidden() -> TextEditor {
-        return self.mutate(viewstate: Tokens.ViewState.hidden.value)
-    }
-    
-    public func hidden(_ condition: Bool) -> TextEditor {
+    public func hidden(_ condition: Bool = true) -> TextEditor {
         
         if condition {
             return self.mutate(viewstate: Tokens.ViewState.hidden.value)

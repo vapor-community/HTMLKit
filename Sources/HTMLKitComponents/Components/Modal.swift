@@ -80,11 +80,7 @@ extension Modal: ViewModifier {
         return self.mutate(zindex: index.value)
     }
     
-    public func hidden() -> Modal {
-        return self.mutate(viewstate: Tokens.ViewState.hidden.value)
-    }
-    
-    public func hidden(_ condition: Bool) -> Modal {
+    public func hidden(_ condition: Bool = true) -> Modal {
         
         if condition {
             return self.mutate(viewstate: Tokens.ViewState.hidden.value)

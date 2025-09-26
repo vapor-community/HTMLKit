@@ -134,11 +134,7 @@ extension Text: TextModifier {
         return self.mutate(textdecoration: decoration.value)
     }
     
-    public func bold() -> Text {
-        return self.mutate(fontweight: Tokens.FontWeight.bold.value)
-    }
-    
-    public func bold(_ condition: Bool) -> Text {
+    public func bold(_ condition: Bool = true) -> Text {
         
         if condition {
             return self.mutate(fontweight: Tokens.FontWeight.bold.value)
@@ -147,11 +143,7 @@ extension Text: TextModifier {
         return self
     }
     
-    public func italic() -> Text {
-        return self.mutate(fontstyle: Tokens.FontStyle.italic.value)
-    }
-    
-    public func italic(_ condition: Bool) -> Text {
+    public func italic(_ condition: Bool = true) -> Text {
     
         if condition {
             return self.mutate(fontstyle: Tokens.FontStyle.italic.value)
@@ -160,11 +152,7 @@ extension Text: TextModifier {
         return self
     }
     
-    public func underline() -> Text {
-        return self.mutate(textdecoration: Tokens.TextDecoration.underline.value)
-    }
-    
-    public func underline(_ condition: Bool) -> Text {
+    public func underline(_ condition: Bool = true) -> Text {
         
         if condition {
             return self.mutate(textdecoration: Tokens.TextDecoration.underline.value)
@@ -173,11 +161,7 @@ extension Text: TextModifier {
         return self
     }
     
-    public func strikethrough() -> Text {
-        return self.mutate(textdecoration: Tokens.TextDecoration.strikeThrough.value)
-    }
-    
-    public func strikethrough(_ condition: Bool) -> Text {
+    public func strikethrough(_ condition: Bool = true) -> Text {
         
         if condition {
             return self.mutate(textdecoration: Tokens.TextDecoration.strikeThrough.value)
@@ -213,11 +197,7 @@ extension Text: ViewModifier {
         return self.mutate(zindex: index.value)
     }
     
-    public func hidden() -> Text {
-        return self.mutate(viewstate: Tokens.ViewState.hidden.value)
-    }
-    
-    public func hidden(_ condition: Bool) -> Text {
+    public func hidden(_ condition: Bool = true) -> Text {
         
         if condition {
             return self.mutate(viewstate: Tokens.ViewState.hidden.value)

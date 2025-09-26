@@ -135,7 +135,7 @@ public struct SelectField: View, Modifiable, Identifiable {
 
 extension SelectField: InputModifier {
     
-    public func disabled(_ condition: Bool) -> SelectField {
+    public func disabled(_ condition: Bool = true) -> SelectField {
         
         if condition {
             return self.mutate(inputstate: Tokens.ViewState.disabled.value)
@@ -159,11 +159,7 @@ extension SelectField: ViewModifier {
         return self.mutate(zindex: index.value)
     }
     
-    public func hidden() -> SelectField {
-        return self.mutate(viewstate: Tokens.ViewState.hidden.value)
-    }
-    
-    public func hidden(_ condition: Bool) -> SelectField {
+    public func hidden(_ condition: Bool = true) -> SelectField {
         
         if condition {
             return self.mutate(viewstate: Tokens.ViewState.hidden.value)

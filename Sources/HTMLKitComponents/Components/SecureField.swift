@@ -84,7 +84,7 @@ public struct SecureField: View, Modifiable, Identifiable {
 
 extension SecureField: InputModifier {
     
-    public func disabled(_ condition: Bool) -> SecureField {
+    public func disabled(_ condition: Bool = true) -> SecureField {
         
         if condition {
             return self.mutate(inputstate: Tokens.ViewState.disabled.value)
@@ -108,11 +108,7 @@ extension SecureField: ViewModifier {
         return self.mutate(zindex: index.value)
     }
     
-    public func hidden() -> SecureField {
-        return self.mutate(viewstate: Tokens.ViewState.hidden.value)
-    }
-    
-    public func hidden(_ condition: Bool) -> SecureField {
+    public func hidden(_ condition: Bool = true) -> SecureField {
         
         if condition {
             return self.mutate(viewstate: Tokens.ViewState.hidden.value)

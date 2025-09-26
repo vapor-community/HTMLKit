@@ -83,11 +83,7 @@ extension Head: GlobalAttributes, GlobalEventAttributes {
         return mutate(enterkeyhint: value.rawValue)
     }
     
-    public func hidden() -> Head {
-        return mutate(hidden: "hidden")
-    }
-    
-    public func hidden(_ condition: Bool) -> Head {
+    public func hidden(_ condition: Bool = true) -> Head {
         
         if condition {
             return mutate(hidden: "hidden")
@@ -186,11 +182,7 @@ extension Head: GlobalAttributes, GlobalEventAttributes {
         return mutate(translate: value.rawValue)
     }
     
-    public func inert() -> Head {
-        return mutate(inert: "inert")
-    }
-    
-    public func inert(_ condition: Bool) -> Head {
+    public func inert(_ condition: Bool = true) -> Head {
 
         if condition {
             return mutate(inert: "inert")
@@ -314,12 +306,8 @@ extension Body: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, W
     public func enterKeyHint(_ value: Values.Hint) -> Body {
         return mutate(enterkeyhint: value.rawValue)
     }
-
-    public func hidden() -> Body {
-        return mutate(hidden: "hidden")
-    }
     
-    public func hidden(_ condition: Bool) -> Body {
+    public func hidden(_ condition: Bool = true) -> Body {
         
         if condition {
             return mutate(hidden: "hidden")
@@ -417,12 +405,8 @@ extension Body: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, W
     public func translate(_ value: Values.Decision) -> Body {
         return mutate(translate: value.rawValue)
     }
-    
-    public func inert() -> Body {
-        return mutate(inert: "inert")
-    }
-    
-    public func inert(_ condition: Bool) -> Body {
+
+    public func inert(_ condition: Bool = true) -> Body {
 
         if condition {
             return mutate(inert: "inert")

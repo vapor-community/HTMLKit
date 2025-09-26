@@ -33,7 +33,7 @@ public struct Chart: View, Modifiable {
         Vector {
             content
         }
-        .namespace("https://www.w3.org/2000/svg")
+        .namespace("http://www.w3.org/2000/svg")
         .class(classes.joined(separator: " "))
     }
     

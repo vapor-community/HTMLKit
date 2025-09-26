@@ -124,11 +124,7 @@ extension Grid: ViewModifier {
         return self.mutate(zindex: index.value)
     }
     
-    public func hidden() -> Grid {
-        return self.mutate(viewstate: Tokens.ViewState.hidden.value)
-    }
-    
-    public func hidden(_ condition: Bool) -> Grid {
+    public func hidden(_ condition: Bool = true) -> Grid {
         
         if condition {
             return self.mutate(viewstate: Tokens.ViewState.hidden.value)

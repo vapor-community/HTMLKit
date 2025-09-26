@@ -131,7 +131,7 @@ public struct DatePicker: View, Modifiable, Identifiable {
 
 extension DatePicker: InputModifier {
     
-    public func disabled(_ condition: Bool) -> DatePicker {
+    public func disabled(_ condition: Bool = true) -> DatePicker {
         
         if condition {
             return self.mutate(inputstate: Tokens.ViewState.disabled.value)
@@ -155,11 +155,7 @@ extension DatePicker: ViewModifier {
         return self.mutate(zindex: index.value)
     }
     
-    public func hidden() -> DatePicker {
-        return self.mutate(viewstate: Tokens.ViewState.hidden.value)
-    }
-    
-    public func hidden(_ condition: Bool) -> DatePicker {
+    public func hidden(_ condition: Bool = true) -> DatePicker {
         
         if condition {
             return self.mutate(viewstate: Tokens.ViewState.hidden.value)

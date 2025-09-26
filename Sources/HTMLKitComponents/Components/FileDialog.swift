@@ -52,7 +52,7 @@ public struct FileDialog: View, Modifiable, Identifiable {
 
 extension FileDialog: InputModifier {
     
-    public func disabled(_ condition: Bool) -> FileDialog {
+    public func disabled(_ condition: Bool = true) -> FileDialog {
         
         if condition {
             return self.mutate(inputstate: Tokens.ViewState.disabled.value)
@@ -76,11 +76,7 @@ extension FileDialog: ViewModifier {
         return self.mutate(zindex: index.value)
     }
     
-    public func hidden() -> FileDialog {
-        return self.mutate(viewstate: Tokens.ViewState.hidden.value)
-    }
-    
-    public func hidden(_ condition: Bool) -> FileDialog {
+    public func hidden(_ condition: Bool = true) -> FileDialog {
         
         if condition {
             return self.mutate(viewstate: Tokens.ViewState.hidden.value)

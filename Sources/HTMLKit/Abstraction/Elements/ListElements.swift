@@ -91,12 +91,8 @@ extension ListItem: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
     public func enterKeyHint(_ value: Values.Hint) -> ListItem {
         return mutate(enterkeyhint: value.rawValue)
     }
-
-    public func hidden() -> ListItem {
-        return mutate(hidden: "hidden")
-    }
     
-    public func hidden(_ condition: Bool) -> ListItem {
+    public func hidden(_ condition: Bool = true) -> ListItem {
         
         if condition {
             return mutate(hidden: "hidden")
@@ -195,11 +191,7 @@ extension ListItem: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(translate: value.rawValue)
     }
     
-    public func inert() -> ListItem {
-        return mutate(inert: "inert")
-    }
-    
-    public func inert(_ condition: Bool) -> ListItem {
+    public func inert(_ condition: Bool = true) -> ListItem {
 
         if condition {
             return mutate(inert: "inert")

@@ -65,17 +65,11 @@ public protocol TextModifier {
     func textDecoration(_ decoration: Tokens.TextDecoration) -> Self
     
     /// Apply a bold font weight to the text.
-    func bold() -> Self
-    
-    /// Apply a bold font weight to the text.
     ///
     /// - Parameter condition: Whether to apply the weight.
     ///
     /// - Returns: The text
     func bold(_ condition: Bool) -> Self
-    
-    /// Apply italics to the text.
-    func italic() -> Self
     
     /// Apply italics to the text.
     ///
@@ -85,17 +79,11 @@ public protocol TextModifier {
     func italic(_ condition: Bool) -> Self
     
     /// Apply an underline to the text.
-    func underline() -> Self
-    
-    /// Apply an underline to the text.
     ///
     /// - Parameter condition: Whether to apply the underline.
     ///
     /// - Returns: The text
     func underline(_ condition: Bool) -> Self
-    
-    /// Apply an strikethrough to the text.
-    func strikethrough() -> Self
     
     /// Apply an strikethrough to the text.
     ///

@@ -91,11 +91,7 @@ extension Navigation: ViewModifier {
         return self.mutate(zindex: index.value)
     }
     
-    public func hidden() -> Navigation {
-        return self.mutate(viewstate: Tokens.ViewState.hidden.value)
-    }
-    
-    public func hidden(_ condition: Bool) -> Navigation {
+    public func hidden(_ condition: Bool = true) -> Navigation {
         
         if condition {
             return self.mutate(viewstate: Tokens.ViewState.hidden.value)

@@ -1,6 +1,7 @@
 import Foundation
 
 /// A string key for the localization
+@_documentation(visibility: internal)
 public struct LocalizedStringKey {
  
     /// The key value

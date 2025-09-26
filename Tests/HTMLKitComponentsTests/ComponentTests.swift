@@ -383,7 +383,7 @@ final class ComponentTests: XCTestCase {
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <svg xmlns="https://www.w3.org/2000/svg" class="progress">\
+                       <svg xmlns="http://www.w3.org/2000/svg" class="progress">\
                        <path class="mark">100.0</path>\
                        <path class="mark">50.0</path>\
                        </svg>

@@ -81,11 +81,7 @@ extension Dropdown: ViewModifier {
         return self.mutate(zindex: index.value)
     }
     
-    public func hidden() -> Dropdown {
-        return self.mutate(viewstate: Tokens.ViewState.hidden.value)
-    }
-    
-    public func hidden(_ condition: Bool) -> Dropdown {
+    public func hidden(_ condition: Bool = true) -> Dropdown {
         
         if condition {
             return self.mutate(viewstate: Tokens.ViewState.hidden.value)

@@ -7,12 +7,12 @@ import OrderedCollections
 ///
 /// ```swift
 /// Image()
-///     .source(...png)
+///     .source("...png")
 ///     .useMap("lorem")
 /// Map {
 ///     Area()
 ///         .shape(.circle)
-///         .coordinates(10, 10, 10 ,10)
+///         .coordinates("10, 10, 10 ,10")
 ///         .alternate("Lorem ipsum...")
 ///         .reference("https://...")
 /// }
@@ -87,11 +87,7 @@ extension Area: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, A
         return mutate(enterkeyhint: value.rawValue)
     }
 
-    public func hidden() -> Area {
-        return mutate(hidden: "hidden")
-    }
-
-    public func hidden(_ condition: Bool) -> Area {
+    public func hidden(_ condition: Bool = true) -> Area {
         
         if condition {
             return mutate(hidden: "hidden")
@@ -190,11 +186,7 @@ extension Area: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, A
         return mutate(translate: value.rawValue)
     }
     
-    public func inert() -> Area {
-        return mutate(inert: "inert")
-    }
-    
-    public func inert(_ condition: Bool) -> Area {
+    public func inert(_ condition: Bool = true) -> Area {
 
         if condition {
             return mutate(inert: "inert")

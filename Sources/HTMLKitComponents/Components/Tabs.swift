@@ -108,11 +108,7 @@ extension Tabs: ViewModifier {
         return self.mutate(backgroundcolor: color.value)
     }
     
-    public func hidden() -> Tabs {
-        return self.mutate(viewstate: Tokens.ViewState.hidden.value)
-    }
-    
-    public func hidden(_ condition: Bool) -> Tabs {
+    public func hidden(_ condition: Bool = true) -> Tabs {
         
         if condition {
             return self.mutate(viewstate: Tokens.ViewState.hidden.value)

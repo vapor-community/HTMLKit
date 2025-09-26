@@ -795,7 +795,7 @@ public enum Values {
     ///
     /// ```swift
     /// Link()
-    ///     .reference(...ico)
+    ///     .reference("...ico")
     ///     .relation(.icon)
     /// ```
     public enum Relation: String {
@@ -1511,7 +1511,7 @@ public enum Values {
     /// ```swift
     /// Audio {
     ///     Source()
-    ///         .source(...mp4)
+    ///         .source("...mp4")
     ///         .type(.mp4)
     /// }
     /// .preload(.auto)

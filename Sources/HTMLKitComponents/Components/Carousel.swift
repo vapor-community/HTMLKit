@@ -85,11 +85,7 @@ extension Carousel: ViewModifier {
         return self.mutate(zindex: index.value)
     }
     
-    public func hidden() -> Carousel {
-        return self.mutate(viewstate: Tokens.ViewState.hidden.value)
-    }
-    
-    public func hidden(_ condition: Bool) -> Carousel {
+    public func hidden(_ condition: Bool = true) -> Carousel {
         
         if condition {
             return self.mutate(viewstate: Tokens.ViewState.hidden.value)

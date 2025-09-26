@@ -22,10 +22,10 @@ public struct Validator: Encodable {
     }
     
     /// The name of the field.
-    public var field: String
+    internal var field: String
     
     /// The rule of validation.
-    public var rule: String
+    internal var rule: String
     
     /// Initiates a validator.
     public init(field: String, rule: Rule) {

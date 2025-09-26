@@ -93,7 +93,7 @@ public struct CheckField: View, Modifiable, Selectable, Identifiable {
 
 extension CheckField: InputModifier {
     
-    public func disabled(_ condition: Bool) -> CheckField {
+    public func disabled(_ condition: Bool = true) -> CheckField {
         
         if condition {
             return self.mutate(inputstate: Tokens.ViewState.disabled.value)
@@ -117,11 +117,7 @@ extension CheckField: ViewModifier {
         return self.mutate(zindex: index.value)
     }
     
-    public func hidden() -> CheckField {
-        return self.mutate(viewstate: Tokens.ViewState.hidden.value)
-    }
-    
-    public func hidden(_ condition: Bool) -> CheckField {
+    public func hidden(_ condition: Bool = true) -> CheckField {
         
         if condition {
             return self.mutate(viewstate: Tokens.ViewState.hidden.value)

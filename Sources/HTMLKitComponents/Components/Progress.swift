@@ -53,7 +53,7 @@ public struct Progress: View, Modifiable, Identifiable {
             }
             .class("mark")
         }
-        .namespace("https://www.w3.org/2000/svg")
+        .namespace("http://www.w3.org/2000/svg")
         .class(classes.joined(separator: " "))
         .modify(unwrap: id) {
             $0.id($1)

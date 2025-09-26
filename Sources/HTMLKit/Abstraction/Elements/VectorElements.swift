@@ -15,7 +15,7 @@ public typealias Rect = Rectangle
 ///     .centerPoint((50,50))
 ///     .radius(50)
 /// }
-/// .viewBox(0 0 100 100)
+/// .viewBox("0 0 100 100")
 /// .namespace("http://...")
 /// ```
 public struct Circle: ContentNode, VectorElement {
@@ -127,7 +127,7 @@ extension Circle: GlobalVectorAttributes, CenterPointAttribute, RadiusAttribute 
 ///     .width(200)
 ///     .height(100)
 /// }
-/// .viewBox(0 0 400 200)
+/// .viewBox("0 0 400 200")
 /// .namespace("https://...")
 /// ```
 public struct Rectangle: ContentNode, VectorElement {
@@ -243,7 +243,7 @@ extension Rectangle: GlobalVectorAttributes, WidthAttribute, HeightAttribute, Ra
 ///     .centerPoint((100, 50))
 ///     .radiusPoint((100, 50))
 /// }
-/// .viewBox(0 0 200 100)
+/// .viewBox("0 0 200 100")
 /// .namespace("http://...")
 /// ```
 public struct Ellipse: ContentNode, VectorElement {
@@ -355,7 +355,7 @@ extension Ellipse: GlobalVectorAttributes, CenterPointAttribute, RadiusPointAttr
 ///     .stroke("black")
 ///     .strokeWidth(1)
 /// }
-/// .viewBox(0 0 400 200)
+/// .viewBox("0 0 400 200")
 /// .namespace("http://...")
 /// ```
 public struct Line: ContentNode, VectorElement {
@@ -456,9 +456,9 @@ extension Line: GlobalVectorAttributes {
 /// Vector {
 ///     Polygon {
 ///     }
-///     .points(0, 100, 5)
+///     .points("0, 100, 5...")
 /// }
-/// .viewBox(0 0 400 200)
+/// .viewBox("0 0 400 200")
 /// .namespace("http://...")
 /// ```
 public struct Polygon: ContentNode, VectorElement {
@@ -563,9 +563,9 @@ extension Polygon: GlobalVectorAttributes, PointsAttribute {
 /// Vector {
 ///     Polyline {
 ///     }
-///     .points(0, 100, 5)
+///     .points("0, 100, 5...")
 /// }
-/// .viewBox(0 0 400 200)
+/// .viewBox("0 0 400 200")
 /// .namespace("http://...")
 /// ```
 public struct Polyline: ContentNode, VectorElement {
@@ -670,9 +670,9 @@ extension Polyline: GlobalVectorAttributes, PointsAttribute {
 /// Vector {
 ///     Path {
 ///     }
-///     .draw("M10 10")
+///     .draw("M10 10...")
 /// }
-/// .viewBox(0 0 400 200)
+/// .viewBox("0 0 400 200")
 /// .namespace("http://...")
 /// ```
 public struct Path: ContentNode, VectorElement {
@@ -778,7 +778,7 @@ extension Path: GlobalVectorAttributes, DrawAttribute {
 ///     Group {
 ///     }
 /// }
-/// .viewBox(0 0 400 200)
+/// .viewBox("0 0 400 200")
 /// .namespace("http://...")
 /// ```
 public struct Group: ContentNode, VectorElement {
@@ -884,7 +884,7 @@ extension Group: GlobalVectorAttributes {
 ///     }
 ///     .reference("#lorem")
 /// }
-/// .viewBox(0 0 400 200)
+/// .viewBox("0 0 400 200")
 /// .namespace("http://...")
 /// ```
 public struct Use: ContentNode, VectorElement {

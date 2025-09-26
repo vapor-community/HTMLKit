@@ -19,7 +19,7 @@ public enum Tokens {
         case custom(String)
         
         /// The string value depending on the case.
-        var value: String {
+        internal var value: String {
             
             switch self {
             case .vertical:
@@ -55,7 +55,7 @@ public enum Tokens {
         case custom(String)
         
         /// The string value depending on the case.
-        var value: String {
+        internal var value: String {
             
             switch self {
             case .leading:
@@ -128,7 +128,7 @@ public enum Tokens {
         case custom(String)
         
         /// The string value depending on the case.
-        var value: String {
+        internal var value: String {
             
             switch self {
             case .one:
@@ -234,7 +234,7 @@ public enum Tokens {
         case custom(String)
         
         /// The string value depending on the case.
-        var value: String {
+        internal var value: String {
             
             switch self {
             case .one:
@@ -359,7 +359,7 @@ public enum Tokens {
         case custom(String)
         
         /// The string value depending on the case.
-        var value: String {
+        internal var value: String {
             
             switch self {
             case .black:
@@ -456,7 +456,7 @@ public enum Tokens {
         case custom(String)
         
         /// The string value depending on the case.
-        var value: String {
+        internal var value: String {
             
             switch self {
             case .tiny:
@@ -502,7 +502,7 @@ public enum Tokens {
         case custom(String)
         
         /// The string value depending on the case.
-        var value: String {
+        internal var value: String {
             
             switch self {
             case .uppercase:
@@ -560,7 +560,7 @@ public enum Tokens {
         case custom(String)
         
         /// The string value depending on the case.
-        var value: String {
+        internal var value: String {
             
             switch self {
             case .thin:
@@ -618,7 +618,7 @@ public enum Tokens {
         case custom(String)
         
         /// The string value depending on the case.
-        var value: String {
+        internal var value: String {
             
             switch self {
             case .underline:
@@ -655,7 +655,7 @@ public enum Tokens {
         case custom(String)
         
         /// The string value depending on the case.
-        var value: String {
+        internal var value: String {
             
             switch self {
             case .italic:
@@ -743,7 +743,7 @@ public enum Tokens {
         case custom(String)
         
         /// The string value depending on the case.
-        var value: String {
+        internal var value: String {
             
             switch self {
             case .black:
@@ -839,7 +839,7 @@ public enum Tokens {
         case custom(String)
         
         /// The string value depending on the case.
-        var value: String {
+        internal var value: String {
             
             switch self {
             case .contain:
@@ -881,7 +881,7 @@ public enum Tokens {
         case custom(String)
         
         /// The string value depending on the case.
-        var value: String {
+        internal var value: String {
             
             switch self {
             case .intransparent:
@@ -917,7 +917,7 @@ public enum Tokens {
         case custom(String)
         
         /// The string value depending on the case.
-        var value: String {
+        internal var value: String {
             
             switch self {
             case .small:
@@ -950,7 +950,7 @@ public enum Tokens {
         case custom(String)
         
         /// The string value depending on the case.
-        var value: String {
+        internal var value: String {
             
             switch self {
             case .circle:
@@ -990,7 +990,7 @@ public enum Tokens {
         case custom(String)
         
         /// The string value depending on the case.
-        var value: String {
+        internal var value: String {
             
             switch self {
             case .one:
@@ -1051,7 +1051,7 @@ public enum Tokens {
         case custom(String)
         
         /// The string value depending on the case.
-        var value: String {
+        internal var value: String {
             
             switch self {
             case .title:
@@ -1108,7 +1108,7 @@ public enum Tokens {
         case custom(String)
         
         /// The string value depending on the case.
-        var value: String {
+        internal var value: String {
             
             switch self {
             case .top:
@@ -1150,7 +1150,7 @@ public enum Tokens {
         case custom(String)
         
         /// The string value depending on the case.
-        var value: String {
+        internal var value: String {
             
             switch self {
             case .leading:
@@ -1198,7 +1198,7 @@ public enum Tokens {
         case custom(String)
         
         /// The string value depending on the case.
-        var value: String {
+        internal var value: String {
             
             switch self {
             case .around:
@@ -1249,7 +1249,7 @@ public enum Tokens {
         case custom(String)
         
         /// The string value depending on the case.
-        var value: String {
+        internal var value: String {
             
             switch self {
             case .plaintext:
@@ -1289,7 +1289,7 @@ public enum Tokens {
         case custom(String)
         
         /// The string value depending on the case.
-        var value: String {
+        internal var value: String {
             
             switch self {
             case .primary:
@@ -1326,7 +1326,7 @@ public enum Tokens {
         case custom(String)
         
         /// The string value depending on the case.
-        var value: String {
+        internal var value: String {
             
             switch self {
             case .smallrounded:
@@ -1369,7 +1369,7 @@ public enum Tokens {
         case custom(String)
         
         /// The string value depending on the case.
-        var value: String {
+        internal var value: String {
             
             switch self {
             case .full:
@@ -1419,7 +1419,7 @@ public enum Tokens {
         case custom(String)
         
         /// The string value depending on the case.
-        var value: String {
+        internal var value: String {
             
             switch self {
             case .fit:
@@ -1462,7 +1462,7 @@ public enum Tokens {
         case custom(String)
         
         /// The string value depending on the case.
-        var value: String {
+        internal var value: String {
             
             switch self {
             case .listgroup:
@@ -1499,7 +1499,7 @@ public enum Tokens {
         case custom(String)
         
         /// The string value depending on the case.
-        var value: String {
+        internal var value: String {
             
             switch self {
             case .active:
@@ -1590,7 +1590,7 @@ public enum Tokens {
         case custom(String)
         
         /// The string value depending on the case.
-        var value: String {
+        internal var value: String {
             
             switch self {
             case .black:
@@ -1726,7 +1726,7 @@ public enum Tokens {
         case custom(String)
         
         /// The string value depending on the case.
-        var value: String {
+        internal var value: String {
             
             switch self {
             case .black:
@@ -1811,7 +1811,7 @@ public enum Tokens {
         case custom(String)
         
         /// The string value depending on the case.
-        var value: String {
+        internal var value: String {
             
             switch self {
             case .dark:
@@ -1848,7 +1848,7 @@ public enum Tokens {
         case custom(String)
         
         /// The string value depending on the case.
-        var value: String {
+        internal var value: String {
             
             switch self {
             case .small:
@@ -1891,7 +1891,7 @@ public enum Tokens {
         case custom(String)
         
         /// The string value depending on the case.
-        var value: String {
+        internal var value: String {
             
             switch self {
             case .small:
@@ -1930,7 +1930,7 @@ public enum Tokens {
         case custom(String)
         
         /// The string value depending on the case.
-        var value: String {
+        internal var value: String {
             
             switch self {
             case .equal:
@@ -1967,7 +1967,7 @@ public enum Tokens {
         case custom(String)
         
         /// The string value depending on the case.
-        var value: String {
+        internal var value: String {
             
             switch self {
             case .plain:
@@ -2007,7 +2007,7 @@ public enum Tokens {
         case custom(String)
         
         /// The string value depending on the case.
-        var value: String {
+        internal var value: String {
             
             switch self {
             case .small:
@@ -2047,7 +2047,7 @@ public enum Tokens {
         case custom(String)
         
         /// The string value depending on the case.
-        var value: String {
+        internal var value: String {
             
             switch self {
             case .one:
@@ -2087,7 +2087,7 @@ public enum Tokens {
         case custom(String)
         
         /// The string value depending on the case.
-        var value: String {
+        internal var value: String {
             
             switch self {
             case .leading:
@@ -2127,7 +2127,7 @@ public enum Tokens {
         case custom(String)
         
         /// The string value depending on the case.
-        var value: String {
+        internal var value: String {
             
             switch self {
             case .arial:
@@ -2401,7 +2401,7 @@ public enum Tokens {
         case custom(String)
         
         /// The string value depending on the case.
-        var value: String {
+        internal var value: String {
             
             switch self {
             case .large:
@@ -2520,7 +2520,7 @@ public enum Tokens {
         case custom(String)
         
         /// The string value depending on the case.
-        var value: String {
+        internal var value: String {
             
             switch self {
             case .black:
@@ -2599,7 +2599,7 @@ public enum Tokens {
         case custom(String)
         
         /// The string value depending on the case.
-        var value: String {
+        internal var value: String {
             
             switch self {
             case .small:
@@ -2636,7 +2636,7 @@ public enum Tokens {
         case custom(String)
         
         /// The string value depending on the case.
-        var value: String {
+        internal var value: String {
             
             switch self {
             case .circular:
@@ -2715,7 +2715,7 @@ public enum Tokens {
         case custom(String)
         
         /// The string value depending on the case.
-        var value: String {
+        internal var value: String {
             
             switch self {
             case .black:

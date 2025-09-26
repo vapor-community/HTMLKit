@@ -116,11 +116,7 @@ extension VStack: ViewModifier {
         return self.mutate(zindex: index.value)
     }
     
-    public func hidden() -> VStack {
-        return self.mutate(viewstate: Tokens.ViewState.hidden.value)
-    }
-    
-    public func hidden(_ condition: Bool) -> VStack {
+    public func hidden(_ condition: Bool = true) -> VStack {
         
         if condition {
             return self.mutate(viewstate: Tokens.ViewState.hidden.value)

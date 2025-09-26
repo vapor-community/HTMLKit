@@ -93,7 +93,7 @@ public struct TextField: View, Modifiable, Identifiable {
 
 extension TextField: InputModifier {
     
-    public func disabled(_ condition: Bool) -> TextField {
+    public func disabled(_ condition: Bool = true) -> TextField {
         
         if condition {
             return self.mutate(inputstate: Tokens.ViewState.disabled.value)
@@ -117,11 +117,7 @@ extension TextField: ViewModifier {
         return self.mutate(zindex: index.value)
     }
     
-    public func hidden() -> TextField {
-        return self.mutate(viewstate: Tokens.ViewState.hidden.value)
-    }
-    
-    public func hidden(_ condition: Bool) -> TextField {
+    public func hidden(_ condition: Bool = true) -> TextField {
         
         if condition {
             return self.mutate(viewstate: Tokens.ViewState.hidden.value)

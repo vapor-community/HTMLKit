@@ -102,11 +102,7 @@ extension Image: ViewModifier {
         return self.mutate(opacity: value.value)
     }
     
-    public func hidden() -> Image {
-        return self.mutate(viewstate: Tokens.ViewState.hidden.value)
-    }
-    
-    public func hidden(_ condition: Bool) -> Image {
+    public func hidden(_ condition: Bool = true) -> Image {
         
         if condition {
             return self.mutate(viewstate: Tokens.ViewState.hidden.value)

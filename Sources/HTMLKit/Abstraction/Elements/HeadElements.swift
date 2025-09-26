@@ -85,11 +85,7 @@ extension Title: GlobalAttributes, GlobalEventAttributes {
         return mutate(enterkeyhint: value.rawValue)
     }
     
-    public func hidden() -> Title {
-        return mutate(hidden: "hidden")
-    }
-    
-    public func hidden(_ condition: Bool) -> Title {
+    public func hidden(_ condition: Bool = true) -> Title {
         
         if condition {
             return mutate(hidden: "hidden")
@@ -188,11 +184,7 @@ extension Title: GlobalAttributes, GlobalEventAttributes {
         return mutate(translate: value.rawValue)
     }
     
-    public func inert() -> Title {
-        return mutate(inert: "inert")
-    }
-    
-    public func inert(_ condition: Bool) -> Title {
+    public func inert(_ condition: Bool = true) -> Title {
 
         if condition {
             return mutate(inert: "inert")
@@ -307,11 +299,7 @@ extension Base: GlobalAttributes, GlobalEventAttributes, ReferenceAttribute, Tar
         return mutate(enterkeyhint: value.rawValue)
     }
     
-    public func hidden() -> Base {
-        return mutate(hidden: "hidden")
-    }
-    
-    public func hidden(_ condition: Bool) -> Base {
+    public func hidden(_ condition: Bool = true) -> Base {
         
         if condition {
             return mutate(hidden: "hidden")
@@ -410,11 +398,7 @@ extension Base: GlobalAttributes, GlobalEventAttributes, ReferenceAttribute, Tar
         return mutate(translate: value.rawValue)
     }
     
-    public func inert() -> Base {
-        return mutate(inert: "inert")
-    }
-    
-    public func inert(_ condition: Bool) -> Base {
+    public func inert(_ condition: Bool = true) -> Base {
 
         if condition {
             return mutate(inert: "inert")
@@ -535,12 +519,8 @@ extension Meta: GlobalAttributes, GlobalEventAttributes, ContentAttribute, NameA
     public func enterKeyHint(_ value: Values.Hint) -> Meta {
         return mutate(enterkeyhint: value.rawValue)
     }
-
-    public func hidden() -> Meta {
-        return mutate(hidden: "hidden")
-    }
     
-    public func hidden(_ condition: Bool) -> Meta {
+    public func hidden(_ condition: Bool = true) -> Meta {
         
         if condition {
             return mutate(hidden: "hidden")
@@ -639,11 +619,7 @@ extension Meta: GlobalAttributes, GlobalEventAttributes, ContentAttribute, NameA
         return mutate(translate: value.rawValue)
     }
     
-    public func inert() -> Meta {
-        return mutate(inert: "inert")
-    }
-    
-    public func inert(_ condition: Bool) -> Meta {
+    public func inert(_ condition: Bool = true) -> Meta {
 
         if condition {
             return mutate(inert: "inert")
@@ -791,12 +767,8 @@ extension Style: GlobalAttributes, GlobalEventAttributes, TypeAttribute, MediaAt
     public func enterKeyHint(_ value: Values.Hint) -> Style {
         return mutate(enterkeyhint: value.rawValue)
     }
-
-    public func hidden() -> Style {
-        return mutate(hidden: "hidden")
-    }
     
-    public func hidden(_ condition: Bool) -> Style {
+    public func hidden(_ condition: Bool = true) -> Style {
         
         if condition {
             return mutate(hidden: "hidden")
@@ -895,11 +867,7 @@ extension Style: GlobalAttributes, GlobalEventAttributes, TypeAttribute, MediaAt
         return mutate(translate: value.rawValue)
     }
     
-    public func inert() -> Style {
-        return mutate(inert: "inert")
-    }
-    
-    public func inert(_ condition: Bool) -> Style {
+    public func inert(_ condition: Bool = true) -> Style {
 
         if condition {
             return mutate(inert: "inert")
@@ -1031,12 +999,8 @@ extension Link: GlobalAttributes, GlobalEventAttributes, ReferenceAttribute, Ref
     public func enterKeyHint(_ value: Values.Hint) -> Link {
         return mutate(enterkeyhint: value.rawValue)
     }
-
-    public func hidden() -> Link {
-        return mutate(hidden: "hidden")
-    }
     
-    public func hidden(_ condition: Bool) -> Link {
+    public func hidden(_ condition: Bool = true) -> Link {
         
         if condition {
             return mutate(hidden: "hidden")
@@ -1143,11 +1107,7 @@ extension Link: GlobalAttributes, GlobalEventAttributes, ReferenceAttribute, Ref
         return mutate(translate: value.rawValue)
     }
     
-    public func inert() -> Link {
-        return mutate(inert: "inert")
-    }
-    
-    public func inert(_ condition: Bool) -> Link {
+    public func inert(_ condition: Bool = true) -> Link {
 
         if condition {
             return mutate(inert: "inert")

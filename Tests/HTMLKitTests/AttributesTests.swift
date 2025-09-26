@@ -15,21 +15,21 @@ final class AttributesTests: XCTestCase {
         @ContentBuilder<Content> var body: Content
     }
     
-    typealias AllAttributes = AccessKeyAttribute & AcceptAttribute & ActionAttribute & AlternateAttribute & AsynchronouslyAttribute & AutocapitalizeAttribute & AutocompleteAttribute & AutofocusAttribute & AutoplayAttribute & CharsetAttribute & CheckedAttribute & CiteAttribute & ClassAttribute & ColumnsAttribute & ColumnSpanAttribute & ContentAttribute & EditAttribute  & ControlsAttribute & CoordinatesAttribute & DataAttribute & DateTimeAttribute & DefaultAttribute & DeferAttribute & DirectionAttribute & DisabledAttribute & DownloadAttribute & DragAttribute & EncodingAttribute & EnterKeyHintAttribute & ForAttribute & FormAttribute & FormActionAttribute & EquivalentAttribute & HeaderAttribute & HeightAttribute & HiddenAttribute & HighAttribute & ReferenceAttribute & ReferenceLanguageAttribute & IdentifierAttribute & IsMapAttribute & InputModeAttribute & IsAttribute & ItemAttribute & ItemIdAttribute & ItemPropertyAttribute & ItemReferenceAttribute & ItemScopeAttribute & ItemTypeAttribute & KindAttribute & LabelAttribute & LanguageAttribute & ListAttribute & LoopAttribute & LowAttribute & MaximumValueAttribute & MaximumLengthAttribute & MediaAttribute & MethodAttribute & MinimumValueAttribute & MinimumLengthAttribute & MultipleAttribute & MutedAttribute & NameAttribute & NonceAttribute & NoValidateAttribute & OpenAttribute & OptimumAttribute & PatternAttribute & PartAttribute & PingAttribute & PlaceholderAttribute & PosterAttribute & PreloadAttribute & ReadyOnlyAttribute & ReferrerPolicyAttribute & RelationshipAttribute & RequiredAttribute & ReversedAttribute & RoleAttribute & RowsAttribute & RowSpanAttribute & SandboxAttribute & ScopeAttribute & ShapeAttribute & SizeAttribute & SizesAttribute & SlotAttribute & SpanAttribute & SpellCheckAttribute & SourceAttribute & StartAttribute & StepAttribute & StyleAttribute & TabulatorAttribute & TargetAttribute & TitleAttribute & TranslateAttribute & TypeAttribute & ValueAttribute & WidthAttribute & WrapAttribute & PropertyAttribute & SelectedAttribute & WindowEventAttribute & FocusEventAttribute & PointerEventAttribute & MouseEventAttribute & WheelEventAttribute & InputEventAttribute & KeyboardEventAttribute & DragEventAttribute & ClipboardEventAttribute & SelectionEventAttribute & MediaEventAttribute & FormEventAttribute & DetailEventAttribute & AriaAtomicAttribute & AriaBusyAttribute & AriaControlsAttribute & AriaCurrentAttribute & AriaDescribedAttribute & AriaDetailsAttribute & AriaDisabledAttribute & AriaErrorMessageAttribute & AriaFlowToAttribute & AriaPopupAttribute & AriaHiddenAttribute & AriaInvalidAttribute & AriaShortcutsAttribute & AriaLabelAttribute & AriaLabeledAttribute & AriaLiveAttribute & AriaOwnsAttribute & AriaRelevantAttribute & AriaRoleDescriptionAttribute & DrawAttribute & FillAttribute & FillOpacityAttribute & StrokeAttribute & StrokeWidthAttribute & StrokeOpacityAttribute & StrokeLineCapAttribute & StrokeLineJoinAttribute & RadiusAttribute & PositionPointAttribute & RadiusPointAttribute & CenterPointAttribute & ViewBoxAttribute & NamespaceAttribute & PointsAttribute & ShadowRootModeAttribute & InertAttribute & FetchPriorityAttribute & LoadingAttribute & SourceSetAttribute & DecodingAttribute & BlockingAttribute & PopoverAttribute & PopoverTargetAttribute & PopoverActionAttribute & UseMapAttribute & PlaysInlineAttribute & IntegrityAttribute & AsAttribute & CrossOriginAttribute & SourceLanguageAttribute & SourceDocumentAttribute
+    typealias AllAttributes = AccessKeyAttribute & AcceptAttribute & ActionAttribute & AlternateAttribute & AsynchronouslyAttribute & AutocapitalizeAttribute & AutocompleteAttribute & AutofocusAttribute & AutoplayAttribute & CharsetAttribute & CheckedAttribute & CiteAttribute & ClassAttribute & ColumnsAttribute & ColumnSpanAttribute & ContentAttribute & EditAttribute  & ControlsAttribute & CoordinatesAttribute & DataAttribute & DateTimeAttribute & DefaultAttribute & DeferAttribute & DirectionAttribute & DisabledAttribute & DownloadAttribute & DragAttribute & EncodingAttribute & EnterKeyHintAttribute & ForAttribute & FormAttribute & FormActionAttribute & EquivalentAttribute & HeaderAttribute & HeightAttribute & HiddenAttribute & HighAttribute & ReferenceAttribute & ReferenceLanguageAttribute & IdentifierAttribute & IsMapAttribute & InputModeAttribute & IsAttribute & ItemAttribute & ItemIdAttribute & ItemPropertyAttribute & ItemReferenceAttribute & ItemScopeAttribute & ItemTypeAttribute & KindAttribute & LabelAttribute & LanguageAttribute & ListAttribute & LoopAttribute & LowAttribute & MaximumValueAttribute & MaximumLengthAttribute & MediaAttribute & MethodAttribute & MinimumValueAttribute & MinimumLengthAttribute & MultipleAttribute & MutedAttribute & NameAttribute & NonceAttribute & NoValidateAttribute & OpenAttribute & OptimumAttribute & PatternAttribute & PartAttribute & PingAttribute & PlaceholderAttribute & PosterAttribute & PreloadAttribute & ReadOnlyAttribute & ReferrerPolicyAttribute & RelationshipAttribute & RequiredAttribute & ReversedAttribute & RoleAttribute & RowsAttribute & RowSpanAttribute & SandboxAttribute & ScopeAttribute & ShapeAttribute & SizeAttribute & SizesAttribute & SlotAttribute & SpanAttribute & SpellCheckAttribute & SourceAttribute & StartAttribute & StepAttribute & StyleAttribute & TabulatorAttribute & TargetAttribute & TitleAttribute & TranslateAttribute & TypeAttribute & ValueAttribute & WidthAttribute & WrapAttribute & PropertyAttribute & SelectedAttribute & WindowEventAttribute & FocusEventAttribute & PointerEventAttribute & MouseEventAttribute & WheelEventAttribute & InputEventAttribute & KeyboardEventAttribute & DragEventAttribute & ClipboardEventAttribute & SelectionEventAttribute & MediaEventAttribute & FormEventAttribute & DetailEventAttribute & AriaAtomicAttribute & AriaBusyAttribute & AriaControlsAttribute & AriaCurrentAttribute & AriaDescribedAttribute & AriaDetailsAttribute & AriaDisabledAttribute & AriaErrorMessageAttribute & AriaFlowToAttribute & AriaPopupAttribute & AriaHiddenAttribute & AriaInvalidAttribute & AriaShortcutsAttribute & AriaLabelAttribute & AriaLabeledAttribute & AriaLiveAttribute & AriaOwnsAttribute & AriaRelevantAttribute & AriaRoleDescriptionAttribute & DrawAttribute & FillAttribute & FillOpacityAttribute & StrokeAttribute & StrokeWidthAttribute & StrokeOpacityAttribute & StrokeLineCapAttribute & StrokeLineJoinAttribute & RadiusAttribute & PositionPointAttribute & RadiusPointAttribute & CenterPointAttribute & ViewBoxAttribute & NamespaceAttribute & PointsAttribute & ShadowRootModeAttribute & InertAttribute & FetchPriorityAttribute & LoadingAttribute & SourceSetAttribute & DecodingAttribute & BlockingAttribute & PopoverAttribute & PopoverTargetAttribute & PopoverActionAttribute & UseMapAttribute & PlaysInlineAttribute & IntegrityAttribute & AsAttribute & CrossOriginAttribute & SourceLanguageAttribute & SourceDocumentAttribute
     
     struct Tag: ContentNode, GlobalElement, AllAttributes {
 
-        internal var name: String { "tag" }
+        var name: String { "tag" }
 
-        internal var attributes: OrderedDictionary<String, Any>?
+        var attributes: OrderedDictionary<String, Any>?
 
-        internal var content: [Content]
+        var content: [Content]
 
-        public init(@ContentBuilder<Content> content: () -> [Content]) {
+        init(@ContentBuilder<Content> content: () -> [Content]) {
             self.content = content()
         }
         
-        internal init(attributes: OrderedDictionary<String, Any>?, content: [Content]) {
+        init(attributes: OrderedDictionary<String, Any>?, content: [Content]) {
             self.attributes = attributes
             self.content = content
         }
@@ -70,11 +70,7 @@ final class AttributesTests: XCTestCase {
             return self.mutate(enterkeyhint: value.rawValue)
         }
         
-        func hidden() -> Tag {
-            return self.mutate(hidden: "hidden")
-        }
-        
-        public func hidden(_ condition: Bool) -> Tag {
+        func hidden(_ condition: Bool = true) -> Tag {
             
             if condition {
                 return mutate(hidden: "hidden")
@@ -197,11 +193,7 @@ final class AttributesTests: XCTestCase {
             return mutate(autocomplete: values.map { $0.rawValue }.joined(separator: " "))
         }
         
-        func autoplay() -> Tag {
-            return self.mutate(autoplay: "autoplay")
-        }
-        
-        public func autoplay(_ condition: Bool) -> Tag {
+        func autoplay(_ condition: Bool = true) -> Tag {
             
             if condition {
                 return mutate(autoplay: "autoplay")
@@ -214,11 +206,7 @@ final class AttributesTests: XCTestCase {
             return self.mutate(charset: value.rawValue)
         }
         
-        func checked() -> Tag {
-            return self.mutate(checked: "checked")
-        }
-        
-        public func checked(_ condition: Bool) -> Tag {
+        func checked(_ condition: Bool = true) -> Tag {
             
             if condition {
                 return mutate(checked: "checked")
@@ -243,11 +231,11 @@ final class AttributesTests: XCTestCase {
             return mutate(content: value)
         }
         
-        public func content(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Tag {
+        func content(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Tag {
             return mutate(content: LocalizedString(key: localizedKey, table: tableName))
         }
         
-        public func content(verbatim value: String) -> Tag {
+        func content(verbatim value: String) -> Tag {
             return mutate(content: value)
         }
         
@@ -275,11 +263,7 @@ final class AttributesTests: XCTestCase {
             return self.mutate(defer: "defer")
         }
         
-        func disabled() -> Tag {
-            return self.mutate(disabled: "disabled")
-        }
-        
-        public func disabled(_ condition: Bool) -> Tag {
+        func disabled(_ condition: Bool = true) -> Tag {
             
             if condition {
                 return mutate(disabled: "disabled")
@@ -451,11 +435,7 @@ final class AttributesTests: XCTestCase {
             return self.mutate(preload: value.rawValue)
         }
         
-        func readonly() -> Tag {
-            return self.mutate(readonly: "readonly")
-        }
-        
-        public func readonly(_ condition: Bool) -> Tag {
+        func readonly(_ condition: Bool = true) -> Tag {
             
             if condition {
                 return mutate(readonly: "readonly")
@@ -472,11 +452,7 @@ final class AttributesTests: XCTestCase {
             return self.mutate(rel: value.rawValue)
         }
         
-        func required() -> Tag {
-            return self.mutate(required: "required")
-        }
-        
-        public func required(_ condition: Bool) -> Tag {
+        func required(_ condition: Bool = true) -> Tag {
             
             if condition {
                 return mutate(required: "required")
@@ -537,7 +513,7 @@ final class AttributesTests: XCTestCase {
             return self.mutate(source: value)
         }
         
-        public func source(_ value: EnvironmentValue) -> Tag {
+        func source(_ value: EnvironmentValue) -> Tag {
             return mutate(source: value)
         }
         
@@ -763,79 +739,79 @@ final class AttributesTests: XCTestCase {
             return self.mutate(key: event.rawValue, value: value)
         }
         
-        public func aria(atomic value: Bool) -> Tag {
+        func aria(atomic value: Bool) -> Tag {
             return mutate(ariaatomic: value)
         }
         
-        public func aria(busy value: Bool) -> Tag {
+        func aria(busy value: Bool) -> Tag {
             return mutate(ariabusy: value)
         }
         
-        public func aria(controls value: String) -> Tag {
+        func aria(controls value: String) -> Tag {
             return mutate(ariacontrols: value)
         }
         
-        public func aria(current value: Values.Accessibility.Current) -> Tag {
+        func aria(current value: Values.Accessibility.Current) -> Tag {
             return mutate(ariacurrent: value.rawValue)
         }
         
-        public func aria(describedBy value: String) -> Tag {
+        func aria(describedBy value: String) -> Tag {
             return mutate(ariadescribedby: value)
         }
         
-        public func aria(details value: String) -> Tag {
+        func aria(details value: String) -> Tag {
             return mutate(ariadetails: value)
         }
         
-        public func aria(disabled value: Bool) -> Tag {
+        func aria(disabled value: Bool) -> Tag {
             return mutate(ariadisabled: value)
         }
         
-        public func aria(errorMessage value: String) -> Tag {
+        func aria(errorMessage value: String) -> Tag {
             return mutate(ariaerrormessage: value)
         }
         
-        public func aria(flowTo value: String) -> Tag {
+        func aria(flowTo value: String) -> Tag {
             return mutate(ariaflowto: value)
         }
         
-        public func aria(hasPopup value: Values.Accessibility.Popup) -> Tag {
+        func aria(hasPopup value: Values.Accessibility.Popup) -> Tag {
             return mutate(ariahaspopup: value.rawValue)
         }
         
-        public func aria(hidden value: Bool) -> Tag {
+        func aria(hidden value: Bool) -> Tag {
             return mutate(ariahidden: value)
         }
         
-        public func aria(invalid value: Values.Accessibility.Invalid) -> Tag {
+        func aria(invalid value: Values.Accessibility.Invalid) -> Tag {
             return mutate(ariainvalid: value.rawValue)
         }
         
-        public func aria(keyShortcuts value: String) -> Tag {
+        func aria(keyShortcuts value: String) -> Tag {
             return mutate(ariakeyshortcuts: value)
         }
         
-        public func aria(label value: String) -> Tag {
+        func aria(label value: String) -> Tag {
             return mutate(arialabel: value)
         }
         
-        public func aria(labeledBy value: String) -> Tag {
+        func aria(labeledBy value: String) -> Tag {
             return mutate(arialabeledby: value)
         }
         
-        public func aria(live value: Values.Accessibility.Live) -> Tag {
+        func aria(live value: Values.Accessibility.Live) -> Tag {
             return mutate(arialive: value.rawValue)
         }
         
-        public func aria(owns value: String) -> Tag {
+        func aria(owns value: String) -> Tag {
             return mutate(ariaowns: value)
         }
         
-        public func aria(relevant value: Values.Accessibility.Relevant) -> Tag {
+        func aria(relevant value: Values.Accessibility.Relevant) -> Tag {
             return mutate(ariarelevant: value.rawValue)
         }
         
-        public func aria(roleDescription value: String) -> Tag {
+        func aria(roleDescription value: String) -> Tag {
             return mutate(ariaroledescription: value)
         }
         
@@ -843,11 +819,7 @@ final class AttributesTests: XCTestCase {
             return mutate(shadowrootmode: value.rawValue)
         }
         
-        func inert() -> Tag {
-            return self.mutate(inert: "inert")
-        }
-        
-        public func inert(_ condition: Bool) -> Tag {
+        func inert(_ condition: Bool = true) -> Tag {
             
             if condition {
                 return mutate(inert: "inert")
