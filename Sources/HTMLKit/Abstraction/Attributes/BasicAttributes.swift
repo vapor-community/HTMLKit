@@ -4205,14 +4205,14 @@ public protocol PopoverTargetAttribute: Attribute {
     func popoverTarget(_ id: String) -> Self
 }
 
-extension PopoverAttribute where Self: ContentNode {
+extension PopoverTargetAttribute where Self: ContentNode {
     
     internal func mutate(popovertarget value: String) -> Self {
         return self.mutate(key: "popovertarget", value: value)
     }
 }
 
-extension PopoverAttribute where Self: EmptyNode {
+extension PopoverTargetAttribute where Self: EmptyNode {
     
     internal func mutate(popovertarget value: String) -> Self {
         return self.mutate(key: "popovertarget", value: value)
@@ -4239,14 +4239,14 @@ public protocol PopoverActionAttribute: Attribute {
     func popoverAction(_ action: Values.Popover.Action) -> Self
 }
 
-extension PopoverAttribute where Self: ContentNode {
+extension PopoverActionAttribute where Self: ContentNode {
     
     internal func mutate(popoveraction value: String) -> Self {
         return self.mutate(key: "popovertargetaction", value: value)
     }
 }
 
-extension PopoverAttribute where Self: EmptyNode {
+extension PopoverActionAttribute where Self: EmptyNode {
     
     internal func mutate(popoveraction value: String) -> Self {
         return self.mutate(key: "popovertargetaction", value: value)
