@@ -10,7 +10,7 @@ import OrderedCollections
 /// ```
 public struct Comment: CommentNode, GlobalElement {
     
-    public var content: String
+    internal var content: String
     
     /// Create a comment.
     ///
@@ -35,7 +35,7 @@ public struct Comment: CommentNode, GlobalElement {
 /// ```
 public struct Document: DocumentNode, BasicElement {
     
-    public var content: String
+    internal var content: String
     
     /// Create a document.
     ///

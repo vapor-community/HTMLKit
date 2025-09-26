@@ -16700,7 +16700,7 @@ public struct Image: EmptyNode, HtmlElement, BodyElement, FormElement, FigureEle
     }
 }
 
-extension Image: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, AlternateAttribute, SourceAttribute, SizesAttribute, WidthAttribute, HeightAttribute, ReferrerPolicyAttribute, FetchPriorityAttribute & LoadingAttribute & SourceSetAttribute & DecodingAttribute & IsMapAttribute & UseMapAttribute, CrossOriginAttribute {
+extension Image: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, AlternateAttribute, SourceAttribute, SizesAttribute, WidthAttribute, HeightAttribute, ReferrerPolicyAttribute, FetchPriorityAttribute, LoadingAttribute, SourceSetAttribute, DecodingAttribute, IsMapAttribute, UseMapAttribute, CrossOriginAttribute {
     
     public func accessKey(_ value: Character) -> Image {
         return mutate(accesskey: value)
@@ -17061,7 +17061,7 @@ public struct InlineFrame: ContentNode, HtmlElement, BodyElement, FormElement, F
     }
 }
 
-extension InlineFrame: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, SourceAttribute, NameAttribute, WidthAttribute, HeightAttribute, ReferrerPolicyAttribute & LoadingAttribute & SandboxAttribute, SourceDocumentAttribute {
+extension InlineFrame: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, SourceAttribute, NameAttribute, WidthAttribute, HeightAttribute, ReferrerPolicyAttribute, LoadingAttribute, SandboxAttribute, SourceDocumentAttribute {
     
     public func accessKey(_ value: Character) -> InlineFrame {
         return mutate(accesskey: value)

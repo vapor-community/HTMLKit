@@ -2662,6 +2662,7 @@ extension PosterAttribute where Self: EmptyNode {
 }
 
 /// A type that provides the `playInline` modifier.
+@_documentation(visibility: internal)
 public protocol PlaysInlineAttribute: Attribute {
     
     /// Enables inline playback

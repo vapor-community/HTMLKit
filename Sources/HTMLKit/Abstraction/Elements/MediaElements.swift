@@ -45,7 +45,7 @@ public struct Source: EmptyNode, MediaElement {
     }
 }
 
-extension Source: GlobalAttributes, GlobalEventAttributes, TypeAttribute, SourceAttribute, SizesAttribute, MediaAttribute, WidthAttribute, HeightAttribute & SourceSetAttribute {
+extension Source: GlobalAttributes, GlobalEventAttributes, TypeAttribute, SourceAttribute, SizesAttribute, MediaAttribute, WidthAttribute, HeightAttribute, SourceSetAttribute {
     
     public func accessKey(_ value: Character) -> Source {
         return mutate(accesskey: value)
