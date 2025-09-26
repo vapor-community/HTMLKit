@@ -400,7 +400,7 @@ public protocol NamespaceAttribute: Attribute {
     /// .namespace("http://...")
     /// ```
     ///
-    /// - Parameter url: The url to refer to
+    /// - Parameter url: The url to refer to.
     ///
     /// - Returns: The element
     func namespace(_ url: String) -> Self

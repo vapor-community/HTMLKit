@@ -7,12 +7,12 @@ import OrderedCollections
 ///
 /// ```swift
 /// Image()
-///     .source(...png)
+///     .source("...png")
 ///     .useMap("lorem")
 /// Map {
 ///     Area()
 ///         .shape(.circle)
-///         .coordinates(10, 10, 10 ,10)
+///         .coordinates("10, 10, 10 ,10")
 ///         .alternate("Lorem ipsum...")
 ///         .reference("https://...")
 /// }

@@ -4059,7 +4059,7 @@ extension Footer: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
 ///     Anchor() {
 ///         "Lorem ipsum"
 ///     }
-///     .reference("mailto:lorem@ispum.de")
+///     .reference("mailto:lorem@ipsum.de")
 /// }
 /// ```
 public struct Address: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
@@ -6680,7 +6680,7 @@ extension DescriptionList: GlobalAttributes, GlobalEventAttributes, GlobalAriaAt
 /// ```swift
 /// Figure {
 ///     Image()
-///         .source(...png)
+///         .source("...png")
 ///         .alternate("Lorem ipsum...")
 ///     FigureCaption {
 ///         "Lorem ipsum..."
@@ -8970,9 +8970,8 @@ public struct Division: ContentNode, HtmlElement, BodyElement, FormElement, Figu
     internal var content: [Content]
 
     /// Create a division.
-    ///
-    /// - Parameters:
-    ///   - content: The division's content.
+    /// 
+    /// - Parameter content: The division's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
         self.content = content()
     }
@@ -10167,9 +10166,9 @@ public struct Abbreviation: ContentNode, HtmlElement, BodyElement, FormElement, 
 
     internal var content: [Content]
 
-    /// Create a abbreviation
+    /// Create a abbreviation.
     ///
-    /// - Parameter content: The abbreviation's content
+    /// - Parameter content: The abbreviation's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
         self.content = content()
     }
@@ -11658,7 +11657,7 @@ extension Code: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
     }
 }
 
-/// The element represents a variable.
+/// An element that represents a variable.
 ///
 /// Use `Variable` to denote a value that can change or vary.
 ///
@@ -12551,7 +12550,7 @@ extension KeyboardInput: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttr
     }
 }
 
-/// The element represents a subscript text.
+/// An element that represents a subscript text.
 ///
 /// Use `Subscript` to display text slightly blow the baseline.
 ///
@@ -12572,7 +12571,7 @@ public struct Subscript: ContentNode, HtmlElement, BodyElement, FormElement, Fig
 
     internal var content: [Content]
 
-    /// Createa a subscript.
+    /// Create a subscript.
     ///
     /// - Parameter content: The subscript's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
@@ -13456,7 +13455,7 @@ extension Italic: Localizable {
 
 /// An element that represents a text emphasis.
 ///
-/// Use `Italic` to style some text bold.
+/// Use `Bold` to style some text bold.
 ///
 /// ```swift
 /// Paragraph {
@@ -13464,7 +13463,7 @@ extension Italic: Localizable {
 ///     Bold {
 ///         "Lorem ipsum..."
 ///     }
-///     "Lorem ipsum...
+///     "Lorem ipsum..."
 /// }
 /// ```
 public struct Bold: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
@@ -13770,7 +13769,7 @@ extension Bold: Localizable {
 ///     Underline {
 ///         "Lorem ipsum..."
 ///     }
-///     "Lorem ipsum...
+///     "Lorem ipsum..."
 /// }
 /// ```
 public struct Underline: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
@@ -16442,10 +16441,10 @@ extension DeletedText: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
 /// Picture {
 ///     Source()
 ///         .sourceSet("...jpg")
-///         .media("(orientation: portrait)"
+///         .media("(orientation: portrait)")
 ///     Image()
 ///         .source("...jpg")
-///         .alternate("Lorem ipsum..."
+///         .alternate("Lorem ipsum...")
 /// }
 /// ```
 public struct Picture: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
@@ -17668,7 +17667,7 @@ extension Embed: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
 /// Object {
 /// }
 /// .data("...html")
-/// .type(.html")
+/// .type(.html)
 /// ```
 public struct Object: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
     
@@ -18681,12 +18680,12 @@ extension Audio: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
 ///
 /// ```swift
 /// Image()
-///     .source(...png)
+///     .source("...png")
 ///     .useMap("lorem")
 /// Map {
 ///     Area()
 ///         .shape(.circle)
-///         .coordinates(10, 10, 10 ,10)
+///         .coordinates("10, 10, 10 ,10")
 ///         .alternate("Lorem ipsum...")
 ///         .reference("https://...")
 /// }
@@ -19263,7 +19262,7 @@ extension Form: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, A
 ///     Option()
 ///         .value("lorem")
 /// }
-/// .id("lorem)
+/// .id("lorem")
 /// ```
 public struct DataList: ContentNode, HtmlElement, BodyElement, FormElement, FigureElement, ObjectElement {
 
@@ -22131,7 +22130,7 @@ extension Canvas: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
     }
 }
 
-/// An element that represents a data table
+/// An element that represents a data table.
 ///
 /// Use `Table` to present structured data.
 ///

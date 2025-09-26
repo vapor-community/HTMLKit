@@ -8,9 +8,9 @@ import OrderedCollections
 /// ```swift
 /// Video {
 ///     Source()
-///         .source(...mp4)
+///         .source("...mp4")
 ///     Source()
-///         .source(...ogg)
+///         .source("...ogg")
 /// }
 /// ```
 public struct Source: EmptyNode, MediaElement {
@@ -258,7 +258,7 @@ extension Source: GlobalAttributes, GlobalEventAttributes, TypeAttribute, Source
 ///         .source("...mp4")
 ///         .type(.mp4)
 ///     Track()
-///         .source(...vtt)
+///         .source("...vtt")
 ///         .kind(.subtitles)
 ///         .label("English")
 /// }

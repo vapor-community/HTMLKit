@@ -12,7 +12,7 @@ public typealias Figcaption = FigureCaption
 /// ```swift
 /// Figure {
 ///     Image()
-///         .source(...png)
+///         .source("...png")
 ///         .alternate("Lorem ipsum...")
 ///     FigureCaption {
 ///         "Lorem ipsum..."

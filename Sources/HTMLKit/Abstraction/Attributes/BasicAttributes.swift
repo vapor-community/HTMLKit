@@ -15,7 +15,7 @@ public protocol AccessKeyAttribute: Attribute {
     /// Anchor {
     ///     "Lorem ipsum..."
     /// }
-    /// .accessKey="A"
+    /// .accessKey("A")
     /// ```
     ///
     /// - Parameter value: The key to press.
@@ -117,7 +117,7 @@ extension ActionAttribute where Self: EmptyNode {
 @_documentation(visibility: internal)
 public protocol AlternateAttribute: Attribute {
     
-    /// Provide an alternative information
+    /// Provide an alternative information.
     ///
     /// ```swift
     /// Image()
@@ -129,7 +129,7 @@ public protocol AlternateAttribute: Attribute {
     /// - Returns: The element
     func alternate(_ value: String) -> Self
     
-    /// Provide an alternative information
+    /// Provide an alternative information.
     /// 
     /// ```swift
     /// Image()
@@ -413,7 +413,7 @@ extension CharsetAttribute where Self: EmptyNode {
 @_documentation(visibility: internal)
 public protocol CheckedAttribute: Attribute {
     
-    /// Mark an input as pre-selected
+    /// Mark an input as pre-selected.
     ///
     /// ```swift
     /// Input()
@@ -678,7 +678,7 @@ extension EditAttribute where Self: EmptyNode {
 @_documentation(visibility: internal)
 public protocol ControlsAttribute: Attribute {
     
-    /// Display the controls
+    /// Display the controls.
     ///
     /// ```swift
     /// Audio {
@@ -1853,7 +1853,7 @@ public protocol KindAttribute: Attribute {
     ///
     /// ```swift
     /// Track()
-    ///     .src(...vtt)
+    ///     .source("...vtt")
     ///     .kind(.chapters)
     /// ```
     ///
@@ -1885,7 +1885,7 @@ public protocol LabelAttribute: Attribute {
     ///
     /// ```swift
     /// Track()
-    ///     .src(...vtt)
+    ///     .source("...vtt")
     ///     .kind(.chapters)
     ///     .label("lorem")
     /// ```
@@ -1978,7 +1978,7 @@ extension ListAttribute where Self: EmptyNode {
 @_documentation(visibility: internal)
 public protocol LoopAttribute: Attribute {
     
-    /// Activate auto play
+    /// Activate autoplay.
     /// 
     /// It specifies that the element will start over again, every time it is finished.
     ///
@@ -2665,7 +2665,7 @@ extension PosterAttribute where Self: EmptyNode {
 @_documentation(visibility: internal)
 public protocol PlaysInlineAttribute: Attribute {
     
-    /// Enables inline playback
+    /// Enables inline playback.
     ///
     /// It specifies that the element should not use the native fullscreen mode when playing.
     ///
@@ -2704,7 +2704,7 @@ public protocol PreloadAttribute: Attribute {
     /// ```swift
     /// Video {
     ///     Source()
-    ///         .source("")
+    ///         .source("https://...")
     ///         .type(.mp4)
     /// }
     /// .preload(.auto)
@@ -3278,7 +3278,7 @@ public protocol SourceAttribute: Attribute {
     /// Audio {
     ///     Source()
     ///         .type(.mpeg)
-    ///         .source(....mpeg)
+    ///         .source("...mpeg")
     /// }
     /// ```
     /// - Parameter url: The url to load from.
@@ -3292,7 +3292,7 @@ public protocol SourceAttribute: Attribute {
     /// Audio {
     ///     Source()
     ///         .type(.mpeg)
-    ///         .source()
+    ///         .source("...mpeg")
     /// }
     /// ```
     /// - Parameter url: The url to load from.
