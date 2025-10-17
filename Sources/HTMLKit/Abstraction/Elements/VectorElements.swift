@@ -181,8 +181,8 @@ public struct Rectangle: ContentNode, VectorElement {
     }
 }
 
-extension Rectangle: GlobalVectorAttributes, WidthAttribute, HeightAttribute, RadiusPointAttribute {
-    
+extension Rectangle: GlobalVectorAttributes, WidthAttribute, HeightAttribute, RadiusPointAttribute, PositionPointAttribute {
+
     public func id(_ value: String) -> Rectangle {
         return self.mutate(id: value)
     }
@@ -225,6 +225,22 @@ extension Rectangle: GlobalVectorAttributes, WidthAttribute, HeightAttribute, Ra
     
     public func radius(_ point: UnitPoint) -> Rectangle {
         return self.mutate(rx: point.x).mutate(ry: point.y)
+    }
+    
+    public func positionPoint(_ point: (Int, Int)) -> Rectangle {
+        return self.mutate(positionpoint: point)
+    }
+    
+    public func position(x: Int, y: Int) -> Rectangle {
+        return self.mutate(x: "\(x)").mutate(y: "\(y)")
+    }
+    
+    public func position(x: Double, y: Double) -> Rectangle {
+        return self.mutate(x: "\(x)").mutate(y: "\(y)")
+    }
+    
+    public func position(_ point: UnitPoint) -> Rectangle {
+        return self.mutate(x: point.x).mutate(y: point.y)
     }
     
     public func width(_ size: Int) -> Rectangle {
@@ -974,7 +990,7 @@ public struct Use: ContentNode, VectorElement {
     }
 }
 
-extension Use: GlobalVectorAttributes, ReferenceAttribute, WidthAttribute, HeightAttribute {
+extension Use: GlobalVectorAttributes, ReferenceAttribute, WidthAttribute, HeightAttribute, PositionPointAttribute {
 
     public func id(_ value: String) -> Use {
         return self.mutate(id: value)
@@ -986,6 +1002,22 @@ extension Use: GlobalVectorAttributes, ReferenceAttribute, WidthAttribute, Heigh
     
     public func reference(_ value: String) -> Use {
         return self.mutate(href: value)
+    }
+    
+    public func positionPoint(_ point: (Int, Int)) -> Use {
+        return self.mutate(positionpoint: point)
+    }
+    
+    public func position(x: Int, y: Int) -> Use {
+        return self.mutate(x: "\(x)").mutate(y: "\(y)")
+    }
+    
+    public func position(x: Double, y: Double) -> Use {
+        return self.mutate(x: "\(x)").mutate(y: "\(y)")
+    }
+    
+    public func position(_ point: UnitPoint) -> Use {
+        return self.mutate(x: point.x).mutate(y: point.y)
     }
     
     public func width(_ size: Int) -> Use {
