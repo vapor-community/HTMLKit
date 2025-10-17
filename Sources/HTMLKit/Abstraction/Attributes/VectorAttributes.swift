@@ -358,6 +358,54 @@ public protocol RadiusPointAttribute: Attribute {
     ///
     /// - Returns: The element
     func radiusPoint(_ point: (Int, Int)) -> Self
+    
+    /// Apply a corner radius to the shape.
+    ///
+    /// ```swift
+    /// Vector {
+    ///     Rectangle {
+    ///     }
+    ///     .radius(x: 50, y: 50)
+    /// }
+    /// ```
+    /// 
+    /// - Parameters:
+    ///   - x: The horizontal coordinate to round off corner.
+    ///   - y: The vertical coordinate to round off corner.
+    ///   
+    /// - Returns: The element
+    func radius(x: Int, y: Int) -> Self
+    
+    /// Apply a corner radius to the shape.
+    ///
+    /// ```swift
+    /// Vector {
+    ///     Rectangle {
+    ///     }
+    ///     .radius(x: 50, y: 50)
+    /// }
+    /// ```
+    /// 
+    /// - Parameters:
+    ///   - x: The horizontal coordinate to round off corner.
+    ///   - y: The vertical coordinate to round off corner.
+    ///
+    /// - Returns: The element
+    func radius(x: Double, y: Double) -> Self
+    
+    /// Apply a corner radius to the shape.
+    ///
+    /// ```swift
+    /// Vector {
+    ///     Rectangle {
+    ///     }
+    ///     .radius(UnitPoint: (x: 50, y: 50))
+    /// }
+    /// ```
+    /// - Parameter point: The radius to round off corners.
+    ///
+    /// - Returns: The element
+    func radius(_ point: UnitPoint) -> Self
 }
 
 extension RadiusPointAttribute where Self: ContentNode {
@@ -377,6 +425,14 @@ extension RadiusPointAttribute where Self: ContentNode {
         attributes["ry"] = radiuspoint.1
         
         return .init(attributes: attributes, content: content)
+    }
+    
+    internal func mutate(rx value: String) -> Self {
+        return self.mutate(key: "rx", value: value)
+    }
+    
+    internal func mutate(ry value: String) -> Self {
+        return self.mutate(key: "ry", value: value)
     }
 }
 

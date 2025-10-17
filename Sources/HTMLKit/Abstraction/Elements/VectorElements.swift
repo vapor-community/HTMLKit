@@ -215,6 +215,18 @@ extension Rectangle: GlobalVectorAttributes, WidthAttribute, HeightAttribute, Ra
         return self.mutate(radiuspoint: point)
     }
     
+    public func radius(x: Int, y: Int) -> Rectangle {
+        return self.mutate(rx: "\(x)").mutate(ry: "\(y)")
+    }
+    
+    public func radius(x: Double, y: Double) -> Rectangle {
+        return self.mutate(rx: "\(x)").mutate(ry: "\(y)")
+    }
+    
+    public func radius(_ point: UnitPoint) -> Rectangle {
+        return self.mutate(rx: point.x).mutate(ry: point.y)
+    }
+    
     public func width(_ size: Int) -> Rectangle {
         return self.mutate(width: size)
     }
@@ -345,6 +357,18 @@ extension Ellipse: GlobalVectorAttributes, CenterPointAttribute, RadiusPointAttr
     
     public func radiusPoint(_ point: (Int, Int)) -> Ellipse {
         return self.mutate(radiuspoint: point)
+    }
+    
+    public func radius(x: Int, y: Int) -> Ellipse {
+        return self.mutate(rx: "\(x)").mutate(ry: "\(y)")
+    }
+    
+    public func radius(x: Double, y: Double) -> Ellipse {
+        return self.mutate(rx: "\(x)").mutate(ry: "\(y)")
+    }
+    
+    public func radius(_ point: UnitPoint) -> Ellipse {
+        return self.mutate(rx: point.x).mutate(ry: point.y)
     }
     
     public func fillOpacity(_ value: Double) -> Ellipse {

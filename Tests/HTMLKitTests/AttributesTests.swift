@@ -635,6 +635,18 @@ final class AttributesTests: XCTestCase {
             return self.mutate(radiuspoint: point)
         }
         
+        func radius(x: Int, y: Int) -> Tag {
+            return self.mutate(rx: "\(x)").mutate(ry: "\(y)")
+        }
+        
+        func radius(x: Double, y: Double) -> Tag {
+            return self.mutate(rx: "\(x)").mutate(ry: "\(y)")
+        }
+        
+        func radius(_ point: HTMLKit.UnitPoint) -> Tag {
+            return self.mutate(rx: point.x).mutate(ry: point.y)
+        }
+        
         func centerPoint(_ point: (Int, Int)) -> Tag {
             return self.mutate(centerpoint: point)
         }
@@ -2937,12 +2949,18 @@ final class AttributesTests: XCTestCase {
     func testRadiusPointAttribute() throws {
         
         let view = TestView {
-            Tag {}.radiusPoint((10,10))
+            Tag {}.radius(x: 10, y: 10)
+            Tag {}.radius(x: 10.0, y: 10.0)
+            Tag {}.radius(UnitPoint(x: 10.0, y: 10.0))
+            Tag {}.radius(UnitPoint(x: 10, y: 10, format: .relative))
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <tag rx="10" ry="10"></tag>
+                       <tag rx="10" ry="10"></tag>\
+                       <tag rx="10.0" ry="10.0"></tag>\
+                       <tag rx="10.0" ry="10.0"></tag>\
+                       <tag rx="10%" ry="10%"></tag>
                        """
         )
     }
