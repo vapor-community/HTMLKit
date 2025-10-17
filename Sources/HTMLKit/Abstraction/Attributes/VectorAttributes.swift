@@ -397,6 +397,56 @@ public protocol CenterPointAttribute: Attribute {
     ///
     /// - Returns: The element
     func centerPoint(_ point: (Int, Int)) -> Self
+    
+    /// Set the center point of the shape.
+    ///
+    /// ```swift
+    /// Vector {
+    ///     Circle {
+    ///     }
+    ///     .center(x: 50, y: 50)
+    /// }
+    /// ```
+    /// 
+    /// - Parameters:
+    ///   - x: The horizontal coordinate to use as the center.
+    ///   - y: The vertical coordinate to use as the center.
+    /// 
+    /// - Returns: The element
+
+    func center(x: Int, y: Int) -> Self
+    
+    /// Set the center point of the shape.
+    ///
+    /// ```swift
+    /// Vector {
+    ///     Circle {
+    ///     }
+    ///     .center(x: 50.0, y: 50.0)
+    /// }
+    /// ```
+    /// 
+    /// - Parameters:
+    ///   - x: The horizontal coordinate to use as the center.
+    ///   - y: The vertical coordinate to use as the center.
+    ///
+    /// - Returns: The element
+    func center(x: Double, y: Double) -> Self
+    
+    
+    /// Set the center point of the shape.
+    ///
+    /// ```swift
+    /// Vector {
+    ///     Circle {
+    ///     }
+    ///     .center(UnitPoint(x: 50, y: 50))
+    /// }
+    /// ```
+    /// - Parameter point: The coordinates to use as the center.
+    ///
+    /// - Returns: The element
+    func center(_ point: UnitPoint) -> Self
 }
 
 extension CenterPointAttribute where Self: ContentNode {
@@ -416,6 +466,14 @@ extension CenterPointAttribute where Self: ContentNode {
         attributes["cy"] = centerpoint.1
         
         return .init(attributes: attributes, content: content)
+    }
+    
+    internal func mutate(cx value: String) -> Self {
+        return self.mutate(key: "cx", value: value)
+    }
+    
+    internal func mutate(cy value: String) -> Self {
+        return self.mutate(key: "cy", value: value)
     }
 }
 

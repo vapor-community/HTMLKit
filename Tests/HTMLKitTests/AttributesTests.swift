@@ -639,6 +639,18 @@ final class AttributesTests: XCTestCase {
             return self.mutate(centerpoint: point)
         }
         
+        func center(x: Int, y: Int) -> Tag {
+            return self.mutate(cx: "\(x)").mutate(cy: "\(y)")
+        }
+        
+        func center(x: Double, y: Double) -> Tag {
+            return self.mutate(cx: "\(x)").mutate(cy: "\(y)")
+        }
+        
+        func center(_ point: UnitPoint) -> Tag {
+            return self.mutate(cx: point.x).mutate(cy: point.y)
+        }
+        
         func viewBox(_ value: String) -> Tag {
             return self.mutate(viewbox: value)
         }
@@ -2938,12 +2950,18 @@ final class AttributesTests: XCTestCase {
     func testCenterPointAttribute() throws {
         
         let view = TestView {
-            Tag {}.centerPoint((10,10))
+            Tag {}.center(x: 10, y: 10)
+            Tag {}.center(x: 10.0, y: 10.0)
+            Tag {}.center(UnitPoint(x: 10.0, y: 10.0))
+            Tag {}.center(UnitPoint(x: 10, y: 10, format: .relative))
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <tag cx="10" cy="10"></tag>
+                       <tag cx="10" cy="10"></tag>\
+                       <tag cx="10.0" cy="10.0"></tag>\
+                       <tag cx="10.0" cy="10.0"></tag>\
+                       <tag cx="10%" cy="10%"></tag>
                        """
         )
     }

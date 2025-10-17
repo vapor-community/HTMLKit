@@ -91,6 +91,18 @@ extension Circle: GlobalVectorAttributes, CenterPointAttribute, RadiusAttribute 
         return self.mutate(centerpoint: point)
     }
     
+    public func center(x: Int, y: Int) -> Circle {
+        return self.mutate(cx: "\(x)").mutate(cy: "\(y)")
+    }
+    
+    public func center(x: Double, y: Double) -> Circle {
+        return self.mutate(cx: "\(x)").mutate(cy: "\(y)")
+    }
+    
+    public func center(_ point: UnitPoint) -> Circle {
+        return self.mutate(cx: point.x).mutate(cy: point.y)
+    }
+    
     public func radius(_ size: Int) -> Circle {
         return self.mutate(radius: size)
     }
@@ -317,6 +329,18 @@ extension Ellipse: GlobalVectorAttributes, CenterPointAttribute, RadiusPointAttr
     
     public func centerPoint(_ point: (Int, Int)) -> Ellipse {
         return self.mutate(centerpoint: point)
+    }
+    
+    public func center(x: Int, y: Int) -> Ellipse {
+        return self.mutate(cx: "\(x)").mutate(cy: "\(y)")
+    }
+    
+    public func center(x: Double, y: Double) -> Ellipse {
+        return self.mutate(cx: "\(x)").mutate(cy: "\(y)")
+    }
+    
+    public func center(_ point: UnitPoint) -> Ellipse {
+        return self.mutate(cx: point.x).mutate(cy: point.y)
     }
     
     public func radiusPoint(_ point: (Int, Int)) -> Ellipse {
