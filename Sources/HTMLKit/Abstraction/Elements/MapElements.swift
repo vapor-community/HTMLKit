@@ -1,33 +1,37 @@
-/*
- Abstract:
- The file contains the map elements. The html-element 'map' only allows these elements to be its descendants.
- 
- Note:
- If you about to add something to the file, stick to the official documentation to keep the code consistent.
- */
-
+import Foundation
 import OrderedCollections
 
-/// The element defines an image map.
+/// An element that represents a map area.
 ///
-/// ```html
-/// <area></area>
+/// Use `Area` to define a region within an ``Map``.
+///
+/// ```swift
+/// Image()
+///     .source("...png")
+///     .useMap("lorem")
+/// Map {
+///     Area()
+///         .shape(.circle)
+///         .coordinates("10, 10, 10 ,10")
+///         .alternate("Lorem ipsum...")
+///         .reference("https://...")
+/// }
+/// .name("lorem")
 /// ```
-public struct Area: ContentNode, MapElement {
+public struct Area: EmptyNode, MapElement {
 
     internal var name: String { "area" }
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal var content: [Content]
-
-    public init(@ContentBuilder<Content> content: () -> [Content]) {
-        self.content = content()
-    }
+    /// Creates a area.
+    public init() {}
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: [Content]) {
+    @available(*, deprecated, message: "The area element is actually an empty element. Use Area() instead.")
+    public init(@ContentBuilder<Content> content: () -> [Content]) {}
+    
+    internal init(attributes: OrderedDictionary<String, Any>?) {
         self.attributes = attributes
-        self.content = content
     }
     
     public func modify(if condition: Bool, element: (Area) -> Area) -> Area {
@@ -83,11 +87,7 @@ extension Area: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, A
         return mutate(enterkeyhint: value.rawValue)
     }
 
-    public func hidden() -> Area {
-        return mutate(hidden: "hidden")
-    }
-
-    public func hidden(_ condition: Bool) -> Area {
+    public func hidden(_ condition: Bool = true) -> Area {
         
         if condition {
             return mutate(hidden: "hidden")
@@ -96,14 +96,28 @@ extension Area: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, A
         return self
     }
     
+    @available(*, deprecated, message: "The inputmode attribute is actually an enumerated attribute. Use the inputMode(_: Mode) modifier instead.")
     public func inputMode(_ value: String) -> Area {
         return mutate(inputmode: value)
     }
 
+    public func inputMode(_ value: Values.Mode) -> Area {
+        return mutate(inputmode: value.rawValue)
+    }
+    
     public func `is`(_ value: String) -> Area {
         return mutate(is: value)
     }
+    
+    public func item(id: String? = nil, as schema: URL? = nil, for elements: [String]? = nil) -> Area {
+        return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements?.joined(separator: " "))
+    }
+    
+    public func item(id: String? = nil, as schema: URL? = nil, for elements: String...) -> Area {
+        return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements.joined(separator: " "))
+    }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemId(_ value: String) -> Area {
         return mutate(itemid: value)
     }
@@ -112,14 +126,17 @@ extension Area: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, A
         return mutate(itemprop: value)
     }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemReference(_ value: String) -> Area {
         return mutate(itemref: value)
     }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemScope(_ value: String) -> Area {
         return mutate(itemscope: value)
     }
     
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemType(_ value: String) -> Area {
         return mutate(itemtype: value)
     }
@@ -152,7 +169,16 @@ extension Area: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, A
         return mutate(tabindex: value)
     }
 
+    @_disfavoredOverload
     public func title(_ value: String) -> Area {
+        return mutate(title: value)
+    }
+    
+    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Area {
+        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    }
+    
+    public func title(verbatim value: String) -> Area {
         return mutate(title: value)
     }
     
@@ -160,11 +186,7 @@ extension Area: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, A
         return mutate(translate: value.rawValue)
     }
     
-    public func inert() -> Area {
-        return mutate(inert: "inert")
-    }
-    
-    public func inert(_ condition: Bool) -> Area {
+    public func inert(_ condition: Bool = true) -> Area {
 
         if condition {
             return mutate(inert: "inert")
@@ -173,7 +195,16 @@ extension Area: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, A
         return self
     }
     
+    @_disfavoredOverload
     public func alternate(_ value: String) -> Area {
+        return mutate(alternate: value)
+    }
+    
+    public func alternate(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Area {
+        return mutate(alternate: LocalizedString(key: localizedKey, table: tableName))
+    }
+    
+    public func alternate(verbatim value: String) -> Area {
         return mutate(alternate: value)
     }
     

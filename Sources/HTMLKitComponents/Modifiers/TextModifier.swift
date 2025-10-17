@@ -1,62 +1,119 @@
-/*
- Abstract:
- The file contains the modifiers for text components.
- */
-
 /// A type that describes the modifier of a text component.
 public protocol TextModifier {
     
+    /// Set the font face for the text.
+    ///
+    /// - Parameter family: The font face to use for the text.
+    ///
+    /// - Returns: The text
     func font(_ family: Tokens.FontFamily) -> Self
     
-    /// Sets the style of the text.
+    /// Set the style for the text.
+    ///
+    /// - Parameter style: The option to apply.
+    ///
+    /// - Returns: The text
     func textStyle(_ style: Tokens.TextStyle) -> Self
     
-    /// Sets the style of the text.
+    /// Set the style for the text.
+    ///
+    /// - Parameter style: The configuration to apply.
+    ///
+    /// - Returns: The text
     func textStyle(_ style: TextConfiguration) -> Self
     
-    /// Sets the foreground color of the text.
+    /// Fill the foreground of the text.
+    ///
+    /// - Parameter color: The color to use for the foreground.
+    ///
+    /// - Returns: The text
     func foregroundColor(_ color: Tokens.ForegroundColor) -> Self
     
-    /// Sets the size of the text.
+    /// Set the font size for the text.
+    ///
+    /// - Parameter size: The unit to size the text.
+    ///
+    /// - Returns: The component
     func fontSize(_ size: Tokens.FontSize) -> Self
     
-    /// Sets the weight of the text.
+    /// Set the font weight for the text.
+    ///
+    /// - Parameter weight: The weight to apply to the text.
+    ///
+    /// - Returns: The text
     func fontWeight(_ weight: Tokens.FontWeight) -> Self
     
-    /// Sets the transformation for the text.
+    /// Set the transformation for the text.
+    ///
+    /// - Parameter case: The case to apply to the text.
+    ///
+    /// - Returns: The component
     func textCase(_ case: Tokens.TextCase) -> Self
     
-    /// Sets the style of the font.
+    /// Set the font style for the text.
+    ///
+    /// - Parameter style: The style to apply to the text.
+    ///
+    /// - Returns: The text
     func fontStyle(_ style: Tokens.FontStyle) -> Self
     
-    /// Sets the decoration for the text.
+    /// Set the decoration for the text.
+    ///
+    /// - Parameter decoration: The decoration to apply to the text.
+    ///
+    /// - Returns: The text
     func textDecoration(_ decoration: Tokens.TextDecoration) -> Self
     
-    /// Applies a bold font weight to the text.
-    func bold() -> Self
-    
+    /// Apply a bold font weight to the text.
+    ///
+    /// - Parameter condition: Whether to apply the weight.
+    ///
+    /// - Returns: The text
     func bold(_ condition: Bool) -> Self
     
-    /// Applies italics to the text.
-    func italic() -> Self
-    
+    /// Apply italics to the text.
+    ///
+    /// - Parameter condition: Whether to apply the italics.
+    ///
+    /// - Returns: The text
     func italic(_ condition: Bool) -> Self
     
-    /// Applies an underline to the text.
-    func underline() -> Self
-    
+    /// Apply an underline to the text.
+    ///
+    /// - Parameter condition: Whether to apply the underline.
+    ///
+    /// - Returns: The text
     func underline(_ condition: Bool) -> Self
     
-    /// Applies an strikethrough to the text.
-    func strikethrough() -> Self
-    
+    /// Apply an strikethrough to the text.
+    ///
+    /// - Parameter condition: Whether to apply the strikethrough.
+    ///
+    /// - Returns: The text
     func strikethrough(_ condition: Bool) -> Self
     
-    /// Sets the line height for the text.
+    /// Set the line height for the text.
+    ///
+    /// - Parameter height: Whether to apply the height.
+    ///
+    /// - Returns: The text
     func lineSpacing(_ height: Tokens.LineHeight) -> Self
     
-    /// Sets the limit of the lines for the text.
+    /// Set the limit of the lines for the text.
+    ///
+    /// - Parameter limit: The number of lines to limit the text to.
+    ///
+    /// - Returns: The text
     func lineLimit(_ limit: Tokens.LineLimit) -> Self
+    
+    /// Add drop shadow to the view.
+    ///
+    /// - Parameters:
+    ///   - radius: The radius to extend the shadow.
+    ///   - color: The color to fill the shadow.
+    ///
+    /// - Returns: The component
+    func shadow(_ radius: Tokens.BlurRadius, color: Tokens.ShadowColor) -> Self
 }
 
 extension TextModifier where Self: Modifiable {
@@ -99,5 +156,9 @@ extension TextModifier where Self: Modifiable {
     
     internal func mutate(linelimit value: String) -> Self {
         return self.mutate(class: "limit:\(value)")
+    }
+    
+    internal func mutate(shadow radius: String, color: String) -> Self {
+        return mutate(classes: ["shadow:\(radius)", "shadow:\(color)"])
     }
 }

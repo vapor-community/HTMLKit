@@ -1,0 +1,60 @@
+.disclosure {
+    position: relative;
+    inline-size: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.disclosure-head {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    color: hsla(var(--systemTextColor), 1.0);
+    cursor: pointer;
+}
+
+.disclosure-label {
+    --fontSize: 1.0rem;
+    --lineHeight: 1.5;
+    --fontWeight: 400;
+
+    font-family: var(--fontFamily);
+    font-size: var(--fontSize);
+    font-weight: var(--fontWeight);
+    line-height: var(--lineHeight);
+    color: hsla(var(--foregroundColor), 1.0);
+}
+
+.state-indicator {
+    --fontSize: 1.0rem;
+    --lineHeight: 1.5;
+    
+    display: inline-block;
+    inline-size: 1.25em;
+    block-size: 1.0em;
+    fill: hsla(var(--accentColor), 1.0);
+    font-size: var(--fontSize);
+    line-height: var(--lineHeight);
+    vertical-align: middle;
+}
+
+.disclosure-body {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition-property: grid-template-rows;
+    transition-duration: 500ms;
+    transition-timing-function: ease;
+}
+
+.disclosure-content {
+    overflow: hidden;
+}
+
+.disclosure:is(.state\:open) .disclosure-body {
+    grid-template-rows: 1fr;
+}
+
+.disclosure:is(.state\:open) .disclosure-head .state-indicator {
+    transform: rotate(90deg);
+}

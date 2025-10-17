@@ -1,24 +1,32 @@
-/*
- Abstract:
- The file contains the modifiers for button components.
- */
-
 /// A type that describes the modifier of a button component.
 public protocol ButtonModifier {
     
-    /// Sets the size of the button.
+    /// Set the size for the button.
+    ///
+    /// - Parameter size: The unit to size the button.
+    ///
+    /// - Returns: The button
     func controlSize(_ size: Tokens.ControlSize) -> Self
  
-    /// Sets the style of the button.
+    /// Set the appearance for the button.
+    ///
+    /// - Parameter style: The option to apply.
+    ///
+    /// - Returns: The button
     func buttonStyle(_ style: Tokens.ButtonStyle) -> Self
     
-    /// Sets the style of the button.
+    /// Set the appereance for the button with a configuration.
+    ///
+    /// - Parameter style: The configuration to apply.
+    ///
+    /// - Returns: The button
     func buttonStyle(_ style: ButtonConfiguration) -> Self
     
-    /// Sets the state of the view.
-    func disabled() -> Self
-    
-    /// Sets the state of the view.
+    /// Disable the button.
+    ///
+    /// - Parameter condition: Whether to disable the button.
+    ///
+    /// - Returns: The button
     func disabled(_ condition: Bool) -> Self
 }
 

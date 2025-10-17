@@ -1,13 +1,34 @@
 import HTMLKit
 
+/// A view that represents navigation container.
+///
+/// Use `Navigation` to add semantic meaning to a list.
+///
+/// ```swift
+/// Navigation {
+///     List(direction: .vertical) {
+///         Link(destination: "https://...") {
+///             Text {
+///                 "Lorem ipsum"
+///             }
+///         }
+///     }
+/// }
+/// ```
 public struct Navigation: View, Modifiable, Identifiable {
     
-    public var id: String?
+    /// The unique identifier of the navigation.
+    internal var id: String?
     
+    /// The body content of the navigation.
     internal var content: [BodyElement]
     
-    public var classes: [String]
+    /// The class names of the navigation
+    internal var classes: [String]
     
+    /// Create a navigation.
+    ///
+    /// - Parameter content: The navigation's content.
     public init(@ContentBuilder<BodyElement> content: () -> [BodyElement]) {
         
         self.content = content()
@@ -24,7 +45,11 @@ public struct Navigation: View, Modifiable, Identifiable {
         }
     }
     
-    /// Sets the style for the list.
+    /// Set the style for the navigation.
+    ///
+    /// - Parameter style: The option to apply to.
+    ///
+    /// - Returns: The navigation
     public func navigationStyle(_ style: Tokens.NavigationStyle) -> Navigation {
         
         var newSelf = self
@@ -33,10 +58,20 @@ public struct Navigation: View, Modifiable, Identifiable {
         return newSelf
     }
     
+    /// Set the style for the navigation.
+    ///
+    /// - Parameter style: The configuration to apply to.
+    ///
+    /// - Returns: The navigation
     public func navigationStyle(_ style: NavigationConfiguration) -> Navigation {
         return self.mutate(classes: style.configuration)
     }
     
+    /// Set the identifier for the navigation.
+    ///
+    /// - Parameter value: The value of the identifier.
+    ///
+    /// - Returns: The navigation
     public func tag(_ value: String) -> Navigation {
         return self.mutate(id: value)
     }
@@ -56,11 +91,7 @@ extension Navigation: ViewModifier {
         return self.mutate(zindex: index.value)
     }
     
-    public func hidden() -> Navigation {
-        return self.mutate(viewstate: Tokens.ViewState.hidden.value)
-    }
-    
-    public func hidden(_ condition: Bool) -> Navigation {
+    public func hidden(_ condition: Bool = true) -> Navigation {
         
         if condition {
             return self.mutate(viewstate: Tokens.ViewState.hidden.value)
@@ -81,8 +112,8 @@ extension Navigation: ViewModifier {
         return self.mutate(bordershape: shape.value)
     }
     
-    public func borderColor(_ color: Tokens.BorderColor) -> Navigation {
-        return self.mutate(bordercolor: color.value)
+    public func border(_ color: Tokens.BorderColor, width: Tokens.BorderWidth = .small) -> Navigation {
+        return self.mutate(border: color.value, width: width.value)
     }
     
     public func frame(width: Tokens.ViewWidth, height: Tokens.ViewHeight? = nil, alignment: Tokens.FrameAlignment? = nil) -> Navigation {

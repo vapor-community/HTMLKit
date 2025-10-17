@@ -13,7 +13,7 @@ final class SecurityTests: XCTestCase {
         @ContentBuilder<Content> var body: Content
     }
     
-    var renderer = Renderer(features: [.markdown])
+    var renderer = Renderer(features: [.escaping, .markdown])
     
     func testEncodingAttributeContext() throws {
         
@@ -108,6 +108,26 @@ final class SecurityTests: XCTestCase {
         XCTAssertEqual(try renderer.render(view: view),
                        """
                        <p>lt;script&gt;&lt;/script&gt;</p>
+                       """
+        )
+    }
+    
+    /// Tests the renderers behaviour when handling a desired unescaped string.
+    ///
+    /// The renderer is expected to emit the string as-is.
+    func testIgnoringHtmlString() throws {
+        
+        let html = "<script></script>"
+        
+        let view = TestView {
+            Paragraph {
+                HtmlString(html)
+            }
+        }
+        
+        XCTAssertEqual(try renderer.render(view: view),
+                       """
+                       <p><script></script></p>
                        """
         )
     }

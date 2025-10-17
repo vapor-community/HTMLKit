@@ -1,37 +1,27 @@
-/*
- Abstract:
- The file contains the definition elements. The html-element 'description' only allows these elements to be its descendants.
- 
- Note:
- If you about to add something to the file, stick to the official documentation to keep the code consistent.
- */
-
+import Foundation
 import OrderedCollections
 
-/// The alias for the element TermName.
-///
-/// Dt is the official tag and can be used instead of TermName.
-///
-/// ```html
-/// <dt>
-/// ```
+/// The alias for the element ``TermName``.
 @_documentation(visibility: internal)
 public typealias Dt = TermName
 
-/// The alias for the element TermDefinition.
-///
-/// Dd is the official tag and can be used instead of TermDefinition.
-///
-/// ```html
-/// <dd></dd>
-/// ```
+/// The alias for the element ``TermDefinition``.
 @_documentation(visibility: internal)
 public typealias Dd = TermDefinition
 
-/// The element specifies a term name.
+/// An element that represents a term name.
 ///
-/// ```html
-/// <dt>
+/// Use `TermName` to label a term and to introduce the corresponding definition.
+///
+/// ```swift
+/// DescriptionList {
+///     TermName {
+///         "Lorem ipsum"
+///     }
+///     TermDefinition {
+///         "Lorem ipsum..."
+///     }
+/// }
 /// ```
 public struct TermName: ContentNode, DescriptionElement {
 
@@ -40,7 +30,10 @@ public struct TermName: ContentNode, DescriptionElement {
     internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: [Content]
-
+    
+    /// Create a term name.
+    ///
+    /// - Parameter content: The name's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
         self.content = content()
     }
@@ -102,12 +95,8 @@ extension TermName: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
     public func enterKeyHint(_ value: Values.Hint) -> TermName {
         return mutate(enterkeyhint: value.rawValue)
     }
-
-    public func hidden() -> TermName {
-        return mutate(hidden: "hidden")
-    }
     
-    public func hidden(_ condition: Bool) -> TermName{
+    public func hidden(_ condition: Bool = true) -> TermName{
         
         if condition {
             return mutate(hidden: "hidden")
@@ -116,14 +105,28 @@ extension TermName: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return self
     }
 
+    @available(*, deprecated, message: "The inputmode attribute is actually an enumerated attribute. Use the inputMode(_: Mode) modifier instead.")
     public func inputMode(_ value: String) -> TermName {
         return mutate(inputmode: value)
+    }
+    
+    public func inputMode(_ value: Values.Mode) -> TermName {
+        return mutate(inputmode: value.rawValue)
     }
 
     public func `is`(_ value: String) -> TermName {
         return mutate(is: value)
     }
+    
+    public func item(id: String? = nil, as schema: URL? = nil, for elements: [String]? = nil) -> TermName {
+        return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements?.joined(separator: " "))
+    }
+    
+    public func item(id: String? = nil, as schema: URL? = nil, for elements: String...) -> TermName {
+        return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements.joined(separator: " "))
+    }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemId(_ value: String) -> TermName {
         return mutate(itemid: value)
     }
@@ -132,14 +135,17 @@ extension TermName: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(itemprop: value)
     }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemReference(_ value: String) -> TermName {
         return mutate(itemref: value)
     }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemScope(_ value: String) -> TermName {
         return mutate(itemscope: value)
     }
     
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemType(_ value: String) -> TermName {
         return mutate(itemtype: value)
     }
@@ -172,7 +178,16 @@ extension TermName: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(tabindex: value)
     }
 
+    @_disfavoredOverload
     public func title(_ value: String) -> TermName {
+        return mutate(title: value)
+    }
+    
+    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> TermName {
+        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    }
+    
+    public func title(verbatim value: String) -> TermName {
         return mutate(title: value)
     }
 
@@ -180,11 +195,7 @@ extension TermName: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(translate: value.rawValue)
     }
     
-    public func inert() -> TermName {
-        return mutate(inert: "inert")
-    }
-    
-    public func inert(_ condition: Bool) -> TermName {
+    public func inert(_ condition: Bool = true) -> TermName {
 
         if condition {
             return mutate(inert: "inert")
@@ -298,10 +309,19 @@ extension TermName: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
     }
 }
 
-/// The element specifies a term definition.
+/// An element that represents a term definition.
 ///
-/// ```html
-/// <dd></dd>
+/// Use `TermDefinition` to describe the term in more detail.
+///
+/// ```swift
+/// DescriptionList {
+///     TermName {
+///         "Lorem ipsum"
+///     }
+///     TermDefinition {
+///         "Lorem ipsum..."
+///     }
+/// }
 /// ```
 public struct TermDefinition: ContentNode, DescriptionElement {
 
@@ -310,7 +330,10 @@ public struct TermDefinition: ContentNode, DescriptionElement {
     internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: [Content]
-
+    
+    /// Creates a term definition.
+    ///
+    /// - Parameter content: The definition's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
         self.content = content()
     }
@@ -372,12 +395,8 @@ extension TermDefinition: GlobalAttributes, GlobalEventAttributes, GlobalAriaAtt
     public func enterKeyHint(_ value: Values.Hint) -> TermDefinition {
         return mutate(enterkeyhint: value.rawValue)
     }
-
-    public func hidden() -> TermDefinition {
-        return mutate(hidden: "hidden")
-    }
     
-    public func hidden(_ condition: Bool) -> TermDefinition {
+    public func hidden(_ condition: Bool = true) -> TermDefinition {
         
         if condition {
             return mutate(hidden: "hidden")
@@ -386,14 +405,28 @@ extension TermDefinition: GlobalAttributes, GlobalEventAttributes, GlobalAriaAtt
         return self
     }
 
+    @available(*, deprecated, message: "The inputmode attribute is actually an enumerated attribute. Use the inputMode(_: Mode) modifier instead.")
     public func inputMode(_ value: String) -> TermDefinition {
         return mutate(inputmode: value)
+    }
+    
+    public func inputMode(_ value: Values.Mode) -> TermDefinition {
+        return mutate(inputmode: value.rawValue)
     }
 
     public func `is`(_ value: String) -> TermDefinition {
         return mutate(is: value)
     }
+    
+    public func item(id: String? = nil, as schema: URL? = nil, for elements: [String]? = nil) -> TermDefinition {
+        return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements?.joined(separator: " "))
+    }
+    
+    public func item(id: String? = nil, as schema: URL? = nil, for elements: String...) -> TermDefinition {
+        return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements.joined(separator: " "))
+    }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemId(_ value: String) -> TermDefinition {
         return mutate(itemid: value)
     }
@@ -402,14 +435,17 @@ extension TermDefinition: GlobalAttributes, GlobalEventAttributes, GlobalAriaAtt
         return mutate(itemprop: value)
     }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemReference(_ value: String) -> TermDefinition {
         return mutate(itemref: value)
     }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemScope(_ value: String) -> TermDefinition {
         return mutate(itemscope: value)
     }
     
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemType(_ value: String) -> TermDefinition {
         return mutate(itemtype: value)
     }
@@ -442,7 +478,16 @@ extension TermDefinition: GlobalAttributes, GlobalEventAttributes, GlobalAriaAtt
         return mutate(tabindex: value)
     }
 
+    @_disfavoredOverload
     public func title(_ value: String) -> TermDefinition {
+        return mutate(title: value)
+    }
+    
+    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> TermDefinition {
+        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    }
+    
+    public func title(verbatim value: String) -> TermDefinition {
         return mutate(title: value)
     }
     
@@ -450,11 +495,7 @@ extension TermDefinition: GlobalAttributes, GlobalEventAttributes, GlobalAriaAtt
         return mutate(translate: value.rawValue)
     }
     
-    public func inert() -> TermDefinition {
-        return mutate(inert: "inert")
-    }
-    
-    public func inert(_ condition: Bool) -> TermDefinition {
+    public func inert(_ condition: Bool = true) -> TermDefinition {
 
         if condition {
             return mutate(inert: "inert")

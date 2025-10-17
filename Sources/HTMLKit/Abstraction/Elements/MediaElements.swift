@@ -1,17 +1,17 @@
-/*
- Abstract:
- The file contains the media elements. The html-element 'audio' or 'video' only allows these elements to be its descendants.
-
- Note:
- If you about to add something to the file, stick to the official documentation to keep the code consistent.
- */
-
+import Foundation
 import OrderedCollections
 
-/// The element allows authors to specify multiple alternative source for other elements.
+/// An element that represents a media source.
 ///
-/// ```html
-/// <source>
+/// Use `Source` to specify multiple alternative sources for media elements like ``Audio`` or ``Video``.
+///
+/// ```swift
+/// Video {
+///     Source()
+///         .source("...mp4")
+///     Source()
+///         .source("...ogg")
+/// }
 /// ```
 public struct Source: EmptyNode, MediaElement {
 
@@ -19,6 +19,7 @@ public struct Source: EmptyNode, MediaElement {
 
     internal var attributes: OrderedDictionary<String, Any>?
 
+    /// Create a source.
     public init() {}
     
     internal init(attributes: OrderedDictionary<String, Any>?) {
@@ -44,7 +45,7 @@ public struct Source: EmptyNode, MediaElement {
     }
 }
 
-extension Source: GlobalAttributes, GlobalEventAttributes, TypeAttribute, SourceAttribute, SizesAttribute, MediaAttribute, WidthAttribute, HeightAttribute & SourceSetAttribute {
+extension Source: GlobalAttributes, GlobalEventAttributes, TypeAttribute, SourceAttribute, SizesAttribute, MediaAttribute, WidthAttribute, HeightAttribute, SourceSetAttribute {
     
     public func accessKey(_ value: Character) -> Source {
         return mutate(accesskey: value)
@@ -77,12 +78,8 @@ extension Source: GlobalAttributes, GlobalEventAttributes, TypeAttribute, Source
     public func enterKeyHint(_ value: Values.Hint) -> Source {
         return mutate(enterkeyhint: value.rawValue)
     }
-
-    public func hidden() -> Source {
-        return mutate(hidden: "hidden")
-    }
     
-    public func hidden(_ condition: Bool) -> Source {
+    public func hidden(_ condition: Bool = true) -> Source {
         
         if condition {
             return mutate(hidden: "hidden")
@@ -91,14 +88,28 @@ extension Source: GlobalAttributes, GlobalEventAttributes, TypeAttribute, Source
         return self
     }
 
+    @available(*, deprecated, message: "The inputmode attribute is actually an enumerated attribute. Use the inputMode(_: Mode) modifier instead.")
     public func inputMode(_ value: String) -> Source {
         return mutate(inputmode: value)
+    }
+    
+    public func inputMode(_ value: Values.Mode) -> Source {
+        return mutate(inputmode: value.rawValue)
     }
 
     public func `is`(_ value: String) -> Source {
         return mutate(is: value)
     }
+    
+    public func item(id: String? = nil, as schema: URL? = nil, for elements: [String]? = nil) -> Source {
+        return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements?.joined(separator: " "))
+    }
+    
+    public func item(id: String? = nil, as schema: URL? = nil, for elements: String...) -> Source {
+        return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements.joined(separator: " "))
+    }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemId(_ value: String) -> Source {
         return mutate(itemid: value)
     }
@@ -107,14 +118,17 @@ extension Source: GlobalAttributes, GlobalEventAttributes, TypeAttribute, Source
         return mutate(itemprop: value)
     }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemReference(_ value: String) -> Source {
         return mutate(itemref: value)
     }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemScope(_ value: String) -> Source {
         return mutate(itemscope: value)
     }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemType(_ value: String) -> Source {
         return mutate(itemtype: value)
     }
@@ -147,7 +161,16 @@ extension Source: GlobalAttributes, GlobalEventAttributes, TypeAttribute, Source
         return mutate(tabindex: value)
     }
 
+    @_disfavoredOverload
     public func title(_ value: String) -> Source {
+        return mutate(title: value)
+    }
+    
+    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Source {
+        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    }
+    
+    public func title(verbatim value: String) -> Source {
         return mutate(title: value)
     }
     
@@ -155,11 +178,7 @@ extension Source: GlobalAttributes, GlobalEventAttributes, TypeAttribute, Source
         return mutate(translate: value.rawValue)
     }
     
-    public func inert() -> Source {
-        return mutate(inert: "inert")
-    }
-    
-    public func inert(_ condition: Bool) -> Source {
+    public func inert(_ condition: Bool = true) -> Source {
 
         if condition {
             return mutate(inert: "inert")
@@ -229,10 +248,20 @@ extension Source: GlobalAttributes, GlobalEventAttributes, TypeAttribute, Source
     }
 }
 
-/// The element allows to specify explicit external timed text tracks for media elements.
+/// An element that represents a text track.
 ///
-/// ```html
-/// <track>
+/// Use `Track` to specify timed text tracks for media elements like ``Audio`` or ``Video``.
+///
+/// ```swift
+/// Video {
+///     Source()
+///         .source("...mp4")
+///         .type(.mp4)
+///     Track()
+///         .source("...vtt")
+///         .kind(.subtitles)
+///         .label("English")
+/// }
 /// ```
 public struct Track: EmptyNode, MediaElement {
 
@@ -240,6 +269,7 @@ public struct Track: EmptyNode, MediaElement {
 
     internal var attributes: OrderedDictionary<String, Any>?
 
+    /// Create a track.
     public init() {}
     
     internal init(attributes: OrderedDictionary<String, Any>?) {
@@ -265,7 +295,7 @@ public struct Track: EmptyNode, MediaElement {
     }
 }
 
-extension Track: GlobalAttributes, GlobalEventAttributes, KindAttribute, SourceAttribute, LabelAttribute, DefaultAttribute {
+extension Track: GlobalAttributes, GlobalEventAttributes, KindAttribute, SourceAttribute, LabelAttribute, DefaultAttribute, SourceLanguageAttribute {
     
     public func accessKey(_ value: Character) -> Track {
         return mutate(accesskey: value)
@@ -298,12 +328,8 @@ extension Track: GlobalAttributes, GlobalEventAttributes, KindAttribute, SourceA
     public func enterKeyHint(_ value: Values.Hint) -> Track {
         return mutate(enterkeyhint: value.rawValue)
     }
-
-    public func hidden() -> Track {
-        return mutate(hidden: "hidden")
-    }
     
-    public func hidden(_ condition: Bool) -> Track {
+    public func hidden(_ condition: Bool = true) -> Track {
         
         if condition {
             return mutate(hidden: "hidden")
@@ -312,14 +338,28 @@ extension Track: GlobalAttributes, GlobalEventAttributes, KindAttribute, SourceA
         return self
     }
 
+    @available(*, deprecated, message: "The inputmode attribute is actually an enumerated attribute. Use the inputMode(_: Mode) modifier instead.")
     public func inputMode(_ value: String) -> Track {
         return mutate(inputmode: value)
+    }
+    
+    public func inputMode(_ value: Values.Mode) -> Track {
+        return mutate(inputmode: value.rawValue)
     }
 
     public func `is`(_ value: String) -> Track {
         return mutate(is: value)
     }
+    
+    public func item(id: String? = nil, as  schema: URL? = nil, for elements: [String]? = nil) -> Track {
+        return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements?.joined(separator: " "))
+    }
+    
+    public func item(id: String? = nil, as  schema: URL? = nil, for elements: String...) -> Track {
+        return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements.joined(separator: " "))
+    }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemId(_ value: String) -> Track {
         return mutate(itemid: value)
     }
@@ -328,14 +368,17 @@ extension Track: GlobalAttributes, GlobalEventAttributes, KindAttribute, SourceA
         return mutate(itemprop: value)
     }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemReference(_ value: String) -> Track {
         return mutate(itemref: value)
     }
     
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemType(_ value: String) -> Track {
         return mutate(itemtype: value)
     }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemScope(_ value: String) -> Track {
         return mutate(itemscope: value)
     }
@@ -368,19 +411,24 @@ extension Track: GlobalAttributes, GlobalEventAttributes, KindAttribute, SourceA
         return mutate(tabindex: value)
     }
 
+    @_disfavoredOverload
     public func title(_ value: String) -> Track {
         return  mutate(title: value)
+    }
+    
+    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Track {
+        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    }
+    
+    public func title(verbatim value: String) -> Track {
+        return mutate(title: value)
     }
     
     public func translate(_ value: Values.Decision) -> Track {
         return mutate(translate: value.rawValue)
     }
     
-    public func inert() -> Track {
-        return mutate(inert: "inert")
-    }
-    
-    public func inert(_ condition: Bool) -> Track {
+    public func inert(_ condition: Bool = true) -> Track {
 
         if condition {
             return mutate(inert: "inert")
@@ -399,6 +447,10 @@ extension Track: GlobalAttributes, GlobalEventAttributes, KindAttribute, SourceA
     
     public func source(_ value: EnvironmentValue) -> Track {
         return mutate(source: value)
+    }
+    
+    public func sourceLanguage(_ value: Values.Language) -> Track {
+        return mutate(sourcelanguage: value.rawValue)
     }
     
     public func label(_ value: String) -> Track {

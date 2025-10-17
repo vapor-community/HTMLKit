@@ -1,17 +1,16 @@
-/*
- Abstract:
- The file contains the head elements. The html-element 'head' only allows these elements to be its descendants.
- 
- Note:
- If you about to add something to the file, stick to the official documentation to keep the code consistent.
- */
-
+import Foundation
 import OrderedCollections
 
-/// The element represents the document's title.
+/// An element that represents the document title.
 ///
-/// ```html
-/// <title></title>
+/// Use `Title` to define a page title.
+///
+/// ```swift
+/// Head {
+///     Title {
+///         "Lorem ipsum"
+///     }
+/// }
 /// ```
 public struct Title: ContentNode, HeadElement {
 
@@ -21,6 +20,9 @@ public struct Title: ContentNode, HeadElement {
 
     internal var content: [String]
     
+    /// Create a title.
+    ///
+    /// - Parameter content: The title's content.
     public init(@ContentBuilder<String> content: () -> [String]) {
         self.content = content()
     }
@@ -83,11 +85,7 @@ extension Title: GlobalAttributes, GlobalEventAttributes {
         return mutate(enterkeyhint: value.rawValue)
     }
     
-    public func hidden() -> Title {
-        return mutate(hidden: "hidden")
-    }
-    
-    public func hidden(_ condition: Bool) -> Title {
+    public func hidden(_ condition: Bool = true) -> Title {
         
         if condition {
             return mutate(hidden: "hidden")
@@ -96,14 +94,28 @@ extension Title: GlobalAttributes, GlobalEventAttributes {
         return self
     }
     
+    @available(*, deprecated, message: "The inputmode attribute is actually an enumerated attribute. Use the inputMode(_: Mode) modifier instead.")
     public func inputMode(_ value: String) -> Title {
         return mutate(inputmode: value)
+    }
+    
+    public func inputMode(_ value: Values.Mode) -> Title {
+        return mutate(inputmode: value.rawValue)
     }
     
     public func `is`(_ value: String) -> Title {
         return mutate(is: value)
     }
     
+    public func item(id: String? = nil, as schema: URL? = nil, for elements: [String]? = nil) -> Title {
+        return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements?.joined(separator: " "))
+    }
+    
+    public func item(id: String? = nil, as schema: URL? = nil, for elements: String...) -> Title {
+        return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements.joined(separator: " "))
+    }
+    
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemId(_ value: String) -> Title {
         return mutate(itemid: value)
     }
@@ -112,14 +124,17 @@ extension Title: GlobalAttributes, GlobalEventAttributes {
         return mutate(itemprop: value)
     }
     
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemReference(_ value: String) -> Title {
         return mutate(itemref: value)
     }
     
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemScope(_ value: String) -> Title {
         return mutate(itemscope: value)
     }
     
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemType(_ value: String) -> Title {
         return mutate(itemtype: value)
     }
@@ -152,7 +167,16 @@ extension Title: GlobalAttributes, GlobalEventAttributes {
         return mutate(tabindex: value)
     }
     
+    @_disfavoredOverload
     public func title(_ value: String) -> Title {
+        return mutate(title: value)
+    }
+    
+    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Title {
+        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    }
+    
+    public func title(verbatim value: String) -> Title {
         return mutate(title: value)
     }
     
@@ -160,11 +184,7 @@ extension Title: GlobalAttributes, GlobalEventAttributes {
         return mutate(translate: value.rawValue)
     }
     
-    public func inert() -> Title {
-        return mutate(inert: "inert")
-    }
-    
-    public func inert(_ condition: Bool) -> Title {
+    public func inert(_ condition: Bool = true) -> Title {
 
         if condition {
             return mutate(inert: "inert")
@@ -202,10 +222,16 @@ extension Title: GlobalAttributes, GlobalEventAttributes {
     }
 }
 
-/// The element specifies the document base url.#
+/// An element that represents the base url.
 ///
-/// ```html
-/// <base>
+/// Use `Base` to specify the base url for the document.
+///
+/// ```swift
+/// Head {
+///     Base()
+///         .reference("https://...")
+///         .target(.blank)
+/// }
 /// ```
 public struct Base: EmptyNode, HeadElement {
 
@@ -213,6 +239,7 @@ public struct Base: EmptyNode, HeadElement {
 
     internal var attributes: OrderedDictionary<String, Any>?
 
+    /// Create a base.
     public init() {}
     
     internal init(attributes: OrderedDictionary<String, Any>?) {
@@ -272,11 +299,7 @@ extension Base: GlobalAttributes, GlobalEventAttributes, ReferenceAttribute, Tar
         return mutate(enterkeyhint: value.rawValue)
     }
     
-    public func hidden() -> Base {
-        return mutate(hidden: "hidden")
-    }
-    
-    public func hidden(_ condition: Bool) -> Base {
+    public func hidden(_ condition: Bool = true) -> Base {
         
         if condition {
             return mutate(hidden: "hidden")
@@ -285,14 +308,28 @@ extension Base: GlobalAttributes, GlobalEventAttributes, ReferenceAttribute, Tar
         return self
     }
     
+    @available(*, deprecated, message: "The inputmode attribute is actually an enumerated attribute. Use the inputMode(_: Mode) modifier instead.")
     public func inputMode(_ value: String) -> Base {
         return mutate(inputmode: value)
+    }
+    
+    public func inputMode(_ value: Values.Mode) -> Base {
+        return mutate(inputmode: value.rawValue)
     }
     
     public func `is`(_ value: String) -> Base {
         return mutate(is: value)
     }
     
+    public func item(id: String? = nil, as schema: URL? = nil, for elements: [String]? = nil) -> Base {
+        return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements?.joined(separator: " "))
+    }
+    
+    public func item(id: String? = nil, as schema: URL? = nil, for elements: String...) -> Base {
+        return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements.joined(separator: " "))
+    }
+    
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemId(_ value: String) -> Base {
         return mutate(itemid: value)
     }
@@ -301,14 +338,17 @@ extension Base: GlobalAttributes, GlobalEventAttributes, ReferenceAttribute, Tar
         return mutate(itemprop: value)
     }
     
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemReference(_ value: String) -> Base {
         return mutate(itemref: value)
     }
     
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemScope(_ value: String) -> Base {
         return mutate(itemscope: value)
     }
     
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemType(_ value: String) -> Base {
         return mutate(itemtype: value)
     }
@@ -341,7 +381,16 @@ extension Base: GlobalAttributes, GlobalEventAttributes, ReferenceAttribute, Tar
         return mutate(tabindex: value)
     }
     
+    @_disfavoredOverload
     public func title(_ value: String) -> Base {
+        return mutate(title: value)
+    }
+    
+    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Base {
+        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    }
+    
+    public func title(verbatim value: String) -> Base {
         return mutate(title: value)
     }
     
@@ -349,11 +398,7 @@ extension Base: GlobalAttributes, GlobalEventAttributes, ReferenceAttribute, Tar
         return mutate(translate: value.rawValue)
     }
     
-    public func inert() -> Base {
-        return mutate(inert: "inert")
-    }
-    
-    public func inert(_ condition: Bool) -> Base {
+    public func inert(_ condition: Bool = true) -> Base {
 
         if condition {
             return mutate(inert: "inert")
@@ -399,10 +444,15 @@ extension Base: GlobalAttributes, GlobalEventAttributes, ReferenceAttribute, Tar
     }
 }
 
-/// The element provides meta information about the document.
+/// An element that represents a document property.
 ///
-/// ```html
-/// <meta></meta>
+/// Use `Meta` to add more context to a document.
+///
+/// ```swift
+/// Head {
+///     Meta()
+///         .charset(.utf8)
+/// }
 /// ```
 public struct Meta: EmptyNode, HeadElement {
 
@@ -410,6 +460,7 @@ public struct Meta: EmptyNode, HeadElement {
 
     internal var attributes: OrderedDictionary<String, Any>?
 
+    /// Create a meta.
     public init() {}
     
     internal init(attributes: OrderedDictionary<String, Any>?) {
@@ -468,12 +519,8 @@ extension Meta: GlobalAttributes, GlobalEventAttributes, ContentAttribute, NameA
     public func enterKeyHint(_ value: Values.Hint) -> Meta {
         return mutate(enterkeyhint: value.rawValue)
     }
-
-    public func hidden() -> Meta {
-        return mutate(hidden: "hidden")
-    }
     
-    public func hidden(_ condition: Bool) -> Meta {
+    public func hidden(_ condition: Bool = true) -> Meta {
         
         if condition {
             return mutate(hidden: "hidden")
@@ -482,14 +529,28 @@ extension Meta: GlobalAttributes, GlobalEventAttributes, ContentAttribute, NameA
         return self
     }
 
+    @available(*, deprecated, message: "The inputmode attribute is actually an enumerated attribute. Use the inputMode(_: Mode) modifier instead.")
     public func inputMode(_ value: String) -> Meta {
         return mutate(inputmode: value)
+    }
+    
+    public func inputMode(_ value: Values.Mode) -> Meta {
+        return mutate(inputmode: value.rawValue)
     }
 
     public func `is`(_ value: String) -> Meta {
         return mutate(is: value)
     }
+    
+    public func item(id: String? = nil, as schema: URL? = nil, for elements: [String]? = nil) -> Meta {
+        return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements?.joined(separator: " "))
+    }
+    
+    public func item(id: String? = nil, as schema: URL? = nil, for elements: String...) -> Meta {
+        return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements.joined(separator: " "))
+    }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemId(_ value: String) -> Meta {
         return mutate(itemid: value)
     }
@@ -498,14 +559,17 @@ extension Meta: GlobalAttributes, GlobalEventAttributes, ContentAttribute, NameA
         return mutate(itemprop: value)
     }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemReference(_ value: String) -> Meta {
         return mutate(itemref: value)
     }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemScope(_ value: String) -> Meta {
         return mutate(itemscope: value)
     }
     
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemType(_ value: String) -> Meta {
         return mutate(itemtype: value)
     }
@@ -538,7 +602,16 @@ extension Meta: GlobalAttributes, GlobalEventAttributes, ContentAttribute, NameA
         return mutate(tabindex: value)
     }
 
+    @_disfavoredOverload
     public func title(_ value: String) -> Meta {
+        return mutate(title: value)
+    }
+    
+    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Meta {
+        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    }
+    
+    public func title(verbatim value: String) -> Meta {
         return mutate(title: value)
     }
     
@@ -546,11 +619,7 @@ extension Meta: GlobalAttributes, GlobalEventAttributes, ContentAttribute, NameA
         return mutate(translate: value.rawValue)
     }
     
-    public func inert() -> Meta {
-        return mutate(inert: "inert")
-    }
-    
-    public func inert(_ condition: Bool) -> Meta {
+    public func inert(_ condition: Bool = true) -> Meta {
 
         if condition {
             return mutate(inert: "inert")
@@ -559,7 +628,16 @@ extension Meta: GlobalAttributes, GlobalEventAttributes, ContentAttribute, NameA
         return self
     }
 
+    @_disfavoredOverload
     public func content(_ value: String) -> Meta {
+        return mutate(content: value)
+    }
+    
+    public func content(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Meta {
+        return mutate(content: LocalizedString(key: localizedKey, table: tableName))
+    }
+    
+    public func content(verbatim value: String) -> Meta {
         return mutate(content: value)
     }
     
@@ -608,10 +686,14 @@ extension Meta: GlobalAttributes, GlobalEventAttributes, ContentAttribute, NameA
     }
 }
 
-/// The element contains style information for the document.
+/// An element that represents a style sheet.
 ///
-/// ```html
-/// <style></style>
+/// Use `Style` to define and apply style rules.
+///
+/// ```swift
+/// Style {
+///     "p { color: black; }"
+/// }
 /// ```
 public struct Style: ContentNode, HeadElement {
 
@@ -621,6 +703,9 @@ public struct Style: ContentNode, HeadElement {
 
     internal var content: [Content]
 
+    /// Create a style.
+    ///
+    /// - Parameter content: The style's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
         self.content = content()
     }
@@ -682,12 +767,8 @@ extension Style: GlobalAttributes, GlobalEventAttributes, TypeAttribute, MediaAt
     public func enterKeyHint(_ value: Values.Hint) -> Style {
         return mutate(enterkeyhint: value.rawValue)
     }
-
-    public func hidden() -> Style {
-        return mutate(hidden: "hidden")
-    }
     
-    public func hidden(_ condition: Bool) -> Style {
+    public func hidden(_ condition: Bool = true) -> Style {
         
         if condition {
             return mutate(hidden: "hidden")
@@ -696,14 +777,28 @@ extension Style: GlobalAttributes, GlobalEventAttributes, TypeAttribute, MediaAt
         return self
     }
 
+    @available(*, deprecated, message: "The inputmode attribute is actually an enumerated attribute. Use the inputMode(_: Mode) modifier instead.")
     public func inputMode(_ value: String) -> Style {
         return mutate(inputmode: value)
+    }
+    
+    public func inputMode(_ value: Values.Mode) -> Style {
+        return mutate(inputmode: value.rawValue)
     }
 
     public func `is`(_ value: String) -> Style {
         return mutate(is: value)
     }
+    
+    public func item(id: String? = nil, as schema: URL? = nil, for elements: [String]? = nil) -> Style {
+        return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements?.joined(separator: " "))
+    }
+    
+    public func item(id: String? = nil, as schema: URL? = nil, for elements: String...) -> Style {
+        return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements.joined(separator: " "))
+    }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemId(_ value: String) -> Style {
         return mutate(itemid: value)
     }
@@ -712,14 +807,17 @@ extension Style: GlobalAttributes, GlobalEventAttributes, TypeAttribute, MediaAt
         return mutate(itemprop: value)
     }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemReference(_ value: String) -> Style {
         return mutate(itemref: value)
     }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemScope(_ value: String) -> Style {
         return mutate(itemscope: value)
     }
     
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemType(_ value: String) -> Style {
         return mutate(itemtype: value)
     }
@@ -752,7 +850,16 @@ extension Style: GlobalAttributes, GlobalEventAttributes, TypeAttribute, MediaAt
         return mutate(tabindex: value)
     }
 
+    @_disfavoredOverload
     public func title(_ value: String) -> Style {
+        return mutate(title: value)
+    }
+    
+    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Style {
+        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    }
+    
+    public func title(verbatim value: String) -> Style {
         return mutate(title: value)
     }
     
@@ -760,11 +867,7 @@ extension Style: GlobalAttributes, GlobalEventAttributes, TypeAttribute, MediaAt
         return mutate(translate: value.rawValue)
     }
     
-    public func inert() -> Style {
-        return mutate(inert: "inert")
-    }
-    
-    public func inert(_ condition: Bool) -> Style {
+    public func inert(_ condition: Bool = true) -> Style {
 
         if condition {
             return mutate(inert: "inert")
@@ -814,10 +917,14 @@ extension Style: GlobalAttributes, GlobalEventAttributes, TypeAttribute, MediaAt
     }
 }
 
-/// The element represents a comment output.
+/// An element that represents a resource link.
 ///
-/// ```html
-/// <link>
+/// Use `Link` to associate an external resource with the document.
+///
+/// ```swift
+/// Link()
+///     .relationship(.stylesheet)
+///     .reference("https://...")
 /// ```
 public struct Link: EmptyNode, HeadElement, BodyElement {
 
@@ -825,6 +932,7 @@ public struct Link: EmptyNode, HeadElement, BodyElement {
 
     internal var attributes: OrderedDictionary<String, Any>?
 
+    /// Create a link.
     public init() {}
     
     internal init(attributes: OrderedDictionary<String, Any>?) {
@@ -850,10 +958,14 @@ public struct Link: EmptyNode, HeadElement, BodyElement {
     }
 }
 
-extension Link: GlobalAttributes, GlobalEventAttributes, ReferenceAttribute, ReferenceLanguageAttribute, MediaAttribute, ReferrerPolicyAttribute, RelationshipAttribute, SizesAttribute, TypeAttribute, FetchPriorityAttribute, BlockingAttribute, FormEventAttribute {
-    
+extension Link: GlobalAttributes, GlobalEventAttributes, ReferenceAttribute, ReferenceLanguageAttribute, MediaAttribute, ReferrerPolicyAttribute, RelationshipAttribute, SizesAttribute, TypeAttribute, FetchPriorityAttribute, BlockingAttribute, FormEventAttribute, IntegrityAttribute, AsAttribute, CrossOriginAttribute {
+
     public func accessKey(_ value: Character) -> Link {
         return mutate(accesskey: value)
+    }
+    
+    public func `as`(_ value: Values.Resource) -> Link {
+        return mutate(as: value.rawValue)
     }
 
     public func autocapitalize(_ value: Values.Capitalization) -> Link {
@@ -866,6 +978,10 @@ extension Link: GlobalAttributes, GlobalEventAttributes, ReferenceAttribute, Ref
 
     public func `class`(_ value: String) -> Link {
         return mutate(class: value)
+    }
+    
+    public func crossOrigin(_ value: Credential.Mode) -> Link {
+        return mutate(crossorigin: value.rawValue)
     }
 
     public func isEditable(_ value: Bool) -> Link {
@@ -883,12 +999,8 @@ extension Link: GlobalAttributes, GlobalEventAttributes, ReferenceAttribute, Ref
     public func enterKeyHint(_ value: Values.Hint) -> Link {
         return mutate(enterkeyhint: value.rawValue)
     }
-
-    public func hidden() -> Link {
-        return mutate(hidden: "hidden")
-    }
     
-    public func hidden(_ condition: Bool) -> Link {
+    public func hidden(_ condition: Bool = true) -> Link {
         
         if condition {
             return mutate(hidden: "hidden")
@@ -897,14 +1009,36 @@ extension Link: GlobalAttributes, GlobalEventAttributes, ReferenceAttribute, Ref
         return self
     }
 
+    @available(*, deprecated, message: "The inputmode attribute is actually an enumerated attribute. Use the inputMode(_: Mode) modifier instead.")
     public func inputMode(_ value: String) -> Link {
         return mutate(inputmode: value)
+    }
+    
+    public func inputMode(_ value: Values.Mode) -> Link {
+        return mutate(inputmode: value.rawValue)
+    }
+    
+    public func integrity(_ hashes: String...) -> Link {
+        return mutate(integrity: hashes.joined(separator: " "))
+    }
+    
+    public func integrity(_ hashes: [String]) -> Link {
+        return mutate(integrity: hashes.joined(separator: " "))
     }
 
     public func `is`(_ value: String) -> Link {
         return mutate(is: value)
     }
+    
+    public func item(id: String? = nil, as schema: URL? = nil, for elements: [String]? = nil) -> Link {
+        return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements?.joined(separator: " "))
+    }
+    
+    public func item(id: String? = nil, as schema: URL? = nil, for elements: String...) -> Link {
+        return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements.joined(separator: " "))
+    }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemId(_ value: String) -> Link {
         return mutate(itemid: value)
     }
@@ -913,14 +1047,17 @@ extension Link: GlobalAttributes, GlobalEventAttributes, ReferenceAttribute, Ref
         return mutate(itemprop: value)
     }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemReference(_ value: String) -> Link {
         return mutate(itemref: value)
     }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemScope(_ value: String) -> Link {
         return mutate(itemscope: value)
     }
     
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemType(_ value: String) -> Link {
         return mutate(itemtype: value)
     }
@@ -953,7 +1090,16 @@ extension Link: GlobalAttributes, GlobalEventAttributes, ReferenceAttribute, Ref
         return mutate(tabindex: value)
     }
 
+    @_disfavoredOverload
     public func title(_ value: String) -> Link {
+        return mutate(title: value)
+    }
+    
+    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Link {
+        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    }
+    
+    public func title(verbatim value: String) -> Link {
         return mutate(title: value)
     }
     
@@ -961,11 +1107,7 @@ extension Link: GlobalAttributes, GlobalEventAttributes, ReferenceAttribute, Ref
         return mutate(translate: value.rawValue)
     }
     
-    public func inert() -> Link {
-        return mutate(inert: "inert")
-    }
-    
-    public func inert(_ condition: Bool) -> Link {
+    public func inert(_ condition: Bool = true) -> Link {
 
         if condition {
             return mutate(inert: "inert")

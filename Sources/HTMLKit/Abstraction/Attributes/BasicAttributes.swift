@@ -1,29 +1,26 @@
-/*
- Abstract:
- The file contains the protocols for the basic html-attributes.
- 
- Note:
- If you about to add something to the file, stick to the official documentation to keep the code consistent.
- */
-
+import Foundation
 import OrderedCollections
 
 /// The alias combines the global attributes of the basic attributes.
 @_documentation(visibility: internal)
-public typealias GlobalAttributes = AccessKeyAttribute & AutocapitalizeAttribute & AutofocusAttribute & ClassAttribute & EditAttribute & DirectionAttribute & DragAttribute & EnterKeyHintAttribute & HiddenAttribute & InputModeAttribute & IsAttribute & ItemIdAttribute & ItemPropertyAttribute & ItemReferenceAttribute & ItemScopeAttribute & ItemTypeAttribute & IdentifierAttribute & LanguageAttribute & NonceAttribute & RoleAttribute & SpellCheckAttribute & StyleAttribute & TabulatorAttribute & TitleAttribute & TranslateAttribute & InertAttribute & PopoverAttribute
+public typealias GlobalAttributes = AccessKeyAttribute & AutocapitalizeAttribute & AutofocusAttribute & ClassAttribute & EditAttribute & DirectionAttribute & DragAttribute & EnterKeyHintAttribute & HiddenAttribute & InputModeAttribute & IsAttribute & ItemAttribute & ItemIdAttribute & ItemPropertyAttribute & ItemReferenceAttribute & ItemScopeAttribute & ItemTypeAttribute & IdentifierAttribute & LanguageAttribute & NonceAttribute & RoleAttribute & SpellCheckAttribute & StyleAttribute & TabulatorAttribute & TitleAttribute & TranslateAttribute & InertAttribute & PopoverAttribute
 
-/// The protocol provides the element with the accesskey handler.
+/// A type that provides the `accessKey` modifier.
 @_documentation(visibility: internal)
 public protocol AccessKeyAttribute: Attribute {
     
-    /// The function represents the html-attribute 'accesskey'.
+    /// Specifies a shortcut key.
     ///
-    /// ```html
-    /// <tag accesskey="" />
+    /// ```swift
+    /// Anchor {
+    ///     "Lorem ipsum..."
+    /// }
+    /// .accessKey("A")
     /// ```
     ///
-    /// - Parameters:
-    ///    - value:
+    /// - Parameter value: The key to press.
+    ///
+    /// - Returns: The element
     func accessKey(_ value: Character) -> Self
 }
 
@@ -41,15 +38,21 @@ extension AccessKeyAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with the accept handler.
+/// A type that provides the `accept` modifier.
 @_documentation(visibility: internal)
 public protocol AcceptAttribute: Attribute {
     
-    /// The function represents the html-attribute 'accept'.
+    /// Filter accepted file types for upload.
     ///
-    /// ```html
-    /// <tag accept="" />
+    /// ```swift
+    /// Input()
+    ///     .type(.file)
+    ///     .accept("image/png, image/jpeg")
     /// ```
+    ///
+    /// - Parameter value: The file types to pick from.
+    ///
+    /// - Returns: The element
     func accept(_ value: String) -> Self
 }
 
@@ -67,16 +70,33 @@ extension AcceptAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with the action handler.
+/// A type that provides the `action` modifier.
 @_documentation(visibility: internal)
 public protocol ActionAttribute: Attribute {
     
-    /// The function represents the html-attribute 'action'.
+    /// Specify where to send the form data.
     ///
-    /// ```html
-    /// <tag action="" />
+    /// ```swift
+    /// Form {
+    ///     Label {
+    ///         "Lorem ipsum..."
+    ///     }
+    ///     Input()
+    ///         .type(.text)
+    ///         .name("lorem")
+    ///     Button {
+    ///         "Submit"
+    ///     }
+    ///     .type(.submit)
+    /// }
+    /// .action("https://...")
+    /// .method(.get)
     /// ```
-    func action(_ value: String) -> Self
+    ///
+    /// - Parameter url: The url to send to.
+    ///
+    /// - Returns: The element
+    func action(_ url: String) -> Self
 }
 
 extension ActionAttribute where Self: ContentNode {
@@ -93,21 +113,56 @@ extension ActionAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with the alternate handler.
+/// A type that provides the `alternate` modifier.
 @_documentation(visibility: internal)
 public protocol AlternateAttribute: Attribute {
     
-    /// The function represents the html-attribute 'alt'.
+    /// Provide an alternative information.
     ///
-    /// ```html
-    /// <tag alt="" />
+    /// ```swift
+    /// Image()
+    ///     .alternate("Lorem ipsum...")
     /// ```
+    ///
+    /// - Parameter value: The text to describe the image.
+    ///
+    /// - Returns: The element
     func alternate(_ value: String) -> Self
+    
+    /// Provide an alternative information.
+    /// 
+    /// ```swift
+    /// Image()
+    ///     .alternate("Lorem ipsum...")
+    /// ```
+    ///
+    /// - Parameter localizedKey: The string key to be translated.
+    /// - Parameter tableName: The translation table to look in.
+    ///
+    /// - Returns: The element
+    func alternate(_ localizedKey: LocalizedStringKey, tableName: String?) -> Self
+    
+    /// Provide an alternative information without localization.
+    ///
+    /// ```swift
+    /// Image()
+    ///     .alternate(verbatim: "Lorem ipsum...")
+    /// ```
+    ///
+    /// - Parameter value: The text to describe the image.
+    ///
+    /// - Returns: The element
+    func alternate(verbatim value: String) -> Self
+    
 }
 
 extension AlternateAttribute where Self: ContentNode {
     
     internal func mutate(alternate value: String) -> Self {
+        return self.mutate(key: "alt", value: value)
+    }
+    
+    internal func mutate(alternate value: LocalizedString) -> Self {
         return self.mutate(key: "alt", value: value)
     }
 }
@@ -117,17 +172,59 @@ extension AlternateAttribute where Self: EmptyNode {
     internal func mutate(alternate value: String) -> Self {
         return self.mutate(key: "alt", value: value)
     }
+    
+    internal func mutate(alternate value: LocalizedString) -> Self {
+        return self.mutate(key: "alt", value: value)
+    }
 }
 
-/// The protocol provides the element with the asynchronously handler.
+/// A type that provides the `as` modifier.
+@_documentation(visibility: internal)
+public protocol AsAttribute: Attribute {
+    
+    /// Hint about the type of resource to preload.
+    ///
+    /// ```swift
+    /// Link()
+    ///     .relationship(.preload)
+    ///     .reference("https://...")
+    ///     .as(.script)
+    /// ```
+    ///
+    /// - Parameter value: The resource type to use.
+    ///
+    /// - Returns: The element
+    func `as`(_ value: Values.Resource) -> Self
+}
+
+extension AsAttribute where Self: ContentNode {
+    
+    internal func mutate(as value: String) -> Self {
+        return self.mutate(key: "as", value: value)
+    }
+}
+
+extension AsAttribute where Self: EmptyNode {
+    
+    internal func mutate(as value: String) -> Self {
+        return self.mutate(key: "as", value: value)
+    }
+}
+
+/// A type that provides the `asynchronously` modifier.
 @_documentation(visibility: internal)
 public protocol AsynchronouslyAttribute: Attribute {
     
-    /// The function represents the html-attribute 'async'.
+    /// Mark a script to be executed asynchronously.
     ///
-    /// ```html
-    /// <tag async="" />
+    /// ```swift
+    /// Script {
+    ///     "Lorem ipsum..."
+    /// }
+    /// .asynchronously()
     /// ```
+    ///
+    /// - Returns: The element
     func asynchronously() -> Self
 }
 
@@ -145,15 +242,20 @@ extension AsynchronouslyAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with the autocapitalize handler.
+/// A type that provides the `autocapitalize` modifier.
 @_documentation(visibility: internal)
 public protocol AutocapitalizeAttribute: Attribute {
     
-    /// The function represents the html-attribute 'autocapitalize'.
+    /// Control the capitalization manner.
     ///
-    /// ```html
-    /// <tag autocapitalize="" />
+    /// ```swift
+    /// Input()
+    ///     .autocapitalize(.word)
     /// ```
+    ///
+    /// - Parameter value: The manner in which to capitalize.
+    ///
+    /// - Returns: The element
     func autocapitalize(_ value: Values.Capitalization) -> Self
 }
 
@@ -171,40 +273,60 @@ extension AutocapitalizeAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with the autocomplete handler.
+/// A type that provides the `autocomplete` modifier.
 @_documentation(visibility: internal)
 public protocol AutocompleteAttribute: Attribute {
     
-    /// The function represents the html-attribute 'autocomplete'.
+    /// Specify an auto completion.
     ///
-    /// ```html
-    /// <tag autocomplete="" />
+    /// ```swift
+    /// Input()
+    ///     .autocomplete(.off)
     /// ```
-    func hasCompletion(_ value: Bool) -> Self
+    ///
+    /// - Parameter value: The value to be expected.
+    ///
+    /// - Returns: The element
+    func autocomplete(_ value: Values.Completion) -> Self
+    
+    /// Specify an auto completion.
+    ///
+    /// ```swift
+    /// Input()
+    ///     .autocomplete([.organization, .organizationTitle])
+    /// ```
+    ///
+    /// - Parameter values: The values to be expected.
+    ///
+    /// - Returns: The element
+    func autocomplete(_ values: OrderedSet<Values.Completion>) -> Self
 }
 
 extension AutocompleteAttribute where Self: ContentNode {
     
-    internal func mutate(autocomplete value: Bool) -> Self {
+    internal func mutate(autocomplete value: String) -> Self {
         return self.mutate(key: "autocomplete", value: value)
     }
 }
 
 extension AutocompleteAttribute where Self: EmptyNode {
     
-    internal func mutate(autocomplete value: Bool) -> Self {
+    internal func mutate(autocomplete value: String) -> Self {
         return self.mutate(key: "autocomplete", value: value)
     }
 }
 
-/// The protocol provides the element with the autofocus handler.
+/// A type that provides the `autofocus` modifier.
 @_documentation(visibility: internal)
 public protocol AutofocusAttribute: Attribute {
     
-    /// The function represents the html-attribute 'autofocus'.
+    /// Focus the element on page load.
     ///
-    /// ```html
-    /// <tag autofocus />
+    /// ```swift
+    /// Button {
+    ///     "Lorem ipsum..."
+    /// }
+    /// .autofocus()
     /// ```
     func autofocus() -> Self
 }
@@ -223,17 +345,22 @@ extension AutofocusAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with the autoplay handler.
+/// A type that provides the `autoplay` modifier.
 @_documentation(visibility: internal)
 public protocol AutoplayAttribute: Attribute {
     
-    /// The function represents the html-attribute 'autoplay'.
+    /// Mark the video as autoplay.
     ///
-    /// ```html
-    /// <tag autoplay />
+    /// ```swift
+    /// Video {
+    ///     Source()
+    /// }
+    /// .autoplay(true)
     /// ```
-    func autoplay() -> Self
-    
+    ///
+    /// - Parameter condition: Whether to play automatically.
+    ///
+    /// - Returns: The element
     func autoplay(_ condition: Bool) -> Self
 }
 
@@ -251,15 +378,20 @@ extension AutoplayAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with the charset handler.
+/// A type that provides the `charset` modifier.
 @_documentation(visibility: internal)
 public protocol CharsetAttribute: Attribute {
     
-    /// The function represents the html-attribute 'charset'.
+    /// Specify the character encoding for the document.
     ///
-    /// ```html
-    /// <tag charset="" />
+    /// ```swift
+    /// Meta()
+    ///     .charset(.utf8)
     /// ```
+    ///
+    /// - Parameter value: The encoding to use.
+    ///
+    /// - Returns: The element
     func charset(_ value: Values.Charset) -> Self
 }
 
@@ -277,17 +409,21 @@ extension CharsetAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with the checked handler.
+/// A type that provides the `checked` modifier.
 @_documentation(visibility: internal)
 public protocol CheckedAttribute: Attribute {
     
-    /// The function represents the html-attribute 'checked'.
+    /// Mark an input as pre-selected.
     ///
-    /// ```html
-    /// <tag checked />
+    /// ```swift
+    /// Input()
+    ///     .type(.radio)
+    ///     .checked(true)
     /// ```
-    func checked() -> Self
-    
+    ///
+    /// - Parameter condition: Whether the input should be pre-selected.
+    ///
+    /// - Returns: The element
     func checked(_ condition: Bool) -> Self
 }
 
@@ -305,16 +441,23 @@ extension CheckedAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with the cite handler.
+/// A type that provides the `cite` modifier.
 @_documentation(visibility: internal)
 public protocol CiteAttribute: Attribute {
     
-    /// The function represents the html-attribute 'cite'.
+    /// Specifiy a url that explains the quote.
     ///
-    /// ```html
-    /// <tag cite="" />
+    /// ```swift
+    /// Blockquote {
+    ///     "Lorem ipsum..."
+    /// }
+    /// .cite("https://...")
     /// ```
-    func cite(_ value: String) -> Self
+    ///
+    /// - Parameter url: The url to cite from.
+    ///
+    /// - Returns: The element
+    func cite(_ url: String) -> Self
 }
 
 extension CiteAttribute where Self: ContentNode {
@@ -331,15 +474,22 @@ extension CiteAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with the class handler.
+/// A type that provides the `class` modifier.
 @_documentation(visibility: internal)
 public protocol ClassAttribute: Attribute{
     
-    /// The function represents the html-attribute 'class'.
+    /// Use a style class on an element.
     ///
-    /// ```html
-    /// <tag class="" />
+    /// ```swift
+    /// Paragraph {
+    ///     "Lorem ipsum..."
+    /// }
+    /// .class("text")
     /// ```
+    ///
+    /// - Parameter value: The class to apply to.
+    ///
+    /// - Returns: The element
     func `class`(_ value: String) -> Self
 }
 
@@ -357,16 +507,23 @@ extension ClassAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with the columns handler.
+/// A type that provides the `columns` modifier.
 @_documentation(visibility: internal)
 public protocol ColumnsAttribute: Attribute {
     
-    /// The function represents the html-attribute 'cols'.
+    /// Specify the visible width of a text area.
     ///
-    /// ```html
-    /// <tag cols="" />
+    /// ```swift
+    /// TextArea {
+    ///     "Lorem ipsum..."
+    /// }
+    /// .columns(10)
     /// ```
-    func columns(_ size: Int) -> Self
+    ///
+    /// - Parameter number: The number of columns to base the width on.
+    ///
+    /// - Returns: The element
+    func columns(_ number: Int) -> Self
 }
 
 extension ColumnsAttribute where Self: ContentNode {
@@ -383,15 +540,23 @@ extension ColumnsAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with the columnspan handler.
+/// A type that provides the `columnSpan` modifier.
 @_documentation(visibility: internal)
 public protocol ColumnSpanAttribute: Attribute {
     
-    /// The function represents the html-attribute 'colspan'.
+    /// Specify the number of columns a cell should span.
     ///
-    /// ```html
-    /// <tag colspan="" />
+    /// ```swift
+    /// TableRow {
+    ///     DataCell {
+    ///         "Lorem ipsum..."
+    ///     }
+    ///     .columnSpan(2)
+    /// }
     /// ```
+    /// - Parameter size: The number of columns to span.
+    ///
+    /// - Returns: The element
     func columnSpan(_ size: Int) -> Self
 }
 
@@ -409,21 +574,58 @@ extension ColumnSpanAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with the content handler.
+/// A type that provides the `content` modifier.
 @_documentation(visibility: internal)
 public protocol ContentAttribute: Attribute {
     
-    /// The function represents the html-attribute 'content'.
+    /// Supply a value to the associated name.
     ///
-    /// ```html
-    /// <tag content="" />
+    /// ```swift
+    /// Meta()
+    ///     .name(.description)
+    ///     .content("Lorem ipsum...")
     /// ```
+    ///
+    /// - Parameter value: The value to describe the name
+    ///
+    /// - Returns: The element
     func content(_ value: String) -> Self
+    
+    /// Supply a value to the associated name.
+    ///
+    /// ```swift
+    /// Meta()
+    ///     .name(.description)
+    ///     .content("Lorem ipsum...")
+    /// ```
+    ///
+    /// - Parameter localizedKey: The string key to be translated
+    /// - Parameter tableName: The translation table to look in
+    ///
+    /// - Returns: The element
+    func content(_ localizedKey: LocalizedStringKey, tableName: String?) -> Self
+    
+    /// Supply a value to the associated name without localization
+    ///
+    /// ```swift
+    /// Meta()
+    ///     .name(.description)
+    ///     .content(verbatim: "Lorem ipsum...")
+    /// ```
+    ///
+    /// - Parameter value: The value to describe the name
+    ///
+    /// - Returns: The element
+    func content(verbatim value: String) -> Self
 }
 
 extension ContentAttribute where Self: ContentNode {
     
     internal func mutate(content value: String) -> Self {
+        return self.mutate(key: "content", value: value)
+    }
+    
+    internal func mutate(content value: LocalizedString) -> Self {
         return self.mutate(key: "content", value: value)
     }
 }
@@ -433,18 +635,29 @@ extension ContentAttribute where Self: EmptyNode {
     internal func mutate(content value: String) -> Self {
         return self.mutate(key: "content", value: value)
     }
+    
+    internal func mutate(content value: LocalizedString) -> Self {
+        return self.mutate(key: "content", value: value)
+    }
 }
 
-/// The protocol provides the element with the iseditable handler.
+/// A type that provides the `isEditable` modifier.
 @_documentation(visibility: internal)
 public protocol EditAttribute: Attribute {
     
-    /// The function represents the html-attribute 'contenteditable'.
+    /// Mark an element as editable.
     ///
-    /// ```html
-    /// <tag contenteditable />
+    /// ```swift
+    /// Blockquote {
+    ///     "Lorem ipsum..."
+    /// }
+    /// .isEditable(false)
     /// ```
-    func isEditable(_ value: Bool) -> Self
+    ///
+    /// - Parameter condition: Whether the element should be editable.
+    ///
+    /// - Returns: The element
+    func isEditable(_ condition: Bool) -> Self
 }
 
 extension EditAttribute where Self: ContentNode {
@@ -461,15 +674,20 @@ extension EditAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with the controls handler.
+/// A type that provides the `controls` modifier.
 @_documentation(visibility: internal)
 public protocol ControlsAttribute: Attribute {
     
-    /// The function represents the html-attribute 'controls'.
+    /// Display the controls.
     ///
-    /// ```html
-    /// <tag controls />
+    /// ```swift
+    /// Audio {
+    ///     Source()
+    /// }
+    /// .controls()
     /// ```
+    ///
+    /// - Returns: The element
     func controls() -> Self
 }
 
@@ -487,15 +705,21 @@ extension ControlsAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with the coordinates handler.
+/// A type that provides the `coordinates` modifier.
 @_documentation(visibility: internal)
 public protocol CoordinatesAttribute: Attribute {
     
-    /// The function represents the html-attribute 'coordinates'.
+    /// Use coordinates to define the area.
     ///
-    /// ```html
-    /// <tag coordinates="" />
+    /// ```swift
+    /// Area()
+    ///     .shape(.rect)
+    ///     .coordinates("0, 0, 200, 100")
     /// ```
+    ///
+    /// - Parameter value: The coordinates on which to base the shape.
+    ///
+    /// - Returns: The element
     func coordinates(_ value: String) -> Self
 }
 
@@ -513,16 +737,54 @@ extension CoordinatesAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with the date handler.
+/// A type that provides the `crossOrigin` modifier
+@_documentation(visibility: internal)
+public protocol CrossOriginAttribute: Attribute {
+    
+    /// Control the credential mode for cross-origin requests.
+    ///
+    /// ```swift
+    /// Script {
+    /// }
+    /// .crossOrigin(.anonymous)
+    /// ```
+    ///
+    /// - Parameter value: The mode to use.
+    ///
+    /// - Returns: The element
+    func crossOrigin(_ value: Credential.Mode) -> Self
+}
+
+extension CrossOriginAttribute where Self: ContentNode {
+    
+    internal func mutate(crossorigin value: String) -> Self {
+        return self.mutate(key: "crossorigin", value: value)
+    }
+}
+
+extension CrossOriginAttribute where Self: EmptyNode {
+    
+    internal func mutate(crossorigin value: String) -> Self {
+        return self.mutate(key: "crossorigin", value: value)
+    }
+}
+
+/// A type that provides the `data` modifier.
 @_documentation(visibility: internal)
 public protocol DataAttribute: Attribute{
     
-    /// The function represents the html-attribute 'data'.
+    /// Specify the url of the resource.
     ///
-    /// ```html
-    /// <tag data="" />
+    /// ```swift
+    /// Object {
+    /// }
+    /// .data("https://...")
     /// ```
-    func data(_ value: String) -> Self
+    ///
+    /// - Parameter url: The url of the resource to use.
+    ///
+    /// - Returns: The element
+    func data(_ url: String) -> Self
 }
 
 extension DataAttribute where Self: ContentNode {
@@ -539,15 +801,22 @@ extension DataAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with the datetime handler.
+/// A type that provides the `dateTime` modifier.
 @_documentation(visibility: internal)
 public protocol DateTimeAttribute: Attribute {
     
-    /// The function represents the html-attribute 'datetime'.
+    /// Specify the date and time.
     ///
-    /// ```html
-    /// <tag datetime="" />
+    /// ```swift
+    /// Time {
+    ///     "Lorem ipsum..."
+    /// }
+    /// .dateTime("")
     /// ```
+    ///
+    /// - Parameter value: The date or time to represent.
+    ///
+    /// - Returns: The element
     func dateTime(_ value: String) -> Self
 }
 
@@ -565,15 +834,18 @@ extension DateTimeAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with the default handler.
+/// A type that provides the `default` modifier.
 @_documentation(visibility: internal)
 public protocol DefaultAttribute: Attribute {
     
-    /// The function represents the html-attribute 'default'.
+    /// Mark a track as default.
     ///
-    /// ```html
-    /// <tag default />
+    /// ```swift
+    /// Track()
+    ///     .default()
     /// ```
+    ///
+    /// - Returns: The element
     func `default`() -> Self
 }
 
@@ -591,15 +863,20 @@ extension DefaultAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with the defer handler.
+/// A type that provides the `defer` modifier.
 @_documentation(visibility: internal)
 public protocol DeferAttribute: Attribute {
     
-    /// The function represents the html-attribute 'defer'.
+    /// Mark a script as defer.
     ///
-    /// ```html
-    /// <tag defer />
+    /// ```swift
+    /// Script {
+    ///     "Lorem ipsum..."
+    /// }
+    /// .defer()
     /// ```
+    ///
+    /// - Returns: The element
     func `defer`() -> Self
 }
 
@@ -617,17 +894,22 @@ extension DeferAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with the direction handler.
+/// A type that provides the `direction` modifier.
 @_documentation(visibility: internal)
 public protocol DirectionAttribute: Attribute {
 
-    /// The function represents the html-attribute 'dir'.
+    /// Set the text direction.
     ///
-    /// It specifies the element's text directionality.
-    ///
-    /// ```html
-    /// <tag dir="" />
+    /// ```swift
+    /// Paragraph {
+    ///     "Lorem ipsum"
+    /// }
+    /// .direction(.auto)
     /// ```
+    ///
+    /// - Parameter value: The direction to apply.
+    ///
+    /// - Returns: The element
     func direction(_ value: Values.Direction) -> Self
 }
 
@@ -645,17 +927,20 @@ extension DirectionAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with the disabled handler
+/// A type that provides the `disabled` modifier.
 @_documentation(visibility: internal)
 public protocol DisabledAttribute: Attribute {
     
-    /// The function represents the html-attribute 'disabled'.
+    /// Disable the element.
     ///
-    /// ```html
-    /// <tag disabled />
+    /// ```swift
+    /// Input()
+    ///     .disabled(true)
     /// ```
-    func disabled() -> Self
-    
+    ///
+    /// - Parameter condition: Whether to disable the element.
+    ///
+    /// - Returns: The element
     func disabled(_ condition: Bool) -> Self
 }
 
@@ -673,15 +958,20 @@ extension DisabledAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with the download handler.
+/// A type that provides the `download` modifier.
 @_documentation(visibility: internal)
 public protocol DownloadAttribute: Attribute {
     
-    /// The function represents the html-attribute 'download'.
+    /// Mark the target as downloadable.
     ///
-    /// ```html
-    /// <tag download />
+    /// ```swift
+    /// Anchor {
+    ///     "Lorem ipsum..."
+    /// }
+    /// .download()
     /// ```
+    ///
+    /// - Returns: The element
     func download() -> Self
 }
 
@@ -699,16 +989,23 @@ extension DownloadAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with the isdraggable handler.
+/// A type that provides the `isDraggable` modifier.
 @_documentation(visibility: internal)
 public protocol DragAttribute: Attribute {
  
-    /// The function represents the html-attribute 'draggable'.
+    /// Mark an element as draggable.
     ///
-    /// ```html
-    /// <tag draggable />
+    /// ```swift
+    /// Division {
+    ///     ...
+    /// }
+    /// .isDraggable(false)
     /// ```
-    func isDraggable(_ value: Bool) -> Self
+    ///
+    /// - Parameter condition: Whether the element should be draggable.
+    ///
+    /// - Returns: The element
+    func isDraggable(_ condition: Bool) -> Self
 }
 
 extension DragAttribute where Self: ContentNode {
@@ -725,17 +1022,21 @@ extension DragAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with the encoding handler.
+/// A type that provides the `encoding` modifier.
 @_documentation(visibility: internal)
 public protocol EncodingAttribute: Attribute {
     
-    /// The function represents the html-attribute 'enctype'.
+    /// Specify the encoding strategy for form submission.
     ///
-    /// It specifies encoding type to use for form submission.
-    ///
-    /// ```html
-    /// <tag enctype="" />
+    /// ```swift
+    /// Form {
+    /// }
+    /// .encoding(.multipart)
     /// ```
+    ///
+    /// - Parameter value: The strategy to use for the encoding.
+    ///
+    /// - Returns: The element
     func encoding(_ value: Values.Encoding) -> Self
 }
 
@@ -753,17 +1054,21 @@ extension EncodingAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with the enterkeyhint handler.
+/// A type that provides the `enterKeyHint` modifier.
 @_documentation(visibility: internal)
 public protocol EnterKeyHintAttribute: Attribute {
     
-    /// The function represents the html-attribute 'enterkeyhint'.
+    /// Change the enter key for the virtual keyboards.
     ///
-    /// It specifies what action label to present for the enter key on virtual keyboards.
-    ///
-    /// ```html
-    /// <tag enterkeyhint="" />
+    /// ```swift
+    /// Input()
+    ///     .type(.text)
+    ///     .enterKeyHint(.search)
     /// ```
+    ///
+    /// - Parameter value: The enter key to apply.
+    ///
+    /// - Returns: The element
     func enterKeyHint(_ value: Values.Hint) -> Self
 }
 
@@ -781,18 +1086,23 @@ extension EnterKeyHintAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with the for handler.
+/// A type that provides the `for` modifier.
 @_documentation(visibility: internal)
 public protocol ForAttribute: Attribute {
     
-    /// The function represents the html-attribute 'for'.
+    /// Specify the association with the element.
     ///
-    /// It specifies the form control with wich the caption is be associated.
-    ///
-    /// ```html
-    /// <tag for="" />
+    /// ```swift
+    /// Label {
+    ///     "Lorem ipsum..."
+    /// }
+    /// .for("id")
     /// ```
-    func `for`(_ value: String) -> Self
+    ///
+    /// - Parameter id: The identifier of the element its bound to.
+    ///
+    /// - Returns: The element
+    func `for`(_ id: String) -> Self
 }
 
 extension ForAttribute where Self: ContentNode {
@@ -809,16 +1119,23 @@ extension ForAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with the form handler.
+/// A type that provides the `form` modifier.
 @_documentation(visibility: internal)
 public protocol FormAttribute: Attribute {
     
-    /// The function represents the html-attribute 'form'.
+    /// Specify the form the element belongs to.
     ///
-    /// ```html
-    /// <tag form="" />
+    /// ```swift
+    /// Button {
+    ///     "Lorem ipsum..."
+    /// }
+    /// .form("id")
     /// ```
-    func form(_ value: String) -> Self
+    ///
+    /// - Parameter id: The identifier of the form its bound to.
+    ///
+    /// - Returns: The element
+    func form(_ id: String) -> Self
 }
 
 extension FormAttribute where Self: ContentNode {
@@ -835,18 +1152,27 @@ extension FormAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with the formaction handler.
+/// A type that provides the `formAction` modifier.
 @_documentation(visibility: internal)
 public protocol FormActionAttribute: Attribute {
     
-    /// The function represents the html-attribute 'formaction'.
+    /// Set a target url to use for form submissions.
     ///
-    /// It sets the url to use for form submissions
-    ///
-    /// ```html
-    /// <tag formaction="" />
+    /// ```swift
+    /// Form {
+    ///     Button {
+    ///         "Submit"
+    ///     }
+    ///     .type(.submit)
+    ///     .formAction("https://...")
+    /// }
+    /// .method(.get)
     /// ```
-    func formAction(_ value: String) -> Self
+    ///
+    /// - Parameter url: The url to send the form data to.
+    ///
+    /// - Returns: The element
+    func formAction(_ url: String) -> Self
 }
 
 extension FormActionAttribute where Self: ContentNode {
@@ -863,17 +1189,20 @@ extension FormActionAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with the http-equiv handler.
+/// A type that provides the `equivalent` modifier.
 @_documentation(visibility: internal)
 public protocol EquivalentAttribute: Attribute {
     
-    /// The function represents the html-attribute 'http-equiv'.
+    /// Specify the header directive equivalent.
     ///
-    /// It specifiies the header cells for the element.
-    ///
-    /// ```html
-    /// <tag http-equiv="" />
+    /// ```swift
+    /// Meta()
+    ///     .equivalent(.refresh)
     /// ```
+    ///
+    /// - Parameter value: The header directive to simulate.
+    ///
+    /// - Returns: The element
     func equivalent(_ value: Values.Equivalent) -> Self
 }
 
@@ -891,18 +1220,23 @@ extension EquivalentAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with the headers handler.
+/// A type that provides the `headers` modifier.
 @_documentation(visibility: internal)
 public protocol HeaderAttribute: Attribute {
     
-    /// The function represents the html-attribute 'headers'.
+    /// Specify the header cells for an element.
     ///
-    /// It specifiies the header cells for the element.
-    ///
-    /// ```html
-    /// <tag headers="" />
+    /// ```swift
+    /// DataCell {
+    ///     "Lorem ipsum..."
+    /// }
+    /// .headers("ids")
     /// ```
-    func headers(_ value: String) -> Self
+    ///
+    /// - Parameter ids: The identifiers of the cells to associate with.
+    ///
+    /// - Returns: The element
+    func headers(_ ids: String) -> Self
 }
 
 extension HeaderAttribute where Self: ContentNode {
@@ -919,17 +1253,20 @@ extension HeaderAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with the height handler.
+/// A type that provides the `height` modifier.
 @_documentation(visibility: internal)
 public protocol HeightAttribute: Attribute {
     
-    /// The function represents the html-attribute 'height'.
+    /// Set the actual height for the element.
     ///
-    /// It sets the height of the element.
-    ///
-    /// ```html
-    /// <tag height="" />
+    /// ```swift
+    /// Image()
+    ///     .height(200)
     /// ```
+    ///
+    /// - Parameter size: The height to constrain the element to.
+    ///
+    /// - Returns: The element
     func height(_ size: Int) -> Self
 }
 
@@ -947,17 +1284,22 @@ extension HeightAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with hidden handler.
+/// A type that provides the `hidden` modifier.
 @_documentation(visibility: internal)
 public protocol HiddenAttribute: Attribute {
- 
-    /// The function represents the html-attribute 'hidden'.
-    ///
-    /// ```html
-    /// <tag hidden />
-    /// ```
-    func hidden() -> Self
     
+    /// Hide an element.
+    ///
+    /// ```swift
+    /// Paragraph {
+    ///     "Lorem ipsum..."
+    /// }
+    /// .hidden(false)
+    /// ```
+    ///
+    /// - Parameter condition: Whether to hide the element.
+    ///
+    /// - Returns: The element
     func hidden(_ condition: Bool) -> Self
 }
 
@@ -975,17 +1317,21 @@ extension HiddenAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with high handler.
+/// A type that provides the `high` modifier.
 @_documentation(visibility: internal)
 public protocol HighAttribute: Attribute {
     
-    /// The function represents the html-attribute 'high'.
+    /// Specify the high threshold for the range.
     ///
-    /// It sets the range of the value.
-    ///
-    /// ```html
-    /// <tag high="" />
+    /// ```swift
+    /// Meter {
+    /// }
+    /// .high(40)
     /// ```
+    ///
+    /// - Parameter value: The value to consider high.
+    ///
+    /// - Returns: The element
     func high(_ value: Float) -> Self
 }
 
@@ -1003,18 +1349,23 @@ extension HighAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with reference handler.
+/// A type that provides the `reference` modifier.
 @_documentation(visibility: internal)
 public protocol ReferenceAttribute: Attribute {
     
-    /// The function represents the html-attribute 'href'.
+    /// Specify the url for a link.
     ///
-    /// It gives the adress of the link.
-    ///
-    /// ```html
-    /// <tag href="" />
+    /// ```swift
+    /// Anchor {
+    ///     "Lorem ipsum..."
+    /// }
+    /// .reference("https://...")
     /// ```
-    func reference(_ value: String) -> Self
+    ///
+    /// - Parameter url: The url to refer to.
+    ///
+    /// - Returns: The element
+    func reference(_ url: String) -> Self
 }
 
 extension ReferenceAttribute where Self: ContentNode {
@@ -1031,17 +1382,22 @@ extension ReferenceAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with the language reference handler.
+/// A type that provides the `referenceLanguage` modifier.
 @_documentation(visibility: internal)
 public protocol ReferenceLanguageAttribute: Attribute {
     
-    /// The function represents the html-attribute 'hreflang'.
+    /// Indicate the content language of the linked resource.
     ///
-    /// It gives the language of the linked resource.
-    ///
-    /// ```html
-    /// <tag hreflang="" />
+    /// ```swift
+    /// Anchor {
+    ///     "Lorem ipsum..."
+    /// }
+    /// .reference("https://...")
+    /// .referenceLanguage(.en)
     /// ```
+    /// - Parameter value: The language to expect at the linked resource.
+    ///
+    /// - Returns: The element
     func referenceLanguage(_ value: Values.Language) -> Self
 }
 
@@ -1059,17 +1415,21 @@ extension ReferenceLanguageAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with the id handler.
+/// A type that provides the `id` modifier.
 @_documentation(visibility: internal)
 public protocol IdentifierAttribute: Attribute {
  
-    /// The function represents the html-attribute 'id'.
+    /// Set an unique identifier.
     ///
-    /// It specifies its element's unique identifier.
-    ///
-    /// ```html
-    /// <tag id="" />
+    /// ```swift
+    /// Division {
+    /// }
+    /// .id("content")
     /// ```
+    ///
+    /// - Parameter value: The identifier to recognize by.
+    ///
+    /// - Returns: The element
     func id(_ value: String) -> Self
 }
 
@@ -1087,14 +1447,22 @@ extension IdentifierAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with the ismap handler.
+/// A type that provides the `isMap` modifier.
 @_documentation(visibility: internal)
 public protocol IsMapAttribute: Attribute {
  
-    /// The function represents the html-attribute 'ismap'.
+    /// Mark an element as a server-side image map.
     ///
-    /// ```html
-    /// <tag ismap />
+    /// It enables the element to send click coordinates to the server,
+    /// allowing interactions with the element.
+    ///
+    /// ```swift
+    /// Anchor {
+    ///     Image()
+    ///         .source("...png")
+    ///         .isMap()
+    /// }
+    /// .reference("https://...")
     /// ```
     func isMap() -> Self
 }
@@ -1113,16 +1481,19 @@ extension IsMapAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with the inputmode handler.
+/// A type that provides the `inputMode` modifier.
 @_documentation(visibility: internal)
 public protocol InputModeAttribute: Attribute {
- 
-    /// The function represents the html-attribute 'inputmode'.
+    
+    /// Set the virtual keyboard mode for the editable element.
     ///
-    /// ```html
-    /// <tag inputmode="" />
+    /// ```swift
+    /// Input()
+    ///     .inputMode(.numeric)
     /// ```
-    func inputMode(_ value: String) -> Self
+    ///
+    /// - Parameter value: The mode to set on
+    func inputMode(_ value: Values.Mode) -> Self
 }
 
 extension InputModeAttribute where Self: ContentNode {
@@ -1139,16 +1510,68 @@ extension InputModeAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with the inputmode handler.
+/// A type that provides the `integrity` modifier
+@_documentation(visibility: internal)
+public protocol IntegrityAttribute: Attribute {
+    
+    /// Check the integrity of the resource.
+    ///
+    /// ```swift
+    /// Script {
+    /// }
+    /// .integrity("sha384...", "sha384...")
+    /// ```
+    ///
+    /// - Parameter hashes: The hashes of the resource to validate against.
+    ///
+    /// - Returns: The element
+    func integrity(_ hashes: String...) -> Self
+    
+    /// Check the integrity of the resource.
+    ///
+    /// ```swift
+    /// Script {
+    /// }
+    /// .integrity(["sha384...", "sha384..."])
+    /// ```
+    ///
+    /// - Parameter hashes: The hashes of the resource to validate against.
+    ///
+    /// - Returns: The element
+    func integrity(_ hashes: [String]) -> Self
+}
+
+extension IntegrityAttribute where Self: ContentNode {
+    
+    internal func mutate(integrity value: String) -> Self {
+        return self.mutate(key: "integrity", value: value)
+    }
+}
+
+extension IntegrityAttribute where Self: EmptyNode {
+    
+    internal func mutate(integrity value: String) -> Self {
+        return self.mutate(key: "integrity", value: value)
+    }
+}
+
+/// A type that provides the `is` modifier.
 @_documentation(visibility: internal)
 public protocol IsAttribute: Attribute {
  
-    /// The function represents the html-attribute 'is'.
+    /// Refere to a custom element.
     ///
-    /// ```html
-    /// <tag is="" />
+    /// ```swift
+    /// Paragraph {
+    ///     "Lorem ipsum..."
+    /// }
+    /// .is("foo-bar")
     /// ```
-    func `is`(_ value: String) -> Self
+    ///
+    /// - Parameter name: The name of the custom element to refere to.
+    ///
+    /// - Returns: The element
+    func `is`(_ name: String) -> Self
 }
 
 extension IsAttribute where Self: ContentNode {
@@ -1165,15 +1588,118 @@ extension IsAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with the itemid handler.
+/// A type that provides the `item` modifier.
+@_documentation(visibility: internal)
+public protocol ItemAttribute: Attribute {
+    
+    /// Create an new item.
+    ///
+    /// ```swift
+    /// DefinitionList {
+    /// }
+    /// .item(id: "urn:...", as: "https://...", for: ["foo", "bar"])
+    /// ```
+    /// 
+    /// - Parameters:
+    ///   - id: The identifier used to name the item.
+    ///   - schema: The url of the schema the item should conform to.
+    ///   - elements: The identifiers of elements to associated the item with.
+    ///
+    /// - Returns: The element
+    func item(id: String?, as schema: URL?, for elements: [String]?) -> Self
+    
+    /// Create an new item.
+    ///
+    /// ```swift
+    /// DefinitionList {
+    /// }
+    /// .item(id: "urn:...", as: "https://...", for: "foo", "bar")
+    /// ```
+    ///
+    /// - Parameters:
+    ///   - id: The identifier used to name the item.
+    ///   - schema: The url of the schema the item should conform to.
+    ///   - elements: The identifiers of elements to associated the item with.
+    ///
+    /// - Returns: The element
+    func item(id: String?, as schema: URL?, for elements: String...) -> Self
+}
+
+extension ItemAttribute where Self: ContentNode {
+    
+    internal func mutate(itemid value: String?) -> Self {
+        
+        if let value = value {
+            return self.mutate(key: "itemid", value: value)
+        }
+        
+        return self
+    }
+    
+    internal func mutate(itemtype value: String?) -> Self {
+        
+        if let value = value {
+            return self.mutate(key: "itemtype", value: value)
+        }
+        
+        return self
+    }
+    
+    internal func mutate(itemref value: String?) -> Self {
+
+        if let value = value {
+            return self.mutate(key: "itemref", value: value)
+        }
+        
+        return self
+    }
+}
+
+extension ItemAttribute where Self: EmptyNode {
+    
+    internal func mutate(itemid value: String?) -> Self {
+        
+        if let value = value {
+            return self.mutate(key: "itemid", value: value)
+        }
+        
+        return self
+    }
+    
+    internal func mutate(itemtype value: String?) -> Self {
+        
+        if let value = value {
+            return self.mutate(key: "itemtype", value: value)
+        }
+        
+        return self
+    }
+    
+    internal func mutate(itemref value: String?) -> Self {
+
+        if let value = value {
+            return self.mutate(key: "itemref", value: value)
+        }
+        
+        return self
+    }
+}
+
+/// A type that provides the `itemId` modifier.
 @_documentation(visibility: internal)
 public protocol ItemIdAttribute: Attribute {
  
-    /// The function represents the html-attribute 'itemid'.
+    /// Set an unique identifier for an item.
     ///
-    /// ```html
-    /// <tag itemid="" />
+    /// ```swift
+    /// DefinitionList {
+    /// }
+    /// .itemId("urn:...")
     /// ```
+    ///
+    /// - Parameter value: The identifier to name the item after.
+    ///
+    /// - Returns: The element
     func itemId(_ value: String) -> Self
 }
 
@@ -1191,15 +1717,22 @@ extension ItemIdAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with the itemproperty handler.
+/// A type that provides the `itemProperty` modifier.
 @_documentation(visibility: internal)
 public protocol ItemPropertyAttribute: Attribute {
  
-    /// The function represents the html-attribute 'itemprop'.
+    /// Create an item property on an element.
     ///
-    /// ```html
-    /// <tag itemprop="" />
+    /// ```swift
+    /// Span {
+    ///     "Lorem ipsum..."
+    /// }
+    /// .itemProperty("")
     /// ```
+    ///
+    /// - Parameter value: The name used for the property.
+    ///
+    /// - Returns: The element
     func itemProperty(_ value: String) -> Self
 }
 
@@ -1217,15 +1750,21 @@ extension ItemPropertyAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with the itemreference handler.
+/// A type that provides the `itemReference` modifier.
 @_documentation(visibility: internal)
 public protocol ItemReferenceAttribute: Attribute {
  
-    /// The function represents the html-attribute 'itemref'.
+    /// Refer to other elements with additional item properties.
     ///
-    /// ```html
-    /// <tag itemref="" />
+    /// ```swift
+    /// DefinitionList {
+    /// }
+    /// .itemReference("foo bar")
     /// ```
+    ///
+    /// - Parameter value: The identifiers to relate to.
+    ///
+    /// - Returns: The element
     func itemReference(_ value: String) -> Self
 }
 
@@ -1243,15 +1782,20 @@ extension ItemReferenceAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with the itemscope handler.
+/// A type that provides the `itemScope` modifier.
 @_documentation(visibility: internal)
 public protocol ItemScopeAttribute: Attribute {
  
-    /// The function represents the html-attribute 'itemscope'.
+    /// Create a new item scope.
     ///
-    /// ```html
-    /// <tag itemscope="" />
+    /// ```swift
+    /// DefinitionList {
+    ///     "Lorem ipsum..."
+    /// }
+    /// .itemScope()
     /// ```
+    ///
+    /// - Returns: The element
     func itemScope(_ value: String) -> Self
 }
 
@@ -1269,16 +1813,22 @@ extension ItemScopeAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with the itemtype handler
+/// A type that provides the `itemType` modifier.
 @_documentation(visibility: internal)
 public protocol ItemTypeAttribute: Attribute {
  
-    /// The function represents the html-attribute 'itemtype'.
+    /// Refer to an item vocabulary.
     ///
-    /// ```html
-    /// <tag itemtype="" />
+    /// ```swift
+    /// DefintionList {
+    /// }
+    /// .itemType("https://...")
     /// ```
-    func itemType(_ value: String) -> Self
+    ///
+    /// - Parameter url: The url of the vocabulary to use.
+    ///
+    /// - Returns: The element
+    func itemType(_ url: String) -> Self
 }
 
 extension ItemTypeAttribute where Self: ContentNode {
@@ -1295,15 +1845,21 @@ extension ItemTypeAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with the kind handler.
+/// A type that provides the `kind` modifier.
 @_documentation(visibility: internal)
 public protocol KindAttribute: Attribute {
     
-    /// The function represents the html-attribute 'kind'.
+    /// Hint the kind of track content.
     ///
-    /// ```html
-    /// <tag kind="" />
+    /// ```swift
+    /// Track()
+    ///     .source("...vtt")
+    ///     .kind(.chapters)
     /// ```
+    ///
+    /// - Parameter value: The kind of content to associate with.
+    ///
+    /// - Returns: The element
     func kind(_ value: Values.Kind) -> Self
 }
 
@@ -1321,15 +1877,22 @@ extension KindAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with the label handler.
+/// A type that provides the `label` modifier.
 @_documentation(visibility: internal)
 public protocol LabelAttribute: Attribute {
     
-    /// The function represents the html-attribute 'label'.
+    /// Specify a label for the element.
     ///
-    /// ```html
-    /// <tag label="" />
+    /// ```swift
+    /// Track()
+    ///     .source("...vtt")
+    ///     .kind(.chapters)
+    ///     .label("lorem")
     /// ```
+    ///
+    /// - Parameter value: The text to use as a label.
+    ///
+    /// - Returns: The element
     func label(_ value: String) -> Self
 }
 
@@ -1347,15 +1910,22 @@ extension LabelAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with the language handler.
+/// A type that provides the `language` modifier.
 @_documentation(visibility: internal)
 public protocol LanguageAttribute: Attribute {
     
-    /// The function represents the html-attribute 'lang'.
+    /// Specify the language for the following content.
     ///
-    /// ```html
-    /// <tag lang="" />
+    /// ```swift
+    /// Paragraph {
+    ///     "Lorem ipsum..."
+    /// }
+    /// .language(.german)
     /// ```
+    ///
+    /// - Parameter value: The language used to intepret the content.
+    ///
+    /// - Returns: The element
     func language(_ value: Values.Language) -> Self
 }
 
@@ -1373,16 +1943,21 @@ extension LanguageAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with the list handler.
+/// A type that provides the `list` modifier.
 @_documentation(visibility: internal)
 public protocol ListAttribute: Attribute {
     
-    /// The function represents the html-attribute 'list'.
+    /// Refere to a datalist.
     ///
-    /// ```html
-    /// <tag list="" />
+    /// ```swift
+    /// Input()
+    ///     .list("")
     /// ```
-    func list(_ value: String) -> Self
+    ///
+    /// - Parameter id: The identifier of the datalist.
+    ///
+    /// - Returns: The element.
+    func list(_ id: String) -> Self
 }
 
 extension ListAttribute where Self: ContentNode {
@@ -1399,16 +1974,24 @@ extension ListAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with the loop handler.
+/// A type that provides the `loop` modifier.
 @_documentation(visibility: internal)
 public protocol LoopAttribute: Attribute {
     
-    /// The function represents the html-attribute 'loop'.
+    /// Activate autoplay.
+    /// 
+    /// It specifies that the element will start over again, every time it is finished.
     ///
-    /// ```html
-    /// <tag loop />
+    /// ```swift
+    /// Audio {
+    /// }
+    /// .loop()
     /// ```
-    func loop() -> Self
+    ///
+    /// - Parameter condition: Whether the element should play repeatedly
+    ///
+    /// - Returns: The element
+    func loop(_ condition: Bool) -> Self
 }
 
 extension LoopAttribute where Self: ContentNode {
@@ -1425,15 +2008,21 @@ extension LoopAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with the low handler.
+/// A type that provides the `low` modifier.
 @_documentation(visibility: internal)
 public protocol LowAttribute: Attribute {
     
-    /// The function represents the html-attribute 'low'.
+    /// Specify the low threshold for the range.
     ///
-    /// ```html
-    /// <tag low="" />
+    /// ```swift
+    /// Meter {
+    /// }
+    /// .low(40)
     /// ```
+    ///
+    /// - Parameter value: The value to consider low.
+    ///
+    /// - Returns: The element
     func low(_ value: Float) -> Self
 }
 
@@ -1451,17 +2040,21 @@ extension LowAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with the maximumvalue handler.
+/// A type that provides the `maximum` modifier.
 @_documentation(visibility: internal)
 public protocol MaximumValueAttribute: Attribute {
     
     associatedtype MaximumValueType
     
-    /// The function represents the html-attribute 'max'.
+    /// Specify the maximum bound for the range.
     ///
-    /// ```html
-    /// <tag max="" />
+    /// ```swift
+    /// Input()
+    ///     .maximum(100)
     /// ```
+    /// - Parameter value: The value to consider maximum.
+    ///
+    /// - Returns: The element
     func maximum(_ value: MaximumValueType) -> Self
 }
 
@@ -1479,15 +2072,22 @@ extension MaximumValueAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with the maximumlength handler.
+/// A type that provides the `maximum(length:)` modifier.
 @_documentation(visibility: internal)
 public protocol MaximumLengthAttribute: Attribute {
     
-    /// The function represents the html-attribute 'maxlength'.
+    /// Set the maximum string length.
     ///
-    /// ```html
-    /// <tag maxlength="" />
+    /// ```swift
+    /// TextArea {
+    ///     "Lorem ipsum..."
+    /// }
+    /// .maximum(length: 10)
     /// ```
+    ///
+    /// - Parameter value: The maximum number of characters to require.
+    ///
+    /// - Returns: The element
     func maximum(length value: Int) -> Self
 }
 
@@ -1505,15 +2105,21 @@ extension MaximumLengthAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with the media handler.
+/// A type that provides the `media` modifier.
 @_documentation(visibility: internal)
 public protocol MediaAttribute: Attribute {
     
-    /// The function represents the html-attribute 'media'.
+    /// Specify the media the ressource is optimized for.
     ///
-    /// ```html
-    /// <tag media="" />
+    /// ```swift
+    /// Link()
+    ///     .reference("https://...")
+    ///     .media("print")
     /// ```
+    ///
+    /// - Parameter value: The media to be considered.
+    ///
+    /// - Returns: The element
     func media(_ value: String) -> Self
 }
 
@@ -1531,15 +2137,21 @@ extension MediaAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with the method handler.
+/// A type that provides the `method` modifier.
 @_documentation(visibility: internal)
 public protocol MethodAttribute: Attribute {
     
-    /// The function represents the html-attribute 'method'.
+    /// Specify how to send form data.
     ///
-    /// ```html
-    /// <tag method="" />
+    /// ```swift
+    /// Form {
+    /// }
+    /// .method(.post)
     /// ```
+    ///
+    /// - Parameter value: The method to use for submission.
+    ///
+    /// - Returns: The element
     func method(_ value: Values.Method) -> Self
 }
 
@@ -1557,17 +2169,22 @@ extension MethodAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with the minimumvalue handler.
+/// A type that provides the `minimum` modifier.
 @_documentation(visibility: internal)
 public protocol MinimumValueAttribute: Attribute {
     
     associatedtype MinimumValueType
     
-    /// The function represents the html-attribute 'min'.
+    /// Specify the minimum bound for the range.
     ///
-    /// ```html
-    /// <tag min="" />
+    /// ```swift
+    /// Input()
+    ///     .minimum(0)
     /// ```
+    ///
+    /// - Parameter value: The value to consider minimum.
+    ///
+    /// - Returns: The element
     func minimum(_ value: MinimumValueType) -> Self
 }
 
@@ -1585,15 +2202,21 @@ extension MinimumValueAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with the minimumlength handler.
+/// A type that provides the `minimum(length:)` modifier.
 @_documentation(visibility: internal)
 public protocol MinimumLengthAttribute: Attribute {
     
-    /// The function represents the html-attribute 'minlength'.
+    /// Set the minimum string length.
     ///
-    /// ```html
-    /// <tag minlength="" />
+    /// ```swift
+    /// TextArea {
+    ///     "Lorem ipsum..."
+    /// }
+    /// .minimum(length: 10)
     /// ```
+    /// - Parameter value: The minimum number of characters to require.
+    ///
+    /// - Returns: The element
     func minimum(length value: Int) -> Self
 }
 
@@ -1611,15 +2234,21 @@ extension MinimumLengthAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with the multiple handler.
+/// A type that provides the `multiple` modifier.
 @_documentation(visibility: internal)
 public protocol MultipleAttribute: Attribute {
     
-    /// The function represents the html-attribute 'multiple'.
+    /// Specify that the user is allowed to select more than one value.
     ///
-    /// ```html
-    /// <tag multiple />
+    /// ```swift
+    /// Select {
+    ///     Option()
+    ///     Option()
+    /// }
+    /// .multiple()
     /// ```
+    ///
+    /// - Returns: The element
     func multiple() -> Self
 }
 
@@ -1637,15 +2266,20 @@ extension MultipleAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with the muted handler.
+/// A type that provides the `muted` modifier.
 @_documentation(visibility: internal)
 public protocol MutedAttribute: Attribute {
     
-    /// The function represents the html-attribute 'muted'.
+    /// Mute the element.
     ///
-    /// ```html
-    /// <tag muted />
+    /// ```swift
+    /// Video {
+    ///     Source()
+    /// }
+    /// .muted()
     /// ```
+    ///
+    /// - Returns: The element
     func muted() -> Self
 }
 
@@ -1663,17 +2297,24 @@ extension MutedAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with the name handler.
+/// A type that provides the `name` modifier.
 @_documentation(visibility: internal)
 public protocol NameAttribute: Attribute {
 
     associatedtype NameValue
     
-    /// The function represents the html-attribute 'name'.
+    /// Define a name for the element.
     ///
-    /// ```html
-    /// <tag name="" />
+    /// ```swift
+    /// Button {
+    ///     "Lorem ipsum..."
+    /// }
+    /// .name("lorem")
     /// ```
+    ///
+    /// - Parameter value: The name to be referenced.
+    ///
+    /// - Returns: The element
     func name(_ value: NameValue) -> Self
 }
 
@@ -1691,15 +2332,22 @@ extension NameAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with the nonce handler.
+/// A type that provides the `nonce` modifier.
 @_documentation(visibility: internal)
 public protocol NonceAttribute: Attribute {
     
-    /// The function represents the html-attribute 'nonce'.
+    /// Use a nonce for an element.
     ///
-    /// ```html
-    /// <tag nonce="" />
+    /// ```swift
+    /// Script {
+    ///     const foo = 'bar';
+    /// }
+    /// .nonce("k9XJ2mL4qR8VpTeYw0HsZg==")
     /// ```
+    ///
+    /// - Parameter value: The nonce to send with.
+    ///
+    /// - Returns: The element
     func nonce(_ value: String) -> Self
 }
 
@@ -1717,14 +2365,16 @@ extension NonceAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with the novalidate handler.
+/// A type that provides the `novalidate` modifier.
 @_documentation(visibility: internal)
 public protocol NoValidateAttribute: Attribute {
 
-    /// The function represents the html-attribute 'novalidate'.
+    /// Prevent the form from being validated.
     ///
-    /// ```html
-    /// <tag novalidate />
+    /// ```swift
+    /// Form {
+    /// }
+    /// .novalidate()
     /// ```
     func novalidate() -> Self
 }
@@ -1743,16 +2393,28 @@ extension NoValidateAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with the open handler.
+/// A type that provides the `isOpen` modifier.
 @_documentation(visibility: internal)
 public protocol OpenAttribute: Attribute {
     
-    /// The function represents the html-attribute 'open'.
+    /// Mark the details as open.
     ///
-    /// ```html
-    /// <tag open />
+    /// ```swift
+    /// Details {
+    ///     Summary {
+    ///         "Lorem ipsum"
+    ///     }
+    ///     Paragraph {
+    ///         "Lorem ipsum..."
+    ///     }
+    /// }
+    /// .isOpen(true)
     /// ```
-    func isOpen(_ value: Bool) -> Self
+    ///
+    /// - Parameter condition: Whether the details should be open.
+    ///
+    /// - Returns: The element
+    func isOpen(_ condition: Bool) -> Self
 }
 
 extension OpenAttribute where Self: ContentNode {
@@ -1769,15 +2431,21 @@ extension OpenAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with the optimum handler.
+/// A type that provides the `optimum` modifier.
 @_documentation(visibility: internal)
 public protocol OptimumAttribute: Attribute {
     
-    /// The function represents the html-attribute 'optimum'.
+    /// Specify the optimum threshold for the range.
     ///
-    /// ```html
-    /// <tag optimum="" />
+    /// ```swift
+    /// Meter {
+    /// }
+    /// .optimum(10)
     /// ```
+    ///
+    /// - Parameter value: The number to consider ideal.
+    ///
+    /// - Returns: The element
     func optimum(_ value: Float) -> Self
 }
 
@@ -1795,15 +2463,22 @@ extension OptimumAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with the pattern handler.
+/// A type that provides the `pattern` modifier.
 @_documentation(visibility: internal)
 public protocol PatternAttribute: Attribute {
     
-    /// The function represents the html-attribute 'pattern'.
+    /// Specifiy a regular expression for the input.
     ///
-    /// ```html
-    /// <tag pattern="" />
+    /// The input value is checked against the regular expression on form submission.
+    ///
+    /// ```swift
+    /// Input()
+    ///     .pattern("[A-Za-z]")
     /// ```
+    ///
+    /// - Parameter regex: The pattern to check against.
+    ///
+    /// - Returns: The element
     func pattern(_ regex: String) -> Self
 }
 
@@ -1821,16 +2496,24 @@ extension PatternAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with the part handler.
+/// A type that provides the `part` modifier.
 @_documentation(visibility: internal)
 public protocol PartAttribute: Attribute {
     
-    /// The function represents the html-attribute 'part'.
+    /// Expose the element outside of the shadow tree.
     ///
-    /// ```html
-    /// <tag part="" />
+    /// ```struct
+    /// Template {
+    ///     Span {
+    ///     }
+    ///     .part("lorem")
+    /// }
     /// ```
-    func part(_ value: String) -> Self
+    ///
+    /// - Parameter name: The name of the element to expose.
+    ///
+    /// - Returns: The element
+    func part(_ name: String) -> Self
 }
 
 extension PartAttribute where Self: ContentNode {
@@ -1847,16 +2530,24 @@ extension PartAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with the ping handler.
+/// A type that provides the `ping` modifier.
 @_documentation(visibility: internal)
 public protocol PingAttribute: Attribute {
     
-    /// The function represents the html-attribute 'ping'.
+    /// Define a callback url.
     ///
-    /// ```html
-    /// <tag ping="" />
+    /// ```swift
+    /// Anchor {
+    ///     "Lorem ipsum..."
+    /// }
+    /// .reference("https://...")
+    /// .ping("https://...")
     /// ```
-    func ping(_ value: String) -> Self
+    ///
+    /// - Parameter url: The url to be notified.
+    ///
+    /// - Returns: The element
+    func ping(_ url: String) -> Self
 }
 
 extension PingAttribute where Self: ContentNode {
@@ -1873,21 +2564,55 @@ extension PingAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with the placeholder handler.
+/// A type that provides the `placeholder` modifier.
 @_documentation(visibility: internal)
 public protocol PlaceholderAttribute: Attribute {
     
-    /// The function represents the html-attribute 'placeholder'.
+    /// Supply a short hint.
     ///
-    /// ```html
-    /// <tag placeholder="" />
+    /// ```swift
+    /// Input()
+    ///     .placeholder("Lorem ipsum...")
     /// ```
+    ///
+    /// - Parameter value: The text to display as a hint
+    ///
+    /// - Returns: The element
     func placeholder(_ value: String) -> Self
+    
+    /// Supply a short hint.
+    /// 
+    /// ```swift
+    /// Input()
+    ///     .placeholder("Lorem ipsum...")
+    /// ```
+    ///
+    /// - Parameter localizedKey: The string key to be translated
+    /// - Parameter tableName: The translation table to look in
+    ///
+    /// - Returns: The element
+    func placeholder(_ localizedKey: LocalizedStringKey, tableName: String?) -> Self
+    
+    /// Supply a short hint without localization.
+    ///
+    /// ```swift
+    /// Input()
+    ///     .placeholder(verbatim: "Lorem ipsum...")
+    /// ```
+    ///
+    /// - Parameter value: The text to display as a hint
+    ///
+    /// - Returns: The element
+    func placeholder(verbatim value: String) -> Self
 }
 
 extension PlaceholderAttribute where Self: ContentNode {
     
     internal func mutate(placeholder value: String) -> Self {
+        return self.mutate(key: "placeholder", value: value)
+    }
+    
+    internal func mutate(placeholder value: LocalizedString) -> Self {
         return self.mutate(key: "placeholder", value: value)
     }
 }
@@ -1897,18 +2622,29 @@ extension PlaceholderAttribute where Self: EmptyNode {
     internal func mutate(placeholder value: String) -> Self {
         return self.mutate(key: "placeholder", value: value)
     }
+    
+    internal func mutate(placeholder value: LocalizedString) -> Self {
+        return self.mutate(key: "placeholder", value: value)
+    }
 }
 
-/// The protocol provides the element with the poster handler.
+/// A type that provides the `poster` modifier.
 @_documentation(visibility: internal)
 public protocol PosterAttribute: Attribute {
     
-    /// The function represents the html-attribute 'poster'.
+    /// Supply a fallback while the video is processing.
     ///
-    /// ```html
-    /// <tag poster="" />
+    /// ```swift
+    /// Video {
+    ///     Source()
+    /// }
+    /// .poster("https://...")
     /// ```
-    func poster(_ value: String) -> Self
+    ///
+    /// - Parameter url: The absolute or relative url to point to.
+    ///
+    /// - Returns: The element
+    func poster(_ url: String) -> Self
 }
 
 extension PosterAttribute where Self: ContentNode {
@@ -1925,15 +2661,58 @@ extension PosterAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with the preload handler.
+/// A type that provides the `playInline` modifier.
+@_documentation(visibility: internal)
+public protocol PlaysInlineAttribute: Attribute {
+    
+    /// Enables inline playback.
+    ///
+    /// It specifies that the element should not use the native fullscreen mode when playing.
+    ///
+    /// ```swift
+    /// Video {
+    /// }
+    /// .playInline()
+    /// ```
+    ///
+    /// - Parameter condition: Whether the element should play inline
+    ///
+    /// - Returns: The element
+    func playInline(_ condition: Bool) -> Self
+}
+
+extension PlaysInlineAttribute where Self: ContentNode {
+    
+    internal func mutate(playsinline value: String) -> Self {
+        return self.mutate(key: "playsinline", value: value)
+    }
+}
+
+extension PlaysInlineAttribute where Self: EmptyNode {
+    
+    internal func mutate(playsinline value: String) -> Self {
+        return self.mutate(key: "playsinline", value: value)
+    }
+}
+
+/// A type that provides the `preload` modifier.
 @_documentation(visibility: internal)
 public protocol PreloadAttribute: Attribute {
     
-    /// The function represents the html-attribute 'preload'.
+    /// Define the loading behaviour.
     ///
-    /// ```html
-    /// <tag preload="" />
+    /// ```swift
+    /// Video {
+    ///     Source()
+    ///         .source("https://...")
+    ///         .type(.mp4)
+    /// }
+    /// .preload(.auto)
     /// ```
+    ///
+    /// - Parameter value: The behaviour
+    ///
+    /// - Returns: The element
     func preload(_ value: Values.Preload) -> Self
 }
 
@@ -1951,42 +2730,46 @@ extension PreloadAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with the readonly handler.
+/// A type that provides the `readonly` modifier.
 @_documentation(visibility: internal)
-public protocol ReadyOnlyAttribute: Attribute {
+public protocol ReadOnlyAttribute: Attribute {
     
-    /// The function represents the html-attribute 'readonly'.
+    /// Mark the input as read only based on a condition.
     ///
-    /// ```html
-    /// <tag readonly />
+    /// ```swift
+    /// Input()
+    ///     .readonly(false)
     /// ```
-    func readonly() -> Self
-    
+    ///
+    /// - Parameter condition: Whether the input should be read only.
+    ///
+    /// - Returns: The element
     func readonly(_ condition: Bool) -> Self
 }
 
-extension ReadyOnlyAttribute where Self: ContentNode {
+extension ReadOnlyAttribute where Self: ContentNode {
     
     internal func mutate(readonly value: String) -> Self {
         return self.mutate(key: "readonly", value: value)
     }
 }
 
-extension ReadyOnlyAttribute where Self: EmptyNode {
+extension ReadOnlyAttribute where Self: EmptyNode {
     
     internal func mutate(readonly value: String) -> Self {
         return self.mutate(key: "readonly", value: value)
     }
 }
 
-/// The protocol provides the element with the referrerpolicy handler.
+/// A type that provides the `referrerPolicy` modifier.
 @_documentation(visibility: internal)
 public protocol ReferrerPolicyAttribute: Attribute {
     
-    /// The function represents the html-attribute 'referrerpolicy'.
+    /// Specify that no referrer information will be sent along with the request.
     ///
-    /// ```html
-    /// <tag referrerpolicy="" />
+    /// ```swift
+    /// Link()
+    ///     .referrerPolicy(.sameOrigin)
     /// ```
     func referrerPolicy(_ value: Values.Policy) -> Self
 }
@@ -2005,15 +2788,23 @@ extension ReferrerPolicyAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with the relationship handler.
+/// A type that provides the `relationship` modifier.
 @_documentation(visibility: internal)
 public protocol RelationshipAttribute: Attribute {
     
-    /// The function represents the html-attribute 'rel'.
+    /// Indicate the relationship between documents.
     ///
-    /// ```html
-    /// <tag rel="" />
+    /// ```swift
+    /// Anchor {
+    ///     "Lorem ipsum..."
+    /// }
+    /// .reference("https://...")
+    /// .relationship(.author)
     /// ```
+    ///
+    /// - Parameter value: The relationship type to associate with.
+    ///
+    /// - Returns: The element
     func relationship(_ value: Values.Relation) -> Self
 }
 
@@ -2031,17 +2822,20 @@ extension RelationshipAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with the required handler.
+/// A type that provides the `required` modifier.
 @_documentation(visibility: internal)
 public protocol RequiredAttribute: Attribute {
     
-    /// The function represents the html-attribute 'required'.
+    /// Mark an input as required based on a condition.
     ///
-    /// ```html
-    /// <tag required />
+    /// ```swift
+    /// Input()
+    ///     .required(false)
     /// ```
-    func required() -> Self
-    
+    ///
+    /// - Parameter condition: Whether the element should be a requirement.
+    ///
+    /// - Returns: The element
     func required(_ condition: Bool) -> Self
 }
 
@@ -2059,15 +2853,22 @@ extension RequiredAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with the reversed handler.
+/// A type that provides the `reversed` modifier.
 @_documentation(visibility: internal)
 public protocol ReversedAttribute: Attribute {
     
-    /// The function represents the html-attribute 'reversed'.
+    /// Mark a list as reversed.
     ///
-    /// ```html
-    /// <tag reversed />
+    /// ```swift
+    /// OrderedList {
+    ///     ListItem {
+    ///         "Lorem ipsum"
+    ///     }
+    /// }
+    /// .reversed()
     /// ```
+    ///
+    /// - Returns: The element
     func reversed() -> Self
 }
 
@@ -2085,15 +2886,23 @@ extension ReversedAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with the role handler.
+/// A type that provides the `role` modifier.
 @_documentation(visibility: internal)
 public protocol RoleAttribute: Attribute {
     
-    /// The function represents the html-attribute 'role'.
+    /// Describe the role of an element.
     ///
-    /// ```html
-    /// <tag role="" />
+    /// ```swift
+    /// Anchor {
+    ///     "Lorem ipsum..."
+    /// }
+    /// .reference("https://...")
+    /// .role(.button)
     /// ```
+    ///
+    /// - Parameter value: The role to inform about.
+    ///
+    /// - Returns: The element
     func role(_ value: Values.Role) -> Self
 }
 
@@ -2111,16 +2920,23 @@ extension RoleAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with the rows handler.
+/// A type that provides the `rows` modifier.
 @_documentation(visibility: internal)
 public protocol RowsAttribute: Attribute {
     
-    /// The function represents the html-attribute 'rows'.
+    /// Define the visible height of the text area.
     ///
-    /// ```html
-    /// <tag rows="" />
+    /// ```swift
+    /// TextArea {
+    ///     "Lorem ipsum..."
+    /// }
+    /// .rows(4)
     /// ```
-    func rows(_ size: Int) -> Self
+    ///
+    /// - Parameter number: The number of rows to base the height on.
+    ///
+    /// - Returns: The element
+    func rows(_ number: Int) -> Self
 }
 
 extension RowsAttribute where Self: ContentNode {
@@ -2137,15 +2953,24 @@ extension RowsAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with the rowspan handler.
+/// A type that provides the `rowSpan` modifier.
 @_documentation(visibility: internal)
 public protocol RowSpanAttribute: Attribute {
     
-    /// The function represents the html-attribute 'rowspan'.
+    /// Specify the number of rows a cell should span
     ///
-    /// ```html
-    /// <tag rowspan="" />
+    /// ```swift
+    /// TableRow {
+    ///     DataCell {
+    ///         "Lorem ipsum..."
+    ///     }
+    ///     .rowSpan(2)
+    /// }
     /// ```
+    ///
+    /// - Parameter size: The number of rows to span.
+    ///
+    /// - Returns: The element
     func rowSpan(_ size: Int) -> Self
 }
 
@@ -2163,16 +2988,39 @@ extension RowSpanAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with the sandbox handler.
+/// A type that provides the `sandbox` modifier.
 @_documentation(visibility: internal)
 public protocol SandboxAttribute: Attribute {
     
-    /// The function represents the html-attribute 'sandbox'.
+    /// Define the permissions for the element.
     ///
-    /// ```html
-    /// <tag sandbox />
+    /// ```swift
+    /// InlineFrame {
+    /// }
+    /// .source("https://...")
+    /// .sandbox()
     /// ```
     func sandbox() -> Self
+    
+    /// Define the permissions for the element.
+    ///
+    /// ```swift
+    /// InlineFrame {
+    /// }
+    /// .source("https://...")
+    /// .sandbox(.allowDownloads)
+    /// ```
+    func sandbox(_ value: Values.Permission) -> Self
+    
+    /// Define the permissions for the element.
+    ///
+    /// ```swift
+    /// InlineFrame {
+    /// }
+    /// .source("https://...")
+    /// .sandbox([.allowDownloads, .allowPopups])
+    /// ```
+    func sandbox(_ values: OrderedSet<Values.Permission>) -> Self
 }
 
 extension SandboxAttribute where Self: ContentNode {
@@ -2189,16 +3037,26 @@ extension SandboxAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with the scope handler.
+/// A type that provides the `scope` modifier.
 @_documentation(visibility: internal)
 public protocol ScopeAttribute: Attribute {
     
-    /// The function represents the html-attribute 'scope'.
+    /// Define the scope for a header cell.
     ///
-    /// ```html
-    /// <tag scope="" />
+    /// It specifies whether the cell is for a column, row or a group of columns
+    /// and rows.
+    ///
+    /// ```swift
+    /// TableRow {
+    ///     HeaderCell {
+    ///         "..."
+    ///     }
+    ///     .scope(.column)
+    /// }
     /// ```
-    func scope(_ value: String) -> Self
+    ///
+    /// - Parameter value: The scope of the header cell.
+    func scope(_ value: Values.Scope) -> Self
 }
 
 extension ScopeAttribute where Self: ContentNode {
@@ -2215,15 +3073,20 @@ extension ScopeAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with the shape handler.
+/// A type that provides the `shape` modifier.
 @_documentation(visibility: internal)
 public protocol ShapeAttribute: Attribute {
     
-    /// The function represents the html-attribute 'shape'.
+    /// Define the shape for an area.
     ///
-    /// ```html
-    /// <tag shape="" />
+    /// ```swift
+    /// Area()
+    ///     .shape(.circle)
     /// ```
+    ///
+    /// - Parameter value: The shape used to interpret the coordinates.
+    ///
+    /// - Returns: The element
     func shape(_ value: Values.Shape) -> Self
 }
 
@@ -2241,15 +3104,20 @@ extension ShapeAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with the size handler.
+/// A type that provides the `size` modifier.
 @_documentation(visibility: internal)
 public protocol SizeAttribute: Attribute {
     
-    /// The function represents the html-attribute 'size'.
+    /// Set the display size for an input.
     ///
-    /// ```html
-    /// <tag size="" />
+    /// ```swift
+    /// Input()
+    ///     .size(4)
     /// ```
+    ///
+    /// - Parameter size: The length to constrain content to.
+    ///
+    /// - Returns: The element
     func size(_ size: Int) -> Self
 }
 
@@ -2267,15 +3135,20 @@ extension SizeAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with the sizes handler.
+/// A type that provides the `sizes` modifier.
 @_documentation(visibility: internal)
 public protocol SizesAttribute: Attribute {
     
-    /// The function represents the html-attribute 'sizes'.
+    /// Describe different sizes for different viewport sizes.
     ///
-    /// ```html
-    /// <tag sizes="" />
+    /// ```swift
+    /// Link()
+    ///     .sizes(16x16)
     /// ```
+    ///
+    /// - Parameter size: The sizes to take into consideration.
+    ///
+    /// - Returns: The element
     func sizes(_ size: Int) -> Self
 }
 
@@ -2293,16 +3166,30 @@ extension SizesAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with the slot handler.
+/// A type that provides the `slot` modifier.
 @_documentation(visibility: internal)
 public protocol SlotAttribute: Attribute {
     
-    /// The function represents the html-attribute 'slot'.
+    /// Define named placeholders within a custom element.
     ///
-    /// ```html
-    /// <tag slot="" />
+    /// ```swift
+    /// Template {
+    ///     Slot {
+    ///     }
+    ///     .name("name")
+    /// }
+    /// Custom {
+    ///     Heading1 {
+    ///         "Lorem ipsum..."
+    ///     }
+    ///     .slot("name")
+    /// }
     /// ```
-    func slot(_ value: String) -> Self
+    ///
+    /// - Parameter name: The identifier to name after.
+    ///
+    /// - Returns: The element
+    func slot(_ name: String) -> Self
 }
 
 extension SlotAttribute where Self: ContentNode {
@@ -2319,15 +3206,20 @@ extension SlotAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with the span handler.
+/// A type that provides the `span` modifier.
 @_documentation(visibility: internal)
 public protocol SpanAttribute: Attribute {
     
-    /// The function represents the html-attribute 'span'.
+    /// Specify the span for a column.
     ///
-    /// ```html
-    /// <tag span="" />
+    /// ```swift
+    /// Column()
+    ///     .span(2)
     /// ```
+    ///
+    /// - Parameter size: The number of columns to span.
+    ///
+    /// - Returns: The element
     func span(_ size: Int) -> Self
 }
 
@@ -2345,16 +3237,21 @@ extension SpanAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with the hasspellcheck handler.
+/// A type that provides the `hasSpellCheck` modifier.
 @_documentation(visibility: internal)
 public protocol SpellCheckAttribute: Attribute {
  
-    /// The function represents the html-attribute 'spellcheck'.
+    /// Mark a element as spellchecked.
     ///
-    /// ```html
-    /// <tag spellcheck="" />
+    /// ```swift
+    /// Input()
+    ///     .hasSpellCheck(false)
     /// ```
-    func hasSpellCheck(_ value: Bool) -> Self
+    ///
+    /// - Parameter condition: Whether to spellcheck the content.
+    ///
+    /// - Returns: The element
+    func hasSpellCheck(_ condition: Bool) -> Self
 }
 
 extension SpellCheckAttribute where Self: ContentNode {
@@ -2371,18 +3268,37 @@ extension SpellCheckAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with the source handler.
+/// A type that provides the `source` modifier.
 @_documentation(visibility: internal)
 public protocol SourceAttribute: Attribute {
     
-    /// The function represents the html-attribute 'src'.
+    /// Specify the url for the source.
     ///
-    /// ```html
-    /// <tag src="" />
+    /// ```swift
+    /// Audio {
+    ///     Source()
+    ///         .type(.mpeg)
+    ///         .source("...mpeg")
+    /// }
     /// ```
-    func source(_ value: String) -> Self
+    /// - Parameter url: The url to load from.
+    ///
+    /// - Returns: The element
+    func source(_ url: String) -> Self
     
-    func source(_ value: EnvironmentValue) -> Self
+    /// Specify the url for the source.
+    ///
+    /// ```swift
+    /// Audio {
+    ///     Source()
+    ///         .type(.mpeg)
+    ///         .source("...mpeg")
+    /// }
+    /// ```
+    /// - Parameter url: The url to load from.
+    ///
+    /// - Returns: The element
+    func source(_ url: EnvironmentValue) -> Self
 }
 
 extension SourceAttribute where Self: ContentNode {
@@ -2407,16 +3323,95 @@ extension SourceAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with the start handler.
+/// A type that provides the `sourceDocument` modifier.
+@_documentation(visibility: internal)
+public protocol SourceDocumentAttribute: Attribute {
+    
+    /// Embed inline markup into the frame.
+    ///
+    /// ```swift
+    /// InlineFrame {
+    /// }
+    /// .sourceDocument("<!doctype html><html lang=\"de\"></html>")
+    /// ```
+    ///
+    /// - Parameter value: The markup to render.
+    ///
+    /// - Returns: The element
+    func sourceDocument(_ value: String) -> Self
+}
+
+extension SourceDocumentAttribute where Self: ContentNode {
+    
+    internal func mutate(sourcedocument value: String) -> Self {
+        return self.mutate(key: "srcdoc", value: value)
+    }
+}
+
+extension SourceDocumentAttribute where Self: EmptyNode {
+    
+    internal func mutate(sourcedocument value: String) -> Self {
+        return self.mutate(key: "srcdoc", value: value)
+    }
+}
+
+/// A type that provides the `sourceLanguage` modifier.
+@_documentation(visibility: internal)
+public protocol SourceLanguageAttribute: Attribute {
+    
+    /// Indicate the language of the text track.
+    ///
+    /// ```swift
+    /// Video {
+    ///     Source()
+    ///         .type(.mp4)
+    ///         .source("...mp4")
+    ///     Track()
+    ///         .source("...vtt")
+    ///         .sourceLanguage(.english)
+    ///         .kind(.subtitles)
+    /// }
+    /// ```
+    ///
+    /// - Parameter value: The language to expect.
+    ///
+    /// - Returns: The element
+    func sourceLanguage(_ value: Values.Language) -> Self
+}
+
+extension SourceLanguageAttribute where Self: ContentNode {
+    
+    internal func mutate(sourcelanguage value: String) -> Self {
+        return self.mutate(key: "srclang", value: value)
+    }
+}
+
+extension SourceLanguageAttribute where Self: EmptyNode {
+    
+    internal func mutate(sourcelanguage value: String) -> Self {
+        return self.mutate(key: "srclang", value: value)
+    }
+}
+
+/// A type that provides the `start` modifier.
 @_documentation(visibility: internal)
 public protocol StartAttribute: Attribute {
     
-    /// The function represents the html-attribute 'start'.
+    /// Specify the start value for the list.
     ///
-    /// ```html
-    /// <tag start="" />
+    /// ```swift
+    /// OrderedList {
+    ///     ListItem {
+    ///         "Lorem ipsum"
+    ///     }
+    /// }
+    /// .start(10)
     /// ```
-    func start(_ size: Int) -> Self
+    ///
+    /// - Parameter number: The number to start to count from.
+    ///
+    /// - Returns: The element
+    func start(_ number: Int) -> Self
 }
 
 extension StartAttribute where Self: ContentNode {
@@ -2433,15 +3428,21 @@ extension StartAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with the step handler.
+/// A type that provides the `step` modifier.
 @_documentation(visibility: internal)
 public protocol StepAttribute: Attribute {
     
-    /// The function represents the html-attribute 'step'.
+    /// Specify the number intervals for an input.
     ///
-    /// ```html
-    /// <tag step="" />
+    /// ```swift
+    /// Input()
+    ///     .type(.number)
+    ///     .step(3)
     /// ```
+    ///
+    /// - Parameter size: The increment to use.
+    ///
+    /// - Returns: The element
     func step(_ size: Int) -> Self
 }
 
@@ -2459,15 +3460,22 @@ extension StepAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with the style handler.
+/// A type that provides the `style` modifier.
 @_documentation(visibility: internal)
 public protocol StyleAttribute: Attribute {
     
-    /// The function represents the html-attribute 'style'.
+    /// Specify an inline style for an element.
     ///
-    /// ```html
-    /// <tag style="" />
+    /// ```swift
+    /// Heading1 {
+    ///     "Lorem ipsum..."
+    /// }
+    /// .style("color: black;")
     /// ```
+    ///
+    /// - Parameter value: The style to apply.
+    ///
+    /// - Returns: The element
     func style(_ value: String) -> Self
 }
 
@@ -2485,16 +3493,22 @@ extension StyleAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with the tabindex handler.
+/// A type that provides the `tabIndex` modifier.
 @_documentation(visibility: internal)
 public protocol TabulatorAttribute: Attribute {
  
-    /// The function represents the html-attribute 'tabindex'.
+    /// Specify the tab order.
     ///
-    /// ```html
-    /// <tag tabindex="" />
+    /// ```swift
+    /// Division {
+    /// }
+    /// .tabIndex(3)
     /// ```
-    func tabIndex(_ value: Int) -> Self
+    ///
+    /// - Parameter number: The number for the order.
+    ///
+    /// - Returns: The element
+    func tabIndex(_ number: Int) -> Self
 }
 
 extension TabulatorAttribute where Self: ContentNode {
@@ -2511,15 +3525,23 @@ extension TabulatorAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with the target handler.
+/// A type that provides the `target` modifier.
 @_documentation(visibility: internal)
 public protocol TargetAttribute: Attribute {
     
-    /// The function represents the html-attribute 'target'.
+    /// Define where to open the linked document.
     ///
-    /// ```html
-    /// <tag target="" />
+    /// ```swift
+    /// Anchor {
+    ///     "Lorem ipsum..."
+    /// }
+    /// .reference("https://")
+    /// .target(.blank)
     /// ```
+    ///
+    /// - Parameter value: The kind of target to indicate.
+    ///
+    /// - Returns: The element
     func target(_ value: Values.Target) -> Self
 }
 
@@ -2537,21 +3559,61 @@ extension TargetAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with the title handler.
+/// A type that provides the `title` modifier.
 @_documentation(visibility: internal)
 public protocol TitleAttribute: Attribute {
  
-    /// The function represents the html-attribute 'title'.
+    /// Supply extra information about the element.
     ///
-    /// ```html
-    /// <tag title="" />
+    /// ```swift
+    /// Paragraph {
+    ///     "Lorem ipsum..."
+    /// }
+    /// .title("Lorem ipsum")
     /// ```
+    ///
+    /// - Parameter value: The extra information to display.
+    ///
+    /// - Returns: The element
     func title(_ value: String) -> Self
+    
+    /// Supply extra information about the element..
+    /// 
+    /// ```swift
+    /// Paragraph {
+    ///     "Lorem ipsum..."
+    /// }
+    /// .title("Lorem ipsum")
+    /// ```
+    ///
+    /// - Parameter localizedKey: The string key to be translated.
+    /// - Parameter tableName: The translation table to look in.
+    ///
+    /// - Returns: The element
+    func title(_ localizedKey: LocalizedStringKey, tableName: String?) -> Self
+    
+    /// Supply extra information about the element without localization.
+    ///
+    /// ```swift
+    /// Paragraph {
+    ///     "Lorem ipsum..."
+    /// }
+    /// .title(verbatim: "Lorem ipsum")
+    /// ```
+    ///
+    /// - Parameter value: The extra information to display.
+    ///
+    /// - Returns: The element
+    func title(verbatim value: String) -> Self
 }
 
 extension TitleAttribute where Self: ContentNode {
     
     internal func mutate(title value: String) -> Self {
+        return self.mutate(key: "title", value: value)
+    }
+    
+    internal func mutate(title value: LocalizedString) -> Self {
         return self.mutate(key: "title", value: value)
     }
 }
@@ -2561,17 +3623,28 @@ extension TitleAttribute where Self: EmptyNode {
     internal func mutate(title value: String) -> Self {
         return self.mutate(key: "title", value: value)
     }
+    
+    internal func mutate(title value: LocalizedString) -> Self {
+        return self.mutate(key: "title", value: value)
+    }
 }
 
-/// The protocol provides the element with the translate handler.
+/// A type that provides the `translate` modifier.
 @_documentation(visibility: internal)
 public protocol TranslateAttribute: Attribute {
  
-    /// The function represents the html-attribute 'translate'.
+    /// Hint the translation behaviour.
     ///
-    /// ```html
-    /// <tag translate="" />
+    /// ```swift
+    /// Paragraph {
+    ///     "Lorem ipsum..."
+    /// }
+    /// .translate(.no)
     /// ```
+    ///
+    /// - Parameter value: Whether to exclude the content from translation.
+    ///
+    /// - Returns: The element
     func translate(_ value: Values.Decision) -> Self
 }
 
@@ -2589,17 +3662,22 @@ extension TranslateAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with the type handler.
+/// A type that provides the `type` modifier.
 @_documentation(visibility: internal)
 public protocol TypeAttribute: Attribute {
 
     associatedtype TypeValue
     
-    /// The function represents the html-attribute 'type'.
+    /// Specify the type of an element.
     ///
-    /// ```html
-    /// <tag type="" />
+    /// ```swift
+    /// Input()
+    ///     .type(.text)
     /// ```
+    ///
+    /// - Parameter value: The type to choose from.
+    ///
+    /// - Returns: The element
     func type(_ value: TypeValue) -> Self
 }
 
@@ -2617,21 +3695,93 @@ extension TypeAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with the value handler.
+/// A type that provides the `useMap` modifier.
+@_documentation(visibility: internal)
+public protocol UseMapAttribute: Attribute {
+    
+    /// Link the element with an associated map.
+    ///
+    /// ```swift
+    /// Image()
+    ///     .source("....png")
+    ///     .useMap("...")
+    /// Map {
+    ///     Area()
+    ///         .shape(.circle)
+    ///         .coordinates(...)
+    /// }
+    /// .name("...")
+    /// ```
+    /// - Parameter name: The name of the map to link to
+    func useMap(_ name: String) -> Self
+}
+
+extension UseMapAttribute where Self: ContentNode {
+    
+    internal func mutate(usemap value: String) -> Self {
+        return self.mutate(key: "usemap", value: "#\(value)")
+    }
+}
+
+extension UseMapAttribute where Self: EmptyNode {
+    
+    internal func mutate(usemap value: String) -> Self {
+        return self.mutate(key: "usemap", value: "#\(value)")
+    }
+}
+
+/// A type that provides the `value` modifier.
 @_documentation(visibility: internal)
 public protocol ValueAttribute: Attribute {
     
-    /// The function represents the html-attribute 'value'.
+    /// Set a initial value for the element.
     ///
-    /// ```html
-    /// <tag value="" />
+    /// ```swift
+    /// Input()
+    ///     .type(.text)
+    ///     .value("Lorem ipsum...")
     /// ```
+    ///
+    /// - Parameter value: The initial value
+    ///
+    /// - Returns: The element
     func value(_ value: String) -> Self
+    
+    /// Set a initial value for the element.
+    /// 
+    /// ```swift
+    /// Input()
+    ///     .type(.text)
+    ///     .value("Lorem ipsum...")
+    /// ```
+    ///
+    /// - Parameter localizedKey: The string key to be translated
+    /// - Parameter tableName: The translation table to look in
+    ///
+    /// - Returns: The element
+    func value(_ localizedKey: LocalizedStringKey, tableName: String?) -> Self
+    
+    /// Set a initial value for the element without localization.
+    ///
+    /// ```swift
+    /// Input()
+    ///     .type(.text)
+    ///     .value(verbatim: "Lorem ipsum...")
+    /// ```
+    ///
+    /// - Parameter value: The initial value
+    ///
+    /// - Returns: The element
+    func value(verbatim value: String) -> Self
 }
 
 extension ValueAttribute where Self: ContentNode {
     
     internal func mutate(value: String) -> Self {
+        return self.mutate(key: "value", value: value)
+    }
+    
+    internal func mutate(value: LocalizedString) -> Self {
         return self.mutate(key: "value", value: value)
     }
 }
@@ -2641,17 +3791,26 @@ extension ValueAttribute where Self: EmptyNode {
     internal func mutate(value: String) -> Self {
         return self.mutate(key: "value", value: value)
     }
+    
+    internal func mutate(value: LocalizedString) -> Self {
+        return self.mutate(key: "value", value: value)
+    }
 }
 
-/// The protocol provides the element with the width handler.
+/// A type that provides the `width` modifier.
 @_documentation(visibility: internal)
 public protocol WidthAttribute: Attribute {
     
-    /// The function represents the html-attribute 'width'.
+    /// Set the actual width for the element.
     ///
-    /// ```html
-    /// <tag width="" />
+    /// ```swift
+    /// Input()
+    ///     .width(200)
     /// ```
+    ///
+    /// - Parameter size: The width to constrain the element to.
+    ///
+    /// - Returns: The element
     func width(_ size: Int) -> Self
 }
 
@@ -2669,15 +3828,22 @@ extension WidthAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with the wrap handler.
+/// A type that provides the `wrap` modifier.
 @_documentation(visibility: internal)
 public protocol WrapAttribute: Attribute {
     
-    /// The function represents the html-attribute 'wrap'.
+    /// Specifiy how the text in a text area is to be wrapped when submitted in a form.
     ///
-    /// ```html
-    /// <tag wrap="" />
+    /// ```swift
+    /// TextArea {
+    ///     "Lorem ipsum..."
+    /// }
+    /// .wrap(.soft)
     /// ```
+    ///
+    /// - Parameter value: The way to break words accross lines.
+    ///
+    /// - Returns: The element
     func wrap(_ value: Values.Wrapping) -> Self
 }
 
@@ -2695,17 +3861,21 @@ extension WrapAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with the property handler.
+/// A type that provides the `property` modifier.
 @_documentation(visibility: internal)
 public protocol PropertyAttribute: Attribute {
     
-    /// The function represents the html-attribute 'property'.
+    /// Add a property for a link preview.
     ///
-    /// ```html
-    /// <tag property="" />
+    /// ```swift
+    /// Meta()
+    ///     .property(.url)
+    ///     .content("https://...")
     /// ```
     ///
-    /// - Parameter type:
+    /// - Parameter value: The property to describe the purpose.
+    ///
+    /// - Returns: The element
     func property(_ value: Values.Graph) -> Self
 }
 
@@ -2723,16 +3893,26 @@ extension PropertyAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with the selected handler.
+/// A type that provides the `selected` modifier.
 @_documentation(visibility: internal)
 public protocol SelectedAttribute: Attribute {
     
-    /// The function represents the html-attribute 'selected'.
+    /// Mark a select option as default.
     ///
-    /// ```html
-    /// <tag selected />
+    /// ```swift
+    /// Select {
+    ///     Option()
+    ///         .value("lorem")
+    ///         .selected()
+    /// }
+    /// .name("lorem")
+    /// .id("lorem")
     /// ```
-    func selected() -> Self
+    ///
+    /// - Parameter condition: Whether to default the option.
+    ///
+    /// - Returns: The element
+    func selected(_ condition: Bool) -> Self
 }
 
 extension SelectedAttribute where Self: ContentNode {
@@ -2749,16 +3929,23 @@ extension SelectedAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with the shadowrootmode handler.
+/// A type that provides the `shadowRootMode` modifier.
 @_documentation(visibility: internal)
 public protocol ShadowRootModeAttribute: Attribute {
     
-    /// The function represents the html-attribute 'shadowrootmode'.
+    /// Restrict access to the shadow root for the element.
     ///
-    /// ```html
-    /// <tag shadowrootmode="" />
+    /// ```swift
+    /// Template {
+    ///     Slot {
+    ///     }
+    /// }
+    /// .shadowRootMode(.open)
     /// ```
-    func shadowRootMode(_ value: Values.Shadow.Mode) -> Self
+    /// - Parameter mode: The mode that controls access.
+    ///
+    /// - Returns: The element
+    func shadowRootMode(_ mode: Values.Shadow.Mode) -> Self
 }
 
 extension ShadowRootModeAttribute where Self: ContentNode {
@@ -2768,17 +3955,21 @@ extension ShadowRootModeAttribute where Self: ContentNode {
     }
 }
 
-/// The protocol provides the element with inhert handler.
+/// A type that provides the `inert` modifier.
 @_documentation(visibility: internal)
 public protocol InertAttribute: Attribute {
     
-    /// The function represents the html-attribute 'inert'.
+    /// Disable the element and the content of the element based on a condition.
     ///
-    /// ```html
-    /// <tag inert />
+    /// ```swift
+    /// Division {
+    /// }
+    /// .inert(true)
     /// ```
-    func inert() -> Self
-    
+    ///
+    /// - Parameter condition: Whether the element should be disabled.
+    ///
+    /// - Returns: The element
     func inert(_ condition: Bool) -> Self
 }
 
@@ -2796,14 +3987,20 @@ extension InertAttribute where Self: EmptyNode {
     }
 }
 
+/// A type that provides the `fetchPriority` modifier
 @_documentation(visibility: internal)
 public protocol FetchPriorityAttribute: Attribute {
     
-    /// The function represents the html-attribute 'shadowrootmode'.
+    /// Set the priority to fetch the resource.
     ///
-    /// ```html
-    /// <tag fetchpriority="" />
+    /// ```swift
+    /// Image()
+    ///     .fetchPriority(.high)
     /// ```
+    ///
+    /// - Parameter value: The priority to take into account.
+    ///
+    /// - Returns: The elemet
     func fetchPriority(_ value: Values.Priority) -> Self
 }
 
@@ -2821,14 +4018,21 @@ extension FetchPriorityAttribute where Self: EmptyNode {
     }
 }
 
+/// A type that provides the `loading` modifier
 @_documentation(visibility: internal)
 public protocol LoadingAttribute: Attribute {
     
-    /// The function represents the html-attribute 'loading'.
+    /// Specify the loading behaviour.
     ///
-    /// ```html
-    /// <tag loading="" />
+    /// ```swift
+    /// Image()
+    ///     .source("https://...")
+    ///     .loading(.lazy)
     /// ```
+    ///
+    /// - Parameter value: The loading method to use.
+    ///
+    /// - Returns: The element
     func loading(_ value: Values.Loading) -> Self
 }
 
@@ -2846,15 +4050,25 @@ extension LoadingAttribute where Self: EmptyNode {
     }
 }
 
+/// A type that provides the `sourceSet` modifier
 @_documentation(visibility: internal)
 public protocol SourceSetAttribute: Attribute {
     
-    /// The function represents the html-attribute 'loading'.
+    /// Set a source set for a picture element.
     ///
-    /// ```html
-    /// <tag srcset="" />
+    /// ```swift
+    /// Picture {
+    ///     Source()
+    ///         .sourceSet("https://...")
+    ///     Source()
+    ///         .sourceSet("https://...")
+    /// }
     /// ```
-    func sourceSet(_ value: String) -> Self
+    ///
+    /// - Parameter url: The url path to load from.
+    ///
+    /// - Returns: The element.
+    func sourceSet(_ url: String) -> Self
 }
 
 extension SourceSetAttribute where Self: ContentNode {
@@ -2871,14 +4085,22 @@ extension SourceSetAttribute where Self: EmptyNode {
     }
 }
 
+/// A type that provides the `decoding` modifier
 @_documentation(visibility: internal)
 public protocol DecodingAttribute: Attribute {
     
-    /// The function represents the html-attribute 'decoding'.
+    /// Hint the decoding strategy.
     ///
-    /// ```html
-    /// <tag decoding="" />
+    /// ```swift
+    /// Image()
+    ///     .source("...jpg")
+    ///     .alternate("Lorem ipsum...")
+    ///     .decoding(.async)
     /// ```
+    ///
+    /// - Parameter value: The strategy to use for the decoding.
+    ///
+    /// - Returns: The element
     func decoding(_ value: Values.Decoding) -> Self
 }
 
@@ -2896,14 +4118,22 @@ extension DecodingAttribute where Self: EmptyNode {
     }
 }
 
+/// A type that provides the `blocking` modifier
 @_documentation(visibility: internal)
 public protocol BlockingAttribute: Attribute {
     
-    /// The function represents the html-attribute 'blocking'.
+    /// Announce an element as render blocking.
     ///
-    /// ```html
-    /// <tag blocking="" />
+    /// ```swift
+    /// Style {
+    ///     "Lorem ipsum..."
+    /// }
+    /// .blocking(.render)
     /// ```
+    ///
+    /// - Parameter value: The strategy to use for blocking.
+    ///
+    /// - Returns: The element
     func blocking(_ value: Values.Blocking) -> Self
 }
 
@@ -2921,14 +4151,21 @@ extension BlockingAttribute where Self: EmptyNode {
     }
 }
 
+/// A type that provides the `popover` modifier
 @_documentation(visibility: internal)
 public protocol PopoverAttribute: Attribute {
     
-    /// The function represents the html-attribute 'popover'.
+    /// Apply an popover to an element.
     ///
-    /// ```html
-    /// <tag popover="" />
+    /// ```swift
+    /// Division {
+    /// }
+    /// .popover(.manual)
     /// ```
+    ///
+    /// - Parameter value: The behavior for closing the popover.
+    ///
+    /// - Returns: The element
     func popover(_ value: Values.Popover.State) -> Self
 }
 
@@ -2946,50 +4183,71 @@ extension PopoverAttribute where Self: EmptyNode {
     }
 }
 
+/// A type that provides the `popoverTarget` modifier
 @_documentation(visibility: internal)
 public protocol PopoverTargetAttribute: Attribute {
     
-    /// The function represents the html-attribute 'popovertarget'.
+    /// Bind the popover to a target.
     ///
-    /// ```html
-    /// <tag popovertarget="" />
+    /// ```swift
+    /// Division {
+    ///}
+    ///.popover(.manual)
+    ///.id("id")
+    /// Button {
+    ///     "Lorem ipsum"
+    /// }
+    /// .popoverTarget("id")
     /// ```
-    func popoverTarget(_ value: String) -> Self
+    ///
+    /// - Parameter id: The identifier of the target to bind the popover to.
+    ///
+    /// - Returns: The element
+    func popoverTarget(_ id: String) -> Self
 }
 
-extension PopoverAttribute where Self: ContentNode {
+extension PopoverTargetAttribute where Self: ContentNode {
     
     internal func mutate(popovertarget value: String) -> Self {
         return self.mutate(key: "popovertarget", value: value)
     }
 }
 
-extension PopoverAttribute where Self: EmptyNode {
+extension PopoverTargetAttribute where Self: EmptyNode {
     
     internal func mutate(popovertarget value: String) -> Self {
         return self.mutate(key: "popovertarget", value: value)
     }
 }
 
+/// A type that provides the `popoverAction` modifier
 @_documentation(visibility: internal)
 public protocol PopoverActionAttribute: Attribute {
     
-    /// The function represents the html-attribute 'popovertargetaction'.
+    /// Specify the action for the popover.
     ///
-    /// ```html
-    /// <tag popovertargetaction="" />
+    /// ```swift
+    /// Button {
+    ///     "Lorem ipsum"
+    /// }
+    /// .popoverTarget("id")
+    /// .popoverAction(.hide)
     /// ```
-    func popoverAction(_ value: Values.Popover.Action) -> Self
+    ///
+    /// - Parameter action: The action to perform when triggered.
+    ///
+    /// - Returns: The element
+    func popoverAction(_ action: Values.Popover.Action) -> Self
 }
 
-extension PopoverAttribute where Self: ContentNode {
+extension PopoverActionAttribute where Self: ContentNode {
     
     internal func mutate(popoveraction value: String) -> Self {
         return self.mutate(key: "popovertargetaction", value: value)
     }
 }
 
-extension PopoverAttribute where Self: EmptyNode {
+extension PopoverActionAttribute where Self: EmptyNode {
     
     internal func mutate(popoveraction value: String) -> Self {
         return self.mutate(key: "popovertargetaction", value: value)

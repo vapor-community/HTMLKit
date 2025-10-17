@@ -1,17 +1,18 @@
-/*
- Abstract:
- The file contains the form elements. The html-element 'form' only allows these elements to be its descendants.
- 
- Note:
- If you about to add something to the file, stick to the official documentation to keep the code consistent.
- */
-
+import Foundation
 import OrderedCollections
 
-/// The element represents a typed data field to allow the user to edit the data.
+/// An element that represents a text control.
 ///
-/// ```html
-/// <input>
+/// Use `Input` to collect text input.
+///
+/// ```swift
+/// Form {
+///     Input()
+///         .type(.text)
+///         .name("lorem")
+///         .id("lorem")
+/// }
+/// .method(.post)
 /// ```
 public struct Input: EmptyNode, FormElement {
 
@@ -19,6 +20,7 @@ public struct Input: EmptyNode, FormElement {
 
     internal var attributes: OrderedDictionary<String, Any>?
 
+    /// Create an input.
     public init() {}
     
     internal init(attributes: OrderedDictionary<String, Any>?) {
@@ -44,7 +46,7 @@ public struct Input: EmptyNode, FormElement {
     }
 }
 
-extension Input: GlobalAttributes, GlobalEventAttributes, AcceptAttribute, AlternateAttribute, AutocompleteAttribute, CheckedAttribute, DisabledAttribute, FormAttribute, FormActionAttribute, HeightAttribute, ListAttribute, MaximumValueAttribute, MaximumLengthAttribute, MinimumValueAttribute, MinimumLengthAttribute, MultipleAttribute, NameAttribute, PatternAttribute, PlaceholderAttribute, ReadyOnlyAttribute, RequiredAttribute, SizeAttribute, SourceAttribute, StepAttribute, TypeAttribute, ValueAttribute, WidthAttribute, PopoverTargetAttribute, PopoverActionAttribute {
+extension Input: GlobalAttributes, GlobalEventAttributes, AcceptAttribute, AlternateAttribute, AutocompleteAttribute, CheckedAttribute, DisabledAttribute, FormAttribute, FormActionAttribute, HeightAttribute, ListAttribute, MaximumValueAttribute, MaximumLengthAttribute, MinimumValueAttribute, MinimumLengthAttribute, MultipleAttribute, NameAttribute, PatternAttribute, PlaceholderAttribute, ReadOnlyAttribute, RequiredAttribute, SizeAttribute, SourceAttribute, StepAttribute, TypeAttribute, ValueAttribute, WidthAttribute, PopoverTargetAttribute, PopoverActionAttribute {
     
     public func accessKey(_ value: Character) -> Input {
         return mutate(accesskey: value)
@@ -77,12 +79,8 @@ extension Input: GlobalAttributes, GlobalEventAttributes, AcceptAttribute, Alter
     public func enterKeyHint(_ value: Values.Hint) -> Input {
         return mutate(enterkeyhint: value.rawValue)
     }
-
-    public func hidden() -> Input {
-        return mutate(hidden: "hidden")
-    }
     
-    public func hidden(_ condition: Bool) -> Input {
+    public func hidden(_ condition: Bool = true) -> Input {
         
         if condition {
             return mutate(hidden: "hidden")
@@ -91,14 +89,28 @@ extension Input: GlobalAttributes, GlobalEventAttributes, AcceptAttribute, Alter
         return self
     }
 
+    @available(*, deprecated, message: "The inputmode attribute is actually an enumerated attribute. Use the inputMode(_: Mode) modifier instead.")
     public func inputMode(_ value: String) -> Input {
         return mutate(inputmode: value)
+    }
+    
+    public func inputMode(_ value: Values.Mode) -> Input {
+        return mutate(inputmode: value.rawValue)
     }
 
     public func `is`(_ value: String) -> Input {
         return mutate(is: value)
     }
+    
+    public func item(id: String? = nil, as schema: URL? = nil, for elements: [String]? = nil) -> Input {
+        return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements?.joined(separator: " "))
+    }
+    
+    public func item(id: String? = nil, as schema: URL? = nil, for elements: String...) -> Input {
+        return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements.joined(separator: " "))
+    }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemId(_ value: String) -> Input {
         return mutate(itemid: value)
     }
@@ -107,14 +119,17 @@ extension Input: GlobalAttributes, GlobalEventAttributes, AcceptAttribute, Alter
         return mutate(itemprop: value)
     }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemReference(_ value: String) -> Input {
         return mutate(itemref: value)
     }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemScope(_ value: String) -> Input {
         return mutate(itemscope: value)
     }
     
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemType(_ value: String) -> Input {
         return mutate(itemtype: value)
     }
@@ -147,7 +162,16 @@ extension Input: GlobalAttributes, GlobalEventAttributes, AcceptAttribute, Alter
         return mutate(tabindex: value)
     }
 
+    @_disfavoredOverload
     public func title(_ value: String) -> Input {
+        return mutate(title: value)
+    }
+    
+    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Input {
+        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    }
+    
+    public func title(verbatim value: String) -> Input {
         return mutate(title: value)
     }
     
@@ -155,11 +179,7 @@ extension Input: GlobalAttributes, GlobalEventAttributes, AcceptAttribute, Alter
         return mutate(translate: value.rawValue)
     }
     
-    public func inert() -> Input {
-        return mutate(inert: "inert")
-    }
-    
-    public func inert(_ condition: Bool) -> Input {
+    public func inert(_ condition: Bool = true) -> Input {
 
         if condition {
             return mutate(inert: "inert")
@@ -172,19 +192,38 @@ extension Input: GlobalAttributes, GlobalEventAttributes, AcceptAttribute, Alter
         return mutate(accept: value)
     }
     
+    @_disfavoredOverload
     public func alternate(_ value: String) -> Input {
         return mutate(alternate: value)
     }
     
+    public func alternate(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Input {
+        return mutate(alternate: LocalizedString(key: localizedKey, table: tableName))
+    }
+    
+    public func alternate(verbatim value: String) -> Input {
+        return mutate(alternate: value)
+    }
+    
+    @available(*, deprecated, message: "The autocomplete attribute is actually a enum attribute. You should use autocomplete(_:) instead.")
     public func hasCompletion(_ value: Bool) -> Input {
-        return mutate(autocomplete: value)
+
+        if value {
+            return mutate(autocomplete: "on")
+        }
+        
+        return mutate(autocomplete: "off")
     }
     
-    public func checked() -> Input {
-        return mutate(checked: "checked")
+    public func autocomplete(_ value: Values.Completion) -> Input {
+        return mutate(autocomplete: value.rawValue)
     }
     
-    public func checked(_ condition: Bool) -> Input {
+    public func autocomplete(_ values: OrderedSet<Values.Completion>) -> Input {
+        return mutate(autocomplete: values.map { $0.rawValue }.joined(separator: " "))
+    }
+    
+    public func checked(_ condition: Bool = true) -> Input {
         
         if condition {
             return mutate(checked: "checked")
@@ -193,11 +232,7 @@ extension Input: GlobalAttributes, GlobalEventAttributes, AcceptAttribute, Alter
         return self
     }
     
-    public func disabled() -> Input {
-        return mutate(disabled: "disabled")
-    }
-    
-    public func disabled(_ condition: Bool) -> Input {
+    public func disabled(_ condition: Bool = true) -> Input {
         
         if condition {
             return mutate(disabled: "disabled")
@@ -250,7 +285,16 @@ extension Input: GlobalAttributes, GlobalEventAttributes, AcceptAttribute, Alter
         return mutate(pattern: regex)
     }
     
+    @_disfavoredOverload
     public func placeholder(_ value: String) -> Input {
+        return mutate(placeholder: value)
+    }
+    
+    public func placeholder(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Input {
+        return mutate(placeholder: LocalizedString(key: localizedKey, table: tableName))
+    }
+    
+    public func placeholder(verbatim value: String) -> Input {
         return mutate(placeholder: value)
     }
     
@@ -267,11 +311,7 @@ extension Input: GlobalAttributes, GlobalEventAttributes, AcceptAttribute, Alter
         return self
     }
     
-    public func required() -> Input {
-        return mutate(required: "required")
-    }
-    
-    public func required(_ condition: Bool) -> Input {
+    public func required(_ condition: Bool = true) -> Input {
         
         if condition {
             return mutate(required: "required")
@@ -300,7 +340,16 @@ extension Input: GlobalAttributes, GlobalEventAttributes, AcceptAttribute, Alter
         return mutate(type: value.rawValue)
     }
     
+    @_disfavoredOverload
     public func value(_ value: String) -> Input {
+        return mutate(value: value)
+    }
+    
+    public func value(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Input {
+        return mutate(value: LocalizedString(key: localizedKey, table: tableName))
+    }
+    
+    public func value(verbatim value: String) -> Input {
         return mutate(value: value)
     }
     
@@ -345,10 +394,18 @@ extension Input: GlobalAttributes, GlobalEventAttributes, AcceptAttribute, Alter
     }
 }
 
-/// The element represents a caption for a form control.
+/// An element that represents a control label.
 ///
-/// ```html
-/// <label></label>
+/// Use `Label` to improve the accessibility by associating descriptive text with the controls.
+///
+/// ```swift
+/// Label {
+///     "Lorem ipsum"
+/// }
+/// .for("lorem")
+/// Input()
+///     .id("lorem")
+///     .name("lorem")
 /// ```
 public struct Label: ContentNode, FormElement {
 
@@ -358,6 +415,9 @@ public struct Label: ContentNode, FormElement {
 
     internal var content: [Content]
 
+    /// Create a label.
+    ///
+    /// - Parameter content: The label's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
         self.content = content()
     }
@@ -419,12 +479,8 @@ extension Label: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
     public func enterKeyHint(_ value: Values.Hint) -> Label {
         return mutate(enterkeyhint: value.rawValue)
     }
-
-    public func hidden() -> Label {
-        return mutate(hidden: "hidden")
-    }
     
-    public func hidden(_ condition: Bool) -> Label {
+    public func hidden(_ condition: Bool = true) -> Label {
         
         if condition {
             return mutate(hidden: "hidden")
@@ -433,14 +489,28 @@ extension Label: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return self
     }
 
+    @available(*, deprecated, message: "The inputmode attribute is actually an enumerated attribute. Use the inputMode(_: Mode) modifier instead.")
     public func inputMode(_ value: String) -> Label {
         return mutate(inputmode: value)
+    }
+    
+    public func inputMode(_ value: Values.Mode) -> Label {
+        return mutate(inputmode: value.rawValue)
     }
 
     public func `is`(_ value: String) -> Label {
         return mutate(is: value)
     }
+    
+    public func item(id: String? = nil, as schema: URL? = nil, for elements: [String]? = nil) -> Label {
+        return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements?.joined(separator: " "))
+    }
+    
+    public func item(id: String? = nil, as schema: URL? = nil, for elements: String...) -> Label {
+        return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements.joined(separator: " "))
+    }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemId(_ value: String) -> Label {
         return mutate(itemid: value)
     }
@@ -449,14 +519,17 @@ extension Label: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return mutate(itemprop: value)
     }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemReference(_ value: String) -> Label {
         return mutate(itemref: value)
     }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemScope(_ value: String) -> Label {
         return mutate(itemscope: value)
     }
     
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemType(_ value: String) -> Label {
         return mutate(itemtype: value)
     }
@@ -489,7 +562,16 @@ extension Label: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return mutate(tabindex: value)
     }
 
+    @_disfavoredOverload
     public func title(_ value: String) -> Label {
+        return mutate(title: value)
+    }
+    
+    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Label {
+        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    }
+    
+    public func title(verbatim value: String) -> Label {
         return mutate(title: value)
     }
     
@@ -497,11 +579,7 @@ extension Label: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return mutate(translate: value.rawValue)
     }
     
-    public func inert() -> Label {
-        return mutate(inert: "inert")
-    }
-    
-    public func inert(_ condition: Bool) -> Label {
+    public func inert(_ condition: Bool = true) -> Label {
 
         if condition {
             return mutate(inert: "inert")
@@ -621,15 +699,28 @@ extension Label: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
 
 extension Label: Localizable {
     
-    public init(_ localizedKey: String, tableName: String? = nil, interpolation: Any...) {
-        self.content = [LocalizedStringKey(key: localizedKey, table: tableName, interpolation: interpolation)]
+    public init(_ localizedKey: LocalizedStringKey, tableName: String? = nil) {
+        self.content = [LocalizedString(key: localizedKey, table: tableName)]
     }
 }
 
-/// The element represents a control for selecting amongst a set of options.
+/// An element that represents an option list.
 ///
-/// ```html
-/// <select></select>
+/// Use `Select` to present a set of ``Option``.
+///
+/// ```swift
+/// Select {
+///     Option {
+///         "Lorem"
+///     }
+///     .value("lorem")
+///     Option {
+///         "Lorem"
+///     }
+///     .value("lorem")
+/// }
+/// .name("lorem")
+/// .id("lorem")
 /// ```
 public struct Select: ContentNode, FormElement {
 
@@ -638,7 +729,10 @@ public struct Select: ContentNode, FormElement {
     internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: [Content]
-
+    
+    /// Create a select.
+    ///
+    /// - Parameter content: The select's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
         self.content = content()
     }
@@ -700,12 +794,8 @@ extension Select: GlobalAttributes, GlobalEventAttributes, AutocompleteAttribute
     public func enterKeyHint(_ value: Values.Hint) -> Select {
         return mutate(enterkeyhint: value.rawValue)
     }
-
-    public func hidden() -> Select {
-        return mutate(hidden: "hidden")
-    }
     
-    public func hidden(_ condition: Bool) -> Select {
+    public func hidden(_ condition: Bool = true) -> Select {
         
         if condition {
             return mutate(hidden: "hidden")
@@ -714,14 +804,28 @@ extension Select: GlobalAttributes, GlobalEventAttributes, AutocompleteAttribute
         return self
     }
 
+    @available(*, deprecated, message: "The inputmode attribute is actually an enumerated attribute. Use the inputMode(_: Mode) modifier instead.")
     public func inputMode(_ value: String) -> Select {
         return mutate(inputmode: value)
+    }
+    
+    public func inputMode(_ value: Values.Mode) -> Select {
+        return mutate(inputmode: value.rawValue)
     }
 
     public func `is`(_ value: String) -> Select {
         return mutate(is: value)
     }
+    
+    public func item(id: String? = nil, as schema: URL? = nil, for elements: [String]? = nil) -> Select {
+        return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements?.joined(separator: " "))
+    }
+    
+    public func item(id: String? = nil, as schema: URL? = nil, for elements: String...) -> Select {
+        return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements.joined(separator: " "))
+    }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemId(_ value: String) -> Select {
         return mutate(itemid: value)
     }
@@ -730,14 +834,17 @@ extension Select: GlobalAttributes, GlobalEventAttributes, AutocompleteAttribute
         return mutate(itemprop: value)
     }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemReference(_ value: String) -> Select {
         return mutate(itemref: value)
     }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemScope(_ value: String) -> Select {
         return mutate(itemscope: value)
     }
     
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemType(_ value: String) -> Select {
         return mutate(itemtype: value)
     }
@@ -770,7 +877,16 @@ extension Select: GlobalAttributes, GlobalEventAttributes, AutocompleteAttribute
         return mutate(tabindex: value)
     }
 
+    @_disfavoredOverload
     public func title(_ value: String) -> Select {
+        return mutate(title: value)
+    }
+    
+    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Select {
+        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    }
+    
+    public func title(verbatim value: String) -> Select {
         return mutate(title: value)
     }
     
@@ -778,11 +894,7 @@ extension Select: GlobalAttributes, GlobalEventAttributes, AutocompleteAttribute
         return mutate(translate: value.rawValue)
     }
     
-    public func inert() -> Select {
-        return mutate(inert: "inert")
-    }
-    
-    public func inert(_ condition: Bool) -> Select {
+    public func inert(_ condition: Bool = true) -> Select {
 
         if condition {
             return mutate(inert: "inert")
@@ -791,15 +903,25 @@ extension Select: GlobalAttributes, GlobalEventAttributes, AutocompleteAttribute
         return self
     }
 
+    @available(*, deprecated, message: "The autocomplete attribute is actually a enum attribute. You should use autocomplete(_:) instead.")
     public func hasCompletion(_ value: Bool) -> Select {
-        return mutate(autocomplete: value)
+
+        if value {
+            return mutate(autocomplete: "on")
+        }
+        
+        return mutate(autocomplete: "off")
     }
     
-    public func disabled() -> Select {
-        return mutate(disabled: "disabled")
+    public func autocomplete(_ value: Values.Completion) -> Select {
+        return mutate(autocomplete: value.rawValue)
     }
     
-    public func disabled(_ condition: Bool) -> Select {
+    public func autocomplete(_ values: OrderedSet<Values.Completion>) -> Select {
+        return mutate(autocomplete: values.map { $0.rawValue }.joined(separator: " "))
+    }
+    
+    public func disabled(_ condition: Bool = true) -> Select {
         
         if condition {
             return mutate(disabled: "disabled")
@@ -820,11 +942,7 @@ extension Select: GlobalAttributes, GlobalEventAttributes, AutocompleteAttribute
         return mutate(name: value)
     }
     
-    public func required() -> Select {
-        return mutate(required: "required")
-    }
-    
-    public func required(_ condition: Bool) -> Select {
+    public func required(_ condition: Bool = true) -> Select {
         
         if condition {
             return mutate(required: "required")
@@ -866,10 +984,16 @@ extension Select: GlobalAttributes, GlobalEventAttributes, AutocompleteAttribute
     }
 }
 
-/// The element represents a multiline plain text edit control.
+/// An element that represents a text control.
 ///
-/// ```html
-/// <textarea></textarea>
+/// Use `TextArea` to collect multiline text input.
+///
+/// ```swift
+/// TextArea {
+///     "Lorem ipsum..."
+/// }
+/// .name("lorem")
+/// .id("lorem")
 /// ```
 public struct TextArea: ContentNode, FormElement {
         
@@ -878,7 +1002,10 @@ public struct TextArea: ContentNode, FormElement {
     internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: [String]
-
+    
+    /// Create a text area.
+    ///
+    /// - Parameter content: The area's content.
     public init(@ContentBuilder<String> content: () -> [String]) {
         self.content = content()
     }
@@ -907,7 +1034,7 @@ public struct TextArea: ContentNode, FormElement {
     }
 }
 
-extension TextArea: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, AutocompleteAttribute, ColumnsAttribute, DisabledAttribute, FormAttribute, MaximumLengthAttribute, MinimumLengthAttribute, NameAttribute, PlaceholderAttribute, ReadyOnlyAttribute, RequiredAttribute, RowsAttribute, WrapAttribute {
+extension TextArea: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, AutocompleteAttribute, ColumnsAttribute, DisabledAttribute, FormAttribute, MaximumLengthAttribute, MinimumLengthAttribute, NameAttribute, PlaceholderAttribute, ReadOnlyAttribute, RequiredAttribute, RowsAttribute, WrapAttribute {
     
     public func accessKey(_ value: Character) -> TextArea {
         return mutate(accesskey: value)
@@ -940,12 +1067,8 @@ extension TextArea: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
     public func enterKeyHint(_ value: Values.Hint) -> TextArea {
         return mutate(enterkeyhint: value.rawValue)
     }
-
-    public func hidden() -> TextArea {
-        return mutate(hidden: "hidden")
-    }
     
-    public func hidden(_ condition: Bool) -> TextArea {
+    public func hidden(_ condition: Bool = true) -> TextArea {
         
         if condition {
             return mutate(hidden: "hidden")
@@ -954,14 +1077,28 @@ extension TextArea: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return self
     }
 
+    @available(*, deprecated, message: "The inputmode attribute is actually an enumerated attribute. Use the inputMode(_: Mode) modifier instead.")
     public func inputMode(_ value: String) -> TextArea {
         return mutate(inputmode: value)
+    }
+    
+    public func inputMode(_ value: Values.Mode) -> TextArea {
+        return mutate(inputmode: value.rawValue)
     }
 
     public func `is`(_ value: String) -> TextArea {
         return mutate(is: value)
     }
+    
+    public func item(id: String? = nil, as schema: URL? = nil, for elements: [String]? = nil) -> TextArea {
+        return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements?.joined(separator: " "))
+    }
+    
+    public func item(id: String? = nil, as schema: URL? = nil, for elements: String...) -> TextArea {
+        return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements.joined(separator: " "))
+    }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemId(_ value: String) -> TextArea {
         return mutate(itemid: value)
     }
@@ -970,14 +1107,17 @@ extension TextArea: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(itemprop: value)
     }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemReference(_ value: String) -> TextArea {
         return mutate(itemref: value)
     }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemScope(_ value: String) -> TextArea {
         return mutate(itemscope: value)
     }
     
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemType(_ value: String) -> TextArea {
         return mutate(itemtype: value)
     }
@@ -1010,7 +1150,16 @@ extension TextArea: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(tabindex: value)
     }
 
+    @_disfavoredOverload
     public func title(_ value: String) -> TextArea {
+        return mutate(title: value)
+    }
+    
+    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> TextArea {
+        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    }
+    
+    public func title(verbatim value: String) -> TextArea {
         return mutate(title: value)
     }
     
@@ -1018,11 +1167,7 @@ extension TextArea: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(translate: value.rawValue)
     }
     
-    public func inert() -> TextArea {
-        return mutate(inert: "inert")
-    }
-    
-    public func inert(_ condition: Bool) -> TextArea {
+    public func inert(_ condition: Bool = true) -> TextArea {
 
         if condition {
             return mutate(inert: "inert")
@@ -1031,19 +1176,29 @@ extension TextArea: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return self
     }
 
+    @available(*, deprecated, message: "The autocomplete attribute is actually a enum attribute. You should use autocomplete(_:) instead.")
     public func hasCompletion(_ value: Bool) -> TextArea {
-        return mutate(autocomplete: value)
+
+        if value {
+            return mutate(autocomplete: "on")
+        }
+        
+        return mutate(autocomplete: "off")
+    }
+    
+    public func autocomplete(_ value: Values.Completion) -> TextArea {
+        return mutate(autocomplete: value.rawValue)
+    }
+    
+    public func autocomplete(_ values: OrderedSet<Values.Completion>) -> TextArea {
+        return mutate(autocomplete: values.map { $0.rawValue }.joined(separator: " "))
     }
     
     public func columns(_ size: Int) -> TextArea {
         return mutate(cols: size)
     }
     
-    public func disabled() -> TextArea {
-        return mutate(disabled: "disabled")
-    }
-    
-    public func disabled(_ condition: Bool) -> TextArea {
+    public func disabled(_ condition: Bool = true) -> TextArea {
         
         if condition {
             return mutate(disabled: "disabled")
@@ -1068,7 +1223,16 @@ extension TextArea: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(name: value)
     }
     
+    @_disfavoredOverload
     public func placeholder(_ value: String) -> TextArea {
+        return mutate(placeholder: value)
+    }
+    
+    public func placeholder(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> TextArea {
+        return mutate(placeholder: LocalizedString(key: localizedKey, table: tableName))
+    }
+    
+    public func placeholder(verbatim value: String) -> TextArea {
         return mutate(placeholder: value)
     }
     
@@ -1085,11 +1249,7 @@ extension TextArea: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return self
     }
     
-    public func required() -> TextArea {
-        return mutate(required: "required")
-    }
-    
-    public func required(_ condition: Bool) -> TextArea {
+    public func required(_ condition: Bool = true) -> TextArea {
         
         if condition {
             return mutate(required: "required")
@@ -1211,10 +1371,15 @@ extension TextArea: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
     }
 }
 
-/// The element represents a comment output.
+/// An element that represents an action button.
 ///
-/// ```html
-/// <button></button>
+/// Use `Button` to trigger an associated action.
+///
+/// ```swift
+/// Button {
+///     "Lorem ipsum"
+/// }
+/// .type(.button)
 /// ```
 public struct Button: ContentNode, FormElement {
 
@@ -1223,7 +1388,10 @@ public struct Button: ContentNode, FormElement {
     internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: [Content]
-
+    
+    /// Create a button.
+    ///
+    /// - Parameter content: The button's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
         self.content = content()
     }
@@ -1285,12 +1453,8 @@ extension Button: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
     public func enterKeyHint(_ value: Values.Hint) -> Button {
         return mutate(enterkeyhint: value.rawValue)
     }
-
-    public func hidden() -> Button {
-        return mutate(hidden: "hidden")
-    }
     
-    public func hidden(_ condition: Bool) -> Button {
+    public func hidden(_ condition: Bool = true) -> Button {
         
         if condition {
             return mutate(hidden: "hidden")
@@ -1299,14 +1463,28 @@ extension Button: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return self
     }
 
+    @available(*, deprecated, message: "The inputmode attribute is actually an enumerated attribute. Use the inputMode(_: Mode) modifier instead.")
     public func inputMode(_ value: String) -> Button {
         return mutate(inputmode: value)
+    }
+    
+    public func inputMode(_ value: Values.Mode) -> Button {
+        return mutate(inputmode: value.rawValue)
     }
 
     public func `is`(_ value: String) -> Button {
         return mutate(is: value)
     }
+    
+    public func item(id: String? = nil, as schema: URL? = nil, for elements: [String]? = nil) -> Button {
+        return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements?.joined(separator: " "))
+    }
+    
+    public func item(id: String? = nil, as schema: URL? = nil, for elements: String...) -> Button {
+        return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements.joined(separator: " "))
+    }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemId(_ value: String) -> Button {
         return mutate(itemid: value)
     }
@@ -1315,14 +1493,17 @@ extension Button: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return mutate(itemprop: value)
     }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemReference(_ value: String) -> Button {
         return mutate(itemref: value)
     }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemScope(_ value: String) -> Button {
         return mutate(itemscope: value)
     }
     
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemType(_ value: String) -> Button {
         return mutate(itemtype: value)
     }
@@ -1355,7 +1536,16 @@ extension Button: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return mutate(tabindex: value)
     }
 
+    @_disfavoredOverload
     public func title(_ value: String) -> Button {
+        return mutate(title: value)
+    }
+    
+    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Button {
+        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    }
+    
+    public func title(verbatim value: String) -> Button {
         return mutate(title: value)
     }
     
@@ -1363,11 +1553,7 @@ extension Button: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return  mutate(translate: value.rawValue)
     }
     
-    public func inert() -> Button {
-        return mutate(inert: "inert")
-    }
-    
-    public func inert(_ condition: Bool) -> Button {
+    public func inert(_ condition: Bool = true) -> Button {
 
         if condition {
             return mutate(inert: "inert")
@@ -1376,11 +1562,7 @@ extension Button: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return self
     }
     
-    public func disabled() -> Button {
-        return mutate(disabled: "disabled")
-    }
-    
-    public func disabled(_ condition: Bool) -> Button {
+    public func disabled(_ condition: Bool = true) -> Button {
         
         if condition {
             return mutate(disabled: "disabled")
@@ -1405,7 +1587,16 @@ extension Button: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return mutate(type: value.rawValue)
     }
     
+    @_disfavoredOverload
     public func value(_ value: String) -> Button {
+        return mutate(value: value)
+    }
+    
+    public func value(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Button {
+        return mutate(value: LocalizedString(key: localizedKey, table: tableName))
+    }
+    
+    public func value(verbatim value: String) -> Button {
         return mutate(value: value)
     }
     
@@ -1524,15 +1715,29 @@ extension Button: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
 
 extension Button: Localizable {
     
-    public init(_ localizedKey: String, tableName: String? = nil, interpolation: Any...) {
-        self.content = [LocalizedStringKey(key: localizedKey, table: tableName, interpolation: interpolation)]
+    public init(_ localizedKey: LocalizedStringKey, tableName: String? = nil) {
+        self.content = [LocalizedString(key: localizedKey, table: tableName)]
     }
 }
 
-/// The element represents a set of form controls grouped together.
+/// An element that represents a group container.
 ///
-/// ```html
-/// <fieldset></fieldset>
+/// Use `Fieldset` to group related controls like ``Input``, ``TextArea`` and ``Legend`` together.
+///
+/// ```swift
+/// Form {
+///     Fieldset {
+///         Label {
+///             "Lorem ipsum"
+///         }
+///         .for("lorem")
+///         Input()
+///             .type(.text)
+///             .name("lorem")
+///             .id("lorem")
+///     }
+/// }
+/// .method(.post)
 /// ```
 public struct Fieldset: ContentNode, FormElement {
     
@@ -1541,7 +1746,10 @@ public struct Fieldset: ContentNode, FormElement {
     internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: [Content]
-
+    
+    /// Create a fieldset.
+    ///
+    /// - Parameter content: The set's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
         self.content = content()
     }
@@ -1603,12 +1811,8 @@ extension Fieldset: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
     public func enterKeyHint(_ value: Values.Hint) -> Fieldset {
         return mutate(enterkeyhint: value.rawValue)
     }
-
-    public func hidden() -> Fieldset {
-        return mutate(hidden: "hidden")
-    }
     
-    public func hidden(_ condition: Bool) -> Fieldset {
+    public func hidden(_ condition: Bool = true) -> Fieldset {
         
         if condition {
             return mutate(hidden: "hidden")
@@ -1617,14 +1821,28 @@ extension Fieldset: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return self
     }
 
+    @available(*, deprecated, message: "The inputmode attribute is actually an enumerated attribute. Use the inputMode(_: Mode) modifier instead.")
     public func inputMode(_ value: String) -> Fieldset {
         return mutate(inputmode: value)
+    }
+    
+    public func inputMode(_ value: Values.Mode) -> Fieldset {
+        return mutate(inputmode: value.rawValue)
     }
 
     public func `is`(_ value: String) -> Fieldset {
         return mutate(is: value)
     }
+    
+    public func item(id: String? = nil, as schema: URL? = nil, for elements: [String]? = nil) -> Fieldset {
+        return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements?.joined(separator: " "))
+    }
+    
+    public func item(id: String? = nil, as schema: URL? = nil, for elements: String...) -> Fieldset {
+        return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements.joined(separator: " "))
+    }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemId(_ value: String) -> Fieldset {
         return mutate(itemid: value)
     }
@@ -1633,14 +1851,17 @@ extension Fieldset: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(itemprop: value)
     }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemReference(_ value: String) -> Fieldset {
         return mutate(itemref: value)
     }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemScope(_ value: String) -> Fieldset {
         return mutate(itemscope: value)
     }
     
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemType(_ value: String) -> Fieldset {
         return mutate(itemtype: value)
     }
@@ -1673,7 +1894,16 @@ extension Fieldset: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(tabindex: value)
     }
 
+    @_disfavoredOverload
     public func title(_ value: String) -> Fieldset {
+        return mutate(title: value)
+    }
+    
+    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Fieldset {
+        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    }
+    
+    public func title(verbatim value: String) -> Fieldset {
         return mutate(title: value)
     }
     
@@ -1681,11 +1911,7 @@ extension Fieldset: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(translate: value.rawValue)
     }
     
-    public func inert() -> Fieldset {
-        return mutate(inert: "inert")
-    }
-    
-    public func inert(_ condition: Bool) -> Fieldset {
+    public func inert(_ condition: Bool = true) -> Fieldset {
 
         if condition {
             return mutate(inert: "inert")
@@ -1693,12 +1919,8 @@ extension Fieldset: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         
         return self
     }
-
-    public func disabled() -> Fieldset {
-        return mutate(disabled: "disabled")
-    }
     
-    public func disabled(_ condition: Bool) -> Fieldset {
+    public func disabled(_ condition: Bool = true) -> Fieldset {
         
         if condition {
             return mutate(disabled: "disabled")

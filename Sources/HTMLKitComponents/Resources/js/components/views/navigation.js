@@ -1,6 +1,8 @@
  (function() {
-     
-     var Navigation = function (element) {
+
+     'use strict';
+
+     const Navigation = function (element) {
          
          this.element = element;
          this.links = element.getElementsByClassName('link');
@@ -12,13 +14,13 @@
      
      Navigation.prototype.styleMenu = function () {
          
-         for (let link of this.links) {
+         for (const link of this.links) {
              
-             let components = link.pathname.split('/');
+             let components= link.pathname.split('/');
              
-             var targetLocation;
+             let targetLocation;
              
-             if (components.length > 2) {
+             if (components.length > 2) {
                  targetLocation = components.slice(0, -1).join('/');
                  
              } else {
@@ -35,16 +37,11 @@
          target.classList.add('state:active');
      };
      
-     var navigation = document.getElementsByClassName('navigation');
-     
-     if (navigation.length > 0) {
-         
-         for (var i = 0; i < navigation.length; i++) {
-             
-             (function(i) {
-                 new Navigation(navigation[i]);
-             })(i);
-         }
+     const navigations= document.getElementsByClassName('navigation');
+
+     for (const navigation of navigations) {
+         new Navigation(navigation);
      }
+
  }());
 

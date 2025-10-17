@@ -1,22 +1,37 @@
-/*
- Abstract:
- The file contains the modifiers for image components.
- */
-
 /// A type that describes the modifier of a image component.
 public protocol ImageModifier {
     
-    /// Sets how the content should be resized to fit its parent.
+    /// Set how the content should be resized to fit its parent.
+    ///
+    /// - Parameters:
+    ///   - ratio: The ratio to maintain during resizing.
+    ///   - fit: The scaling behavior to apply when resizing.
+    ///
+    /// - Returns: The image
     func aspectRatio(_ ratio: Tokens.AspectRatio, fit: Tokens.ObjectFit) -> Self
     
-    /// Sets the scale of the image.
+    /// Scale the image proportionally.
+    ///
+    /// - Parameter scale: The factor by which to scale the image.
+    ///
+    /// - Returns: The image
     func imageScale(_ scale: Tokens.ImageScale) -> Self
     
-    /// Sets the fill style to use.
+    /// Set the fill style to use.
+    ///
+    /// - Parameter shape: The shape the image will be clipped to.
+    ///
+    /// - Returns: The image
     func clipShape(_ shape: Tokens.ClipShape) -> Self
     
+    /// Scale the image to fit within the parent.
+    ///
+    /// - Returns: The image
     func scaleToFit() -> Self
     
+    /// Scale the image to fill the parent.
+    ///
+    /// - Returns: The image
     func scaleToFill() -> Self
 }
 

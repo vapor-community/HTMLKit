@@ -1,27 +1,23 @@
-/*
- Abstract:
- The file contains the list elements. The html-element 'ol' or 'ul' only allows these elements to be its descendants.
-
- Note:
- If you about to add something to the file, stick to the official documentation to keep the code consistent.
- */
-
+import Foundation
 import OrderedCollections
 
-/// The alias for the element ListItem.
-///
-/// Li is the official tag and can be used instead of ListItem.
-///
-/// ```html
-/// <li></li>
-/// ```
+/// The alias for the element ``ListItem``.
 @_documentation(visibility: internal)
 public typealias Li = ListItem
 
-/// The element represents a item of a list.
+/// An element that represents a list item.
 ///
-/// ```html
-/// <li></li>
+/// Use `ListItem` to define an entry within a ``UnorderedList`` or ``OrderedList``.
+///
+/// ```swift
+/// UnorderedList {
+///     ListItem {
+///         "Lorem ipsum"
+///     }
+///     ListItem {
+///         "Lorem ipsum"
+///     }
+/// }
 /// ```
 public struct ListItem: ContentNode, ListElement {
 
@@ -30,7 +26,10 @@ public struct ListItem: ContentNode, ListElement {
     internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: [Content]
-
+    
+    /// Create a list item.
+    ///
+    /// - Parameter content: The item's content
     public init(@ContentBuilder<Content> content: () -> [Content]) {
         self.content = content()
     }
@@ -92,12 +91,8 @@ extension ListItem: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
     public func enterKeyHint(_ value: Values.Hint) -> ListItem {
         return mutate(enterkeyhint: value.rawValue)
     }
-
-    public func hidden() -> ListItem {
-        return mutate(hidden: "hidden")
-    }
     
-    public func hidden(_ condition: Bool) -> ListItem {
+    public func hidden(_ condition: Bool = true) -> ListItem {
         
         if condition {
             return mutate(hidden: "hidden")
@@ -106,14 +101,28 @@ extension ListItem: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return self
     }
 
+    @available(*, deprecated, message: "The inputmode attribute is actually an enumerated attribute. Use the inputMode(_: Mode) modifier instead.")
     public func inputMode(_ value: String) -> ListItem {
         return mutate(inputmode: value)
     }
 
+    public func inputMode(_ value: Values.Mode) -> ListItem {
+        return mutate(inputmode: value.rawValue)
+    }
+    
     public func `is`(_ value: String) -> ListItem {
         return mutate(is: value)
     }
+    
+    public func item(id: String? = nil, as schema: URL? = nil, for elements: [String]? = nil) -> ListItem {
+        return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements?.joined(separator: " "))
+    }
+    
+    public func item(id: String? = nil, as schema: URL? = nil, for elements: String...) -> ListItem {
+        return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements.joined(separator: " "))
+    }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemId(_ value: String) -> ListItem {
         return mutate(itemid: value)
     }
@@ -122,14 +131,17 @@ extension ListItem: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(itemprop: value)
     }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemReference(_ value: String) -> ListItem {
         return mutate(itemref: value)
     }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemScope(_ value: String) -> ListItem {
         return mutate(itemscope: value)
     }
     
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemType(_ value: String) -> ListItem {
         return mutate(itemtype: value)
     }
@@ -162,7 +174,16 @@ extension ListItem: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(tabindex: value)
     }
 
+    @_disfavoredOverload
     public func title(_ value: String) -> ListItem {
+        return mutate(title: value)
+    }
+    
+    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> ListItem {
+        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    }
+    
+    public func title(verbatim value: String) -> ListItem {
         return mutate(title: value)
     }
     
@@ -170,11 +191,7 @@ extension ListItem: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(translate: value.rawValue)
     }
     
-    public func inert() -> ListItem {
-        return mutate(inert: "inert")
-    }
-    
-    public func inert(_ condition: Bool) -> ListItem {
+    public func inert(_ condition: Bool = true) -> ListItem {
 
         if condition {
             return mutate(inert: "inert")
@@ -183,7 +200,16 @@ extension ListItem: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return self
     }
     
+    @_disfavoredOverload
     public func value(_ value: String) -> ListItem {
+        return mutate(value: value)
+    }
+    
+    public func value(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> ListItem {
+        return mutate(value: LocalizedString(key: localizedKey, table: tableName))
+    }
+    
+    public func value(verbatim value: String) -> ListItem {
         return mutate(value: value)
     }
     

@@ -1,28 +1,35 @@
-/*
- Abstract:
- The file contains everything related to image component.
- */
-
 import HTMLKit
 
+/// A view that represents an image embed.
+///
+/// Use `Image` to display an image.
+///
+/// ```swift
+/// Image(source: "...png")
+/// ```
 public struct Image: View, Modifiable, Identifiable {
     
-    public var id: String?
+    /// The unique identifier of the image.
+    internal var id: String?
     
-    /// The url path of the image.
+    /// The source path of the image.
     internal let source: DynamicType
     
-    /// The classes of the image view.
+    /// The class names of the image.
     internal var classes: [String]
     
-    /// Creates an image.
+    /// Create an image.
+    ///
+    /// - Parameter source: The souce path to load from.
     public init(source: String) {
         
         self.source = .string(source)
         self.classes = ["image"]
     }
     
-    /// Creates an image.
+    /// Create an image.
+    ///
+    /// - Parameter source: The souce path to load from.
     public init(source: EnvironmentValue) {
 
          self.source = .value(source)
@@ -39,10 +46,20 @@ public struct Image: View, Modifiable, Identifiable {
             }
     }
     
+    /// Sets the identifier for the image.
+    ///
+    /// - Parameter value: The value of the identifier
+    ///
+    /// - Returns: The image
     public func tag(_ value: String) -> Image {
         return self.mutate(id: value)
     }
     
+    /// Set the style for the image.
+    ///
+    /// - Parameter style: The configuration to apply to.
+    ///
+    /// - Returns: The image
     public func imageStyle(_ style: ImageConfiguration) -> Image {
         return self.mutate(classes: style.configuration)
     }
@@ -85,11 +102,7 @@ extension Image: ViewModifier {
         return self.mutate(opacity: value.value)
     }
     
-    public func hidden() -> Image {
-        return self.mutate(viewstate: Tokens.ViewState.hidden.value)
-    }
-    
-    public func hidden(_ condition: Bool) -> Image {
+    public func hidden(_ condition: Bool = true) -> Image {
         
         if condition {
             return self.mutate(viewstate: Tokens.ViewState.hidden.value)
@@ -110,8 +123,8 @@ extension Image: ViewModifier {
         return self.mutate(bordershape: shape.value)
     }
     
-    public func borderColor(_ color: Tokens.BorderColor) -> Image {
-        return self.mutate(bordercolor: color.value)
+    public func border(_ color: Tokens.BorderColor, width: Tokens.BorderWidth = .small) -> Image {
+        return self.mutate(border: color.value, width: width.value)
     }
     
     public func frame(width: Tokens.ViewWidth, height: Tokens.ViewHeight? = nil, alignment: Tokens.FrameAlignment? = nil) -> Image {
@@ -120,5 +133,32 @@ extension Image: ViewModifier {
     
     public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> Image {
         return self.mutate(margin: length.value, insets: insets)
+    }
+}
+
+extension Image: GraphicsModifier {
+    
+    public func blur(_ level: Tokens.BlurLevel) -> Image {
+        return mutate(blur: level.value)
+    }
+    
+    public func grayscale(_ depth: Tokens.GrayscaleDepth) -> Image {
+        return mutate(grayscale: depth.value)
+    }
+    
+    public func brightness(_ level: Tokens.BrightnessLevel) -> Image {
+        return mutate(brightness: level.value)
+    }
+    
+    public func saturation(_ level: Tokens.SaturationLevel) -> Image {
+        return mutate(saturation: level.value)
+    }
+    
+    public func contrast(_ level: Tokens.ContrastLevel) -> Image {
+        return mutate(contrast: level.value)
+    }
+    
+    public func shadow(_ radius: Tokens.BlurRadius = .small, color: Tokens.ShadowColor = .black) -> Image {
+        return mutate(shadow: radius.value, color: color.value)
     }
 }

@@ -1,33 +1,47 @@
-/*
- Abstract:
- The file contains everything related to the text component.
- */
-
 import HTMLKit
 
-/// A component that displays text.
+/// A view that represents text contet.
+///
+/// Use `Text` to display text.
+///
+/// ```swift
+/// Text(alignment: .center) {
+///     "Lorem ipsum..."
+/// }
+/// ```
 public struct Text: View, Actionable, Modifiable {
 
-    public var id: String?
+    /// The unique identifier of the text.
+    internal var id: String?
     
-    /// The content of the text.
+    /// The body content of the text.
     internal var content: [Content]
     
-    /// The classes of the text.
+    /// The class names for the text.
     internal var classes: [String]
     
+    /// The event handlers on the text.
     internal var events: [String]?
     
-    /// Creates a text.
+    /// Create a text.
+    ///
+    /// - Parameters:
+    ///   - alignment: The direction to align the text to.
+    ///   - content: The text content to display.
     public init(alignment: Tokens.TextAlignment = .leading, @ContentBuilder<Content> content: () -> [Content]) {
         
         self.content = content()
         self.classes = ["text", "alignment:\(alignment.value)"]
     }
     
-    public init(_ localizedStringKey: String, alignment: Tokens.TextAlignment = .leading) {
+    /// Create a localized text.
+    ///
+    /// - Parameters:
+    ///   - localizedStringKey: The string key to look for.
+    ///   - alignment: The direction to align the text to.
+    public init(_ localizedStringKey: LocalizedStringKey, alignment: Tokens.TextAlignment = .leading) {
         
-        self.content = [LocalizedStringKey(key: localizedStringKey)]
+        self.content = [LocalizedString(key: localizedStringKey)]
         self.classes = ["text", "alignment:\(alignment.value)"]
     }
     
@@ -46,6 +60,11 @@ public struct Text: View, Actionable, Modifiable {
         }
     }
     
+    /// Set the identifier for the text.
+    ///
+    /// - Parameter value: The value of the identifier.
+    ///
+    /// - Returns: The text
     public func tag(_ value: String) -> Text {
         return self.mutate(id: value)
     }
@@ -115,11 +134,7 @@ extension Text: TextModifier {
         return self.mutate(textdecoration: decoration.value)
     }
     
-    public func bold() -> Text {
-        return self.mutate(fontweight: Tokens.FontWeight.bold.value)
-    }
-    
-    public func bold(_ condition: Bool) -> Text {
+    public func bold(_ condition: Bool = true) -> Text {
         
         if condition {
             return self.mutate(fontweight: Tokens.FontWeight.bold.value)
@@ -128,11 +143,7 @@ extension Text: TextModifier {
         return self
     }
     
-    public func italic() -> Text {
-        return self.mutate(fontstyle: Tokens.FontStyle.italic.value)
-    }
-    
-    public func italic(_ condition: Bool) -> Text {
+    public func italic(_ condition: Bool = true) -> Text {
     
         if condition {
             return self.mutate(fontstyle: Tokens.FontStyle.italic.value)
@@ -141,11 +152,7 @@ extension Text: TextModifier {
         return self
     }
     
-    public func underline() -> Text {
-        return self.mutate(textdecoration: Tokens.TextDecoration.underline.value)
-    }
-    
-    public func underline(_ condition: Bool) -> Text {
+    public func underline(_ condition: Bool = true) -> Text {
         
         if condition {
             return self.mutate(textdecoration: Tokens.TextDecoration.underline.value)
@@ -154,11 +161,7 @@ extension Text: TextModifier {
         return self
     }
     
-    public func strikethrough() -> Text {
-        return self.mutate(textdecoration: Tokens.TextDecoration.strikeThrough.value)
-    }
-    
-    public func strikethrough(_ condition: Bool) -> Text {
+    public func strikethrough(_ condition: Bool = true) -> Text {
         
         if condition {
             return self.mutate(textdecoration: Tokens.TextDecoration.strikeThrough.value)
@@ -173,6 +176,10 @@ extension Text: TextModifier {
     
     public func lineLimit(_ limit: Tokens.LineLimit) -> Text {
         return self.mutate(linelimit: limit.value)
+    }
+    
+    public func shadow(_ radius: Tokens.BlurRadius, color: Tokens.ShadowColor = .black) -> Text {
+        return mutate(shadow: radius.value, color: color.value)
     }
 }
 
@@ -190,11 +197,7 @@ extension Text: ViewModifier {
         return self.mutate(zindex: index.value)
     }
     
-    public func hidden() -> Text {
-        return self.mutate(viewstate: Tokens.ViewState.hidden.value)
-    }
-    
-    public func hidden(_ condition: Bool) -> Text {
+    public func hidden(_ condition: Bool = true) -> Text {
         
         if condition {
             return self.mutate(viewstate: Tokens.ViewState.hidden.value)
@@ -215,8 +218,8 @@ extension Text: ViewModifier {
         return self.mutate(bordershape: shape.value)
     }
     
-    public func borderColor(_ color: Tokens.BorderColor) -> Text {
-        return self.mutate(bordercolor: color.value)
+    public func border(_ color: Tokens.BorderColor, width: Tokens.BorderWidth = .small) -> Text {
+        return self.mutate(border: color.value, width: width.value)
     }
     
     public func frame(width: Tokens.ViewWidth, height: Tokens.ViewHeight? = nil, alignment: Tokens.FrameAlignment? = nil) -> Text {

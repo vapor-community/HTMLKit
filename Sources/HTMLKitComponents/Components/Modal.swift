@@ -1,25 +1,35 @@
-/*
- Abstract:
- The file contains a modal component.
- */
-
 import HTMLKit
 
-/// A component that presents a dialog on top of other views.
+///
+/// Use `Modal` to present a dialog on top of other views.
+///
+/// ```swift
+/// Modal {
+///     VStack {
+///         Text {
+///             "Lorem ipsum..."
+///         }
+///     }
+/// }
+/// .tag("lorem")
+/// ```
 public struct Modal: View, Modifiable, Actionable {
     
-    public var id: String?
+    /// The unique identifier of the modal.
+    internal var id: String?
     
-    /// The content of the modal.
+    /// The body content of the modal.
     internal var content: [Content]
     
-    /// The classes of the modal.
+    /// The class names for the modal.
     internal var classes: [String]
     
-    /// The events of the modal.
+    /// The event handlers on the modal.
     internal var events: [String]?
     
-    /// Creates a modal.
+    /// Create a modal.
+    ///
+    /// - Parameter content: The modal's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
         
         self.content = content()
@@ -41,10 +51,20 @@ public struct Modal: View, Modifiable, Actionable {
         }
     }
     
+    /// Set the identifier for the modal.
+    ///
+    /// - Parameter value: The value of the identifier.
+    ///
+    /// - Returns: The modal
     public func tag(_ value: String) -> Modal {
         return self.mutate(id: value)
     }
     
+    /// Set the style for the modal.
+    ///
+    /// - Parameter style: The configuration to apply to.
+    ///
+    /// - Returns: The modal
     public func modalStyle(_ style: ModalConfiguration) -> Modal {
         return self.mutate(classes: style.configuration)
     }
@@ -60,11 +80,7 @@ extension Modal: ViewModifier {
         return self.mutate(zindex: index.value)
     }
     
-    public func hidden() -> Modal {
-        return self.mutate(viewstate: Tokens.ViewState.hidden.value)
-    }
-    
-    public func hidden(_ condition: Bool) -> Modal {
+    public func hidden(_ condition: Bool = true) -> Modal {
         
         if condition {
             return self.mutate(viewstate: Tokens.ViewState.hidden.value)
@@ -77,8 +93,8 @@ extension Modal: ViewModifier {
         return self.mutate(padding: length.value, insets: insets)
     }
     
-    public func borderColor(_ color: Tokens.BorderColor) -> Modal {
-        return self.mutate(bordercolor: color.value)
+    public func border(_ color: Tokens.BorderColor, width: Tokens.BorderWidth = .small) -> Modal {
+        return self.mutate(border: color.value, width: width.value)
     }
     
     public func borderShape(_ shape: Tokens.BorderShape) -> Modal {

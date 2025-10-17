@@ -1,6 +1,8 @@
 (function() {
+
+    'use strict';
     
-    var Selectfield = function (element) {
+    const Selectfield = function (element) {
         
         this.element = element;
         this.textfield = element.getElementsByClassName('selectfield-textfield')[0];
@@ -15,7 +17,7 @@
      */
     Selectfield.prototype.initiateListener = function () {
         
-        var self = this;
+        const self = this;
         
         this.textfield.addEventListener('focus', function () {
             self.showOptionList();
@@ -30,9 +32,9 @@
         
         for (let option of this.options) {
             
-            if (option.getAttribute('type') == 'radio') {
+            if (option.getAttribute('type') === 'radio') {
                 
-                if (option.checked == true) {
+                if (option.checked === true) {
                     self.setInputValue(option.nextSibling.innerHTML);
                 }
              
@@ -40,15 +42,15 @@
                     
                     event.preventDefault();
                     
-                    if (event.target.checked == true) {
+                    if (event.target.checked === true) {
                         self.setInputValue(event.target.nextSibling.innerHTML);
                     }
                 });
             }
             
-            if (option.getAttribute('type') == 'checkbox') {
+            if (option.getAttribute('type') === 'checkbox') {
                 
-                if (option.checked == true) {
+                if (option.checked === true) {
                     self.setInputValue(option.nextSibling.innerHTML);
                 }
              
@@ -58,7 +60,7 @@
                     
                     self.clearInputs(event.target);
                     
-                    if (event.target.checked == true) {
+                    if (event.target.checked === true) {
                         self.setInputValue(event.target.nextSibling.innerHTML);
                         
                     } else {
@@ -77,7 +79,7 @@
         
         for (let option of this.options) {
             
-            if (option != target) {
+            if (option !== target) {
                 option.checked = false;
             }
         }
@@ -95,8 +97,8 @@
      */
     Selectfield.prototype.showOptionList = function () {
         
-        var windowBound = document.body.getBoundingClientRect();
-        var elementBound = this.optionlist.getBoundingClientRect();
+        const windowBound = document.body.getBoundingClientRect();
+        const elementBound = this.optionlist.getBoundingClientRect();
         
         if (windowBound.height < elementBound.bottom) {
             this.optionlist.classList.add('position:bottom');
@@ -113,15 +115,9 @@
         this.optionlist.classList.remove('state:visible');
     };
     
-    var selectfield = document.getElementsByClassName('selectfield');
-    
-    if (selectfield.length > 0) {
-        
-        for (var i = 0; i < selectfield.length; i++) {
-            
-            (function(i) {
-                new Selectfield(selectfield[i]);
-            })(i);
-        }
+    const selectfields = document.getElementsByClassName('selectfield');
+
+    for (const selectfield of selectfields) {
+        new Selectfield(selectfield);
     }
 }());

@@ -1,2 +1,2 @@
-/* A friendly greeting. */
-"greeting.world" = "Bonjour le monde";
+/* String key with namespace pattern */
+"hello.world" = "Bonjour le monde";

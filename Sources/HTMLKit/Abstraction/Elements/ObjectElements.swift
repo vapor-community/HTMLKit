@@ -1,27 +1,20 @@
-/*
- Abstract:
- The file contains the object elements. The html-element 'object' only allows these elements to be its descendants.
-
- Note:
- If you about to add something to the file, stick to the official documentation to keep the code consistent.
- */
-
+import Foundation
 import OrderedCollections
 
-/// The alias for the element Parameter.
-///
-/// Param is the official tag and can be used instead of Parameter.
-///
-/// ```html
-/// <param>
-/// ```
+/// The alias for the element ``Parameter``.
 @_documentation(visibility: internal)
 public typealias Param = Parameter
 
-/// The element defines parameters for plugins invoked by an object element.
+/// An element that represents an object parameter.
 ///
-/// ```html
-/// <param>
+/// Use `Parameter` to pass parameters to an ``Object``.
+///
+/// ```swift
+/// Object {
+///     Parameter()
+///         .name("Foo")
+///         .value("Bar")
+/// }
 /// ```
 public struct Parameter: EmptyNode, ObjectElement {
     
@@ -29,8 +22,10 @@ public struct Parameter: EmptyNode, ObjectElement {
 
     internal var attributes: OrderedDictionary<String, Any>?
 
+    @available(*, deprecated, message: "The parameter element is no longer part of the web standards. Use the data attribute of the object element instead.")
     public init() {}
     
+    @available(*, deprecated, message: "The parameter element is no longer part of the web standards. Use the data attribute of the object element instead.")
     internal init(attributes: OrderedDictionary<String, Any>?) {
         self.attributes = attributes
     }
@@ -87,12 +82,8 @@ extension Parameter: GlobalAttributes, GlobalEventAttributes, NameAttribute, Val
     public func enterKeyHint(_ value: Values.Hint) -> Parameter {
         return mutate(enterkeyhint: value.rawValue)
     }
-
-    public func hidden() -> Parameter {
-        return mutate(hidden: "hidden")
-    }
     
-    public func hidden(_ condition: Bool) -> Parameter {
+    public func hidden(_ condition: Bool = true) -> Parameter {
         
         if condition {
             return mutate(hidden: "hidden")
@@ -101,14 +92,28 @@ extension Parameter: GlobalAttributes, GlobalEventAttributes, NameAttribute, Val
         return self
     }
 
+    @available(*, deprecated, message: "The inputmode attribute is actually an enumerated attribute. Use the inputMode(_: Mode) modifier instead.")
     public func inputMode(_ value: String) -> Parameter {
         return mutate(inputmode: value)
+    }
+    
+    public func inputMode(_ value: Values.Mode) -> Parameter {
+        return mutate(inputmode: value.rawValue)
     }
 
     public func `is`(_ value: String) -> Parameter {
         return mutate(is: value)
     }
+    
+    public func item(id: String? = nil, as schema: URL? = nil, for elements: [String]? = nil) -> Parameter {
+        return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements?.joined(separator: " "))
+    }
+    
+    public func item(id: String? = nil, as schema: URL? = nil, for elements: String...) -> Parameter {
+        return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements.joined(separator: " "))
+    }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemId(_ value: String) -> Parameter {
         return mutate(itemid: value)
     }
@@ -117,14 +122,17 @@ extension Parameter: GlobalAttributes, GlobalEventAttributes, NameAttribute, Val
         return mutate(itemprop: value)
     }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemReference(_ value: String) -> Parameter {
         return mutate(itemref: value)
     }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemScope(_ value: String) -> Parameter {
         return mutate(itemscope: value)
     }
     
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemType(_ value: String) -> Parameter {
         return mutate(itemtype: value)
     }
@@ -157,7 +165,16 @@ extension Parameter: GlobalAttributes, GlobalEventAttributes, NameAttribute, Val
         return mutate(tabindex: value)
     }
 
+    @_disfavoredOverload
     public func title(_ value: String) -> Parameter {
+        return mutate(title: value)
+    }
+    
+    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Parameter {
+        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    }
+    
+    public func title(verbatim value: String) -> Parameter {
         return mutate(title: value)
     }
     
@@ -165,11 +182,7 @@ extension Parameter: GlobalAttributes, GlobalEventAttributes, NameAttribute, Val
         return mutate(translate: value.rawValue)
     }
     
-    public func inert() -> Parameter {
-        return mutate(inert: "inert")
-    }
-    
-    public func inert(_ condition: Bool) -> Parameter {
+    public func inert(_ condition: Bool = true) -> Parameter {
 
         if condition {
             return mutate(inert: "inert")
@@ -182,7 +195,16 @@ extension Parameter: GlobalAttributes, GlobalEventAttributes, NameAttribute, Val
         return mutate(name: value)
     }
     
+    @_disfavoredOverload
     public func value(_ value: String) -> Parameter {
+        return mutate(value: value)
+    }
+    
+    public func value(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Parameter {
+        return mutate(value: LocalizedString(key: localizedKey, table: tableName))
+    }
+    
+    public func value(verbatim value: String) -> Parameter {
         return mutate(value: value)
     }
     

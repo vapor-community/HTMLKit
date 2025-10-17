@@ -1,24 +1,47 @@
-/*
- Abstract:
- The file contains everything related to the grid component.
- */
-
 import HTMLKit
 
-/// A component that collects and arranges collection items horizontally.
+/// A view that represents grid.
+///
+/// Use `Grid` to collect and arrange items horizontally.
+///
+/// ```swift
+/// Grid(ratio: .third) {
+///     Card {
+///         Text {
+///             "Lorem ipsum..."
+///         }
+///     } header: {
+///         Image(source: "...png")
+///     }
+///     Card {
+///         Text {
+///             "Lorem ipsum..."
+///         }
+///     } header: {
+///         Image(source: "...png")
+///     }
+/// }
+/// ```
 public struct Grid: View, Modifiable, Actionable {
     
-    public var id: String?
+    /// The unique identifier of the grid.
+    internal var id: String?
     
-    /// The content of the collection.
+    /// The body content of the grid.
     internal var content: [Content]
     
-    /// The classes of the collection.
+    /// The class names for the grid.
     internal var classes: [String]
     
+    /// The event handlers on the grid.
     internal var events: [String]?
     
-    /// Creates a collection.
+    /// Create a grid.
+    ///
+    /// - Parameters:
+    ///   - ratio: The ratio of items
+    ///   - spacing: The spacing between items
+    ///   - content: The grid's content
     public init(ratio: Tokens.GridRatio = .fit, spacing: Tokens.ContentSpace? = nil, @ContentBuilder<Content> content: () -> [Content]) {
         
         self.content = content()
@@ -30,7 +53,13 @@ public struct Grid: View, Modifiable, Actionable {
         }
     }
     
-    /// Creates a collection.
+    /// Creates a grid
+    ///
+    /// - Parameters:
+    ///   - ratio: The ratio of items
+    ///   - horizontalSpacing: The horizontal gap between items
+    ///   - verticalSpacing: The vertical gap between items
+    ///   - content: The grid's content
     public init(ratio: Tokens.GridRatio = .fit, horizontalSpacing: Tokens.ContentSpace? = nil, verticalSpacing: Tokens.ContentSpace? = nil, @ContentBuilder<Content> content: () -> [Content]) {
         
         self.content = content()
@@ -60,6 +89,11 @@ public struct Grid: View, Modifiable, Actionable {
         }
     }
     
+    /// Set the identifier for the grid.
+    ///
+    /// - Parameter value: The value of the identifier.
+    ///
+    /// - Returns: The grid
     public func tag(_ value: String) -> Grid {
         return self.mutate(id: value)
     }
@@ -90,11 +124,7 @@ extension Grid: ViewModifier {
         return self.mutate(zindex: index.value)
     }
     
-    public func hidden() -> Grid {
-        return self.mutate(viewstate: Tokens.ViewState.hidden.value)
-    }
-    
-    public func hidden(_ condition: Bool) -> Grid {
+    public func hidden(_ condition: Bool = true) -> Grid {
         
         if condition {
             return self.mutate(viewstate: Tokens.ViewState.hidden.value)
@@ -115,8 +145,8 @@ extension Grid: ViewModifier {
         return self.mutate(bordershape: shape.value)
     }
     
-    public func borderColor(_ color: Tokens.BorderColor) -> Grid {
-        return self.mutate(bordercolor: color.value)
+    public func border(_ color: Tokens.BorderColor, width: Tokens.BorderWidth = .small) -> Grid {
+        return self.mutate(border: color.value, width: width.value)
     }
     
     public func frame(width: Tokens.ViewWidth, height: Tokens.ViewHeight? = nil, alignment: Tokens.FrameAlignment? = nil) -> Grid {

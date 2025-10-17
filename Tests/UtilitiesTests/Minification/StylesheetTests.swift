@@ -333,6 +333,16 @@ final class StylesheetTests: XCTestCase {
         """
         
         XCTAssertEqual(minifier.minify(css: negativevalue), ".selector{property:-0.0px;}")
+        
+        // ...multiple values seperated by solidus
+        
+        let multiplevaluesandsolidus = """
+        .selector {
+            property: 1 / 1;
+        }
+        """
+        
+        XCTAssertEqual(minifier.minify(css: multiplevaluesandsolidus), ".selector{property:1/1;}")
     }
     
     // Tests minifing a funtion

@@ -11,7 +11,13 @@ import OrderedCollections
 import FoundationXML
 #endif
 
-/// A component that displays symbols.
+/// A view that represents an text icon.
+///
+/// Use `Symbol` to display an icon.
+///
+/// ```swift
+/// Symbol(system: .folder)
+/// ```
 public struct Symbol: View, Modifiable {
     
     public enum ChartVariants {
@@ -207,10 +213,12 @@ public struct Symbol: View, Modifiable {
     /// The content of the symbol.
     internal let content: [VectorElement]
     
-    /// The classes of the symbol.
+    /// The class names of the symbol.
     internal var classes: [String]
     
     /// Retrieves a symbol.
+    ///
+    /// - Parameter name: The name of the symbol to use.
     public init(system name: SymbolNames) {
         
         if let url = Bundle.module.url(forResource: name.rawValue, withExtension: "svg") {
@@ -237,6 +245,11 @@ public struct Symbol: View, Modifiable {
         .class(classes.joined(separator: " "))
     }
     
+    /// Set the size for the symbol.
+    ///
+    /// - Parameter size: The unit to size the symbol.
+    ///
+    /// - Returns: The symbol
     public func fontSize(_ size: Tokens.FontSize) -> Symbol {
         
         var newSelf = self
@@ -245,12 +258,28 @@ public struct Symbol: View, Modifiable {
         return newSelf
     }
     
+    /// Fill the foreground of the symbol.
+    ///
+    /// - Parameter color: The color to use for the foreground.
+    ///
+    /// - Returns: The symbol
     public func foregroundColor(_ color: Tokens.ForegroundColor) -> Symbol {
         
         var newSelf = self
         newSelf.classes.append("foreground:\(color.value)")
         
         return newSelf
+    }
+    
+    /// Set the drop shadow for the symbol.
+    ///
+    /// - Parameters:
+    ///   - radius: The radius to extend the shadow.
+    ///   - color: The color to fill the shadow.
+    ///
+    /// - Returns: The symbol
+    public func shadow(_ radius: Tokens.BlurRadius, color: Tokens.ShadowColor = .black) -> Symbol {
+        return mutate(classes: ["shadow:\(radius.value)", "shadow:\(color.value)"])
     }
 }
 

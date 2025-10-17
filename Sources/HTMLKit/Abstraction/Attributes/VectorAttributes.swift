@@ -1,27 +1,26 @@
-/*
- Abstract:
- The file contains the protocols for the vector html-attributes.
-
- Note:
- If you about to add something to the file, stick to the official documentation to keep the code consistent.
- */
-
 import OrderedCollections
 
 /// The alias combines the global attributes of the vector attributes.
 @_documentation(visibility: internal)
 public typealias GlobalVectorAttributes = IdentifierAttribute & TabulatorAttribute & ClassAttribute & StyleAttribute & FillAttribute & FillOpacityAttribute & StrokeAttribute & StrokeWidthAttribute & StrokeOpacityAttribute & StrokeLineCapAttribute & StrokeLineJoinAttribute
 
-/// The protocol provides the element with the draw handler.
+/// A type that provides the `draw` modifier.
 @_documentation(visibility: internal)
 public protocol DrawAttribute: Attribute {
 
-    /// The function represents the html-attribute 'd'.
+    /// Draw a path.
     ///
-    /// ```html
-    /// <tag d="" />
+    /// ```swift
+    /// Vector {
+    ///     Path {
+    ///     }
+    ///     .draw("M150...")
+    /// }
     /// ```
-    func draw(_ value: String) -> Self
+    /// - Parameter path: The path to draw.
+    ///
+    /// - Returns: The element
+    func draw(_ path: String) -> Self
 }
 
 extension DrawAttribute where Self: ContentNode {
@@ -31,17 +30,24 @@ extension DrawAttribute where Self: ContentNode {
     }
 }
 
-
-/// The protocol provides the element with the fill handler.
+/// A type that provides the `fill` modifier.
 @_documentation(visibility: internal)
 public protocol FillAttribute: Attribute {
     
-    /// The function represents the html-attribute 'fill'.
+    /// Fill the shape.
     ///
-    /// ```html
-    /// <tag fill="" />
+    /// ```swift
+    /// Vector {
+    ///     Circle {
+    ///     }
+    ///     .fill("black")
+    /// }
     /// ```
-    func fill(_ value: String) -> Self
+    ///
+    /// - Parameter color: The color to fill shape with.
+    ///
+    /// - Returns: The element
+    func fill(_ color: String) -> Self
 }
 
 extension FillAttribute where Self: ContentNode {
@@ -51,15 +57,23 @@ extension FillAttribute where Self: ContentNode {
     }
 }
 
-/// The protocol provides the element with the fill-opacity handler.
+/// A type that provides the `fillOpacity` modifier.
 @_documentation(visibility: internal)
 public protocol FillOpacityAttribute: Attribute {
     
-    /// The function represents the html-attribute 'fill-opacity"'.
+    /// Define the opacity of the filling.
     ///
-    /// ```html
-    /// <tag fill-opacity="" />
+    /// ```swift
+    /// Vector {
+    ///     Circle {
+    ///     }
+    ///     .fillOpacity(0.5)
+    /// }
     /// ```
+    ///
+    /// - Parameter value: The opacity to apply.
+    ///
+    /// - Returns: The element
     func fillOpacity(_ value: Double) -> Self
 }
 
@@ -70,16 +84,24 @@ extension FillOpacityAttribute where Self: ContentNode {
     }
 }
 
-/// The protocol provides the element with the stroke handler.
+/// A type that provides the `stroke` modifier.
 @_documentation(visibility: internal)
 public protocol StrokeAttribute: Attribute {
     
-    /// The function represents the html-attribute 'stroke'.
+    /// Set the stroke for the shape.
     ///
-    /// ```html
-    /// <tag stroke="" />
+    /// ```swift
+    /// Vector {
+    ///     Circle {
+    ///     }
+    ///     .stroke("#000000")
+    /// }
     /// ```
-    func stroke(_ value: String) -> Self
+    ///
+    /// - Parameter color: The color to fill the stroke with.
+    ///
+    /// - Returns: The element
+    func stroke(_ color: String) -> Self
 }
 
 extension StrokeAttribute where Self: ContentNode {
@@ -89,15 +111,23 @@ extension StrokeAttribute where Self: ContentNode {
     }
 }
 
-/// The protocol provides the element with the stroke-width handler.
+/// A type that provides the `strokeWidth` modifier.
 @_documentation(visibility: internal)
 public protocol StrokeWidthAttribute: Attribute {
     
-    /// The function represents the html-attribute 'stroke-width'.
+    /// Set the thickness of the stroke.
     ///
-    /// ```html
-    /// <tag stroke-width="" />
+    /// ```swift
+    /// Vector {
+    ///     Circle {
+    ///     }
+    ///     .strokeWidth(3)
+    /// }
     /// ```
+    ///
+    /// - Parameter size: The thickness to apply to the stroke.
+    ///
+    /// - Returns: The element
     func strokeWidth(_ size: Int) -> Self
 }
 
@@ -108,15 +138,23 @@ extension StrokeWidthAttribute where Self: ContentNode {
     }
 }
 
-/// The protocol provides the element with the stroke-opacity handler.
+/// A type that provides the `strokeOpacity` modifier.
 @_documentation(visibility: internal)
 public protocol StrokeOpacityAttribute: Attribute {
     
-    /// The function represents the html-attribute 'stroke-opacity'.
+    /// Set the opacity for the stroke.
     ///
-    /// ```html
-    /// <tag stroke-opacity="" />
+    /// ```swift
+    /// Vector {
+    ///     Line {
+    ///     }
+    ///     .strokeOpacity(0.8)
+    /// }
     /// ```
+    ///
+    /// - Parameter value: The level to apply to the stroke.
+    ///
+    /// - Returns: The element
     func strokeOpacity(_ value: Double) -> Self
 }
 
@@ -127,15 +165,23 @@ extension StrokeOpacityAttribute where Self: ContentNode {
     }
 }
 
-/// The protocol provides the element with the stroke-linecap handler.
+/// A type that provides the `strokeLineCap` modifier.
 @_documentation(visibility: internal)
 public protocol StrokeLineCapAttribute: Attribute {
     
-    /// The function represents the html-attribute 'stroke-linecap'.
+    /// Set the shape of the stroke end.
     ///
-    /// ```html
-    /// <tag stroke-linecap="" />
+    /// ```swift
+    /// Vector {
+    ///     Line {
+    ///     }
+    ///     .strokeLineCap(.butt)
+    /// }
     /// ```
+    ///
+    /// - Parameter value: The shape to end the stroke.
+    ///
+    /// - Returns: The element
     func strokeLineCap(_ value: Values.Linecap) -> Self
 }
 
@@ -146,15 +192,23 @@ extension StrokeLineCapAttribute where Self: ContentNode {
     }
 }
 
-/// The protocol provides the element with the stroke-linejoin handler.
+/// A type that provides the `strokeLineJoin` modifier.
 @_documentation(visibility: internal)
 public protocol StrokeLineJoinAttribute: Attribute {
     
-    /// The function represents the html-attribute 'stroke-linejoin'.
+    /// Set the shape of the stroke join.
     ///
-    /// ```html
-    /// <tag stroke-linejoin="" />
+    /// ```swift
+    /// Vector {
+    ///     Line {
+    ///     }
+    ///     .strokeLineJoin(.miter)
+    /// }
     /// ```
+    ///
+    /// - Parameter value: The shape when two lines meet.
+    ///
+    /// - Returns: The element
     func strokeLineJoin(_ value: Values.Linejoin) -> Self
 }
 
@@ -165,15 +219,23 @@ extension StrokeLineJoinAttribute where Self: ContentNode {
     }
 }
 
-/// The protocol provides the element with the radius handler.
+/// A type that provides the `radius` modifier.
 @_documentation(visibility: internal)
 public protocol RadiusAttribute: Attribute {
     
-    /// The function represents the html-attribute 'r'.
+    /// Specify a radius for the circle.
     ///
-    /// ```html
-    /// <tag r="" />
+    /// ```swift
+    /// Vector {
+    ///     Circle {
+    ///     }
+    ///     .radius(30)
+    /// }
     /// ```
+    ///
+    /// - Parameter size: The size of the radius to apply.
+    ///
+    /// - Returns: The element
     func radius(_ size: Int) -> Self
 }
 
@@ -184,15 +246,22 @@ extension RadiusAttribute where Self: ContentNode {
     }
 }
 
-/// The protocol provides the element with the radius handler.
+/// A type that provides the `positionPoint` modifier.
 @_documentation(visibility: internal)
 public protocol PositionPointAttribute: Attribute {
     
-    /// The function represents the html-attribute 'x' and 'y'.
+    /// Set the position of the shape.
     ///
-    /// ```html
-    /// <tag x="" y="" />
+    /// ```Swift
+    /// Vector {
+    ///     Rectangle {
+    ///     }
+    ///     .positionPoint((50, 50))
+    /// }
     /// ```
+    /// - Parameter point: The coodinates to position the shape.
+    ///
+    /// - Returns: The element
     func positionPoint(_ point: (Int, Int)) -> Self
 }
 
@@ -216,15 +285,22 @@ extension PositionPointAttribute where Self: ContentNode {
     }
 }
 
-/// The protocol provides the element with the radius handler.
+/// A type that provides the `radiusPoint` modifier.
 @_documentation(visibility: internal)
 public protocol RadiusPointAttribute: Attribute {
     
-    /// The function represents the html-attribute 'rx' and 'ry'.
+    /// Apply a corner radius to the shape.
     ///
-    /// ```html
-    /// <tag rx="" ry="" />
+    /// ```swift
+    /// Vector {
+    ///     Rectangle {
+    ///     }
+    ///     .radiusPoint((10, 10))
+    /// }
     /// ```
+    /// - Parameter point: The radius to apply to all corners.
+    ///
+    /// - Returns: The element
     func radiusPoint(_ point: (Int, Int)) -> Self
 }
 
@@ -248,15 +324,22 @@ extension RadiusPointAttribute where Self: ContentNode {
     }
 }
 
-/// The protocol provides the element with the radius handler.
+/// A type that provides the `centerPoint` modifier.
 @_documentation(visibility: internal)
 public protocol CenterPointAttribute: Attribute {
     
-    /// The function represents the html-attribute 'cx' and 'cy'.
+    /// Set the center point of the shape.
     ///
-    /// ```html
-    /// <tag cx="" cy="" />
+    /// ```swift
+    /// Vector {
+    ///     Circle {
+    ///     }
+    ///     .centerPoint((50, 50))
+    /// }
     /// ```
+    /// - Parameter point: The coordinates to use as the center.
+    ///
+    /// - Returns: The element
     func centerPoint(_ point: (Int, Int)) -> Self
 }
 
@@ -280,15 +363,21 @@ extension CenterPointAttribute where Self: ContentNode {
     }
 }
 
-/// The protocol provides the element with the viewbox handler.
+/// A type that provides the `viewBox` modifier.
 @_documentation(visibility: internal)
 public protocol ViewBoxAttribute: Attribute {
     
-    /// The function represents the html-attribute 'viewbox'.
+    /// Set the view box for the vector.
     ///
-    /// ```html
-    /// <tag viewbox="" />
+    /// ```swift
+    /// Vector {
+    /// }
+    /// .viewBox("0 0 400 200")
     /// ```
+    ///
+    /// - Parameter value: The bounds used to define the viewport.
+    ///
+    /// - Returns: The element
     func viewBox(_ value: String) -> Self
 }
 
@@ -299,16 +388,22 @@ extension ViewBoxAttribute where Self: ContentNode {
     }
 }
 
-/// The protocol provides the element with the viewbox handler.
+/// A type that provides the `namespace` modifier.
 @_documentation(visibility: internal)
 public protocol NamespaceAttribute: Attribute {
     
-    /// The function represents the html-attribute 'viewbox'.
+    /// Specify the namespace for the vector.
     ///
-    /// ```html
-    /// <tag viewbox="" />
+    /// ```swift
+    /// Vector {
+    /// }
+    /// .namespace("http://...")
     /// ```
-    func namespace(_ value: String) -> Self
+    ///
+    /// - Parameter url: The url to refer to.
+    ///
+    /// - Returns: The element
+    func namespace(_ url: String) -> Self
 }
 
 extension NamespaceAttribute where Self: ContentNode {
@@ -318,15 +413,23 @@ extension NamespaceAttribute where Self: ContentNode {
     }
 }
 
-/// The protocol provides the element with the viewbox handler.
+/// A type that provides the `points` modifier.
 @_documentation(visibility: internal)
 public protocol PointsAttribute: Attribute {
     
-    /// The function represents the html-attribute 'viewbox'.
+    /// Define a list of points.
     ///
-    /// ```html
-    /// <tag viewbox="" />
+    /// ```swift
+    /// Vector {
+    ///     Polyline {
+    ///     }
+    ///     .points("50, 25, 21...")
+    /// }
     /// ```
+    ///
+    /// - Parameter value: The vertices used for the polyline.
+    ///
+    /// - Returns: The element
     func points(_ value: String) -> Self
 }
 

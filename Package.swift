@@ -22,15 +22,17 @@ let package = Package(
         )
     ],
     dependencies: [
-        .package(url: "https://github.com/apple/swift-collections.git", from: "1.0.1"),
-        .package(url: "https://github.com/apple/swift-docc-plugin", from: "1.3.0"),
-        .package(url: "https://github.com/vapor/vapor.git", from: "4.65.2")
+        .package(url: "https://github.com/apple/swift-collections.git", from: "1.1.4"),
+        .package(url: "https://github.com/apple/swift-docc-plugin", from: "1.4.3"),
+        .package(url: "https://github.com/apple/swift-log.git", from: "1.6.3"),
+        .package(url: "https://github.com/vapor/vapor.git", from: "4.114.1")
     ],
     targets: [
         .target(
             name: "HTMLKit",
             dependencies: [
-                .product(name: "Collections", package: "swift-collections")
+                .product(name: "Collections", package: "swift-collections"),
+                .product(name: "Logging", package: "swift-log"),
             ],
             exclude: ["Abstraction/README.md", "Framework/README.md"],
             swiftSettings: [
@@ -131,8 +133,8 @@ let package = Package(
             capability: .command(
                 intent: .custom(
                     verb: "convert",
-                    description: "Convert html content"),
-                permissions: [.writeToPackageDirectory(reason: "The command needs the permission to create the converted file.")]
+                    description: "Converts HTML markup into Swift syntax."),
+                permissions: [.writeToPackageDirectory(reason: "The command needs the permission to create the file.")]
             ),
             dependencies: [
                 .target(name: "ConvertCommand")
@@ -143,8 +145,9 @@ let package = Package(
             capability: .command(
                 intent: .custom(
                     verb: "deploy",
-                    description: "Deploy css files"),
-                permissions: [.writeToPackageDirectory(reason: "The command needs the permission to create the minified css file.")]
+                    description: "Deploys the CSS and JS files for the HTMLKit components."
+                ),
+                permissions: [.writeToPackageDirectory(reason: "The command needs the permission to create the files.")]
             ),
             dependencies: [
                 .target(name: "DeployCommand")

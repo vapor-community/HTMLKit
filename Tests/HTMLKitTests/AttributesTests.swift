@@ -4,6 +4,7 @@
  */
 
 @testable import HTMLKit
+import Foundation
 import OrderedCollections
 import XCTest
 
@@ -14,27 +15,31 @@ final class AttributesTests: XCTestCase {
         @ContentBuilder<Content> var body: Content
     }
     
-    typealias AllAttributes = AccessKeyAttribute & AcceptAttribute & ActionAttribute & AlternateAttribute & AsynchronouslyAttribute & AutocapitalizeAttribute & AutocompleteAttribute & AutofocusAttribute & AutoplayAttribute & CharsetAttribute & CheckedAttribute & CiteAttribute & ClassAttribute & ColumnsAttribute & ColumnSpanAttribute & ContentAttribute & EditAttribute  & ControlsAttribute & CoordinatesAttribute & DataAttribute & DateTimeAttribute & DefaultAttribute & DeferAttribute & DirectionAttribute & DisabledAttribute & DownloadAttribute & DragAttribute & EncodingAttribute & EnterKeyHintAttribute & ForAttribute & FormAttribute & FormActionAttribute & EquivalentAttribute & HeaderAttribute & HeightAttribute & HiddenAttribute & HighAttribute & ReferenceAttribute & ReferenceLanguageAttribute & IdentifierAttribute & IsMapAttribute & InputModeAttribute & IsAttribute & ItemIdAttribute & ItemPropertyAttribute & ItemReferenceAttribute & ItemScopeAttribute & ItemTypeAttribute & KindAttribute & LabelAttribute & LanguageAttribute & ListAttribute & LoopAttribute & LowAttribute & MaximumValueAttribute & MaximumLengthAttribute & MediaAttribute & MethodAttribute & MinimumValueAttribute & MinimumLengthAttribute & MultipleAttribute & MutedAttribute & NameAttribute & NonceAttribute & NoValidateAttribute & OpenAttribute & OptimumAttribute & PatternAttribute & PartAttribute & PingAttribute & PlaceholderAttribute & PosterAttribute & PreloadAttribute & ReadyOnlyAttribute & ReferrerPolicyAttribute & RelationshipAttribute & RequiredAttribute & ReversedAttribute & RoleAttribute & RowsAttribute & RowSpanAttribute & SandboxAttribute & ScopeAttribute & ShapeAttribute & SizeAttribute & SizesAttribute & SlotAttribute & SpanAttribute & SpellCheckAttribute & SourceAttribute & StartAttribute & StepAttribute & StyleAttribute & TabulatorAttribute & TargetAttribute & TitleAttribute & TranslateAttribute & TypeAttribute & ValueAttribute & WidthAttribute & WrapAttribute & PropertyAttribute & SelectedAttribute & WindowEventAttribute & FocusEventAttribute & PointerEventAttribute & MouseEventAttribute & WheelEventAttribute & InputEventAttribute & KeyboardEventAttribute & DragEventAttribute & ClipboardEventAttribute & SelectionEventAttribute & MediaEventAttribute & FormEventAttribute & DetailEventAttribute & AriaAtomicAttribute & AriaBusyAttribute & AriaControlsAttribute & AriaCurrentAttribute & AriaDescribedAttribute & AriaDetailsAttribute & AriaDisabledAttribute & AriaErrorMessageAttribute & AriaFlowToAttribute & AriaPopupAttribute & AriaHiddenAttribute & AriaInvalidAttribute & AriaShortcutsAttribute & AriaLabelAttribute & AriaLabeledAttribute & AriaLiveAttribute & AriaOwnsAttribute & AriaRelevantAttribute & AriaRoleDescriptionAttribute & DrawAttribute & FillAttribute & FillOpacityAttribute & StrokeAttribute & StrokeWidthAttribute & StrokeOpacityAttribute & StrokeLineCapAttribute & StrokeLineJoinAttribute & RadiusAttribute & PositionPointAttribute & RadiusPointAttribute & CenterPointAttribute & ViewBoxAttribute & NamespaceAttribute & PointsAttribute & ShadowRootModeAttribute & InertAttribute & FetchPriorityAttribute & LoadingAttribute & SourceSetAttribute & DecodingAttribute & BlockingAttribute & PopoverAttribute & PopoverTargetAttribute & PopoverActionAttribute
+    typealias AllAttributes = AccessKeyAttribute & AcceptAttribute & ActionAttribute & AlternateAttribute & AsynchronouslyAttribute & AutocapitalizeAttribute & AutocompleteAttribute & AutofocusAttribute & AutoplayAttribute & CharsetAttribute & CheckedAttribute & CiteAttribute & ClassAttribute & ColumnsAttribute & ColumnSpanAttribute & ContentAttribute & EditAttribute  & ControlsAttribute & CoordinatesAttribute & DataAttribute & DateTimeAttribute & DefaultAttribute & DeferAttribute & DirectionAttribute & DisabledAttribute & DownloadAttribute & DragAttribute & EncodingAttribute & EnterKeyHintAttribute & ForAttribute & FormAttribute & FormActionAttribute & EquivalentAttribute & HeaderAttribute & HeightAttribute & HiddenAttribute & HighAttribute & ReferenceAttribute & ReferenceLanguageAttribute & IdentifierAttribute & IsMapAttribute & InputModeAttribute & IsAttribute & ItemAttribute & ItemIdAttribute & ItemPropertyAttribute & ItemReferenceAttribute & ItemScopeAttribute & ItemTypeAttribute & KindAttribute & LabelAttribute & LanguageAttribute & ListAttribute & LoopAttribute & LowAttribute & MaximumValueAttribute & MaximumLengthAttribute & MediaAttribute & MethodAttribute & MinimumValueAttribute & MinimumLengthAttribute & MultipleAttribute & MutedAttribute & NameAttribute & NonceAttribute & NoValidateAttribute & OpenAttribute & OptimumAttribute & PatternAttribute & PartAttribute & PingAttribute & PlaceholderAttribute & PosterAttribute & PreloadAttribute & ReadOnlyAttribute & ReferrerPolicyAttribute & RelationshipAttribute & RequiredAttribute & ReversedAttribute & RoleAttribute & RowsAttribute & RowSpanAttribute & SandboxAttribute & ScopeAttribute & ShapeAttribute & SizeAttribute & SizesAttribute & SlotAttribute & SpanAttribute & SpellCheckAttribute & SourceAttribute & StartAttribute & StepAttribute & StyleAttribute & TabulatorAttribute & TargetAttribute & TitleAttribute & TranslateAttribute & TypeAttribute & ValueAttribute & WidthAttribute & WrapAttribute & PropertyAttribute & SelectedAttribute & WindowEventAttribute & FocusEventAttribute & PointerEventAttribute & MouseEventAttribute & WheelEventAttribute & InputEventAttribute & KeyboardEventAttribute & DragEventAttribute & ClipboardEventAttribute & SelectionEventAttribute & MediaEventAttribute & FormEventAttribute & DetailEventAttribute & AriaAtomicAttribute & AriaBusyAttribute & AriaControlsAttribute & AriaCurrentAttribute & AriaDescribedAttribute & AriaDetailsAttribute & AriaDisabledAttribute & AriaErrorMessageAttribute & AriaFlowToAttribute & AriaPopupAttribute & AriaHiddenAttribute & AriaInvalidAttribute & AriaShortcutsAttribute & AriaLabelAttribute & AriaLabeledAttribute & AriaLiveAttribute & AriaOwnsAttribute & AriaRelevantAttribute & AriaRoleDescriptionAttribute & DrawAttribute & FillAttribute & FillOpacityAttribute & StrokeAttribute & StrokeWidthAttribute & StrokeOpacityAttribute & StrokeLineCapAttribute & StrokeLineJoinAttribute & RadiusAttribute & PositionPointAttribute & RadiusPointAttribute & CenterPointAttribute & ViewBoxAttribute & NamespaceAttribute & PointsAttribute & ShadowRootModeAttribute & InertAttribute & FetchPriorityAttribute & LoadingAttribute & SourceSetAttribute & DecodingAttribute & BlockingAttribute & PopoverAttribute & PopoverTargetAttribute & PopoverActionAttribute & UseMapAttribute & PlaysInlineAttribute & IntegrityAttribute & AsAttribute & CrossOriginAttribute & SourceLanguageAttribute & SourceDocumentAttribute
     
     struct Tag: ContentNode, GlobalElement, AllAttributes {
 
-        internal var name: String { "tag" }
+        var name: String { "tag" }
 
-        internal var attributes: OrderedDictionary<String, Any>?
+        var attributes: OrderedDictionary<String, Any>?
 
-        internal var content: [Content]
+        var content: [Content]
 
-        public init(@ContentBuilder<Content> content: () -> [Content]) {
+        init(@ContentBuilder<Content> content: () -> [Content]) {
             self.content = content()
         }
         
-        internal init(attributes: OrderedDictionary<String, Any>?, content: [Content]) {
+        init(attributes: OrderedDictionary<String, Any>?, content: [Content]) {
             self.attributes = attributes
             self.content = content
         }
         
         func accessKey(_ value: Character) -> Tag {
             return self.mutate(accesskey: value)
+        }
+        
+        func `as`(_ value: HTMLKit.Values.Resource) -> Tag {
+            return self.mutate(as: value.rawValue)
         }
         
         func autocapitalize(_ value: Values.Capitalization) -> Tag {
@@ -65,11 +70,7 @@ final class AttributesTests: XCTestCase {
             return self.mutate(enterkeyhint: value.rawValue)
         }
         
-        func hidden() -> Tag {
-            return self.mutate(hidden: "hidden")
-        }
-        
-        public func hidden(_ condition: Bool) -> Tag {
+        func hidden(_ condition: Bool = true) -> Tag {
             
             if condition {
                 return mutate(hidden: "hidden")
@@ -82,12 +83,20 @@ final class AttributesTests: XCTestCase {
             return self.mutate(id: value)
         }
         
-        func inputMode(_ value: String) -> Tag {
-            return self.mutate(inputmode: value)
+        func inputMode(_ value: Values.Mode) -> Tag {
+            return mutate(inputmode: value.rawValue)
         }
         
         func `is`(_ value: String) -> Tag {
             return self.mutate(is: value)
+        }
+        
+        func item(id: String? = nil, as schema: URL? = nil, for elements: [String]? = nil) -> Tag {
+            return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements?.joined(separator: " "))
+        }
+        
+        func item(id: String? = nil, as schema: URL? = nil, for elements: String...) -> Tag {
+            return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements.joined( separator: " "))
         }
         
         func itemId(_ value: String) -> Tag {
@@ -134,7 +143,16 @@ final class AttributesTests: XCTestCase {
             return self.mutate(tabindex: value)
         }
         
+        @_disfavoredOverload
         func title(_ value: String) -> Tag {
+            return self.mutate(title: value)
+        }
+        
+        func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Tag {
+            return self.mutate(title: LocalizedString(key: localizedKey, table: tableName))
+        }
+        
+        func title(verbatim value: String) -> Tag {
             return self.mutate(title: value)
         }
         
@@ -150,7 +168,16 @@ final class AttributesTests: XCTestCase {
             return self.mutate(action: value)
         }
         
+        @_disfavoredOverload
         func alternate(_ value: String) -> Tag {
+            return self.mutate(alternate: value)
+        }
+        
+        func alternate(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Tag {
+            return mutate(alternate: LocalizedString(key: localizedKey, table: tableName))
+        }
+        
+        func alternate(verbatim value: String) -> Tag {
             return self.mutate(alternate: value)
         }
         
@@ -158,15 +185,15 @@ final class AttributesTests: XCTestCase {
             return self.mutate(async: "async")
         }
         
-        func hasCompletion(_ value: Bool) -> Tag {
-            return self.mutate(autocomplete: value)
+        func autocomplete(_ value: Values.Completion) -> Tag {
+            return mutate(autocomplete: value.rawValue)
         }
         
-        func autoplay() -> Tag {
-            return self.mutate(autoplay: "autoplay")
+        func autocomplete(_ values: OrderedSet<Values.Completion>) -> Tag {
+            return mutate(autocomplete: values.map { $0.rawValue }.joined(separator: " "))
         }
         
-        public func autoplay(_ condition: Bool) -> Tag {
+        func autoplay(_ condition: Bool = true) -> Tag {
             
             if condition {
                 return mutate(autoplay: "autoplay")
@@ -179,11 +206,7 @@ final class AttributesTests: XCTestCase {
             return self.mutate(charset: value.rawValue)
         }
         
-        func checked() -> Tag {
-            return self.mutate(checked: "checked")
-        }
-        
-        public func checked(_ condition: Bool) -> Tag {
+        func checked(_ condition: Bool = true) -> Tag {
             
             if condition {
                 return mutate(checked: "checked")
@@ -205,7 +228,15 @@ final class AttributesTests: XCTestCase {
         }
         
         func content(_ value: String) -> Tag {
-            return self.mutate(content: value)
+            return mutate(content: value)
+        }
+        
+        func content(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Tag {
+            return mutate(content: LocalizedString(key: localizedKey, table: tableName))
+        }
+        
+        func content(verbatim value: String) -> Tag {
+            return mutate(content: value)
         }
         
         func controls() -> Tag {
@@ -232,11 +263,7 @@ final class AttributesTests: XCTestCase {
             return self.mutate(defer: "defer")
         }
         
-        func disabled() -> Tag {
-            return self.mutate(disabled: "disabled")
-        }
-        
-        public func disabled(_ condition: Bool) -> Tag {
+        func disabled(_ condition: Bool = true) -> Tag {
             
             if condition {
                 return mutate(disabled: "disabled")
@@ -305,8 +332,13 @@ final class AttributesTests: XCTestCase {
             return self.mutate(list: value)
         }
         
-        func loop() -> Tag {
-            return self.mutate(loop: "loop")
+        func loop(_ condition: Bool = true) -> Tag {
+            
+            if condition {
+                return self.mutate(loop: "loop")
+            }
+            
+            return self
         }
         
         func low(_ size: Float) -> Tag {
@@ -373,8 +405,26 @@ final class AttributesTests: XCTestCase {
             return self.mutate(ping: value)
         }
         
+        @_disfavoredOverload
         func placeholder(_ value: String) -> Tag {
             return self.mutate(placeholder: value)
+        }
+        
+        func placeholder(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Tag {
+            return self.mutate(placeholder: LocalizedString(key: localizedKey, table: tableName))
+        }
+        
+        func placeholder(verbatim value: String) -> Tag {
+            return self.mutate(placeholder: value)
+        }
+        
+        func playInline(_ condition: Bool = true) -> Tag {
+            
+            if condition {
+                return mutate(playsinline: "playsinline")
+            }
+            
+            return self
         }
         
         func poster(_ value: String) -> Tag {
@@ -385,11 +435,7 @@ final class AttributesTests: XCTestCase {
             return self.mutate(preload: value.rawValue)
         }
         
-        func readonly() -> Tag {
-            return self.mutate(readonly: "readonly")
-        }
-        
-        public func readonly(_ condition: Bool) -> Tag {
+        func readonly(_ condition: Bool = true) -> Tag {
             
             if condition {
                 return mutate(readonly: "readonly")
@@ -406,11 +452,7 @@ final class AttributesTests: XCTestCase {
             return self.mutate(rel: value.rawValue)
         }
         
-        func required() -> Tag {
-            return self.mutate(required: "required")
-        }
-        
-        public func required(_ condition: Bool) -> Tag {
+        func required(_ condition: Bool = true) -> Tag {
             
             if condition {
                 return mutate(required: "required")
@@ -435,8 +477,16 @@ final class AttributesTests: XCTestCase {
             return self.mutate(sandbox: "sandbox")
         }
         
-        func scope(_ value: String) -> Tag {
-            return self.mutate(scope: value)
+        func sandbox(_ value: Values.Permission) -> Tag {
+            return self.mutate(sandbox: value.rawValue)
+        }
+        
+        func sandbox(_ values: OrderedSet<Values.Permission>) -> Tag {
+            return self.mutate(sandbox: values.map { $0.rawValue }.joined(separator: " "))
+        }
+        
+        func scope(_ value: Values.Scope) -> Tag {
+            return self.mutate(scope: value.rawValue)
         }
         
         func shape(_ value: Values.Shape) -> Tag {
@@ -463,8 +513,16 @@ final class AttributesTests: XCTestCase {
             return self.mutate(source: value)
         }
         
-        public func source(_ value: EnvironmentValue) -> Tag {
+        func source(_ value: EnvironmentValue) -> Tag {
             return mutate(source: value)
+        }
+        
+        func sourceDocument(_ value: String) -> Tag {
+            return mutate(sourcedocument: value)
+        }
+        
+        func sourceLanguage(_ value: Values.Language) -> Tag {
+            return mutate(sourcelanguage: value.rawValue)
         }
         
         func sourceSet(_ value: String) -> Tag {
@@ -487,8 +545,17 @@ final class AttributesTests: XCTestCase {
             return self.mutate(type: value)
         }
         
+        @_disfavoredOverload
         func value(_ value: String) -> Tag {
-            return self.mutate(value: value)
+            return mutate(value: value)
+        }
+        
+        func value(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Tag {
+            return mutate(value: LocalizedString(key: localizedKey, table: tableName))
+        }
+        
+        func value(verbatim value: String) -> Tag {
+            return mutate(value: value)
         }
         
         func width(_ size: Int) -> Tag {
@@ -503,8 +570,13 @@ final class AttributesTests: XCTestCase {
             return self.mutate(property: value.rawValue)
         }
         
-        func selected() -> Tag {
-            return self.mutate(selected: "selected")
+        func selected(_ condition: Bool = true) -> Tag {
+            
+            if condition {
+                return self.mutate(selected: "selected")
+            }
+            
+            return self
         }
         
         func draw(_ value: String) -> Tag {
@@ -591,12 +663,28 @@ final class AttributesTests: XCTestCase {
             return self.mutate(popoveraction: value.rawValue)
         }
         
+        func useMap(_ id: String) -> Tag {
+            return mutate(usemap: id)
+        }
+        
         func custom(key: String, value: Any) -> Tag {
             return self.mutate(key: key, value: value)
         }
         
         func blocking(_ value: Values.Blocking) -> Tag {
             return self.mutate(blocking: value.rawValue)
+        }
+        
+        func integrity(_ hashes: String...) -> Tag {
+            return self.mutate(integrity: hashes.joined(separator: " "))
+        }
+        
+        func integrity(_ hashes: [String]) -> Tag {
+            return self.mutate(integrity: hashes.joined(separator: " "))
+        }
+        
+        func crossOrigin(_ value: Credential.Mode) -> Tag {
+            return self.mutate(crossorigin: value.rawValue)
         }
         
         func on(event: Events.Window, _ value: String) -> Tag {
@@ -651,79 +739,79 @@ final class AttributesTests: XCTestCase {
             return self.mutate(key: event.rawValue, value: value)
         }
         
-        public func aria(atomic value: Bool) -> Tag {
+        func aria(atomic value: Bool) -> Tag {
             return mutate(ariaatomic: value)
         }
         
-        public func aria(busy value: Bool) -> Tag {
+        func aria(busy value: Bool) -> Tag {
             return mutate(ariabusy: value)
         }
         
-        public func aria(controls value: String) -> Tag {
+        func aria(controls value: String) -> Tag {
             return mutate(ariacontrols: value)
         }
         
-        public func aria(current value: Values.Accessibility.Current) -> Tag {
+        func aria(current value: Values.Accessibility.Current) -> Tag {
             return mutate(ariacurrent: value.rawValue)
         }
         
-        public func aria(describedBy value: String) -> Tag {
+        func aria(describedBy value: String) -> Tag {
             return mutate(ariadescribedby: value)
         }
         
-        public func aria(details value: String) -> Tag {
+        func aria(details value: String) -> Tag {
             return mutate(ariadetails: value)
         }
         
-        public func aria(disabled value: Bool) -> Tag {
+        func aria(disabled value: Bool) -> Tag {
             return mutate(ariadisabled: value)
         }
         
-        public func aria(errorMessage value: String) -> Tag {
+        func aria(errorMessage value: String) -> Tag {
             return mutate(ariaerrormessage: value)
         }
         
-        public func aria(flowTo value: String) -> Tag {
+        func aria(flowTo value: String) -> Tag {
             return mutate(ariaflowto: value)
         }
         
-        public func aria(hasPopup value: Values.Accessibility.Popup) -> Tag {
+        func aria(hasPopup value: Values.Accessibility.Popup) -> Tag {
             return mutate(ariahaspopup: value.rawValue)
         }
         
-        public func aria(hidden value: Bool) -> Tag {
+        func aria(hidden value: Bool) -> Tag {
             return mutate(ariahidden: value)
         }
         
-        public func aria(invalid value: Values.Accessibility.Invalid) -> Tag {
+        func aria(invalid value: Values.Accessibility.Invalid) -> Tag {
             return mutate(ariainvalid: value.rawValue)
         }
         
-        public func aria(keyShortcuts value: String) -> Tag {
+        func aria(keyShortcuts value: String) -> Tag {
             return mutate(ariakeyshortcuts: value)
         }
         
-        public func aria(label value: String) -> Tag {
+        func aria(label value: String) -> Tag {
             return mutate(arialabel: value)
         }
         
-        public func aria(labeledBy value: String) -> Tag {
+        func aria(labeledBy value: String) -> Tag {
             return mutate(arialabeledby: value)
         }
         
-        public func aria(live value: Values.Accessibility.Live) -> Tag {
+        func aria(live value: Values.Accessibility.Live) -> Tag {
             return mutate(arialive: value.rawValue)
         }
         
-        public func aria(owns value: String) -> Tag {
+        func aria(owns value: String) -> Tag {
             return mutate(ariaowns: value)
         }
         
-        public func aria(relevant value: Values.Accessibility.Relevant) -> Tag {
+        func aria(relevant value: Values.Accessibility.Relevant) -> Tag {
             return mutate(ariarelevant: value.rawValue)
         }
         
-        public func aria(roleDescription value: String) -> Tag {
+        func aria(roleDescription value: String) -> Tag {
             return mutate(ariaroledescription: value)
         }
         
@@ -731,11 +819,7 @@ final class AttributesTests: XCTestCase {
             return mutate(shadowrootmode: value.rawValue)
         }
         
-        func inert() -> Tag {
-            return self.mutate(inert: "inert")
-        }
-        
-        public func inert(_ condition: Bool) -> Tag {
+        func inert(_ condition: Bool = true) -> Tag {
             
             if condition {
                 return mutate(inert: "inert")
@@ -1043,12 +1127,18 @@ final class AttributesTests: XCTestCase {
     func testCompleteAttribute() throws {
         
         let view = TestView {
-            Tag {}.hasCompletion(true)
+            Tag {}.autocomplete(.on)
+            Tag {}.autocomplete(.off)
+            Tag {}.autocomplete([.organization, .organizationTitle])
+            Tag {}.autocomplete([.birthday, .birthday])
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <tag autocomplete="true"></tag>
+                       <tag autocomplete="on"></tag>\
+                       <tag autocomplete="off"></tag>\
+                       <tag autocomplete="organization organization-title"></tag>\
+                       <tag autocomplete="bday"></tag>
                        """
         )
     }
@@ -1373,6 +1463,30 @@ final class AttributesTests: XCTestCase {
         )
     }
     
+    func testItemAttribute() throws {
+        
+        let view = TestView {
+            Tag {}.item()
+            Tag {}.item(id: "id")
+            Tag {}.item(as: "https://schema.org/Person")
+            Tag {}.item(as: URL(string: "https://schema.org/Person"))
+            Tag {}.item(for: "foo", "bar")
+            Tag {}.item(for: ["foo", "bar"])
+            
+        }
+        
+        XCTAssertEqual(try renderer.render(view: view),
+                       """
+                       <tag itemscope="itemscope"></tag>\
+                       <tag itemscope="itemscope" itemid="id"></tag>\
+                       <tag itemscope="itemscope" itemtype="https://schema.org/Person"></tag>\
+                       <tag itemscope="itemscope" itemtype="https://schema.org/Person"></tag>\
+                       <tag itemscope="itemscope" itemref="foo bar"></tag>\
+                       <tag itemscope="itemscope" itemref="foo bar"></tag>
+                       """
+        )
+    }
+    
     func testReferenceAttribute() throws {
         
         let view = TestView {
@@ -1454,11 +1568,18 @@ final class AttributesTests: XCTestCase {
     func testLoopAttribute() throws {
         
         let view = TestView {
+            // unconditionally
             Tag {}.loop()
+            // with a false condition
+            Tag {}.loop(false)
+            // with a true condition
+            Tag {}.loop(true)
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
+                       <tag loop="loop"></tag>\
+                       <tag></tag>\
                        <tag loop="loop"></tag>
                        """
         )
@@ -1520,11 +1641,15 @@ final class AttributesTests: XCTestCase {
         
         let view = TestView {
             Tag {}.method(.get)
+            Tag {}.method(.post)
+            Tag {}.method(.dialog)
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <tag method="get"></tag>
+                       <tag method="get"></tag>\
+                       <tag method="post"></tag>\
+                       <tag method="dialog"></tag>
                        """
         )
     }
@@ -1685,6 +1810,23 @@ final class AttributesTests: XCTestCase {
         )
     }
     
+    func testPlaysInlineAttribute() throws {
+        
+        let view = TestView {
+            Tag {}.playInline()
+            Tag {}.playInline(false)
+            Tag {}.playInline(true)
+        }
+        
+        XCTAssertEqual(try renderer.render(view: view),
+                       """
+                       <tag playsinline="playsinline"></tag>\
+                       <tag></tag>\
+                       <tag playsinline="playsinline"></tag>
+                       """
+        )
+    }
+    
     func testPosterAttribute() throws {
         
         let view = TestView {
@@ -1820,11 +1962,15 @@ final class AttributesTests: XCTestCase {
         
         let view = TestView {
             Tag {}.sandbox()
+            Tag {}.sandbox(.allowDownloads)
+            Tag {}.sandbox([.allowDownloads, .allowForms])
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <tag sandbox="sandbox"></tag>
+                       <tag sandbox="sandbox"></tag>\
+                       <tag sandbox="allow-downloads"></tag>\
+                       <tag sandbox="allow-downloads allow-forms"></tag>
                        """
         )
     }
@@ -1832,12 +1978,18 @@ final class AttributesTests: XCTestCase {
     func testScopeAttribute() throws {
         
         let view = TestView {
-            Tag {}.scope("scope")
+            Tag {}.scope(.column)
+            Tag {}.scope(.row)
+            Tag {}.scope(.columnGroup)
+            Tag {}.scope(.rowGroup)
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <tag scope="scope"></tag>
+                       <tag scope="col"></tag>\
+                       <tag scope="row"></tag>\
+                       <tag scope="colgroup"></tag>\
+                       <tag scope="rowgroup"></tag>
                        """
         )
     }
@@ -1920,6 +2072,32 @@ final class AttributesTests: XCTestCase {
         )
     }
     
+    func testSourceDocumentAttribute() throws {
+        
+        let view = TestView {
+            Tag {}.sourceDocument("<!doctype html><html lang=\"de\"></html>")
+        }
+        
+        XCTAssertEqual(try renderer.render(view: view),
+                       """
+                       <tag srcdoc="<!doctype html><html lang=&quot;de&quot;></html>"></tag>
+                       """
+        )
+    }
+    
+    func testSourceLanguageAttribute() throws {
+        
+        let view = TestView {
+            Tag {}.sourceLanguage(.english)
+        }
+        
+        XCTAssertEqual(try renderer.render(view: view),
+                       """
+                       <tag srclang="en"></tag>
+                       """
+        )
+    }
+    
     func testSourceSetAttribute() throws {
         
         let view = TestView {
@@ -1985,14 +2163,34 @@ final class AttributesTests: XCTestCase {
         )
     }
     
-    func testSelectedAttribute() throws {
+    func testUseMapAttribute() throws {
         
         let view = TestView {
-            Tag {}.selected()
+            Tag {}.useMap("image_map")
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
+                       <tag usemap="#image_map"></tag>
+                       """
+        )
+    }
+    
+    func testSelectedAttribute() throws {
+        
+        let view = TestView {
+            // unconditionally
+            Tag {}.selected()
+            // with a false condition
+            Tag {}.selected(false)
+            // with a true condition
+            Tag {}.selected(true)
+        }
+        
+        XCTAssertEqual(try renderer.render(view: view),
+                       """
+                       <tag selected="selected"></tag>\
+                       <tag></tag>\
                        <tag selected="selected"></tag>
                        """
         )
@@ -2033,6 +2231,19 @@ final class AttributesTests: XCTestCase {
         XCTAssertEqual(try renderer.render(view: view),
                        """
                        <tag decoding="async"></tag>
+                       """
+        )
+    }
+    
+    func testValueAttribute() throws {
+        
+        let view = TestView {
+            Tag {}.value("value")
+        }
+        
+        XCTAssertEqual(try renderer.render(view: view),
+                       """
+                       <tag value="value"></tag>
                        """
         )
     }
@@ -2085,6 +2296,51 @@ final class AttributesTests: XCTestCase {
         XCTAssertEqual(try renderer.render(view: view),
                        """
                        <tag popovertargetaction="toggle"></tag>
+                       """
+        )
+    }
+    
+    func testIntegrityAttribute() throws {
+        
+        let view = TestView {
+            Tag {}.integrity("sha384...")
+            Tag {}.integrity("sha384...", "sha384...")
+            Tag {}.integrity(["sha384...", "sha384..."])
+        }
+        
+        XCTAssertEqual(try renderer.render(view: view),
+                       """
+                       <tag integrity="sha384..."></tag>\
+                       <tag integrity="sha384... sha384..."></tag>\
+                       <tag integrity="sha384... sha384..."></tag>
+                       """
+        )
+    }
+    
+    func testAsAttribute() throws {
+        
+        let view = TestView {
+            Tag {}.as(.fetch)
+        }
+        
+        XCTAssertEqual(try renderer.render(view: view),
+                       """
+                       <tag as="fetch"></tag>
+                       """
+        )
+    }
+    
+    func testCrossOriginAttribute() throws {
+        
+        let view = TestView {
+            Tag {}.crossOrigin(.anonymous)
+            Tag {}.crossOrigin(.useCredentials)
+        }
+        
+        XCTAssertEqual(try renderer.render(view: view),
+                       """
+                       <tag crossorigin="anonymous"></tag>\
+                       <tag crossorigin="use-credentials"></tag>
                        """
         )
     }
@@ -2742,6 +2998,33 @@ final class AttributesTests: XCTestCase {
                        <tag inert="inert"></tag>\
                        <tag></tag>\
                        <tag inert="inert"></tag>
+                       """
+        )
+    }
+    
+    func testInputModeAttribute() throws {
+        
+        let view = TestView {
+            Tag {}.inputMode(.decimal)
+            Tag {}.inputMode(.email)
+            Tag {}.inputMode(.none)
+            Tag {}.inputMode(.numeric)
+            Tag {}.inputMode(.phone)
+            Tag {}.inputMode(.search)
+            Tag {}.inputMode(.text)
+            Tag {}.inputMode(.url)
+        }
+        
+        XCTAssertEqual(try renderer.render(view: view),
+                       """
+                       <tag inputmode="decimal"></tag>\
+                       <tag inputmode="email"></tag>\
+                       <tag inputmode="none"></tag>\
+                       <tag inputmode="numeric"></tag>\
+                       <tag inputmode="tel"></tag>\
+                       <tag inputmode="search"></tag>\
+                       <tag inputmode="text"></tag>\
+                       <tag inputmode="url"></tag>
                        """
         )
     }

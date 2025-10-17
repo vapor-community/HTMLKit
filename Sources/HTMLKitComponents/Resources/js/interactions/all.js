@@ -98,10 +98,6 @@ var $ = (function () {
         
         const elements = document.getElementsByClassName('state:visible');
         
-        for (let element of elements){
-            element.classList.remove('state:visible');
-        }
-        
         this.elems[0].classList.add('state:visible');
     };
     

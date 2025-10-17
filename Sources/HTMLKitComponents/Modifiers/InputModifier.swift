@@ -1,15 +1,18 @@
-/*
- Abstract:
- The file contains the modifiers for input components.
- */
-
 /// A type that describes the modifier of a input component.
 public protocol InputModifier {
     
-    /// Sets the state of the view.
+    /// Disable the input
+    ///
+    /// - Parameter condition: Whether to disable the input.
+    ///
+    /// - Returns: The input
     func disabled(_ condition: Bool) -> Self
     
-    /// Sets the focus color of the input.
+    /// Set the focus color for the input.
+    ///
+    /// - Parameter color: The color to apply as the focus.
+    ///
+    /// - Returns: The input
     func focusColor(_ color: Tokens.FocusColor) -> Self
 }
 
@@ -23,4 +26,3 @@ extension InputModifier where Self: Modifiable {
         return self.mutate(class: "focus:\(value)")
     }
 }
-

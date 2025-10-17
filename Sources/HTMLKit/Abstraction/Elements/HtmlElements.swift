@@ -1,17 +1,14 @@
-/*
- Abstract:
- The file contains the html elements. The html-element 'html' only allows these elements to be its descendants.
-
- Note:
- If you about to add something to the file, stick to the official documentation to keep the code consistent.
- */
-
+import Foundation
 import OrderedCollections
 
-/// The element contains the information about the document's content.
+/// An element that represents the document head.
 ///
-/// ```html
-/// <head></head>
+/// ```swift
+/// Head {
+///     Title {
+///         "Lorem ipsum"
+///     }
+/// }
 /// ```
 public struct Head: ContentNode, HtmlElement {
 
@@ -20,7 +17,10 @@ public struct Head: ContentNode, HtmlElement {
     internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: [HeadElement]
-
+    
+    /// Create a head.
+    ///
+    /// - Parameter content: The head's content.
     public init(@ContentBuilder<HeadElement> content: () -> [HeadElement]) {
         self.content = content()
     }
@@ -83,11 +83,7 @@ extension Head: GlobalAttributes, GlobalEventAttributes {
         return mutate(enterkeyhint: value.rawValue)
     }
     
-    public func hidden() -> Head {
-        return mutate(hidden: "hidden")
-    }
-    
-    public func hidden(_ condition: Bool) -> Head {
+    public func hidden(_ condition: Bool = true) -> Head {
         
         if condition {
             return mutate(hidden: "hidden")
@@ -96,14 +92,28 @@ extension Head: GlobalAttributes, GlobalEventAttributes {
         return self
     }
     
+    @available(*, deprecated, message: "The inputmode attribute is actually an enumerated attribute. Use the inputMode(_: Mode) modifier instead.")
     public func inputMode(_ value: String) -> Head {
         return mutate(inputmode: value)
+    }
+    
+    public func inputMode(_ value: Values.Mode) -> Head {
+        return mutate(inputmode: value.rawValue)
     }
     
     public func `is`(_ value: String) -> Head {
         return mutate(is: value)
     }
     
+    public func item(id: String? = nil, as schema: URL? = nil, for elements: [String]? = nil) -> Head {
+        return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements?.joined(separator:  " "))
+    }
+    
+    public func item(id: String? = nil, as schema: URL? = nil, for elements: String...) -> Head {
+        return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements.joined(separator:  " "))
+    }
+    
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemId(_ value: String) -> Head {
         return mutate(itemid: value)
     }
@@ -112,14 +122,17 @@ extension Head: GlobalAttributes, GlobalEventAttributes {
         return mutate(itemprop: value)
     }
     
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemReference(_ value: String) -> Head {
         return mutate(itemref: value)
     }
     
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemScope(_ value: String) -> Head {
         return mutate(itemscope: value)
     }
     
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemType(_ value: String) -> Head {
         return mutate(itemtype: value)
     }
@@ -152,7 +165,16 @@ extension Head: GlobalAttributes, GlobalEventAttributes {
         return mutate(tabindex: value)
     }
     
+    @_disfavoredOverload
     public func title(_ value: String) -> Head {
+        return mutate(title: value)
+    }
+    
+    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Head {
+        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    }
+    
+    public func title(verbatim value: String) -> Head {
         return mutate(title: value)
     }
     
@@ -160,11 +182,7 @@ extension Head: GlobalAttributes, GlobalEventAttributes {
         return mutate(translate: value.rawValue)
     }
     
-    public func inert() -> Head {
-        return mutate(inert: "inert")
-    }
-    
-    public func inert(_ condition: Bool) -> Head {
+    public func inert(_ condition: Bool = true) -> Head {
 
         if condition {
             return mutate(inert: "inert")
@@ -202,10 +220,19 @@ extension Head: GlobalAttributes, GlobalEventAttributes {
     }
 }
 
-/// The element contains the document's content.
+/// An element that represents the document body.
 ///
-/// ```html
-/// <body></body>
+/// ```swift
+/// Html {
+///     Head {
+///         ...
+///     }
+///     Body {
+///         Heading1 {
+///             "Lorem ipsum..."
+///         }
+///     }
+/// }
 /// ```
 public struct Body: ContentNode, HtmlElement {
 
@@ -215,6 +242,9 @@ public struct Body: ContentNode, HtmlElement {
 
     internal var content: [BodyElement]
 
+    /// Create a body.
+    ///
+    /// - Parameter content: The body's content.
     public init(@ContentBuilder<BodyElement> content: () -> [BodyElement]) {
         self.content = content()
     }
@@ -276,12 +306,8 @@ extension Body: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, W
     public func enterKeyHint(_ value: Values.Hint) -> Body {
         return mutate(enterkeyhint: value.rawValue)
     }
-
-    public func hidden() -> Body {
-        return mutate(hidden: "hidden")
-    }
     
-    public func hidden(_ condition: Bool) -> Body {
+    public func hidden(_ condition: Bool = true) -> Body {
         
         if condition {
             return mutate(hidden: "hidden")
@@ -290,14 +316,28 @@ extension Body: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, W
         return self
     }
 
+    @available(*, deprecated, message: "The inputmode attribute is actually an enumerated attribute. Use the inputMode(_: Mode) modifier instead.")
     public func inputMode(_ value: String) -> Body {
         return mutate(inputmode: value)
+    }
+    
+    public func inputMode(_ value: Values.Mode) -> Body {
+        return mutate(inputmode: value.rawValue)
     }
 
     public func `is`(_ value: String) -> Body {
         return mutate(is: value)
     }
+    
+    public func item(id: String? = nil, as schema: URL? = nil, for elements: [String]? = nil) -> Body {
+        return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements?.joined(separator: " "))
+    }
+    
+    public func item(id: String? = nil, as schema: URL? = nil, for elements: String...) -> Body {
+        return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements.joined(separator: " "))
+    }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemId(_ value: String) -> Body {
         return mutate(itemid: value)
     }
@@ -306,14 +346,17 @@ extension Body: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, W
         return mutate(itemprop: value)
     }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemReference(_ value: String) -> Body {
         return mutate(itemref: value)
     }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemScope(_ value: String) -> Body {
         return mutate(itemscope: value)
     }
     
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemType(_ value: String) -> Body {
         return mutate(itemtype: value)
     }
@@ -346,19 +389,24 @@ extension Body: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, W
         return mutate(tabindex: value)
     }
 
+    @_disfavoredOverload
     public func title(_ value: String) -> Body {
+        return mutate(title: value)
+    }
+    
+    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Body {
+        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    }
+    
+    public func title(verbatim value: String) -> Body {
         return mutate(title: value)
     }
     
     public func translate(_ value: Values.Decision) -> Body {
         return mutate(translate: value.rawValue)
     }
-    
-    public func inert() -> Body {
-        return mutate(inert: "inert")
-    }
-    
-    public func inert(_ condition: Bool) -> Body {
+
+    public func inert(_ condition: Bool = true) -> Body {
 
         if condition {
             return mutate(inert: "inert")

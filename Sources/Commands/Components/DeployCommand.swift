@@ -44,7 +44,7 @@ internal struct DeployCommand {
         
         let template = """
         @charset "utf-8";
-        /* Copyright (c) 2019 - 2023 Vapor Community - Licensed under MIT (https://github.com/vapor-community/HTMLKit/blob/main/LICENSE) */
+        /* Copyright (c) 2019 - 2024 Vapor Community - Licensed under MIT (https://github.com/vapor-community/HTMLKit/blob/main/LICENSE) */
         """
         
         if !manager.fileExists(atPath: target) {
@@ -94,7 +94,7 @@ internal struct DeployCommand {
     private static func bundle(js source: String, to target: String, with filename: String, option: BundleOption = .minified) throws {
         
         let template = """
-        /* Copyright (c) 2019 - 2023 Vapor Community - Licensed under MIT (https://github.com/vapor-community/HTMLKit/blob/main/LICENSE) */
+        /* Copyright (c) 2019 - 2024 Vapor Community - Licensed under MIT (https://github.com/vapor-community/HTMLKit/blob/main/LICENSE) */
         """
         
         if !manager.fileExists(atPath: target) {

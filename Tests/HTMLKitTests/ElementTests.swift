@@ -767,8 +767,8 @@ final class ElementTests: XCTestCase {
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <v></v>\
-                       <v></v>
+                       <var></var>\
+                       <var></var>
                        """
         )
     }
@@ -1072,21 +1072,6 @@ final class ElementTests: XCTestCase {
         )
     }
     
-    func testParameterElement() throws {
-        
-        let view = TestView {
-            Parameter()
-            Param()
-        }
-        
-        XCTAssertEqual(try renderer.render(view: view),
-                       """
-                       <param>\
-                       <param>
-                       """
-        )
-    }
-    
     func testVideoElement() throws {
         
         let view = TestView {
@@ -1142,12 +1127,12 @@ final class ElementTests: XCTestCase {
     func testAreaElement() throws {
         
         let view = TestView {
-            Area {}
+            Area()
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <area></area>
+                       <area>
                        """
         )
     }
@@ -1196,14 +1181,14 @@ final class ElementTests: XCTestCase {
     func testColumnElement() throws {
         
         let view = TestView {
-            Column {}
-            Col {}
+            Column()
+            Col()
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <col></col>\
-                       <col></col>
+                       <col>\
+                       <col>
                        """
         )
     }

@@ -1,32 +1,46 @@
-/*
- Abstract:
- The file contains a card component.
- */
-
 import HTMLKit
 
-/// A component that distinguish content.
+/// A view that represents a card container.
+///
+/// Use `Card` to group and distinguish content from other content.
+///
+/// ```swift
+/// Card {
+///     Text {
+///         "Lorem ipsum..."
+///     }
+/// } header: {
+///     Image(source: "...png")
+/// }
+/// ```
 public struct Card: View, Modifiable, Identifiable {
     
-    public var id: String?
+    /// The unique identifier of the card.
+    internal var id: String?
     
-    /// The header of the card.
-    public var header: [Content]?
+    /// The header content of the card.
+    internal var header: [Content]?
     
-    /// The content of the card.
-    public var content: [Content]
+    /// The body content of the card.
+    internal var content: [Content]
     
-    /// The classes of the content.
+    /// The class names for the card.
     internal var classes: [String]
     
-    /// Creates a card.
+    /// Create a card.
+    ///
+    /// - Parameter content: The card's content
     public init(@ContentBuilder<Content> content: () -> [Content]) {
         
         self.content = content()
         self.classes = ["card"]
     }
     
-    /// Creates a card.
+    /// Create a card.
+    ///
+    /// - Parameters:
+    ///   - content: The card's content.
+    ///   - header: The card's header.
     public init(@ContentBuilder<Content> content: () -> [Content],
                 @ContentBuilder<Content> header: () -> [Content]) {
         
@@ -52,10 +66,20 @@ public struct Card: View, Modifiable, Identifiable {
         }
     }
     
+    /// Set the identifier for the card.
+    ///
+    /// - Parameter value: The value of the identifier.
+    ///
+    /// - Returns: The card
     public func tag(_ value: String) -> Card {
         return self.mutate(id: value)
     }
     
+    /// Set the style for the card.
+    ///
+    /// - Parameter style: The configuration to apply to.
+    ///
+    /// - Returns: The card
     public func cardStyle(_ style: CardConfiguration) -> Card {
         return self.mutate(classes: style.configuration)
     }
@@ -75,11 +99,7 @@ extension Card: ViewModifier {
         return self.mutate(backgroundcolor: color.value)
     }
     
-    public func hidden() -> Card {
-        return self.mutate(viewstate: Tokens.ViewState.hidden.value)
-    }
-    
-    public func hidden(_ condition: Bool) -> Card {
+    public func hidden(_ condition: Bool = true) -> Card {
         
         if condition {
             return self.mutate(viewstate: Tokens.ViewState.hidden.value)
@@ -100,8 +120,8 @@ extension Card: ViewModifier {
         return self.mutate(bordershape: shape.value)
     }
     
-    public func borderColor(_ color: Tokens.BorderColor) -> Card {
-        return self.mutate(bordercolor: color.value)
+    public func border(_ color: Tokens.BorderColor, width: Tokens.BorderWidth = .small) -> Card {
+        return self.mutate(border: color.value, width: width.value)
     }
     
     public func frame(width: Tokens.ViewWidth, height: Tokens.ViewHeight? = nil, alignment: Tokens.FrameAlignment? = nil) -> Card {

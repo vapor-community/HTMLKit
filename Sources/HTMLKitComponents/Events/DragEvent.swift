@@ -1,8 +1,3 @@
-/*
- Abstract:
- The file contains the modifiers for components with drag interaction.
- */
-
 /// A type that describes the modifier of a draggable component.
 public protocol DragEvent {
     

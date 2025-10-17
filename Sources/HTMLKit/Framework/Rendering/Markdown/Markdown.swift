@@ -77,7 +77,7 @@ internal struct Markdown: Sendable {
 
         case .block("link"):
             
-            result += "<a href=\"\(node.children[1].value)\">\(node.children[0].value)</a>"
+            result += "<a href=\"\(node.children[1].value)\" target=\"_blank\">\(node.children[0].value)</a>"
             
         default:
             break

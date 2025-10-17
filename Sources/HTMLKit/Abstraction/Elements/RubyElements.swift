@@ -1,37 +1,25 @@
-/*
- Abstract:
- The file contains the ruby elements. The html-element 'ruby' only allows these elements to be its descendants.
- 
- Note:
- If you about to add something to the file, stick to the official documentation to keep the code consistent.
- */
-
+import Foundation
 import OrderedCollections
 
-/// The alias for the element RubyText.
-///
-/// Rt is the official tag and can be used instead of RubyText.
-///
-/// ```html
-/// <rt></rt>
-/// ```
+/// The alias for the element ``RubyText``.
 @_documentation(visibility: internal)
 public typealias Rt = RubyText
 
-/// The alias for the element RubyPronunciation.
-///
-/// Rp is the official tag and can be used instead of RubyPronunciation.
-///
-/// ```html
-/// <rp></rp>
-/// ```
+/// The alias for the element ``RubyPronunciation``.
 @_documentation(visibility: internal)
 public typealias Rp = RubyPronunciation
 
-/// The element marks the ruby text component of a ruby annotation.
+/// An element that represents a ruby annotation.
 ///
-/// ```html
-/// <rt></rt>
+/// Use `RubyText` to help with the pronunciation or meaning of the base character.
+///
+/// ```swift
+/// Ruby {
+///     "改"
+///     RubyText {
+///         "かい"
+///     }
+/// }
 /// ```
 public struct RubyText: ContentNode, RubyElement {
 
@@ -41,6 +29,9 @@ public struct RubyText: ContentNode, RubyElement {
 
     internal var content: [Content]
 
+    /// Create a ruby text.
+    ///
+    /// - Parameter content: The text's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
         self.content = content()
     }
@@ -102,12 +93,8 @@ extension RubyText: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
     public func enterKeyHint(_ value: Values.Hint) -> RubyText {
         return mutate(enterkeyhint: value.rawValue)
     }
-
-    public func hidden() -> RubyText {
-        return mutate(hidden: "hidden")
-    }
     
-    public func hidden(_ condition: Bool) -> RubyText {
+    public func hidden(_ condition: Bool = true) -> RubyText {
         
         if condition {
             return mutate(hidden: "hidden")
@@ -116,14 +103,28 @@ extension RubyText: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return self
     }
 
+    @available(*, deprecated, message: "The inputmode attribute is actually an enumerated attribute. Use the inputMode(_: Mode) modifier instead.")
     public func inputMode(_ value: String) -> RubyText {
         return mutate(inputmode: value)
+    }
+    
+    public func inputMode(_ value: Values.Mode) -> RubyText {
+        return mutate(inputmode: value.rawValue)
     }
 
     public func `is`(_ value: String) -> RubyText {
         return mutate(is: value)
     }
+    
+    public func item(id: String? = nil, as schema: URL? = nil, for elements: [String]? = nil) -> RubyText {
+        return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements?.joined(separator: " "))
+    }
+    
+    public func item(id: String? = nil, as schema: URL? = nil, for elements: String...) -> RubyText {
+        return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements.joined(separator: " "))
+    }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemId(_ value: String) -> RubyText {
         return mutate(itemid: value)
     }
@@ -132,14 +133,17 @@ extension RubyText: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(itemprop: value)
     }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemReference(_ value: String) -> RubyText {
         return mutate(itemref: value)
     }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemScope(_ value: String) -> RubyText {
         return mutate(itemscope: value)
     }
     
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemType(_ value: String) -> RubyText {
         return mutate(itemtype: value)
     }
@@ -172,7 +176,16 @@ extension RubyText: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(tabindex: value)
     }
 
+    @_disfavoredOverload
     public func title(_ value: String) -> RubyText {
+        return mutate(title: value)
+    }
+    
+    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> RubyText {
+        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    }
+    
+    public func title(verbatim value: String) -> RubyText {
         return mutate(title: value)
     }
     
@@ -180,11 +193,7 @@ extension RubyText: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(translate: value.rawValue)
     }
     
-    public func inert() -> RubyText {
-        return mutate(inert: "inert")
-    }
-    
-    public func inert(_ condition: Bool) -> RubyText {
+    public func inert(_ condition: Bool = true) -> RubyText {
 
         if condition {
             return mutate(inert: "inert")
@@ -298,10 +307,23 @@ extension RubyText: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
     }
 }
 
-/// The element represents nothing.
+/// An element that represents the ruby fallback.
 ///
-/// ```html
-/// <rp></rp>
+/// Use `RubyPronunciation` to provide an alternative text for browsers that don't support ``Ruby``.
+///
+/// ```swift
+/// Ruby {
+///     "改"
+///     RubyPronuncation {
+///         "("
+///     }
+///     RubyText {
+///         "かい"
+///     }
+///     RubyPronuncation {
+///         ")"
+///     }
+/// }
 /// ```
 public struct RubyPronunciation: ContentNode, RubyElement {
 
@@ -310,7 +332,10 @@ public struct RubyPronunciation: ContentNode, RubyElement {
     internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: [Content]
-
+    
+    /// Create a ruby pronunciation.
+    ///
+    /// - Parameter content: The pronunciation's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
         self.content = content()
     }
@@ -372,12 +397,8 @@ extension RubyPronunciation: GlobalAttributes, GlobalEventAttributes, GlobalAria
     public func enterKeyHint(_ value: Values.Hint) -> RubyPronunciation {
         return mutate(enterkeyhint: value.rawValue)
     }
-
-    public func hidden() -> RubyPronunciation {
-        return mutate(hidden: "hidden")
-    }
     
-    public func hidden(_ condition: Bool) -> RubyPronunciation {
+    public func hidden(_ condition: Bool = true) -> RubyPronunciation {
         
         if condition {
             return mutate(hidden: "hidden")
@@ -386,14 +407,28 @@ extension RubyPronunciation: GlobalAttributes, GlobalEventAttributes, GlobalAria
         return self
     }
 
+    @available(*, deprecated, message: "The inputmode attribute is actually an enumerated attribute. Use the inputMode(_: Mode) modifier instead.")
     public func inputMode(_ value: String) -> RubyPronunciation {
         return mutate(inputmode: value)
     }
 
+    public func inputMode(_ value: Values.Mode) -> RubyPronunciation {
+        return mutate(inputmode: value.rawValue)
+    }
+    
     public func `is`(_ value: String) -> RubyPronunciation {
         return mutate(is: value)
     }
+    
+    public func item(id: String? = nil, as schema: URL? = nil, for elements: [String]? = nil) -> RubyPronunciation {
+        return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements?.joined(separator: " "))
+    }
+    
+    public func item(id: String? = nil, as schema: URL? = nil, for elements: String...) -> RubyPronunciation {
+        return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements.joined(separator: " "))
+    }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemId(_ value: String) -> RubyPronunciation {
         return mutate(itemid: value)
     }
@@ -402,14 +437,17 @@ extension RubyPronunciation: GlobalAttributes, GlobalEventAttributes, GlobalAria
         return mutate(itemprop: value)
     }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemReference(_ value: String) -> RubyPronunciation {
         return mutate(itemref: value)
     }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemScope(_ value: String) -> RubyPronunciation {
         return mutate(itemscope: value)
     }
     
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemType(_ value: String) -> RubyPronunciation {
         return mutate(itemtype: value)
     }
@@ -442,7 +480,16 @@ extension RubyPronunciation: GlobalAttributes, GlobalEventAttributes, GlobalAria
         return mutate(tabindex: value)
     }
 
+    @_disfavoredOverload
     public func title(_ value: String) -> RubyPronunciation {
+        return mutate(title: value)
+    }
+    
+    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> RubyPronunciation {
+        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    }
+    
+    public func title(verbatim value: String) -> RubyPronunciation {
         return mutate(title: value)
     }
     
@@ -450,11 +497,7 @@ extension RubyPronunciation: GlobalAttributes, GlobalEventAttributes, GlobalAria
         return mutate(translate: value.rawValue)
     }
     
-    public func inert() -> RubyPronunciation {
-        return mutate(inert: "inert")
-    }
-    
-    public func inert(_ condition: Bool) -> RubyPronunciation {
+    public func inert(_ condition: Bool = true) -> RubyPronunciation {
 
         if condition {
             return mutate(inert: "inert")

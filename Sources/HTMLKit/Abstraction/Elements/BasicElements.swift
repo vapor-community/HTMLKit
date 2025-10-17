@@ -1,45 +1,71 @@
-/*
- Abstract:
- The file contains the basic html-elements. These elements should be used at first in an html-document.
- 
- Note:
- If you about to add something to the file, stick to the official documentation to keep the code consistent.
- */
-
+import Foundation
 import OrderedCollections
 
-/// The element represents a comment output.
+/// An element that represents a comment output.
 ///
-/// ```html
-/// <!-- -->
+/// Use `Comment` to insert a comment with descriptive text.
+///
+/// ```swift
+/// Comment("Lorem ipsum")
 /// ```
 public struct Comment: CommentNode, GlobalElement {
     
-    public var content: String
+    internal var content: String
     
+    /// Create a comment.
+    ///
+    /// - Parameter content: The text of the comment.
     public init(_ content: String) {
         self.content = content
     }
 }
 
-/// The element represents the document type.
+/// An element that represents a document type.
 ///
-/// ```html
-/// <!DOCTYPE html>
+/// Use `Document` to declare the type for the document.
+///
+/// ```swift
+/// Document(.html5)
+/// Html {
+///     Head {
+///     }
+///     Body {
+///     }
+/// }
 /// ```
 public struct Document: DocumentNode, BasicElement {
     
-    public var content: String
+    internal var content: String
     
+    /// Create a document.
+    ///
+    /// - Parameter value: The type to declare.
     public init(_ value: Values.Doctype) {
         self.content = value.rawValue
     }
 }
 
-/// The element represents the document's root element.
+/// An element that represents the page document.
 ///
-/// ```html
-/// <html></html>
+/// Use `Html` to define the document’s main structure, including child elements for metadata,
+/// body content, and other nested HTML components.
+///
+/// ```swift
+/// Html {
+///     Head {
+///         Title {
+///             "Lorem ipsum..."
+///         }
+///     }
+///     Body {
+///         Header {
+///         }
+///         Main {
+///         }
+///         Footer {
+///         }
+///     }
+/// }
 /// ```
 public struct Html: ContentNode, BasicElement {
 
@@ -49,6 +75,9 @@ public struct Html: ContentNode, BasicElement {
 
     internal var content: [HtmlElement]
 
+    /// Create a html.
+    ///
+    /// - Parameter content: The html's content.
     public init(@ContentBuilder<HtmlElement> content: () -> [HtmlElement]) {
         self.content = content()
     }
@@ -110,12 +139,8 @@ extension Html: GlobalAttributes, GlobalEventAttributes {
     public func enterKeyHint(_ value: Values.Hint) -> Html {
         return mutate(enterkeyhint: value.rawValue)
     }
-
-    public func hidden() -> Html {
-        return mutate(hidden: "hidden")
-    }
     
-    public func hidden(_ condition: Bool) -> Html {
+    public func hidden(_ condition: Bool = true) -> Html {
         
         if condition {
             return mutate(hidden: "hidden")
@@ -124,14 +149,28 @@ extension Html: GlobalAttributes, GlobalEventAttributes {
         return self
     }
 
+    @available(*, deprecated, message: "The inputmode attribute is actually an enumerated attribute. Use the inputMode(_: Mode) modifier instead.")
     public func inputMode(_ value: String) -> Html {
         return mutate(inputmode: value)
+    }
+    
+    public func inputMode(_ value: Values.Mode) -> Html {
+        return mutate(inputmode: value.rawValue)
     }
 
     public func `is`(_ value: String) -> Html {
         return mutate(is: value)
     }
+    
+    public func item(id: String? = nil, as schema: URL? = nil, for elements: [String]? = nil) -> Html {
+        return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements?.joined(separator: " "))
+    }
+    
+    public func item(id: String? = nil, as schema: URL? = nil, for elements: String...) -> Html {
+        return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements.joined(separator: " "))
+    }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemId(_ value: String) -> Html {
         return mutate(itemid: value)
     }
@@ -140,14 +179,17 @@ extension Html: GlobalAttributes, GlobalEventAttributes {
         return mutate(itemprop: value)
     }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemReference(_ value: String) -> Html {
         return mutate(itemref: value)
     }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemScope(_ value: String) -> Html {
         return mutate(itemscope: value)
     }
     
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemType(_ value: String) -> Html {
         return mutate(itemtype: value)
     }
@@ -180,7 +222,16 @@ extension Html: GlobalAttributes, GlobalEventAttributes {
         return mutate(tabindex: value)
     }
 
+    @_disfavoredOverload
     public func title(_ value: String) -> Html {
+        return mutate(title: value)
+    }
+    
+    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Html {
+        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    }
+    
+    public func title(verbatim value: String) -> Html {
         return mutate(title: value)
     }
     
@@ -188,11 +239,7 @@ extension Html: GlobalAttributes, GlobalEventAttributes {
         return mutate(translate: value.rawValue)
     }
     
-    public func inert() -> Html {
-        return mutate(inert: "inert")
-    }
-    
-    public func inert(_ condition: Bool) -> Html {
+    public func inert(_ condition: Bool = true) -> Html {
 
         if condition {
             return mutate(inert: "inert")
@@ -230,6 +277,14 @@ extension Html: GlobalAttributes, GlobalEventAttributes {
     }
 }
 
+/// An element that represents a custom element.
+///
+/// Use `Custom` when an element is not supported by the framework.
+///
+/// ```swift
+/// Custom(name: "lorem-ipsum") {
+/// }
+/// ```
 public struct Custom: CustomNode, GlobalElement {
 
     public var name: String
@@ -238,6 +293,11 @@ public struct Custom: CustomNode, GlobalElement {
 
     public var content: [Content]
 
+    /// Create a custom.
+    ///
+    /// - Parameters:
+    ///   - name: The tag to use for the element.
+    ///   - content: The custom's content.
     public init(name: String, @ContentBuilder<Content> content: () -> [Content]) {
         
         self.name = name

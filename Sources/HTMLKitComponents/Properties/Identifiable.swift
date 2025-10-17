@@ -1,5 +1,5 @@
 /// A type that describes a component with an identifier.
-public protocol Identifiable {
+internal protocol Identifiable {
     
     /// The identifier of the component.
     var id: String? { get set }
@@ -7,6 +7,11 @@ public protocol Identifiable {
 
 extension Identifiable {
     
+    /// Mutate the identifier.
+    ///
+    /// - Parameter id: The identifier to set.
+    ///
+    /// - Returns: The component
     internal func mutate(id: String) -> Self {
         
         var newSelf = self

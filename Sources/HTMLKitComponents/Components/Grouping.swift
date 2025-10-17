@@ -1,22 +1,33 @@
-/*
- Abstract:
- The file contains everything related to the group component.
- */
-
 import HTMLKit
 
-/// A component that collects content.
+/// A view that represents a grouping.
+///
+/// Use `Grouping` to collect content.
+///
+/// ```swift
+/// Grouping {
+///     Button(role: .button) {
+///         "Lorem ipsum"
+///     }
+///     Button(role: .button) {
+///         "Lorem ipsum"
+///     }
+/// }
+/// ```
 public struct Grouping: View, Modifiable, Identifiable {
     
-    public var id: String?
+    /// The unique identifier of the grouping.
+    internal var id: String?
     
-    /// The content of the group.
+    /// The body content of the grouping.
     internal var content: [Content]
     
-    /// The classes of the group.
+    /// The class names for the grouping.
     internal var classes: [String]
     
-    /// Creates a group.
+    /// Create a grouping.
+    ///
+    /// - Parameter content: The grouping's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
         
         self.content = content()
@@ -33,6 +44,14 @@ public struct Grouping: View, Modifiable, Identifiable {
         }
     }
     
+    /// Set the frame for the grouping.
+    ///
+    /// - Parameters:
+    ///   - width: The width to constrain the frame to.
+    ///   - height: The height to constrain the frame to.
+    ///   - alignment: The rule to align the frame relative to its parent.
+    ///
+    /// - Returns: The grouping
     public func frame(width: Tokens.ViewWidth, height: Tokens.ViewHeight? = nil, alignment: Tokens.FrameAlignment? = nil) -> Grouping {
         
         var newSelf = self
@@ -50,6 +69,11 @@ public struct Grouping: View, Modifiable, Identifiable {
         return newSelf
     }
     
+    /// Set the identifier for the grouping.
+    ///
+    /// - Parameter value: The value of the identifier.
+    ///
+    /// - Returns: The grouping
     public func tag(_ value: String) -> Grouping {
         return self.mutate(id: value)
     }
@@ -93,11 +117,7 @@ extension Grouping: TextModifier {
         return self.mutate(fontstyle: style.value)
     }
     
-    public func bold() -> Grouping {
-        return self.mutate(fontweight: Tokens.FontWeight.bold.value)
-    }
-    
-    public func bold(_ condition: Bool) -> Grouping {
+    public func bold(_ condition: Bool = true) -> Grouping {
         
         if condition {
             return self.mutate(fontweight: Tokens.FontWeight.bold.value)
@@ -106,11 +126,7 @@ extension Grouping: TextModifier {
         return self
     }
     
-    public func italic() -> Grouping {
-        return self.mutate(fontstyle: Tokens.FontStyle.italic.value)
-    }
-    
-    public func italic(_ condition: Bool) -> Grouping {
+    public func italic(_ condition: Bool = true) -> Grouping {
     
         if condition {
             return self.mutate(fontstyle: Tokens.FontStyle.italic.value)
@@ -119,11 +135,7 @@ extension Grouping: TextModifier {
         return self
     }
     
-    public func underline() -> Grouping {
-        return self.mutate(textdecoration: Tokens.TextDecoration.underline.value)
-    }
-    
-    public func underline(_ condition: Bool) -> Grouping {
+    public func underline(_ condition: Bool = true) -> Grouping {
         
         if condition {
             return self.mutate(textdecoration: Tokens.TextDecoration.underline.value)
@@ -132,11 +144,7 @@ extension Grouping: TextModifier {
         return self
     }
     
-    public func strikethrough() -> Grouping {
-        return self.mutate(textdecoration: Tokens.TextDecoration.strikeThrough.value)
-    }
-    
-    public func strikethrough(_ condition: Bool) -> Grouping {
+    public func strikethrough(_ condition: Bool = true) -> Grouping {
         
         if condition {
             return self.mutate(textdecoration: Tokens.TextDecoration.strikeThrough.value)
@@ -151,5 +159,9 @@ extension Grouping: TextModifier {
     
     public func lineLimit(_ limit: Tokens.LineLimit) -> Grouping {
         return self.mutate(linelimit: limit.value)
+    }
+    
+    public func shadow(_ radius: Tokens.BlurRadius, color: Tokens.ShadowColor = .black) -> Grouping {
+        return mutate(shadow: radius.value, color: color.value)
     }
 }

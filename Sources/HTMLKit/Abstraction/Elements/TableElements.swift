@@ -1,97 +1,48 @@
-/*
- Abstract:
- The file contains the table elements. The html-element 'table' only allows these elements to be its descendants.
-
- Note:
- If you about to add something to the file, stick to the official documentation to keep the code consistent.
- */
-
+import Foundation
 import OrderedCollections
 
-/// The alias for the element ColumnGroup.
-///
-/// Colgroup is the official tag and can be used instead of ColumnGroup.
-///
-/// ```html
-/// <colgroup></colgroup>
-/// ```
+/// The alias for the element ``ColumnGroup``.
 @_documentation(visibility: internal)
 public typealias Colgroup = ColumnGroup
 
-/// The alias for the element Column.
-///
-/// Col is the official tag and can be used instead of Column.
-///
-/// ```html
-/// <col></col>
-/// ```
+/// The alias for the element ``Column``.
 @_documentation(visibility: internal)
 public typealias Col = Column
 
-/// The alias for the element TableBody.
-///
-/// Tbody is the official tag and can be used instead of TableBody.
-///
-/// ```html
-/// <tbody></tbody>
-/// ```
+/// The alias for the element ``TableBody``.
 @_documentation(visibility: internal)
 public typealias Tbody = TableBody
 
-/// The alias for the element TableHead.
-///
-/// Thead is the official tag and can be used instead of TableHead.
-///
-/// ```html
-/// <thead></thead>
-/// ```
+/// The alias for the element ``TableHead``.
 @_documentation(visibility: internal)
 public typealias Thead = TableHead
 
-/// The alias for the element TableFoot.
-///
-/// Tfoot is the official tag and can be used instead of TableFoot.
-///
-/// ```html
-/// <tfoot></tfoot>
-/// ```
+/// The alias for the element ``TableFoot``.
 @_documentation(visibility: internal)
 public typealias Tfoot = TableFoot
 
-/// The alias for the element TableRow.
-///
-/// Tr is the official tag and can be used instead of TableRow.
-///
-/// ```html
-/// <tr></tr>
-/// ```
+/// The alias for the element ``TableRow``.
 @_documentation(visibility: internal)
 public typealias Tr = TableRow
 
-/// The alias for the element DataCell.
-///
-/// Td is the official tag and can be used instead of DataCell.
-///
-/// ```html
-/// <td></td>
-/// ```
+/// The alias for the element ``DataCell``.
 @_documentation(visibility: internal)
 public typealias Td = DataCell
 
-/// The alias for the element HeaderCell.
-///
-/// Th is the official tag and can be used instead of HeaderCell.
-///
-/// ```html
-/// <th></th>
-/// ```
+/// The alias for the element ``HeaderCell``.
 @_documentation(visibility: internal)
 public typealias Th = HeaderCell
 
-/// The element represents the title of the table.
+/// An element that represents a table caption.
 ///
-/// ```html
-/// <caption></caption>
+/// Use `Caption` to give the ``Table`` an accessible description.
+///
+/// ```swift
+/// Table {
+///     Caption {
+///         "Lorem ipsum..."
+///     }
+/// }
 /// ```
 public struct Caption: ContentNode, TableElement {
 
@@ -100,7 +51,10 @@ public struct Caption: ContentNode, TableElement {
     internal var attributes: OrderedDictionary<String, Any>?
 
     internal  var content: [Content]
-
+    
+    /// Create a caption.
+    ///
+    /// - Parameter content: The caption's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
         self.content = content()
     }
@@ -162,12 +116,8 @@ extension Caption: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
     public func enterKeyHint(_ value: Values.Hint) -> Caption {
         return mutate(enterkeyhint: value.rawValue)
     }
-
-    public func hidden() -> Caption {
-        return mutate(hidden: "hidden")
-    }
     
-    public func hidden(_ condition: Bool) -> Caption {
+    public func hidden(_ condition: Bool = true) -> Caption {
         
         if condition {
             return mutate(hidden: "hidden")
@@ -176,14 +126,28 @@ extension Caption: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
         return self
     }
 
+    @available(*, deprecated, message: "The inputmode attribute is actually an enumerated attribute. Use the inputMode(_: Mode) modifier instead.")
     public func inputMode(_ value: String) -> Caption {
         return mutate(inputmode: value)
+    }
+    
+    public func inputMode(_ value: Values.Mode) -> Caption {
+        return mutate(inputmode: value.rawValue)
     }
 
     public func `is`(_ value: String) -> Caption {
         return mutate(is: value)
     }
+    
+    public func item(id: String? = nil, as schema: URL? = nil, for elements: [String]? = nil) -> Caption {
+        return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements?.joined(separator: " "))
+    }
+    
+    public func item(id: String? = nil, as schema: URL? = nil, for elements: String...) -> Caption {
+        return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements.joined(separator: " "))
+    }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemId(_ value: String) -> Caption {
         return mutate(itemid: value)
     }
@@ -192,14 +156,17 @@ extension Caption: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
         return mutate(itemprop: value)
     }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemReference(_ value: String) -> Caption {
         return mutate(itemref: value)
     }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemScope(_ value: String) -> Caption {
         return mutate(itemscope: value)
     }
     
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemType(_ value: String) -> Caption {
         return mutate(itemtype: value)
     }
@@ -232,7 +199,16 @@ extension Caption: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
         return mutate(tabindex: value)
     }
 
+    @_disfavoredOverload
     public func title(_ value: String) -> Caption {
+        return mutate(title: value)
+    }
+    
+    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Caption {
+        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    }
+    
+    public func title(verbatim value: String) -> Caption {
         return mutate(title: value)
     }
     
@@ -240,11 +216,7 @@ extension Caption: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
         return mutate(translate: value.rawValue)
     }
     
-    public func inert() -> Caption {
-        return mutate(inert: "inert")
-    }
-    
-    public func inert(_ condition: Bool) -> Caption {
+    public func inert(_ condition: Bool = true) -> Caption {
 
         if condition {
             return mutate(inert: "inert")
@@ -358,10 +330,18 @@ extension Caption: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
     }
 }
 
-/// The element specifies a group of one or more columns.
+/// An element that represents af column group.
 ///
-/// ```html
-/// <colgroup></colgroup>
+/// Use `ColumnGroup` to specify a group of one or more ``Column``.
+///
+/// ```swift
+/// Table {
+///     ColumnGroup {
+///         Column()
+///             .span(2)
+///             .style("...")
+///     }
+/// }
 /// ```
 public struct ColumnGroup: ContentNode, TableElement {
 
@@ -370,7 +350,10 @@ public struct ColumnGroup: ContentNode, TableElement {
     internal var attributes: OrderedDictionary<String, Any>?
 
     internal  var content: [Content]
-
+    
+    /// Create a column group.
+    ///
+    /// - Parameter content: The group's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
         self.content = content()
     }
@@ -432,12 +415,8 @@ extension ColumnGroup: GlobalAttributes, GlobalEventAttributes, SpanAttribute {
     public func enterKeyHint(_ value: Values.Hint) -> ColumnGroup {
         return mutate(enterkeyhint: value.rawValue)
     }
-
-    public func hidden() -> ColumnGroup {
-        return mutate(hidden: "hidden")
-    }
     
-    public func hidden(_ condition: Bool) -> ColumnGroup {
+    public func hidden(_ condition: Bool = true) -> ColumnGroup {
         
         if condition {
             return mutate(hidden: "hidden")
@@ -446,14 +425,28 @@ extension ColumnGroup: GlobalAttributes, GlobalEventAttributes, SpanAttribute {
         return self
     }
 
+    @available(*, deprecated, message: "The inputmode attribute is actually an enumerated attribute. Use the inputMode(_: Mode) modifier instead.")
     public func inputMode(_ value: String) -> ColumnGroup {
         return mutate(inputmode: value)
+    }
+    
+    public func inputMode(_ value: Values.Mode) -> ColumnGroup {
+        return mutate(inputmode: value.rawValue)
     }
 
     public func `is`(_ value: String) -> ColumnGroup {
         return mutate(is: value)
     }
+    
+    public func item(id: String? = nil, as schema: URL? = nil, for elements: [String]? = nil) -> ColumnGroup {
+        return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements?.joined(separator: " "))
+    }
+    
+    public func item(id: String? = nil, as schema: URL? = nil, for elements: String...) -> ColumnGroup {
+        return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements.joined(separator: " "))
+    }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemId(_ value: String) -> ColumnGroup {
         return mutate(itemid: value)
     }
@@ -462,14 +455,17 @@ extension ColumnGroup: GlobalAttributes, GlobalEventAttributes, SpanAttribute {
         return mutate(itemprop: value)
     }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemReference(_ value: String) -> ColumnGroup {
         return mutate(itemref: value)
     }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemScope(_ value: String) -> ColumnGroup {
         return mutate(itemscope: value)
     }
     
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemType(_ value: String) -> ColumnGroup {
         return mutate(itemtype: value)
     }
@@ -502,7 +498,16 @@ extension ColumnGroup: GlobalAttributes, GlobalEventAttributes, SpanAttribute {
         return mutate(tabindex: value)
     }
 
+    @_disfavoredOverload
     public func title(_ value: String) -> ColumnGroup {
+        return mutate(title: value)
+    }
+    
+    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> ColumnGroup {
+        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    }
+    
+    public func title(verbatim value: String) -> ColumnGroup {
         return mutate(title: value)
     }
     
@@ -510,11 +515,7 @@ extension ColumnGroup: GlobalAttributes, GlobalEventAttributes, SpanAttribute {
         return mutate(translate: value.rawValue)
     }
     
-    public func inert() -> ColumnGroup {
-        return mutate(inert: "inert")
-    }
-    
-    public func inert(_ condition: Bool) -> ColumnGroup {
+    public func inert(_ condition: Bool = true) -> ColumnGroup {
 
         if condition {
             return mutate(inert: "inert")
@@ -556,26 +557,34 @@ extension ColumnGroup: GlobalAttributes, GlobalEventAttributes, SpanAttribute {
     }
 }
 
-/// The element represents a column in a table.
+/// A element that represents a table column.
 ///
-/// ```html
-/// <col></col>
+/// Use `Column` for applying styles to entire columns, instead of repeating the styles for each ``DataCell`` or ``TableRow``.
+///
+/// ```swift
+/// Table {
+///     ColumnGroup {
+///         Column()
+///             .span(2)
+///         Column()
+///             .style("...")
+///     }
+/// }
 /// ```
-public struct Column: ContentNode, TableElement {
-
+public struct Column: EmptyNode, TableElement {
+    
     internal var name: String { "col" }
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal  var content: [Content]
-
-    public init(@ContentBuilder<Content> content: () -> [Content]) {
-        self.content = content()
-    }
+    /// Create a column.
+    public init() {}
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: [Content]) {
+    @available(*, deprecated, message: "The column element is actually an empty element. Use Column() instead.")
+     public init(@ContentBuilder<Content> content: () -> [Content]) {}
+    
+    internal init(attributes: OrderedDictionary<String, Any>?) {
         self.attributes = attributes
-        self.content = content
     }
     
     public func modify(if condition: Bool, element: (Column) -> Column) -> Column {
@@ -630,12 +639,8 @@ extension Column: GlobalAttributes, GlobalEventAttributes, SpanAttribute {
     public func enterKeyHint(_ value: Values.Hint) -> Column {
         return mutate(enterkeyhint: value.rawValue)
     }
-
-    public func hidden() -> Column {
-        return mutate(hidden: "hidden")
-    }
     
-    public func hidden(_ condition: Bool) -> Column {
+    public func hidden(_ condition: Bool = true) -> Column {
         
         if condition {
             return mutate(hidden: "hidden")
@@ -644,14 +649,28 @@ extension Column: GlobalAttributes, GlobalEventAttributes, SpanAttribute {
         return self
     }
 
+    @available(*, deprecated, message: "The inputmode attribute is actually an enumerated attribute. Use the inputMode(_: Mode) modifier instead.")
     public func inputMode(_ value: String) -> Column {
         return mutate(inputmode: value)
     }
 
+    public func inputMode(_ value: Values.Mode) -> Column {
+        return mutate(inputmode: value.rawValue)
+    }
+    
     public func `is`(_ value: String) -> Column {
         return mutate(is: value)
     }
+    
+    public func item(id: String? = nil, as schema: URL? = nil, for elements: [String]? = nil) -> Column {
+        return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements?.joined(separator: " "))
+    }
+    
+    public func item(id: String? = nil, as schema: URL? = nil, for elements: String...) -> Column {
+        return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements.joined(separator: " "))
+    }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemId(_ value: String) -> Column {
         return mutate(itemid: value)
     }
@@ -660,14 +679,17 @@ extension Column: GlobalAttributes, GlobalEventAttributes, SpanAttribute {
         return mutate(itemprop: value)
     }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemReference(_ value: String) -> Column {
         return mutate(itemref: value)
     }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemScope(_ value: String) -> Column {
         return mutate(itemscope: value)
     }
     
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemType(_ value: String) -> Column {
         return mutate(itemtype: value)
     }
@@ -700,7 +722,16 @@ extension Column: GlobalAttributes, GlobalEventAttributes, SpanAttribute {
         return mutate(tabindex: value)
     }
 
+    @_disfavoredOverload
     public func title(_ value: String) -> Column {
+        return mutate(title: value)
+    }
+    
+    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Column {
+        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    }
+    
+    public func title(verbatim value: String) -> Column {
         return mutate(title: value)
     }
     
@@ -708,11 +739,7 @@ extension Column: GlobalAttributes, GlobalEventAttributes, SpanAttribute {
         return mutate(translate: value.rawValue)
     }
     
-    public func inert() -> Column {
-        return mutate(inert: "inert")
-    }
-    
-    public func inert(_ condition: Bool) -> Column {
+    public func inert(_ condition: Bool = true) -> Column {
 
         if condition {
             return mutate(inert: "inert")
@@ -754,10 +781,19 @@ extension Column: GlobalAttributes, GlobalEventAttributes, SpanAttribute {
     }
 }
 
-/// The element represents a block of rows in a table.
+/// An element that represents a block of rows in a table.
 ///
-/// ```html
-/// <tbody></tbody>
+/// Use `TableBody` to group rows of a ``Table``.
+///
+/// ```swift
+/// Table {
+///     TableBody {
+///         TableRow {
+///         }
+///         TableRow {
+///         }
+///     }
+/// }
 /// ```
 public struct TableBody: ContentNode, TableElement {
 
@@ -766,7 +802,10 @@ public struct TableBody: ContentNode, TableElement {
     internal var attributes: OrderedDictionary<String, Any>?
 
     internal  var content: [Content]
-
+    
+    /// Create a table body.
+    ///
+    /// - Parameter content: The body's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
         self.content = content()
     }
@@ -828,12 +867,8 @@ extension TableBody: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
     public func enterKeyHint(_ value: Values.Hint) -> TableBody {
         return mutate(enterkeyhint: value.rawValue)
     }
-
-    public func hidden() -> TableBody {
-        return mutate(hidden: "hidden")
-    }
     
-    public func hidden(_ condition: Bool) -> TableBody {
+    public func hidden(_ condition: Bool = true) -> TableBody {
         
         if condition {
             return mutate(hidden: "hidden")
@@ -842,14 +877,28 @@ extension TableBody: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return self
     }
 
+    @available(*, deprecated, message: "The inputmode attribute is actually an enumerated attribute. Use the inputMode(_: Mode) modifier instead.")
     public func inputMode(_ value: String) -> TableBody {
         return mutate(inputmode: value)
+    }
+    
+    public func inputMode(_ value: Values.Mode) -> TableBody {
+        return mutate(inputmode: value.rawValue)
     }
 
     public func `is`(_ value: String) -> TableBody {
         return mutate(is: value)
     }
+    
+    public func item(id: String? = nil, as schema: URL? = nil, for elements: [String]? = nil) -> TableBody {
+        return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements?.joined(separator: " "))
+    }
+    
+    public func item(id: String? = nil, as schema: URL? = nil, for elements: String...) -> TableBody {
+        return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements.joined(separator: " "))
+    }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemId(_ value: String) -> TableBody {
         return mutate(itemid: value)
     }
@@ -858,14 +907,17 @@ extension TableBody: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(itemprop: value)
     }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemReference(_ value: String) -> TableBody {
         return mutate(itemref: value)
     }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemScope(_ value: String) -> TableBody {
         return mutate(itemscope: value)
     }
     
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemType(_ value: String) -> TableBody {
         return mutate(itemtype: value)
     }
@@ -898,7 +950,16 @@ extension TableBody: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(tabindex: value)
     }
 
+    @_disfavoredOverload
     public func title(_ value: String) -> TableBody {
+        return mutate(title: value)
+    }
+    
+    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> TableBody {
+        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    }
+    
+    public func title(verbatim value: String) -> TableBody {
         return mutate(title: value)
     }
     
@@ -906,11 +967,7 @@ extension TableBody: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(translate: value.rawValue)
     }
     
-    public func inert() -> TableBody {
-        return mutate(inert: "inert")
-    }
-    
-    public func inert(_ condition: Bool) -> TableBody {
+    public func inert(_ condition: Bool = true) -> TableBody {
 
         if condition {
             return mutate(inert: "inert")
@@ -1032,10 +1089,27 @@ extension TableBody: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
     }
 }
 
-/// The element represents the block of rows that consist of the column labels.
+/// An element that represents a table description.
 ///
-/// ```html
-/// <thead></thead>
+/// Use `TableHead` to label the columns at the beginning of the ``Table``.
+///
+/// ```swift
+/// Table {
+///     TableHead {
+///         TableRow {
+///             DataCell {
+///                 "Lorem ipsum"
+///             }
+///         }
+///     }
+///     TableBody {
+///         TableRow {
+///             DataCell {
+///                 "Lorem ipsum"
+///             }
+///         }
+///     }
+/// }
 /// ```
 public struct TableHead: ContentNode, TableElement {
 
@@ -1045,6 +1119,9 @@ public struct TableHead: ContentNode, TableElement {
 
     internal  var content: [Content]
 
+    /// Create a table head.
+    ///
+    /// - Parameter content: The head's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
         self.content = content()
     }
@@ -1106,12 +1183,8 @@ extension TableHead: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
     public func enterKeyHint(_ value: Values.Hint) -> TableHead {
         return mutate(enterkeyhint: value.rawValue)
     }
-
-    public func hidden() -> TableHead {
-        return mutate(hidden: "hidden")
-    }
     
-    public func hidden(_ condition: Bool) -> TableHead {
+    public func hidden(_ condition: Bool = true) -> TableHead {
         
         if condition {
             return mutate(hidden: "hidden")
@@ -1120,14 +1193,28 @@ extension TableHead: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return self
     }
 
+    @available(*, deprecated, message: "The inputmode attribute is actually an enumerated attribute. Use the inputMode(_: Mode) modifier instead.")
     public func inputMode(_ value: String) -> TableHead {
         return mutate(inputmode: value)
+    }
+    
+    public func inputMode(_ value: Values.Mode) -> TableHead {
+        return mutate(inputmode: value.rawValue)
     }
 
     public func `is`(_ value: String) -> TableHead {
         return mutate(is: value)
     }
+    
+    public func item(id: String? = nil, as schema: URL? = nil, for elements: [String]? = nil) -> TableHead {
+        return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements?.joined(separator: " "))
+    }
+    
+    public func item(id: String? = nil, as schema: URL? = nil, for elements: String...) -> TableHead {
+        return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements.joined(separator: " "))
+    }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemId(_ value: String) -> TableHead {
         return mutate(itemid: value)
     }
@@ -1136,14 +1223,17 @@ extension TableHead: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(itemprop: value)
     }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemReference(_ value: String) -> TableHead {
         return mutate(itemref: value)
     }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemScope(_ value: String) -> TableHead {
         return mutate(itemscope: value)
     }
     
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemType(_ value: String) -> TableHead {
         return mutate(itemtype: value)
     }
@@ -1176,7 +1266,16 @@ extension TableHead: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(tabindex: value)
     }
 
+    @_disfavoredOverload
     public func title(_ value: String) -> TableHead {
+        return mutate(title: value)
+    }
+    
+    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> TableHead {
+        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    }
+    
+    public func title(verbatim value: String) -> TableHead {
         return mutate(title: value)
     }
     
@@ -1184,11 +1283,7 @@ extension TableHead: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(translate: value.rawValue)
     }
     
-    public func inert() -> TableHead {
-        return mutate(inert: "inert")
-    }
-    
-    public func inert(_ condition: Bool) -> TableHead {
+    public func inert(_ condition: Bool = true) -> TableHead {
 
         if condition {
             return mutate(inert: "inert")
@@ -1310,10 +1405,27 @@ extension TableHead: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
     }
 }
 
-/// The element represents the block of rows that consist of the column summaries.
+/// An element that represents a table summary.
 ///
-/// ```html
-/// <tfoot></tfoot>
+/// Use `TableFoot` to summarize the columns at the end of the ``Table``.
+///
+/// ```swift
+/// Table {
+///     TableBody {
+///         TableRow {
+///             DataCell {
+///                 "Lorem ipsum"
+///             }
+///         }
+///     }
+///     TableFoot {
+///         TableRow {
+///             DataCell {
+///                 "Lorem ipsum"
+///             }
+///         }
+///     }
+/// }
 /// ```
 public struct TableFoot: ContentNode, TableElement {
 
@@ -1323,6 +1435,9 @@ public struct TableFoot: ContentNode, TableElement {
 
     internal  var content: [Content]
 
+    /// Create a table foot.
+    ///
+    /// - Parameter content: The foot's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
         self.content = content()
     }
@@ -1384,12 +1499,8 @@ extension TableFoot: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
     public func enterKeyHint(_ value: Values.Hint) -> TableFoot {
         return mutate(enterkeyhint: value.rawValue)
     }
-
-    public func hidden() -> TableFoot {
-        return mutate(hidden: "hidden")
-    }
     
-    public func hidden(_ condition: Bool) -> TableFoot {
+    public func hidden(_ condition: Bool = true) -> TableFoot {
         
         if condition {
             return mutate(hidden: "hidden")
@@ -1398,14 +1509,28 @@ extension TableFoot: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return self
     }
 
+    @available(*, deprecated, message: "The inputmode attribute is actually an enumerated attribute. Use the inputMode(_: Mode) modifier instead.")
     public func inputMode(_ value: String) -> TableFoot {
         return mutate(inputmode: value)
+    }
+    
+    public func inputMode(_ value: Values.Mode) -> TableFoot {
+        return mutate(inputmode: value.rawValue)
     }
 
     public func `is`(_ value: String) -> TableFoot {
         return mutate(is: value)
     }
+    
+    public func item(id: String? = nil, as schema: URL? = nil, for elements: [String]? = nil) -> TableFoot {
+        return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements?.joined(separator: " "))
+    }
+    
+    public func item(id: String? = nil, as schema: URL? = nil, for elements: String...) -> TableFoot {
+        return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements.joined(separator: " "))
+    }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemId(_ value: String) -> TableFoot {
         return mutate(itemid: value)
     }
@@ -1414,14 +1539,17 @@ extension TableFoot: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(itemprop: value)
     }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemReference(_ value: String) -> TableFoot {
         return mutate(itemref: value)
     }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemScope(_ value: String) -> TableFoot {
         return mutate(itemscope: value)
     }
     
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemType(_ value: String) -> TableFoot {
         return mutate(itemtype: value)
     }
@@ -1454,7 +1582,16 @@ extension TableFoot: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(tabindex: value)
     }
 
+    @_disfavoredOverload
     public func title(_ value: String) -> TableFoot {
+        return mutate(title: value)
+    }
+    
+    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> TableFoot {
+        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    }
+    
+    public func title(verbatim value: String) -> TableFoot {
         return mutate(title: value)
     }
     
@@ -1462,11 +1599,7 @@ extension TableFoot: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(translate: value.rawValue)
     }
     
-    public func inert() -> TableFoot {
-        return mutate(inert: "inert")
-    }
-    
-    public func inert(_ condition: Bool) -> TableFoot {
+    public func inert(_ condition: Bool = true) -> TableFoot {
 
         if condition {
             return mutate(inert: "inert")
@@ -1580,10 +1713,21 @@ extension TableFoot: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
     }
 }
 
-/// The element represents a row of cells in a table.
+/// An element that represents a table row.
 ///
-/// ```html
-/// <tr></tr>
+/// Use `TableRow` to group multiple cells in a ``Table``.
+///
+/// ```swift
+/// Table {
+///     TableRow {
+///         DataCell {
+///             "Lorem ipsum"
+///         }
+///         DataCell {
+///             "Lorem ipsum"
+///         }
+///     }
+/// }
 /// ```
 public struct TableRow: ContentNode, TableElement {
 
@@ -1593,6 +1737,9 @@ public struct TableRow: ContentNode, TableElement {
 
     internal  var content: [Content]
 
+    /// Create a table row.
+    ///
+    /// - Parameter content: The row's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
         self.content = content()
     }
@@ -1654,12 +1801,8 @@ extension TableRow: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
     public func enterKeyHint(_ value: Values.Hint) -> TableRow {
         return mutate(enterkeyhint: value.rawValue)
     }
-
-    public func hidden() -> TableRow {
-        return mutate(hidden: "hidden")
-    }
     
-    public func hidden(_ condition: Bool) -> TableRow {
+    public func hidden(_ condition: Bool = true) -> TableRow {
         
         if condition {
             return mutate(hidden: "hidden")
@@ -1668,14 +1811,28 @@ extension TableRow: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return self
     }
 
+    @available(*, deprecated, message: "The inputmode attribute is actually an enumerated attribute. Use the inputMode(_: Mode) modifier instead.")
     public func inputMode(_ value: String) -> TableRow {
         return mutate(inputmode: value)
+    }
+    
+    public func inputMode(_ value: Values.Mode) -> TableRow {
+        return mutate(inputmode: value.rawValue)
     }
 
     public func `is`(_ value: String) -> TableRow {
         return mutate(is: value)
     }
+    
+    public func item(id: String? = nil, as schema: URL? = nil, for elements: [String]? = nil) -> TableRow {
+        return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements?.joined(separator: " "))
+    }
+    
+    public func item(id: String? = nil, as schema: URL? = nil, for elements: String...) -> TableRow {
+        return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements.joined(separator: " "))
+    }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemId(_ value: String) -> TableRow {
         return mutate(itemid: value)
     }
@@ -1684,14 +1841,17 @@ extension TableRow: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(itemprop: value)
     }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemReference(_ value: String) -> TableRow {
         return mutate(itemref: value)
     }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemScope(_ value: String) -> TableRow {
         return mutate(itemscope: value)
     }
     
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemType(_ value: String) -> TableRow {
         return mutate(itemtype: value)
     }
@@ -1724,7 +1884,16 @@ extension TableRow: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(tabindex: value)
     }
 
+    @_disfavoredOverload
     public func title(_ value: String) -> TableRow {
+        return mutate(title: value)
+    }
+    
+    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> TableRow {
+        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    }
+    
+    public func title(verbatim value: String) -> TableRow {
         return mutate(title: value)
     }
     
@@ -1732,11 +1901,7 @@ extension TableRow: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(translate: value.rawValue)
     }
     
-    public func inert() -> TableRow {
-        return mutate(inert: "inert")
-    }
-    
-    public func inert(_ condition: Bool) -> TableRow {
+    public func inert(_ condition: Bool = true) -> TableRow {
 
         if condition {
             return mutate(inert: "inert")
@@ -1858,10 +2023,18 @@ extension TableRow: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
     }
 }
 
-/// The element represents a data cell in a table.
+/// An element that represents a table cell.
 ///
-/// ```html
-/// <td></td>
+/// Use `DataCell` to display tabular data.
+///
+/// ```swift
+/// Table {
+///     TableRow {
+///         DataCell {
+///             "Lorem ipsum"
+///         }
+///     }
+/// }
 /// ```
 public struct DataCell: ContentNode, TableElement {
 
@@ -1871,6 +2044,9 @@ public struct DataCell: ContentNode, TableElement {
 
     internal  var content: [Content]
 
+    /// Create a data cell.
+    ///
+    /// - Parameter content: The cell's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
         self.content = content()
     }
@@ -1932,12 +2108,8 @@ extension DataCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
     public func enterKeyHint(_ value: Values.Hint) -> DataCell {
         return mutate(enterkeyhint: value.rawValue)
     }
-
-    public func hidden() -> DataCell {
-        return mutate(hidden: "hidden")
-    }
     
-    public func hidden(_ condition: Bool) -> DataCell {
+    public func hidden(_ condition: Bool = true) -> DataCell {
         
         if condition {
             return mutate(hidden: "hidden")
@@ -1946,14 +2118,28 @@ extension DataCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return self
     }
 
+    @available(*, deprecated, message: "The inputmode attribute is actually an enumerated attribute. Use the inputMode(_: Mode) modifier instead.")
     public func inputMode(_ value: String) -> DataCell {
         return mutate(inputmode: value)
+    }
+    
+    public func inputMode(_ value: Values.Mode) -> DataCell {
+        return mutate(inputmode: value.rawValue)
     }
 
     public func `is`(_ value: String) -> DataCell {
         return mutate(is: value)
     }
+    
+    public func item(id: String? = nil, as schema: URL? = nil, for elements: [String]? = nil) -> DataCell {
+        return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements?.joined(separator: " "))
+    }
+    
+    public func item(id: String? = nil, as schema: URL? = nil, for elements: String...) -> DataCell {
+        return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements.joined(separator: " "))
+    }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemId(_ value: String) -> DataCell {
         return mutate(itemid: value)
     }
@@ -1962,14 +2148,17 @@ extension DataCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(itemprop: value)
     }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemReference(_ value: String) -> DataCell {
         return mutate(itemref: value)
     }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemScope(_ value: String) -> DataCell {
         return mutate(itemscope: value)
     }
     
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemType(_ value: String) -> DataCell {
         return mutate(itemtype: value)
     }
@@ -2002,7 +2191,16 @@ extension DataCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(tabindex: value)
     }
 
+    @_disfavoredOverload
     public func title(_ value: String) -> DataCell {
+        return mutate(title: value)
+    }
+    
+    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> DataCell {
+        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    }
+    
+    public func title(verbatim value: String) -> DataCell {
         return mutate(title: value)
     }
     
@@ -2010,11 +2208,7 @@ extension DataCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(translate: value.rawValue)
     }
     
-    public func inert() -> DataCell {
-        return mutate(inert: "inert")
-    }
-    
-    public func inert(_ condition: Bool) -> DataCell {
+    public func inert(_ condition: Bool = true) -> DataCell {
 
         if condition {
             return mutate(inert: "inert")
@@ -2140,10 +2334,18 @@ extension DataCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
     }
 }
 
-/// The element represents a header cell in a table.
+/// An element that represents a table cell.
 ///
-/// ```html
-/// <th></th>
+/// Use `HeaderCell` to display tabular data.
+///
+/// ```swift
+/// Table {
+///     TableRow {
+///         HeaderCell {
+///             "Lorem ipsum"
+///         }
+///     }
+/// }
 /// ```
 public struct HeaderCell: ContentNode, TableElement {
 
@@ -2153,6 +2355,9 @@ public struct HeaderCell: ContentNode, TableElement {
 
     internal  var content: [Content]
 
+    /// Create a header cell.
+    ///
+    /// - Parameter content: The cell's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
         self.content = content()
     }
@@ -2214,12 +2419,8 @@ extension HeaderCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
     public func enterKeyHint(_ value: Values.Hint) -> HeaderCell {
         return mutate(enterkeyhint: value.rawValue)
     }
-
-    public func hidden() -> HeaderCell {
-        return mutate(hidden: "hidden")
-    }
     
-    public func hidden(_ condition: Bool) -> HeaderCell {
+    public func hidden(_ condition: Bool = true) -> HeaderCell {
         
         if condition {
             return mutate(hidden: "hidden")
@@ -2228,14 +2429,28 @@ extension HeaderCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
         return self
     }
 
+    @available(*, deprecated, message: "The inputmode attribute is actually an enumerated attribute. Use the inputMode(_: Mode) modifier instead.")
     public func inputMode(_ value: String) -> HeaderCell {
         return mutate(inputmode: value)
+    }
+    
+    public func inputMode(_ value: Values.Mode) -> HeaderCell {
+        return mutate(inputmode: value.rawValue)
     }
 
     public func `is`(_ value: String) -> HeaderCell {
         return mutate(is: value)
     }
+    
+    public func item(id: String? = nil, as schema: URL? = nil, for elements: [String]? = nil) -> HeaderCell {
+        return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements?.joined(separator: " "))
+    }
+    
+    public func item(id: String? = nil, as schema: URL? = nil, for elements: String...) -> HeaderCell {
+        return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements.joined(separator: " "))
+    }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemId(_ value: String) -> HeaderCell {
         return mutate(itemid: value)
     }
@@ -2244,14 +2459,17 @@ extension HeaderCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
         return mutate(itemprop: value)
     }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemReference(_ value: String) -> HeaderCell {
         return mutate(itemref: value)
     }
 
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemScope(_ value: String) -> HeaderCell {
         return mutate(itemscope: value)
     }
     
+    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
     public func itemType(_ value: String) -> HeaderCell {
         return mutate(itemtype: value)
     }
@@ -2284,7 +2502,16 @@ extension HeaderCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
         return mutate(tabindex: value)
     }
 
+    @_disfavoredOverload
     public func title(_ value: String) -> HeaderCell {
+        return mutate(title: value)
+    }
+    
+    public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> HeaderCell {
+        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+    }
+    
+    public func title(verbatim value: String) -> HeaderCell {
         return mutate(title: value)
     }
     
@@ -2292,11 +2519,7 @@ extension HeaderCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
         return mutate(translate: value.rawValue)
     }
     
-    public func inert() -> HeaderCell {
-        return mutate(inert: "inert")
-    }
-    
-    public func inert(_ condition: Bool) -> HeaderCell {
+    public func inert(_ condition: Bool = true) -> HeaderCell {
 
         if condition {
             return mutate(inert: "inert")
@@ -2316,9 +2539,14 @@ extension HeaderCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
     public func headers(_ value: String) -> HeaderCell {
         return mutate(headers: value)
     }
-    
+
+    @available(*, deprecated, message: "The scope attribute is actually an enumerated attribute. Use the scope(_: Scope) modifier instead.")
     public func scope(_ value: String) -> HeaderCell {
         return mutate(scope: value)
+    }
+    
+    public func scope(_ value: Values.Scope) -> HeaderCell {
+        return mutate(scope: value.rawValue)
     }
     
     public func popover(_ value: Values.Popover.State) -> HeaderCell {
@@ -2428,7 +2656,7 @@ extension HeaderCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
 
 extension HeaderCell: Localizable {   
     
-    public init(_ localizedKey: String, tableName: String? = nil, interpolation: Any...) {
-        self.content = [LocalizedStringKey(key: localizedKey, table: tableName, interpolation: interpolation)]
+    public init(_ localizedKey: LocalizedStringKey, tableName: String? = nil) {
+        self.content = [LocalizedString(key: localizedKey, table: tableName)]
     }
 }

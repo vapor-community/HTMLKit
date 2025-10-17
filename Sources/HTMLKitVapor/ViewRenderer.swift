@@ -1,31 +1,39 @@
-/*
- Abstract:
- The file contains the Vapor view renderer.
- */
-
 import HTMLKit
 import Vapor
 
-/// The view renderer
+/// A type responsible for rendering views in Vapor using HTMLKit
 public class ViewRenderer {
     
-    /// The event loop the view renderer is running on
+    /// The event loop that the renderer operates on
     internal var eventLoop: EventLoop
     
-    /// The renderer for the view renderer
+    /// The actual renderer
     internal var renderer: Renderer
     
-    /// Creates the view renderer
-    public init(eventLoop: EventLoop, configuration: Configuration) {
+    /// The logger used to log all operations
+    private var logger: Logger
+    
+    /// Initializes the view renderer
+    /// 
+    /// - Parameters:
+    ///   - eventLoop: The event loop used for asynchronous operations
+    ///   - configuration: The configuration for the renderer
+    ///   - logger: The logger used to log all operations
+    public init(eventLoop: EventLoop, configuration: Configuration, logger: Logger) {
         
         self.eventLoop = eventLoop
         self.renderer = Renderer(localization: configuration.localization,
                                  environment: configuration.environment,
-                                 security: configuration.security,
-                                 features: configuration.features)
+                                 features: configuration.features,
+                                 logger: logger)
+        self.logger = logger
     }
     
-    /// Renders a view and transforms it into a view response.
+    /// Renders the given view and transforms it into a view response
+    ///
+    /// - Parameter view: The view to render
+    ///
+    /// - Returns: The view response
     public func render(_ view: some HTMLKit.View) -> EventLoopFuture<Vapor.View> {
         
         do  {
@@ -33,29 +41,19 @@ public class ViewRenderer {
             var buffer = ByteBufferAllocator().buffer(capacity: 4096)
             buffer.writeString(try renderer.render(view: view))
             
-            return self.eventLoop.makeSucceededFuture(View(data: buffer))
+            return eventLoop.makeSucceededFuture(View(data: buffer))
             
         } catch(let error) {
-            return self.eventLoop.makeFailedFuture(error)
+            return eventLoop.makeFailedFuture(error)
         }
     }
     
-    /// Renders a view and transforms it into a view response.
+    /// Renders the given view and transforms it into a view response
+    ///
+    /// - Parameter view: The view to render
+    ///
+    /// - Returns: The view response
     public func render(_ view: some HTMLKit.View) async throws -> Vapor.View {
         return try await render(view).get()
     }
-}
-
-extension HTMLKit.Renderer.Errors: AbortError {
- 
-    @_implements(AbortError, reason)
-    public var abortReason: String { self.description }
-    
-    public var status: HTTPResponseStatus { .internalServerError }
-}
-
-extension HTMLKit.Renderer.Errors: DebuggableError {
-
-    @_implements(DebuggableError, reason)
-    public var debuggableReason: String {  self.description }
 }
