@@ -263,6 +263,54 @@ public protocol PositionPointAttribute: Attribute {
     ///
     /// - Returns: The element
     func positionPoint(_ point: (Int, Int)) -> Self
+    
+    /// Set the position of the shape.
+    ///
+    /// ```Swift
+    /// Vector {
+    ///     Rectangle {
+    ///     }
+    ///     .position(x: 50, y: 50)
+    /// }
+    /// ```
+    /// 
+    /// - Parameters:
+    ///   - x: The horizontal coordinate to position the shape.
+    ///   - y: The vertical coordinate to position the shape
+    ///
+    /// - Returns: The element
+    func position(x: Int, y: Int) -> Self
+    
+    /// Set the position of the shape.
+    /// 
+    /// ```Swift
+    /// Vector {
+    ///     Rectangle {
+    ///     }
+    ///     .position(x: 50.0, y: 50.0)
+    /// }
+    /// ```
+    /// 
+    /// - Parameters:
+    ///   - x: The horizontal coordinate to position the shape.
+    ///   - y: The vertical coordinate to position the shape
+    /// 
+    /// - Returns: The element
+    func position(x: Double, y: Double) -> Self
+    
+    /// Set the position of the shape.
+    ///
+    /// ```Swift
+    /// Vector {
+    ///     Rectangle {
+    ///     }
+    ///     .position(UnitPoint(x: 50, y: 50))
+    /// }
+    /// ```
+    /// - Parameter point: The coordinates to position the shape.
+    ///
+    /// - Returns: The element
+    func position(_ point: UnitPoint) -> Self
 }
 
 extension PositionPointAttribute where Self: ContentNode {
@@ -282,6 +330,14 @@ extension PositionPointAttribute where Self: ContentNode {
         attributes["y"] = positionpoint.1
         
         return .init(attributes: attributes, content: content)
+    }
+    
+    internal func mutate(x value: String) -> Self {
+        return self.mutate(key: "x", value: value)
+    }
+    
+    internal func mutate(y value: String) -> Self {
+        return self.mutate(key: "y", value: value)
     }
 }
 

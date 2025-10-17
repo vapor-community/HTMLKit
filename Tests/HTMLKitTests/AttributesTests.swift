@@ -619,6 +619,18 @@ final class AttributesTests: XCTestCase {
             return self.mutate(positionpoint: point)
         }
         
+        func position(x: Int, y: Int) -> Tag {
+            return self.mutate(x: "\(x)").mutate(y: "\(y)")
+        }
+    
+        func position(x: Double, y: Double) -> Tag {
+            return self.mutate(x: "\(x)").mutate(y: "\(y)")
+        }
+        
+        func position(_ point: UnitPoint) -> Tag {
+            return self.mutate(x: point.x).mutate(y: point.y)
+        }
+        
         func radiusPoint(_ point: (Int, Int)) -> Tag {
             return self.mutate(radiuspoint: point)
         }
@@ -2891,15 +2903,21 @@ final class AttributesTests: XCTestCase {
         )
     }
     
-    func testPositionPointAttribute() throws {
+    func testPositionAttribute() throws {
         
         let view = TestView {
-            Tag {}.positionPoint((10,10))
+            Tag {}.position(x: 50, y: 50)
+            Tag {}.position(x: 50.0, y: 50.0)
+            Tag {}.position(UnitPoint(x: 50.0, y: 50.0))
+            Tag {}.position(UnitPoint(x: 50, y: 50, format: .relative))
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <tag x="10" y="10"></tag>
+                       <tag x="50" y="50"></tag>\
+                       <tag x="50.0" y="50.0"></tag>\
+                       <tag x="50.0" y="50.0"></tag>\
+                       <tag x="50%" y="50%"></tag>
                        """
         )
     }
