@@ -22524,6 +22524,14 @@ extension Vector: GlobalVectorAttributes, WidthAttribute, HeightAttribute, ViewB
         return self.mutate(viewbox: value)
     }
     
+    public func viewBox(x: Int, y: Int, width: Int, height: Int) -> Vector {
+        return self.mutate(viewbox: "\(x) \(y) \(width) \(height)")
+    }
+    
+    public func viewBox(x: Double, y: Double, width: Double, height: Double) -> Vector {
+        return self.mutate(viewbox: "\(x) \(y) \(width) \(height)")
+    }
+    
     public func fill(_ value: String) -> Vector {
         return self.mutate(fill: value)
     }

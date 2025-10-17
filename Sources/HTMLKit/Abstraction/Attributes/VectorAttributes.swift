@@ -549,6 +549,40 @@ public protocol ViewBoxAttribute: Attribute {
     ///
     /// - Returns: The element
     func viewBox(_ value: String) -> Self
+    
+    /// Set the view box for the vector.
+    /// 
+    /// ```swift
+    /// Vector {
+    /// }
+    /// .viewBox(x: 0, y: 0, width: 400, height: 200")
+    /// ```
+    /// 
+    /// - Parameters:
+    ///   - x: The horizontal coordinate to use for the origin.
+    ///   - y: The vertical coordinate to use for the origin.
+    ///   - width: The width of the viewport
+    ///   - height: The height of the viewport
+    /// 
+    /// - Returns: The element
+    func viewBox(x: Int, y: Int, width: Int, height: Int) -> Self
+    
+    /// Set the view box for the vector.
+    ///
+    /// ```swift
+    /// Vector {
+    /// }
+    /// .viewBox(x: 0.0, y: 0.0, width: 400.0, height: 200.0")
+    /// ```
+    /// 
+    /// - Parameters:
+    ///   - x: The horizontal coordinate to use for the origin.
+    ///   - y: The vertical coordinate to use for the origin.
+    ///   - width: The width of the viewport
+    ///   - height: The height of the viewport
+    /// 
+    /// - Returns: The element
+    func viewBox(x: Double, y: Double, width: Double, height: Double) -> Self
 }
 
 extension ViewBoxAttribute where Self: ContentNode {

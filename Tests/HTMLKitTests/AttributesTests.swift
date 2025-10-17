@@ -667,6 +667,14 @@ final class AttributesTests: XCTestCase {
             return self.mutate(viewbox: value)
         }
         
+        func viewBox(x: Int, y: Int, width: Int, height: Int) -> Tag {
+            return self.mutate(viewbox: "\(x) \(y) \(width) \(height)")
+        }
+        
+        func viewBox(x: Double, y: Double, width: Double, height: Double) -> Tag {
+            return self.mutate(viewbox: "\(x) \(y) \(width) \(height)")
+        }
+        
         func namespace(_ value: String) -> Tag {
             return self.mutate(namespace: value)
         }
@@ -2987,12 +2995,14 @@ final class AttributesTests: XCTestCase {
     func testViewBoxAttribute() throws {
         
         let view = TestView {
-            Tag {}.viewBox("0 0 100 100")
+            Tag {}.viewBox(x: 0, y: 0, width: 100, height: 100)
+            Tag {}.viewBox(x: 0, y: 0, width: 100.0, height: 100.0)
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <tag viewbox="0 0 100 100"></tag>
+                       <tag viewbox="0 0 100 100"></tag>\
+                       <tag viewbox="0.0 0.0 100.0 100.0"></tag>
                        """
         )
     }
