@@ -22520,6 +22520,7 @@ extension Vector: GlobalVectorAttributes, WidthAttribute, HeightAttribute, ViewB
         return self.mutate(style: value)
     }
     
+    @available(*, deprecated, message: "Use the viewBox(x:y:width:height:) modifier instead.")
     public func viewBox(_ value: String) -> Vector {
         return self.mutate(viewbox: value)
     }

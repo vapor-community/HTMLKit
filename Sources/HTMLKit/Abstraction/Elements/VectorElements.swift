@@ -87,6 +87,7 @@ extension Circle: GlobalVectorAttributes, CenterPointAttribute, RadiusAttribute 
         return self.mutate(strokewidth: size)
     }
     
+    @available(*, deprecated, message: "Use the center(x:y:) modifier instead.")
     public func centerPoint(_ point: (Int, Int)) -> Circle {
         return self.mutate(centerpoint: point)
     }
@@ -211,6 +212,7 @@ extension Rectangle: GlobalVectorAttributes, WidthAttribute, HeightAttribute, Ra
         return self.mutate(strokewidth: size)
     }
     
+    @available(*, deprecated, message: "Use the radius(x:y:) modifier instead.")
     public func radiusPoint(_ point: (Int, Int)) -> Rectangle {
         return self.mutate(radiuspoint: point)
     }
@@ -227,6 +229,7 @@ extension Rectangle: GlobalVectorAttributes, WidthAttribute, HeightAttribute, Ra
         return self.mutate(rx: point.x).mutate(ry: point.y)
     }
     
+    @available(*, deprecated, message: "Use the position(x:y:) modifier instead.")
     public func positionPoint(_ point: (Int, Int)) -> Rectangle {
         return self.mutate(positionpoint: point)
     }
@@ -355,6 +358,7 @@ extension Ellipse: GlobalVectorAttributes, CenterPointAttribute, RadiusPointAttr
         return self.mutate(strokewidth: size)
     }
     
+    @available(*, deprecated, message: "Use the center(x:y:) modifier instead.")
     public func centerPoint(_ point: (Int, Int)) -> Ellipse {
         return self.mutate(centerpoint: point)
     }
@@ -371,6 +375,7 @@ extension Ellipse: GlobalVectorAttributes, CenterPointAttribute, RadiusPointAttr
         return self.mutate(cx: point.x).mutate(cy: point.y)
     }
     
+    @available(*, deprecated, message: "Use the radius(x:y:) modifier instead.")
     public func radiusPoint(_ point: (Int, Int)) -> Ellipse {
         return self.mutate(radiuspoint: point)
     }
@@ -1004,6 +1009,7 @@ extension Use: GlobalVectorAttributes, ReferenceAttribute, WidthAttribute, Heigh
         return self.mutate(href: value)
     }
     
+    @available(*, deprecated, message: "Use the position(x:y:) modifier instead.")
     public func positionPoint(_ point: (Int, Int)) -> Use {
         return self.mutate(positionpoint: point)
     }

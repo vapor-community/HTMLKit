@@ -256,20 +256,6 @@ public protocol PositionPointAttribute: Attribute {
     /// Vector {
     ///     Rectangle {
     ///     }
-    ///     .positionPoint((50, 50))
-    /// }
-    /// ```
-    /// - Parameter point: The coodinates to position the shape.
-    ///
-    /// - Returns: The element
-    func positionPoint(_ point: (Int, Int)) -> Self
-    
-    /// Set the position of the shape.
-    ///
-    /// ```Swift
-    /// Vector {
-    ///     Rectangle {
-    ///     }
     ///     .position(x: 50, y: 50)
     /// }
     /// ```
@@ -344,20 +330,6 @@ extension PositionPointAttribute where Self: ContentNode {
 /// A type that provides the `radiusPoint` modifier.
 @_documentation(visibility: internal)
 public protocol RadiusPointAttribute: Attribute {
-    
-    /// Apply a corner radius to the shape.
-    ///
-    /// ```swift
-    /// Vector {
-    ///     Rectangle {
-    ///     }
-    ///     .radiusPoint((10, 10))
-    /// }
-    /// ```
-    /// - Parameter point: The radius to apply to all corners.
-    ///
-    /// - Returns: The element
-    func radiusPoint(_ point: (Int, Int)) -> Self
     
     /// Apply a corner radius to the shape.
     ///
@@ -446,20 +418,6 @@ public protocol CenterPointAttribute: Attribute {
     /// Vector {
     ///     Circle {
     ///     }
-    ///     .centerPoint((50, 50))
-    /// }
-    /// ```
-    /// - Parameter point: The coordinates to use as the center.
-    ///
-    /// - Returns: The element
-    func centerPoint(_ point: (Int, Int)) -> Self
-    
-    /// Set the center point of the shape.
-    ///
-    /// ```swift
-    /// Vector {
-    ///     Circle {
-    ///     }
     ///     .center(x: 50, y: 50)
     /// }
     /// ```
@@ -536,19 +494,6 @@ extension CenterPointAttribute where Self: ContentNode {
 /// A type that provides the `viewBox` modifier.
 @_documentation(visibility: internal)
 public protocol ViewBoxAttribute: Attribute {
-    
-    /// Set the view box for the vector.
-    ///
-    /// ```swift
-    /// Vector {
-    /// }
-    /// .viewBox("0 0 400 200")
-    /// ```
-    ///
-    /// - Parameter value: The bounds used to define the viewport.
-    ///
-    /// - Returns: The element
-    func viewBox(_ value: String) -> Self
     
     /// Set the view box for the vector.
     /// 
