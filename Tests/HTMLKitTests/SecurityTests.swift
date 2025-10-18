@@ -131,5 +131,23 @@ final class SecurityTests: XCTestCase {
                        """
         )
     }
+    
+    /// Tests the renderers behaviour when handling embedded code
+    ///
+    /// The renderer is expected to emit the string as-is.
+    func testIgnoringScriptAndStyle() throws {
+        
+        let view = TestView {
+            Script { "new Promise((r, f) => { ... })" }
+            Style { "div > p {}" }
+        }
+        
+        XCTAssertEqual(try renderer.render(view: view),
+                       """
+                       <script>new Promise((r, f) => { ... })</script>\
+                       <style>div > p {}</style>
+                       """
+        )
+    }
 }
 

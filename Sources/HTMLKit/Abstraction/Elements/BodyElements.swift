@@ -21132,16 +21132,16 @@ public struct Script: ContentNode, HeadElement, BodyElement, FormElement, Figure
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal var content: [String]
+    internal var content: [Content]
 
     /// Create a script.
     ///
     /// - Parameter content: The script's content.
     public init(@ContentBuilder<String> content: () -> [String]) {
-        self.content = content()
+        self.content = [HtmlString(content())]
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: [String]) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: [Content]) {
         self.attributes = attributes
         self.content = content
     }

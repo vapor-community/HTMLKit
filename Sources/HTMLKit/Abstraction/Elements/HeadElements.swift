@@ -706,8 +706,16 @@ public struct Style: ContentNode, HeadElement {
     /// Create a style.
     ///
     /// - Parameter content: The style's content.
+    @available(*, deprecated, message: "Use the init(content:) -> [String] initializer instead.")
     public init(@ContentBuilder<Content> content: () -> [Content]) {
         self.content = content()
+    }
+
+    /// Create a style.
+    ///
+    /// - Parameter content: The style's content.
+    public init(@ContentBuilder<String> content: () -> [String]) {
+        self.content = [HtmlString(content())]
     }
     
     internal init(attributes: OrderedDictionary<String, Any>?, content: [Content]) {
