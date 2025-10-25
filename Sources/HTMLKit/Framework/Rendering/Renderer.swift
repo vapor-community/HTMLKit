@@ -613,7 +613,7 @@ public struct Renderer {
             return value
         }
         
-        return encoder.encode(value, as: .attribute)
+        return encoder.encode(value, as: .html(.attribute))
     }
     
     /// Escapes special characters in the given content value
@@ -629,6 +629,6 @@ public struct Renderer {
             return value
         }
         
-        return encoder.encode(value, as: .entity)
+        return encoder.encode(value, as: .html(.body))
     }
 }
