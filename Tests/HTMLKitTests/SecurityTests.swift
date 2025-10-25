@@ -149,5 +149,41 @@ final class SecurityTests: XCTestCase {
                        """
         )
     }
+    
+    /// Tests the encoding within a javascript context
+    /// 
+    /// The renderer is expected to remove unallowed tags and to encode only string literal
+    func testEncodingJsContext() throws {
+        
+        let view = TestView {
+            Script { 
+                "</script><script> var test = '<b>attack</b>';" 
+            }
+        }
+        
+        XCTAssertEqual(try renderer.render(view: view),
+                       """
+                       <script> var test = '\\u003Cb\\u003Eattack\\u003C/b\\u003E';</script>
+                       """
+        )
+    }
+
+    /// Tests the encoding within a css context
+    /// 
+    /// The renderer is expected to remove unallowed tags and to encode only string literal
+    func testEncodingCssContext() throws {
+        
+        let view = TestView {
+            Style { 
+                "</style><style> p { content: '<b>attack</b>'; }" 
+            }
+        }
+        
+        XCTAssertEqual(try renderer.render(view: view),
+                       """
+                       <style> p { content: '\\00003Cb\\00003Eattack\\00003C/b\\00003E'; }</style>
+                       """
+        )
+    }
 }
 

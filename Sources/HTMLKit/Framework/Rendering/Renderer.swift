@@ -43,6 +43,29 @@ public struct Renderer {
         }
     }
     
+    /// A enumeration of potential escape contexts
+    private enum EscapeContext {
+        
+        /// A enumeration of potential html contexts
+        internal enum Context {
+            
+            /// Consider an attribute value
+            case attribute
+            
+            /// Consider an element body
+            case element
+        }
+        
+        /// Consider an html context
+        case html(Context)
+        
+        /// Consider a css context
+        case css
+        
+        /// Consider a js context
+        case js
+    }
+    
     /// The context environment used during rendering
     private var environment: Environment
     
@@ -58,8 +81,11 @@ public struct Renderer {
     /// The logger used to log all operations
     private var logger: Logger
     
-    ///  The encoder used to encode html entities
+    /// The encoder used to encode html entities
     private var encoder: Encoder
+    
+    /// The sanitizer used to clean up html output
+    private var sanitizer: Sanitizer
 
     /// Initializes the renderer
     ///
@@ -79,6 +105,7 @@ public struct Renderer {
         self.features = features
         self.logger = logger
         self.encoder = Encoder()
+        self.sanitizer = Sanitizer()
     }
     
     /// Renders the provided view
@@ -132,7 +159,7 @@ public struct Renderer {
                 try render(modifier: modifier, on: &result)
                 
             case let value as EnvironmentValue:
-                result += escape(content: try render(envvalue: value))
+                result += escape(try render(envvalue: value), as: .html(.element))
                 
             case let statement as Statement:
                 try render(statement: statement, on: &result)
@@ -146,7 +173,7 @@ public struct Renderer {
             case let string as MarkdownString:
                 
                 if !features.contains(.markdown) {
-                    result += escape(content: string.raw)
+                    result += escape(string.raw, as: .html(.element))
                     
                 } else {
                     result += try render(markstring: string)
@@ -158,6 +185,12 @@ public struct Renderer {
             case let string as HtmlString:
                 result += string.value
                 
+            case let string as JsString:
+                result += escape(string.value, as: .js)
+                
+            case let string as CssString:
+                result += escape(string.value, as: .css)
+                
             case let doubleValue as Double:
                 result += String(doubleValue)
                 
@@ -168,7 +201,7 @@ public struct Renderer {
                 result += String(intValue)
                 
             case let stringValue as String:
-                result += escape(content: stringValue)
+                result += escape(stringValue, as: .html(.element))
                 
             case let date as Date:
                 
@@ -246,7 +279,7 @@ public struct Renderer {
         
         result += "<!--"
     
-        result += escape(content: element.content)
+        result += escape(element.content, as: .html(.element))
         
         result += "-->"
     }
@@ -426,10 +459,10 @@ public struct Renderer {
                 result += try render(localized: string)
                 
             case let value as EnvironmentValue:
-                result += escape(attribute: try render(envvalue: value))
+                result += escape(try render(envvalue: value), as: .html(.attribute))
                 
             default:
-                result += escape(attribute: "\(attribute.value)")
+                result += escape("\(attribute.value)", as: .html(.attribute))
             }
             
             result += "\""
@@ -442,7 +475,7 @@ public struct Renderer {
     ///
     /// - Returns: The string representation
     private func render(markstring: MarkdownString) throws -> String {
-        return markdown.render(string: escape(content: markstring.raw))
+        return markdown.render(string: escape(markstring.raw, as: .html(.element)))
     }
     
     /// Renders a environment string
@@ -508,7 +541,7 @@ public struct Renderer {
                 result += string.value
                 
             case let string as String:
-                result += escape(content: string)
+                result += escape(string, as: .html(.element))
                 
             case is EnvironmentValue:
                 
@@ -600,35 +633,43 @@ public struct Renderer {
         try render(loop: envstring.values, with: value, on: &result)
     }
     
-    /// Escapes special characters in the given attribute value
-    ///
-    /// The special characters for the attribute are the backslash, the ampersand and the single quotation mark.
-    ///
-    /// - Parameter value: The attribute value to be escaped
-    ///
-    /// - Returns: The escaped value
-    private func escape(attribute value: String) -> String {
+    /// Escapes a string according to the given context.
+    ///  
+    /// - Parameter value: The string value to escape
+    /// - Parameter context: The context that defines the escaping
+    ///  
+    /// - Returns: The escaped string
+    private func escape(_ value: String, as context: EscapeContext) -> String {
         
         if !features.contains(.escaping) {
             return value
         }
         
-        return encoder.encode(value, as: .html(.attribute))
-    }
-    
-    /// Escapes special characters in the given content value
-    ///
-    /// The special characters for the content are the Greater than, Less than symbol.
-    ///
-    /// - Parameter value: The content value to be escaped
-    ///
-    /// - Returns: The escaped value
-    private func escape(content value: String) -> String {
+        switch context {
+        case .html(let context):
+            
+            switch context {
+            case .attribute:
+                return encoder.encode(value, as: .html(.attribute))
+                
+            case .element:
+                return encoder.encode(value, as: .html(.body))
+            }
+            
+        case .css:
+            
+            // To prevent breaking out of context
+            let sanitized = sanitizer.strip("style", from: value)
         
-        if !features.contains(.escaping) {
-            return value
+            return encoder.encode(sanitized, as: .css)
+            
+        case .js:
+            
+            // To prevent breaking out of context
+            let sanitized = sanitizer.strip("script", from: value)
+
+            return encoder.encode(sanitized, as: .js)
+            
         }
-        
-        return encoder.encode(value, as: .html(.body))
     }
 }

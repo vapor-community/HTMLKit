@@ -21138,7 +21138,7 @@ public struct Script: ContentNode, HeadElement, BodyElement, FormElement, Figure
     ///
     /// - Parameter content: The script's content.
     public init(@ContentBuilder<String> content: () -> [String]) {
-        self.content = [HtmlString(content())]
+        self.content = [JsString(content())]
     }
     
     internal init(attributes: OrderedDictionary<String, Any>?, content: [Content]) {
