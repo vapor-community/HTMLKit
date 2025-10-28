@@ -1,6 +1,8 @@
 import Foundation
 
-/// A type responsible for encoding characters to their safe equivalents
+/// A type that represents an encoder
+/// 
+/// The encoder is responsible for encoding characters to their safe equivalents.
 internal struct Encoder {
     
     /// A enumeration of potential encoding mechanism
@@ -13,7 +15,7 @@ internal struct Encoder {
             case attribute
             
             /// Mechanism to use on the element body
-            case body
+            case element
         }
         
         /// Use a html encoding mechanism
@@ -35,7 +37,7 @@ internal struct Encoder {
                 case .attribute:
                     return ["&", "'", "\""]
                     
-                case .body:
+                case .element:
                     return ["<", ">"]
                 }
                 

@@ -18,29 +18,3 @@ public struct HtmlString: Content {
         self.value = values.joined()
     }
 }
-
-internal struct JsString: Content {
-    
-    internal let value: String
-
-    internal init(_ value: String) {
-        self.value = value
-    }
-
-    internal init(_ values: [String]) {
-        self.value = values.joined()
-    }
-}
-
-internal struct CssString: Content {
-    
-    internal let value: String
-    
-    internal init(_ value: String) {
-        self.value = value
-    }
-    
-    internal init(_ values: [String]) {
-        self.value = values.joined()
-    }
-}

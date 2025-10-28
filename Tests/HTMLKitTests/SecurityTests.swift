@@ -1,8 +1,3 @@
-/*
- Abstract:
- The file tests the rendering of the elements.
- */
-
 import HTMLKit
 import XCTest
 
@@ -15,55 +10,39 @@ final class SecurityTests: XCTestCase {
     
     var renderer = Renderer(features: [.escaping, .markdown])
     
-    func testEncodingAttributeContext() throws {
-        
-        let attack = "\" onclick=\"alert(1);\""
-        
-        let view = TestView {
-            Paragraph {
-            }
-            .class(attack)
-        }
-        
-        XCTAssertEqual(try renderer.render(view: view),
-                       """
-                       <p class="&quot; onclick=&quot;alert(1);&quot;"></p>
-                       """
-        )
-    }
-    
+    /// Tests the escaping within an html context.
+    /// 
+    /// The renderer is expected to encode unsafe characters into html entities.
     func testEncodingHtmlContext() throws {
         
-        let attack = "<script></script>"
-        
         let view = TestView {
+            
+            /// Within the element body
             Paragraph {
-                attack
+                "<script></script>"
             }
+            
+            /// Within the attribute value
+            Paragraph {
+            }
+            .class("\" onclick=\"alert(1);\"")
+            
+            ///  Within a comment body
+            Comment("--> <img src=\"\"> <!--")
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <p>&lt;script&gt;&lt;/script&gt;</p>
-                       """
-        )
-    }
-    
-    func testEncodingCommentContext() throws {
-        
-        let attack = "--> <img src=\"\"> <!--"
-        
-        let view = TestView {
-            Comment(attack)
-        }
-        
-        XCTAssertEqual(try renderer.render(view: view),
-                       """
+                       <p>&lt;script&gt;&lt;/script&gt;</p>\
+                       <p class="&quot; onclick=&quot;alert(1);&quot;"></p>\
                        <!----&gt; &lt;img src=""&gt; &lt;!---->
                        """
         )
     }
     
+    /// Tests the escaping within a environment context.
+    /// 
+    /// The renderer is expected to proceed as in an html context.
     func testEncodingEnvironmentValue() throws {
         
         struct Attack {
@@ -95,13 +74,14 @@ final class SecurityTests: XCTestCase {
         )
     }
     
+    /// Tests the escaping within a markdown context.
+    /// 
+    /// The renderer is expected to proceed as in an html context.
     func testEncodingMarkdownString() throws {
-        
-        let attack = "<script></script>"
-        
+
         let view = TestView {
             Paragraph {
-                MarkdownString(attack)
+                MarkdownString("<script></script>")
             }
         }
         
@@ -112,16 +92,14 @@ final class SecurityTests: XCTestCase {
         )
     }
     
-    /// Tests the renderers behaviour when handling a desired unescaped string.
+    /// Tests the renderers behaviour of a desired unescaped string.
     ///
     /// The renderer is expected to emit the string as-is.
     func testIgnoringHtmlString() throws {
         
-        let html = "<script></script>"
-        
         let view = TestView {
             Paragraph {
-                HtmlString(html)
+                HtmlString("<script></script>")
             }
         }
         
@@ -132,56 +110,55 @@ final class SecurityTests: XCTestCase {
         )
     }
     
-    /// Tests the renderers behaviour when handling embedded code
-    ///
-    /// The renderer is expected to emit the string as-is.
-    func testIgnoringScriptAndStyle() throws {
-        
-        let view = TestView {
-            Script { "new Promise((r, f) => { ... })" }
-            Style { "div > p {}" }
-        }
-        
-        XCTAssertEqual(try renderer.render(view: view),
-                       """
-                       <script>new Promise((r, f) => { ... })</script>\
-                       <style>div > p {}</style>
-                       """
-        )
-    }
-    
-    /// Tests the encoding within a javascript context
+    /// Tests the escaping within a javascript context.
     /// 
-    /// The renderer is expected to remove unallowed tags and to encode only string literal
-    func testEncodingJsContext() throws {
+    /// The renderer is expected to remove unwanted tags and to encode only string literals.
+    func testEscapingJsContext() throws {
         
         let view = TestView {
+            // Literal with single quotes
             Script { 
                 "</script><script> var test = '<b>attack</b>';" 
+            }
+            // Literal with double quotes
+            Script {
+                "</script><script> var test = \"<b>attack</b>\";" 
+            }
+            // Literal with backticks
+            Script {
+                "</script><script> var test = `<b>attack</b>`;" 
             }
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <script> var test = '\\u003Cb\\u003Eattack\\u003C/b\\u003E';</script>
+                       <script> var test = '\\u003Cb\\u003Eattack\\u003C/b\\u003E';</script>\
+                       <script> var test = \"\\u003Cb\\u003Eattack\\u003C/b\\u003E\";</script>\
+                       <script> var test = `\\u003Cb\\u003Eattack\\u003C/b\\u003E`;</script>
                        """
         )
     }
 
-    /// Tests the encoding within a css context
+    /// Tests the escaping within a css context.
     /// 
-    /// The renderer is expected to remove unallowed tags and to encode only string literal
-    func testEncodingCssContext() throws {
+    /// The renderer is expected to remove unwanted tags and to encode only string literals.
+    func testEscapingCssContext() throws {
         
         let view = TestView {
+            // Literal with single quotes
             Style { 
                 "</style><style> p { content: '<b>attack</b>'; }" 
+            }
+            // Literal with double quotes
+            Style {
+                "</style><style> p { content: \"<b>attack</b>\"; }" 
             }
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <style> p { content: '\\00003Cb\\00003Eattack\\00003C/b\\00003E'; }</style>
+                       <style> p { content: '\\00003Cb\\00003Eattack\\00003C/b\\00003E'; }</style>\
+                       <style> p { content: \"\\00003Cb\\00003Eattack\\00003C/b\\00003E\"; }</style>
                        """
         )
     }

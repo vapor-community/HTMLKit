@@ -43,29 +43,6 @@ public struct Renderer {
         }
     }
     
-    /// A enumeration of potential escape contexts
-    private enum EscapeContext {
-        
-        /// A enumeration of potential html contexts
-        internal enum Context {
-            
-            /// Consider an attribute value
-            case attribute
-            
-            /// Consider an element body
-            case element
-        }
-        
-        /// Consider an html context
-        case html(Context)
-        
-        /// Consider a css context
-        case css
-        
-        /// Consider a js context
-        case js
-    }
-    
     /// The context environment used during rendering
     private var environment: Environment
     
@@ -159,7 +136,7 @@ public struct Renderer {
                 try render(modifier: modifier, on: &result)
                 
             case let value as EnvironmentValue:
-                result += escape(try render(envvalue: value), as: .html(.element))
+                result += escape(tainted: .init(try render(envvalue: value), as: .html(.element)))
                 
             case let statement as Statement:
                 try render(statement: statement, on: &result)
@@ -173,7 +150,7 @@ public struct Renderer {
             case let string as MarkdownString:
                 
                 if !features.contains(.markdown) {
-                    result += escape(string.raw, as: .html(.element))
+                    result += escape(tainted: .init(string.raw, as: .html(.element)))
                     
                 } else {
                     result += try render(markstring: string)
@@ -185,11 +162,8 @@ public struct Renderer {
             case let string as HtmlString:
                 result += string.value
                 
-            case let string as JsString:
-                result += escape(string.value, as: .js)
-                
-            case let string as CssString:
-                result += escape(string.value, as: .css)
+            case let string as TaintedString:
+                result += escape(tainted: string)
                 
             case let doubleValue as Double:
                 result += String(doubleValue)
@@ -201,7 +175,7 @@ public struct Renderer {
                 result += String(intValue)
                 
             case let stringValue as String:
-                result += escape(stringValue, as: .html(.element))
+                result += escape(tainted: .init(stringValue, as: .html(.element)))
                 
             case let date as Date:
                 
@@ -279,7 +253,7 @@ public struct Renderer {
         
         result += "<!--"
     
-        result += escape(element.content, as: .html(.element))
+        result += escape(tainted: .init(element.content, as: .html(.element)))
         
         result += "-->"
     }
@@ -459,10 +433,10 @@ public struct Renderer {
                 result += try render(localized: string)
                 
             case let value as EnvironmentValue:
-                result += escape(try render(envvalue: value), as: .html(.attribute))
+                result += escape(tainted: .init(try render(envvalue: value), as: .html(.attribute)))
                 
             default:
-                result += escape("\(attribute.value)", as: .html(.attribute))
+                result += escape(tainted: .init("\(attribute.value)", as: .html(.attribute)))
             }
             
             result += "\""
@@ -475,7 +449,7 @@ public struct Renderer {
     ///
     /// - Returns: The string representation
     private func render(markstring: MarkdownString) throws -> String {
-        return markdown.render(string: escape(markstring.raw, as: .html(.element)))
+        return markdown.render(string: escape(tainted: .init(markstring.raw, as: .html(.element))))
     }
     
     /// Renders a environment string
@@ -540,8 +514,11 @@ public struct Renderer {
             case let string as HtmlString:
                 result += string.value
                 
+            case let string as TaintedString:
+                result += escape(tainted: string)
+                
             case let string as String:
-                result += escape(string, as: .html(.element))
+                result += escape(tainted: .init(string, as: .html(.element)))
                 
             case is EnvironmentValue:
                 
@@ -633,40 +610,44 @@ public struct Renderer {
         try render(loop: envstring.values, with: value, on: &result)
     }
     
-    /// Escapes a string according to the given context.
+    /// Escapes a tainted string
+    /// 
+    /// It takes precautions such as character encoding and input sanitization to ensure a safe output. Though the escaping alone 
+    /// does not guarantee complete safety. It only helps mitigate the risk.
+    ///
+    /// - Parameter string: The string value to escape.
     ///  
-    /// - Parameter value: The string value to escape
-    /// - Parameter context: The context that defines the escaping
-    ///  
-    /// - Returns: The escaped string
-    private func escape(_ value: String, as context: EscapeContext) -> String {
-        
+    /// - Returns: The untainted string
+    private func escape(tainted string: TaintedString) -> String {
+
         if !features.contains(.escaping) {
-            return value
+            
+            // Bail early, if the escaping is not desired
+            return string.value
         }
         
-        switch context {
+        switch string.context {
         case .html(let context):
             
             switch context {
             case .attribute:
-                return encoder.encode(value, as: .html(.attribute))
+                return encoder.encode(string.value, as: .html(.attribute))
                 
             case .element:
-                return encoder.encode(value, as: .html(.body))
+                return encoder.encode(string.value, as: .html(.element))
             }
             
         case .css:
             
             // To prevent breaking out of context
-            let sanitized = sanitizer.strip("style", from: value)
+            let sanitized = sanitizer.strip("style", from: string.value)
         
             return encoder.encode(sanitized, as: .css)
             
         case .js:
             
             // To prevent breaking out of context
-            let sanitized = sanitizer.strip("script", from: value)
+            let sanitized = sanitizer.strip("script", from: string.value)
 
             return encoder.encode(sanitized, as: .js)
             
