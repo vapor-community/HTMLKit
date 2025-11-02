@@ -3482,14 +3482,14 @@ public protocol StyleAttribute: Attribute {
 extension StyleAttribute where Self: ContentNode {
     
     internal func mutate(style value: String) -> Self {
-        return self.mutate(key: "style", value: value)
+        return self.mutate(key: "style", value: TaintedString(value, as: .css(.attribute)))
     }
 }
 
 extension StyleAttribute where Self: EmptyNode {
     
     internal func mutate(style value: String) -> Self {
-        return self.mutate(key: "style", value: value)
+        return self.mutate(key: "style", value: TaintedString(value, as: .css(.attribute)))
     }
 }
 

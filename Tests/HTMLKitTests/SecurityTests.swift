@@ -116,25 +116,40 @@ final class SecurityTests: XCTestCase {
     func testEscapingJsContext() throws {
         
         let view = TestView {
+            
             // Literal with single quotes
             Script { 
                 "</script><script> var test = '<b>attack</b>';" 
             }
+            
             // Literal with double quotes
             Script {
                 "</script><script> var test = \"<b>attack</b>\";" 
             }
-            // Literal with backticks
-            Script {
-                "</script><script> var test = `<b>attack</b>`;" 
+            
+            // Within the value of a javascript attribute
+            Paragraph {
             }
+            .on(event: .click, "alert('<b>attack</b>')")
+            
+            // Within the value of a javascript attribute
+            Paragraph {
+            }
+            .on(event: .click, "alert('\" onmouseover=\"alert('\"')")
+            
+            // Within the value of a javascript attribute
+            Paragraph {
+            }
+            .on(event: .click, "\" onmouseover=\"alert('attack')\"")
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <script> var test = '\\u003Cb\\u003Eattack\\u003C/b\\u003E';</script>\
-                       <script> var test = \"\\u003Cb\\u003Eattack\\u003C/b\\u003E\";</script>\
-                       <script> var test = `\\u003Cb\\u003Eattack\\u003C/b\\u003E`;</script>
+                       <script> var test = '&lt;b&gt;attack&lt;/b&gt;';</script>\
+                       <script> var test = "&lt;b&gt;attack&lt;/b&gt;";</script>\
+                       <p onclick="alert('&lt;b&gt;attack&lt;/b&gt;')"></p>\
+                       <p onclick="alert('&quot; onmouseover=&quot;alert('&quot;')"></p>\
+                       <p onclick="&quot; onmouseover=&quot;alert('attack')&quot;"></p>
                        """
         )
     }
@@ -145,20 +160,28 @@ final class SecurityTests: XCTestCase {
     func testEscapingCssContext() throws {
         
         let view = TestView {
+            
             // Literal with single quotes
             Style { 
-                "</style><style> p { content: '<b>attack</b>'; }" 
+                "</style><style> p { background: url('https://...'); }" 
             }
+            
             // Literal with double quotes
             Style {
-                "</style><style> p { content: \"<b>attack</b>\"; }" 
+                "</style><style> p { background: url(\"https://...\"); }" 
             }
+            
+            // Within the value of a css attribute
+            Paragraph {
+            }
+            .style("\" onclick=\"alert('<b>attack</b>');")
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <style> p { content: '\\00003Cb\\00003Eattack\\00003C/b\\00003E'; }</style>\
-                       <style> p { content: \"\\00003Cb\\00003Eattack\\00003C/b\\00003E\"; }</style>
+                       <style> p { background: url('https://...'); }</style>\
+                       <style> p { background: url("https://..."); }</style>\
+                       <p style="&quot; onclick=&quot;alert('&lt;b&gt;attack&lt;/b&gt;');"></p>
                        """
         )
     }

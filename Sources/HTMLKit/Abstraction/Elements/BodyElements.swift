@@ -4559,7 +4559,7 @@ extension Paragraph: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
     }
     
     public func on(event: Events.Mouse, _ value: String) -> Paragraph {
-        return mutate(key: event.rawValue, value: value)
+        return mutate(key: event.rawValue, value: TaintedString(value, as: .js(.attribute)))
     }
     
     public func on(event: Events.Wheel, _ value: String) -> Paragraph {
@@ -21138,7 +21138,7 @@ public struct Script: ContentNode, HeadElement, BodyElement, FormElement, Figure
     ///
     /// - Parameter content: The script's content.
     public init(@ContentBuilder<String> content: () -> [String]) {
-        self.content = [TaintedString(content().joined(), as: .js)]
+        self.content = [TaintedString(content().joined(), as: .js(.element))]
     }
     
     internal init(attributes: OrderedDictionary<String, Any>?, content: [Content]) {

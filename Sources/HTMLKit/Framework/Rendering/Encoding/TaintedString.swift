@@ -1,13 +1,14 @@
-/// A string that represents a untrusted string
+/// A type that represents an untrusted string.
 /// 
-/// The tainted string comes from a untrusted source and must be escaped by the renderer,
+/// The tainted string comes from an untrusted source and must be escaped by the renderer,
 /// before it is getting consumed.
 internal struct TaintedString: Content {
     
+    /// An enumeration of potential source contexts
     internal enum Context {
 
-        /// The context within a html context
-        internal enum Context {
+        /// The subcontext within a source context
+        internal enum Subcontext {
             
             /// Consider an attribute value
             case attribute
@@ -16,14 +17,14 @@ internal struct TaintedString: Content {
             case element
         }
         
-        /// Consider an html context
-        case html(Context)
+        /// Consider an HTML context
+        case html(Subcontext)
         
-        /// Consider a css context
-        case css
+        /// Consider a CSS context
+        case css(Subcontext)
         
-        /// Consider a js context
-        case js
+        /// Consider a JS context
+        case js(Subcontext)
     }
     
     /// The string value marked as tainted
@@ -32,7 +33,7 @@ internal struct TaintedString: Content {
     /// The context of the source of the string
     internal let context: Context
     
-    /// Create a tainted string
+    /// Create a tainted string.
     /// 
     /// - Parameters:
     ///   - value: The string value

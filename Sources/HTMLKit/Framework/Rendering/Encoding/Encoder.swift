@@ -1,13 +1,17 @@
 import Foundation
 
-/// A type that represents an encoder
+/// A type that represents an encoder.
 /// 
 /// The encoder is responsible for encoding characters to their safe equivalents.
+/// 
+/// > Note: The encoder does not utilize unicode encoding for some languages, such as JS and CSS. 
+/// > It primarily aims to preserve the code integrity and to protect against code injection within an 
+/// > HTML context.
 internal struct Encoder {
     
-    /// A enumeration of potential encoding mechanism
+    /// An enumeration of potential encoding mechanism
     internal enum Mechanism {
-        
+
         /// The context the mechanism should be based on
         internal enum Context {
             
@@ -18,14 +22,14 @@ internal struct Encoder {
             case element
         }
         
-        /// Use a html encoding mechanism
+        /// Use a HTML encoding mechanism
         case html(Context)
         
-        /// Use a css encoding mechanism
-        case css
+        /// Use a CSS encoding mechanism
+        case css(Context)
         
-        /// Use a js encoding mechanism
-        case js
+        /// Use a JS encoding mechanism
+        case js(Context)
         
         /// The characters to replace based on the mechanism and context
         var characters: Set<Unicode.Scalar> {
@@ -35,48 +39,37 @@ internal struct Encoder {
                 
                 switch context {
                 case .attribute:
-                    return ["&", "'", "\""]
+                    return ["&", "<", "'", "\""]
+                    
+                case .element:
+                    return ["&", "<", ">"]
+                }
+                
+            case .css(let context):
+                
+                switch context {
+                case .attribute:
+                    return ["&", "<", ">", "\""]
                     
                 case .element:
                     return ["<", ">"]
                 }
                 
-            case .css:
-                return ["<", ">"]
+            case .js(let context):
                 
-            case .js:
-                return ["<", ">"]
+                switch context {
+                case .attribute:
+                    return ["&", "<", ">", "\""]
+                    
+                case .element:
+                    return ["<", ">"]
+                }
             }
         }
         
         /// The characters to replace with based on the mechanism
         var replacements: [Unicode.Scalar: String] {
-            
-            switch self {                
-            case .html:
-                return ["&": "&amp;", "<": "&lt;", ">": "&gt;", "\"": "&quot;", "'": "&apos;"]
-                
-            case .css:
-                return ["<": "\\00003C", ">": "\\00003E"]
-                
-            case .js:
-                return ["<": "\\u003C", ">": "\\u003E"]
-            }
-        }
-        
-        /// The delimiters to look for while encoding
-        var delimiters: Set<Unicode.Scalar> {
-            
-            switch self {
-            case .html:
-                return []
-                
-            case .css:
-                return ["\"", "'"]
-                
-            case .js:
-                return ["\"", "'", "`"]
-            }
+            return ["&": "&amp;", "<": "&lt;", ">": "&gt;", "\"": "&quot;", "'": "&apos;"]
         }
     }
     
@@ -90,15 +83,22 @@ internal struct Encoder {
     internal func encode(_ string: String, as mechansim: Mechanism) -> String {
         
         switch mechansim {
-        case .css, .js:
-            return self.replace(mechansim.characters, with: mechansim.replacements, within: mechansim.delimiters, on: string)
+        case .css(let context), .js(let context):
+            
+            switch context {
+            case .attribute:
+                return self.replace(mechansim.characters, with: mechansim.replacements, on: string)
+                
+            case .element:
+                return self.replace(mechansim.characters, with: mechansim.replacements, within: ["\"", "'"], on: string)
+            }
             
         case .html:
             return self.replace(mechansim.characters, with: mechansim.replacements, on: string)
         }
     }
     
-    /// Replaces occurrences of characters in a string with their corresponding replacements
+    /// Replaces occurrences of characters within a substring with their corresponding replacements.
     /// 
     /// - Parameters:
     ///   - set: The set of character to check against
@@ -137,14 +137,14 @@ internal struct Encoder {
                     if set.contains(scalar) {
                         
                         if let replacement = table[scalar] {
-                            result.append(contentsOf: replacement)
+                            result.append(replacement)
                             
                         } else {
-                            result.append(contentsOf: String(scalar))
+                            result.append(String(scalar))
                         }
                         
                     } else {
-                        result.append(contentsOf: String(scalar))
+                        result.append(String(scalar))
                     }
                     
                 } else {
@@ -156,7 +156,7 @@ internal struct Encoder {
         return result
     }
     
-    /// Replaces occurrences of characters in a string with their corresponding replacements
+    /// Replaces occurrences of characters within a string with their corresponding replacements.
     /// 
     /// - Parameters:
     ///   - set: The set of characters to check against
@@ -173,14 +173,14 @@ internal struct Encoder {
             if set.contains(scalar) {
                 
                 if let replacement = table[scalar] {
-                    result.append(contentsOf: replacement)
+                    result.append(replacement)
                     
                 } else {
-                    result.append(contentsOf: String(scalar))
+                    result.append(String(scalar))
                 }
                 
             } else {
-                result.append(contentsOf: String(scalar))
+                result.append(String(scalar))
             }
         }
         

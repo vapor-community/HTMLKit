@@ -715,7 +715,7 @@ public struct Style: ContentNode, HeadElement {
     ///
     /// - Parameter content: The style's content.
     public init(@ContentBuilder<String> content: () -> [String]) {
-        self.content = [TaintedString(content().joined(), as: .css)]
+        self.content = [TaintedString(content().joined(), as: .css(.element))]
     }
     
     internal init(attributes: OrderedDictionary<String, Any>?, content: [Content]) {

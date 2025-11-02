@@ -435,6 +435,9 @@ public struct Renderer {
             case let value as EnvironmentValue:
                 result += escape(tainted: .init(try render(envvalue: value), as: .html(.attribute)))
                 
+            case let string as TaintedString:
+                result += escape(tainted: string)
+                
             default:
                 result += escape(tainted: .init("\(attribute.value)", as: .html(.attribute)))
             }
@@ -612,7 +615,7 @@ public struct Renderer {
     
     /// Escapes a tainted string
     /// 
-    /// It takes precautions such as character encoding and input sanitization to ensure a safe output. Though the escaping alone 
+    /// It takes precautions such as output encoding and input sanitization to ensure a safe output. Though the escaping alone 
     /// does not guarantee complete safety. It only helps mitigate the risk.
     ///
     /// - Parameter string: The string value to escape.
@@ -627,9 +630,9 @@ public struct Renderer {
         }
         
         switch string.context {
-        case .html(let context):
+        case .html(let subcontext):
             
-            switch context {
+            switch subcontext {
             case .attribute:
                 return encoder.encode(string.value, as: .html(.attribute))
                 
@@ -637,20 +640,33 @@ public struct Renderer {
                 return encoder.encode(string.value, as: .html(.element))
             }
             
-        case .css:
+        case .css(let subcontext):
             
-            // To prevent breaking out of context
-            let sanitized = sanitizer.strip("style", from: string.value)
-        
-            return encoder.encode(sanitized, as: .css)
+            switch subcontext {
+            case .attribute:
+                return encoder.encode(string.value, as: .css(.attribute))
+                
+            case .element:
+                
+                // To prevent breaking out of context
+                let sanitized = sanitizer.strip("style", from: string.value)
             
-        case .js:
+                return encoder.encode(sanitized, as: .css(.element))
+            }
             
-            // To prevent breaking out of context
-            let sanitized = sanitizer.strip("script", from: string.value)
+        case .js(let subcontext):
+            
+            switch subcontext {
+            case .attribute:
+                return encoder.encode(string.value, as: .js(.attribute))
+                
+            case .element:
+                
+                // To prevent breaking out of context
+                let sanitized = sanitizer.strip("script", from: string.value)
 
-            return encoder.encode(sanitized, as: .js)
-            
+                return encoder.encode(sanitized, as: .js(.element))
+            }
         }
     }
 }
