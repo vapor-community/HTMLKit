@@ -2080,7 +2080,7 @@ final class AttributesTests: XCTestCase {
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <tag srcdoc="<!doctype html><html lang=&quot;de&quot;></html>"></tag>
+                       <tag srcdoc="&lt;!doctype html>&lt;html lang=&quot;de&quot;>&lt;/html>"></tag>
                        """
         )
     }
