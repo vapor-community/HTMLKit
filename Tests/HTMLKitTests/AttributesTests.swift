@@ -136,7 +136,7 @@ final class AttributesTests: XCTestCase {
         }
         
         func style(_ value: String) -> Tag {
-            return self.mutate(style: value)
+            return self.mutate(style: TaintedString(value, as: .css(.attribute)))
         }
         
         func tabIndex(_ value: Int) -> Tag {

@@ -72,7 +72,7 @@ extension Circle: GlobalVectorAttributes, CenterPointAttribute, RadiusAttribute 
     }
     
     public func style(_ value: String) -> Circle {
-        return self.mutate(style: value)
+        return self.mutate(style: TaintedString(value, as: .css(.attribute)))
     }
     
     public func fill(_ value: String) -> Circle {
@@ -184,7 +184,7 @@ extension Rectangle: GlobalVectorAttributes, WidthAttribute, HeightAttribute, Ra
     }
     
     public func style(_ value: String) -> Rectangle {
-        return self.mutate(style: value)
+        return self.mutate(style: TaintedString(value, as: .css(.attribute)))
     }
     
     public func fill(_ value: String) -> Rectangle {
@@ -300,7 +300,7 @@ extension Ellipse: GlobalVectorAttributes, CenterPointAttribute, RadiusPointAttr
     }
     
     public func style(_ value: String) -> Ellipse {
-        return self.mutate(style: value)
+        return self.mutate(style: TaintedString(value, as: .css(.attribute)))
     }
     
     public func fill(_ value: String) -> Ellipse {
@@ -412,7 +412,7 @@ extension Line: GlobalVectorAttributes {
     }
     
     public func style(_ value: String) -> Line {
-        return self.mutate(style: value)
+        return self.mutate(style: TaintedString(value, as: .css(.attribute)))
     }
     
     public func fill(_ value: String) -> Line {
@@ -515,7 +515,7 @@ extension Polygon: GlobalVectorAttributes, PointsAttribute {
     }
     
     public func style(_ value: String) -> Polygon {
-        return self.mutate(style: value)
+        return self.mutate(style: TaintedString(value, as: .css(.attribute)))
     }
     
     public func fill(_ value: String) -> Polygon {
@@ -622,7 +622,7 @@ extension Polyline: GlobalVectorAttributes, PointsAttribute {
     }
     
     public func style(_ value: String) -> Polyline {
-        return self.mutate(style: value)
+        return self.mutate(style: TaintedString(value, as: .css(.attribute)))
     }
     
     public func fill(_ value: String) -> Polyline {
@@ -729,7 +729,7 @@ extension Path: GlobalVectorAttributes, DrawAttribute {
     }
     
     public func style(_ value: String) -> Path {
-        return self.mutate(style: value)
+        return self.mutate(style: TaintedString(value, as: .css(.attribute)))
     }
 
     public func fill(_ value: String) -> Path {
@@ -835,7 +835,7 @@ extension Group: GlobalVectorAttributes {
     }
 
     public func style(_ value: String) -> Group {
-        return self.mutate(style: value)
+        return self.mutate(style: TaintedString(value, as: .css(.attribute)))
     }
 
     public func fill(_ value: String) -> Group {
@@ -953,7 +953,7 @@ extension Use: GlobalVectorAttributes, ReferenceAttribute, WidthAttribute, Heigh
     }
     
     public func style(_ value: String) -> Use {
-        return self.mutate(style: value)
+        return self.mutate(style: TaintedString(value, as: .css(.attribute)))
     }
     
     public func fill(_ value: String) -> Use {
