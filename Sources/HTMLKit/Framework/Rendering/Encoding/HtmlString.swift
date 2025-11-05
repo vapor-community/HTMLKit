@@ -12,4 +12,9 @@ public struct HtmlString: Content {
     public init(_ value: String) {
         self.value = value
     }
+    
+    /// Initializes an html string
+    internal init(_ values: [String]) {
+        self.value = values.joined()
+    }
 }
