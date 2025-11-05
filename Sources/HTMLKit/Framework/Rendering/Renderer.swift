@@ -136,7 +136,7 @@ public struct Renderer {
                 try render(modifier: modifier, on: &result)
                 
             case let value as EnvironmentValue:
-                result += escape(tainted: .init(try render(envvalue: value), as: .html(.element)))
+                result += try render(envelement: value)
                 
             case let statement as Statement:
                 try render(statement: statement, on: &result)
@@ -352,9 +352,9 @@ public struct Renderer {
     /// - Parameter value: The environment value to resolve
     ///
     /// - Returns: The string representation
-    private func render(envvalue: EnvironmentValue) throws -> String {
+    private func render(envattribute value: EnvironmentValue) throws -> String {
         
-        let value = try self.environment.resolve(value: envvalue)
+        let value = try self.environment.resolve(value: value)
         
         switch value {
         case let floatValue as Float:
@@ -367,7 +367,43 @@ public struct Renderer {
             return String(doubleValue)
             
         case let stringValue as String:
-            return stringValue
+            return escape(tainted: .init(stringValue, as: .html(.attribute)))
+            
+        case let dateValue as Date:
+            
+            let formatter = DateFormatter()
+            formatter.timeZone = environment.timeZone ?? TimeZone.current
+            formatter.dateStyle = .medium
+            formatter.timeStyle = .short
+            
+            return formatter.string(from: dateValue)
+            
+        default:
+            throw Error.unknownValueType
+        }
+    }
+    
+    /// Renders a environment value
+    ///
+    /// - Parameter value: The environment value to resolve
+    ///
+    /// - Returns: The string representation
+    private func render(envelement value: EnvironmentValue) throws -> String {
+        
+        let value = try self.environment.resolve(value: value)
+        
+        switch value {
+        case let floatValue as Float:
+            return String(floatValue)
+            
+        case let intValue as Int:
+            return String(intValue)
+            
+        case let doubleValue as Double:
+            return String(doubleValue)
+            
+        case let stringValue as String:
+            return escape(tainted: .init(stringValue, as: .html(.element)))
             
         case let dateValue as Date:
             
@@ -433,13 +469,16 @@ public struct Renderer {
                 result += try render(localized: string)
                 
             case let value as EnvironmentValue:
-                result += escape(tainted: .init(try render(envvalue: value), as: .html(.attribute)))
+                result += try render(envattribute: value)
                 
             case let string as TaintedString:
                 result += escape(tainted: string)
                 
+            case let string as String:
+                result += escape(tainted: .init(string, as: .html(.attribute)))
+                
             default:
-                result += escape(tainted: .init("\(attribute.value)", as: .html(.attribute)))
+                result += "\(attribute.value)"
             }
             
             result += "\""
@@ -536,7 +575,7 @@ public struct Renderer {
                     result += String(doubleValue)
                     
                 case let stringValue as String:
-                    result += stringValue
+                    result += escape(tainted: .init(stringValue, as: .html(.element)))
                     
                 case let dateValue as Date:
                     
