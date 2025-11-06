@@ -18,7 +18,7 @@ public struct Title: ContentNode, HeadElement {
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal var content: [String]
+    internal var content: [Content]
     
     /// Create a title.
     ///
@@ -27,7 +27,7 @@ public struct Title: ContentNode, HeadElement {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: [String]) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: [Content]) {
         self.attributes = attributes
         self.content = content
     }
@@ -219,6 +219,13 @@ extension Title: GlobalAttributes, GlobalEventAttributes {
     
     public func on(event: Events.Mouse, _ value: String) -> Title {
         return mutate(key: event.rawValue, value: TaintedString(value, as: .js(.attribute)))
+    }
+}
+
+extension Title: Localizable {
+    
+    public init(_ localizedKey: LocalizedStringKey, tableName: String? = nil) {
+        self.content = [LocalizedString(key: localizedKey, table: tableName)]
     }
 }
 
