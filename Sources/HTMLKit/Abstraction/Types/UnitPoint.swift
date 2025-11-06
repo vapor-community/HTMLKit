@@ -8,6 +8,30 @@ public struct UnitPoint {
             
         /// Indicates an relative value.
         case relative
+        
+        /// Returns the string representation based on the format
+        func string(from value: Int) -> String {
+            
+            switch self {
+            case .absolute:
+                return "\(value)"
+                
+            case .relative:
+                return "\(value)%"
+            }
+        }
+        
+        /// Returns the string representation based on the format
+        func string(from value: Double) -> String {
+            
+            switch self {
+            case .absolute:
+                return "\(value)"
+                
+            case .relative:
+                return "\(value)%"
+            }
+        }
     }
     
     /// The horizontal position of the point
@@ -23,17 +47,9 @@ public struct UnitPoint {
     ///   - y: The vertical coordinate to place the point.
     ///   - format: Whether the coordinates should be relative.
     public init(x: Double, y: Double, format: PointFormat = .absolute) {
-    
-        if case format = .relative {
-            
-            self.x = "\(x)%"
-            self.y = "\(y)%"
-            
-        } else {
-            
-            self.x = "\(x)"
-            self.y = "\(y)"
-        }
+        
+        self.x = format.string(from: x)
+        self.y = format.string(from: y)
     }
     
     /// Create a point.
@@ -43,16 +59,8 @@ public struct UnitPoint {
     ///   - y: The vertical coordinate to place the point.
     ///   - format: Whether the coordinates should be relative.
     public init(x: Int, y: Int, format: PointFormat = .absolute) {
-        
-        if case format = .relative {
-            
-            self.x = "\(x)%"
-            self.y = "\(y)%"
-            
-        } else {
-            
-            self.x = "\(x)"
-            self.y = "\(y)"
-        }
+
+        self.x = format.string(from: x)
+        self.y = format.string(from: y)
     }
 }
