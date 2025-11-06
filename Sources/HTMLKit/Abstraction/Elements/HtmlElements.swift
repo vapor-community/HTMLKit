@@ -158,7 +158,7 @@ extension Head: GlobalAttributes, GlobalEventAttributes {
     }
     
     public func style(_ value: String) -> Head {
-        return mutate(style: value)
+        return mutate(style: TaintedString(value, as: .css(.attribute)))
     }
     
     public func tabIndex(_ value: Int) -> Head {
@@ -200,23 +200,23 @@ extension Head: GlobalAttributes, GlobalEventAttributes {
     }
     
     public func on(event: Events.Drag, _ value: String) -> Head {
-        return mutate(key: event.rawValue, value: value)
+        return mutate(key: event.rawValue, value: TaintedString(value, as: .js(.attribute)))
     }
     
     public func on(event: Events.Clipboard, _ value: String) -> Head {
-        return mutate(key: event.rawValue, value: value)
+        return mutate(key: event.rawValue, value: TaintedString(value, as: .js(.attribute)))
     }
     
     public func on(event: Events.Wheel, _ value: String) -> Head {
-        return mutate(key: event.rawValue, value: value)
+        return mutate(key: event.rawValue, value: TaintedString(value, as: .js(.attribute)))
     }
     
     public func on(event: Events.Keyboard, _ value: String) -> Head {
-        return mutate(key: event.rawValue, value: value)
+        return mutate(key: event.rawValue, value: TaintedString(value, as: .js(.attribute)))
     }
     
     public func on(event: Events.Mouse, _ value: String) -> Head {
-        return mutate(key: event.rawValue, value: value)
+        return mutate(key: event.rawValue, value: TaintedString(value, as: .js(.attribute)))
     }
 }
 
@@ -382,7 +382,7 @@ extension Body: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, W
     }
 
     public func style(_ value: String) -> Body {
-        return mutate(style: value)
+        return mutate(style: TaintedString(value, as: .css(.attribute)))
     }
 
     public func tabIndex(_ value: Int) -> Body {
@@ -424,27 +424,27 @@ extension Body: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, W
     }
     
     public func on(event: Events.Drag, _ value: String) -> Body {
-        return mutate(key: event.rawValue, value: value)
+        return mutate(key: event.rawValue, value: TaintedString(value, as: .js(.attribute)))
     }
     
     public func on(event: Events.Clipboard, _ value: String) -> Body {
-        return mutate(key: event.rawValue, value: value)
+        return mutate(key: event.rawValue, value: TaintedString(value, as: .js(.attribute)))
     }
     
     public func on(event: Events.Window, _ value: String) -> Body {
-        return mutate(key: event.rawValue, value: value)
+        return mutate(key: event.rawValue, value: TaintedString(value, as: .js(.attribute)))
     }
     
     public func on(event: Events.Keyboard, _ value: String) -> Body {
-        return mutate(key: event.rawValue, value: value)
+        return mutate(key: event.rawValue, value: TaintedString(value, as: .js(.attribute)))
     }
     
     public func on(event: Events.Mouse, _ value: String) -> Body {
-        return mutate(key: event.rawValue, value: value)
+        return mutate(key: event.rawValue, value: TaintedString(value, as: .js(.attribute)))
     }
 
     public func on(event: Events.Wheel, _ value: String) -> Body {
-        return mutate(key: event.rawValue, value: value)
+        return mutate(key: event.rawValue, value: TaintedString(value, as: .js(.attribute)))
     }
     
     public func aria(atomic value: Bool) -> Body {

@@ -1,8 +1,3 @@
-/*
- Abstract:
- The file tests the rendering of the elements.
- */
-
 import HTMLKit
 import XCTest
 
@@ -15,55 +10,39 @@ final class SecurityTests: XCTestCase {
     
     var renderer = Renderer(features: [.escaping, .markdown])
     
-    func testEncodingAttributeContext() throws {
-        
-        let attack = "\" onclick=\"alert(1);\""
-        
-        let view = TestView {
-            Paragraph {
-            }
-            .class(attack)
-        }
-        
-        XCTAssertEqual(try renderer.render(view: view),
-                       """
-                       <p class="&quot; onclick=&quot;alert(1);&quot;"></p>
-                       """
-        )
-    }
-    
+    /// Tests the escaping within an html context.
+    /// 
+    /// The renderer is expected to encode unsafe characters into html entities.
     func testEncodingHtmlContext() throws {
         
-        let attack = "<script></script>"
-        
         let view = TestView {
+            
+            /// Within the element body
             Paragraph {
-                attack
+                "<script></script>"
             }
+            
+            /// Within the attribute value
+            Paragraph {
+            }
+            .class("\" onclick=\"alert(1);\"")
+            
+            ///  Within a comment body
+            Comment("--> <img src=\"\"> <!--")
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <p>&lt;script&gt;&lt;/script&gt;</p>
-                       """
-        )
-    }
-    
-    func testEncodingCommentContext() throws {
-        
-        let attack = "--> <img src=\"\"> <!--"
-        
-        let view = TestView {
-            Comment(attack)
-        }
-        
-        XCTAssertEqual(try renderer.render(view: view),
-                       """
+                       <p>&lt;script&gt;&lt;/script&gt;</p>\
+                       <p class="&quot; onclick=&quot;alert(1);&quot;"></p>\
                        <!----&gt; &lt;img src=""&gt; &lt;!---->
                        """
         )
     }
     
+    /// Tests the escaping within a environment context.
+    /// 
+    /// The renderer is expected to proceed as in an html context.
     func testEncodingEnvironmentValue() throws {
         
         struct Attack {
@@ -95,13 +74,14 @@ final class SecurityTests: XCTestCase {
         )
     }
     
+    /// Tests the escaping within a markdown context.
+    /// 
+    /// The renderer is expected to proceed as in an html context.
     func testEncodingMarkdownString() throws {
-        
-        let attack = "<script></script>"
-        
+
         let view = TestView {
             Paragraph {
-                MarkdownString(attack)
+                MarkdownString("<script></script>")
             }
         }
         
@@ -112,22 +92,96 @@ final class SecurityTests: XCTestCase {
         )
     }
     
-    /// Tests the renderers behaviour when handling a desired unescaped string.
+    /// Tests the renderers behaviour of a desired unescaped string.
     ///
     /// The renderer is expected to emit the string as-is.
     func testIgnoringHtmlString() throws {
         
-        let html = "<script></script>"
-        
         let view = TestView {
             Paragraph {
-                HtmlString(html)
+                HtmlString("<script></script>")
             }
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
                        <p><script></script></p>
+                       """
+        )
+    }
+    
+    /// Tests the escaping within a javascript context.
+    /// 
+    /// The renderer is expected to remove unwanted tags and to encode only string literals.
+    func testEscapingJsContext() throws {
+        
+        let view = TestView {
+            
+            // Literal with single quotes
+            Script { 
+                "</script><script> var test = '<b>attack</b>';" 
+            }
+            
+            // Literal with double quotes
+            Script {
+                "</script><script> var test = \"<b>attack</b>\";" 
+            }
+            
+            // Within the value of a javascript attribute
+            Paragraph {
+            }
+            .on(event: .click, "alert('<b>attack</b>')")
+            
+            // Within the value of a javascript attribute
+            Paragraph {
+            }
+            .on(event: .click, "alert('\" onmouseover=\"alert('\"')")
+            
+            // Within the value of a javascript attribute
+            Paragraph {
+            }
+            .on(event: .click, "\" onmouseover=\"alert('attack')\"")
+        }
+        
+        XCTAssertEqual(try renderer.render(view: view),
+                       """
+                       <script> var test = '&lt;b&gt;attack&lt;/b&gt;';</script>\
+                       <script> var test = "&lt;b&gt;attack&lt;/b&gt;";</script>\
+                       <p onclick="alert('&lt;b&gt;attack&lt;/b&gt;')"></p>\
+                       <p onclick="alert('&quot; onmouseover=&quot;alert('&quot;')"></p>\
+                       <p onclick="&quot; onmouseover=&quot;alert('attack')&quot;"></p>
+                       """
+        )
+    }
+
+    /// Tests the escaping within a css context.
+    /// 
+    /// The renderer is expected to remove unwanted tags and to encode only string literals.
+    func testEscapingCssContext() throws {
+        
+        let view = TestView {
+            
+            // Literal with single quotes
+            Style { 
+                "</style><style> p { background: url('https://...'); }" 
+            }
+            
+            // Literal with double quotes
+            Style {
+                "</style><style> p { background: url(\"https://...\"); }" 
+            }
+            
+            // Within the value of a css attribute
+            Paragraph {
+            }
+            .style("\" onclick=\"alert('<b>attack</b>');")
+        }
+        
+        XCTAssertEqual(try renderer.render(view: view),
+                       """
+                       <style> p { background: url('https://...'); }</style>\
+                       <style> p { background: url("https://..."); }</style>\
+                       <p style="&quot; onclick=&quot;alert('&lt;b&gt;attack&lt;/b&gt;');"></p>
                        """
         )
     }

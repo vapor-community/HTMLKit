@@ -158,7 +158,7 @@ extension Parameter: GlobalAttributes, GlobalEventAttributes, NameAttribute, Val
     }
 
     public func style(_ value: String) -> Parameter {
-        return mutate(style: value)
+        return mutate(style: TaintedString(value, as: .css(.attribute)))
     }
 
     public func tabIndex(_ value: Int) -> Parameter {
@@ -217,22 +217,22 @@ extension Parameter: GlobalAttributes, GlobalEventAttributes, NameAttribute, Val
     }
     
     public func on(event: Events.Drag, _ value: String) -> Parameter {
-        return mutate(key: event.rawValue, value: value)
+        return mutate(key: event.rawValue, value: TaintedString(value, as: .js(.attribute)))
     }
     
     public func on(event: Events.Clipboard, _ value: String) -> Parameter {
-        return mutate(key: event.rawValue, value: value)
+        return mutate(key: event.rawValue, value: TaintedString(value, as: .js(.attribute)))
     }
     
     public func on(event: Events.Wheel, _ value: String) -> Parameter {
-        return mutate(key: event.rawValue, value: value)
+        return mutate(key: event.rawValue, value: TaintedString(value, as: .js(.attribute)))
     }
     
     public func on(event: Events.Keyboard, _ value: String) -> Parameter {
-        return mutate(key: event.rawValue, value: value)
+        return mutate(key: event.rawValue, value: TaintedString(value, as: .js(.attribute)))
     }
     
     public func on(event: Events.Mouse, _ value: String) -> Parameter {
-        return mutate(key: event.rawValue, value: value)
+        return mutate(key: event.rawValue, value: TaintedString(value, as: .js(.attribute)))
     }
 }

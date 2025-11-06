@@ -136,7 +136,7 @@ final class AttributesTests: XCTestCase {
         }
         
         func style(_ value: String) -> Tag {
-            return self.mutate(style: value)
+            return self.mutate(style: TaintedString(value, as: .css(.attribute)))
         }
         
         func tabIndex(_ value: Int) -> Tag {
@@ -2124,7 +2124,7 @@ final class AttributesTests: XCTestCase {
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <tag srcdoc="<!doctype html><html lang=&quot;de&quot;></html>"></tag>
+                       <tag srcdoc="&lt;!doctype html>&lt;html lang=&quot;de&quot;>&lt;/html>"></tag>
                        """
         )
     }

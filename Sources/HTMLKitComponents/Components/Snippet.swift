@@ -17,7 +17,7 @@ public struct Snippet: View, Modifiable, Identifiable {
     internal var id: String?
     
     /// The body content of the snippet.
-    internal var content: [Content]
+    internal var content: String
     
     /// The class names for the snippet.
     internal var classes: [String]
@@ -30,20 +30,14 @@ public struct Snippet: View, Modifiable, Identifiable {
     public init(highlight: Tokens.SyntaxHighlight, content: () -> String) {
         
         self.content = content()
-            .replacingOccurrences(of: "<", with: "&lt;")
-            .replacingOccurrences(of: ">", with: "&gt;")
-            .components(separatedBy: "\n")
-            .map { line in
-                
-                return Paragraph { line }
-            }
-        
         self.classes = ["snippet", "highlight:\(highlight.value)"]
     }
     
     public var body: Content {
         PreformattedText {
-            content
+            for line in content.components(separatedBy: "\n") {
+                Paragraph { line }
+            }
         }
         .class(classes.joined(separator: " "))
         .modify(unwrap: id) {
