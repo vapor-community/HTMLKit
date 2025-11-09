@@ -529,8 +529,12 @@ final class AttributesTests: XCTestCase {
             return mutate(sourcelanguage: value.rawValue)
         }
         
-        func sourceSet(_ value: String) -> Tag {
-            return mutate(sourceset: value)
+        func sourceSet(_ candidates: [SourceCandidate]) -> Tag {
+            return mutate(sourceset: candidates.map { $0.rawValue }.joined(separator: ", "))
+        }
+        
+        func sourceSet(_ candidates: SourceCandidate...) -> Tag {
+            return mutate(sourceset: candidates.map { $0.rawValue }.joined(separator: ", "))
         }
         
         func start(_ size: Int) -> Tag {
@@ -2163,12 +2167,18 @@ final class AttributesTests: XCTestCase {
     func testSourceSetAttribute() throws {
         
         let view = TestView {
-            Tag {}.sourceSet("img2.png 100w, img3.png 500w")
+            Tag {}.sourceSet(SourceCandidate("img.png", density: 4))
+            Tag {}.sourceSet(SourceCandidate("img.png", density: .ultra))
+            Tag {}.sourceSet(SourceCandidate("img.png", width: 1024))
+            Tag {}.sourceSet(SourceCandidate("img.png", width: 1024), SourceCandidate("img.png", density: .ultra))
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <tag srcset="img2.png 100w, img3.png 500w"></tag>
+                       <tag srcset="img.png 4x"></tag>\
+                       <tag srcset="img.png 3x"></tag>\
+                       <tag srcset="img.png 1024w"></tag>\
+                       <tag srcset="img.png 1024w, img.png 3x"></tag>
                        """
         )
     }

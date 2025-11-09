@@ -4069,16 +4069,28 @@ public protocol SourceSetAttribute: Attribute {
     /// ```swift
     /// Picture {
     ///     Source()
-    ///         .sourceSet("https://...")
-    ///     Source()
-    ///         .sourceSet("https://...")
+    ///         .sourceSet(SourceCandidate("https://..."), SourceCandidate("https://..."))
     /// }
     /// ```
     ///
-    /// - Parameter url: The url path to load from.
+    /// - Parameter candidates: The candidates to choose from.
     ///
     /// - Returns: The element.
-    func sourceSet(_ url: String) -> Self
+    func sourceSet(_ candidates: [SourceCandidate]) -> Self
+    
+    /// Set a source set for a picture element.
+    ///
+    /// ```swift
+    /// Picture {
+    ///     Source()
+    ///         .sourceSet([SourceCandidate("https://...")])
+    /// }
+    /// ```
+    ///
+    /// - Parameter candidates: The candidates to choose from.
+    ///
+    /// - Returns: The element.
+    func sourceSet(_ candidates: SourceCandidate...) -> Self
 }
 
 extension SourceSetAttribute where Self: ContentNode {

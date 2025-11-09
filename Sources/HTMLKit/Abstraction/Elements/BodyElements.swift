@@ -16870,8 +16870,17 @@ extension Image: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return mutate(source: value)
     }
     
+    @available(*, deprecated, message: "Use the sourceSet(_:) modifier instead.")
     public func sourceSet(_ value: String) -> Image {
         return mutate(sourceset: value)
+    }
+    
+    public func sourceSet(_ candidates: [SourceCandidate]) -> Image {
+        return mutate(sourceset: candidates.map { $0.rawValue }.joined(separator: ", "))
+    }
+    
+    public func sourceSet(_ candidates: SourceCandidate...) -> Image {
+        return mutate(sourceset: candidates.map { $0.rawValue }.joined(separator: ", "))
     }
     
     public func sizes(_ candidates: [SizeCandidate]) -> Image {
