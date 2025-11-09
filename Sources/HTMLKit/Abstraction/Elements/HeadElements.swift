@@ -1151,8 +1151,12 @@ extension Link: GlobalAttributes, GlobalEventAttributes, ReferenceAttribute, Ref
         return mutate(rel: value.rawValue)
     }
     
-    public func sizes(_ size: Int) -> Link {
-        return mutate(sizes: size)
+    public func sizes(_ candidates: [String]) -> Link {
+        return mutate(sizes: candidates.map { $0 }.joined(separator: " "))
+    }
+    
+    public func sizes(_ candidates: String...) -> Link {
+        return mutate(sizes: candidates.map { $0 }.joined(separator: " "))
     }
     
     public func type(_ value: Values.Media) -> Link {

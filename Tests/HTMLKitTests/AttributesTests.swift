@@ -497,8 +497,12 @@ final class AttributesTests: XCTestCase {
             return self.mutate(size: size)
         }
         
-        func sizes(_ size: Int) -> Tag {
-            return self.mutate(sizes: size)
+        func sizes(_ candidates: [SizeCandidate]) -> Tag {
+            return self.mutate(sizes: candidates.map { $0.rawValue }.joined(separator: ", "))
+        }
+        
+        func sizes(_ candidates: SizeCandidate...) -> Tag {
+            return self.mutate(sizes: candidates.map { $0.rawValue }.joined(separator: ", "))
         }
         
         func slot(_ value: String) -> Tag {
@@ -2067,12 +2071,26 @@ final class AttributesTests: XCTestCase {
     func testSizesAttribute() throws {
         
         let view = TestView {
-            Tag {}.sizes(2)
+            Tag {}.sizes(SizeCandidate("100vw"))
+            Tag {}.sizes(SizeCandidate("100vw", condition: .landscape))
+            Tag {}.sizes(SizeCandidate("100vw", condition: .portrait))
+            Tag {}.sizes(SizeCandidate("100vw", condition: "((orientation: landscape) or (min-width: 50em))"))
+            Tag {}.sizes(SizeCandidate("100vw", condition: .minimum("50em")))
+            Tag {}.sizes(SizeCandidate("100vw", condition: .maximum("50em")))
+            Tag {}.sizes([SizeCandidate("100vw"), SizeCandidate("100vw", condition: .maximum("50em"))])
+            Tag {}.sizes(SizeCandidate("100vw"), SizeCandidate("100vw", condition: .maximum("50em")))
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <tag sizes="2"></tag>
+                       <tag sizes="100vw"></tag>\
+                       <tag sizes="(orientation: landscape) 100vw"></tag>\
+                       <tag sizes="(orientation: portrait) 100vw"></tag>\
+                       <tag sizes="((orientation: landscape) or (min-width: 50em)) 100vw"></tag>\
+                       <tag sizes="(min-width: 50em) 100vw"></tag>\
+                       <tag sizes="(max-width: 50em) 100vw"></tag>\
+                       <tag sizes="100vw, (max-width: 50em) 100vw"></tag>\
+                       <tag sizes="100vw, (max-width: 50em) 100vw"></tag>
                        """
         )
     }

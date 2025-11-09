@@ -16874,8 +16874,12 @@ extension Image: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return mutate(sourceset: value)
     }
     
-    public func sizes(_ size: Int) -> Image {
-        return mutate(sizes: size)
+    public func sizes(_ candidates: [SizeCandidate]) -> Image {
+        return mutate(sizes: candidates.map { $0.rawValue }.joined(separator: ", "))
+    }
+    
+    public func sizes(_ candidates: SizeCandidate...) -> Image {
+        return mutate(sizes: candidates.map { $0.rawValue }.joined(separator: ", "))
     }
     
     public func width(_ size: Int) -> Image {

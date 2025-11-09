@@ -3139,29 +3139,31 @@ extension SizeAttribute where Self: EmptyNode {
 @_documentation(visibility: internal)
 public protocol SizesAttribute: Attribute {
     
+    associatedtype SizesValueType
+    
     /// Describe different sizes for different viewport sizes.
     ///
     /// ```swift
     /// Link()
-    ///     .sizes(16x16)
+    ///     .sizes("16x16", "32x32")
     /// ```
     ///
-    /// - Parameter size: The sizes to take into consideration.
+    /// - Parameter candidates: The sizes to take into consideration.
     ///
     /// - Returns: The element
-    func sizes(_ size: Int) -> Self
+    func sizes(_ candidates: [SizesValueType]) -> Self
 }
 
 extension SizesAttribute where Self: ContentNode {
     
-    internal func mutate(sizes value: Int) -> Self {
+    internal func mutate(sizes value: String) -> Self {
         return self.mutate(key: "sizes", value: value)
     }
 }
 
 extension SizesAttribute where Self: EmptyNode {
     
-    internal func mutate(sizes value: Int) -> Self {
+    internal func mutate(sizes value: String) -> Self {
         return self.mutate(key: "sizes", value: value)
     }
 }

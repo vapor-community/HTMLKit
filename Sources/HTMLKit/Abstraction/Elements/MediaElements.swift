@@ -203,8 +203,12 @@ extension Source: GlobalAttributes, GlobalEventAttributes, TypeAttribute, Source
         return mutate(sourceset: value)
     }
     
-    public func sizes(_ size: Int) -> Source {
-        return mutate(sizes: size)
+    public func sizes(_ candidates: [SizeCandidate]) -> Source {
+        return mutate(sizes: candidates.map { $0.rawValue }.joined(separator: ", "))
+    }
+    
+    public func sizes(_ candidates: SizeCandidate...) -> Source {
+        return mutate(sizes: candidates.map { $0.rawValue }.joined(separator: ", "))
     }
     
     public func media(_ value: String) -> Source {
