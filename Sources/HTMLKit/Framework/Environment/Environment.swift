@@ -49,6 +49,12 @@ public final class Environment {
         self.storage = [:]
     }
     
+    /// Initializes the environment from another environment
+    public init(duplicating otherEnvironment: Environment) {
+        
+        self.storage = otherEnvironment.storage
+    }
+    
     /// The current time zone of the environment
     public var timeZone: TimeZone? {
         
