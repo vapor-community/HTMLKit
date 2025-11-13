@@ -7181,6 +7181,14 @@ extension Anchor: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return mutate(media: value)
     }
     
+    public func media(_ queries: [MediaQuery]) -> Anchor {
+        return mutate(media: queries.map { $0.rawValue }.joined(separator: ", "))
+    }
+    
+    public func media(_ queries: MediaQuery...) -> Anchor {
+        return mutate(media: queries.map { $0.rawValue }.joined(separator: ", "))
+    }
+    
     public func ping(_ value: String) -> Anchor {
         return mutate(ping: value)
     }

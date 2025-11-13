@@ -899,6 +899,14 @@ extension Style: GlobalAttributes, GlobalEventAttributes, TypeAttribute, MediaAt
         return mutate(media: value)
     }
     
+    public func media(_ queries: [MediaQuery]) -> Style {
+        return mutate(media: queries.map { $0.rawValue }.joined(separator: ", "))
+    }
+    
+    public func media(_ queries: MediaQuery...) -> Style {
+        return mutate(media: queries.map { $0.rawValue }.joined(separator: ", "))
+    }
+    
     public func blocking(_ value: Values.Blocking) -> Style {
         return mutate(blocking: value.rawValue)
     }
@@ -1141,6 +1149,14 @@ extension Link: GlobalAttributes, GlobalEventAttributes, ReferenceAttribute, Ref
     
     public func media(_ value: String) -> Link {
         return mutate(media: value)
+    }
+    
+    public func media(_ queries: [MediaQuery]) -> Link {
+        return mutate(media: queries.map { $0.rawValue }.joined(separator: ", "))
+    }
+    
+    public func media(_ queries: MediaQuery...) -> Link {
+        return mutate(media: queries.map { $0.rawValue }.joined(separator: ", "))
     }
     
     public func referrerPolicy(_ value: Values.Policy) -> Link {

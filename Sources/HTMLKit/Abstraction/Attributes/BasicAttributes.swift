@@ -2114,13 +2114,33 @@ public protocol MediaAttribute: Attribute {
     /// ```swift
     /// Link()
     ///     .reference("https://...")
-    ///     .media("print")
+    ///     .media([
+    ///         MediaQuery(target: .screen, features: .orientation(.landscape)), 
+    ///         MediaQuery(target: .print, features: .resolution("300dpi"))
+    ///     ])
     /// ```
     ///
     /// - Parameter value: The media to be considered.
     ///
     /// - Returns: The element
-    func media(_ value: String) -> Self
+    func media(_ value: [MediaQuery]) -> Self
+    
+    
+    /// Specify the media the ressource is optimized for.
+    ///
+    /// ```swift
+    /// Link()
+    ///     .reference("https://...")
+    ///     .media(
+    ///         MediaQuery(target: .screen, features: .orientation(.landscape)),
+    ///         MediaQuery(target: .print, features: .resolution("300dpi"))
+    ///     )
+    /// ```
+    ///
+    /// - Parameter value: The media to be considered.
+    ///
+    /// - Returns: The element
+    func media(_ value: MediaQuery...) -> Self
 }
 
 extension MediaAttribute where Self: ContentNode {

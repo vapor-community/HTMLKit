@@ -224,6 +224,14 @@ extension Source: GlobalAttributes, GlobalEventAttributes, TypeAttribute, Source
         return mutate(media: value)
     }
     
+    public func media(_ queries: [MediaQuery]) -> Source {
+        return mutate(media: queries.map { $0.rawValue }.joined(separator: ", "))
+    }
+    
+    public func media(_ queries: MediaQuery...) -> Source {
+        return mutate(media: queries.map { $0.rawValue }.joined(separator: ", "))
+    }
+    
     public func width(_ size: Int) -> Source {
         return mutate(width: size)
     }

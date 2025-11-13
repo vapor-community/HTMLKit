@@ -357,6 +357,14 @@ final class AttributesTests: XCTestCase {
             return self.mutate(media: value)
         }
         
+        func media(_ queries: [MediaQuery]) -> Tag {
+            return self.mutate(media: queries.map { $0.rawValue }.joined(separator: ", "))
+        }
+        
+        func media(_ queries: MediaQuery...) -> Tag {
+            return self.mutate(media: queries.map { $0.rawValue }.joined(separator: ", "))
+        }
+        
         func method(_ value: HTMLKit.Values.Method) -> Tag {
             return self.mutate(method: value.rawValue)
         }
@@ -1679,12 +1687,16 @@ final class AttributesTests: XCTestCase {
     func testMediaAttribute() throws {
         
         let view = TestView {
-            Tag {}.media("print and (resolution:300dpi)")
+            Tag {}.media(MediaQuery(target: .all, features: .orientation(.landscape), .resolution("300dpi")))
+            Tag {}.media(MediaQuery(target: .all), MediaQuery(target: .print))
+            Tag {}.media(MediaQuery(target: .all), MediaQuery(target: .print, features: [.maxHeight("20vh")]))
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <tag media="print and (resolution:300dpi)"></tag>
+                       <tag media="all and (orientation: landscape) and (resolution: 300dpi)"></tag>\
+                       <tag media="all, print"></tag>\
+                       <tag media="all, print and (max-height: 20vh)"></tag>
                        """
         )
     }
