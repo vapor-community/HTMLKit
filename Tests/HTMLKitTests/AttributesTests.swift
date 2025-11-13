@@ -160,8 +160,20 @@ final class AttributesTests: XCTestCase {
             return self.mutate(translate: value.rawValue)
         }
         
-        func accept(_ value: String) -> Tag {
-            return self.mutate(accept: value)
+        func accept(_ specifiers: [String]) -> Tag {
+            return self.mutate(accept: specifiers.joined(separator: ", "))
+        }
+        
+        func accept(_ specifiers: String...) -> Tag {
+            return self.mutate(accept: specifiers.joined(separator: ", "))
+        }
+        
+        func accept(_ specifiers: [Values.Media]) -> Tag {
+            return self.mutate(accept: specifiers.map { $0.rawValue }.joined(separator: ", "))
+        }
+        
+        func accept(_ specifiers: Values.Media...) -> Tag {
+            return self.mutate(accept: specifiers.map { $0.rawValue }.joined(separator: ", "))
         }
         
         func action(_ value: String) -> Tag {
@@ -1135,12 +1147,20 @@ final class AttributesTests: XCTestCase {
     func testAcceptAttribute() throws {
         
         let view = TestView {
-            Tag {}.accept("accept")
+            Tag {}.accept("image/*")
+            Tag {}.accept([".jpg", ".png", ".svg"])
+            Tag {}.accept(".jpg", ".png", ".svg")
+            Tag {}.accept([.ogg, .mpeg])
+            Tag {}.accept(.ogg, .mpeg)
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <tag accept="accept"></tag>
+                       <tag accept="image/*"></tag>\
+                       <tag accept=".jpg, .png, .svg"></tag>\
+                       <tag accept=".jpg, .png, .svg"></tag>\
+                       <tag accept="video/ogg, audio/mpeg"></tag>\
+                       <tag accept="video/ogg, audio/mpeg"></tag>
                        """
         )
     }

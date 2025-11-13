@@ -47,13 +47,52 @@ public protocol AcceptAttribute: Attribute {
     /// ```swift
     /// Input()
     ///     .type(.file)
-    ///     .accept("image/png, image/jpeg")
+    ///     .accept(["image/png", "image/jpeg"])
     /// ```
     ///
-    /// - Parameter value: The file types to pick from.
+    /// - Parameter specifiers: The file types to pick from.
     ///
     /// - Returns: The element
-    func accept(_ value: String) -> Self
+    func accept(_ specifiers: [String]) -> Self
+    
+    /// Filter accepted file types for upload.
+    ///
+    /// ```swift
+    /// Input()
+    ///     .type(.file)
+    ///     .accept("image/png", "image/jpeg")
+    /// ```
+    ///
+    /// - Parameter specifiers: The file types to pick from.
+    ///
+    /// - Returns: The element
+    func accept(_ specifiers: String...) -> Self
+    
+    /// Filter accepted file types for upload.
+    ///
+    /// ```swift
+    /// Input()
+    ///     .type(.file)
+    ///     .accept([.ogg, .mpeg])
+    /// ```
+    ///
+    /// - Parameter specifiers: The file types to pick from.
+    ///
+    /// - Returns: The element
+    func accept(_ specifiers: [Values.Media]) -> Self
+    
+    /// Filter accepted file types for upload.
+    ///
+    /// ```swift
+    /// Input()
+    ///     .type(.file)
+    ///     .accept(.ogg, .mpeg)
+    /// ```
+    ///
+    /// - Parameter specifiers: The file types to pick from.
+    ///
+    /// - Returns: The element
+    func accept(_ specifiers: Values.Media...) -> Self
 }
 
 extension AcceptAttribute where Self: ContentNode {
