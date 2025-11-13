@@ -12,7 +12,7 @@ import OrderedCollections
 ///     }
 /// }
 /// ```
-public struct Title: ContentNode, HeadElement {
+public struct Title: ContentNode, HeadElement, VectorElement {
 
     internal var name: String { "title" }
 
