@@ -1,6 +1,17 @@
+/// A type represents a unit point.
+/// 
+/// The point is used to define a position by two coordinates.
+/// 
+/// ```swift
+/// Vector {
+///     Circle {
+///     }
+///     .center(UnitPoint(x: 50, y: 50))
+/// }
+/// ```
 public struct UnitPoint {
     
-    /// A enumeration of potential point formats
+    /// An enumeration of potential point formats.
     public enum PointFormat {
         
         /// Indicates an absolute value.
@@ -9,7 +20,7 @@ public struct UnitPoint {
         /// Indicates an relative value.
         case relative
         
-        /// Returns the string representation based on the format
+        /// Returns the string representation based on the format.
         func string(from value: Int) -> String {
             
             switch self {
@@ -21,7 +32,7 @@ public struct UnitPoint {
             }
         }
         
-        /// Returns the string representation based on the format
+        /// Returns the string representation based on the format.
         func string(from value: Double) -> String {
             
             switch self {
@@ -34,10 +45,10 @@ public struct UnitPoint {
         }
     }
     
-    /// The horizontal position of the point
+    /// The horizontal coordinate of the point.
     internal var x: String
     
-    /// The vertical position of the point
+    /// The vertical coordinate of the point.
     internal var y: String
     
     /// Create a point.

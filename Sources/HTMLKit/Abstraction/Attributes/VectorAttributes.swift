@@ -301,23 +301,6 @@ public protocol PositionPointAttribute: Attribute {
 
 extension PositionPointAttribute where Self: ContentNode {
     
-    internal func mutate(positionpoint: (Int, Int)) -> Self {
-        
-        guard var attributes = self.attributes else {
-            
-            var attributes = OrderedDictionary<String, Any>()
-            attributes["x"] = positionpoint.0
-            attributes["y"] = positionpoint.1
-            
-            return .init(attributes: attributes, content: content)
-        }
-        
-        attributes["x"] = positionpoint.0
-        attributes["y"] = positionpoint.1
-        
-        return .init(attributes: attributes, content: content)
-    }
-    
     internal func mutate(x value: String) -> Self {
         return self.mutate(key: "x", value: value)
     }
@@ -371,33 +354,16 @@ public protocol RadiusPointAttribute: Attribute {
     /// Vector {
     ///     Rectangle {
     ///     }
-    ///     .radius(UnitPoint: (x: 50, y: 50))
+    ///     .radius(UnitPoint(x: 50, y: 50))
     /// }
     /// ```
-    /// - Parameter point: The radius to round off corners.
+    /// - Parameter point: The coordinates to round off corners.
     ///
     /// - Returns: The element
     func radius(_ point: UnitPoint) -> Self
 }
 
 extension RadiusPointAttribute where Self: ContentNode {
-    
-    internal func mutate(radiuspoint: (Int, Int)) -> Self {
-        
-        guard var attributes = self.attributes else {
-            
-            var attributes = OrderedDictionary<String, Any>()
-            attributes["rx"] = radiuspoint.0
-            attributes["ry"] = radiuspoint.1
-            
-            return .init(attributes: attributes, content: content)
-        }
-        
-        attributes["rx"] = radiuspoint.0
-        attributes["ry"] = radiuspoint.1
-        
-        return .init(attributes: attributes, content: content)
-    }
     
     internal func mutate(rx value: String) -> Self {
         return self.mutate(key: "rx", value: value)
@@ -464,23 +430,6 @@ public protocol CenterPointAttribute: Attribute {
 }
 
 extension CenterPointAttribute where Self: ContentNode {
-    
-    internal func mutate(centerpoint: (Int, Int)) -> Self {
-        
-        guard var attributes = self.attributes else {
-            
-            var attributes = OrderedDictionary<String, Any>()
-            attributes["cx"] = centerpoint.0
-            attributes["cy"] = centerpoint.1
-            
-            return .init(attributes: attributes, content: content)
-        }
-        
-        attributes["cx"] = centerpoint.0
-        attributes["cy"] = centerpoint.1
-        
-        return .init(attributes: attributes, content: content)
-    }
     
     internal func mutate(cx value: String) -> Self {
         return self.mutate(key: "cx", value: value)

@@ -2152,34 +2152,34 @@ public protocol MediaAttribute: Attribute {
     ///
     /// ```swift
     /// Link()
-    ///     .reference("https://...")
+    ///     .reference("...css")
     ///     .media([
-    ///         MediaQuery(target: .screen, features: .orientation(.landscape)), 
+    ///         MediaQuery(target: .screen, features: .orientation(.portrait)), 
     ///         MediaQuery(target: .print, features: .resolution("300dpi"))
     ///     ])
     /// ```
     ///
-    /// - Parameter value: The media to be considered.
+    /// - Parameter queries: The media to be considered.
     ///
     /// - Returns: The element
-    func media(_ value: [MediaQuery]) -> Self
+    func media(_ queries: [MediaQuery]) -> Self
     
     
     /// Specify the media the ressource is optimized for.
     ///
     /// ```swift
     /// Link()
-    ///     .reference("https://...")
+    ///     .reference("...css")
     ///     .media(
-    ///         MediaQuery(target: .screen, features: .orientation(.landscape)),
+    ///         MediaQuery(target: .screen, features: .orientation(.portrait)),
     ///         MediaQuery(target: .print, features: .resolution("300dpi"))
     ///     )
     /// ```
     ///
-    /// - Parameter value: The media to be considered.
+    /// - Parameter queries: The media to be considered.
     ///
     /// - Returns: The element
-    func media(_ value: MediaQuery...) -> Self
+    func media(_ queries: MediaQuery...) -> Self
 }
 
 extension MediaAttribute where Self: ContentNode {
@@ -4123,12 +4123,12 @@ extension LoadingAttribute where Self: EmptyNode {
 @_documentation(visibility: internal)
 public protocol SourceSetAttribute: Attribute {
     
-    /// Set a source set for a picture element.
+    /// Define a set of sources for a picture element.
     ///
     /// ```swift
     /// Picture {
     ///     Source()
-    ///         .sourceSet(SourceCandidate("https://..."), SourceCandidate("https://..."))
+    ///         .sourceSet([SourceCandidate("...webp", width: 1024), SourceCandidate("...webp", width: 1680)])
     /// }
     /// ```
     ///
@@ -4137,12 +4137,12 @@ public protocol SourceSetAttribute: Attribute {
     /// - Returns: The element.
     func sourceSet(_ candidates: [SourceCandidate]) -> Self
     
-    /// Set a source set for a picture element.
+    /// Define a set of sources for a picture element.
     ///
     /// ```swift
     /// Picture {
     ///     Source()
-    ///         .sourceSet([SourceCandidate("https://...")])
+    ///         .sourceSet(SourceCandidate("...webp", width: 1024), SourceCandidate("...webp", width: 1680))
     /// }
     /// ```
     ///

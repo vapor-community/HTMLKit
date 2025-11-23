@@ -2,9 +2,15 @@ import Foundation
 
 /// A type that represents a source candidate.
 /// 
+/// The candidate is used to define an alternative source with an additional condition.
+/// 
 /// ```swift
 /// Image()
-///     .sourceSet(SourceCandidate("...png", width: 100), SourceCandiate("...png", density: .ultra))
+///     .source("...png")
+///     .sourceSet(
+///         SourceCandidate("...png", width: 1024),
+///         SourceCandiate("...png", width: 1680)
+///     )
 /// ```
 public struct SourceCandidate {
     
@@ -20,6 +26,7 @@ public struct SourceCandidate {
         /// Specifies a 3:1 density.
         case ultra
         
+        /// The raw representation of the type.
         internal var rawValue: String {
             
             switch self {
@@ -35,14 +42,20 @@ public struct SourceCandidate {
         }
     }
     
-    /// The url path of the candidate.
-    internal let source: URL
+    /// The source path of the candidate.
+    internal let source: String
     
-    /// The condition of the candidate.
-    internal let condition: String
+    /// The potential condition of the candidate.
+    internal let condition: String?
     
+    /// The raw representation of the type.
     internal var rawValue: String {
-        return "\(source) \(condition)"
+        
+        if let condition = self.condition {
+            return "\(source) \(condition)"
+        }
+        
+        return source
     }
     
     /// Create a source candidate.
@@ -50,7 +63,18 @@ public struct SourceCandidate {
     /// - Parameters:
     ///   - source: The url path to load from.
     ///   - width: The width to apply.
-    public init(_ source: URL, width: Int) {
+    public init(_ source: String) {
+        
+        self.source = source
+        self.condition = nil
+    }
+    
+    /// Create a source candidate.
+    /// 
+    /// - Parameters:
+    ///   - source: The url path to load from.
+    ///   - width: The width to apply.
+    public init(_ source: String, width: Int) {
         
         self.source = source
         self.condition = "\(width)w"
@@ -61,7 +85,7 @@ public struct SourceCandidate {
     /// - Parameters:
     ///   - source: The url path to load from.
     ///   - density: The density to apply.
-    public init(_ source: URL, density: Int) {
+    public init(_ source: String, density: Int) {
         
         self.source = source
         self.condition = "\(density)x"
@@ -72,7 +96,7 @@ public struct SourceCandidate {
     /// - Parameters:
     ///   - source: The url path to load from.
     ///   - density: The density to apply.
-    public init(_ source: URL, density: PixelDensity) {
+    public init(_ source: String, density: PixelDensity) {
         
         self.source = source
         self.condition = density.rawValue

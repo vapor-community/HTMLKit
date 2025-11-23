@@ -1,13 +1,24 @@
 /// A type that represents a media query.
+/// 
+/// The query is used to define the conditions under which the resource should then be applied.
+/// 
+/// ```swift
+/// Link()
+///     .reference("https://...")
+///     .media(
+///         MediaQuery(.screen, features: .orientation(.landscape)),
+///         MediaQuery(.print, features: .resolution("300dpi"))
+///     )
+/// ```
 public struct MediaQuery {
     
     /// An enumeration of potential interface orientations.
     public enum InterfaceOrientation {
         
-        /// Describes an landscape orientation.
+        /// Indicates a landscape orientation.
         case landscape
         
-        /// Describes an portrait orientation.
+        /// Indicates a portrait orientation.
         case portrait
         
         internal var rawValue: String {
@@ -25,40 +36,40 @@ public struct MediaQuery {
     /// An enumeration of potential media features.
     public enum MediaFeature {
         
-        /// Describes the minimum target width.
+        /// Specifies the minimum target width.
         case minWidth(String)
         
-        /// Describes the target width.
+        /// Specifies the target width.
         case width(String)
         
-        /// Describes the maximum target width.
+        /// Specifies the maximum target width.
         case maxWidth(String)
         
-        /// Describes the minimum target height.
+        /// Specifies the minimum target height.
         case minHeight(String)
         
-        /// Describes the target height.
+        /// Specifies the target height.
         case height(String)
         
-        /// Describes the maximum target height.
+        /// Specifies the maximum target height.
         case maxHeight(String)
         
-        /// Describes the aspect ratio.
+        /// Specifies the aspect ratio.
         case aspectRatio(String)
         
-        /// Describes the interface orientation.
+        /// Specifies the interface orientation.
         case orientation(InterfaceOrientation)
         
-        /// Describes the minimum display resolution.
+        /// Specifies the minimum display resolution.
         case minResolution(String)
         
-        /// Describes the display resolution.
+        /// Specifies the display resolution.
         case resolution(String)
         
-        /// Describes the maximum display resolution.
+        /// Specifies the maximum display resolution.
         case maxResolution(String)
         
-        /// Describes the he color depth.
+        /// Specifies the color depth.
         case color(Int?)
         
         internal var rawValue: String {
@@ -109,7 +120,7 @@ public struct MediaQuery {
     }
     
     /// An enumeration of potential media devices.
-    public enum MediaDevice: String {
+    public enum MediaTarget: String {
         
         /// Matches all devices.
         case all
@@ -122,12 +133,12 @@ public struct MediaQuery {
     }
     
     /// The target of the query.
-    internal let target: MediaDevice
+    internal let target: MediaTarget
     
-    /// The features of the query.
+    /// The potential features of the query.
     internal let features: [MediaFeature]?
     
-    /// The raw representation of the type
+    /// The raw representation of the type.
     internal var rawValue: String {
 
         if let features = self.features {
@@ -140,9 +151,9 @@ public struct MediaQuery {
     /// Create a media query.
     /// 
     /// - Parameters:
-    ///   - target: The device to target.
+    ///   - target: The media to target.
     ///   - features: The features to match to the target.
-    public init(target: MediaDevice, features: [MediaFeature]? = nil) {
+    public init(_ target: MediaTarget, features: [MediaFeature]? = nil) {
         
         self.target = target
         self.features = features
@@ -151,9 +162,9 @@ public struct MediaQuery {
     /// Create a media query.
     /// 
     /// - Parameters:
-    ///   - target: The device to target.
+    ///   - target: The media to target.
     ///   - features: The features to match to the target.
-    public init(target: MediaDevice, features: MediaFeature...) {
+    public init(_ target: MediaTarget, features: MediaFeature...) {
         
         self.target = target
         self.features = features

@@ -1,41 +1,70 @@
 /// A type that represents a size candidate.
 /// 
+/// The candidate is used to define the conditions under which the size should then be applied.
+/// 
 /// ```swift
 /// Image()
-///     .sizes(SizeCandidate("100vw", condition: .maximum("100vw")), SizeCandidate("100vw"))
+///     .source("...png")
+///     .sourceSet(..., ...)
+///     .sizes(
+///         SizeCandidate("100vw", conditions: .maxWidth("1680px")), 
+///         SizeCandidate("80vw")
+///     )
 /// ```
 public struct SizeCandidate {
     
-    /// An enumeration of potential width conditions
-    public enum SizeCondition {
+    /// An enumeration of potential interface orientations.
+    public enum InterfaceOrientation {
         
-        /// Specifies the maximum width.
-        case maximum(String)
-        
-        /// Specifies the minimum width.
-        case minimum(String)
-        
-        /// Specifies a landscape orientation
+        /// Indicates a landscape orientation.
         case landscape
         
-        /// Specifies a portrait orientation
+        /// Indicates a portrait orientation.
         case portrait
         
-        /// The raw representation of the type
+        /// The raw representation of the type.
         internal var rawValue: String {
             
             switch self {
-            case .maximum(let width):
-                return "(max-width: \(width))"
-                
-            case .minimum(let width):
-                return "(min-width: \(width))"
-                
             case .landscape:
-                return "(orientation: landscape)"
+                return "landscape"
                 
             case .portrait:
-                return "(orientation: portrait)"
+                return "portrait"
+            }
+        }   
+    }
+    
+    /// An enumeration of potential width conditions.
+    public enum SizeCondition {
+        
+        /// Specifies the maximum width.
+        case maxWidth(String)
+        
+        /// Specifies the target width.
+        case width(String)
+        
+        /// Specifies the minimum width.
+        case minWidth(String)
+        
+        /// Specifies a interface orientation.
+        case orientation(InterfaceOrientation)
+        
+        /// The raw representation of the type.
+        internal var rawValue: String {
+            
+            switch self {
+            case .maxWidth(let width):
+                return "(max-width: \(width))"
+                
+            case .width(let width):
+                return "(width: \(width))"
+                
+            case .minWidth(let width):
+                return "(min-width: \(width))"
+                
+            case .orientation(let orientation):
+                return "(orientation: \(orientation.rawValue))"
             }
         }
     }
@@ -43,14 +72,14 @@ public struct SizeCandidate {
     /// The size of the candidate.
     internal let size: String
     
-    /// The condition of the candidate.
-    internal let condition: String?
+    /// The potential conditions of the candidate.
+    internal let conditions: [SizeCondition]?
     
-    /// The raw representation of the type
+    /// The raw representation of the type.
     internal var rawValue: String {
         
-        if let condition = self.condition {
-            return "\(condition) \(size)"
+        if let conditions = self.conditions {
+            return "\(conditions.map { $0.rawValue }.joined(separator: " and ")) \(size)"
         }
         
         return size
@@ -60,31 +89,21 @@ public struct SizeCandidate {
     /// 
     /// - Parameters:
     ///   - size: The width to apply.
-    public init(_ size: String) {
+    ///   - conditions: The conditions under which the size should be applied.
+    public init(_ size: String, conditions: [SizeCondition]? = nil) {
         
         self.size = size
-        self.condition = nil
+        self.conditions = conditions
     }
     
     /// Create a size candidate.
     /// 
     /// - Parameters:
     ///   - size: The width to apply.
-    ///   - condition: The width of the view at which the size should be applied.
-    public init(_ size: String, condition: String) {
+    ///   - conditions: The conditions under which the size should be applied.
+    public init(_ size: String, conditions: SizeCondition...) {
         
         self.size = size
-        self.condition = condition
-    }
-    
-    /// Create a size candidate.
-    /// 
-    /// - Parameters:
-    ///   - size: The width to apply.
-    ///   - condition: The width of the view at which the size should be applied.
-    public init(_ size: String, condition: SizeCondition) {
-        
-        self.size = size
-        self.condition = condition.rawValue
+        self.conditions = conditions
     }
 }

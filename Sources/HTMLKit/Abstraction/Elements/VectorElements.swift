@@ -89,7 +89,7 @@ extension Circle: GlobalVectorAttributes, CenterPointAttribute, RadiusAttribute 
     
     @available(*, deprecated, message: "Use the center(x:y:) modifier instead.")
     public func centerPoint(_ point: (Int, Int)) -> Circle {
-        return self.mutate(centerpoint: point)
+        return self.mutate(cx: "\(point.0)").mutate(cy: "\(point.1)")
     }
     
     public func center(x: Int, y: Int) -> Circle {
@@ -214,7 +214,7 @@ extension Rectangle: GlobalVectorAttributes, WidthAttribute, HeightAttribute, Ra
     
     @available(*, deprecated, message: "Use the radius(x:y:) modifier instead.")
     public func radiusPoint(_ point: (Int, Int)) -> Rectangle {
-        return self.mutate(radiuspoint: point)
+        return self.mutate(rx: "\(point.0)").mutate(ry: "\(point.1)")
     }
     
     public func radius(x: Int, y: Int) -> Rectangle {
@@ -231,7 +231,7 @@ extension Rectangle: GlobalVectorAttributes, WidthAttribute, HeightAttribute, Ra
     
     @available(*, deprecated, message: "Use the position(x:y:) modifier instead.")
     public func positionPoint(_ point: (Int, Int)) -> Rectangle {
-        return self.mutate(positionpoint: point)
+        return self.mutate(x: "\(point.0)").mutate(y: "\(point.1)")
     }
     
     public func position(x: Int, y: Int) -> Rectangle {
@@ -360,7 +360,7 @@ extension Ellipse: GlobalVectorAttributes, CenterPointAttribute, RadiusPointAttr
     
     @available(*, deprecated, message: "Use the center(x:y:) modifier instead.")
     public func centerPoint(_ point: (Int, Int)) -> Ellipse {
-        return self.mutate(centerpoint: point)
+        return self.mutate(cx: "\(point.0)").mutate(cy: "\(point.1)")
     }
     
     public func center(x: Int, y: Int) -> Ellipse {
@@ -377,7 +377,7 @@ extension Ellipse: GlobalVectorAttributes, CenterPointAttribute, RadiusPointAttr
     
     @available(*, deprecated, message: "Use the radius(x:y:) modifier instead.")
     public func radiusPoint(_ point: (Int, Int)) -> Ellipse {
-        return self.mutate(radiuspoint: point)
+        return self.mutate(rx: "\(point.0)").mutate(ry: "\(point.1)")
     }
     
     public func radius(x: Int, y: Int) -> Ellipse {
@@ -1011,7 +1011,7 @@ extension Use: GlobalVectorAttributes, ReferenceAttribute, WidthAttribute, Heigh
     
     @available(*, deprecated, message: "Use the position(x:y:) modifier instead.")
     public func positionPoint(_ point: (Int, Int)) -> Use {
-        return self.mutate(positionpoint: point)
+        return self.mutate(x: "\(point.0)").mutate(y: "\(point.1)")
     }
     
     public func position(x: Int, y: Int) -> Use {

@@ -644,7 +644,7 @@ final class AttributesTests: XCTestCase {
         }
         
         func positionPoint(_ point: (Int, Int)) -> Tag {
-            return self.mutate(positionpoint: point)
+            return self.mutate(x: "\(point.0)").mutate(y: "\(point.1)")
         }
         
         func position(x: Int, y: Int) -> Tag {
@@ -660,7 +660,7 @@ final class AttributesTests: XCTestCase {
         }
         
         func radiusPoint(_ point: (Int, Int)) -> Tag {
-            return self.mutate(radiuspoint: point)
+            return self.mutate(rx: "\(point.0)").mutate(ry: "\(point.1)")
         }
         
         func radius(x: Int, y: Int) -> Tag {
@@ -676,7 +676,7 @@ final class AttributesTests: XCTestCase {
         }
         
         func centerPoint(_ point: (Int, Int)) -> Tag {
-            return self.mutate(centerpoint: point)
+            return self.mutate(cx: "\(point.0)").mutate(cy: "\(point.1)")
         }
         
         func center(x: Int, y: Int) -> Tag {
@@ -1707,9 +1707,9 @@ final class AttributesTests: XCTestCase {
     func testMediaAttribute() throws {
         
         let view = TestView {
-            Tag {}.media(MediaQuery(target: .all, features: .orientation(.landscape), .resolution("300dpi")))
-            Tag {}.media(MediaQuery(target: .all), MediaQuery(target: .print))
-            Tag {}.media(MediaQuery(target: .all), MediaQuery(target: .print, features: [.maxHeight("20vh")]))
+            Tag {}.media(MediaQuery(.all, features: .orientation(.landscape), .resolution("300dpi")))
+            Tag {}.media(MediaQuery(.all), MediaQuery(.print))
+            Tag {}.media(MediaQuery(.all), MediaQuery(.print, features: [.maxHeight("20vh")]))
         }
         
         XCTAssertEqual(try renderer.render(view: view),
@@ -2107,23 +2107,23 @@ final class AttributesTests: XCTestCase {
     func testSizesAttribute() throws {
         
         let view = TestView {
-            Tag {}.sizes(SizeCandidate("100vw"))
-            Tag {}.sizes(SizeCandidate("100vw", condition: .landscape))
-            Tag {}.sizes(SizeCandidate("100vw", condition: .portrait))
-            Tag {}.sizes(SizeCandidate("100vw", condition: "((orientation: landscape) or (min-width: 50em))"))
-            Tag {}.sizes(SizeCandidate("100vw", condition: .minimum("50em")))
-            Tag {}.sizes(SizeCandidate("100vw", condition: .maximum("50em")))
-            Tag {}.sizes([SizeCandidate("100vw"), SizeCandidate("100vw", condition: .maximum("50em"))])
-            Tag {}.sizes(SizeCandidate("100vw"), SizeCandidate("100vw", condition: .maximum("50em")))
+            Tag {}.sizes(SizeCandidate("auto"))
+            Tag {}.sizes(SizeCandidate("100vw", conditions: .orientation(.landscape)))
+            Tag {}.sizes(SizeCandidate("100vw", conditions: .orientation(.portrait)))
+            Tag {}.sizes(SizeCandidate("100vw", conditions: .orientation(.landscape), .width("50em")))
+            Tag {}.sizes(SizeCandidate("calc(100vw - 100px)", conditions: .minWidth("50em")))
+            Tag {}.sizes(SizeCandidate("100vw", conditions: .maxWidth("50em")))
+            Tag {}.sizes([SizeCandidate("100vw"), SizeCandidate("100vw", conditions: .maxWidth("50em"))])
+            Tag {}.sizes(SizeCandidate("100vw"), SizeCandidate("100vw", conditions: .maxWidth("50em")))
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <tag sizes="100vw"></tag>\
+                       <tag sizes="auto"></tag>\
                        <tag sizes="(orientation: landscape) 100vw"></tag>\
                        <tag sizes="(orientation: portrait) 100vw"></tag>\
-                       <tag sizes="((orientation: landscape) or (min-width: 50em)) 100vw"></tag>\
-                       <tag sizes="(min-width: 50em) 100vw"></tag>\
+                       <tag sizes="(orientation: landscape) and (width: 50em) 100vw"></tag>\
+                       <tag sizes="(min-width: 50em) calc(100vw - 100px)"></tag>\
                        <tag sizes="(max-width: 50em) 100vw"></tag>\
                        <tag sizes="100vw, (max-width: 50em) 100vw"></tag>\
                        <tag sizes="100vw, (max-width: 50em) 100vw"></tag>
@@ -2199,6 +2199,7 @@ final class AttributesTests: XCTestCase {
     func testSourceSetAttribute() throws {
         
         let view = TestView {
+            Tag {}.sourceSet(SourceCandidate("img.webp"))
             Tag {}.sourceSet(SourceCandidate("img.png", density: 4))
             Tag {}.sourceSet(SourceCandidate("img.png", density: .ultra))
             Tag {}.sourceSet(SourceCandidate("img.png", width: 1024))
@@ -2207,6 +2208,7 @@ final class AttributesTests: XCTestCase {
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
+                       <tag srcset="img.webp"></tag>\
                        <tag srcset="img.png 4x"></tag>\
                        <tag srcset="img.png 3x"></tag>\
                        <tag srcset="img.png 1024w"></tag>\
