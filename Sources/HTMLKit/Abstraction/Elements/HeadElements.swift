@@ -12,13 +12,13 @@ import OrderedCollections
 ///     }
 /// }
 /// ```
-public struct Title: ContentNode, HeadElement {
+public struct Title: ContentNode, HeadElement, VectorElement {
 
     internal var name: String { "title" }
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal var content: [String]
+    internal var content: [Content]
     
     /// Create a title.
     ///
@@ -27,7 +27,7 @@ public struct Title: ContentNode, HeadElement {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: [String]) {
+    internal init(attributes: OrderedDictionary<String, Any>?, content: [Content]) {
         self.attributes = attributes
         self.content = content
     }
@@ -160,7 +160,7 @@ extension Title: GlobalAttributes, GlobalEventAttributes {
     }
     
     public func style(_ value: String) -> Title {
-        return mutate(style: value)
+        return mutate(style: TaintedString(value, as: .css(.attribute)))
     }
     
     public func tabIndex(_ value: Int) -> Title {
@@ -202,23 +202,30 @@ extension Title: GlobalAttributes, GlobalEventAttributes {
     }
     
     public func on(event: Events.Drag, _ value: String) -> Title {
-        return mutate(key: event.rawValue, value: value)
+        return mutate(key: event.rawValue, value: TaintedString(value, as: .js(.attribute)))
     }
     
     public func on(event: Events.Clipboard, _ value: String) -> Title {
-        return mutate(key: event.rawValue, value: value)
+        return mutate(key: event.rawValue, value: TaintedString(value, as: .js(.attribute)))
     }
     
     public func on(event: Events.Wheel, _ value: String) -> Title {
-        return mutate(key: event.rawValue, value: value)
+        return mutate(key: event.rawValue, value: TaintedString(value, as: .js(.attribute)))
     }
     
     public func on(event: Events.Keyboard, _ value: String) -> Title {
-        return mutate(key: event.rawValue, value: value)
+        return mutate(key: event.rawValue, value: TaintedString(value, as: .js(.attribute)))
     }
     
     public func on(event: Events.Mouse, _ value: String) -> Title {
-        return mutate(key: event.rawValue, value: value)
+        return mutate(key: event.rawValue, value: TaintedString(value, as: .js(.attribute)))
+    }
+}
+
+extension Title: Localizable {
+    
+    public init(_ localizedKey: LocalizedStringKey, tableName: String? = nil) {
+        self.content = [LocalizedString(key: localizedKey, table: tableName)]
     }
 }
 
@@ -374,7 +381,7 @@ extension Base: GlobalAttributes, GlobalEventAttributes, ReferenceAttribute, Tar
     }
     
     public func style(_ value: String) -> Base {
-        return mutate(style: value)
+        return mutate(style: TaintedString(value, as: .css(.attribute)))
     }
     
     public func tabIndex(_ value: Int) -> Base {
@@ -424,23 +431,23 @@ extension Base: GlobalAttributes, GlobalEventAttributes, ReferenceAttribute, Tar
     }
     
     public func on(event: Events.Drag, _ value: String) -> Base {
-        return mutate(key: event.rawValue, value: value)
+        return mutate(key: event.rawValue, value: TaintedString(value, as: .js(.attribute)))
     }
     
     public func on(event: Events.Clipboard, _ value: String) -> Base {
-        return mutate(key: event.rawValue, value: value)
+        return mutate(key: event.rawValue, value: TaintedString(value, as: .js(.attribute)))
     }
     
     public func on(event: Events.Wheel, _ value: String) -> Base {
-        return mutate(key: event.rawValue, value: value)
+        return mutate(key: event.rawValue, value: TaintedString(value, as: .js(.attribute)))
     }
     
     public func on(event: Events.Keyboard, _ value: String) -> Base {
-        return mutate(key: event.rawValue, value: value)
+        return mutate(key: event.rawValue, value: TaintedString(value, as: .js(.attribute)))
     }
     
     public func on(event: Events.Mouse, _ value: String) -> Base {
-        return mutate(key: event.rawValue, value: value)
+        return mutate(key: event.rawValue, value: TaintedString(value, as: .js(.attribute)))
     }
 }
 
@@ -595,7 +602,7 @@ extension Meta: GlobalAttributes, GlobalEventAttributes, ContentAttribute, NameA
     }
 
     public func style(_ value: String) -> Meta {
-        return mutate(style: value)
+        return mutate(style: TaintedString(value, as: .css(.attribute)))
     }
 
     public func tabIndex(_ value: Int) -> Meta {
@@ -666,23 +673,23 @@ extension Meta: GlobalAttributes, GlobalEventAttributes, ContentAttribute, NameA
     }
     
     public func on(event: Events.Drag, _ value: String) -> Meta {
-        return mutate(key: event.rawValue, value: value)
+        return mutate(key: event.rawValue, value: TaintedString(value, as: .js(.attribute)))
     }
     
     public func on(event: Events.Clipboard, _ value: String) -> Meta {
-        return mutate(key: event.rawValue, value: value)
+        return mutate(key: event.rawValue, value: TaintedString(value, as: .js(.attribute)))
     }
     
     public func on(event: Events.Wheel, _ value: String) -> Meta {
-        return mutate(key: event.rawValue, value: value)
+        return mutate(key: event.rawValue, value: TaintedString(value, as: .js(.attribute)))
     }
     
     public func on(event: Events.Keyboard, _ value: String) -> Meta {
-        return mutate(key: event.rawValue, value: value)
+        return mutate(key: event.rawValue, value: TaintedString(value, as: .js(.attribute)))
     }
     
     public func on(event: Events.Mouse, _ value: String) -> Meta {
-        return mutate(key: event.rawValue, value: value)
+        return mutate(key: event.rawValue, value: TaintedString(value, as: .js(.attribute)))
     }
 }
 
@@ -706,8 +713,16 @@ public struct Style: ContentNode, HeadElement {
     /// Create a style.
     ///
     /// - Parameter content: The style's content.
+    @available(*, deprecated, message: "Use the init(content:) -> [String] initializer instead.")
     public init(@ContentBuilder<Content> content: () -> [Content]) {
         self.content = content()
+    }
+
+    /// Create a style.
+    ///
+    /// - Parameter content: The style's content.
+    public init(@ContentBuilder<String> content: () -> [String]) {
+        self.content = [TaintedString(content().joined(), as: .css(.element))]
     }
     
     internal init(attributes: OrderedDictionary<String, Any>?, content: [Content]) {
@@ -843,7 +858,7 @@ extension Style: GlobalAttributes, GlobalEventAttributes, TypeAttribute, MediaAt
     }
 
     public func style(_ value: String) -> Style {
-        return mutate(style: value)
+        return mutate(style: TaintedString(value, as: .css(.attribute)))
     }
 
     public func tabIndex(_ value: Int) -> Style {
@@ -884,6 +899,14 @@ extension Style: GlobalAttributes, GlobalEventAttributes, TypeAttribute, MediaAt
         return mutate(media: value)
     }
     
+    public func media(_ queries: [MediaQuery]) -> Style {
+        return mutate(media: queries.map { $0.rawValue }.joined(separator: ", "))
+    }
+    
+    public func media(_ queries: MediaQuery...) -> Style {
+        return mutate(media: queries.map { $0.rawValue }.joined(separator: ", "))
+    }
+    
     public func blocking(_ value: Values.Blocking) -> Style {
         return mutate(blocking: value.rawValue)
     }
@@ -897,23 +920,23 @@ extension Style: GlobalAttributes, GlobalEventAttributes, TypeAttribute, MediaAt
     }
     
     public func on(event: Events.Drag, _ value: String) -> Style {
-        return mutate(key: event.rawValue, value: value)
+        return mutate(key: event.rawValue, value: TaintedString(value, as: .js(.attribute)))
     }
     
     public func on(event: Events.Clipboard, _ value: String) -> Style {
-        return mutate(key: event.rawValue, value: value)
+        return mutate(key: event.rawValue, value: TaintedString(value, as: .js(.attribute)))
     }
     
     public func on(event: Events.Keyboard, _ value: String) -> Style {
-        return mutate(key: event.rawValue, value: value)
+        return mutate(key: event.rawValue, value: TaintedString(value, as: .js(.attribute)))
     }
     
     public func on(event: Events.Mouse, _ value: String) -> Style {
-        return mutate(key: event.rawValue, value: value)
+        return mutate(key: event.rawValue, value: TaintedString(value, as: .js(.attribute)))
     }
     
     public func on(event: Events.Wheel, _ value: String) -> Style {
-        return mutate(key: event.rawValue, value: value)
+        return mutate(key: event.rawValue, value: TaintedString(value, as: .js(.attribute)))
     }
 }
 
@@ -1083,7 +1106,7 @@ extension Link: GlobalAttributes, GlobalEventAttributes, ReferenceAttribute, Ref
     }
 
     public func style(_ value: String) -> Link {
-        return mutate(style: value)
+        return mutate(style: TaintedString(value, as: .css(.attribute)))
     }
 
     public func tabIndex(_ value: Int) -> Link {
@@ -1128,6 +1151,14 @@ extension Link: GlobalAttributes, GlobalEventAttributes, ReferenceAttribute, Ref
         return mutate(media: value)
     }
     
+    public func media(_ queries: [MediaQuery]) -> Link {
+        return mutate(media: queries.map { $0.rawValue }.joined(separator: ", "))
+    }
+    
+    public func media(_ queries: MediaQuery...) -> Link {
+        return mutate(media: queries.map { $0.rawValue }.joined(separator: ", "))
+    }
+    
     public func referrerPolicy(_ value: Values.Policy) -> Link {
         return mutate(referrerpolicy: value.rawValue)
     }
@@ -1136,8 +1167,12 @@ extension Link: GlobalAttributes, GlobalEventAttributes, ReferenceAttribute, Ref
         return mutate(rel: value.rawValue)
     }
     
-    public func sizes(_ size: Int) -> Link {
-        return mutate(sizes: size)
+    public func sizes(_ candidates: [String]) -> Link {
+        return mutate(sizes: candidates.map { $0 }.joined(separator: " "))
+    }
+    
+    public func sizes(_ candidates: String...) -> Link {
+        return mutate(sizes: candidates.map { $0 }.joined(separator: " "))
     }
     
     public func type(_ value: Values.Media) -> Link {
@@ -1161,26 +1196,26 @@ extension Link: GlobalAttributes, GlobalEventAttributes, ReferenceAttribute, Ref
     }
     
     public func on(event: Events.Form, _ value: String) -> Link {
-        return mutate(key: event.rawValue, value: value)
+        return mutate(key: event.rawValue, value: TaintedString(value, as: .js(.attribute)))
     }
     
     public func on(event: Events.Drag, _ value: String) -> Link {
-        return mutate(key: event.rawValue, value: value)
+        return mutate(key: event.rawValue, value: TaintedString(value, as: .js(.attribute)))
     }
     
     public func on(event: Events.Clipboard, _ value: String) -> Link {
-        return mutate(key: event.rawValue, value: value)
+        return mutate(key: event.rawValue, value: TaintedString(value, as: .js(.attribute)))
     }
     
     public func on(event: Events.Keyboard, _ value: String) -> Link {
-        return mutate(key: event.rawValue, value: value)
+        return mutate(key: event.rawValue, value: TaintedString(value, as: .js(.attribute)))
     }
     
     public func on(event: Events.Mouse, _ value: String) -> Link {
-        return mutate(key: event.rawValue, value: value)
+        return mutate(key: event.rawValue, value: TaintedString(value, as: .js(.attribute)))
     }
     
     public func on(event: Events.Wheel, _ value: String) -> Link {
-        return mutate(key: event.rawValue, value: value)
+        return mutate(key: event.rawValue, value: TaintedString(value, as: .js(.attribute)))
     }
 }
