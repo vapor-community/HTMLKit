@@ -187,9 +187,21 @@ extension Input: GlobalAttributes, GlobalEventAttributes, AcceptAttribute, Alter
         
         return self
     }
+    
+    public func accept(_ specifiers: [String]) -> Input {
+        return mutate(accept: specifiers.joined(separator: ", "))
+    }
 
-    public func accept(_ value: String) -> Input {
-        return mutate(accept: value)
+    public func accept(_ specifiers: String...) -> Input {
+        return mutate(accept: specifiers.joined(separator: ", "))
+    }
+    
+    public func accept(_ specifiers: [Values.Media]) -> Input {
+        return mutate(accept: specifiers.map { $0.rawValue }.joined(separator: ", "))
+    }
+
+    public func accept(_ specifiers: Values.Media...) -> Input {
+        return mutate(accept: specifiers.map { $0.rawValue }.joined(separator: ", "))
     }
     
     @_disfavoredOverload

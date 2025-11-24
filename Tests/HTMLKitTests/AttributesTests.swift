@@ -160,8 +160,20 @@ final class AttributesTests: XCTestCase {
             return self.mutate(translate: value.rawValue)
         }
         
-        func accept(_ value: String) -> Tag {
-            return self.mutate(accept: value)
+        func accept(_ specifiers: [String]) -> Tag {
+            return self.mutate(accept: specifiers.joined(separator: ", "))
+        }
+        
+        func accept(_ specifiers: String...) -> Tag {
+            return self.mutate(accept: specifiers.joined(separator: ", "))
+        }
+        
+        func accept(_ specifiers: [Values.Media]) -> Tag {
+            return self.mutate(accept: specifiers.map { $0.rawValue }.joined(separator: ", "))
+        }
+        
+        func accept(_ specifiers: Values.Media...) -> Tag {
+            return self.mutate(accept: specifiers.map { $0.rawValue }.joined(separator: ", "))
         }
         
         func action(_ value: String) -> Tag {
@@ -357,6 +369,14 @@ final class AttributesTests: XCTestCase {
             return self.mutate(media: value)
         }
         
+        func media(_ queries: [MediaQuery]) -> Tag {
+            return self.mutate(media: queries.map { $0.rawValue }.joined(separator: ", "))
+        }
+        
+        func media(_ queries: MediaQuery...) -> Tag {
+            return self.mutate(media: queries.map { $0.rawValue }.joined(separator: ", "))
+        }
+        
         func method(_ value: HTMLKit.Values.Method) -> Tag {
             return self.mutate(method: value.rawValue)
         }
@@ -497,8 +517,12 @@ final class AttributesTests: XCTestCase {
             return self.mutate(size: size)
         }
         
-        func sizes(_ size: Int) -> Tag {
-            return self.mutate(sizes: size)
+        func sizes(_ candidates: [SizeCandidate]) -> Tag {
+            return self.mutate(sizes: candidates.map { $0.rawValue }.joined(separator: ", "))
+        }
+        
+        func sizes(_ candidates: SizeCandidate...) -> Tag {
+            return self.mutate(sizes: candidates.map { $0.rawValue }.joined(separator: ", "))
         }
         
         func slot(_ value: String) -> Tag {
@@ -525,8 +549,12 @@ final class AttributesTests: XCTestCase {
             return mutate(sourcelanguage: value.rawValue)
         }
         
-        func sourceSet(_ value: String) -> Tag {
-            return mutate(sourceset: value)
+        func sourceSet(_ candidates: [SourceCandidate]) -> Tag {
+            return mutate(sourceset: candidates.map { $0.rawValue }.joined(separator: ", "))
+        }
+        
+        func sourceSet(_ candidates: SourceCandidate...) -> Tag {
+            return mutate(sourceset: candidates.map { $0.rawValue }.joined(separator: ", "))
         }
         
         func start(_ size: Int) -> Tag {
@@ -616,19 +644,63 @@ final class AttributesTests: XCTestCase {
         }
         
         func positionPoint(_ point: (Int, Int)) -> Tag {
-            return self.mutate(positionpoint: point)
+            return self.mutate(x: "\(point.0)").mutate(y: "\(point.1)")
+        }
+        
+        func position(x: Int, y: Int) -> Tag {
+            return self.mutate(x: "\(x)").mutate(y: "\(y)")
+        }
+    
+        func position(x: Double, y: Double) -> Tag {
+            return self.mutate(x: "\(x)").mutate(y: "\(y)")
+        }
+        
+        func position(_ point: UnitPoint) -> Tag {
+            return self.mutate(x: point.x).mutate(y: point.y)
         }
         
         func radiusPoint(_ point: (Int, Int)) -> Tag {
-            return self.mutate(radiuspoint: point)
+            return self.mutate(rx: "\(point.0)").mutate(ry: "\(point.1)")
+        }
+        
+        func radius(x: Int, y: Int) -> Tag {
+            return self.mutate(rx: "\(x)").mutate(ry: "\(y)")
+        }
+        
+        func radius(x: Double, y: Double) -> Tag {
+            return self.mutate(rx: "\(x)").mutate(ry: "\(y)")
+        }
+        
+        func radius(_ point: HTMLKit.UnitPoint) -> Tag {
+            return self.mutate(rx: point.x).mutate(ry: point.y)
         }
         
         func centerPoint(_ point: (Int, Int)) -> Tag {
-            return self.mutate(centerpoint: point)
+            return self.mutate(cx: "\(point.0)").mutate(cy: "\(point.1)")
+        }
+        
+        func center(x: Int, y: Int) -> Tag {
+            return self.mutate(cx: "\(x)").mutate(cy: "\(y)")
+        }
+        
+        func center(x: Double, y: Double) -> Tag {
+            return self.mutate(cx: "\(x)").mutate(cy: "\(y)")
+        }
+        
+        func center(_ point: UnitPoint) -> Tag {
+            return self.mutate(cx: point.x).mutate(cy: point.y)
         }
         
         func viewBox(_ value: String) -> Tag {
             return self.mutate(viewbox: value)
+        }
+        
+        func viewBox(x: Int, y: Int, width: Int, height: Int) -> Tag {
+            return self.mutate(viewbox: "\(x) \(y) \(width) \(height)")
+        }
+        
+        func viewBox(x: Double, y: Double, width: Double, height: Double) -> Tag {
+            return self.mutate(viewbox: "\(x) \(y) \(width) \(height)")
         }
         
         func namespace(_ value: String) -> Tag {
@@ -1075,12 +1147,20 @@ final class AttributesTests: XCTestCase {
     func testAcceptAttribute() throws {
         
         let view = TestView {
-            Tag {}.accept("accept")
+            Tag {}.accept("image/*")
+            Tag {}.accept([".jpg", ".png", ".svg"])
+            Tag {}.accept(".jpg", ".png", ".svg")
+            Tag {}.accept([.ogg, .mpeg])
+            Tag {}.accept(.ogg, .mpeg)
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <tag accept="accept"></tag>
+                       <tag accept="image/*"></tag>\
+                       <tag accept=".jpg, .png, .svg"></tag>\
+                       <tag accept=".jpg, .png, .svg"></tag>\
+                       <tag accept="video/ogg, audio/mpeg"></tag>\
+                       <tag accept="video/ogg, audio/mpeg"></tag>
                        """
         )
     }
@@ -1627,12 +1707,16 @@ final class AttributesTests: XCTestCase {
     func testMediaAttribute() throws {
         
         let view = TestView {
-            Tag {}.media("print and (resolution:300dpi)")
+            Tag {}.media(MediaQuery(.all, features: .orientation(.landscape), .resolution("300dpi")))
+            Tag {}.media(MediaQuery(.all), MediaQuery(.print))
+            Tag {}.media(MediaQuery(.all), MediaQuery(.print, features: [.maxHeight("20vh")]))
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <tag media="print and (resolution:300dpi)"></tag>
+                       <tag media="all and (orientation: landscape) and (resolution: 300dpi)"></tag>\
+                       <tag media="all, print"></tag>\
+                       <tag media="all, print and (max-height: 20vh)"></tag>
                        """
         )
     }
@@ -2023,12 +2107,26 @@ final class AttributesTests: XCTestCase {
     func testSizesAttribute() throws {
         
         let view = TestView {
-            Tag {}.sizes(2)
+            Tag {}.sizes(SizeCandidate("auto"))
+            Tag {}.sizes(SizeCandidate("100vw", conditions: .orientation(.landscape)))
+            Tag {}.sizes(SizeCandidate("100vw", conditions: .orientation(.portrait)))
+            Tag {}.sizes(SizeCandidate("100vw", conditions: .orientation(.landscape), .width("50em")))
+            Tag {}.sizes(SizeCandidate("calc(100vw - 100px)", conditions: .minWidth("50em")))
+            Tag {}.sizes(SizeCandidate("100vw", conditions: .maxWidth("50em")))
+            Tag {}.sizes([SizeCandidate("100vw"), SizeCandidate("100vw", conditions: .maxWidth("50em"))])
+            Tag {}.sizes(SizeCandidate("100vw"), SizeCandidate("100vw", conditions: .maxWidth("50em")))
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <tag sizes="2"></tag>
+                       <tag sizes="auto"></tag>\
+                       <tag sizes="(orientation: landscape) 100vw"></tag>\
+                       <tag sizes="(orientation: portrait) 100vw"></tag>\
+                       <tag sizes="(orientation: landscape) and (width: 50em) 100vw"></tag>\
+                       <tag sizes="(min-width: 50em) calc(100vw - 100px)"></tag>\
+                       <tag sizes="(max-width: 50em) 100vw"></tag>\
+                       <tag sizes="100vw, (max-width: 50em) 100vw"></tag>\
+                       <tag sizes="100vw, (max-width: 50em) 100vw"></tag>
                        """
         )
     }
@@ -2101,12 +2199,20 @@ final class AttributesTests: XCTestCase {
     func testSourceSetAttribute() throws {
         
         let view = TestView {
-            Tag {}.sourceSet("img2.png 100w, img3.png 500w")
+            Tag {}.sourceSet(SourceCandidate("img.webp"))
+            Tag {}.sourceSet(SourceCandidate("img.png", density: 4))
+            Tag {}.sourceSet(SourceCandidate("img.png", density: .ultra))
+            Tag {}.sourceSet(SourceCandidate("img.png", width: 1024))
+            Tag {}.sourceSet(SourceCandidate("img.png", width: 1024), SourceCandidate("img.png", density: .ultra))
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <tag srcset="img2.png 100w, img3.png 500w"></tag>
+                       <tag srcset="img.webp"></tag>\
+                       <tag srcset="img.png 4x"></tag>\
+                       <tag srcset="img.png 3x"></tag>\
+                       <tag srcset="img.png 1024w"></tag>\
+                       <tag srcset="img.png 1024w, img.png 3x"></tag>
                        """
         )
     }
@@ -2891,15 +2997,21 @@ final class AttributesTests: XCTestCase {
         )
     }
     
-    func testPositionPointAttribute() throws {
+    func testPositionAttribute() throws {
         
         let view = TestView {
-            Tag {}.positionPoint((10,10))
+            Tag {}.position(x: 50, y: 50)
+            Tag {}.position(x: 50.0, y: 50.0)
+            Tag {}.position(UnitPoint(x: 50.0, y: 50.0))
+            Tag {}.position(UnitPoint(x: 50, y: 50, format: .relative))
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <tag x="10" y="10"></tag>
+                       <tag x="50" y="50"></tag>\
+                       <tag x="50.0" y="50.0"></tag>\
+                       <tag x="50.0" y="50.0"></tag>\
+                       <tag x="50%" y="50%"></tag>
                        """
         )
     }
@@ -2907,12 +3019,18 @@ final class AttributesTests: XCTestCase {
     func testRadiusPointAttribute() throws {
         
         let view = TestView {
-            Tag {}.radiusPoint((10,10))
+            Tag {}.radius(x: 10, y: 10)
+            Tag {}.radius(x: 10.0, y: 10.0)
+            Tag {}.radius(UnitPoint(x: 10.0, y: 10.0))
+            Tag {}.radius(UnitPoint(x: 10, y: 10, format: .relative))
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <tag rx="10" ry="10"></tag>
+                       <tag rx="10" ry="10"></tag>\
+                       <tag rx="10.0" ry="10.0"></tag>\
+                       <tag rx="10.0" ry="10.0"></tag>\
+                       <tag rx="10%" ry="10%"></tag>
                        """
         )
     }
@@ -2920,12 +3038,18 @@ final class AttributesTests: XCTestCase {
     func testCenterPointAttribute() throws {
         
         let view = TestView {
-            Tag {}.centerPoint((10,10))
+            Tag {}.center(x: 10, y: 10)
+            Tag {}.center(x: 10.0, y: 10.0)
+            Tag {}.center(UnitPoint(x: 10.0, y: 10.0))
+            Tag {}.center(UnitPoint(x: 10, y: 10, format: .relative))
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <tag cx="10" cy="10"></tag>
+                       <tag cx="10" cy="10"></tag>\
+                       <tag cx="10.0" cy="10.0"></tag>\
+                       <tag cx="10.0" cy="10.0"></tag>\
+                       <tag cx="10%" cy="10%"></tag>
                        """
         )
     }
@@ -2933,12 +3057,14 @@ final class AttributesTests: XCTestCase {
     func testViewBoxAttribute() throws {
         
         let view = TestView {
-            Tag {}.viewBox("0 0 100 100")
+            Tag {}.viewBox(x: 0, y: 0, width: 100, height: 100)
+            Tag {}.viewBox(x: 0, y: 0, width: 100.0, height: 100.0)
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <tag viewbox="0 0 100 100"></tag>
+                       <tag viewbox="0 0 100 100"></tag>\
+                       <tag viewbox="0.0 0.0 100.0 100.0"></tag>
                        """
         )
     }

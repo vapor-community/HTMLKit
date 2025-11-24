@@ -899,6 +899,14 @@ extension Style: GlobalAttributes, GlobalEventAttributes, TypeAttribute, MediaAt
         return mutate(media: value)
     }
     
+    public func media(_ queries: [MediaQuery]) -> Style {
+        return mutate(media: queries.map { $0.rawValue }.joined(separator: ", "))
+    }
+    
+    public func media(_ queries: MediaQuery...) -> Style {
+        return mutate(media: queries.map { $0.rawValue }.joined(separator: ", "))
+    }
+    
     public func blocking(_ value: Values.Blocking) -> Style {
         return mutate(blocking: value.rawValue)
     }
@@ -1143,6 +1151,14 @@ extension Link: GlobalAttributes, GlobalEventAttributes, ReferenceAttribute, Ref
         return mutate(media: value)
     }
     
+    public func media(_ queries: [MediaQuery]) -> Link {
+        return mutate(media: queries.map { $0.rawValue }.joined(separator: ", "))
+    }
+    
+    public func media(_ queries: MediaQuery...) -> Link {
+        return mutate(media: queries.map { $0.rawValue }.joined(separator: ", "))
+    }
+    
     public func referrerPolicy(_ value: Values.Policy) -> Link {
         return mutate(referrerpolicy: value.rawValue)
     }
@@ -1151,8 +1167,12 @@ extension Link: GlobalAttributes, GlobalEventAttributes, ReferenceAttribute, Ref
         return mutate(rel: value.rawValue)
     }
     
-    public func sizes(_ size: Int) -> Link {
-        return mutate(sizes: size)
+    public func sizes(_ candidates: [String]) -> Link {
+        return mutate(sizes: candidates.map { $0 }.joined(separator: " "))
+    }
+    
+    public func sizes(_ candidates: String...) -> Link {
+        return mutate(sizes: candidates.map { $0 }.joined(separator: " "))
     }
     
     public func type(_ value: Values.Media) -> Link {

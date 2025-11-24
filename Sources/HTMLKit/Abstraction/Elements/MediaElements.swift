@@ -199,16 +199,37 @@ extension Source: GlobalAttributes, GlobalEventAttributes, TypeAttribute, Source
         return mutate(source: value)
     }
     
+    @available(*, deprecated, message: "Use the sourceSet(_:) modifier instead.")
     public func sourceSet(_ value: String) -> Source {
         return mutate(sourceset: value)
     }
     
-    public func sizes(_ size: Int) -> Source {
-        return mutate(sizes: size)
+    public func sourceSet(_ candidates: [SourceCandidate]) -> Source {
+        return mutate(sourceset: candidates.map { $0.rawValue }.joined(separator: ", "))
+    }
+    
+    public func sourceSet(_ candidates: SourceCandidate...) -> Source {
+        return mutate(sourceset: candidates.map { $0.rawValue }.joined(separator: ", "))
+    }
+    
+    public func sizes(_ candidates: [SizeCandidate]) -> Source {
+        return mutate(sizes: candidates.map { $0.rawValue }.joined(separator: ", "))
+    }
+    
+    public func sizes(_ candidates: SizeCandidate...) -> Source {
+        return mutate(sizes: candidates.map { $0.rawValue }.joined(separator: ", "))
     }
     
     public func media(_ value: String) -> Source {
         return mutate(media: value)
+    }
+    
+    public func media(_ queries: [MediaQuery]) -> Source {
+        return mutate(media: queries.map { $0.rawValue }.joined(separator: ", "))
+    }
+    
+    public func media(_ queries: MediaQuery...) -> Source {
+        return mutate(media: queries.map { $0.rawValue }.joined(separator: ", "))
     }
     
     public func width(_ size: Int) -> Source {

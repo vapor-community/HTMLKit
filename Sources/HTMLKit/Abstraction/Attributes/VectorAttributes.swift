@@ -256,32 +256,57 @@ public protocol PositionPointAttribute: Attribute {
     /// Vector {
     ///     Rectangle {
     ///     }
-    ///     .positionPoint((50, 50))
+    ///     .position(x: 50, y: 50)
     /// }
     /// ```
-    /// - Parameter point: The coodinates to position the shape.
+    /// 
+    /// - Parameters:
+    ///   - x: The horizontal coordinate to position the shape.
+    ///   - y: The vertical coordinate to position the shape
     ///
     /// - Returns: The element
-    func positionPoint(_ point: (Int, Int)) -> Self
+    func position(x: Int, y: Int) -> Self
+    
+    /// Set the position of the shape.
+    /// 
+    /// ```Swift
+    /// Vector {
+    ///     Rectangle {
+    ///     }
+    ///     .position(x: 50.0, y: 50.0)
+    /// }
+    /// ```
+    /// 
+    /// - Parameters:
+    ///   - x: The horizontal coordinate to position the shape.
+    ///   - y: The vertical coordinate to position the shape
+    /// 
+    /// - Returns: The element
+    func position(x: Double, y: Double) -> Self
+    
+    /// Set the position of the shape.
+    ///
+    /// ```Swift
+    /// Vector {
+    ///     Rectangle {
+    ///     }
+    ///     .position(UnitPoint(x: 50, y: 50))
+    /// }
+    /// ```
+    /// - Parameter point: The coordinates to position the shape.
+    ///
+    /// - Returns: The element
+    func position(_ point: UnitPoint) -> Self
 }
 
 extension PositionPointAttribute where Self: ContentNode {
     
-    internal func mutate(positionpoint: (Int, Int)) -> Self {
-        
-        guard var attributes = self.attributes else {
-            
-            var attributes = OrderedDictionary<String, Any>()
-            attributes["x"] = positionpoint.0
-            attributes["y"] = positionpoint.1
-            
-            return .init(attributes: attributes, content: content)
-        }
-        
-        attributes["x"] = positionpoint.0
-        attributes["y"] = positionpoint.1
-        
-        return .init(attributes: attributes, content: content)
+    internal func mutate(x value: String) -> Self {
+        return self.mutate(key: "x", value: value)
+    }
+    
+    internal func mutate(y value: String) -> Self {
+        return self.mutate(key: "y", value: value)
     }
 }
 
@@ -295,32 +320,57 @@ public protocol RadiusPointAttribute: Attribute {
     /// Vector {
     ///     Rectangle {
     ///     }
-    ///     .radiusPoint((10, 10))
+    ///     .radius(x: 50, y: 50)
     /// }
     /// ```
-    /// - Parameter point: The radius to apply to all corners.
+    /// 
+    /// - Parameters:
+    ///   - x: The horizontal coordinate to round off corner.
+    ///   - y: The vertical coordinate to round off corner.
+    ///   
+    /// - Returns: The element
+    func radius(x: Int, y: Int) -> Self
+    
+    /// Apply a corner radius to the shape.
+    ///
+    /// ```swift
+    /// Vector {
+    ///     Rectangle {
+    ///     }
+    ///     .radius(x: 50, y: 50)
+    /// }
+    /// ```
+    /// 
+    /// - Parameters:
+    ///   - x: The horizontal coordinate to round off corner.
+    ///   - y: The vertical coordinate to round off corner.
     ///
     /// - Returns: The element
-    func radiusPoint(_ point: (Int, Int)) -> Self
+    func radius(x: Double, y: Double) -> Self
+    
+    /// Apply a corner radius to the shape.
+    ///
+    /// ```swift
+    /// Vector {
+    ///     Rectangle {
+    ///     }
+    ///     .radius(UnitPoint(x: 50, y: 50))
+    /// }
+    /// ```
+    /// - Parameter point: The coordinates to round off corners.
+    ///
+    /// - Returns: The element
+    func radius(_ point: UnitPoint) -> Self
 }
 
 extension RadiusPointAttribute where Self: ContentNode {
     
-    internal func mutate(radiuspoint: (Int, Int)) -> Self {
-        
-        guard var attributes = self.attributes else {
-            
-            var attributes = OrderedDictionary<String, Any>()
-            attributes["rx"] = radiuspoint.0
-            attributes["ry"] = radiuspoint.1
-            
-            return .init(attributes: attributes, content: content)
-        }
-        
-        attributes["rx"] = radiuspoint.0
-        attributes["ry"] = radiuspoint.1
-        
-        return .init(attributes: attributes, content: content)
+    internal func mutate(rx value: String) -> Self {
+        return self.mutate(key: "rx", value: value)
+    }
+    
+    internal func mutate(ry value: String) -> Self {
+        return self.mutate(key: "ry", value: value)
     }
 }
 
@@ -334,32 +384,59 @@ public protocol CenterPointAttribute: Attribute {
     /// Vector {
     ///     Circle {
     ///     }
-    ///     .centerPoint((50, 50))
+    ///     .center(x: 50, y: 50)
+    /// }
+    /// ```
+    /// 
+    /// - Parameters:
+    ///   - x: The horizontal coordinate to use as the center.
+    ///   - y: The vertical coordinate to use as the center.
+    /// 
+    /// - Returns: The element
+
+    func center(x: Int, y: Int) -> Self
+    
+    /// Set the center point of the shape.
+    ///
+    /// ```swift
+    /// Vector {
+    ///     Circle {
+    ///     }
+    ///     .center(x: 50.0, y: 50.0)
+    /// }
+    /// ```
+    /// 
+    /// - Parameters:
+    ///   - x: The horizontal coordinate to use as the center.
+    ///   - y: The vertical coordinate to use as the center.
+    ///
+    /// - Returns: The element
+    func center(x: Double, y: Double) -> Self
+    
+    
+    /// Set the center point of the shape.
+    ///
+    /// ```swift
+    /// Vector {
+    ///     Circle {
+    ///     }
+    ///     .center(UnitPoint(x: 50, y: 50))
     /// }
     /// ```
     /// - Parameter point: The coordinates to use as the center.
     ///
     /// - Returns: The element
-    func centerPoint(_ point: (Int, Int)) -> Self
+    func center(_ point: UnitPoint) -> Self
 }
 
 extension CenterPointAttribute where Self: ContentNode {
     
-    internal func mutate(centerpoint: (Int, Int)) -> Self {
-        
-        guard var attributes = self.attributes else {
-            
-            var attributes = OrderedDictionary<String, Any>()
-            attributes["cx"] = centerpoint.0
-            attributes["cy"] = centerpoint.1
-            
-            return .init(attributes: attributes, content: content)
-        }
-        
-        attributes["cx"] = centerpoint.0
-        attributes["cy"] = centerpoint.1
-        
-        return .init(attributes: attributes, content: content)
+    internal func mutate(cx value: String) -> Self {
+        return self.mutate(key: "cx", value: value)
+    }
+    
+    internal func mutate(cy value: String) -> Self {
+        return self.mutate(key: "cy", value: value)
     }
 }
 
@@ -368,17 +445,38 @@ extension CenterPointAttribute where Self: ContentNode {
 public protocol ViewBoxAttribute: Attribute {
     
     /// Set the view box for the vector.
+    /// 
+    /// ```swift
+    /// Vector {
+    /// }
+    /// .viewBox(x: 0, y: 0, width: 400, height: 200")
+    /// ```
+    /// 
+    /// - Parameters:
+    ///   - x: The horizontal coordinate to use for the origin.
+    ///   - y: The vertical coordinate to use for the origin.
+    ///   - width: The width of the viewport
+    ///   - height: The height of the viewport
+    /// 
+    /// - Returns: The element
+    func viewBox(x: Int, y: Int, width: Int, height: Int) -> Self
+    
+    /// Set the view box for the vector.
     ///
     /// ```swift
     /// Vector {
     /// }
-    /// .viewBox("0 0 400 200")
+    /// .viewBox(x: 0.0, y: 0.0, width: 400.0, height: 200.0")
     /// ```
-    ///
-    /// - Parameter value: The bounds used to define the viewport.
-    ///
+    /// 
+    /// - Parameters:
+    ///   - x: The horizontal coordinate to use for the origin.
+    ///   - y: The vertical coordinate to use for the origin.
+    ///   - width: The width of the viewport
+    ///   - height: The height of the viewport
+    /// 
     /// - Returns: The element
-    func viewBox(_ value: String) -> Self
+    func viewBox(x: Double, y: Double, width: Double, height: Double) -> Self
 }
 
 extension ViewBoxAttribute where Self: ContentNode {

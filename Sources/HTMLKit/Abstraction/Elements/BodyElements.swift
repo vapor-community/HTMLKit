@@ -7181,6 +7181,14 @@ extension Anchor: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return mutate(media: value)
     }
     
+    public func media(_ queries: [MediaQuery]) -> Anchor {
+        return mutate(media: queries.map { $0.rawValue }.joined(separator: ", "))
+    }
+    
+    public func media(_ queries: MediaQuery...) -> Anchor {
+        return mutate(media: queries.map { $0.rawValue }.joined(separator: ", "))
+    }
+    
     public func ping(_ value: String) -> Anchor {
         return mutate(ping: value)
     }
@@ -16870,12 +16878,25 @@ extension Image: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return mutate(source: value)
     }
     
+    @available(*, deprecated, message: "Use the sourceSet(_:) modifier instead.")
     public func sourceSet(_ value: String) -> Image {
         return mutate(sourceset: value)
     }
     
-    public func sizes(_ size: Int) -> Image {
-        return mutate(sizes: size)
+    public func sourceSet(_ candidates: [SourceCandidate]) -> Image {
+        return mutate(sourceset: candidates.map { $0.rawValue }.joined(separator: ", "))
+    }
+    
+    public func sourceSet(_ candidates: SourceCandidate...) -> Image {
+        return mutate(sourceset: candidates.map { $0.rawValue }.joined(separator: ", "))
+    }
+    
+    public func sizes(_ candidates: [SizeCandidate]) -> Image {
+        return mutate(sizes: candidates.map { $0.rawValue }.joined(separator: ", "))
+    }
+    
+    public func sizes(_ candidates: SizeCandidate...) -> Image {
+        return mutate(sizes: candidates.map { $0.rawValue }.joined(separator: ", "))
     }
     
     public func width(_ size: Int) -> Image {
@@ -22520,8 +22541,17 @@ extension Vector: GlobalVectorAttributes, WidthAttribute, HeightAttribute, ViewB
         return self.mutate(style: TaintedString(value, as: .css(.attribute)))
     }
     
+    @available(*, deprecated, message: "Use the viewBox(x:y:width:height:) modifier instead.")
     public func viewBox(_ value: String) -> Vector {
         return self.mutate(viewbox: value)
+    }
+    
+    public func viewBox(x: Int, y: Int, width: Int, height: Int) -> Vector {
+        return self.mutate(viewbox: "\(x) \(y) \(width) \(height)")
+    }
+    
+    public func viewBox(x: Double, y: Double, width: Double, height: Double) -> Vector {
+        return self.mutate(viewbox: "\(x) \(y) \(width) \(height)")
     }
     
     public func fill(_ value: String) -> Vector {

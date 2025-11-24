@@ -47,13 +47,52 @@ public protocol AcceptAttribute: Attribute {
     /// ```swift
     /// Input()
     ///     .type(.file)
-    ///     .accept("image/png, image/jpeg")
+    ///     .accept(["image/png", "image/jpeg"])
     /// ```
     ///
-    /// - Parameter value: The file types to pick from.
+    /// - Parameter specifiers: The file types to pick from.
     ///
     /// - Returns: The element
-    func accept(_ value: String) -> Self
+    func accept(_ specifiers: [String]) -> Self
+    
+    /// Filter accepted file types for upload.
+    ///
+    /// ```swift
+    /// Input()
+    ///     .type(.file)
+    ///     .accept("image/png", "image/jpeg")
+    /// ```
+    ///
+    /// - Parameter specifiers: The file types to pick from.
+    ///
+    /// - Returns: The element
+    func accept(_ specifiers: String...) -> Self
+    
+    /// Filter accepted file types for upload.
+    ///
+    /// ```swift
+    /// Input()
+    ///     .type(.file)
+    ///     .accept([.ogg, .mpeg])
+    /// ```
+    ///
+    /// - Parameter specifiers: The file types to pick from.
+    ///
+    /// - Returns: The element
+    func accept(_ specifiers: [Values.Media]) -> Self
+    
+    /// Filter accepted file types for upload.
+    ///
+    /// ```swift
+    /// Input()
+    ///     .type(.file)
+    ///     .accept(.ogg, .mpeg)
+    /// ```
+    ///
+    /// - Parameter specifiers: The file types to pick from.
+    ///
+    /// - Returns: The element
+    func accept(_ specifiers: Values.Media...) -> Self
 }
 
 extension AcceptAttribute where Self: ContentNode {
@@ -2113,14 +2152,34 @@ public protocol MediaAttribute: Attribute {
     ///
     /// ```swift
     /// Link()
-    ///     .reference("https://...")
-    ///     .media("print")
+    ///     .reference("...css")
+    ///     .media([
+    ///         MediaQuery(target: .screen, features: .orientation(.portrait)), 
+    ///         MediaQuery(target: .print, features: .resolution("300dpi"))
+    ///     ])
     /// ```
     ///
-    /// - Parameter value: The media to be considered.
+    /// - Parameter queries: The media to be considered.
     ///
     /// - Returns: The element
-    func media(_ value: String) -> Self
+    func media(_ queries: [MediaQuery]) -> Self
+    
+    
+    /// Specify the media the ressource is optimized for.
+    ///
+    /// ```swift
+    /// Link()
+    ///     .reference("...css")
+    ///     .media(
+    ///         MediaQuery(target: .screen, features: .orientation(.portrait)),
+    ///         MediaQuery(target: .print, features: .resolution("300dpi"))
+    ///     )
+    /// ```
+    ///
+    /// - Parameter queries: The media to be considered.
+    ///
+    /// - Returns: The element
+    func media(_ queries: MediaQuery...) -> Self
 }
 
 extension MediaAttribute where Self: ContentNode {
@@ -3139,29 +3198,31 @@ extension SizeAttribute where Self: EmptyNode {
 @_documentation(visibility: internal)
 public protocol SizesAttribute: Attribute {
     
+    associatedtype SizesValueType
+    
     /// Describe different sizes for different viewport sizes.
     ///
     /// ```swift
     /// Link()
-    ///     .sizes(16x16)
+    ///     .sizes("16x16", "32x32")
     /// ```
     ///
-    /// - Parameter size: The sizes to take into consideration.
+    /// - Parameter candidates: The sizes to take into consideration.
     ///
     /// - Returns: The element
-    func sizes(_ size: Int) -> Self
+    func sizes(_ candidates: [SizesValueType]) -> Self
 }
 
 extension SizesAttribute where Self: ContentNode {
     
-    internal func mutate(sizes value: Int) -> Self {
+    internal func mutate(sizes value: String) -> Self {
         return self.mutate(key: "sizes", value: value)
     }
 }
 
 extension SizesAttribute where Self: EmptyNode {
     
-    internal func mutate(sizes value: Int) -> Self {
+    internal func mutate(sizes value: String) -> Self {
         return self.mutate(key: "sizes", value: value)
     }
 }
@@ -4062,21 +4123,33 @@ extension LoadingAttribute where Self: EmptyNode {
 @_documentation(visibility: internal)
 public protocol SourceSetAttribute: Attribute {
     
-    /// Set a source set for a picture element.
+    /// Define a set of sources for a picture element.
     ///
     /// ```swift
     /// Picture {
     ///     Source()
-    ///         .sourceSet("https://...")
-    ///     Source()
-    ///         .sourceSet("https://...")
+    ///         .sourceSet([SourceCandidate("...webp", width: 1024), SourceCandidate("...webp", width: 1680)])
     /// }
     /// ```
     ///
-    /// - Parameter url: The url path to load from.
+    /// - Parameter candidates: The candidates to choose from.
     ///
     /// - Returns: The element.
-    func sourceSet(_ url: String) -> Self
+    func sourceSet(_ candidates: [SourceCandidate]) -> Self
+    
+    /// Define a set of sources for a picture element.
+    ///
+    /// ```swift
+    /// Picture {
+    ///     Source()
+    ///         .sourceSet(SourceCandidate("...webp", width: 1024), SourceCandidate("...webp", width: 1680))
+    /// }
+    /// ```
+    ///
+    /// - Parameter candidates: The candidates to choose from.
+    ///
+    /// - Returns: The element.
+    func sourceSet(_ candidates: SourceCandidate...) -> Self
 }
 
 extension SourceSetAttribute where Self: ContentNode {
