@@ -2231,4 +2231,26 @@ public enum Values {
         /// Permits the content to navigate its top-level browsing context, but only if initiated by user.
         case allowTopNavigationByUserActivation = "allow-top-navigation-by-user-activation"
     }
+    
+    /// An enumeration of script types.
+    /// 
+    /// ```swift
+    /// Script {
+    /// }
+    /// .type(.module)
+    /// ```
+    public enum Script: String {
+        
+        /// Indicates the script is used as importmap.
+        case importMap = "importmap"
+        
+        /// Indicates the script is used as module.
+        case module
+        
+        /// Indicates the script defines speculation rules.
+        case speculationRules = "speculationrules"
+        
+        /// Indicates the script contains json data.
+        case data = "application/json"
+    }
 }
