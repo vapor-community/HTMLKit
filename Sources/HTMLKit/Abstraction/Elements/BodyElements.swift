@@ -21360,7 +21360,7 @@ extension Script: GlobalAttributes, GlobalEventAttributes, AsynchronouslyAttribu
         return mutate(source: value)
     }
     
-    public func type(_ value: Values.Media) -> Script {
+    public func type(_ value: Values.Script) -> Script {
         return mutate(type: value.rawValue)
     }
     
