@@ -2,7 +2,7 @@ import HTMLKit
 
 /// A view that represents a date picker.
 ///
-/// Use `DatePicker` to pick a date from a calendar
+/// Use `DatePicker` to pick a date from a calendar.
 ///
 /// ```swift
 /// DatePicker(name: "lorem")
@@ -63,7 +63,7 @@ public struct DatePicker: View, Modifiable, Identifiable {
                             }
                             .points("10 2 4 8 10 14")
                         }
-                        .viewBox("0 0 16 16")
+                        .viewBox(x: 0, y: 0, width: 16, height: 16)
                         .namespace("http://www.w3.org/2000/svg")
                         .fill("currentColor")
                         .strokeWidth(2)
@@ -71,7 +71,7 @@ public struct DatePicker: View, Modifiable, Identifiable {
                         .strokeLineJoin(.round)
                     }
                     .type(.button)
-                    .value("previous")
+                    .value(verbatim: "previous")
                 }
                 ListItem {
                     Bold {
@@ -85,7 +85,7 @@ public struct DatePicker: View, Modifiable, Identifiable {
                             }
                             .points("6 2 12 8 6 14")
                         }
-                        .viewBox("0 0 16 16")
+                        .viewBox(x: 0, y: 0, width: 16, height: 16)
                         .namespace("http://www.w3.org/2000/svg")
                         .fill("currentColor")
                         .strokeWidth(2)
@@ -93,7 +93,7 @@ public struct DatePicker: View, Modifiable, Identifiable {
                         .strokeLineJoin(.round)
                     }
                     .type(.button)
-                    .value("next")
+                    .value(verbatim: "next")
                 }
             }
             .class("calendar-navigation")
@@ -185,7 +185,7 @@ extension DatePicker: ViewModifier {
     }
     
     public func frame(width: Tokens.ViewWidth, height: Tokens.ViewHeight? = nil, alignment: Tokens.FrameAlignment? = nil) -> DatePicker {
-        return mutate(frame: width.value, height: height?.value, alignment: alignment?.value)
+        return self.mutate(frame: width.value, height: height?.value, alignment: alignment?.value)
     }
     
     public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> DatePicker {

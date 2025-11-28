@@ -14,9 +14,9 @@ extension Identifiable {
     /// - Returns: The component
     internal func mutate(id: String) -> Self {
         
-        var newSelf = self
-        newSelf.id = id
+        var copy = self
+        copy.id = id
         
-        return newSelf
+        return copy
     }
 }

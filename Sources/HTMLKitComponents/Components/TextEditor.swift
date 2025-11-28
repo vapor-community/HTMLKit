@@ -23,7 +23,7 @@ public struct TextEditor: View, Modifiable, Identifiable {
     internal var rows: Int = 3
     
     /// The body content of the editor.
-    internal var content: [String]
+    internal let content: [String]
     
     /// The class names for the editor.
     internal var classes: [String]
@@ -82,10 +82,10 @@ public struct TextEditor: View, Modifiable, Identifiable {
     /// - Returns: The editor
     public func lineLimit(_ value: Int) -> TextEditor {
 
-        var newSelf = self
-        newSelf.rows = value
+        var copy = self
+        copy.rows = value
         
-        return newSelf
+        return copy
     }
     
     /// Set the identifier for the editor.
@@ -154,7 +154,7 @@ extension TextEditor: ViewModifier {
     }
     
     public func frame(width: Tokens.ViewWidth, height: Tokens.ViewHeight? = nil, alignment: Tokens.FrameAlignment? = nil) -> TextEditor {
-        return mutate(frame: width.value, height: height?.value, alignment: alignment?.value)
+        return self.mutate(frame: width.value, height: height?.value, alignment: alignment?.value)
     }
     
     public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> TextEditor {

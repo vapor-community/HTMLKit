@@ -17,13 +17,13 @@ public struct ZStack: View, Actionable, Modifiable {
     internal var id: String?
     
     /// The body content of the stack.
-    internal var content: [Content]
+    internal let content: [Content]
     
     /// The class names for the stack.
     internal var classes: [String]
     
     /// The event handlers on the stack.
-    var events: [String]?
+    internal var events: [String]?
     
     /// Create a stack.
     ///
@@ -66,14 +66,14 @@ public struct ZStack: View, Actionable, Modifiable {
     ///
     /// - Returns: The stack
     public func shadow(_ radius: Tokens.BlurRadius = .small, color: Tokens.ShadowColor = .black) -> ZStack {
-        return self.mutate(classes: ["shadow:\(radius.value)", "shadow:\(color.value)"])
+        return self.mutate(classes: "shadow:\(radius.value)", "shadow:\(color.value)")
     }
     
     /// Clip the content for the stack.
     ///
     /// - Returns: The stack
     public func clipped() -> ZStack {
-        return self.mutate(class: "overflow:clip")
+        return self.mutate(classes: "overflow:clip")
     }
 }
 
@@ -128,7 +128,7 @@ extension ZStack: ViewModifier {
     }
     
     public func frame(width: Tokens.ViewWidth, height: Tokens.ViewHeight? = nil, alignment: Tokens.FrameAlignment? = nil) -> ZStack {
-        return mutate(frame: width.value, height: height?.value, alignment: alignment?.value)
+        return self.mutate(frame: width.value, height: height?.value, alignment: alignment?.value)
     }
     
     public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> ZStack {

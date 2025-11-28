@@ -4,19 +4,19 @@ public struct SubmitAction: Action {
     
     public func validate(_ target: String, _ validators: [Validator]) -> SubmitAction {
         
-        var newSelf = self
+        var copy = self
         
         if !validators.isEmpty {
             
             let result = validators.map { "{\"field\":\"\($0.field)\",\"rule\":\"\($0.rule)\"}" }
             
-            newSelf.actions.append("$('#\(target.escape())').validate('[\(result.joined(separator: ","))]');")
+            copy.actions.append("$('#\(target.escape())').validate('[\(result.joined(separator: ","))]');")
             
-            return newSelf
+            return copy
         }
         
-        newSelf.actions.append("$('#\(target.escape())').validate('[]');")
+        copy.actions.append("$('#\(target.escape())').validate('[]');")
         
-        return newSelf
+        return copy
     }
 }

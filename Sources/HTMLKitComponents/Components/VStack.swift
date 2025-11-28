@@ -22,7 +22,7 @@ public struct VStack: View, Actionable, Modifiable {
     internal var id: String?
     
     /// The body content of the stack.
-    internal var content: [Content]
+    internal let content: [Content]
     
     /// The class names for the stack.
     internal var classes: [String]
@@ -80,14 +80,14 @@ public struct VStack: View, Actionable, Modifiable {
     ///
     /// - Returns: The stack
     public func shadow(_ radius: Tokens.BlurRadius = .small, color: Tokens.ShadowColor = .black) -> VStack {
-        return self.mutate(classes: ["shadow:\(radius.value)", "shadow:\(color.value)"])
+        return self.mutate(classes: "shadow:\(radius.value)", "shadow:\(color.value)")
     }
     
     /// Clip the content for the stack.
     ///
     /// - Returns: The stack
     public func clipped() -> VStack {
-        return self.mutate(class: "overflow:clip")
+        return self.mutate(classes: "overflow:clip")
     }
 }
 
@@ -142,7 +142,7 @@ extension VStack: ViewModifier {
     }
     
     public func frame(width: Tokens.ViewWidth, height: Tokens.ViewHeight? = nil, alignment: Tokens.FrameAlignment? = nil) -> VStack {
-        return mutate(frame: width.value, height: height?.value, alignment: alignment?.value)
+        return self.mutate(frame: width.value, height: height?.value, alignment: alignment?.value)
     }
     
     public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> VStack {

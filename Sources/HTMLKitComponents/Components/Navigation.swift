@@ -52,10 +52,10 @@ public struct Navigation: View, Modifiable, Identifiable {
     /// - Returns: The navigation
     public func navigationStyle(_ style: Tokens.NavigationStyle) -> Navigation {
         
-        var newSelf = self
-        newSelf.classes.append("style:\(style.value)")
+        var copy = self
+        copy.classes.append("style:\(style.value)")
         
-        return newSelf
+        return copy
     }
     
     /// Set the style for the navigation.
@@ -117,7 +117,7 @@ extension Navigation: ViewModifier {
     }
     
     public func frame(width: Tokens.ViewWidth, height: Tokens.ViewHeight? = nil, alignment: Tokens.FrameAlignment? = nil) -> Navigation {
-        return mutate(frame: width.value, height: height?.value, alignment: alignment?.value)
+        return self.mutate(frame: width.value, height: height?.value, alignment: alignment?.value)
     }
     
     public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> Navigation {

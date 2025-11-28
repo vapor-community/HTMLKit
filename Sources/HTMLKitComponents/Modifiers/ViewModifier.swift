@@ -84,27 +84,27 @@ public protocol ViewModifier {
 extension ViewModifier where Self: Modifiable {
     
     internal func mutate(opacity value: String) -> Self {
-        return self.mutate(class: "opacity:\(value)")
+        return self.mutate(classes: "opacity:\(value)")
     }
     
     internal func mutate(zindex value: String) -> Self {
-        return self.mutate(class: "zindex:\(value)")
+        return self.mutate(classes: "zindex:\(value)")
     }
     
     internal func mutate(backgroundcolor value: String) -> Self {
-        return self.mutate(class: "background:\(value)")
+        return self.mutate(classes: "background:\(value)")
     }
     
     internal func mutate(viewstate value: String) -> Self {
-        return self.mutate(class: "state:\(value)")
+        return self.mutate(classes: "state:\(value)")
     }
     
     internal func mutate(scheme value: String) -> Self {
-        return self.mutate(class: "scheme:\(value)")
+        return self.mutate(classes: "scheme:\(value)")
     }
     
     internal func mutate(padding value: String) -> Self {
-        return self.mutate(class: "padding:\(value)")
+        return self.mutate(classes: "padding:\(value)")
     }
     
     internal func mutate(padding value: String, insets: EdgeSet) -> Self {
@@ -145,11 +145,11 @@ extension ViewModifier where Self: Modifiable {
     }
     
     internal func mutate(bordershape value: String) -> Self {
-        return self.mutate(class: "shape:\(value)")
+        return self.mutate(classes: "shape:\(value)")
     }
     
     internal func mutate(border color: String, width: String) -> Self {
-        return self.mutate(classes: ["border:\(color)", "border:\(width)"])
+        return self.mutate(classes: "border:\(color)", "border:\(width)")
     }
     
     internal func mutate(frame width: String, height: String? = nil, alignment: String? = nil) -> Self {

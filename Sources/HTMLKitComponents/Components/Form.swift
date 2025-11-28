@@ -21,13 +21,13 @@ public struct Form: View, Actionable {
     internal var id: String?
     
     /// The form method of the submission.
-    internal var method: HTMLKit.Values.Method
+    internal let method: HTMLKit.Values.Method
     
     /// The encoding strategy for the submission.
-    internal var encoding: HTMLKit.Values.Encoding
+    internal let encoding: HTMLKit.Values.Encoding
     
     /// The body content of the form.
-    internal var content: [FormElement]
+    internal let content: [FormElement]
     
     /// The class names for the form.
     internal var classes: [String]

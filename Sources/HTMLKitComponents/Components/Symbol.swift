@@ -241,7 +241,7 @@ public struct Symbol: View, Modifiable {
         Vector {
             content
         }
-        .viewBox("0 0 20 16")
+        .viewBox(x: 0, y: 0, width: 20, height: 16)
         .class(classes.joined(separator: " "))
     }
     
@@ -252,10 +252,10 @@ public struct Symbol: View, Modifiable {
     /// - Returns: The symbol
     public func fontSize(_ size: Tokens.FontSize) -> Symbol {
         
-        var newSelf = self
-        newSelf.classes.append("size:\(size.value)")
+        var copy = self
+        copy.classes.append("size:\(size.value)")
         
-        return newSelf
+        return copy
     }
     
     /// Fill the foreground of the symbol.
@@ -265,10 +265,10 @@ public struct Symbol: View, Modifiable {
     /// - Returns: The symbol
     public func foregroundColor(_ color: Tokens.ForegroundColor) -> Symbol {
         
-        var newSelf = self
-        newSelf.classes.append("foreground:\(color.value)")
+        var copy = self
+        copy.classes.append("foreground:\(color.value)")
         
-        return newSelf
+        return copy
     }
     
     /// Set the drop shadow for the symbol.
@@ -279,7 +279,7 @@ public struct Symbol: View, Modifiable {
     ///
     /// - Returns: The symbol
     public func shadow(_ radius: Tokens.BlurRadius, color: Tokens.ShadowColor = .black) -> Symbol {
-        return mutate(classes: ["shadow:\(radius.value)", "shadow:\(color.value)"])
+        return self.mutate(classes: "shadow:\(radius.value)", "shadow:\(color.value)")
     }
 }
 

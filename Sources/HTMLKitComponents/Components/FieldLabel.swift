@@ -15,7 +15,7 @@ public struct FieldLabel: View {
     internal let id: String
     
     /// The body content of the label.
-    internal var content: [Content]
+    internal let content: [Content]
     
     /// The class names for the label.
     internal var classes: [String]

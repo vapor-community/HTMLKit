@@ -15,7 +15,7 @@ public struct Alert: View, Identifiable, Modifiable {
     internal var id: String?
     
     /// The body content of the alert
-    internal var content: [Content]
+    internal let content: [Content]
     
     /// The class names for the alert.
     internal var classes: [String]
@@ -89,7 +89,7 @@ extension Alert: ViewModifier {
     }
     
     public func frame(width: Tokens.ViewWidth, height: Tokens.ViewHeight?, alignment: Tokens.FrameAlignment?) -> Alert {
-        return mutate(frame: width.value, height: height?.value, alignment: alignment?.value)
+        return self.mutate(frame: width.value, height: height?.value, alignment: alignment?.value)
     }
     
     public func margin(insets: EdgeSet, length: Tokens.MarginLength) -> Alert {

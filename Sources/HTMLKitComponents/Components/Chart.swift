@@ -43,6 +43,6 @@ public struct Chart: View, Modifiable {
     ///
     /// - Returns: The chart
     public func innerRadius(_ color: Tokens.InnerRadius) -> Chart {
-        return self.mutate(class: "radius:\(color.value)")
+        return self.mutate(classes: "radius:\(color.value)")
     }
 }

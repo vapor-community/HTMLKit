@@ -17,7 +17,7 @@ public struct Snippet: View, Modifiable, Identifiable {
     internal var id: String?
     
     /// The body content of the snippet.
-    internal var content: String
+    internal let content: String
     
     /// The class names for the snippet.
     internal var classes: [String]
@@ -104,7 +104,7 @@ extension Snippet: ViewModifier {
     }
     
     public func frame(width: Tokens.ViewWidth, height: Tokens.ViewHeight? = nil, alignment: Tokens.FrameAlignment? = nil) -> Snippet {
-        return mutate(frame: width.value, height: height?.value, alignment: alignment?.value)
+        return self.mutate(frame: width.value, height: height?.value, alignment: alignment?.value)
     }
     
     public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> Snippet {

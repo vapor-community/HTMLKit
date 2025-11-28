@@ -34,7 +34,7 @@ public struct Tabs: View, Identifiable, Modifiable {
     internal var id: String?
     
     /// The panes of the tabs.
-    internal var content: [Pane]
+    internal let content: [Pane]
     
     /// The class names of the tabs.
     internal var classes: [String]
@@ -134,7 +134,7 @@ extension Tabs: ViewModifier {
     }
     
     public func frame(width: Tokens.ViewWidth, height: Tokens.ViewHeight?, alignment: Tokens.FrameAlignment?) -> Tabs {
-        return mutate(frame: width.value, height: height?.value, alignment: alignment?.value)
+        return self.mutate(frame: width.value, height: height?.value, alignment: alignment?.value)
     }
     
     public func margin(insets: EdgeSet, length: Tokens.MarginLength) -> Tabs {

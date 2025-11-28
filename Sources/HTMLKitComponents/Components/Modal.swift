@@ -19,7 +19,7 @@ public struct Modal: View, Modifiable, Actionable {
     internal var id: String?
     
     /// The body content of the modal.
-    internal var content: [Content]
+    internal let content: [Content]
     
     /// The class names for the modal.
     internal var classes: [String]
@@ -110,7 +110,7 @@ extension Modal: ViewModifier {
     }
     
     public func frame(width: Tokens.ViewWidth, height: Tokens.ViewHeight? = nil, alignment: Tokens.FrameAlignment? = nil) -> Modal {
-        return mutate(frame: width.value, height: height?.value, alignment: alignment?.value)
+        return self.mutate(frame: width.value, height: height?.value, alignment: alignment?.value)
     }
     
     public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> Modal {

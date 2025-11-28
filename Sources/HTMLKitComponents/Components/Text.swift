@@ -15,7 +15,7 @@ public struct Text: View, Actionable, Modifiable {
     internal var id: String?
     
     /// The body content of the text.
-    internal var content: [Content]
+    internal let content: [Content]
     
     /// The class names for the text.
     internal var classes: [String]
@@ -99,7 +99,7 @@ extension Text: PressEvent {
 extension Text: TextModifier {
    
     public func font(_ family: Tokens.FontFamily) -> Text {
-        return mutate(fontfamily: family.value)
+        return self.mutate(fontfamily: family.value)
     }
     
     public func textStyle(_ style: Tokens.TextStyle) -> Text {
@@ -179,7 +179,7 @@ extension Text: TextModifier {
     }
     
     public func shadow(_ radius: Tokens.BlurRadius, color: Tokens.ShadowColor = .black) -> Text {
-        return mutate(shadow: radius.value, color: color.value)
+        return self.mutate(shadow: radius.value, color: color.value)
     }
 }
 
@@ -223,7 +223,7 @@ extension Text: ViewModifier {
     }
     
     public func frame(width: Tokens.ViewWidth, height: Tokens.ViewHeight? = nil, alignment: Tokens.FrameAlignment? = nil) -> Text {
-        return mutate(frame: width.value, height: height?.value, alignment: alignment?.value)
+        return self.mutate(frame: width.value, height: height?.value, alignment: alignment?.value)
     }
     
     public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> Text {

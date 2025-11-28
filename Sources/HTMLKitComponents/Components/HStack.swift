@@ -18,7 +18,7 @@ public struct HStack: View, Actionable, Modifiable {
     internal var id: String?
     
     /// The body content of the stack.
-    internal var content: [Content]
+    internal let content: [Content]
     
     /// The class names for the stack.
     internal var classes: [String]
@@ -76,14 +76,14 @@ public struct HStack: View, Actionable, Modifiable {
     ///
     /// - Returns: The stack
     public func shadow(_ radius: Tokens.BlurRadius = .small, color: Tokens.ShadowColor = .black) -> HStack {
-        return self.mutate(classes: ["shadow:\(radius.value)", "shadow:\(color.value)"])
+        return self.mutate(classes: "shadow:\(radius.value)", "shadow:\(color.value)")
     }
     
     /// Clip the content for the stack.
     ///
     /// - Returns: The stack
     public func clipped() -> HStack {
-        return self.mutate(class: "overflow:clip")
+        return self.mutate(classes: "overflow:clip")
     }
 }
 
@@ -138,7 +138,7 @@ extension HStack: ViewModifier {
     }
     
     public func frame(width: Tokens.ViewWidth, height: Tokens.ViewHeight? = nil, alignment: Tokens.FrameAlignment? = nil) -> HStack {
-        return mutate(frame: width.value, height: height?.value, alignment: alignment?.value)
+        return self.mutate(frame: width.value, height: height?.value, alignment: alignment?.value)
     }
     
     public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> HStack {

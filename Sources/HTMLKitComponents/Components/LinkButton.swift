@@ -22,7 +22,7 @@ public struct LinkButton: View, Modifiable, Identifiable {
     internal let destination: String
     
     /// The body content of the button.
-    internal var content: [Content]
+    internal let content: [Content]
     
     /// The class names for the button.
     internal var classes: [String]
@@ -168,7 +168,7 @@ extension LinkButton: ViewModifier {
     }
     
     public func frame(width: Tokens.ViewWidth, height: Tokens.ViewHeight? = nil, alignment: Tokens.FrameAlignment? = nil) -> LinkButton {
-        return mutate(frame: width.value, height: height?.value, alignment: alignment?.value)
+        return self.mutate(frame: width.value, height: height?.value, alignment: alignment?.value)
     }
     
     public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> LinkButton {

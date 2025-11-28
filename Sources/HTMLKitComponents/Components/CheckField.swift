@@ -27,7 +27,7 @@ public struct CheckField: View, Modifiable, Selectable, Identifiable {
     internal var isSelected: Bool
 
     /// The body content of the field.
-    internal var content: Content
+    internal let content: Content
     
     /// The class names for the field.
     internal var classes: [String]
@@ -147,7 +147,7 @@ extension CheckField: ViewModifier {
     }
     
     public func frame(width: Tokens.ViewWidth, height: Tokens.ViewHeight? = nil, alignment: Tokens.FrameAlignment? = nil) -> CheckField {
-        return mutate(frame: width.value, height: height?.value, alignment: alignment?.value)
+        return self.mutate(frame: width.value, height: height?.value, alignment: alignment?.value)
     }
     
     public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> CheckField {
