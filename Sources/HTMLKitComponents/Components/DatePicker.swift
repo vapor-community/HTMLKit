@@ -2,10 +2,10 @@ import HTMLKit
 
 /// A view that represents a date picker.
 ///
-/// Use `DatePicker` to pick a date from a calendar
+/// Use `DatePicker` to pick a date from a calendar.
 ///
 /// ```swift
-/// DatePicker(name: "lorem")
+/// DatePicker(name: "lorem", prompt: "Lorem ipsum", value: "Lorem ipsum")
 /// ```
 public struct DatePicker: View, Modifiable, Identifiable {
     
@@ -14,6 +14,9 @@ public struct DatePicker: View, Modifiable, Identifiable {
     
     /// The name of the picker.
     internal let name: String
+    
+    /// The content hint for the field.
+    internal let prompt: PromptType?
     
     /// The content of the picker.
     internal let value: String?
@@ -25,13 +28,30 @@ public struct DatePicker: View, Modifiable, Identifiable {
     internal var events: [String]?
     
     /// Create a date picker.
-    ///
+    /// 
     /// - Parameters:
     ///   - name: The name to assign to the field.
+    ///   - prompt: The prompt to guide the user.
     ///   - value: The date to edit within the field.
-    public init(name: String, value: String? = nil) {
+    @_disfavoredOverload
+    public init(name: String, prompt: String? = nil, value: String? = nil) {
         
         self.name = name
+        self.prompt = prompt.map(PromptType.string(_:))
+        self.value = value
+        self.classes = ["datepicker"]
+    }
+    
+    /// Create a date picker.
+    /// 
+    /// - Parameters:
+    ///   - name: The name to assign to the field.
+    ///   - prompt: The prompt to guide the user.
+    ///   - value: The date to edit within the field.
+    public init(name: String, prompt: LocalizedStringKey? = nil, value: String? = nil) {
+        
+        self.name = name
+        self.prompt = prompt.map(PromptType.value(_:))
         self.value = value
         self.classes = ["datepicker"]
     }
@@ -44,6 +64,9 @@ public struct DatePicker: View, Modifiable, Identifiable {
                 .name(name)
                 .modify(unwrap: value) {
                     $0.value($1)
+                }
+                .modify(unwrap: prompt) {
+                    $0.placeholder($1)
                 }
             self.calendar
         }
@@ -63,7 +86,7 @@ public struct DatePicker: View, Modifiable, Identifiable {
                             }
                             .points("10 2 4 8 10 14")
                         }
-                        .viewBox("0 0 16 16")
+                        .viewBox(x: 0, y: 0, width: 16, height: 16)
                         .namespace("http://www.w3.org/2000/svg")
                         .fill("currentColor")
                         .strokeWidth(2)
@@ -71,7 +94,7 @@ public struct DatePicker: View, Modifiable, Identifiable {
                         .strokeLineJoin(.round)
                     }
                     .type(.button)
-                    .value("previous")
+                    .value(verbatim: "previous")
                 }
                 ListItem {
                     Bold {
@@ -85,7 +108,7 @@ public struct DatePicker: View, Modifiable, Identifiable {
                             }
                             .points("6 2 12 8 6 14")
                         }
-                        .viewBox("0 0 16 16")
+                        .viewBox(x: 0, y: 0, width: 16, height: 16)
                         .namespace("http://www.w3.org/2000/svg")
                         .fill("currentColor")
                         .strokeWidth(2)
@@ -93,7 +116,7 @@ public struct DatePicker: View, Modifiable, Identifiable {
                         .strokeLineJoin(.round)
                     }
                     .type(.button)
-                    .value("next")
+                    .value(verbatim: "next")
                 }
             }
             .class("calendar-navigation")
@@ -185,7 +208,7 @@ extension DatePicker: ViewModifier {
     }
     
     public func frame(width: Tokens.ViewWidth, height: Tokens.ViewHeight? = nil, alignment: Tokens.FrameAlignment? = nil) -> DatePicker {
-        return mutate(frame: width.value, height: height?.value, alignment: alignment?.value)
+        return self.mutate(frame: width.value, height: height?.value, alignment: alignment?.value)
     }
     
     public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> DatePicker {

@@ -7,7 +7,7 @@ extension HTMLKit.Image {
     /// - Parameter value: A container holding the concrete source type.
     ///
     /// - Returns: The image
-    public func source(_ value: DynamicType) -> HTMLKit.Image {
+    internal func source(_ value: DynamicType) -> HTMLKit.Image {
 
         switch value {
         case .string(let string):
@@ -26,7 +26,7 @@ extension HTMLKit.Video {
     /// - Parameter value: A container holding the concrete source type.
     ///
     /// - Returns: The video
-    public func source(_ value: DynamicType) -> HTMLKit.Video {
+    internal func source(_ value: DynamicType) -> HTMLKit.Video {
 
         switch value {
         case .string(let string):

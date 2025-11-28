@@ -128,7 +128,7 @@ extension Image: ViewModifier {
     }
     
     public func frame(width: Tokens.ViewWidth, height: Tokens.ViewHeight? = nil, alignment: Tokens.FrameAlignment? = nil) -> Image {
-        return mutate(frame: width.value, height: height?.value, alignment: alignment?.value)
+        return self.mutate(frame: width.value, height: height?.value, alignment: alignment?.value)
     }
     
     public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> Image {
@@ -139,26 +139,26 @@ extension Image: ViewModifier {
 extension Image: GraphicsModifier {
     
     public func blur(_ level: Tokens.BlurLevel) -> Image {
-        return mutate(blur: level.value)
+        return self.mutate(blur: level.value)
     }
     
     public func grayscale(_ depth: Tokens.GrayscaleDepth) -> Image {
-        return mutate(grayscale: depth.value)
+        return self.mutate(grayscale: depth.value)
     }
     
     public func brightness(_ level: Tokens.BrightnessLevel) -> Image {
-        return mutate(brightness: level.value)
+        return self.mutate(brightness: level.value)
     }
     
     public func saturation(_ level: Tokens.SaturationLevel) -> Image {
-        return mutate(saturation: level.value)
+        return self.mutate(saturation: level.value)
     }
     
     public func contrast(_ level: Tokens.ContrastLevel) -> Image {
-        return mutate(contrast: level.value)
+        return self.mutate(contrast: level.value)
     }
     
     public func shadow(_ radius: Tokens.BlurRadius = .small, color: Tokens.ShadowColor = .black) -> Image {
-        return mutate(shadow: radius.value, color: color.value)
+        return self.mutate(shadow: radius.value, color: color.value)
     }
 }

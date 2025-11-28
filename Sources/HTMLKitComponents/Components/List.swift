@@ -20,7 +20,7 @@ public struct List: View, Modifiable, Actionable {
     internal var id: String?
     
     /// The body content of the list.
-    internal var content: [ListElement]
+    internal let content: [ListElement]
     
     /// The class names for the list.
     internal var classes: [String]
@@ -65,11 +65,7 @@ public struct List: View, Modifiable, Actionable {
     ///
     /// - Returns: The list
     public func listStyle(_ style: Tokens.ListStyle) -> List {
-        
-        var newSelf = self
-        newSelf.classes.append("style:\(style.value)")
-        
-        return newSelf
+        return self.mutate(classes: "style:\(style.value)")
     }
     
     /// Set the style for the list.
@@ -87,7 +83,7 @@ public struct List: View, Modifiable, Actionable {
     ///
     /// - Returns: The list
     public func listSpacing(_ size: Tokens.ListSpace) -> List {
-        return mutate(class: "spacing:\(size.value)")
+        return self.mutate(classes: "spacing:\(size.value)")
     }
     
     /// Set the identifier for the list.
@@ -151,7 +147,7 @@ extension List: ViewModifier {
     }
     
     public func frame(width: Tokens.ViewWidth, height: Tokens.ViewHeight? = nil, alignment: Tokens.FrameAlignment? = nil) -> List {
-        return mutate(frame: width.value, height: height?.value, alignment: alignment?.value)
+        return self.mutate(frame: width.value, height: height?.value, alignment: alignment?.value)
     }
     
     public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> List {

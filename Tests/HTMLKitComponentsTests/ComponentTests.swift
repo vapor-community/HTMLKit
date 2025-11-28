@@ -511,7 +511,6 @@ final class ComponentTests: XCTestCase {
         )
     }
     
-    
     func testNavigation() throws {
         
         let view = TestView {

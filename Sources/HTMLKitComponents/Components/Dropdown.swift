@@ -24,10 +24,10 @@ public struct Dropdown: View, Modifiable, Identifiable {
     internal var id: String?
     
     /// The label content for the dropdown.
-    internal var label: [Content]
+    internal let label: [Content]
     
     /// The body content of the dropdown.
-    internal var content: [Content]
+    internal let content: [Content]
     
     /// The class names for the dropdown.
     internal var classes: [String]
@@ -111,7 +111,7 @@ extension Dropdown: ViewModifier {
     }
     
     public func frame(width: Tokens.ViewWidth, height: Tokens.ViewHeight? = nil, alignment: Tokens.FrameAlignment? = nil) -> Dropdown {
-        return mutate(frame: width.value, height: height?.value, alignment: alignment?.value)
+        return self.mutate(frame: width.value, height: height?.value, alignment: alignment?.value)
     }
     
     public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> Dropdown {

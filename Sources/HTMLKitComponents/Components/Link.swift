@@ -24,7 +24,7 @@ public struct Link: View, Modifiable, Identifiable {
     internal let destination: String
     
     /// The body content of the link.
-    internal var content: [Content]
+    internal let content: [Content]
     
     /// The class names for the link.
     internal var classes: [String]
@@ -85,7 +85,7 @@ public struct Link: View, Modifiable, Identifiable {
 extension Link: TextModifier {
     
     public func font(_ family: Tokens.FontFamily) -> Link {
-        return mutate(fontfamily: family.value)
+        return self.mutate(fontfamily: family.value)
     }
     
     public func textStyle(_ style: Tokens.TextStyle) -> Link {
@@ -165,7 +165,7 @@ extension Link: TextModifier {
     }
     
     public func shadow(_ radius: Tokens.BlurRadius, color: Tokens.ShadowColor = .black) -> Link {
-        return mutate(shadow: radius.value, color: color.value)
+        return self.mutate(shadow: radius.value, color: color.value)
     }
 }
 
@@ -209,7 +209,7 @@ extension Link: ViewModifier {
     }
     
     public func frame(width: Tokens.ViewWidth, height: Tokens.ViewHeight? = nil, alignment: Tokens.FrameAlignment? = nil) -> Link {
-        return mutate(frame: width.value, height: height?.value, alignment: alignment?.value)
+        return self.mutate(frame: width.value, height: height?.value, alignment: alignment?.value)
     }
     
     public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> Link {

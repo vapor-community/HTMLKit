@@ -17,11 +17,11 @@ public struct Slide: View, Identifiable, Modifiable {
     /// The unique identifier of the slide.
     internal var id: String?
     
+    /// The class names for the slide.
+    internal let content: [Content]
+    
     /// The body content of the slide.
     internal var classes: [String]
-    
-    /// The class names for the slide.
-    internal var content: [Content]
     
     /// Create a slide.
     ///
@@ -92,7 +92,7 @@ extension Slide: ViewModifier {
     }
     
     public func frame(width: Tokens.ViewWidth, height: Tokens.ViewHeight? = nil, alignment: Tokens.FrameAlignment? = nil) -> Slide {
-        return mutate(frame: width.value, height: height?.value, alignment: alignment?.value)
+        return self.mutate(frame: width.value, height: height?.value, alignment: alignment?.value)
     }
     
     public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> Slide {

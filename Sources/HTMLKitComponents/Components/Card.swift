@@ -19,10 +19,10 @@ public struct Card: View, Modifiable, Identifiable {
     internal var id: String?
     
     /// The header content of the card.
-    internal var header: [Content]?
+    internal let header: [Content]?
     
     /// The body content of the card.
-    internal var content: [Content]
+    internal let content: [Content]
     
     /// The class names for the card.
     internal var classes: [String]
@@ -32,6 +32,7 @@ public struct Card: View, Modifiable, Identifiable {
     /// - Parameter content: The card's content
     public init(@ContentBuilder<Content> content: () -> [Content]) {
         
+        self.header = nil
         self.content = content()
         self.classes = ["card"]
     }
@@ -125,7 +126,7 @@ extension Card: ViewModifier {
     }
     
     public func frame(width: Tokens.ViewWidth, height: Tokens.ViewHeight? = nil, alignment: Tokens.FrameAlignment? = nil) -> Card {
-        return mutate(frame: width.value, height: height?.value, alignment: alignment?.value)
+        return self.mutate(frame: width.value, height: height?.value, alignment: alignment?.value)
     }
     
     public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> Card {

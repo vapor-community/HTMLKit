@@ -27,7 +27,7 @@ public struct SelectField: View, Modifiable, Identifiable {
     internal let selection: String?
     
     /// The body content of the field.
-    internal var content: [Selectable]
+    internal let content: [Selectable]
     
     /// The class names for the field.
     internal var classes: [String]
@@ -189,7 +189,7 @@ extension SelectField: ViewModifier {
     }
     
     public func frame(width: Tokens.ViewWidth, height: Tokens.ViewHeight? = nil, alignment: Tokens.FrameAlignment? = nil) -> SelectField {
-        return mutate(frame: width.value, height: height?.value, alignment: alignment?.value)
+        return self.mutate(frame: width.value, height: height?.value, alignment: alignment?.value)
     }
     
     public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> SelectField {

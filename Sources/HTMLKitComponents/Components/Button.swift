@@ -16,10 +16,10 @@ public struct Button: View, Modifiable, Actionable {
     internal var id: String?
     
     /// The role of the button.
-    internal var role: HTMLKit.Values.Button
+    internal let role: HTMLKit.Values.Button
     
     /// The body content of the button.
-    internal var content: [Content]
+    internal let content: [Content]
     
     /// The class names for the button.
     internal var classes: [String]
@@ -156,7 +156,7 @@ extension Button: ViewModifier {
     }
     
     public func frame(width: Tokens.ViewWidth, height: Tokens.ViewHeight? = nil, alignment: Tokens.FrameAlignment? = nil) -> Button {
-        return mutate(frame: width.value, height: height?.value, alignment: alignment?.value)
+        return self.mutate(frame: width.value, height: height?.value, alignment: alignment?.value)
     }
     
     public func margin(insets: EdgeSet, length: Tokens.MarginLength = .small) -> Button {
