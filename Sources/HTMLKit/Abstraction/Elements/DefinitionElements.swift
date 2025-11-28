@@ -88,7 +88,12 @@ extension TermName: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> TermName {
+        return mutate(draggable: value)
+    }
+    
+    public func draggable(_ value: Bool = true) -> TermName {
         return mutate(draggable: value)
     }
 
@@ -388,7 +393,12 @@ extension TermDefinition: GlobalAttributes, GlobalEventAttributes, GlobalAriaAtt
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> TermDefinition {
+        return mutate(draggable: value)
+    }
+    
+    public func draggable(_ value: Bool = true) -> TermDefinition {
         return mutate(draggable: value)
     }
 

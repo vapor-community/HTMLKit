@@ -86,7 +86,12 @@ extension RubyText: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> RubyText {
+        return mutate(draggable: value)
+    }
+    
+    public func draggable(_ value: Bool = true) -> RubyText {
         return mutate(draggable: value)
     }
 
@@ -390,7 +395,12 @@ extension RubyPronunciation: GlobalAttributes, GlobalEventAttributes, GlobalAria
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> RubyPronunciation {
+        return mutate(draggable: value)
+    }
+    
+    public func draggable(_ value: Bool = true) -> RubyPronunciation {
         return mutate(draggable: value)
     }
 

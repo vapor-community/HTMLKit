@@ -84,7 +84,12 @@ extension FigureCaption: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttr
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> FigureCaption {
+        return mutate(draggable: value)
+    }
+    
+    public func draggable(_ value: Bool = true) -> FigureCaption {
         return mutate(draggable: value)
     }
 

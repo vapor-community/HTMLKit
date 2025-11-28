@@ -72,7 +72,12 @@ extension Input: GlobalAttributes, GlobalEventAttributes, AcceptAttribute, Alter
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Input {
+        return mutate(draggable: value)
+    }
+    
+    public func draggable(_ value: Bool = true) -> Input {
         return mutate(draggable: value)
     }
 
@@ -484,7 +489,12 @@ extension Label: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Label {
+        return mutate(draggable: value)
+    }
+    
+    public func draggable(_ value: Bool = true) -> Label {
         return mutate(draggable: value)
     }
 
@@ -799,7 +809,12 @@ extension Select: GlobalAttributes, GlobalEventAttributes, AutocompleteAttribute
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Select {
+        return mutate(draggable: value)
+    }
+    
+    public func draggable(_ value: Bool = true) -> Select {
         return mutate(draggable: value)
     }
 
@@ -1072,7 +1087,12 @@ extension TextArea: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> TextArea {
+        return mutate(draggable: value)
+    }
+    
+    public func draggable(_ value: Bool = true) -> TextArea {
         return mutate(draggable: value)
     }
 
@@ -1458,7 +1478,12 @@ extension Button: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Button {
+        return mutate(draggable: value)
+    }
+    
+    public func draggable(_ value: Bool = true) -> Button {
         return mutate(draggable: value)
     }
 
@@ -1816,7 +1841,12 @@ extension Fieldset: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Fieldset {
+        return mutate(draggable: value)
+    }
+    
+    public func draggable(_ value: Bool = true) -> Fieldset {
         return mutate(draggable: value)
     }
 

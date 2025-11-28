@@ -224,7 +224,12 @@ extension Article: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Article {
+        return mutate(draggable: value)
+    }
+    
+    public func draggable(_ value: Bool = true) -> Article {
         return mutate(draggable: value)
     }
 
@@ -524,7 +529,12 @@ extension Section: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Section {
+        return mutate(draggable: value)
+    }
+    
+    public func draggable(_ value: Bool = true) -> Section {
         return mutate(draggable: value)
     }
 
@@ -826,7 +836,12 @@ extension Navigation: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Navigation {
+        return mutate(draggable: value)
+    }
+    
+    public func draggable(_ value: Bool = true) -> Navigation {
         return mutate(draggable: value)
     }
 
@@ -1124,7 +1139,12 @@ extension Aside: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Aside {
+        return mutate(draggable: value)
+    }
+    
+    public func draggable(_ value: Bool = true) -> Aside {
         return mutate(draggable: value)
     }
 
@@ -1419,7 +1439,12 @@ extension Heading1: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(dir: value.rawValue)
     }
     
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Heading1 {
+        return mutate(draggable: value)
+    }
+    
+    public func draggable(_ value: Bool = true) -> Heading1 {
         return mutate(draggable: value)
     }
     
@@ -1721,7 +1746,12 @@ extension Heading2: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(dir: value.rawValue)
     }
     
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Heading2 {
+        return mutate(draggable: value)
+    }
+    
+    public func draggable(_ value: Bool = true) -> Heading2 {
         return mutate(draggable: value)
     }
     
@@ -2022,8 +2052,13 @@ extension Heading3: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
     public func direction(_ value: Values.Direction) -> Heading3 {
         return mutate(dir: value.rawValue)
     }
-
+    
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Heading3 {
+        return mutate(draggable: value)
+    }
+    
+    public func draggable(_ value: Bool = true) -> Heading3 {
         return mutate(draggable: value)
     }
 
@@ -2325,7 +2360,12 @@ extension Heading4: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Heading4 {
+        return mutate(draggable: value)
+    }
+    
+    public func draggable(_ value: Bool = true) -> Heading4 {
         return mutate(draggable: value)
     }
 
@@ -2627,7 +2667,12 @@ extension Heading5: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Heading5 {
+        return mutate(draggable: value)
+    }
+    
+    public func draggable(_ value: Bool = true) -> Heading5 {
         return mutate(draggable: value)
     }
 
@@ -2929,7 +2974,12 @@ extension Heading6: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Heading6 {
+        return mutate(draggable: value)
+    }
+    
+    public func draggable(_ value: Bool = true) -> Heading6 {
         return mutate(draggable: value)
     }
 
@@ -3236,7 +3286,12 @@ extension HeadingGroup: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttri
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> HeadingGroup {
+        return mutate(draggable: value)
+    }
+    
+    public func draggable(_ value: Bool = true) -> HeadingGroup {
         return mutate(draggable: value)
     }
 
@@ -3532,7 +3587,12 @@ extension Header: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Header {
+        return mutate(draggable: value)
+    }
+    
+    public func draggable(_ value: Bool = true) -> Header {
         return mutate(draggable: value)
     }
 
@@ -3826,7 +3886,12 @@ extension Footer: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Footer {
+        return mutate(draggable: value)
+    }
+    
+    public func draggable(_ value: Bool = true) -> Footer {
         return mutate(draggable: value)
     }
 
@@ -4127,7 +4192,12 @@ extension Address: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Address {
+        return mutate(draggable: value)
+    }
+    
+    public func draggable(_ value: Bool = true) -> Address {
         return mutate(draggable: value)
     }
 
@@ -4422,7 +4492,12 @@ extension Paragraph: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Paragraph {
+        return mutate(draggable: value)
+    }
+    
+    public func draggable(_ value: Bool = true) -> Paragraph {
         return mutate(draggable: value)
     }
 
@@ -4721,7 +4796,12 @@ extension HorizontalRule: GlobalAttributes, GlobalEventAttributes, GlobalAriaAtt
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> HorizontalRule {
+        return mutate(draggable: value)
+    }
+    
+    public func draggable(_ value: Bool = true) -> HorizontalRule {
         return mutate(draggable: value)
     }
 
@@ -5022,7 +5102,12 @@ extension PreformattedText: GlobalAttributes, GlobalEventAttributes, GlobalAriaA
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> PreformattedText {
+        return mutate(draggable: value)
+    }
+    
+    public func draggable(_ value: Bool = true) -> PreformattedText {
         return mutate(draggable: value)
     }
 
@@ -5317,7 +5402,12 @@ extension Blockquote: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Blockquote {
+        return mutate(draggable: value)
+    }
+    
+    public func draggable(_ value: Bool = true) -> Blockquote {
         return mutate(draggable: value)
     }
 
@@ -5628,7 +5718,12 @@ extension OrderedList: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> OrderedList {
+        return mutate(draggable: value)
+    }
+    
+    public func draggable(_ value: Bool = true) -> OrderedList {
         return mutate(draggable: value)
     }
 
@@ -5940,7 +6035,12 @@ extension UnorderedList: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttr
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> UnorderedList {
+        return mutate(draggable: value)
+    }
+    
+    public func draggable(_ value: Bool = true) -> UnorderedList {
         return mutate(draggable: value)
     }
 
@@ -6246,7 +6346,12 @@ extension Menu: GlobalAttributes {
         return mutate(dir: value.rawValue)
     }
     
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Menu {
+        return mutate(draggable: value)
+    }
+    
+    public func draggable(_ value: Bool = true) -> Menu {
         return mutate(draggable: value)
     }
     
@@ -6452,7 +6557,12 @@ extension DescriptionList: GlobalAttributes, GlobalEventAttributes, GlobalAriaAt
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> DescriptionList {
+        return mutate(draggable: value)
+    }
+    
+    public func draggable(_ value: Bool = true) -> DescriptionList {
         return mutate(draggable: value)
     }
 
@@ -6752,7 +6862,12 @@ extension Figure: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Figure {
+        return mutate(draggable: value)
+    }
+    
+    public func draggable(_ value: Bool = true) -> Figure {
         return mutate(draggable: value)
     }
 
@@ -7049,7 +7164,12 @@ extension Anchor: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Anchor {
+        return mutate(draggable: value)
+    }
+    
+    public func draggable(_ value: Bool = true) -> Anchor {
         return mutate(draggable: value)
     }
 
@@ -7399,7 +7519,12 @@ extension Emphasize: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Emphasize {
+        return mutate(draggable: value)
+    }
+    
+    public func draggable(_ value: Bool = true) -> Emphasize {
         return mutate(draggable: value)
     }
 
@@ -7696,7 +7821,12 @@ extension Strong: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Strong {
+        return mutate(draggable: value)
+    }
+    
+    public func draggable(_ value: Bool = true) -> Strong {
         return mutate(draggable: value)
     }
 
@@ -7992,7 +8122,12 @@ extension Small: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
     public func direction(_ value: Values.Direction) -> Small {
         return mutate(dir: value.rawValue)
     }
+    
+    public func draggable(_ value: Bool = true) -> Small {
+        return mutate(draggable: value)
+    }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Small {
         return mutate(draggable: value)
     }
@@ -8297,7 +8432,12 @@ extension StrikeThrough: GlobalAttributes, GlobalEventAttributes {
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> StrikeThrough {
+        return mutate(draggable: value)
+    }
+    
+    public func draggable(_ value: Bool = true) -> StrikeThrough {
         return mutate(draggable: value)
     }
 
@@ -8533,7 +8673,12 @@ extension Main: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Main {
+        return mutate(draggable: value)
+    }
+    
+    public func draggable(_ value: Bool = true) -> Main {
         return mutate(draggable: value)
     }
 
@@ -8835,7 +8980,12 @@ extension Search: GlobalAttributes {
         return mutate(dir: value.rawValue)
     }
     
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Search {
+        return mutate(draggable: value)
+    }
+    
+    public func draggable(_ value: Bool = true) -> Search {
         return mutate(draggable: value)
     }
     
@@ -9034,7 +9184,12 @@ extension Division: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Division {
+        return mutate(draggable: value)
+    }
+    
+    public func draggable(_ value: Bool = true) -> Division {
         return mutate(draggable: value)
     }
 
@@ -9334,7 +9489,12 @@ extension Definition: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Definition {
+        return mutate(draggable: value)
+    }
+    
+    public func draggable(_ value: Bool = true) -> Definition {
         return mutate(draggable: value)
     }
 
@@ -9632,7 +9792,12 @@ extension Cite: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Cite {
+        return mutate(draggable: value)
+    }
+    
+    public func draggable(_ value: Bool = true) -> Cite {
         return mutate(draggable: value)
     }
 
@@ -9928,8 +10093,13 @@ extension ShortQuote: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
     public func direction(_ value: Values.Direction) -> ShortQuote {
         return mutate(dir: value.rawValue)
     }
-
+    
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> ShortQuote {
+        return mutate(draggable: value)
+    }
+    
+    public func draggable(_ value: Bool = true) -> ShortQuote {
         return mutate(draggable: value)
     }
 
@@ -10231,7 +10401,12 @@ extension Abbreviation: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttri
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Abbreviation {
+        return mutate(draggable: value)
+    }
+    
+    public func draggable(_ value: Bool = true) -> Abbreviation {
         return mutate(draggable: value)
     }
 
@@ -10529,7 +10704,12 @@ extension Ruby: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(dir: value.rawValue)
     }
     
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Ruby {
+        return mutate(draggable: value)
+    }
+    
+    public func draggable(_ value: Bool = true) -> Ruby {
         return mutate(draggable: value)
     }
     
@@ -10829,7 +11009,12 @@ extension Data: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, V
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Data {
+        return mutate(draggable: value)
+    }
+    
+    public func draggable(_ value: Bool = true) -> Data {
         return mutate(draggable: value)
     }
 
@@ -11141,7 +11326,12 @@ extension Time: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, D
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Time {
+        return mutate(draggable: value)
+    }
+    
+    public func draggable(_ value: Bool = true) -> Time {
         return mutate(draggable: value)
     }
 
@@ -11444,7 +11634,12 @@ extension Code: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Code {
+        return mutate(draggable: value)
+    }
+    
+    public func draggable(_ value: Bool = true) -> Code {
         return mutate(draggable: value)
     }
 
@@ -11743,7 +11938,12 @@ extension Variable: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Variable {
+        return mutate(draggable: value)
+    }
+    
+    public func draggable(_ value: Bool = true) -> Variable {
         return mutate(draggable: value)
     }
 
@@ -12038,7 +12238,12 @@ extension SampleOutput: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttri
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> SampleOutput {
+        return mutate(draggable: value)
+    }
+    
+    public func draggable(_ value: Bool = true) -> SampleOutput {
         return mutate(draggable: value)
     }
 
@@ -12337,7 +12542,12 @@ extension KeyboardInput: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttr
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> KeyboardInput {
+        return mutate(draggable: value)
+    }
+    
+    public func draggable(_ value: Bool = true) -> KeyboardInput {
         return mutate(draggable: value)
     }
 
@@ -12636,7 +12846,12 @@ extension Subscript: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Subscript {
+        return mutate(draggable: value)
+    }
+    
+    public func draggable(_ value: Bool = true) -> Subscript {
         return mutate(draggable: value)
     }
 
@@ -12934,7 +13149,12 @@ extension Superscript: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Superscript {
+        return mutate(draggable: value)
+    }
+    
+    public func draggable(_ value: Bool = true) -> Superscript {
         return mutate(draggable: value)
     }
 
@@ -13233,7 +13453,12 @@ extension Italic: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Italic {
+        return mutate(draggable: value)
+    }
+    
+    public func draggable(_ value: Bool = true) -> Italic {
         return mutate(draggable: value)
     }
 
@@ -13539,7 +13764,12 @@ extension Bold: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Bold {
+        return mutate(draggable: value)
+    }
+    
+    public func draggable(_ value: Bool = true) -> Bold {
         return mutate(draggable: value)
     }
 
@@ -13845,7 +14075,12 @@ extension Underline: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Underline {
+        return mutate(draggable: value)
+    }
+    
+    public func draggable(_ value: Bool = true) -> Underline {
         return mutate(draggable: value)
     }
 
@@ -14151,7 +14386,12 @@ extension Mark: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Mark {
+        return mutate(draggable: value)
+    }
+    
+    public func draggable(_ value: Bool = true) -> Mark {
         return mutate(draggable: value)
     }
 
@@ -14450,7 +14690,12 @@ extension Bdi: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Bdi {
+        return mutate(draggable: value)
+    }
+    
+    public func draggable(_ value: Bool = true) -> Bdi {
         return mutate(draggable: value)
     }
 
@@ -14743,7 +14988,12 @@ extension Bdo: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Bdo {
+        return mutate(draggable: value)
+    }
+    
+    public func draggable(_ value: Bool = true) -> Bdo {
         return mutate(draggable: value)
     }
 
@@ -15038,7 +15288,12 @@ extension Span: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Span {
+        return mutate(draggable: value)
+    }
+    
+    public func draggable(_ value: Bool = true) -> Span {
         return mutate(draggable: value)
     }
 
@@ -15324,7 +15579,12 @@ extension LineBreak: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> LineBreak {
+        return mutate(draggable: value)
+    }
+    
+    public func draggable(_ value: Bool = true) -> LineBreak {
         return mutate(draggable: value)
     }
 
@@ -15614,7 +15874,12 @@ extension WordBreak: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> WordBreak {
+        return mutate(draggable: value)
+    }
+    
+    public func draggable(_ value: Bool = true) -> WordBreak {
         return mutate(draggable: value)
     }
 
@@ -15909,7 +16174,12 @@ extension InsertedText: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttri
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> InsertedText {
+        return mutate(draggable: value)
+    }
+    
+    public func draggable(_ value: Bool = true) -> InsertedText {
         return mutate(draggable: value)
     }
 
@@ -16212,7 +16482,12 @@ extension DeletedText: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> DeletedText {
+        return mutate(draggable: value)
+    }
+    
+    public func draggable(_ value: Bool = true) -> DeletedText {
         return mutate(draggable: value)
     }
 
@@ -16519,8 +16794,13 @@ extension Picture: GlobalAttributes, GlobalEventAttributes {
     public func direction(_ value: Values.Direction) -> Picture {
         return mutate(dir: value.rawValue)
     }
-
+    
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Picture {
+        return mutate(draggable: value)
+    }
+    
+    public func draggable(_ value: Bool = true) -> Picture {
         return mutate(draggable: value)
     }
 
@@ -16737,7 +17017,12 @@ extension Image: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Image {
+        return mutate(draggable: value)
+    }
+    
+    public func draggable(_ value: Bool = true) -> Image {
         return mutate(draggable: value)
     }
 
@@ -17107,7 +17392,12 @@ extension InlineFrame: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> InlineFrame {
+        return mutate(draggable: value)
+    }
+    
+    public func draggable(_ value: Bool = true) -> InlineFrame {
         return mutate(draggable: value)
     }
 
@@ -17438,8 +17728,13 @@ extension Embed: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
     public func direction(_ value: Values.Direction) -> Embed {
         return mutate(dir: value.rawValue)
     }
-
+    
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Embed {
+        return mutate(draggable: value)
+    }
+    
+    public func draggable(_ value: Bool = true) -> Embed {
         return mutate(draggable: value)
     }
 
@@ -17755,7 +18050,12 @@ extension Object: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Object {
+        return mutate(draggable: value)
+    }
+    
+    public func draggable(_ value: Bool = true) -> Object {
         return mutate(draggable: value)
     }
 
@@ -18076,7 +18376,12 @@ extension Video: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Video {
+        return mutate(draggable: value)
+    }
+    
+    public func draggable(_ value: Bool = true) -> Video {
         return mutate(draggable: value)
     }
 
@@ -18436,7 +18741,12 @@ extension Audio: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Audio {
+        return mutate(draggable: value)
+    }
+    
+    public func draggable(_ value: Bool = true) -> Audio {
         return mutate(draggable: value)
     }
 
@@ -18777,7 +19087,12 @@ extension Map: GlobalAttributes, GlobalEventAttributes, NameAttribute {
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Map {
+        return mutate(draggable: value)
+    }
+    
+    public func draggable(_ value: Bool = true) -> Map {
         return mutate(draggable: value)
     }
 
@@ -19006,7 +19321,12 @@ extension Form: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, A
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Form {
+        return mutate(draggable: value)
+    }
+    
+    public func draggable(_ value: Bool = true) -> Form {
         return mutate(draggable: value)
     }
 
@@ -19350,7 +19670,12 @@ extension DataList: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> DataList {
+        return mutate(draggable: value)
+    }
+    
+    public func draggable(_ value: Bool = true) -> DataList {
         return mutate(draggable: value)
     }
 
@@ -19647,7 +19972,12 @@ extension Output: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Output {
+        return mutate(draggable: value)
+    }
+    
+    public func draggable(_ value: Bool = true) -> Output {
         return mutate(draggable: value)
     }
 
@@ -19956,7 +20286,12 @@ extension Progress: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Progress {
+        return mutate(draggable: value)
+    }
+    
+    public func draggable(_ value: Bool = true) -> Progress {
         return mutate(draggable: value)
     }
 
@@ -20272,7 +20607,12 @@ extension Meter: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Meter {
+        return mutate(draggable: value)
+    }
+    
+    public func draggable(_ value: Bool = true) -> Meter {
         return mutate(draggable: value)
     }
 
@@ -20605,7 +20945,12 @@ extension Details: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Details {
+        return mutate(draggable: value)
+    }
+    
+    public func draggable(_ value: Bool = true) -> Details {
         return mutate(draggable: value)
     }
 
@@ -20913,7 +21258,12 @@ extension Dialog: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Dialog {
+        return mutate(draggable: value)
+    }
+    
+    public func draggable(_ value: Bool = true) -> Dialog {
         return mutate(draggable: value)
     }
 
@@ -21220,7 +21570,12 @@ extension Script: GlobalAttributes, GlobalEventAttributes, AsynchronouslyAttribu
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Script {
+        return mutate(draggable: value)
+    }
+    
+    public func draggable(_ value: Bool = true) -> Script {
         return mutate(draggable: value)
     }
 
@@ -21477,7 +21832,12 @@ extension NoScript: GlobalAttributes, GlobalEventAttributes {
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> NoScript {
+        return mutate(draggable: value)
+    }
+    
+    public func draggable(_ value: Bool = true) -> NoScript {
         return mutate(draggable: value)
     }
 
@@ -21703,7 +22063,12 @@ extension Template: GlobalAttributes, GlobalEventAttributes, ShadowRootModeAttri
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Template {
+        return mutate(draggable: value)
+    }
+    
+    public func draggable(_ value: Bool = true) -> Template {
         return mutate(draggable: value)
     }
 
@@ -21922,7 +22287,12 @@ extension Canvas: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Canvas {
+        return mutate(draggable: value)
+    }
+    
+    public func draggable(_ value: Bool = true) -> Canvas {
         return mutate(draggable: value)
     }
 
@@ -22232,7 +22602,12 @@ extension Table: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Table {
+        return mutate(draggable: value)
+    }
+    
+    public func draggable(_ value: Bool = true) -> Table {
         return mutate(draggable: value)
     }
 
@@ -22675,7 +23050,12 @@ extension Slot: GlobalAttributes, NameAttribute {
         return mutate(dir: value.rawValue)
     }
     
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Slot {
+        return mutate(draggable: value)
+    }
+    
+    public func draggable(_ value: Bool = true) -> Slot {
         return mutate(draggable: value)
     }
     

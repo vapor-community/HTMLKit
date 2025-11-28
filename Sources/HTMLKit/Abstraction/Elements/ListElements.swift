@@ -84,7 +84,12 @@ extension ListItem: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> ListItem {
+        return mutate(draggable: value)
+    }
+    
+    public func draggable(_ value: Bool = true) -> ListItem {
         return mutate(draggable: value)
     }
 

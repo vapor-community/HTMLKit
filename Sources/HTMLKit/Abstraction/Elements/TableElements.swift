@@ -109,7 +109,12 @@ extension Caption: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Caption {
+        return mutate(draggable: value)
+    }
+    
+    public func draggable(_ value: Bool = true) -> Caption {
         return mutate(draggable: value)
     }
 
@@ -408,7 +413,12 @@ extension ColumnGroup: GlobalAttributes, GlobalEventAttributes, SpanAttribute {
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> ColumnGroup {
+        return mutate(draggable: value)
+    }
+    
+    public func draggable(_ value: Bool = true) -> ColumnGroup {
         return mutate(draggable: value)
     }
 
@@ -632,7 +642,12 @@ extension Column: GlobalAttributes, GlobalEventAttributes, SpanAttribute {
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Column {
+        return mutate(draggable: value)
+    }
+    
+    public func draggable(_ value: Bool = true) -> Column {
         return mutate(draggable: value)
     }
 
@@ -860,7 +875,12 @@ extension TableBody: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> TableBody {
+        return mutate(draggable: value)
+    }
+    
+    public func draggable(_ value: Bool = true) -> TableBody {
         return mutate(draggable: value)
     }
 
@@ -1176,7 +1196,12 @@ extension TableHead: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> TableHead {
+        return mutate(draggable: value)
+    }
+    
+    public func draggable(_ value: Bool = true) -> TableHead {
         return mutate(draggable: value)
     }
 
@@ -1492,7 +1517,12 @@ extension TableFoot: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> TableFoot {
+        return mutate(draggable: value)
+    }
+    
+    public func draggable(_ value: Bool = true) -> TableFoot {
         return mutate(draggable: value)
     }
 
@@ -1794,7 +1824,12 @@ extension TableRow: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> TableRow {
+        return mutate(draggable: value)
+    }
+    
+    public func draggable(_ value: Bool = true) -> TableRow {
         return mutate(draggable: value)
     }
 
@@ -2101,7 +2136,12 @@ extension DataCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> DataCell {
+        return mutate(draggable: value)
+    }
+    
+    public func draggable(_ value: Bool = true) -> DataCell {
         return mutate(draggable: value)
     }
 
@@ -2412,7 +2452,12 @@ extension HeaderCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> HeaderCell {
+        return mutate(draggable: value)
+    }
+    
+    public func draggable(_ value: Bool = true) -> HeaderCell {
         return mutate(draggable: value)
     }
 

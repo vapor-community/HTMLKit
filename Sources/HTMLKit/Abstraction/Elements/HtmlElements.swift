@@ -75,7 +75,12 @@ extension Head: GlobalAttributes, GlobalEventAttributes {
         return mutate(dir: value.rawValue)
     }
     
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Head {
+        return mutate(draggable: value)
+    }
+    
+    public func draggable(_ value: Bool = true) -> Head {
         return mutate(draggable: value)
     }
     
@@ -299,7 +304,12 @@ extension Body: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, W
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Body {
+        return mutate(draggable: value)
+    }
+    
+    public func draggable(_ value: Bool = true) -> Body {
         return mutate(draggable: value)
     }
 

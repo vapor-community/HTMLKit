@@ -57,8 +57,8 @@ final class AttributesTests: XCTestCase {
         func direction(_ value: Values.Direction) -> Tag {
             return self.mutate(dir: value.rawValue)
         }
-        
-        func isDraggable(_ value: Bool) -> Tag {
+
+        func draggable(_ value: Bool = true) -> Tag {
             return self.mutate(draggable: value)
         }
         
@@ -971,11 +971,15 @@ final class AttributesTests: XCTestCase {
     func testDraggableAttribute() throws {
         
         let view = TestView {
-            Tag {}.isDraggable(true)
+            Tag {}.draggable()
+            Tag {}.draggable(false)
+            Tag {}.draggable(true)
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
+                       <tag draggable="true"></tag>\
+                       <tag draggable="false"></tag>\
                        <tag draggable="true"></tag>
                        """
         )

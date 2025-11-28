@@ -77,7 +77,12 @@ extension Title: GlobalAttributes, GlobalEventAttributes {
         return mutate(dir: value.rawValue)
     }
     
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Title {
+        return mutate(draggable: value)
+    }
+    
+    public func draggable(_ value: Bool = true) -> Title {
         return mutate(draggable: value)
     }
     
@@ -298,7 +303,12 @@ extension Base: GlobalAttributes, GlobalEventAttributes, ReferenceAttribute, Tar
         return mutate(dir: value.rawValue)
     }
     
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Base {
+        return mutate(draggable: value)
+    }
+    
+    public func draggable(_ value: Bool = true) -> Base {
         return mutate(draggable: value)
     }
     
@@ -519,7 +529,12 @@ extension Meta: GlobalAttributes, GlobalEventAttributes, ContentAttribute, NameA
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Meta {
+        return mutate(draggable: value)
+    }
+    
+    public func draggable(_ value: Bool = true) -> Meta {
         return mutate(draggable: value)
     }
 
@@ -775,7 +790,12 @@ extension Style: GlobalAttributes, GlobalEventAttributes, TypeAttribute, MediaAt
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Style {
+        return mutate(draggable: value)
+    }
+    
+    public func draggable(_ value: Bool = true) -> Style {
         return mutate(draggable: value)
     }
 
@@ -1015,7 +1035,12 @@ extension Link: GlobalAttributes, GlobalEventAttributes, ReferenceAttribute, Ref
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Link {
+        return mutate(draggable: value)
+    }
+    
+    public func draggable(_ value: Bool = true) -> Link {
         return mutate(draggable: value)
     }
 

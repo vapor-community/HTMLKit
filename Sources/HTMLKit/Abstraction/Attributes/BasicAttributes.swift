@@ -1028,7 +1028,7 @@ extension DownloadAttribute where Self: EmptyNode {
     }
 }
 
-/// A type that provides the `isDraggable` modifier.
+/// A type that provides the `draggable` modifier.
 @_documentation(visibility: internal)
 public protocol DragAttribute: Attribute {
  
@@ -1038,13 +1038,13 @@ public protocol DragAttribute: Attribute {
     /// Division {
     ///     ...
     /// }
-    /// .isDraggable(false)
+    /// .draggable(false)
     /// ```
     ///
-    /// - Parameter condition: Whether the element should be draggable.
+    /// - Parameter value: Whether the element should be draggable.
     ///
     /// - Returns: The element
-    func isDraggable(_ condition: Bool) -> Self
+    func draggable(_ value: Bool) -> Self
 }
 
 extension DragAttribute where Self: ContentNode {

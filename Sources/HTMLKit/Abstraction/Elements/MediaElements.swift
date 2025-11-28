@@ -71,7 +71,12 @@ extension Source: GlobalAttributes, GlobalEventAttributes, TypeAttribute, Source
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Source {
+        return mutate(draggable: value)
+    }
+    
+    public func draggable(_ value: Bool = true) -> Source {
         return mutate(draggable: value)
     }
 
@@ -342,7 +347,12 @@ extension Track: GlobalAttributes, GlobalEventAttributes, KindAttribute, SourceA
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Track {
+        return mutate(draggable: value)
+    }
+    
+    public func draggable(_ value: Bool = true) -> Track {
         return mutate(draggable: value)
     }
 
