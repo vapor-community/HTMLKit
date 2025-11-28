@@ -1,6 +1,6 @@
 import Foundation
 
-internal final class Markdown {
+internal struct Markdown: Sendable {
     
     /// The markdowns characters
     internal static let characters = CharacterSet(charactersIn: "*_~[`")

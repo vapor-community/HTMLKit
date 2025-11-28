@@ -1,7 +1,7 @@
 /// A type that represents a translation table
 ///
 /// A translation table stores multiple localized strings, mapping unique string keys to their corresponding translations
-internal struct TranslationTable {
+internal struct TranslationTable: Sendable {
     
     /// The name of the table
     internal let name: String

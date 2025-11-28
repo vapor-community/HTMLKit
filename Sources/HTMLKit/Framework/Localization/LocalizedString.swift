@@ -2,7 +2,7 @@ import Foundation
 
 /// A type thats holds the information for the localization
 @_documentation(visibility: internal)
-public struct LocalizedString: Content {
+public struct LocalizedString: Content, Sendable {
 
     /// The key of the translation value
     internal let key: LocalizedStringKey
