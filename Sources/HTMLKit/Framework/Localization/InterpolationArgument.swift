@@ -5,7 +5,7 @@ import Foundation
 /// Each case corresponds to a specific data type and provides a placeholder
 /// that can be used for replacing values in the localized string.
 @_documentation(visibility: internal)
-public enum InterpolationArgument {
+public enum InterpolationArgument: Sendable {
     
     /// Holds an integer value
     case int(Int)
