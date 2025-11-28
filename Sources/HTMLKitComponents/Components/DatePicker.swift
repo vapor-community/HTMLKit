@@ -5,7 +5,7 @@ import HTMLKit
 /// Use `DatePicker` to pick a date from a calendar.
 ///
 /// ```swift
-/// DatePicker(name: "lorem")
+/// DatePicker(name: "lorem", prompt: "Lorem ipsum", value: "Lorem ipsum")
 /// ```
 public struct DatePicker: View, Modifiable, Identifiable {
     
@@ -14,6 +14,9 @@ public struct DatePicker: View, Modifiable, Identifiable {
     
     /// The name of the picker.
     internal let name: String
+    
+    /// The content hint for the field.
+    internal let prompt: PromptType?
     
     /// The content of the picker.
     internal let value: String?
@@ -25,13 +28,30 @@ public struct DatePicker: View, Modifiable, Identifiable {
     internal var events: [String]?
     
     /// Create a date picker.
-    ///
+    /// 
     /// - Parameters:
     ///   - name: The name to assign to the field.
+    ///   - prompt: The prompt to guide the user.
     ///   - value: The date to edit within the field.
-    public init(name: String, value: String? = nil) {
+    @_disfavoredOverload
+    public init(name: String, prompt: String? = nil, value: String? = nil) {
         
         self.name = name
+        self.prompt = prompt.map(PromptType.string(_:))
+        self.value = value
+        self.classes = ["datepicker"]
+    }
+    
+    /// Create a date picker.
+    /// 
+    /// - Parameters:
+    ///   - name: The name to assign to the field.
+    ///   - prompt: The prompt to guide the user.
+    ///   - value: The date to edit within the field.
+    public init(name: String, prompt: LocalizedStringKey? = nil, value: String? = nil) {
+        
+        self.name = name
+        self.prompt = prompt.map(PromptType.value(_:))
         self.value = value
         self.classes = ["datepicker"]
     }
@@ -44,6 +64,9 @@ public struct DatePicker: View, Modifiable, Identifiable {
                 .name(name)
                 .modify(unwrap: value) {
                     $0.value($1)
+                }
+                .modify(unwrap: prompt) {
+                    $0.placeholder($1)
                 }
             self.calendar
         }
