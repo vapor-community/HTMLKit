@@ -680,7 +680,7 @@ extension ContentAttribute where Self: EmptyNode {
     }
 }
 
-/// A type that provides the `isEditable` modifier.
+/// A type that provides the `editable` modifier.
 @_documentation(visibility: internal)
 public protocol EditAttribute: Attribute {
     
@@ -690,13 +690,13 @@ public protocol EditAttribute: Attribute {
     /// Blockquote {
     ///     "Lorem ipsum..."
     /// }
-    /// .isEditable(false)
+    /// .editable(false)
     /// ```
     ///
-    /// - Parameter condition: Whether the element should be editable.
+    /// - Parameter value: Whether the element should be editable.
     ///
     /// - Returns: The element
-    func isEditable(_ condition: Bool) -> Self
+    func editable(_ value: Bool) -> Self
 }
 
 extension EditAttribute where Self: ContentNode {

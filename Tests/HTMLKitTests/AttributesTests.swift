@@ -62,7 +62,7 @@ final class AttributesTests: XCTestCase {
             return self.mutate(draggable: value)
         }
         
-        func isEditable(_ value: Bool) -> Tag {
+        func editable(_ value: Bool = true) -> Tag {
             return self.mutate(contenteditable: value)
         }
         
@@ -988,11 +988,15 @@ final class AttributesTests: XCTestCase {
     func testEditableAttribute() throws {
         
         let view = TestView {
-            Tag {}.isEditable(true)
+            Tag {}.editable()
+            Tag {}.editable(false)
+            Tag {}.editable(true)
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
+                       <tag contenteditable="true"></tag>\
+                       <tag contenteditable="false"></tag>\
                        <tag contenteditable="true"></tag>
                        """
         )

@@ -80,7 +80,12 @@ extension TermName: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(class: value)
     }
 
+    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> TermName {
+        return mutate(contenteditable: value)
+    }
+    
+    public func editable(_ value: Bool = true) -> TermName {
         return mutate(contenteditable: value)
     }
 
@@ -385,7 +390,12 @@ extension TermDefinition: GlobalAttributes, GlobalEventAttributes, GlobalAriaAtt
         return mutate(class: value)
     }
 
+    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> TermDefinition {
+        return mutate(contenteditable: value)
+    }
+    
+    public func editable(_ value: Bool = true) -> TermDefinition {
         return mutate(contenteditable: value)
     }
 

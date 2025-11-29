@@ -76,7 +76,12 @@ extension FigureCaption: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttr
         return mutate(class: value)
     }
 
+    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> FigureCaption {
+        return mutate(contenteditable: value)
+    }
+    
+    public func editable(_ value: Bool = true) -> FigureCaption {
         return mutate(contenteditable: value)
     }
 

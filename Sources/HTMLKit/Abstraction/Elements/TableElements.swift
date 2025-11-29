@@ -101,7 +101,12 @@ extension Caption: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
         return mutate(class: value)
     }
 
+    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> Caption {
+        return mutate(contenteditable: value)
+    }
+    
+    public func editable(_ value: Bool = true) -> Caption {
         return mutate(contenteditable: value)
     }
 
@@ -404,8 +409,13 @@ extension ColumnGroup: GlobalAttributes, GlobalEventAttributes, SpanAttribute {
     public func `class`(_ value: String) -> ColumnGroup {
         return mutate(class: value)
     }
-
+    
+    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> ColumnGroup {
+        return mutate(contenteditable: value)
+    }
+    
+    public func editable(_ value: Bool = true) -> ColumnGroup {
         return mutate(contenteditable: value)
     }
 
@@ -634,7 +644,12 @@ extension Column: GlobalAttributes, GlobalEventAttributes, SpanAttribute {
         return mutate(class: value)
     }
 
+    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> Column {
+        return mutate(contenteditable: value)
+    }
+    
+    public func editable(_ value: Bool = true) -> Column {
         return mutate(contenteditable: value)
     }
 
@@ -867,7 +882,12 @@ extension TableBody: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(class: value)
     }
 
+    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> TableBody {
+        return mutate(contenteditable: value)
+    }
+    
+    public func editable(_ value: Bool = true) -> TableBody {
         return mutate(contenteditable: value)
     }
 
@@ -1188,7 +1208,12 @@ extension TableHead: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(class: value)
     }
 
+    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> TableHead {
+        return mutate(contenteditable: value)
+    }
+    
+    public func editable(_ value: Bool = true) -> TableHead {
         return mutate(contenteditable: value)
     }
 
@@ -1509,7 +1534,12 @@ extension TableFoot: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(class: value)
     }
 
+    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> TableFoot {
+        return mutate(contenteditable: value)
+    }
+    
+    public func editable(_ value: Bool = true) -> TableFoot {
         return mutate(contenteditable: value)
     }
 
@@ -1816,7 +1846,12 @@ extension TableRow: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(class: value)
     }
 
+    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> TableRow {
+        return mutate(contenteditable: value)
+    }
+    
+    public func editable(_ value: Bool = true) -> TableRow {
         return mutate(contenteditable: value)
     }
 
@@ -2128,7 +2163,12 @@ extension DataCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(class: value)
     }
 
+    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> DataCell {
+        return mutate(contenteditable: value)
+    }
+    
+    public func editable(_ value: Bool = true) -> DataCell {
         return mutate(contenteditable: value)
     }
 
@@ -2444,7 +2484,12 @@ extension HeaderCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
         return mutate(class: value)
     }
 
+    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> HeaderCell {
+        return mutate(contenteditable: value)
+    }
+    
+    public func editable(_ value: Bool = true) -> HeaderCell {
         return mutate(contenteditable: value)
     }
 

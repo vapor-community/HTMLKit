@@ -78,7 +78,12 @@ extension RubyText: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(class: value)
     }
 
+    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> RubyText {
+        return mutate(contenteditable: value)
+    }
+    
+    public func editable(_ value: Bool = true) -> RubyText {
         return mutate(contenteditable: value)
     }
 
@@ -387,7 +392,12 @@ extension RubyPronunciation: GlobalAttributes, GlobalEventAttributes, GlobalAria
         return mutate(class: value)
     }
 
+    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> RubyPronunciation {
+        return mutate(contenteditable: value)
+    }
+    
+    public func editable(_ value: Bool = true) -> RubyPronunciation {
         return mutate(contenteditable: value)
     }
 

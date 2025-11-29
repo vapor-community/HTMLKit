@@ -76,7 +76,12 @@ extension ListItem: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(class: value)
     }
 
+    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> ListItem {
+        return mutate(contenteditable: value)
+    }
+    
+    public func editable(_ value: Bool = true) -> ListItem {
         return mutate(contenteditable: value)
     }
 

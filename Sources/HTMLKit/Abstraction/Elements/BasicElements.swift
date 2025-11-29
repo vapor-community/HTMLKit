@@ -124,7 +124,12 @@ extension Html: GlobalAttributes, GlobalEventAttributes {
         return mutate(class: value)
     }
 
+    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> Html {
+        return mutate(contenteditable: value)
+    }
+    
+    public func editable(_ value: Bool = true) -> Html {
         return mutate(contenteditable: value)
     }
 
