@@ -195,8 +195,18 @@ extension Title: GlobalAttributes, GlobalEventAttributes {
         return mutate(title: value)
     }
     
+    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Title {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func translate(_ value: Bool = true) -> Title {
+        
+        if value {
+            return mutate(translate: "yes")
+        }
+        
+        return mutate(translate: "no")
     }
     
     public func inert(_ condition: Bool = true) -> Title {
@@ -431,8 +441,18 @@ extension Base: GlobalAttributes, GlobalEventAttributes, ReferenceAttribute, Tar
         return mutate(title: value)
     }
     
+    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Base {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func translate(_ value: Bool = true) -> Base {
+        
+        if value {
+            return mutate(translate: "yes")
+        }
+        
+        return mutate(translate: "no")
     }
     
     public func inert(_ condition: Bool = true) -> Base {
@@ -667,8 +687,18 @@ extension Meta: GlobalAttributes, GlobalEventAttributes, ContentAttribute, NameA
         return mutate(title: value)
     }
     
+    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Meta {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func translate(_ value: Bool = true) -> Meta {
+        
+        if value {
+            return mutate(translate: "yes")
+        }
+        
+        return mutate(translate: "no")
     }
     
     public func inert(_ condition: Bool = true) -> Meta {
@@ -938,8 +968,18 @@ extension Style: GlobalAttributes, GlobalEventAttributes, TypeAttribute, MediaAt
         return mutate(title: value)
     }
     
+    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Style {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func translate(_ value: Bool = true) -> Style {
+        
+        if value {
+            return mutate(translate: "yes")
+        }
+        
+        return mutate(translate: "no")
     }
     
     public func inert(_ condition: Bool = true) -> Style {
@@ -1201,8 +1241,18 @@ extension Link: GlobalAttributes, GlobalEventAttributes, ReferenceAttribute, Ref
         return mutate(title: value)
     }
     
+    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Link {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func translate(_ value: Bool = true) -> Link {
+        
+        if value {
+            return mutate(translate: "yes")
+        }
+        
+        return mutate(translate: "no")
     }
     
     public func inert(_ condition: Bool = true) -> Link {

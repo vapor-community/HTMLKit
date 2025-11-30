@@ -208,8 +208,18 @@ extension OptionGroup: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
         return mutate(title: LocalizedString(key: localizedKey, table: tableName))
     }
     
+    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> OptionGroup {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func translate(_ value: Bool = true) -> OptionGroup {
+        
+        if value {
+            return mutate(translate: "yes")
+        }
+        
+        return mutate(translate: "no")
     }
     
     public func inert(_ condition: Bool = true) -> OptionGroup {
@@ -534,8 +544,18 @@ extension Option: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return mutate(title: value)
     }
     
+    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Option {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func translate(_ value: Bool = true) -> Option {
+        
+        if value {
+            return mutate(translate: "yes")
+        }
+        
+        return mutate(translate: "no")
     }
     
     public func inert(_ condition: Bool = true) -> Option {
@@ -894,8 +914,18 @@ extension Legend: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
         return mutate(title: value)
     }
     
+    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Legend {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func translate(_ value: Bool = true) -> Legend {
+        
+        if value {
+            return mutate(translate: "yes")
+        }
+        
+        return mutate(translate: "no")
     }
     
     public func inert(_ condition: Bool = true) -> Legend {
@@ -1209,8 +1239,18 @@ extension Summary: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
         return mutate(title: value)
     }
     
+    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Summary {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func translate(_ value: Bool = true) -> Summary {
+        
+        if value {
+            return mutate(translate: "yes")
+        }
+        
+        return mutate(translate: "no")
     }
     
     public func inert(_ condition: Bool = true) -> Summary {

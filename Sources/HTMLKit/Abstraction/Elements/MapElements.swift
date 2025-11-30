@@ -197,8 +197,18 @@ extension Area: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, A
         return mutate(title: value)
     }
     
+    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Area {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func translate(_ value: Bool = true) -> Area {
+        
+        if value {
+            return mutate(translate: "yes")
+        }
+        
+        return mutate(translate: "no")
     }
     
     public func inert(_ condition: Bool = true) -> Area {

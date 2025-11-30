@@ -227,8 +227,18 @@ extension Caption: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
         return mutate(title: value)
     }
     
+    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Caption {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func translate(_ value: Bool = true) -> Caption {
+        
+        if value {
+            return mutate(translate: "yes")
+        }
+        
+        return mutate(translate: "no")
     }
     
     public func inert(_ condition: Bool = true) -> Caption {
@@ -541,8 +551,18 @@ extension ColumnGroup: GlobalAttributes, GlobalEventAttributes, SpanAttribute {
         return mutate(title: value)
     }
     
+    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> ColumnGroup {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func translate(_ value: Bool = true) -> ColumnGroup {
+        
+        if value {
+            return mutate(translate: "yes")
+        }
+        
+        return mutate(translate: "no")
     }
     
     public func inert(_ condition: Bool = true) -> ColumnGroup {
@@ -780,8 +800,18 @@ extension Column: GlobalAttributes, GlobalEventAttributes, SpanAttribute {
         return mutate(title: value)
     }
     
+    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Column {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func translate(_ value: Bool = true) -> Column {
+        
+        if value {
+            return mutate(translate: "yes")
+        }
+        
+        return mutate(translate: "no")
     }
     
     public func inert(_ condition: Bool = true) -> Column {
@@ -1023,8 +1053,18 @@ extension TableBody: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(title: value)
     }
     
+    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> TableBody {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func translate(_ value: Bool = true) -> TableBody {
+        
+        if value {
+            return mutate(translate: "yes")
+        }
+        
+        return mutate(translate: "no")
     }
     
     public func inert(_ condition: Bool = true) -> TableBody {
@@ -1354,8 +1394,18 @@ extension TableHead: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(title: value)
     }
     
+    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> TableHead {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func translate(_ value: Bool = true) -> TableHead {
+        
+        if value {
+            return mutate(translate: "yes")
+        }
+        
+        return mutate(translate: "no")
     }
     
     public func inert(_ condition: Bool = true) -> TableHead {
@@ -1685,8 +1735,18 @@ extension TableFoot: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(title: value)
     }
     
+    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> TableFoot {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func translate(_ value: Bool = true) -> TableFoot {
+        
+        if value {
+            return mutate(translate: "yes")
+        }
+        
+        return mutate(translate: "no")
     }
     
     public func inert(_ condition: Bool = true) -> TableFoot {
@@ -2002,8 +2062,18 @@ extension TableRow: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(title: value)
     }
     
+    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> TableRow {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func translate(_ value: Bool = true) -> TableRow {
+        
+        if value {
+            return mutate(translate: "yes")
+        }
+        
+        return mutate(translate: "no")
     }
     
     public func inert(_ condition: Bool = true) -> TableRow {
@@ -2324,8 +2394,18 @@ extension DataCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(title: value)
     }
     
+    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> DataCell {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func translate(_ value: Bool = true) -> DataCell {
+        
+        if value {
+            return mutate(translate: "yes")
+        }
+        
+        return mutate(translate: "no")
     }
     
     public func inert(_ condition: Bool = true) -> DataCell {
@@ -2650,8 +2730,18 @@ extension HeaderCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
         return mutate(title: value)
     }
     
+    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> HeaderCell {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func translate(_ value: Bool = true) -> HeaderCell {
+        
+        if value {
+            return mutate(translate: "yes")
+        }
+        
+        return mutate(translate: "no")
     }
     
     public func inert(_ condition: Bool = true) -> HeaderCell {

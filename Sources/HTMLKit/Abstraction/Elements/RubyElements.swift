@@ -204,8 +204,18 @@ extension RubyText: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(title: value)
     }
     
+    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> RubyText {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func translate(_ value: Bool = true) -> RubyText {
+        
+        if value {
+            return mutate(translate: "yes")
+        }
+        
+        return mutate(translate: "no")
     }
     
     public func inert(_ condition: Bool = true) -> RubyText {
@@ -524,8 +534,18 @@ extension RubyPronunciation: GlobalAttributes, GlobalEventAttributes, GlobalAria
         return mutate(title: value)
     }
     
+    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> RubyPronunciation {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func translate(_ value: Bool = true) -> RubyPronunciation {
+        
+        if value {
+            return mutate(translate: "yes")
+        }
+        
+        return mutate(translate: "no")
     }
     
     public func inert(_ condition: Bool = true) -> RubyPronunciation {

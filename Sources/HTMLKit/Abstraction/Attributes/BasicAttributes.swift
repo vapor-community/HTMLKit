@@ -3708,13 +3708,13 @@ public protocol TranslateAttribute: Attribute {
     /// Paragraph {
     ///     "Lorem ipsum..."
     /// }
-    /// .translate(.no)
+    /// .translate(true)
     /// ```
     ///
     /// - Parameter value: Whether to exclude the content from translation.
     ///
     /// - Returns: The element
-    func translate(_ value: Values.Decision) -> Self
+    func translate(_ value: Bool) -> Self
 }
 
 extension TranslateAttribute where Self: ContentNode {

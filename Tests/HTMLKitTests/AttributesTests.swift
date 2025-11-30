@@ -156,8 +156,13 @@ final class AttributesTests: XCTestCase {
             return self.mutate(title: value)
         }
         
-        func translate(_ value: Values.Decision) -> Tag {
-            return self.mutate(translate: value.rawValue)
+        func translate(_ value: Bool = true) -> Tag {
+            
+            if value {
+                return self.mutate(translate: "yes")
+            }
+            
+            return self.mutate(translate: "no")
         }
         
         func accept(_ specifiers: [String]) -> Tag {
@@ -1146,11 +1151,15 @@ final class AttributesTests: XCTestCase {
     func testTranslateAttribute() throws {
         
         let view = TestView {
-            Tag {}.translate(.yes)
+            Tag {}.translate()
+            Tag {}.translate(false)
+            Tag {}.translate(true)
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
+                       <tag translate="yes"></tag>\
+                       <tag translate="no"></tag>\
                        <tag translate="yes"></tag>
                        """
         )
