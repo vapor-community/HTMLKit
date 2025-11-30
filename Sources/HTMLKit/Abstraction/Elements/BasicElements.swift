@@ -220,7 +220,12 @@ extension Html: GlobalAttributes, GlobalEventAttributes {
         return mutate(role: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> Html {
+        return mutate(spellcheck: value)
+    }
+    
+    public func spellcheck(_ value: Bool = true) -> Html {
         return mutate(spellcheck: value)
     }
 

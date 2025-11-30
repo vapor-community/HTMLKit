@@ -174,7 +174,12 @@ extension RubyText: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(role: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> RubyText {
+        return mutate(spellcheck: value)
+    }
+    
+    public func spellcheck(_ value: Bool = true) -> RubyText {
         return mutate(spellcheck: value)
     }
 
@@ -488,7 +493,13 @@ extension RubyPronunciation: GlobalAttributes, GlobalEventAttributes, GlobalAria
         return mutate(role: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> RubyPronunciation {
+        return mutate(spellcheck: value)
+    }
+    
+    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
+    public func spellcheck(_ value: Bool = true) -> RubyPronunciation {
         return mutate(spellcheck: value)
     }
 

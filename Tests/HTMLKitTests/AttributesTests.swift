@@ -131,7 +131,7 @@ final class AttributesTests: XCTestCase {
             return self.mutate(role: value.rawValue)
         }
         
-        func hasSpellCheck(_ value: Bool) -> Tag {
+        func spellcheck(_ value: Bool = true) -> Tag {
             return self.mutate(spellcheck: value)
         }
         
@@ -1090,11 +1090,15 @@ final class AttributesTests: XCTestCase {
     func testHasSpellCheckAttribute() throws {
         
         let view = TestView {
-            Tag {}.hasSpellCheck(true)
+            Tag {}.spellcheck()
+            Tag {}.spellcheck(false)
+            Tag {}.spellcheck(true)
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
+                       <tag spellcheck="true"></tag>\
+                       <tag spellcheck="false"></tag>\
                        <tag spellcheck="true"></tag>
                        """
         )

@@ -3298,7 +3298,7 @@ extension SpanAttribute where Self: EmptyNode {
     }
 }
 
-/// A type that provides the `hasSpellCheck` modifier.
+/// A type that provides the `spellcheck` modifier.
 @_documentation(visibility: internal)
 public protocol SpellCheckAttribute: Attribute {
  
@@ -3306,13 +3306,13 @@ public protocol SpellCheckAttribute: Attribute {
     ///
     /// ```swift
     /// Input()
-    ///     .hasSpellCheck(false)
+    ///     .spellcheck(false)
     /// ```
     ///
-    /// - Parameter condition: Whether to spellcheck the content.
+    /// - Parameter value: Whether to spellcheck the content.
     ///
     /// - Returns: The element
-    func hasSpellCheck(_ condition: Bool) -> Self
+    func spellcheck(_ value: Bool) -> Self
 }
 
 extension SpellCheckAttribute where Self: ContentNode {
