@@ -680,7 +680,7 @@ extension ContentAttribute where Self: EmptyNode {
     }
 }
 
-/// A type that provides the `isEditable` modifier.
+/// A type that provides the `editable` modifier.
 @_documentation(visibility: internal)
 public protocol EditAttribute: Attribute {
     
@@ -690,13 +690,13 @@ public protocol EditAttribute: Attribute {
     /// Blockquote {
     ///     "Lorem ipsum..."
     /// }
-    /// .isEditable(false)
+    /// .editable(false)
     /// ```
     ///
-    /// - Parameter condition: Whether the element should be editable.
+    /// - Parameter value: Whether the element should be editable.
     ///
     /// - Returns: The element
-    func isEditable(_ condition: Bool) -> Self
+    func editable(_ value: Bool) -> Self
 }
 
 extension EditAttribute where Self: ContentNode {
@@ -1028,7 +1028,7 @@ extension DownloadAttribute where Self: EmptyNode {
     }
 }
 
-/// A type that provides the `isDraggable` modifier.
+/// A type that provides the `draggable` modifier.
 @_documentation(visibility: internal)
 public protocol DragAttribute: Attribute {
  
@@ -1038,13 +1038,13 @@ public protocol DragAttribute: Attribute {
     /// Division {
     ///     ...
     /// }
-    /// .isDraggable(false)
+    /// .draggable(false)
     /// ```
     ///
-    /// - Parameter condition: Whether the element should be draggable.
+    /// - Parameter value: Whether the element should be draggable.
     ///
     /// - Returns: The element
-    func isDraggable(_ condition: Bool) -> Self
+    func draggable(_ value: Bool) -> Self
 }
 
 extension DragAttribute where Self: ContentNode {
@@ -3298,7 +3298,7 @@ extension SpanAttribute where Self: EmptyNode {
     }
 }
 
-/// A type that provides the `hasSpellCheck` modifier.
+/// A type that provides the `spellcheck` modifier.
 @_documentation(visibility: internal)
 public protocol SpellCheckAttribute: Attribute {
  
@@ -3306,13 +3306,13 @@ public protocol SpellCheckAttribute: Attribute {
     ///
     /// ```swift
     /// Input()
-    ///     .hasSpellCheck(false)
+    ///     .spellcheck(false)
     /// ```
     ///
-    /// - Parameter condition: Whether to spellcheck the content.
+    /// - Parameter value: Whether to spellcheck the content.
     ///
     /// - Returns: The element
-    func hasSpellCheck(_ condition: Bool) -> Self
+    func spellcheck(_ value: Bool) -> Self
 }
 
 extension SpellCheckAttribute where Self: ContentNode {
@@ -3708,13 +3708,13 @@ public protocol TranslateAttribute: Attribute {
     /// Paragraph {
     ///     "Lorem ipsum..."
     /// }
-    /// .translate(.no)
+    /// .translate(true)
     /// ```
     ///
     /// - Parameter value: Whether to exclude the content from translation.
     ///
     /// - Returns: The element
-    func translate(_ value: Values.Decision) -> Self
+    func translate(_ value: Bool) -> Self
 }
 
 extension TranslateAttribute where Self: ContentNode {

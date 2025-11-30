@@ -57,12 +57,12 @@ final class AttributesTests: XCTestCase {
         func direction(_ value: Values.Direction) -> Tag {
             return self.mutate(dir: value.rawValue)
         }
-        
-        func isDraggable(_ value: Bool) -> Tag {
+
+        func draggable(_ value: Bool = true) -> Tag {
             return self.mutate(draggable: value)
         }
         
-        func isEditable(_ value: Bool) -> Tag {
+        func editable(_ value: Bool = true) -> Tag {
             return self.mutate(contenteditable: value)
         }
         
@@ -131,7 +131,7 @@ final class AttributesTests: XCTestCase {
             return self.mutate(role: value.rawValue)
         }
         
-        func hasSpellCheck(_ value: Bool) -> Tag {
+        func spellcheck(_ value: Bool = true) -> Tag {
             return self.mutate(spellcheck: value)
         }
         
@@ -156,8 +156,13 @@ final class AttributesTests: XCTestCase {
             return self.mutate(title: value)
         }
         
-        func translate(_ value: Values.Decision) -> Tag {
-            return self.mutate(translate: value.rawValue)
+        func translate(_ value: Bool = true) -> Tag {
+            
+            if value {
+                return self.mutate(translate: "yes")
+            }
+            
+            return self.mutate(translate: "no")
         }
         
         func accept(_ specifiers: [String]) -> Tag {
@@ -971,11 +976,15 @@ final class AttributesTests: XCTestCase {
     func testDraggableAttribute() throws {
         
         let view = TestView {
-            Tag {}.isDraggable(true)
+            Tag {}.draggable()
+            Tag {}.draggable(false)
+            Tag {}.draggable(true)
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
+                       <tag draggable="true"></tag>\
+                       <tag draggable="false"></tag>\
                        <tag draggable="true"></tag>
                        """
         )
@@ -984,11 +993,15 @@ final class AttributesTests: XCTestCase {
     func testEditableAttribute() throws {
         
         let view = TestView {
-            Tag {}.isEditable(true)
+            Tag {}.editable()
+            Tag {}.editable(false)
+            Tag {}.editable(true)
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
+                       <tag contenteditable="true"></tag>\
+                       <tag contenteditable="false"></tag>\
                        <tag contenteditable="true"></tag>
                        """
         )
@@ -1082,11 +1095,15 @@ final class AttributesTests: XCTestCase {
     func testHasSpellCheckAttribute() throws {
         
         let view = TestView {
-            Tag {}.hasSpellCheck(true)
+            Tag {}.spellcheck()
+            Tag {}.spellcheck(false)
+            Tag {}.spellcheck(true)
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
+                       <tag spellcheck="true"></tag>\
+                       <tag spellcheck="false"></tag>\
                        <tag spellcheck="true"></tag>
                        """
         )
@@ -1134,11 +1151,15 @@ final class AttributesTests: XCTestCase {
     func testTranslateAttribute() throws {
         
         let view = TestView {
-            Tag {}.translate(.yes)
+            Tag {}.translate()
+            Tag {}.translate(false)
+            Tag {}.translate(true)
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
+                       <tag translate="yes"></tag>\
+                       <tag translate="no"></tag>\
                        <tag translate="yes"></tag>
                        """
         )
