@@ -419,8 +419,13 @@ final class AttributesTests: XCTestCase {
             return self.mutate(novalidate: "novalidate")
         }
         
-        func isOpen(_ value: Bool) -> Tag {
-            return self.mutate(open: value)
+        func open(_ condition: Bool = true) -> Tag {
+
+            if condition {
+                return self.mutate(open: "open")
+            }
+            
+            return self
         }
         
         func optimum(_ value: Float) -> Tag {
@@ -1849,12 +1854,16 @@ final class AttributesTests: XCTestCase {
     func testIsOpenAttribute() throws {
         
         let view = TestView {
-            Tag {}.isOpen(true)
+            Tag {}.open()
+            Tag {}.open(false)
+            Tag {}.open(true)
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <tag open="true"></tag>
+                       <tag open="open"></tag>\
+                       <tag></tag>\
+                       <tag open="open"></tag>
                        """
         )
     }

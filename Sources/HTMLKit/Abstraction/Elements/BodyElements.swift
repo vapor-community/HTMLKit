@@ -22446,8 +22446,23 @@ extension Details: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
         return self
     }
 
-    public func isOpen(_ value: Bool) -> Details {
-        return mutate(open: value)
+    @available(*, deprecated, message: "Use the open(_:) modifier instead.")
+    public func isOpen(_ condition: Bool = true) -> Details {
+
+        if condition {
+            return mutate(open: "open")
+        }
+        
+        return self
+    }
+    
+    public func open(_ condition: Bool = true) -> Details {
+
+        if condition {
+            return mutate(open: "open")
+        }
+        
+        return self
     }
     
     public func popover(_ value: Values.Popover.State) -> Details {
@@ -22779,8 +22794,23 @@ extension Dialog: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return self
     }
 
-    public func isOpen(_ value: Bool) -> Dialog {
-        return mutate(open: value)
+    @available(*, deprecated, message: "Use the open(_:) modifier instead.")
+    public func isOpen(_ condition: Bool) -> Dialog {
+
+        if condition {
+            return mutate(open: "open")
+        }
+        
+        return self
+    }
+    
+    public func open(_ condition: Bool = true) -> Dialog {
+        
+        if condition {
+            return mutate(open: "open")
+        }
+        
+        return self
     }
     
     public func popover(_ value: Values.Popover.State) -> Dialog {

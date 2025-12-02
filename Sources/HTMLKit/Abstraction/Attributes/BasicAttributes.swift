@@ -2489,7 +2489,7 @@ extension NoValidateAttribute where Self: EmptyNode {
     }
 }
 
-/// A type that provides the `isOpen` modifier.
+/// A type that provides the `open` modifier.
 @_documentation(visibility: internal)
 public protocol OpenAttribute: Attribute {
     
@@ -2504,25 +2504,25 @@ public protocol OpenAttribute: Attribute {
     ///         "Lorem ipsum..."
     ///     }
     /// }
-    /// .isOpen(true)
+    /// .open(true)
     /// ```
     ///
     /// - Parameter condition: Whether the details should be open.
     ///
     /// - Returns: The element
-    func isOpen(_ condition: Bool) -> Self
+    func open(_ condition: Bool) -> Self
 }
 
 extension OpenAttribute where Self: ContentNode {
     
-    internal func mutate(open value: Bool) -> Self {
+    internal func mutate(open value: String) -> Self {
         return self.mutate(key: "open", value: value)
     }
 }
 
 extension OpenAttribute where Self: EmptyNode {
     
-    internal func mutate(open value: Bool) -> Self {
+    internal func mutate(open value: String) -> Self {
         return self.mutate(key: "open", value: value)
     }
 }
