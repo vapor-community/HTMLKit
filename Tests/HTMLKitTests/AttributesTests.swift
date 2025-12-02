@@ -1100,7 +1100,7 @@ final class AttributesTests: XCTestCase {
     func testRoleAttribute() throws {
         
         let view = TestView {
-            Tag {}.role(.range)
+            Tag {}.role(.alert)
         }
         
         XCTAssertEqual(try renderer.render(view: view),

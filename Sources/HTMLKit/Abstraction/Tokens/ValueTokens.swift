@@ -860,7 +860,7 @@ public enum Values {
         /// Indicates a ressource preload.
         case preload
         
-        @available(*, deprecated, message: "It is no longer part of the web standards.")
+        @available(*, unavailable, message: "It is no longer part of the web standards.")
         case prerender
         
         /// Indicates a page pagination.
@@ -875,7 +875,7 @@ public enum Values {
         /// Indicates a content tag.
         case tag
         
-        @available(*, deprecated, message: "It is no longer part of the web standards. Use 'icon' instead.")
+        @available(*, unavailable, message: "It is no longer part of the web standards. Use 'icon' instead.")
         case shortcutIcon = "shortcut icon"
         
         /// Indicates a touch icon.
@@ -1222,7 +1222,7 @@ public enum Values {
         /// Indicates a select list.
         case combobox
         
-        @available(*, deprecated, message: "It is an abstract role and should not be used.")
+        @available(*, unavailable, message: "It is an abstract role and should not be used.")
         case command
         
         /// Indicates a text comment.
@@ -1231,7 +1231,7 @@ public enum Values {
         /// Indicates a page aside.
         case complementary
         
-        @available(*, deprecated, message: "It is an abstract role and should not be used.")
+        @available(*, unavailable, message: "It is an abstract role and should not be used.")
         case composite
         
         /// Indicates a page footer.
@@ -1243,7 +1243,7 @@ public enum Values {
         /// Indicates a dialog window.
         case dialog
         
-        @available(*, deprecated, message: "It is no longer part of the web standards. Use 'list' instead.")
+        @available(*, unavailable, message: "It is no longer part of the web standards. Use 'list' instead.")
         case directory
         
         /// Indicates a read mode.
@@ -1273,10 +1273,10 @@ public enum Values {
         /// Indicates an image set.
         case img
         
-        @available(*, deprecated, message: "It is an abstract role and should not be used.")
+        @available(*, unavailable, message: "It is an abstract role and should not be used.")
         case input
         
-        @available(*, deprecated, message: "It is an abstract role and should not be used.")
+        @available(*, unavailable, message: "It is an abstract role and should not be used.")
         case landmark
         
         /// Indicates an item list.
@@ -1339,13 +1339,13 @@ public enum Values {
         /// Indicates a radio select.
         case radio
         
-        @available(*, deprecated, message: "It is an abstract role and should not be used.")
+        @available(*, unavailable, message: "It is an abstract role and should not be used.")
         case range
         
         /// Indicates a content section.
         case region
         
-        @available(*, deprecated, message: "It is an abstract role and should not be used.")
+        @available(*, unavailable, message: "It is an abstract role and should not be used.")
         case roleType = "roletype"
         
         /// Indicates a table row.
@@ -1366,10 +1366,10 @@ public enum Values {
         /// Indicates a search control.
         case searchBox = "searchbox"
         
-        @available(*, deprecated, message: "It is an abstract role and should not be used.")
+        @available(*, unavailable, message: "It is an abstract role and should not be used.")
         case sectionHead = "sectionhead"
         
-        @available(*, deprecated, message: "It is an abstract role and should not be used.")
+        @available(*, unavailable, message: "It is an abstract role and should not be used.")
         case select
         
         /// Indicates a content divider.
@@ -1378,7 +1378,7 @@ public enum Values {
         /// Indicates a status mesage.
         case status
         
-        @available(*, deprecated, message: "It is an abstract role and should not be used.")
+        @available(*, unavailable, message: "It is an abstract role and should not be used.")
         case structure
         
         /// Indicates a content suggestion.
@@ -1423,10 +1423,10 @@ public enum Values {
         /// Indicates a tree item.
         case treeItem = "treeitem"
         
-        @available(*, deprecated, message: "It is an abstract role and should not be used.")
+        @available(*, unavailable, message: "It is an abstract role and should not be used.")
         case widget
         
-        @available(*, deprecated, message: "It is an abstract role and should not be used.")
+        @available(*, unavailable, message: "It is an abstract role and should not be used.")
         case window
     }
 
