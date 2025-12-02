@@ -1245,7 +1245,7 @@ public protocol EquivalentAttribute: Attribute {
     func equivalent(_ value: Values.Equivalent) -> Self
 }
 
-extension HeaderAttribute where Self: ContentNode {
+extension EquivalentAttribute where Self: ContentNode {
     
     internal func mutate(httpequiv value: String) -> Self {
         return self.mutate(key: "http-equiv", value: value)
@@ -1261,7 +1261,7 @@ extension EquivalentAttribute where Self: EmptyNode {
 
 /// A type that provides the `headers` modifier.
 @_documentation(visibility: internal)
-public protocol HeaderAttribute: Attribute {
+public protocol HeadersAttribute: Attribute {
     
     /// Specify the header cells for an element.
     ///
@@ -1269,23 +1269,37 @@ public protocol HeaderAttribute: Attribute {
     /// DataCell {
     ///     "Lorem ipsum..."
     /// }
-    /// .headers("ids")
+    /// .headers(["id", "id"])
     /// ```
     ///
     /// - Parameter ids: The identifiers of the cells to associate with.
     ///
     /// - Returns: The element
-    func headers(_ ids: String) -> Self
+    func headers(_ ids: [String]) -> Self
+    
+    /// Specify the header cells for an element.
+    ///
+    /// ```swift
+    /// DataCell {
+    ///     "Lorem ipsum..."
+    /// }
+    /// .headers("id", "id")
+    /// ```
+    ///
+    /// - Parameter ids: The identifiers of the cells to associate with.
+    ///
+    /// - Returns: The element
+    func headers(_ ids: String...) -> Self
 }
 
-extension HeaderAttribute where Self: ContentNode {
+extension HeadersAttribute where Self: ContentNode {
     
     internal func mutate(headers value: String) -> Self {
         return self.mutate(key: "headers", value: value)
     }
 }
 
-extension HeaderAttribute where Self: EmptyNode {
+extension HeadersAttribute where Self: EmptyNode {
     
     internal func mutate(headers value: String) -> Self {
         return self.mutate(key: "headers", value: value)

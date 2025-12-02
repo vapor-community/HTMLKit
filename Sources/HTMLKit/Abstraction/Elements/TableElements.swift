@@ -2250,7 +2250,7 @@ public struct DataCell: ContentNode, TableElement {
     }
 }
 
-extension DataCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, ColumnSpanAttribute, RowSpanAttribute, HeaderAttribute {
+extension DataCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, ColumnSpanAttribute, RowSpanAttribute, HeadersAttribute {
 
     public func accessKey(_ value: Character) -> DataCell {
         return mutate(accesskey: value)
@@ -2425,8 +2425,12 @@ extension DataCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(rowspan: size)
     }
     
-    public func headers(_ value: String) -> DataCell {
-        return mutate(headers: value)
+    public func headers(_ ids: [String]) -> DataCell {
+        return mutate(headers: ids.joined(separator: " "))
+    }
+    
+    public func headers(_ ids: String...) -> DataCell {
+        return mutate(headers: ids.joined(separator: " "))
     }
     
     public func popover(_ value: Values.Popover.State) -> DataCell {
@@ -2586,7 +2590,7 @@ public struct HeaderCell: ContentNode, TableElement {
     }
 }
 
-extension HeaderCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, ColumnSpanAttribute, RowSpanAttribute, HeaderAttribute, ScopeAttribute {
+extension HeaderCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, ColumnSpanAttribute, RowSpanAttribute, HeadersAttribute, ScopeAttribute {
     
     public func accessKey(_ value: Character) -> HeaderCell {
         return mutate(accesskey: value)
@@ -2761,8 +2765,12 @@ extension HeaderCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
         return mutate(rowspan: size)
     }
     
-    public func headers(_ value: String) -> HeaderCell {
-        return mutate(headers: value)
+    public func headers(_ ids: [String]) -> HeaderCell {
+        return mutate(headers: ids.joined(separator: " "))
+    }
+    
+    public func headers(_ ids: String...) -> HeaderCell {
+        return mutate(headers: ids.joined(separator: " "))
     }
 
     @available(*, unavailable, message: "Use the scope(_:) modifier instead.")
