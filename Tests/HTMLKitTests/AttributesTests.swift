@@ -341,7 +341,16 @@ final class AttributesTests: XCTestCase {
             return self.mutate(kind: value.rawValue)
         }
         
+        @_disfavoredOverload
         func label(_ value: String) -> Tag {
+            return self.mutate(label: value)
+        }
+        
+        func label(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Tag {
+            return self.mutate(label: LocalizedString(key: localizedKey, table: tableName))
+        }
+        
+        func label(verbatim value: String) -> Tag {
             return self.mutate(label: value)
         }
         

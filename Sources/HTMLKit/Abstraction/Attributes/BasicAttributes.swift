@@ -1933,6 +1933,35 @@ public protocol LabelAttribute: Attribute {
     ///
     /// - Returns: The element
     func label(_ value: String) -> Self
+    
+    /// Specify a label for the element.
+    ///
+    /// ```swift
+    /// Track()
+    ///     .source("...vtt")
+    ///     .kind(.chapters)
+    ///     .label("lorem")
+    /// ```
+    ///
+    /// - Parameter localizedKey: The string key to be translated.
+    /// - Parameter tableName: The translation table to look in.
+    ///
+    /// - Returns: The element
+    func label(_ localizedKey: LocalizedStringKey, tableName: String?) -> Self
+    
+    /// Specify a label for the element without localization.
+    ///
+    /// ```swift
+    /// Track()
+    ///     .source("...vtt")
+    ///     .kind(.chapters)
+    ///     .label(verbatim: "lorem")
+    /// ```
+    ///
+    /// - Parameter value: The text to use as a label.
+    ///
+    /// - Returns: The element
+    func label(verbatim value: String) -> Self
 }
 
 extension LabelAttribute where Self: ContentNode {
@@ -1940,11 +1969,19 @@ extension LabelAttribute where Self: ContentNode {
     internal func mutate(label value: String) -> Self {
         return self.mutate(key: "label", value: value)
     }
+    
+    internal func mutate(label value: LocalizedString) -> Self {
+        return self.mutate(key: "label", value: value)
+    }
 }
 
 extension LabelAttribute where Self: EmptyNode {
     
     internal func mutate(label value: String) -> Self {
+        return self.mutate(key: "label", value: value)
+    }
+    
+    internal func mutate(label value: LocalizedString) -> Self {
         return self.mutate(key: "label", value: value)
     }
 }

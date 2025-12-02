@@ -240,7 +240,16 @@ extension OptionGroup: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
         return self
     }
     
+    @_disfavoredOverload
     public func label(_ value: String) -> OptionGroup {
+        return mutate(label: value)
+    }
+    
+    public func label(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> OptionGroup {
+        return mutate(label: LocalizedString(key: localizedKey, table: tableName))
+    }
+    
+    public func label(verbatim value: String) -> OptionGroup {
         return mutate(label: value)
     }
     
@@ -576,7 +585,16 @@ extension Option: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return self
     }
     
+    @_disfavoredOverload
     public func label(_ value: String) -> Option {
+        return mutate(label: value)
+    }
+    
+    public func label(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Option {
+        return mutate(label: LocalizedString(key: localizedKey, table: tableName))
+    }
+    
+    public func label(verbatim value: String) -> Option {
         return mutate(label: value)
     }
     

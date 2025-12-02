@@ -524,7 +524,16 @@ extension Track: GlobalAttributes, GlobalEventAttributes, KindAttribute, SourceA
         return mutate(sourcelanguage: value.rawValue)
     }
     
+    @_disfavoredOverload
     public func label(_ value: String) -> Track {
+        return mutate(label: value)
+    }
+    
+    public func label(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Track {
+        return mutate(label: LocalizedString(key: localizedKey, table: tableName))
+    }
+    
+    public func label(verbatim value: String) -> Track {
         return mutate(label: value)
     }
     
