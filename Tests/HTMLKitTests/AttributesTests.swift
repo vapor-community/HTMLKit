@@ -1105,7 +1105,7 @@ final class AttributesTests: XCTestCase {
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <tag role="range"></tag>
+                       <tag role="alert"></tag>
                        """
         )
     }
