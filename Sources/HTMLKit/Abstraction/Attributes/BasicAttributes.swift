@@ -3,7 +3,7 @@ import OrderedCollections
 
 /// The alias combines the global attributes of the basic attributes.
 @_documentation(visibility: internal)
-public typealias GlobalAttributes = AccessKeyAttribute & AutocapitalizeAttribute & AutofocusAttribute & ClassAttribute & EditAttribute & DirectionAttribute & DragAttribute & EnterKeyHintAttribute & HiddenAttribute & InputModeAttribute & IsAttribute & ItemAttribute & ItemIdAttribute & ItemPropertyAttribute & ItemReferenceAttribute & ItemScopeAttribute & ItemTypeAttribute & IdentifierAttribute & LanguageAttribute & NonceAttribute & RoleAttribute & SpellCheckAttribute & StyleAttribute & TabulatorAttribute & TitleAttribute & TranslateAttribute & InertAttribute & PopoverAttribute
+public typealias GlobalAttributes = AccessKeyAttribute & AutocapitalizeAttribute & AutofocusAttribute & ClassAttribute & EditAttribute & DirectionAttribute & DragAttribute & EnterKeyAttribute & HiddenAttribute & InputModeAttribute & IsAttribute & ItemAttribute & ItemIdAttribute & ItemPropertyAttribute & ItemReferenceAttribute & ItemScopeAttribute & ItemTypeAttribute & IdentifierAttribute & LanguageAttribute & NonceAttribute & RoleAttribute & SpellCheckAttribute & StyleAttribute & TabulatorAttribute & TitleAttribute & TranslateAttribute & InertAttribute & PopoverAttribute
 
 /// A type that provides the `accessKey` modifier.
 @_documentation(visibility: internal)
@@ -1093,32 +1093,32 @@ extension EncodingAttribute where Self: EmptyNode {
     }
 }
 
-/// A type that provides the `enterKeyHint` modifier.
+/// A type that provides the `enterKey` modifier.
 @_documentation(visibility: internal)
-public protocol EnterKeyHintAttribute: Attribute {
+public protocol EnterKeyAttribute: Attribute {
     
     /// Change the enter key for the virtual keyboards.
     ///
     /// ```swift
     /// Input()
     ///     .type(.text)
-    ///     .enterKeyHint(.search)
+    ///     .enterKey(.search)
     /// ```
     ///
     /// - Parameter value: The enter key to apply.
     ///
     /// - Returns: The element
-    func enterKeyHint(_ value: Values.Hint) -> Self
+    func enterKey(_ value: Values.Hint) -> Self
 }
 
-extension EnterKeyHintAttribute where Self: ContentNode {
+extension EnterKeyAttribute where Self: ContentNode {
     
     internal func mutate(enterkeyhint value: String) -> Self {
         return self.mutate(key: "enterkeyhint", value: value)
     }
 }
 
-extension EnterKeyHintAttribute where Self: EmptyNode {
+extension EnterKeyAttribute where Self: EmptyNode {
     
     internal func mutate(enterkeyhint value: String) -> Self {
         return self.mutate(key: "enterkeyhint", value: value)

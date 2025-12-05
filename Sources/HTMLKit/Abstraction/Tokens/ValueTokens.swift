@@ -1094,7 +1094,7 @@ public enum Values {
     ///
     /// ```swift
     /// Input()
-    ///     .enterKeyHint(.next)
+    ///     .enterKey(.next)
     /// ```
     public enum Hint: String {
         
