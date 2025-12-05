@@ -40,20 +40,30 @@ public protocol FillAttribute: Attribute {
     /// Vector {
     ///     Circle {
     ///     }
-    ///     .fill("black")
+    ///     .fill("black", opacity: 0.5)
     /// }
     /// ```
     ///
     /// - Parameter color: The color to fill shape with.
+    /// - Parameter opacity: The opacity to apply.
     ///
     /// - Returns: The element
-    func fill(_ color: String) -> Self
+    func fill(_ color: String, opacity: Double?) -> Self
 }
 
 extension FillAttribute where Self: ContentNode {
     
     internal func mutate(fill value: String) -> Self {
         return self.mutate(key: "fill", value: value)
+    }
+    
+    internal func mutate(fillopacity value: Double?) -> Self {
+        
+        if let value = value {
+            return self.mutate(key: "fill-opacity", value: value)
+        }
+        
+        return self
     }
 }
 

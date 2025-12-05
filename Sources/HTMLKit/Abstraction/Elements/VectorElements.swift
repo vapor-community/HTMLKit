@@ -75,8 +75,8 @@ extension Circle: GlobalVectorAttributes, CenterPointAttribute, RadiusAttribute 
         return self.mutate(style: TaintedString(value, as: .css(.attribute)))
     }
     
-    public func fill(_ value: String) -> Circle {
-        return self.mutate(fill: value)
+    public func fill(_ color: String, opacity: Double? = nil) -> Circle {
+        return self.mutate(fill: color).mutate(fillopacity: opacity)   
     }
     
     public func stroke(_ value: String) -> Circle {
@@ -108,6 +108,7 @@ extension Circle: GlobalVectorAttributes, CenterPointAttribute, RadiusAttribute 
         return self.mutate(radius: size)
     }
     
+    @available(*, deprecated, message: "Use the fill(_:opacity:) modifier instead.")
     public func fillOpacity(_ value: Double) -> Circle {
         return self.mutate(fillopacity: value)
     }
@@ -200,8 +201,8 @@ extension Rectangle: GlobalVectorAttributes, WidthAttribute, HeightAttribute, Ra
         return self.mutate(style: TaintedString(value, as: .css(.attribute)))
     }
     
-    public func fill(_ value: String) -> Rectangle {
-        return self.mutate(fill: value)
+    public func fill(_ color: String, opacity: Double? = nil) -> Rectangle {
+        return self.mutate(fill: color).mutate(fillopacity: opacity)  
     }
     
     public func stroke(_ value: String) -> Rectangle {
@@ -254,6 +255,7 @@ extension Rectangle: GlobalVectorAttributes, WidthAttribute, HeightAttribute, Ra
         return self.mutate(height: size)
     }
     
+    @available(*, deprecated, message: "Use the fill(_:opacity:) modifier instead.")
     public func fillOpacity(_ value: Double) -> Rectangle {
         return self.mutate(fillopacity: value)
     }
@@ -346,8 +348,8 @@ extension Ellipse: GlobalVectorAttributes, CenterPointAttribute, RadiusPointAttr
         return self.mutate(style: TaintedString(value, as: .css(.attribute)))
     }
     
-    public func fill(_ value: String) -> Ellipse {
-        return self.mutate(fill: value)
+    public func fill(_ color: String, opacity: Double? = nil) -> Ellipse {
+        return self.mutate(fill: color).mutate(fillopacity: opacity)  
     }
     
     public func stroke(_ value: String) -> Ellipse {
@@ -392,6 +394,7 @@ extension Ellipse: GlobalVectorAttributes, CenterPointAttribute, RadiusPointAttr
         return self.mutate(rx: point.x).mutate(ry: point.y)
     }
     
+    @available(*, deprecated, message: "Use the fill(_:opacity:) modifier instead.")
     public func fillOpacity(_ value: Double) -> Ellipse {
         return self.mutate(fillopacity: value)
     }
@@ -484,8 +487,8 @@ extension Line: GlobalVectorAttributes {
         return self.mutate(style: TaintedString(value, as: .css(.attribute)))
     }
     
-    public func fill(_ value: String) -> Line {
-        return self.mutate(fill: value)
+    public func fill(_ color: String, opacity: Double? = nil) -> Line {
+        return self.mutate(fill: color).mutate(fillopacity: opacity)  
     }
     
     public func stroke(_ value: String) -> Line {
@@ -496,6 +499,7 @@ extension Line: GlobalVectorAttributes {
         return self.mutate(strokewidth: size)
     }
     
+    @available(*, deprecated, message: "Use the fill(_:opacity:) modifier instead.")
     public func fillOpacity(_ value: Double) -> Line {
         return self.mutate(fillopacity: value)
     }
@@ -587,8 +591,8 @@ extension Polygon: GlobalVectorAttributes, PointsAttribute {
         return self.mutate(style: TaintedString(value, as: .css(.attribute)))
     }
     
-    public func fill(_ value: String) -> Polygon {
-        return self.mutate(fill: value)
+    public func fill(_ color: String, opacity: Double? = nil) -> Polygon {
+        return self.mutate(fill: color).mutate(fillopacity: opacity)  
     }
     
     public func stroke(_ value: String) -> Polygon {
@@ -599,6 +603,7 @@ extension Polygon: GlobalVectorAttributes, PointsAttribute {
         return self.mutate(strokewidth: size)
     }
     
+    @available(*, deprecated, message: "Use the fill(_:opacity:) modifier instead.")
     public func fillOpacity(_ value: Double) -> Polygon {
         return self.mutate(fillopacity: value)
     }
@@ -694,8 +699,8 @@ extension Polyline: GlobalVectorAttributes, PointsAttribute {
         return self.mutate(style: TaintedString(value, as: .css(.attribute)))
     }
     
-    public func fill(_ value: String) -> Polyline {
-        return self.mutate(fill: value)
+    public func fill(_ color: String, opacity: Double? = nil) -> Polyline {
+        return self.mutate(fill: color).mutate(fillopacity: opacity)  
     }
     
     public func stroke(_ value: String) -> Polyline {
@@ -706,6 +711,7 @@ extension Polyline: GlobalVectorAttributes, PointsAttribute {
         return self.mutate(strokewidth: size)
     }
     
+    @available(*, deprecated, message: "Use the fill(_:opacity:) modifier instead.")
     public func fillOpacity(_ value: Double) -> Polyline {
         return self.mutate(fillopacity: value)
     }
@@ -801,8 +807,8 @@ extension Path: GlobalVectorAttributes, DrawAttribute {
         return self.mutate(style: TaintedString(value, as: .css(.attribute)))
     }
 
-    public func fill(_ value: String) -> Path {
-        return self.mutate(fill: value)
+    public func fill(_ color: String, opacity: Double? = nil) -> Path {
+        return self.mutate(fill: color).mutate(fillopacity: opacity)  
     }
     
     public func stroke(_ value: String) -> Path {
@@ -813,6 +819,7 @@ extension Path: GlobalVectorAttributes, DrawAttribute {
         return self.mutate(strokewidth: size)
     }
     
+    @available(*, deprecated, message: "Use the fill(_:opacity:) modifier instead.")
     public func fillOpacity(_ value: Double) -> Path {
         return self.mutate(fillopacity: value)
     }
@@ -907,8 +914,8 @@ extension Group: GlobalVectorAttributes {
         return self.mutate(style: TaintedString(value, as: .css(.attribute)))
     }
 
-    public func fill(_ value: String) -> Group {
-        return self.mutate(fill: value)
+    public func fill(_ color: String, opacity: Double? = nil) -> Group {
+        return self.mutate(fill: color).mutate(fillopacity: opacity)  
     }
 
     public func stroke(_ value: String) -> Group {
@@ -919,6 +926,7 @@ extension Group: GlobalVectorAttributes {
         return self.mutate(strokewidth: size)
     }
 
+    @available(*, deprecated, message: "Use the fill(_:opacity:) modifier instead.")
     public func fillOpacity(_ value: Double) -> Group {
         return self.mutate(fillopacity: value)
     }
@@ -1042,8 +1050,8 @@ extension Use: GlobalVectorAttributes, ReferenceAttribute, WidthAttribute, Heigh
         return self.mutate(style: TaintedString(value, as: .css(.attribute)))
     }
     
-    public func fill(_ value: String) -> Use {
-        return self.mutate(fill: value)
+    public func fill(_ color: String, opacity: Double? = nil) -> Use {
+        return self.mutate(fill: color).mutate(fillopacity: opacity)  
     }
     
     public func stroke(_ value: String) -> Use {
@@ -1054,6 +1062,7 @@ extension Use: GlobalVectorAttributes, ReferenceAttribute, WidthAttribute, Heigh
         return self.mutate(strokewidth: size)
     }
     
+    @available(*, deprecated, message: "Use the fill(_:opacity:) modifier instead.")
     public func fillOpacity(_ value: Double) -> Use {
         return self.mutate(fillopacity: value)
     }

@@ -24459,8 +24459,8 @@ extension Vector: GlobalVectorAttributes, WidthAttribute, HeightAttribute, ViewB
         return self.mutate(viewbox: "\(x) \(y) \(width) \(height)")
     }
     
-    public func fill(_ value: String) -> Vector {
-        return self.mutate(fill: value)
+    public func fill(_ color: String, opacity: Double? = nil) -> Vector {
+        return self.mutate(fill: color).mutate(fillopacity: opacity)  
     }
     
     public func stroke(_ value: String) -> Vector {
@@ -24471,6 +24471,7 @@ extension Vector: GlobalVectorAttributes, WidthAttribute, HeightAttribute, ViewB
         return self.mutate(strokewidth: size)
     }
     
+    @available(*, deprecated, message: "Use the fill(_:opacity:) modifier instead.")
     public func fillOpacity(_ value: Double) -> Vector {
         return self.mutate(fillopacity: value)
     }
