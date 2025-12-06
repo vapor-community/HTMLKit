@@ -917,6 +917,7 @@ public enum Values {
     /// ```
     public enum Shape: String {
         
+        @available(*, deprecated, message: "Use the shape() modifier instead.")
         /// Expects the entire region.
         case `default`
         

@@ -532,8 +532,12 @@ final class AttributesTests: XCTestCase {
             return self.mutate(scope: value.rawValue)
         }
         
-        func shape(_ value: Values.Shape) -> Tag {
-            return self.mutate(shape: value.rawValue)
+        func shape() -> Tag {
+            return self.mutate(shape: "default")
+        }
+        
+        func shape(_ value: Values.Shape, coordinates: String) -> Tag {
+            return self.mutate(shape: value.rawValue).mutate(coords: coordinates)
         }
         
         func size(_ size: Int) -> Tag {
@@ -1376,19 +1380,6 @@ final class AttributesTests: XCTestCase {
         )
     }
     
-    func testCoordinatesAttribute() throws {
-        
-        let view = TestView {
-            Tag {}.coordinates("255,132,316,150")
-        }
-        
-        XCTAssertEqual(try renderer.render(view: view),
-                       """
-                       <tag coords="255,132,316,150"></tag>
-                       """
-        )
-    }
-    
     func testDataAttribute() throws {
         
         let view = TestView {
@@ -2124,12 +2115,14 @@ final class AttributesTests: XCTestCase {
     func testShapeAttribute() throws {
         
         let view = TestView {
-            Tag {}.shape(.circle)
+            Tag {}.shape()
+            Tag {}.shape(.circle, coordinates: "255,132,316,150")
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <tag shape="circle"></tag>
+                       <tag shape="default"></tag>\
+                       <tag shape="circle" coords="255,132,316,150"></tag>
                        """
         )
     }

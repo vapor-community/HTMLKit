@@ -20565,8 +20565,7 @@ extension Audio: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
 ///     .useMap("lorem")
 /// Map {
 ///     Area()
-///         .shape(.circle)
-///         .coordinates("10, 10, 10 ,10")
+///         .shape(.circle, coordinates: "10, 10, 10, 10")
 ///         .alternate("Lorem ipsum...")
 ///         .reference("https://...")
 /// }

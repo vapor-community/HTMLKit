@@ -11,8 +11,7 @@ import OrderedCollections
 ///     .useMap("lorem")
 /// Map {
 ///     Area()
-///         .shape(.circle)
-///         .coordinates("10, 10, 10 ,10")
+///         .shape(.circle, coordinates: "10, 10, 10 ,10")
 ///         .alternate("Lorem ipsum...")
 ///         .reference("https://...")
 /// }
@@ -238,12 +237,17 @@ extension Area: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, A
         return mutate(alternate: value)
     }
     
+    @available(*, deprecated, message: "Use the shape(_:coordinates:) modifier instead.")
     public func coordinates(_ value: String) -> Area {
         return mutate(coords: value)
     }
     
-    public func shape(_ value: Values.Shape) -> Area {
-        return mutate(shape: value.rawValue)
+    public func shape() -> Area {
+        return mutate(shape: "default")
+    }
+    
+    public func shape(_ value: Values.Shape, coordinates: String) -> Area {
+        return mutate(shape: value.rawValue).mutate(coords: coordinates)
     }
     
     public func reference(_ value: String) -> Area {

@@ -3187,17 +3187,27 @@ extension ScopeAttribute where Self: EmptyNode {
 @_documentation(visibility: internal)
 public protocol ShapeAttribute: Attribute {
     
+    /// Define the entire area as shape.
+    ///
+    /// ```swift
+    /// Area()
+    ///     .shape()
+    /// ```
+    ///
+    /// - Returns: The element
+    func shape() -> Self
+    
     /// Define the shape for an area.
     ///
     /// ```swift
     /// Area()
-    ///     .shape(.circle)
+    ///     .shape(.rect, coordinates: "0, 0, 200, 100")
     /// ```
     ///
     /// - Parameter value: The shape used to interpret the coordinates.
     ///
     /// - Returns: The element
-    func shape(_ value: Values.Shape) -> Self
+    func shape(_ value: Values.Shape, coordinates: String) -> Self
 }
 
 extension ShapeAttribute where Self: ContentNode {
@@ -3827,8 +3837,7 @@ public protocol UseMapAttribute: Attribute {
     ///     .useMap("...")
     /// Map {
     ///     Area()
-    ///         .shape(.circle)
-    ///         .coordinates(...)
+    ///         .shape(.circle, coordinates: "...")
     /// }
     /// .name("...")
     /// ```
