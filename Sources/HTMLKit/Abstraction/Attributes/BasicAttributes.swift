@@ -4329,13 +4329,14 @@ public protocol PopoverTargetAttribute: Attribute {
     /// Button {
     ///     "Lorem ipsum"
     /// }
-    /// .popoverTarget("id")
+    /// .popoverTarget("id", as: .hide)
     /// ```
     ///
     /// - Parameter id: The identifier of the target to bind the popover to.
+    /// - Parameter action: The action to perform when triggered.
     ///
     /// - Returns: The element
-    func popoverTarget(_ id: String) -> Self
+    func popoverTarget(_ id: String, as action: Values.Popover.Action) -> Self
 }
 
 extension PopoverTargetAttribute where Self: ContentNode {
@@ -4343,12 +4344,20 @@ extension PopoverTargetAttribute where Self: ContentNode {
     internal func mutate(popovertarget value: String) -> Self {
         return self.mutate(key: "popovertarget", value: value)
     }
+    
+    internal func mutate(popovertargetaction value: String) -> Self {
+        return self.mutate(key: "popovertargetaction", value: value)
+    }
 }
 
 extension PopoverTargetAttribute where Self: EmptyNode {
     
     internal func mutate(popovertarget value: String) -> Self {
         return self.mutate(key: "popovertarget", value: value)
+    }
+    
+    internal func mutate(popovertargetaction value: String) -> Self {
+        return self.mutate(key: "popovertargetaction", value: value)
     }
 }
 

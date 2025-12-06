@@ -746,8 +746,8 @@ final class AttributesTests: XCTestCase {
             return self.mutate(popover: value.rawValue)
         }
         
-        func popoverTarget(_ value: String) -> Tag {
-            return self.mutate(popovertarget: value)
+        func popoverTarget(_ id: String, as action: Values.Popover.Action = .toggle) -> Tag {
+            return self.mutate(popovertarget: id).mutate(popovertargetaction: action.rawValue)
         }
         
         func popoverAction(_ value: Values.Popover.Action) -> Tag {
@@ -2427,24 +2427,13 @@ final class AttributesTests: XCTestCase {
         
         let view = TestView {
             Tag {}.popoverTarget("id")
+            Tag {}.popoverTarget("id", as: .hide)
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <tag popovertarget="id"></tag>
-                       """
-        )
-    }
-    
-    func testPopoverActionAttribute() throws {
-        
-        let view = TestView {
-            Tag {}.popoverAction(.toggle)
-        }
-        
-        XCTAssertEqual(try renderer.render(view: view),
-                       """
-                       <tag popovertargetaction="toggle"></tag>
+                       <tag popovertarget="id" popovertargetaction="toggle"></tag>\
+                       <tag popovertarget="id" popovertargetaction="hide"></tag>
                        """
         )
     }

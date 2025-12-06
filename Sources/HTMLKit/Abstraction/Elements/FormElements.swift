@@ -403,10 +403,11 @@ extension Input: GlobalAttributes, GlobalEventAttributes, AcceptAttribute, Alter
         return mutate(popover: value.rawValue)
     }
     
-    public func popoverTarget(_ value: String) -> Input {
-        return mutate(popovertarget: value)
+    public func popoverTarget(_ value: String, as action: Values.Popover.Action = .toggle) -> Input {
+        return mutate(popovertarget: value).mutate(popovertargetaction: action.rawValue)
     }
     
+    @available(*, deprecated, message: "Use the popoverTarget(_:as:) modifier instead.")
     public func popoverAction(_ value: Values.Popover.Action) -> Input {
         return mutate(popoveraction: value.rawValue)
     }
@@ -1766,10 +1767,11 @@ extension Button: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return mutate(popover: value.rawValue)
     }
     
-    public func popoverTarget(_ value: String) -> Button {
-        return mutate(popovertarget: value)
+    public func popoverTarget(_ value: String, as action: Values.Popover.Action = .toggle) -> Button {
+        return mutate(popovertarget: value).mutate(popovertargetaction: action.rawValue)
     }
     
+    @available(*, deprecated, message: "Use the popoverTarget(_:as:) modifier instead.")
     public func popoverAction(_ value: Values.Popover.Action) -> Button {
         return mutate(popoveraction: value.rawValue)
     }

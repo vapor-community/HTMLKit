@@ -1942,8 +1942,7 @@ public enum Values {
         /// Button {
         ///     "Lorem ipsum"
         /// }
-        /// .popoverTarget("id")
-        /// .popoverAction(.hide)
+        /// .popoverTarget("id", as: .hide)
         /// ```
         public enum Action: String {
             
