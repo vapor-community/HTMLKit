@@ -642,8 +642,8 @@ final class AttributesTests: XCTestCase {
             return self.mutate(fill: color).mutate(fillopacity: opacity)
         }
         
-        func stroke(_ value: String) -> Tag {
-            return self.mutate(stroke: value)
+        public func stroke(_ color: String, width: Int? = nil, opacity: Double? = nil, cap: Values.Linecap? = nil, join: Values.Linejoin? = nil) -> Tag {
+            return self.mutate(stroke: color).mutate(strokewidth: width).mutate(strokeopacity: opacity).mutate(strokelinecap: cap?.rawValue).mutate(strokelinejoin: join?.rawValue)
         }
         
         func strokeWidth(_ size: Int) -> Tag {
@@ -2937,63 +2937,19 @@ final class AttributesTests: XCTestCase {
         
         let view = TestView {
             Tag {}.stroke("black")
+            Tag {}.stroke("black", width: 1)
+            Tag {}.stroke("black", width: 1, opacity: 0.5)
+            Tag {}.stroke("black", width: 1, opacity: 0.5, cap: .butt)
+            Tag {}.stroke("black", width: 1, opacity: 0.5, cap: .butt, join: .round)
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <tag stroke="black"></tag>
-                       """
-        )
-    }
-    
-    func testStrokeWidthAttribute() throws {
-        
-        let view = TestView {
-            Tag {}.strokeWidth(5)
-        }
-        
-        XCTAssertEqual(try renderer.render(view: view),
-                       """
-                       <tag stroke-width="5"></tag>
-                       """
-        )
-    }
-    
-    func testStrokeOpacityAttribute() throws {
-        
-        let view = TestView {
-            Tag {}.strokeOpacity(1.0)
-        }
-        
-        XCTAssertEqual(try renderer.render(view: view),
-                       """
-                       <tag stroke-opacity="1.0"></tag>
-                       """
-        )
-    }
-    
-    func testStrokeLineCapAttribute() throws {
-        
-        let view = TestView {
-            Tag {}.strokeLineCap(.round)
-        }
-        
-        XCTAssertEqual(try renderer.render(view: view),
-                       """
-                       <tag stroke-linecap="round"></tag>
-                       """
-        )
-    }
-    
-    func testStrokeLineJoinAttribute() throws {
-        
-        let view = TestView {
-            Tag {}.strokeLineJoin(.miter)
-        }
-        
-        XCTAssertEqual(try renderer.render(view: view),
-                       """
-                       <tag stroke-linejoin="miter"></tag>
+                       <tag stroke="black"></tag>\
+                       <tag stroke="black" stroke-width="1"></tag>\
+                       <tag stroke="black" stroke-width="1" stroke-opacity="0.5"></tag>\
+                       <tag stroke="black" stroke-width="1" stroke-opacity="0.5" stroke-linecap="butt"></tag>\
+                       <tag stroke="black" stroke-width="1" stroke-opacity="0.5" stroke-linecap="butt" stroke-linejoin="round"></tag>
                        """
         )
     }
