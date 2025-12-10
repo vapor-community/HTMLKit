@@ -242,6 +242,11 @@ extension Area: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, A
         return mutate(coords: value)
     }
     
+    @available(*, deprecated, message: "Use the shape(_:coordinates:) modifier instead.")
+    public func shape(_ value: Values.Shape) -> Area {
+        return mutate(shape: value.rawValue)
+    }
+    
     public func shape() -> Area {
         return mutate(shape: "default")
     }

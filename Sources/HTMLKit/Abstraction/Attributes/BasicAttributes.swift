@@ -3205,6 +3205,7 @@ public protocol ShapeAttribute: Attribute {
     /// ```
     ///
     /// - Parameter value: The shape used to interpret the coordinates.
+    /// - Parameter coordinates: The coordinates on which to base the shape.
     ///
     /// - Returns: The element
     func shape(_ value: Values.Shape, coordinates: String) -> Self
@@ -4338,14 +4339,14 @@ public protocol PopoverTargetAttribute: Attribute {
     /// Button {
     ///     "Lorem ipsum"
     /// }
-    /// .popoverTarget("id", as: .hide)
+    /// .popoverTarget("id", action: .hide)
     /// ```
     ///
     /// - Parameter id: The identifier of the target to bind the popover to.
     /// - Parameter action: The action to perform when triggered.
     ///
     /// - Returns: The element
-    func popoverTarget(_ id: String, as action: Values.Popover.Action) -> Self
+    func popoverTarget(_ id: String, action: Values.Popover.Action?) -> Self
 }
 
 extension PopoverTargetAttribute where Self: ContentNode {
@@ -4354,8 +4355,13 @@ extension PopoverTargetAttribute where Self: ContentNode {
         return self.mutate(key: "popovertarget", value: value)
     }
     
-    internal func mutate(popovertargetaction value: String) -> Self {
-        return self.mutate(key: "popovertargetaction", value: value)
+    internal func mutate(popovertargetaction value: String?) -> Self {
+        
+        if let value = value {
+            return self.mutate(key: "popovertargetaction", value: value)
+        }
+        
+        return self
     }
 }
 
@@ -4365,8 +4371,13 @@ extension PopoverTargetAttribute where Self: EmptyNode {
         return self.mutate(key: "popovertarget", value: value)
     }
     
-    internal func mutate(popovertargetaction value: String) -> Self {
-        return self.mutate(key: "popovertargetaction", value: value)
+    internal func mutate(popovertargetaction value: String?) -> Self {
+        
+        if let value = value {
+            return self.mutate(key: "popovertargetaction", value: value)
+        }
+        
+        return self
     }
 }
 
