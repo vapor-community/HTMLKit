@@ -45,21 +45,15 @@ public protocol ViewModifier {
     /// - Returns: The view
     func padding(insets: EdgeSet, length: Tokens.PaddingLength) -> Self
     
-    /// Set the shape for the view.
-    ///
-    /// - Parameter shape: The border shape to use for the view.
-    ///
-    /// - Returns: The view
-    func borderShape(_ shape: Tokens.BorderShape) -> Self
-    
     /// Set the border for the view.
     ///
     /// - Parameters:
     ///   - color: The color to fill the border with.
     ///   - width: The thickness to apply to the border.
+    ///   - shape: The border shape to use for the view.
     ///
     /// - Returns: The view
-    func border(_ color: Tokens.BorderColor, width: Tokens.BorderWidth) -> Self
+    func border(_ color: Tokens.BorderColor, width: Tokens.BorderWidth, shape: Tokens.BorderShape?) -> Self
     
     /// Set the frame for the view.
     ///
@@ -148,7 +142,12 @@ extension ViewModifier where Self: Modifiable {
         return self.mutate(classes: "shape:\(value)")
     }
     
-    internal func mutate(border color: String, width: String) -> Self {
+    internal func mutate(border color: String, width: String, shape: String? = nil) -> Self {
+        
+        if let shape = shape {
+            return self.mutate(classes: "border:\(color)", "border:\(width)", "shape:\(shape)")
+        }
+        
         return self.mutate(classes: "border:\(color)", "border:\(width)")
     }
     

@@ -121,8 +121,8 @@ extension SecureField: ViewModifier {
         return self.mutate(padding: length.value, insets: insets)
     }
     
-    public func border(_ color: Tokens.BorderColor, width: Tokens.BorderWidth = .small) -> SecureField {
-        return self.mutate(border: color.value, width: width.value)
+    public func border(_ color: Tokens.BorderColor, width: Tokens.BorderWidth = .small, shape: Tokens.BorderShape? = nil) -> SecureField {
+        return self.mutate(border: color.value, width: width.value, shape: shape?.value)
     }
     
     public func borderShape(_ shape: Tokens.BorderShape) -> SecureField {
