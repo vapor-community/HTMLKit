@@ -31,7 +31,7 @@ final class ModifierTests: XCTestCase {
     func testBackgroundColor() throws {
         
         let view = TestView {
-            HStack {}.backgroundColor(.black)
+            HStack {}.background(.black)
         }
         
         XCTAssertEqual(try renderer.render(view: view),

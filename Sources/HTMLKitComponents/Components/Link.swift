@@ -171,7 +171,12 @@ extension Link: TextModifier {
 
 extension Link: ViewModifier {
     
+    @available(*, deprecated, message: "Use the background(_:) modifier instead.")
     public func backgroundColor(_ color: Tokens.BackgroundColor) -> Link {
+        return self.mutate(backgroundcolor: color.value)
+    }
+    
+    public func background(_ color: Tokens.BackgroundColor) -> Link {
         return self.mutate(backgroundcolor: color.value)
     }
     

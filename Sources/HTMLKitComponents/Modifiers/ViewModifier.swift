@@ -20,7 +20,7 @@ public protocol ViewModifier {
     /// - Parameter color: The color to use for the background.
     ///
     /// - Returns: The view
-    func backgroundColor(_ color: Tokens.BackgroundColor) -> Self
+    func background(_ color: Tokens.BackgroundColor) -> Self
     
     /// Hide the view.
     ///

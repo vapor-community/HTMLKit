@@ -139,7 +139,12 @@ extension TextField: ViewModifier {
         return self.mutate(bordershape: shape.value)
     }
     
+    @available(*, deprecated, message: "Use the background(_:) modifier instead.")
     public func backgroundColor(_ color: Tokens.BackgroundColor) -> TextField {
+        return self.mutate(backgroundcolor: color.value)
+    }
+    
+    public func background(_ color: Tokens.BackgroundColor) -> TextField {
         return self.mutate(backgroundcolor: color.value)
     }
     

@@ -90,7 +90,12 @@ extension Image: ImageModifier {
 
 extension Image: ViewModifier {
     
+    @available(*, deprecated, message: "Use the background(_:) modifier instead.")
     public func backgroundColor(_ color: Tokens.BackgroundColor) -> Image {
+        return self.mutate(backgroundcolor: color.value)
+    }
+    
+    public func background(_ color: Tokens.BackgroundColor) -> Image {
         return self.mutate(backgroundcolor: color.value)
     }
     

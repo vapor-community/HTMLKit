@@ -102,7 +102,12 @@ extension Modal: ViewModifier {
         return self.mutate(bordershape: shape.value)
     }
     
+    @available(*, deprecated, message: "Use the background(_:) modifier instead.")
     public func backgroundColor(_ color: Tokens.BackgroundColor) -> Modal {
+        return self.mutate(backgroundcolor: color.value)
+    }
+    
+    public func background(_ color: Tokens.BackgroundColor) -> Modal {
         return self.mutate(backgroundcolor: color.value)
     }
     

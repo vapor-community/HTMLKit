@@ -79,7 +79,12 @@ public struct Navigation: View, Modifiable, Identifiable {
 
 extension Navigation: ViewModifier {
     
+    @available(*, deprecated, message: "Use the background(_:) modifier instead.")
     public func backgroundColor(_ color: Tokens.BackgroundColor) -> Navigation {
+        return self.mutate(backgroundcolor: color.value)
+    }
+    
+    public func background(_ color: Tokens.BackgroundColor) -> Navigation {
         return self.mutate(backgroundcolor: color.value)
     }
     

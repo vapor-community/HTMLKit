@@ -103,7 +103,12 @@ extension Dropdown: ViewModifier {
         return self.mutate(border: color.value, width: width.value, shape: shape?.value)
     }
     
+    @available(*, deprecated, message: "Use the background(_:) modifier instead.")
     public func backgroundColor(_ color: Tokens.BackgroundColor) -> Dropdown {
+        return self.mutate(backgroundcolor: color.value)
+    }
+    
+    public func background(_ color: Tokens.BackgroundColor) -> Dropdown {
         return self.mutate(backgroundcolor: color.value)
     }
     
