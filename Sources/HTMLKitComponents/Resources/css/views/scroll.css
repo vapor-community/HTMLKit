@@ -1,5 +1,5 @@
-/*
- The stylesheet for the scrollview component.
+/**
+ * The stylesheet for the scroll component.
  */
 
 .scroll {
@@ -26,6 +26,6 @@
     scrollbar-width: none;
 }
 
-.scroll.indicators\:false::-webkit-scrollbar {
+.scroll.indicators\:false::-webkit-scrollbar {
     display: none;
 }

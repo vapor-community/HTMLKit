@@ -51,11 +51,7 @@ public struct Navigation: View, Modifiable, Identifiable {
     ///
     /// - Returns: The navigation
     public func navigationStyle(_ style: Tokens.NavigationStyle) -> Navigation {
-        
-        var copy = self
-        copy.classes.append("style:\(style.value)")
-        
-        return copy
+        return self.mutate(classes: "style:\(style.value)")
     }
     
     /// Set the style for the navigation.

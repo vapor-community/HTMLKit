@@ -251,11 +251,7 @@ public struct Symbol: View, Modifiable {
     ///
     /// - Returns: The symbol
     public func fontSize(_ size: Tokens.FontSize) -> Symbol {
-        
-        var copy = self
-        copy.classes.append("size:\(size.value)")
-        
-        return copy
+        return self.mutate(classes: "size:\(size.value)")
     }
     
     /// Fill the foreground of the symbol.
@@ -264,11 +260,7 @@ public struct Symbol: View, Modifiable {
     ///
     /// - Returns: The symbol
     public func foregroundColor(_ color: Tokens.ForegroundColor) -> Symbol {
-        
-        var copy = self
-        copy.classes.append("foreground:\(color.value)")
-        
-        return copy
+        return self.mutate(classes: "foreground:\(color.value)")
     }
     
     /// Set the drop shadow for the symbol.

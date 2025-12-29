@@ -1,15 +1,5 @@
-/*
- The stylesheet for the snippet component.
- 
- default:
- inline padding: 16px
- font size: 16px
- font weight: normal
- line height: 1.5;
- foreground color: #000000
- 
- darkmode:
- foreground color: #FFFFFF
+/**
+ * The rulesets for the snippet component.
  */
 
 .snippet {

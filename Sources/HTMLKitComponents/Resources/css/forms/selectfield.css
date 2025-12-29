@@ -1,24 +1,5 @@
-/*
- The rulesets for the selectfield component.
- 
- default:
- block padding: 8px
- inline padding: 16px
- font size:
- font weigth: normal
- line height: 1.5
- foreground color: #000000
- border width: 1px
- border color: #DFE3E7
- border radius: 0
- focus color: #0080FF
- background color: #FFFFFF
- 
- darkmode:
- foreground color: #FFFFFF
- border color: #484F56
- focus color: #0080FF
- background color: #22262A
+/**
+ * The rulesets for the selectfield component.
  */
 
 .selectfield {

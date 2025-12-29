@@ -1,8 +1,8 @@
 import HTMLKit
 
-/// A view that represents a option picker.
+/// A view that represents an option picker.
 ///
-/// Use `Picker` to
+/// Use `Picker` to pick an option.
 ///
 /// ```swift
 /// Picker(name: "lorem", selection: "ipsum") {

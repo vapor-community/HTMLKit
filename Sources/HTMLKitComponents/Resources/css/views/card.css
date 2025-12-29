@@ -1,17 +1,5 @@
-/*
- The stylesheet for the card component.
- 
- default:
- block padding: 12px
- inline padding: 16px
- border width: 1px;
- border color: #DFE3E7
- border radius: 0
- background color: #FFFFFF
- 
- darkmode:
- border color: #484F56
- background color: #22262A
+/**
+ * The rulesets for the card component.
  */
 
 .card {

@@ -4,6 +4,10 @@
 
     /**
      * Initiates the tab object.
+     *
+     * @constructor
+     *
+     * @param element
      */
     const Tab = function(element) {
         

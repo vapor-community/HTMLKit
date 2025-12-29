@@ -4,6 +4,10 @@
 
     /**
      * Initiates the video object.
+     *
+     * @constructor
+     *
+     * @param element
      */
     const Video = function(element) {
 

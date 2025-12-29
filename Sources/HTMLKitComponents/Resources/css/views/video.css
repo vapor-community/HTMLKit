@@ -1,3 +1,7 @@
+/**
+ * The rulesets for the video component.
+ */
+
 .video {
     --inlineSize: 100%;
     --borderWidth: 0;

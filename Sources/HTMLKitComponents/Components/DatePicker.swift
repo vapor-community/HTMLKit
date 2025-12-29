@@ -89,9 +89,7 @@ public struct DatePicker: View, Modifiable, Identifiable {
                         .viewBox(x: 0, y: 0, width: 16, height: 16)
                         .namespace("http://www.w3.org/2000/svg")
                         .fill("currentColor")
-                        .strokeWidth(2)
-                        .strokeLineCap(.round)
-                        .strokeLineJoin(.round)
+                        .stroke("currentColor", width: 2, cap: .round, join: .round)
                     }
                     .type(.button)
                     .value(verbatim: "previous")
@@ -111,9 +109,7 @@ public struct DatePicker: View, Modifiable, Identifiable {
                         .viewBox(x: 0, y: 0, width: 16, height: 16)
                         .namespace("http://www.w3.org/2000/svg")
                         .fill("currentColor")
-                        .strokeWidth(2)
-                        .strokeLineCap(.round)
-                        .strokeLineJoin(.round)
+                        .stroke("currentColor", width: 2, cap: .round, join: .round)
                     }
                     .type(.button)
                     .value(verbatim: "next")

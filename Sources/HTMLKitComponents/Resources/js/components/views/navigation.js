@@ -2,6 +2,13 @@
 
      'use strict';
 
+     /**
+      * Initiates the navigation object.
+      *
+      * @constructor
+      *
+      * @param element
+      */
      const Navigation = function (element) {
          
          this.element = element;
@@ -11,7 +18,10 @@
              this.styleMenu();
          }
      };
-     
+
+     /**
+      * Styles the menu.
+      */
      Navigation.prototype.styleMenu = function () {
          
          for (const link of this.links) {
@@ -33,6 +43,9 @@
          }
      };
 
+     /**
+      * Toggles the current navigation entry.
+      */
      Navigation.prototype.toggleState = function (target) {
          target.classList.add('state:active');
      };

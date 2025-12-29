@@ -1,5 +1,5 @@
-/*
- The stylesheet for the carousel component.
+/**
+ * The rulesets for the carousel component.
  */
 
 .carousel {
@@ -41,10 +41,14 @@
     block-size: 50px;
 }
 
+/**
+ * The rulesets for the slide component.
+ */
+
 .slide {
     --backgroundColor: var(--systemBackgroundColor);
     --backgroundOpacity: 1.0;
-    
+
     position: relative;
     display: flex;
     block-size: inherit;
@@ -52,8 +56,8 @@
     background-color: hsla(var(--backgroundColor), var(--backgroundOpacity));
 }
 
-/*
- indicator component
+/**
+ * The rulesets for the indicator component.
  */
 
 .indicator {
