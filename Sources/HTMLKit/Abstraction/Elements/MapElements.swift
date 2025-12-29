@@ -11,8 +11,7 @@ import OrderedCollections
 ///     .useMap("lorem")
 /// Map {
 ///     Area()
-///         .shape(.circle)
-///         .coordinates("10, 10, 10 ,10")
+///         .shape(.circle, coordinates: "10, 10, 10 ,10")
 ///         .alternate("Lorem ipsum...")
 ///         .reference("https://...")
 /// }
@@ -71,7 +70,12 @@ extension Area: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, A
         return mutate(class: value)
     }
 
+    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> Area {
+        return mutate(contenteditable: value)
+    }
+    
+    public func editable(_ value: Bool = true) -> Area {
         return mutate(contenteditable: value)
     }
 
@@ -79,11 +83,21 @@ extension Area: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, A
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Area {
         return mutate(draggable: value)
     }
+    
+    public func draggable(_ value: Bool = true) -> Area {
+        return mutate(draggable: value)
+    }
 
+    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> Area {
+        return mutate(enterkeyhint: value.rawValue)
+    }
+    
+    public func enterKey(_ value: Values.Hint) -> Area {
         return mutate(enterkeyhint: value.rawValue)
     }
 
@@ -96,7 +110,7 @@ extension Area: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, A
         return self
     }
     
-    @available(*, deprecated, message: "The inputmode attribute is actually an enumerated attribute. Use the inputMode(_: Mode) modifier instead.")
+    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
     public func inputMode(_ value: String) -> Area {
         return mutate(inputmode: value)
     }
@@ -157,7 +171,12 @@ extension Area: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, A
         return mutate(role: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> Area {
+        return mutate(spellcheck: value)
+    }
+    
+    public func spellcheck(_ value: Bool = true) -> Area {
         return mutate(spellcheck: value)
     }
 
@@ -182,8 +201,18 @@ extension Area: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, A
         return mutate(title: value)
     }
     
+    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Area {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func translate(_ value: Bool = true) -> Area {
+        
+        if value {
+            return mutate(translate: "yes")
+        }
+        
+        return mutate(translate: "no")
     }
     
     public func inert(_ condition: Bool = true) -> Area {
@@ -208,12 +237,22 @@ extension Area: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, A
         return mutate(alternate: value)
     }
     
+    @available(*, deprecated, message: "Use the shape(_:coordinates:) modifier instead.")
     public func coordinates(_ value: String) -> Area {
         return mutate(coords: value)
     }
     
+    @available(*, deprecated, message: "Use the shape(_:coordinates:) modifier instead.")
     public func shape(_ value: Values.Shape) -> Area {
         return mutate(shape: value.rawValue)
+    }
+    
+    public func shape() -> Area {
+        return mutate(shape: "default")
+    }
+    
+    public func shape(_ value: Values.Shape, coordinates: String) -> Area {
+        return mutate(shape: value.rawValue).mutate(coords: coordinates)
     }
     
     public func reference(_ value: String) -> Area {

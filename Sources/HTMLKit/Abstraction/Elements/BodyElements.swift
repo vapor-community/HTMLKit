@@ -216,7 +216,12 @@ extension Article: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
         return mutate(class: value)
     }
 
+    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> Article {
+        return mutate(contenteditable: value)
+    }
+    
+    public func editable(_ value: Bool = true) -> Article {
         return mutate(contenteditable: value)
     }
 
@@ -224,11 +229,21 @@ extension Article: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Article {
         return mutate(draggable: value)
     }
+    
+    public func draggable(_ value: Bool = true) -> Article {
+        return mutate(draggable: value)
+    }
 
+    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> Article {
+        return mutate(enterkeyhint: value.rawValue)
+    }
+    
+    public func enterKey(_ value: Values.Hint) -> Article {
         return mutate(enterkeyhint: value.rawValue)
     }
     
@@ -241,7 +256,7 @@ extension Article: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
         return self
     }
 
-    @available(*, deprecated, message: "The inputmode attribute is actually an enumerated attribute. Use the inputMode(_: Mode) modifier instead.")
+    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
     public func inputMode(_ value: String) -> Article {
         return mutate(inputmode: value)
     }
@@ -302,7 +317,12 @@ extension Article: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
         return mutate(role: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> Article {
+        return mutate(spellcheck: value)
+    }
+    
+    public func spellcheck(_ value: Bool = true) -> Article {
         return mutate(spellcheck: value)
     }
 
@@ -327,8 +347,18 @@ extension Article: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Article {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func translate(_ value: Bool = true) -> Article {
+        
+        if value {
+            return mutate(translate: "yes")
+        }
+        
+        return mutate(translate: "no")
     }
     
     public func inert(_ condition: Bool = true) -> Article {
@@ -516,7 +546,12 @@ extension Section: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
         return mutate(class: value)
     }
 
+    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> Section {
+        return mutate(contenteditable: value)
+    }
+    
+    public func editable(_ value: Bool = true) -> Section {
         return mutate(contenteditable: value)
     }
 
@@ -524,11 +559,21 @@ extension Section: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Section {
         return mutate(draggable: value)
     }
+    
+    public func draggable(_ value: Bool = true) -> Section {
+        return mutate(draggable: value)
+    }
 
+    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> Section {
+        return mutate(enterkeyhint: value.rawValue)
+    }
+    
+    public func enterKey(_ value: Values.Hint) -> Section {
         return mutate(enterkeyhint: value.rawValue)
     }
     
@@ -541,7 +586,7 @@ extension Section: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
         return self
     }
 
-    @available(*, deprecated, message: "The inputmode attribute is actually an enumerated attribute. Use the inputMode(_: Mode) modifier instead.")
+    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
     public func inputMode(_ value: String) -> Section {
         return mutate(inputmode: value)
     }
@@ -602,7 +647,12 @@ extension Section: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
         return mutate(role: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> Section {
+        return mutate(spellcheck: value)
+    }
+    
+    public func spellcheck(_ value: Bool = true) -> Section {
         return mutate(spellcheck: value)
     }
 
@@ -627,8 +677,18 @@ extension Section: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
         return mutate(title: value)
     }
 
+    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Section {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func translate(_ value: Bool = true) -> Section {
+        
+        if value {
+            return mutate(translate: "yes")
+        }
+        
+        return mutate(translate: "no")
     }
     
     public func inert(_ condition: Bool = true) -> Section {
@@ -818,7 +878,12 @@ extension Navigation: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
         return mutate(class: value)
     }
 
+    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> Navigation {
+        return mutate(contenteditable: value)
+    }
+    
+    public func editable(_ value: Bool = true) -> Navigation {
         return mutate(contenteditable: value)
     }
 
@@ -826,11 +891,21 @@ extension Navigation: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Navigation {
         return mutate(draggable: value)
     }
+    
+    public func draggable(_ value: Bool = true) -> Navigation {
+        return mutate(draggable: value)
+    }
 
+    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> Navigation {
+        return mutate(enterkeyhint: value.rawValue)
+    }
+    
+    public func enterKey(_ value: Values.Hint) -> Navigation {
         return mutate(enterkeyhint: value.rawValue)
     }
     
@@ -843,7 +918,7 @@ extension Navigation: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
         return self
     }
 
-    @available(*, deprecated, message: "The inputmode attribute is actually an enumerated attribute. Use the inputMode(_: Mode) modifier instead.")
+    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
     public func inputMode(_ value: String) -> Navigation {
         return mutate(inputmode: value)
     }
@@ -904,7 +979,12 @@ extension Navigation: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
         return mutate(role: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> Navigation {
+        return mutate(spellcheck: value)
+    }
+    
+    public func spellcheck(_ value: Bool = true) -> Navigation {
         return mutate(spellcheck: value)
     }
 
@@ -929,8 +1009,18 @@ extension Navigation: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
         return mutate(title: value)
     }
     
+    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Navigation {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func translate(_ value: Bool = true) -> Navigation {
+        
+        if value {
+            return mutate(translate: "yes")
+        }
+        
+        return mutate(translate: "no")
     }
     
     public func inert(_ condition: Bool = true) -> Navigation {
@@ -1116,7 +1206,12 @@ extension Aside: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(class: value)
     }
 
+    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> Aside {
+        return mutate(contenteditable: value)
+    }
+    
+    public func editable(_ value: Bool = true) -> Aside {
         return mutate(contenteditable: value)
     }
 
@@ -1124,11 +1219,21 @@ extension Aside: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Aside {
         return mutate(draggable: value)
     }
+    
+    public func draggable(_ value: Bool = true) -> Aside {
+        return mutate(draggable: value)
+    }
 
+    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> Aside {
+        return mutate(enterkeyhint: value.rawValue)
+    }
+    
+    public func enterKey(_ value: Values.Hint) -> Aside {
         return mutate(enterkeyhint: value.rawValue)
     }
     
@@ -1141,7 +1246,7 @@ extension Aside: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return self
     }
 
-    @available(*, deprecated, message: "The inputmode attribute is actually an enumerated attribute. Use the inputMode(_: Mode) modifier instead.")
+    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
     public func inputMode(_ value: String) -> Aside {
         return mutate(inputmode: value)
     }
@@ -1202,7 +1307,12 @@ extension Aside: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(role: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> Aside {
+        return mutate(spellcheck: value)
+    }
+    
+    public func spellcheck(_ value: Bool = true) -> Aside {
         return mutate(spellcheck: value)
     }
 
@@ -1227,8 +1337,18 @@ extension Aside: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(title: value)
     }
     
+    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Aside {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func translate(_ value: Bool = true) -> Aside {
+        
+        if value {
+            return mutate(translate: "yes")
+        }
+        
+        return mutate(translate: "no")
     }
     
     public func inert(_ condition: Bool = true) -> Aside {
@@ -1411,7 +1531,12 @@ extension Heading1: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(class: value)
     }
     
+    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> Heading1 {
+        return mutate(contenteditable: value)
+    }
+    
+    public func editable(_ value: Bool = true) -> Heading1 {
         return mutate(contenteditable: value)
     }
     
@@ -1419,11 +1544,21 @@ extension Heading1: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(dir: value.rawValue)
     }
     
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Heading1 {
         return mutate(draggable: value)
     }
     
+    public func draggable(_ value: Bool = true) -> Heading1 {
+        return mutate(draggable: value)
+    }
+    
+    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> Heading1 {
+        return mutate(enterkeyhint: value.rawValue)
+    }
+    
+    public func enterKey(_ value: Values.Hint) -> Heading1 {
         return mutate(enterkeyhint: value.rawValue)
     }
     
@@ -1436,7 +1571,7 @@ extension Heading1: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return self
     }
     
-    @available(*, deprecated, message: "The inputmode attribute is actually an enumerated attribute. Use the inputMode(_: Mode) modifier instead.")
+    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
     public func inputMode(_ value: String) -> Heading1 {
         return mutate(inputmode: value)
     }
@@ -1497,7 +1632,12 @@ extension Heading1: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(role: value.rawValue)
     }
     
+    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> Heading1 {
+        return mutate(spellcheck: value)
+    }
+    
+    public func spellcheck(_ value: Bool = true) -> Heading1 {
         return mutate(spellcheck: value)
     }
     
@@ -1522,8 +1662,18 @@ extension Heading1: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(title: value)
     }
     
+    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Heading1 {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func translate(_ value: Bool = true) -> Heading1 {
+        
+        if value {
+            return mutate(translate: "yes")
+        }
+        
+        return mutate(translate: "no")
     }
     
     public func inert(_ condition: Bool = true) -> Heading1 {
@@ -1713,7 +1863,12 @@ extension Heading2: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(class: value)
     }
     
+    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> Heading2 {
+        return mutate(contenteditable: value)
+    }
+    
+    public func editable(_ value: Bool = true) -> Heading2 {
         return mutate(contenteditable: value)
     }
     
@@ -1721,11 +1876,21 @@ extension Heading2: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(dir: value.rawValue)
     }
     
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Heading2 {
         return mutate(draggable: value)
     }
     
+    public func draggable(_ value: Bool = true) -> Heading2 {
+        return mutate(draggable: value)
+    }
+    
+    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> Heading2 {
+        return mutate(enterkeyhint: value.rawValue)
+    }
+    
+    public func enterKey(_ value: Values.Hint) -> Heading2 {
         return mutate(enterkeyhint: value.rawValue)
     }
     
@@ -1738,7 +1903,7 @@ extension Heading2: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return self
     }
     
-    @available(*, deprecated, message: "The inputmode attribute is actually an enumerated attribute. Use the inputMode(_: Mode) modifier instead.")
+    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
     public func inputMode(_ value: String) -> Heading2 {
         return mutate(inputmode: value)
     }
@@ -1799,7 +1964,12 @@ extension Heading2: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(role: value.rawValue)
     }
     
+    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> Heading2 {
+        return mutate(spellcheck: value)
+    }
+    
+    public func spellcheck(_ value: Bool = true) -> Heading2 {
         return mutate(spellcheck: value)
     }
     
@@ -1824,8 +1994,18 @@ extension Heading2: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(title: value)
     }
     
+    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Heading2 {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func translate(_ value: Bool = true) -> Heading2 {
+        
+        if value {
+            return mutate(translate: "yes")
+        }
+        
+        return mutate(translate: "no")
     }
     
     public func inert(_ condition: Bool = true) -> Heading2 {
@@ -2015,19 +2195,34 @@ extension Heading3: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(class: value)
     }
 
+    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> Heading3 {
+        return mutate(contenteditable: value)
+    }
+    
+    public func editable(_ value: Bool = true) -> Heading3 {
         return mutate(contenteditable: value)
     }
 
     public func direction(_ value: Values.Direction) -> Heading3 {
         return mutate(dir: value.rawValue)
     }
-
+    
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Heading3 {
         return mutate(draggable: value)
     }
+    
+    public func draggable(_ value: Bool = true) -> Heading3 {
+        return mutate(draggable: value)
+    }
 
+    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> Heading3 {
+        return mutate(enterkeyhint: value.rawValue)
+    }
+    
+    public func enterKey(_ value: Values.Hint) -> Heading3 {
         return mutate(enterkeyhint: value.rawValue)
     }
     
@@ -2040,7 +2235,7 @@ extension Heading3: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return self
     }
 
-    @available(*, deprecated, message: "The inputmode attribute is actually an enumerated attribute. Use the inputMode(_: Mode) modifier instead.")
+    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
     public func inputMode(_ value: String) -> Heading3 {
         return mutate(inputmode: value)
     }
@@ -2101,7 +2296,12 @@ extension Heading3: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(role: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> Heading3 {
+        return mutate(spellcheck: value)
+    }
+    
+    public func spellcheck(_ value: Bool = true) -> Heading3 {
         return mutate(spellcheck: value)
     }
 
@@ -2126,8 +2326,18 @@ extension Heading3: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(title: value)
     }
     
+    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Heading3 {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func translate(_ value: Bool = true) -> Heading3 {
+        
+        if value {
+            return mutate(translate: "yes")
+        }
+        
+        return mutate(translate: "no")
     }
     
     public func inert(_ condition: Bool = true) -> Heading3 {
@@ -2317,7 +2527,12 @@ extension Heading4: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(class: value)
     }
 
+    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> Heading4 {
+        return mutate(contenteditable: value)
+    }
+    
+    public func editable(_ value: Bool = true) -> Heading4 {
         return mutate(contenteditable: value)
     }
 
@@ -2325,11 +2540,21 @@ extension Heading4: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Heading4 {
         return mutate(draggable: value)
     }
+    
+    public func draggable(_ value: Bool = true) -> Heading4 {
+        return mutate(draggable: value)
+    }
 
+    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> Heading4 {
+        return mutate(enterkeyhint: value.rawValue)
+    }
+    
+    public func enterKey(_ value: Values.Hint) -> Heading4 {
         return mutate(enterkeyhint: value.rawValue)
     }
     
@@ -2342,7 +2567,7 @@ extension Heading4: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return self
     }
 
-    @available(*, deprecated, message: "The inputmode attribute is actually an enumerated attribute. Use the inputMode(_: Mode) modifier instead.")
+    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
     public func inputMode(_ value: String) -> Heading4 {
         return mutate(inputmode: value)
     }
@@ -2403,7 +2628,12 @@ extension Heading4: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(role: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> Heading4 {
+        return mutate(spellcheck: value)
+    }
+    
+    public func spellcheck(_ value: Bool = true) -> Heading4 {
         return mutate(spellcheck: value)
     }
 
@@ -2428,8 +2658,18 @@ extension Heading4: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(title: value)
     }
     
+    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Heading4 {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func translate(_ value: Bool = true) -> Heading4 {
+        
+        if value {
+            return mutate(translate: "yes")
+        }
+        
+        return mutate(translate: "no")
     }
     
     public func inert(_ condition: Bool = true) -> Heading4 {
@@ -2619,7 +2859,12 @@ extension Heading5: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(class: value)
     }
 
+    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> Heading5 {
+        return mutate(contenteditable: value)
+    }
+    
+    public func editable(_ value: Bool = true) -> Heading5 {
         return mutate(contenteditable: value)
     }
 
@@ -2627,11 +2872,21 @@ extension Heading5: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Heading5 {
         return mutate(draggable: value)
     }
+    
+    public func draggable(_ value: Bool = true) -> Heading5 {
+        return mutate(draggable: value)
+    }
 
+    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> Heading5 {
+        return mutate(enterkeyhint: value.rawValue)
+    }
+    
+    public func enterKey(_ value: Values.Hint) -> Heading5 {
         return mutate(enterkeyhint: value.rawValue)
     }
     
@@ -2644,7 +2899,7 @@ extension Heading5: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return self
     }
 
-    @available(*, deprecated, message: "The inputmode attribute is actually an enumerated attribute. Use the inputMode(_: Mode) modifier instead.")
+    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
     public func inputMode(_ value: String) -> Heading5 {
         return mutate(inputmode: value)
     }
@@ -2705,7 +2960,12 @@ extension Heading5: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(role: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> Heading5 {
+        return mutate(spellcheck: value)
+    }
+    
+    public func spellcheck(_ value: Bool = true) -> Heading5 {
         return mutate(spellcheck: value)
     }
 
@@ -2730,8 +2990,18 @@ extension Heading5: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(title: value)
     }
     
+    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Heading5 {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func translate(_ value: Bool = true) -> Heading5 {
+        
+        if value {
+            return mutate(translate: "yes")
+        }
+        
+        return mutate(translate: "no")
     }
     
     public func inert(_ condition: Bool = true) -> Heading5 {
@@ -2921,7 +3191,12 @@ extension Heading6: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(class: value)
     }
 
+    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> Heading6 {
+        return mutate(contenteditable: value)
+    }
+    
+    public func editable(_ value: Bool = true) -> Heading6 {
         return mutate(contenteditable: value)
     }
 
@@ -2929,11 +3204,21 @@ extension Heading6: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Heading6 {
         return mutate(draggable: value)
     }
+    
+    public func draggable(_ value: Bool = true) -> Heading6 {
+        return mutate(draggable: value)
+    }
 
+    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> Heading6 {
+        return mutate(enterkeyhint: value.rawValue)
+    }
+    
+    public func enterKey(_ value: Values.Hint) -> Heading6 {
         return mutate(enterkeyhint: value.rawValue)
     }
     
@@ -2946,7 +3231,7 @@ extension Heading6: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return self
     }
 
-    @available(*, deprecated, message: "The inputmode attribute is actually an enumerated attribute. Use the inputMode(_: Mode) modifier instead.")
+    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
     public func inputMode(_ value: String) -> Heading6 {
         return mutate(inputmode: value)
     }
@@ -3007,7 +3292,12 @@ extension Heading6: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(role: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> Heading6 {
+        return mutate(spellcheck: value)
+    }
+    
+    public func spellcheck(_ value: Bool = true) -> Heading6 {
         return mutate(spellcheck: value)
     }
 
@@ -3032,8 +3322,18 @@ extension Heading6: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(title: value)
     }
     
+    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Heading6 {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func translate(_ value: Bool = true) -> Heading6 {
+        
+        if value {
+            return mutate(translate: "yes")
+        }
+        
+        return mutate(translate: "no")
     }
     
     public func inert(_ condition: Bool = true) -> Heading6 {
@@ -3228,7 +3528,12 @@ extension HeadingGroup: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttri
         return mutate(class: value)
     }
 
+    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> HeadingGroup {
+        return mutate(contenteditable: value)
+    }
+    
+    public func editable(_ value: Bool = true) -> HeadingGroup {
         return mutate(contenteditable: value)
     }
 
@@ -3236,11 +3541,21 @@ extension HeadingGroup: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttri
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> HeadingGroup {
         return mutate(draggable: value)
     }
+    
+    public func draggable(_ value: Bool = true) -> HeadingGroup {
+        return mutate(draggable: value)
+    }
 
+    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> HeadingGroup {
+        return mutate(enterkeyhint: value.rawValue)
+    }
+    
+    public func enterKey(_ value: Values.Hint) -> HeadingGroup {
         return mutate(enterkeyhint: value.rawValue)
     }
     
@@ -3253,7 +3568,7 @@ extension HeadingGroup: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttri
         return self
     }
 
-    @available(*, deprecated, message: "The inputmode attribute is actually an enumerated attribute. Use the inputMode(_: Mode) modifier instead.")
+    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
     public func inputMode(_ value: String) -> HeadingGroup {
         return mutate(inputmode: value)
     }
@@ -3314,7 +3629,12 @@ extension HeadingGroup: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttri
         return mutate(role: value.rawValue)
     }
     
+    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> HeadingGroup {
+        return mutate(spellcheck: value)
+    }
+    
+    public func spellcheck(_ value: Bool = true) -> HeadingGroup {
         return mutate(spellcheck: value)
     }
 
@@ -3339,8 +3659,18 @@ extension HeadingGroup: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttri
         return mutate(title: value)
     }
     
+    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> HeadingGroup {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func translate(_ value: Bool = true) -> HeadingGroup {
+        
+        if value {
+            return mutate(translate: "yes")
+        }
+        
+        return mutate(translate: "no")
     }
     
     public func inert(_ condition: Bool = true) -> HeadingGroup {
@@ -3524,7 +3854,12 @@ extension Header: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
         return mutate(class: value)
     }
 
+    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> Header {
+        return mutate(contenteditable: value)
+    }
+    
+    public func editable(_ value: Bool = true) -> Header {
         return mutate(contenteditable: value)
     }
 
@@ -3532,11 +3867,21 @@ extension Header: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Header {
         return mutate(draggable: value)
     }
+    
+    public func draggable(_ value: Bool = true) -> Header {
+        return mutate(draggable: value)
+    }
 
+    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> Header {
+        return mutate(enterkeyhint: value.rawValue)
+    }
+
+    public func enterKey(_ value: Values.Hint) -> Header {
         return mutate(enterkeyhint: value.rawValue)
     }
     
@@ -3549,7 +3894,7 @@ extension Header: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
         return self
     }
 
-    @available(*, deprecated, message: "The inputmode attribute is actually an enumerated attribute. Use the inputMode(_: Mode) modifier instead.")
+    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
     public func inputMode(_ value: String) -> Header {
         return mutate(inputmode: value)
     }
@@ -3610,7 +3955,12 @@ extension Header: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
         return mutate(role: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> Header {
+        return mutate(spellcheck: value)
+    }
+    
+    public func spellcheck(_ value: Bool = true) -> Header {
         return mutate(spellcheck: value)
     }
 
@@ -3635,8 +3985,18 @@ extension Header: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
         return mutate(title: value)
     }
     
+    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Header {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func translate(_ value: Bool = true) -> Header {
+        
+        if value {
+            return mutate(translate: "yes")
+        }
+        
+        return mutate(translate: "no")
     }
     
     public func inert(_ condition: Bool = true) -> Header {
@@ -3818,7 +4178,12 @@ extension Footer: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
         return mutate(class: value)
     }
 
+    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> Footer {
+        return mutate(contenteditable: value)
+    }
+    
+    public func editable(_ value: Bool = true) -> Footer {
         return mutate(contenteditable: value)
     }
 
@@ -3826,11 +4191,21 @@ extension Footer: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Footer {
         return mutate(draggable: value)
     }
+    
+    public func draggable(_ value: Bool = true) -> Footer {
+        return mutate(draggable: value)
+    }
 
+    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> Footer {
+        return mutate(enterkeyhint: value.rawValue)
+    }
+    
+    public func enterKey(_ value: Values.Hint) -> Footer {
         return mutate(enterkeyhint: value.rawValue)
     }
     
@@ -3843,7 +4218,7 @@ extension Footer: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
         return self
     }
 
-    @available(*, deprecated, message: "The inputmode attribute is actually an enumerated attribute. Use the inputMode(_: Mode) modifier instead.")
+    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
     public func inputMode(_ value: String) -> Footer {
         return mutate(inputmode: value)
     }
@@ -3904,7 +4279,12 @@ extension Footer: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
         return mutate(role: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> Footer {
+        return mutate(spellcheck: value)
+    }
+    
+    public func spellcheck(_ value: Bool = true) -> Footer {
         return mutate(spellcheck: value)
     }
 
@@ -3929,8 +4309,18 @@ extension Footer: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
         return mutate(title: value)
     }
     
+    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Footer {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func translate(_ value: Bool = true) -> Footer {
+        
+        if value {
+            return mutate(translate: "yes")
+        }
+        
+        return mutate(translate: "no")
     }
     
     public func inert(_ condition: Bool = true) -> Footer {
@@ -4119,7 +4509,12 @@ extension Address: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
         return mutate(class: value)
     }
 
+    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> Address {
+        return mutate(contenteditable: value)
+    }
+    
+    public func editable(_ value: Bool = true) -> Address {
         return mutate(contenteditable: value)
     }
 
@@ -4127,11 +4522,21 @@ extension Address: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Address {
         return mutate(draggable: value)
     }
+    
+    public func draggable(_ value: Bool = true) -> Address {
+        return mutate(draggable: value)
+    }
 
+    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> Address {
+        return mutate(enterkeyhint: value.rawValue)
+    }
+    
+    public func enterKey(_ value: Values.Hint) -> Address {
         return mutate(enterkeyhint: value.rawValue)
     }
     
@@ -4144,7 +4549,7 @@ extension Address: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
         return self
     }
 
-    @available(*, deprecated, message: "The inputmode attribute is actually an enumerated attribute. Use the inputMode(_: Mode) modifier instead.")
+    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
     public func inputMode(_ value: String) -> Address {
         return mutate(inputmode: value)
     }
@@ -4205,7 +4610,12 @@ extension Address: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
         return mutate(role: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> Address {
+        return mutate(spellcheck: value)
+    }
+    
+    public func spellcheck(_ value: Bool = true) -> Address {
         return mutate(spellcheck: value)
     }
 
@@ -4230,8 +4640,18 @@ extension Address: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
         return mutate(title: value)
     }
     
+    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Address {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func translate(_ value: Bool = true) -> Address {
+        
+        if value {
+            return mutate(translate: "yes")
+        }
+        
+        return mutate(translate: "no")
     }
     
     public func inert(_ condition: Bool = true) -> Address {
@@ -4414,7 +4834,12 @@ extension Paragraph: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(class: value)
     }
 
+    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> Paragraph {
+        return mutate(contenteditable: value)
+    }
+    
+    public func editable(_ value: Bool = true) -> Paragraph {
         return mutate(contenteditable: value)
     }
 
@@ -4422,11 +4847,21 @@ extension Paragraph: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Paragraph {
         return mutate(draggable: value)
     }
+    
+    public func draggable(_ value: Bool = true) -> Paragraph {
+        return mutate(draggable: value)
+    }
 
+    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> Paragraph {
+        return mutate(enterkeyhint: value.rawValue)
+    }
+    
+    public func enterKey(_ value: Values.Hint) -> Paragraph {
         return mutate(enterkeyhint: value.rawValue)
     }
     
@@ -4439,7 +4874,7 @@ extension Paragraph: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return self
     }
 
-    @available(*, deprecated, message: "The inputmode attribute is actually an enumerated attribute. Use the inputMode(_: Mode) modifier instead.")
+    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
     public func inputMode(_ value: String) -> Paragraph {
         return mutate(inputmode: value)
     }
@@ -4499,8 +4934,13 @@ extension Paragraph: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
     public func role(_ value: Values.Role) -> Paragraph {
         return mutate(role: value.rawValue)
     }
-
+    
+    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> Paragraph {
+        return mutate(spellcheck: value)
+    }
+    
+    public func spellcheck(_ value: Bool = true) -> Paragraph {
         return mutate(spellcheck: value)
     }
 
@@ -4525,8 +4965,18 @@ extension Paragraph: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(title: value)
     }
     
+    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Paragraph {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func translate(_ value: Bool = true) -> Paragraph {
+        
+        if value {
+            return mutate(translate: "yes")
+        }
+        
+        return mutate(translate: "no")
     }
     
     public func inert(_ condition: Bool = true) -> Paragraph {
@@ -4713,7 +5163,12 @@ extension HorizontalRule: GlobalAttributes, GlobalEventAttributes, GlobalAriaAtt
         return mutate(class: value)
     }
 
+    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> HorizontalRule {
+        return mutate(contenteditable: value)
+    }
+    
+    public func editable(_ value: Bool = true) -> HorizontalRule {
         return mutate(contenteditable: value)
     }
 
@@ -4721,11 +5176,21 @@ extension HorizontalRule: GlobalAttributes, GlobalEventAttributes, GlobalAriaAtt
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> HorizontalRule {
         return mutate(draggable: value)
     }
+    
+    public func draggable(_ value: Bool = true) -> HorizontalRule {
+        return mutate(draggable: value)
+    }
 
+    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> HorizontalRule {
+        return mutate(enterkeyhint: value.rawValue)
+    }
+    
+    public func enterKey(_ value: Values.Hint) -> HorizontalRule {
         return mutate(enterkeyhint: value.rawValue)
     }
     
@@ -4738,7 +5203,7 @@ extension HorizontalRule: GlobalAttributes, GlobalEventAttributes, GlobalAriaAtt
         return self
     }
 
-    @available(*, deprecated, message: "The inputmode attribute is actually an enumerated attribute. Use the inputMode(_: Mode) modifier instead.")
+    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
     public func inputMode(_ value: String) -> HorizontalRule {
         return mutate(inputmode: value)
     }
@@ -4799,7 +5264,12 @@ extension HorizontalRule: GlobalAttributes, GlobalEventAttributes, GlobalAriaAtt
         return mutate(role: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> HorizontalRule {
+        return mutate(spellcheck: value)
+    }
+    
+    public func spellcheck(_ value: Bool = true) -> HorizontalRule {
         return mutate(spellcheck: value)
     }
 
@@ -4824,8 +5294,18 @@ extension HorizontalRule: GlobalAttributes, GlobalEventAttributes, GlobalAriaAtt
         return mutate(title: value)
     }
     
+    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> HorizontalRule {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func translate(_ value: Bool = true) -> HorizontalRule {
+        
+        if value {
+            return mutate(translate: "yes")
+        }
+        
+        return mutate(translate: "no")
     }
     
     public func inert(_ condition: Bool = true) -> HorizontalRule {
@@ -5014,7 +5494,12 @@ extension PreformattedText: GlobalAttributes, GlobalEventAttributes, GlobalAriaA
         return mutate(class: value)
     }
 
+    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> PreformattedText {
+        return mutate(contenteditable: value)
+    }
+    
+    public func editable(_ value: Bool = true) -> PreformattedText {
         return mutate(contenteditable: value)
     }
 
@@ -5022,11 +5507,21 @@ extension PreformattedText: GlobalAttributes, GlobalEventAttributes, GlobalAriaA
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> PreformattedText {
         return mutate(draggable: value)
     }
+    
+    public func draggable(_ value: Bool = true) -> PreformattedText {
+        return mutate(draggable: value)
+    }
 
+    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> PreformattedText {
+        return mutate(enterkeyhint: value.rawValue)
+    }
+    
+    public func enterKey(_ value: Values.Hint) -> PreformattedText {
         return mutate(enterkeyhint: value.rawValue)
     }
     
@@ -5039,7 +5534,7 @@ extension PreformattedText: GlobalAttributes, GlobalEventAttributes, GlobalAriaA
         return self
     }
 
-    @available(*, deprecated, message: "The inputmode attribute is actually an enumerated attribute. Use the inputMode(_: Mode) modifier instead.")
+    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
     public func inputMode(_ value: String) -> PreformattedText {
         return mutate(inputmode: value)
     }
@@ -5100,7 +5595,12 @@ extension PreformattedText: GlobalAttributes, GlobalEventAttributes, GlobalAriaA
         return mutate(role: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> PreformattedText {
+        return mutate(spellcheck: value)
+    }
+    
+    public func spellcheck(_ value: Bool = true) -> PreformattedText {
         return mutate(spellcheck: value)
     }
 
@@ -5125,8 +5625,18 @@ extension PreformattedText: GlobalAttributes, GlobalEventAttributes, GlobalAriaA
         return mutate(title: value)
     }
     
+    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> PreformattedText {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func translate(_ value: Bool = true) -> PreformattedText {
+        
+        if value {
+            return mutate(translate: "yes")
+        }
+        
+        return mutate(translate: "no")
     }
     
     public func inert(_ condition: Bool = true) -> PreformattedText {
@@ -5309,7 +5819,12 @@ extension Blockquote: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
         return mutate(class: value)
     }
 
+    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> Blockquote {
+        return mutate(contenteditable: value)
+    }
+    
+    public func editable(_ value: Bool = true) -> Blockquote {
         return mutate(contenteditable: value)
     }
 
@@ -5317,11 +5832,21 @@ extension Blockquote: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Blockquote {
         return mutate(draggable: value)
     }
+    
+    public func draggable(_ value: Bool = true) -> Blockquote {
+        return mutate(draggable: value)
+    }
 
+    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> Blockquote {
+        return mutate(enterkeyhint: value.rawValue)
+    }
+    
+    public func enterKey(_ value: Values.Hint) -> Blockquote {
         return mutate(enterkeyhint: value.rawValue)
     }
     
@@ -5334,7 +5859,7 @@ extension Blockquote: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
         return self
     }
 
-    @available(*, deprecated, message: "The inputmode attribute is actually an enumerated attribute. Use the inputMode(_: Mode) modifier instead.")
+    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
     public func inputMode(_ value: String) -> Blockquote {
         return mutate(inputmode: value)
     }
@@ -5395,7 +5920,12 @@ extension Blockquote: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
         return mutate(role: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> Blockquote {
+        return mutate(spellcheck: value)
+    }
+    
+    public func spellcheck(_ value: Bool = true) -> Blockquote {
         return mutate(spellcheck: value)
     }
 
@@ -5420,8 +5950,18 @@ extension Blockquote: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
         return mutate(title: value)
     }
     
+    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Blockquote {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func translate(_ value: Bool = true) -> Blockquote {
+        
+        if value {
+            return mutate(translate: "yes")
+        }
+        
+        return mutate(translate: "no")
     }
     
     public func inert(_ condition: Bool = true) -> Blockquote {
@@ -5620,7 +6160,12 @@ extension OrderedList: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
         return mutate(class: value)
     }
 
+    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> OrderedList {
+        return mutate(contenteditable: value)
+    }
+    
+    public func editable(_ value: Bool = true) -> OrderedList {
         return mutate(contenteditable: value)
     }
 
@@ -5628,11 +6173,21 @@ extension OrderedList: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> OrderedList {
         return mutate(draggable: value)
     }
+    
+    public func draggable(_ value: Bool = true) -> OrderedList {
+        return mutate(draggable: value)
+    }
 
+    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> OrderedList {
+        return mutate(enterkeyhint: value.rawValue)
+    }
+    
+    public func enterKey(_ value: Values.Hint) -> OrderedList {
         return mutate(enterkeyhint: value.rawValue)
     }
     
@@ -5645,7 +6200,7 @@ extension OrderedList: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
         return self
     }
 
-    @available(*, deprecated, message: "The inputmode attribute is actually an enumerated attribute. Use the inputMode(_: Mode) modifier instead.")
+    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
     public func inputMode(_ value: String) -> OrderedList {
         return mutate(inputmode: value)
     }
@@ -5706,7 +6261,12 @@ extension OrderedList: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
         return mutate(role: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> OrderedList {
+        return mutate(spellcheck: value)
+    }
+    
+    public func spellcheck(_ value: Bool = true) -> OrderedList {
         return mutate(spellcheck: value)
     }
 
@@ -5731,8 +6291,18 @@ extension OrderedList: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
         return mutate(title: value)
     }
     
+    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> OrderedList {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func translate(_ value: Bool = true) -> OrderedList {
+        
+        if value {
+            return mutate(translate: "yes")
+        }
+        
+        return mutate(translate: "no")
     }
     
     public func inert(_ condition: Bool = true) -> OrderedList {
@@ -5932,7 +6502,12 @@ extension UnorderedList: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttr
         return mutate(class: value)
     }
 
+    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> UnorderedList {
+        return mutate(contenteditable: value)
+    }
+    
+    public func editable(_ value: Bool = true) -> UnorderedList {
         return mutate(contenteditable: value)
     }
 
@@ -5940,11 +6515,21 @@ extension UnorderedList: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttr
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> UnorderedList {
         return mutate(draggable: value)
     }
+    
+    public func draggable(_ value: Bool = true) -> UnorderedList {
+        return mutate(draggable: value)
+    }
 
+    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> UnorderedList {
+        return mutate(enterkeyhint: value.rawValue)
+    }
+    
+    public func enterKey(_ value: Values.Hint) -> UnorderedList {
         return mutate(enterkeyhint: value.rawValue)
     }
     
@@ -5957,7 +6542,7 @@ extension UnorderedList: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttr
         return self
     }
 
-    @available(*, deprecated, message: "The inputmode attribute is actually an enumerated attribute. Use the inputMode(_: Mode) modifier instead.")
+    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
     public func inputMode(_ value: String) -> UnorderedList {
         return mutate(inputmode: value)
     }
@@ -6018,7 +6603,12 @@ extension UnorderedList: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttr
         return mutate(role: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> UnorderedList {
+        return mutate(spellcheck: value)
+    }
+    
+    public func spellcheck(_ value: Bool = true) -> UnorderedList {
         return mutate(spellcheck: value)
     }
 
@@ -6043,8 +6633,18 @@ extension UnorderedList: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttr
         return mutate(title: value)
     }
     
+    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> UnorderedList {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func translate(_ value: Bool = true) -> UnorderedList {
+        
+        if value {
+            return mutate(translate: "yes")
+        }
+        
+        return mutate(translate: "no")
     }
     
     public func inert(_ condition: Bool = true) -> UnorderedList {
@@ -6238,7 +6838,12 @@ extension Menu: GlobalAttributes {
         return mutate(class: value)
     }
     
+    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> Menu {
+        return mutate(contenteditable: value)
+    }
+    
+    public func editable(_ value: Bool = true) -> Menu {
         return mutate(contenteditable: value)
     }
     
@@ -6246,11 +6851,21 @@ extension Menu: GlobalAttributes {
         return mutate(dir: value.rawValue)
     }
     
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Menu {
         return mutate(draggable: value)
     }
     
+    public func draggable(_ value: Bool = true) -> Menu {
+        return mutate(draggable: value)
+    }
+    
+    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> Menu {
+        return mutate(enterkeyhint: value.rawValue)
+    }
+    
+    public func enterKey(_ value: Values.Hint) -> Menu {
         return mutate(enterkeyhint: value.rawValue)
     }
     
@@ -6263,7 +6878,7 @@ extension Menu: GlobalAttributes {
         return self
     }
     
-    @available(*, deprecated, message: "The inputmode attribute is actually an enumerated attribute. Use the inputMode(_: Mode) modifier instead.")
+    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
     public func inputMode(_ value: String) -> Menu {
         return mutate(inputmode: value)
     }
@@ -6324,7 +6939,12 @@ extension Menu: GlobalAttributes {
         return mutate(role: value.rawValue)
     }
     
+    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> Menu {
+        return mutate(spellcheck: value)
+    }
+    
+    public func spellcheck(_ value: Bool = true) -> Menu {
         return mutate(spellcheck: value)
     }
     
@@ -6349,8 +6969,18 @@ extension Menu: GlobalAttributes {
         return mutate(title: value)
     }
     
+    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Menu {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func translate(_ value: Bool = true) -> Menu {
+        
+        if value {
+            return mutate(translate: "yes")
+        }
+        
+        return mutate(translate: "no")
     }
     
     public func inert(_ condition: Bool = true) -> Menu {
@@ -6443,8 +7073,13 @@ extension DescriptionList: GlobalAttributes, GlobalEventAttributes, GlobalAriaAt
     public func `class`(_ value: String) -> DescriptionList {
         return mutate(class: value)
     }
-
+    
+    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> DescriptionList {
+        return mutate(contenteditable: value)
+    }
+    
+    public func editable(_ value: Bool = true) -> DescriptionList {
         return mutate(contenteditable: value)
     }
 
@@ -6452,11 +7087,21 @@ extension DescriptionList: GlobalAttributes, GlobalEventAttributes, GlobalAriaAt
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> DescriptionList {
         return mutate(draggable: value)
     }
+    
+    public func draggable(_ value: Bool = true) -> DescriptionList {
+        return mutate(draggable: value)
+    }
 
+    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> DescriptionList {
+        return mutate(enterkeyhint: value.rawValue)
+    }
+    
+    public func enterKey(_ value: Values.Hint) -> DescriptionList {
         return mutate(enterkeyhint: value.rawValue)
     }
     
@@ -6469,7 +7114,7 @@ extension DescriptionList: GlobalAttributes, GlobalEventAttributes, GlobalAriaAt
         return self
     }
 
-    @available(*, deprecated, message: "The inputmode attribute is actually an enumerated attribute. Use the inputMode(_: Mode) modifier instead.")
+    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
     public func inputMode(_ value: String) -> DescriptionList {
         return mutate(inputmode: value)
     }
@@ -6530,7 +7175,12 @@ extension DescriptionList: GlobalAttributes, GlobalEventAttributes, GlobalAriaAt
         return mutate(role: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> DescriptionList {
+        return mutate(spellcheck: value)
+    }
+    
+    public func spellcheck(_ value: Bool = true) -> DescriptionList {
         return mutate(spellcheck: value)
     }
 
@@ -6555,8 +7205,18 @@ extension DescriptionList: GlobalAttributes, GlobalEventAttributes, GlobalAriaAt
         return mutate(title: value)
     }
     
+    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> DescriptionList {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func translate(_ value: Bool = true) -> DescriptionList {
+        
+        if value {
+            return mutate(translate: "yes")
+        }
+        
+        return mutate(translate: "no")
     }
     
     public func inert(_ condition: Bool = true) -> DescriptionList {
@@ -6744,7 +7404,12 @@ extension Figure: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
         return mutate(class: value)
     }
 
+    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> Figure {
+        return mutate(contenteditable: value)
+    }
+    
+    public func editable(_ value: Bool = true) -> Figure {
         return mutate(contenteditable: value)
     }
 
@@ -6752,11 +7417,21 @@ extension Figure: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Figure {
         return mutate(draggable: value)
     }
+    
+    public func draggable(_ value: Bool = true) -> Figure {
+        return mutate(draggable: value)
+    }
 
+    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> Figure {
+        return mutate(enterkeyhint: value.rawValue)
+    }
+    
+    public func enterKey(_ value: Values.Hint) -> Figure {
         return mutate(enterkeyhint: value.rawValue)
     }
     
@@ -6769,7 +7444,7 @@ extension Figure: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
         return self
     }
     
-    @available(*, deprecated, message: "The inputmode attribute is actually an enumerated attribute. Use the inputMode(_: Mode) modifier instead.")
+    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
     public func inputMode(_ value: String) -> Figure {
         return mutate(inputmode: value)
     }
@@ -6830,7 +7505,12 @@ extension Figure: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
         return mutate(role: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> Figure {
+        return mutate(spellcheck: value)
+    }
+    
+    public func spellcheck(_ value: Bool = true) -> Figure {
         return mutate(spellcheck: value)
     }
 
@@ -6855,8 +7535,18 @@ extension Figure: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
         return mutate(title: value)
     }
     
+    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Figure {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func translate(_ value: Bool = true) -> Figure {
+        
+        if value {
+            return mutate(translate: "yes")
+        }
+        
+        return mutate(translate: "no")
     }
     
     public func inert(_ condition: Bool = true) -> Figure {
@@ -7041,7 +7731,12 @@ extension Anchor: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return mutate(class: value)
     }
 
+    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> Anchor {
+        return mutate(contenteditable: value)
+    }
+    
+    public func editable(_ value: Bool = true) -> Anchor {
         return mutate(contenteditable: value)
     }
 
@@ -7049,11 +7744,21 @@ extension Anchor: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Anchor {
         return mutate(draggable: value)
     }
+    
+    public func draggable(_ value: Bool = true) -> Anchor {
+        return mutate(draggable: value)
+    }
 
+    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> Anchor {
+        return mutate(enterkeyhint: value.rawValue)
+    }
+    
+    public func enterKey(_ value: Values.Hint) -> Anchor {
         return mutate(enterkeyhint: value.rawValue)
     }
     
@@ -7066,7 +7771,7 @@ extension Anchor: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return self
     }
 
-    @available(*, deprecated, message: "The inputmode attribute is actually an enumerated attribute. Use the inputMode(_: Mode) modifier instead.")
+    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
     public func inputMode(_ value: String) -> Anchor {
         return mutate(inputmode: value)
     }
@@ -7127,7 +7832,12 @@ extension Anchor: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return mutate(role: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> Anchor {
+        return mutate(spellcheck: value)
+    }
+    
+    public func spellcheck(_ value: Bool = true) -> Anchor {
         return mutate(spellcheck: value)
     }
 
@@ -7152,8 +7862,18 @@ extension Anchor: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return mutate(title: value)
     }
     
+    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Anchor {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func translate(_ value: Bool = true) -> Anchor {
+        
+        if value {
+            return mutate(translate: "yes")
+        }
+        
+        return mutate(translate: "no")
     }
     
     public func inert(_ condition: Bool = true) -> Anchor {
@@ -7391,7 +8111,12 @@ extension Emphasize: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(class: value)
     }
 
+    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> Emphasize {
+        return mutate(contenteditable: value)
+    }
+    
+    public func editable(_ value: Bool = true) -> Emphasize {
         return mutate(contenteditable: value)
     }
 
@@ -7399,11 +8124,21 @@ extension Emphasize: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Emphasize {
         return mutate(draggable: value)
     }
+    
+    public func draggable(_ value: Bool = true) -> Emphasize {
+        return mutate(draggable: value)
+    }
 
+    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> Emphasize {
+        return mutate(enterkeyhint: value.rawValue)
+    }
+    
+    public func enterKey(_ value: Values.Hint) -> Emphasize {
         return mutate(enterkeyhint: value.rawValue)
     }
     
@@ -7416,7 +8151,7 @@ extension Emphasize: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return self
     }
 
-    @available(*, deprecated, message: "The inputmode attribute is actually an enumerated attribute. Use the inputMode(_: Mode) modifier instead.")
+    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
     public func inputMode(_ value: String) -> Emphasize {
         return mutate(inputmode: value)
     }
@@ -7477,7 +8212,12 @@ extension Emphasize: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(role: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> Emphasize {
+        return mutate(spellcheck: value)
+    }
+    
+    public func spellcheck(_ value: Bool = true) -> Emphasize {
         return mutate(spellcheck: value)
     }
 
@@ -7502,8 +8242,18 @@ extension Emphasize: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(title: value)
     }
     
+    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Emphasize {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func translate(_ value: Bool = true) -> Emphasize {
+        
+        if value {
+            return mutate(translate: "yes")
+        }
+        
+        return mutate(translate: "no")
     }
     
     public func inert(_ condition: Bool = true) -> Emphasize {
@@ -7688,7 +8438,12 @@ extension Strong: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
         return mutate(class: value)
     }
 
+    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> Strong {
+        return mutate(contenteditable: value)
+    }
+    
+    public func editable(_ value: Bool = true) -> Strong {
         return mutate(contenteditable: value)
     }
 
@@ -7696,11 +8451,21 @@ extension Strong: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Strong {
         return mutate(draggable: value)
     }
+    
+    public func draggable(_ value: Bool = true) -> Strong {
+        return mutate(draggable: value)
+    }
 
+    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> Strong {
+        return mutate(enterkeyhint: value.rawValue)
+    }
+    
+    public func enterKey(_ value: Values.Hint) -> Strong {
         return mutate(enterkeyhint: value.rawValue)
     }
     
@@ -7713,7 +8478,7 @@ extension Strong: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
         return self
     }
 
-    @available(*, deprecated, message: "The inputmode attribute is actually an enumerated attribute. Use the inputMode(_: Mode) modifier instead.")
+    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
     public func inputMode(_ value: String) -> Strong {
         return mutate(inputmode: value)
     }
@@ -7774,7 +8539,12 @@ extension Strong: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
         return mutate(role: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> Strong {
+        return mutate(spellcheck: value)
+    }
+    
+    public func spellcheck(_ value: Bool = true) -> Strong {
         return mutate(spellcheck: value)
     }
 
@@ -7799,8 +8569,18 @@ extension Strong: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
         return mutate(title: value)
     }
     
+    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Strong {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func translate(_ value: Bool = true) -> Strong {
+        
+        if value {
+            return mutate(translate: "yes")
+        }
+        
+        return mutate(translate: "no")
     }
     
     public func inert(_ condition: Bool = true) -> Strong {
@@ -7985,19 +8765,34 @@ extension Small: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(class: value)
     }
 
+    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> Small {
+        return mutate(contenteditable: value)
+    }
+    
+    public func editable(_ value: Bool = true) -> Small {
         return mutate(contenteditable: value)
     }
 
     public func direction(_ value: Values.Direction) -> Small {
         return mutate(dir: value.rawValue)
     }
+    
+    public func draggable(_ value: Bool = true) -> Small {
+        return mutate(draggable: value)
+    }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Small {
         return mutate(draggable: value)
     }
 
+    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> Small {
+        return mutate(enterkeyhint: value.rawValue)
+    }
+    
+    public func enterKey(_ value: Values.Hint) -> Small {
         return mutate(enterkeyhint: value.rawValue)
     }
     
@@ -8010,7 +8805,7 @@ extension Small: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return self
     }
 
-    @available(*, deprecated, message: "The inputmode attribute is actually an enumerated attribute. Use the inputMode(_: Mode) modifier instead.")
+    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
     public func inputMode(_ value: String) -> Small {
         return mutate(inputmode: value)
     }
@@ -8071,7 +8866,12 @@ extension Small: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(role: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> Small {
+        return mutate(spellcheck: value)
+    }
+    
+    public func spellcheck(_ value: Bool = true) -> Small {
         return mutate(spellcheck: value)
     }
 
@@ -8096,8 +8896,18 @@ extension Small: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(title: value)
     }
     
+    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Small {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func translate(_ value: Bool = true) -> Small {
+        
+        if value {
+            return mutate(translate: "yes")
+        }
+        
+        return mutate(translate: "no")
     }
     
     public func inert(_ condition: Bool = true) -> Small {
@@ -8289,7 +9099,12 @@ extension StrikeThrough: GlobalAttributes, GlobalEventAttributes {
         return mutate(class: value)
     }
 
+    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> StrikeThrough {
+        return mutate(contenteditable: value)
+    }
+    
+    public func editable(_ value: Bool = true) -> StrikeThrough {
         return mutate(contenteditable: value)
     }
 
@@ -8297,11 +9112,21 @@ extension StrikeThrough: GlobalAttributes, GlobalEventAttributes {
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> StrikeThrough {
         return mutate(draggable: value)
     }
+    
+    public func draggable(_ value: Bool = true) -> StrikeThrough {
+        return mutate(draggable: value)
+    }
 
+    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> StrikeThrough {
+        return mutate(enterkeyhint: value.rawValue)
+    }
+    
+    public func enterKey(_ value: Values.Hint) -> StrikeThrough {
         return mutate(enterkeyhint: value.rawValue)
     }
     
@@ -8314,7 +9139,7 @@ extension StrikeThrough: GlobalAttributes, GlobalEventAttributes {
         return self
     }
 
-    @available(*, deprecated, message: "The inputmode attribute is actually an enumerated attribute. Use the inputMode(_: Mode) modifier instead.")
+    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
     public func inputMode(_ value: String) -> StrikeThrough {
         return mutate(inputmode: value)
     }
@@ -8375,7 +9200,12 @@ extension StrikeThrough: GlobalAttributes, GlobalEventAttributes {
         return mutate(role: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> StrikeThrough {
+        return mutate(spellcheck: value)
+    }
+    
+    public func spellcheck(_ value: Bool = true) -> StrikeThrough {
         return mutate(spellcheck: value)
     }
 
@@ -8400,8 +9230,18 @@ extension StrikeThrough: GlobalAttributes, GlobalEventAttributes {
         return mutate(title: value)
     }
     
+    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> StrikeThrough {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func translate(_ value: Bool = true) -> StrikeThrough {
+        
+        if value {
+            return mutate(translate: "yes")
+        }
+        
+        return mutate(translate: "no")
     }
     
     public func inert(_ condition: Bool = true) -> StrikeThrough {
@@ -8525,7 +9365,12 @@ extension Main: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(class: value)
     }
 
+    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> Main {
+        return mutate(contenteditable: value)
+    }
+    
+    public func editable(_ value: Bool = true) -> Main {
         return mutate(contenteditable: value)
     }
 
@@ -8533,11 +9378,21 @@ extension Main: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Main {
         return mutate(draggable: value)
     }
+    
+    public func draggable(_ value: Bool = true) -> Main {
+        return mutate(draggable: value)
+    }
 
+    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> Main {
+        return mutate(enterkeyhint: value.rawValue)
+    }
+    
+    public func enterKey(_ value: Values.Hint) -> Main {
         return mutate(enterkeyhint: value.rawValue)
     }
     
@@ -8550,7 +9405,7 @@ extension Main: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return self
     }
 
-    @available(*, deprecated, message: "The inputmode attribute is actually an enumerated attribute. Use the inputMode(_: Mode) modifier instead.")
+    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
     public func inputMode(_ value: String) -> Main {
         return mutate(inputmode: value)
     }
@@ -8611,7 +9466,12 @@ extension Main: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(role: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> Main {
+        return mutate(spellcheck: value)
+    }
+    
+    public func spellcheck(_ value: Bool = true) -> Main {
         return mutate(spellcheck: value)
     }
 
@@ -8636,8 +9496,18 @@ extension Main: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(title: value)
     }
     
+    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Main {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func translate(_ value: Bool = true) -> Main {
+        
+        if value {
+            return mutate(translate: "yes")
+        }
+        
+        return mutate(translate: "no")
     }
     
     public func inert(_ condition: Bool = true) -> Main {
@@ -8827,7 +9697,12 @@ extension Search: GlobalAttributes {
         return mutate(class: value)
     }
     
+    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> Search {
+        return mutate(contenteditable: value)
+    }
+    
+    public func editable(_ value: Bool = true) -> Search {
         return mutate(contenteditable: value)
     }
     
@@ -8835,11 +9710,21 @@ extension Search: GlobalAttributes {
         return mutate(dir: value.rawValue)
     }
     
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Search {
         return mutate(draggable: value)
     }
     
+    public func draggable(_ value: Bool = true) -> Search {
+        return mutate(draggable: value)
+    }
+    
+    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> Search {
+        return mutate(enterkeyhint: value.rawValue)
+    }
+    
+    public func enterKey(_ value: Values.Hint) -> Search {
         return mutate(enterkeyhint: value.rawValue)
     }
     
@@ -8852,7 +9737,7 @@ extension Search: GlobalAttributes {
         return self
     }
     
-    @available(*, deprecated, message: "The inputmode attribute is actually an enumerated attribute. Use the inputMode(_: Mode) modifier instead.")
+    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
     public func inputMode(_ value: String) -> Search {
         return mutate(inputmode: value)
     }
@@ -8913,7 +9798,12 @@ extension Search: GlobalAttributes {
         return mutate(role: value.rawValue)
     }
     
+    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> Search {
+        return mutate(spellcheck: value)
+    }
+    
+    public func spellcheck(_ value: Bool = true) -> Search {
         return mutate(spellcheck: value)
     }
     
@@ -8938,8 +9828,18 @@ extension Search: GlobalAttributes {
         return mutate(title: value)
     }
     
+    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Search {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func translate(_ value: Bool = true) -> Search {
+        
+        if value {
+            return mutate(translate: "yes")
+        }
+        
+        return mutate(translate: "no")
     }
     
     public func inert(_ condition: Bool = true) -> Search {
@@ -9026,7 +9926,12 @@ extension Division: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(class: value)
     }
 
+    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> Division {
+        return mutate(contenteditable: value)
+    }
+    
+    public func editable(_ value: Bool = true) -> Division {
         return mutate(contenteditable: value)
     }
 
@@ -9034,11 +9939,21 @@ extension Division: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Division {
         return mutate(draggable: value)
     }
+    
+    public func draggable(_ value: Bool = true) -> Division {
+        return mutate(draggable: value)
+    }
 
+    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> Division {
+        return mutate(enterkeyhint: value.rawValue)
+    }
+    
+    public func enterKey(_ value: Values.Hint) -> Division {
         return mutate(enterkeyhint: value.rawValue)
     }
     
@@ -9051,7 +9966,7 @@ extension Division: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return self
     }
 
-    @available(*, deprecated, message: "The inputmode attribute is actually an enumerated attribute. Use the inputMode(_: Mode) modifier instead.")
+    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
     public func inputMode(_ value: String) -> Division {
         return mutate(inputmode: value)
     }
@@ -9112,7 +10027,12 @@ extension Division: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(role: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> Division {
+        return mutate(spellcheck: value)
+    }
+    
+    public func spellcheck(_ value: Bool = true) -> Division {
         return mutate(spellcheck: value)
     }
 
@@ -9137,8 +10057,18 @@ extension Division: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(title: value)
     }
     
+    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Division {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func translate(_ value: Bool = true) -> Division {
+        
+        if value {
+            return mutate(translate: "yes")
+        }
+        
+        return mutate(translate: "no")
     }
     
     public func inert(_ condition: Bool = true) -> Division {
@@ -9326,7 +10256,12 @@ extension Definition: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
         return mutate(class: value)
     }
 
+    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> Definition {
+        return mutate(contenteditable: value)
+    }
+    
+    public func editable(_ value: Bool = true) -> Definition {
         return mutate(contenteditable: value)
     }
 
@@ -9334,11 +10269,21 @@ extension Definition: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Definition {
         return mutate(draggable: value)
     }
+    
+    public func draggable(_ value: Bool = true) -> Definition {
+        return mutate(draggable: value)
+    }
 
+    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> Definition {
+        return mutate(enterkeyhint: value.rawValue)
+    }
+    
+    public func enterKey(_ value: Values.Hint) -> Definition {
         return mutate(enterkeyhint: value.rawValue)
     }
     
@@ -9351,7 +10296,7 @@ extension Definition: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
         return self
     }
 
-    @available(*, deprecated, message: "The inputmode attribute is actually an enumerated attribute. Use the inputMode(_: Mode) modifier instead.")
+    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
     public func inputMode(_ value: String) -> Definition {
         return mutate(inputmode: value)
     }
@@ -9412,7 +10357,12 @@ extension Definition: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
         return mutate(role: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> Definition {
+        return mutate(spellcheck: value)
+    }
+    
+    public func spellcheck(_ value: Bool = true) -> Definition {
         return mutate(spellcheck: value)
     }
 
@@ -9437,8 +10387,18 @@ extension Definition: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
         return mutate(title: value)
     }
     
+    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Definition {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func translate(_ value: Bool = true) -> Definition {
+        
+        if value {
+            return mutate(translate: "yes")
+        }
+        
+        return mutate(translate: "no")
     }
     
     public func inert(_ condition: Bool = true) -> Definition {
@@ -9624,7 +10584,12 @@ extension Cite: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(class: value)
     }
 
+    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> Cite {
+        return mutate(contenteditable: value)
+    }
+    
+    public func editable(_ value: Bool = true) -> Cite {
         return mutate(contenteditable: value)
     }
 
@@ -9632,11 +10597,21 @@ extension Cite: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Cite {
         return mutate(draggable: value)
     }
+    
+    public func draggable(_ value: Bool = true) -> Cite {
+        return mutate(draggable: value)
+    }
 
+    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> Cite {
+        return mutate(enterkeyhint: value.rawValue)
+    }
+    
+    public func enterKey(_ value: Values.Hint) -> Cite {
         return mutate(enterkeyhint: value.rawValue)
     }
     
@@ -9649,7 +10624,7 @@ extension Cite: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return self
     }
     
-    @available(*, deprecated, message: "The inputmode attribute is actually an enumerated attribute. Use the inputMode(_: Mode) modifier instead.")
+    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
     public func inputMode(_ value: String) -> Cite {
         return mutate(inputmode: value)
     }
@@ -9710,7 +10685,12 @@ extension Cite: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(role: value.rawValue)
     }
     
+    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> Cite {
+        return mutate(spellcheck: value)
+    }
+    
+    public func spellcheck(_ value: Bool = true) -> Cite {
         return mutate(spellcheck: value)
     }
 
@@ -9735,8 +10715,18 @@ extension Cite: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(title: value)
     }
     
+    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Cite {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func translate(_ value: Bool = true) -> Cite {
+        
+        if value {
+            return mutate(translate: "yes")
+        }
+        
+        return mutate(translate: "no")
     }
     
     public func inert(_ condition: Bool = true) -> Cite {
@@ -9921,22 +10911,37 @@ extension ShortQuote: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
         return mutate(class: value)
     }
 
+    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> ShortQuote {
+        return mutate(contenteditable: value)
+    }
+    
+    public func editable(_ value: Bool = true) -> ShortQuote {
         return mutate(contenteditable: value)
     }
 
     public func direction(_ value: Values.Direction) -> ShortQuote {
         return mutate(dir: value.rawValue)
     }
-
+    
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> ShortQuote {
         return mutate(draggable: value)
     }
+    
+    public func draggable(_ value: Bool = true) -> ShortQuote {
+        return mutate(draggable: value)
+    }
 
+    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> ShortQuote {
         return mutate(enterkeyhint: value.rawValue)
     }
 
+    public func enterKey(_ value: Values.Hint) -> ShortQuote {
+        return mutate(enterkeyhint: value.rawValue)
+    }
+    
     public func hidden(_ condition: Bool = true) -> ShortQuote {
         
         if condition {
@@ -9946,7 +10951,7 @@ extension ShortQuote: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
         return self
     }
     
-    @available(*, deprecated, message: "The inputmode attribute is actually an enumerated attribute. Use the inputMode(_: Mode) modifier instead.")
+    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
     public func inputMode(_ value: String) -> ShortQuote {
         return mutate(inputmode: value)
     }
@@ -10007,7 +11012,12 @@ extension ShortQuote: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
         return mutate(role: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> ShortQuote {
+        return mutate(spellcheck: value)
+    }
+    
+    public func spellcheck(_ value: Bool = true) -> ShortQuote {
         return mutate(spellcheck: value)
     }
 
@@ -10032,8 +11042,18 @@ extension ShortQuote: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
         return mutate(title: value)
     }
     
+    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> ShortQuote {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func translate(_ value: Bool = true) -> ShortQuote {
+        
+        if value {
+            return mutate(translate: "yes")
+        }
+        
+        return mutate(translate: "no")
     }
     
     public func inert(_ condition: Bool = true) -> ShortQuote {
@@ -10223,7 +11243,12 @@ extension Abbreviation: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttri
         return mutate(class: value)
     }
 
+    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> Abbreviation {
+        return mutate(contenteditable: value)
+    }
+    
+    public func editable(_ value: Bool = true) -> Abbreviation {
         return mutate(contenteditable: value)
     }
 
@@ -10231,11 +11256,21 @@ extension Abbreviation: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttri
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Abbreviation {
         return mutate(draggable: value)
     }
+    
+    public func draggable(_ value: Bool = true) -> Abbreviation {
+        return mutate(draggable: value)
+    }
 
+    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> Abbreviation {
+        return mutate(enterkeyhint: value.rawValue)
+    }
+    
+    public func enterKey(_ value: Values.Hint) -> Abbreviation {
         return mutate(enterkeyhint: value.rawValue)
     }
     
@@ -10248,7 +11283,7 @@ extension Abbreviation: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttri
         return self
     }
 
-    @available(*, deprecated, message: "The inputmode attribute is actually an enumerated attribute. Use the inputMode(_: Mode) modifier instead.")
+    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
     public func inputMode(_ value: String) -> Abbreviation {
         return mutate(inputmode: value)
     }
@@ -10309,7 +11344,12 @@ extension Abbreviation: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttri
         return mutate(role: value.rawValue)
     }
     
+    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> Abbreviation {
+        return mutate(spellcheck: value)
+    }
+    
+    public func spellcheck(_ value: Bool = true) -> Abbreviation {
         return mutate(spellcheck: value)
     }
 
@@ -10334,8 +11374,18 @@ extension Abbreviation: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttri
         return mutate(title: value)
     }
     
+    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Abbreviation {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func translate(_ value: Bool = true) -> Abbreviation {
+        
+        if value {
+            return mutate(translate: "yes")
+        }
+        
+        return mutate(translate: "no")
     }
     
     public func inert(_ condition: Bool = true) -> Abbreviation {
@@ -10521,7 +11571,12 @@ extension Ruby: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(class: value)
     }
     
+    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> Ruby {
+        return mutate(contenteditable: value)
+    }
+    
+    public func editable(_ value: Bool = true) -> Ruby {
         return mutate(contenteditable: value)
     }
     
@@ -10529,11 +11584,21 @@ extension Ruby: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(dir: value.rawValue)
     }
     
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Ruby {
         return mutate(draggable: value)
     }
     
+    public func draggable(_ value: Bool = true) -> Ruby {
+        return mutate(draggable: value)
+    }
+    
+    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> Ruby {
+        return mutate(enterkeyhint: value.rawValue)
+    }
+    
+    public func enterKey(_ value: Values.Hint) -> Ruby {
         return mutate(enterkeyhint: value.rawValue)
     }
     
@@ -10546,7 +11611,7 @@ extension Ruby: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return self
     }
    
-    @available(*, deprecated, message: "The inputmode attribute is actually an enumerated attribute. Use the inputMode(_: Mode) modifier instead.")
+    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
     public func inputMode(_ value: String) -> Ruby {
         return mutate(inputmode: value)
     }
@@ -10607,7 +11672,12 @@ extension Ruby: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(role: value.rawValue)
     }
     
+    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> Ruby {
+        return mutate(spellcheck: value)
+    }
+    
+    public func spellcheck(_ value: Bool = true) -> Ruby {
         return mutate(spellcheck: value)
     }
     
@@ -10632,8 +11702,18 @@ extension Ruby: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(title: value)
     }
     
+    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Ruby {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func translate(_ value: Bool = true) -> Ruby {
+        
+        if value {
+            return mutate(translate: "yes")
+        }
+        
+        return mutate(translate: "no")
     }
     
     public func inert(_ condition: Bool = true) -> Ruby {
@@ -10821,7 +11901,12 @@ extension Data: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, V
         return mutate(class: value)
     }
 
+    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> Data {
+        return mutate(contenteditable: value)
+    }
+    
+    public func editable(_ value: Bool = true) -> Data {
         return mutate(contenteditable: value)
     }
 
@@ -10829,11 +11914,21 @@ extension Data: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, V
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Data {
         return mutate(draggable: value)
     }
+    
+    public func draggable(_ value: Bool = true) -> Data {
+        return mutate(draggable: value)
+    }
 
+    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> Data {
+        return mutate(enterkeyhint: value.rawValue)
+    }
+    
+    public func enterKey(_ value: Values.Hint) -> Data {
         return mutate(enterkeyhint: value.rawValue)
     }
     
@@ -10846,7 +11941,7 @@ extension Data: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, V
         return self
     }
     
-    @available(*, deprecated, message: "The inputmode attribute is actually an enumerated attribute. Use the inputMode(_: Mode) modifier instead.")
+    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
     public func inputMode(_ value: String) -> Data {
         return mutate(inputmode: value)
     }
@@ -10907,7 +12002,12 @@ extension Data: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, V
         return mutate(role: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> Data {
+        return mutate(spellcheck: value)
+    }
+    
+    public func spellcheck(_ value: Bool = true) -> Data {
         return mutate(spellcheck: value)
     }
 
@@ -10932,8 +12032,18 @@ extension Data: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, V
         return mutate(title: value)
     }
     
+    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Data {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func translate(_ value: Bool = true) -> Data {
+        
+        if value {
+            return mutate(translate: "yes")
+        }
+        
+        return mutate(translate: "no")
     }
     
     public func inert(_ condition: Bool = true) -> Data {
@@ -11133,7 +12243,12 @@ extension Time: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, D
         return mutate(class: value)
     }
 
+    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> Time {
+        return mutate(contenteditable: value)
+    }
+    
+    public func editable(_ value: Bool = true) -> Time {
         return mutate(contenteditable: value)
     }
 
@@ -11141,11 +12256,21 @@ extension Time: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, D
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Time {
         return mutate(draggable: value)
     }
+    
+    public func draggable(_ value: Bool = true) -> Time {
+        return mutate(draggable: value)
+    }
 
+    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> Time {
+        return mutate(enterkeyhint: value.rawValue)
+    }
+    
+    public func enterKey(_ value: Values.Hint) -> Time {
         return mutate(enterkeyhint: value.rawValue)
     }
     
@@ -11158,7 +12283,7 @@ extension Time: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, D
         return self
     }
 
-    @available(*, deprecated, message: "The inputmode attribute is actually an enumerated attribute. Use the inputMode(_: Mode) modifier instead.")
+    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
     public func inputMode(_ value: String) -> Time {
         return mutate(inputmode: value)
     }
@@ -11218,8 +12343,13 @@ extension Time: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, D
     public func role(_ value: Values.Role) -> Time {
         return mutate(role: value.rawValue)
     }
-
+    
+    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> Time {
+        return mutate(spellcheck: value)
+    }
+    
+    public func spellcheck(_ value: Bool = true) -> Time {
         return mutate(spellcheck: value)
     }
 
@@ -11244,8 +12374,18 @@ extension Time: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, D
         return mutate(title: value)
     }
     
+    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Time {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func translate(_ value: Bool = true) -> Time {
+        
+        if value {
+            return mutate(translate: "yes")
+        }
+        
+        return mutate(translate: "no")
     }
     
     public func inert(_ condition: Bool = true) -> Time {
@@ -11436,7 +12576,12 @@ extension Code: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(class: value)
     }
 
+    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> Code {
+        return mutate(contenteditable: value)
+    }
+    
+    public func editable(_ value: Bool = true) -> Code {
         return mutate(contenteditable: value)
     }
 
@@ -11444,11 +12589,21 @@ extension Code: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Code {
         return mutate(draggable: value)
     }
+    
+    public func draggable(_ value: Bool = true) -> Code {
+        return mutate(draggable: value)
+    }
 
+    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> Code {
+        return mutate(enterkeyhint: value.rawValue)
+    }
+    
+    public func enterKey(_ value: Values.Hint) -> Code {
         return mutate(enterkeyhint: value.rawValue)
     }
     
@@ -11461,7 +12616,7 @@ extension Code: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return self
     }
 
-    @available(*, deprecated, message: "The inputmode attribute is actually an enumerated attribute. Use the inputMode(_: Mode) modifier instead.")
+    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
     public func inputMode(_ value: String) -> Code {
         return mutate(inputmode: value)
     }
@@ -11522,7 +12677,12 @@ extension Code: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(role: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> Code {
+        return mutate(spellcheck: value)
+    }
+    
+    public func spellcheck(_ value: Bool = true) -> Code {
         return mutate(spellcheck: value)
     }
 
@@ -11547,8 +12707,18 @@ extension Code: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(title: value)
     }
     
+    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Code {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func translate(_ value: Bool = true) -> Code {
+        
+        if value {
+            return mutate(translate: "yes")
+        }
+        
+        return mutate(translate: "no")
     }
     
     public func inert(_ condition: Bool = true) -> Code {
@@ -11735,7 +12905,12 @@ extension Variable: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(class: value)
     }
 
+    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> Variable {
+        return mutate(contenteditable: value)
+    }
+    
+    public func editable(_ value: Bool = true) -> Variable {
         return mutate(contenteditable: value)
     }
 
@@ -11743,11 +12918,21 @@ extension Variable: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Variable {
         return mutate(draggable: value)
     }
+    
+    public func draggable(_ value: Bool = true) -> Variable {
+        return mutate(draggable: value)
+    }
 
+    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> Variable {
+        return mutate(enterkeyhint: value.rawValue)
+    }
+    
+    public func enterKey(_ value: Values.Hint) -> Variable {
         return mutate(enterkeyhint: value.rawValue)
     }
     
@@ -11760,7 +12945,7 @@ extension Variable: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return self
     }
 
-    @available(*, deprecated, message: "The inputmode attribute is actually an enumerated attribute. Use the inputMode(_: Mode) modifier instead.")
+    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
     public func inputMode(_ value: String) -> Variable {
         return mutate(inputmode: value)
     }
@@ -11821,7 +13006,12 @@ extension Variable: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(role: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> Variable {
+        return mutate(spellcheck: value)
+    }
+    
+    public func spellcheck(_ value: Bool = true) -> Variable {
         return mutate(spellcheck: value)
     }
 
@@ -11846,8 +13036,18 @@ extension Variable: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(title: value)
     }
     
+    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Variable {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func translate(_ value: Bool = true) -> Variable {
+        
+        if value {
+            return mutate(translate: "yes")
+        }
+        
+        return mutate(translate: "no")
     }
     
     public func inert(_ condition: Bool = true) -> Variable {
@@ -12030,7 +13230,12 @@ extension SampleOutput: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttri
         return mutate(class: value)
     }
 
+    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> SampleOutput {
+        return mutate(contenteditable: value)
+    }
+    
+    public func editable(_ value: Bool = true) -> SampleOutput {
         return mutate(contenteditable: value)
     }
 
@@ -12038,11 +13243,21 @@ extension SampleOutput: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttri
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> SampleOutput {
         return mutate(draggable: value)
     }
+    
+    public func draggable(_ value: Bool = true) -> SampleOutput {
+        return mutate(draggable: value)
+    }
 
+    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> SampleOutput {
+        return mutate(enterkeyhint: value.rawValue)
+    }
+    
+    public func enterKey(_ value: Values.Hint) -> SampleOutput {
         return mutate(enterkeyhint: value.rawValue)
     }
     
@@ -12055,7 +13270,7 @@ extension SampleOutput: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttri
         return self
     }
 
-    @available(*, deprecated, message: "The inputmode attribute is actually an enumerated attribute. Use the inputMode(_: Mode) modifier instead.")
+    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
     public func inputMode(_ value: String) -> SampleOutput {
         return mutate(inputmode: value)
     }
@@ -12116,7 +13331,12 @@ extension SampleOutput: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttri
         return mutate(role: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> SampleOutput {
+        return mutate(spellcheck: value)
+    }
+    
+    public func spellcheck(_ value: Bool = true) -> SampleOutput {
         return mutate(spellcheck: value)
     }
 
@@ -12141,8 +13361,18 @@ extension SampleOutput: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttri
         return mutate(title: value)
     }
     
+    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> SampleOutput {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func translate(_ value: Bool = true) -> SampleOutput {
+        
+        if value {
+            return mutate(translate: "yes")
+        }
+        
+        return mutate(translate: "no")
     }
     
     public func inert(_ condition: Bool = true) -> SampleOutput {
@@ -12329,7 +13559,12 @@ extension KeyboardInput: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttr
         return mutate(class: value)
     }
 
+    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> KeyboardInput {
+        return mutate(contenteditable: value)
+    }
+    
+    public func editable(_ value: Bool = true) -> KeyboardInput {
         return mutate(contenteditable: value)
     }
 
@@ -12337,11 +13572,21 @@ extension KeyboardInput: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttr
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> KeyboardInput {
         return mutate(draggable: value)
     }
+    
+    public func draggable(_ value: Bool = true) -> KeyboardInput {
+        return mutate(draggable: value)
+    }
 
+    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> KeyboardInput {
+        return mutate(enterkeyhint: value.rawValue)
+    }
+    
+    public func enterKey(_ value: Values.Hint) -> KeyboardInput {
         return mutate(enterkeyhint: value.rawValue)
     }
     
@@ -12354,7 +13599,7 @@ extension KeyboardInput: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttr
         return self
     }
 
-    @available(*, deprecated, message: "The inputmode attribute is actually an enumerated attribute. Use the inputMode(_: Mode) modifier instead.")
+    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
     public func inputMode(_ value: String) -> KeyboardInput {
         return mutate(inputmode: value)
     }
@@ -12415,7 +13660,12 @@ extension KeyboardInput: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttr
         return mutate(role: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> KeyboardInput {
+        return mutate(spellcheck: value)
+    }
+    
+    public func spellcheck(_ value: Bool = true) -> KeyboardInput {
         return mutate(spellcheck: value)
     }
 
@@ -12440,8 +13690,18 @@ extension KeyboardInput: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttr
         return mutate(title: value)
     }
     
+    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> KeyboardInput {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func translate(_ value: Bool = true) -> KeyboardInput {
+        
+        if value {
+            return mutate(translate: "yes")
+        }
+        
+        return mutate(translate: "no")
     }
     
     public func inert(_ condition: Bool = true) -> KeyboardInput {
@@ -12628,7 +13888,12 @@ extension Subscript: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(class: value)
     }
 
+    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> Subscript {
+        return mutate(contenteditable: value)
+    }
+    
+    public func editable(_ value: Bool = true) -> Subscript {
         return mutate(contenteditable: value)
     }
 
@@ -12636,11 +13901,21 @@ extension Subscript: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Subscript {
         return mutate(draggable: value)
     }
+    
+    public func draggable(_ value: Bool = true) -> Subscript {
+        return mutate(draggable: value)
+    }
 
+    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> Subscript {
+        return mutate(enterkeyhint: value.rawValue)
+    }
+    
+    public func enterKey(_ value: Values.Hint) -> Subscript {
         return mutate(enterkeyhint: value.rawValue)
     }
     
@@ -12653,7 +13928,7 @@ extension Subscript: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return self
     }
 
-    @available(*, deprecated, message: "The inputmode attribute is actually an enumerated attribute. Use the inputMode(_: Mode) modifier instead.")
+    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
     public func inputMode(_ value: String) -> Subscript {
         return mutate(inputmode: value)
     }
@@ -12713,7 +13988,12 @@ extension Subscript: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(role: value.rawValue)
     }
     
+    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> Subscript {
+        return mutate(spellcheck: value)
+    }
+    
+    public func spellcheck(_ value: Bool = true) -> Subscript {
         return mutate(spellcheck: value)
     }
 
@@ -12738,8 +14018,18 @@ extension Subscript: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(title: value)
     }
     
+    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Subscript {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func translate(_ value: Bool = true) -> Subscript {
+        
+        if value {
+            return mutate(translate: "yes")
+        }
+        
+        return mutate(translate: "no")
     }
     
     public func inert(_ condition: Bool = true) -> Subscript {
@@ -12926,7 +14216,12 @@ extension Superscript: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
         return mutate(class: value)
     }
 
+    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> Superscript {
+        return mutate(contenteditable: value)
+    }
+    
+    public func editable(_ value: Bool = true) -> Superscript {
         return mutate(contenteditable: value)
     }
 
@@ -12934,11 +14229,21 @@ extension Superscript: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Superscript {
         return mutate(draggable: value)
     }
+    
+    public func draggable(_ value: Bool = true) -> Superscript {
+        return mutate(draggable: value)
+    }
 
+    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> Superscript {
+        return mutate(enterkeyhint: value.rawValue)
+    }
+    
+    public func enterKey(_ value: Values.Hint) -> Superscript {
         return mutate(enterkeyhint: value.rawValue)
     }
     
@@ -12951,7 +14256,7 @@ extension Superscript: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
         return self
     }
 
-    @available(*, deprecated, message: "The inputmode attribute is actually an enumerated attribute. Use the inputMode(_: Mode) modifier instead.")
+    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
     public func inputMode(_ value: String) -> Superscript {
         return mutate(inputmode: value)
     }
@@ -13012,7 +14317,12 @@ extension Superscript: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
         return mutate(role: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> Superscript {
+        return mutate(spellcheck: value)
+    }
+    
+    public func spellcheck(_ value: Bool = true) -> Superscript {
         return mutate(spellcheck: value)
     }
 
@@ -13037,8 +14347,18 @@ extension Superscript: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
         return mutate(title: value)
     }
     
+    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Superscript {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func translate(_ value: Bool = true) -> Superscript {
+        
+        if value {
+            return mutate(translate: "yes")
+        }
+        
+        return mutate(translate: "no")
     }
     
     public func inert(_ condition: Bool = true) -> Superscript {
@@ -13225,7 +14545,12 @@ extension Italic: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
         return mutate(class: value)
     }
 
+    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> Italic {
+        return mutate(contenteditable: value)
+    }
+    
+    public func editable(_ value: Bool = true) -> Italic {
         return mutate(contenteditable: value)
     }
 
@@ -13233,11 +14558,21 @@ extension Italic: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Italic {
         return mutate(draggable: value)
     }
+    
+    public func draggable(_ value: Bool = true) -> Italic {
+        return mutate(draggable: value)
+    }
 
+    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> Italic {
+        return mutate(enterkeyhint: value.rawValue)
+    }
+    
+    public func enterKey(_ value: Values.Hint) -> Italic {
         return mutate(enterkeyhint: value.rawValue)
     }
     
@@ -13250,7 +14585,7 @@ extension Italic: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
         return self
     }
 
-    @available(*, deprecated, message: "The inputmode attribute is actually an enumerated attribute. Use the inputMode(_: Mode) modifier instead.")
+    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
     public func inputMode(_ value: String) -> Italic {
         return mutate(inputmode: value)
     }
@@ -13311,7 +14646,12 @@ extension Italic: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
         return mutate(role: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> Italic {
+        return mutate(spellcheck: value)
+    }
+    
+    public func spellcheck(_ value: Bool = true) -> Italic {
         return mutate(spellcheck: value)
     }
 
@@ -13336,8 +14676,18 @@ extension Italic: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
         return mutate(title: value)
     }
     
+    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Italic {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func translate(_ value: Bool = true) -> Italic {
+        
+        if value {
+            return mutate(translate: "yes")
+        }
+        
+        return mutate(translate: "no")
     }
     
     public func inert(_ condition: Bool = true) -> Italic {
@@ -13531,7 +14881,12 @@ extension Bold: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(class: value)
     }
 
+    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> Bold {
+        return mutate(contenteditable: value)
+    }
+    
+    public func editable(_ value: Bool = true) -> Bold {
         return mutate(contenteditable: value)
     }
 
@@ -13539,11 +14894,21 @@ extension Bold: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Bold {
         return mutate(draggable: value)
     }
+    
+    public func draggable(_ value: Bool = true) -> Bold {
+        return mutate(draggable: value)
+    }
 
+    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> Bold {
+        return mutate(enterkeyhint: value.rawValue)
+    }
+    
+    public func enterKey(_ value: Values.Hint) -> Bold {
         return mutate(enterkeyhint: value.rawValue)
     }
     
@@ -13556,7 +14921,7 @@ extension Bold: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return self
     }
 
-    @available(*, deprecated, message: "The inputmode attribute is actually an enumerated attribute. Use the inputMode(_: Mode) modifier instead.")
+    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
     public func inputMode(_ value: String) -> Bold {
         return mutate(inputmode: value)
     }
@@ -13617,7 +14982,12 @@ extension Bold: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(role: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> Bold {
+        return mutate(spellcheck: value)
+    }
+    
+    public func spellcheck(_ value: Bool = true) -> Bold {
         return mutate(spellcheck: value)
     }
 
@@ -13642,8 +15012,18 @@ extension Bold: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(title: value)
     }
     
+    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Bold {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func translate(_ value: Bool = true) -> Bold {
+        
+        if value {
+            return mutate(translate: "yes")
+        }
+        
+        return mutate(translate: "no")
     }
     
     public func inert(_ condition: Bool = true) -> Bold {
@@ -13837,19 +15217,34 @@ extension Underline: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(class: value)
     }
 
+    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> Underline {
         return mutate(contenteditable: value)
     }
 
+    public func editable(_ value: Bool = true) -> Underline {
+        return mutate(contenteditable: value)
+    }
+    
     public func direction(_ value: Values.Direction) -> Underline {
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Underline {
         return mutate(draggable: value)
     }
+    
+    public func draggable(_ value: Bool = true) -> Underline {
+        return mutate(draggable: value)
+    }
 
+    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> Underline {
+        return mutate(enterkeyhint: value.rawValue)
+    }
+    
+    public func enterKey(_ value: Values.Hint) -> Underline {
         return mutate(enterkeyhint: value.rawValue)
     }
     
@@ -13862,7 +15257,7 @@ extension Underline: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return self
     }
 
-    @available(*, deprecated, message: "The inputmode attribute is actually an enumerated attribute. Use the inputMode(_: Mode) modifier instead.")
+    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
     public func inputMode(_ value: String) -> Underline {
         return mutate(inputmode: value)
     }
@@ -13923,7 +15318,12 @@ extension Underline: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(role: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> Underline {
+        return mutate(spellcheck: value)
+    }
+    
+    public func spellcheck(_ value: Bool = true) -> Underline {
         return mutate(spellcheck: value)
     }
 
@@ -13948,8 +15348,18 @@ extension Underline: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(title: value)
     }
     
+    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Underline {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func translate(_ value: Bool = true) -> Underline {
+        
+        if value {
+            return mutate(translate: "yes")
+        }
+        
+        return mutate(translate: "no")
     }
     
     public func inert(_ condition: Bool = true) -> Underline {
@@ -14143,7 +15553,12 @@ extension Mark: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(class: value)
     }
 
+    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> Mark {
+        return mutate(contenteditable: value)
+    }
+    
+    public func editable(_ value: Bool = true) -> Mark {
         return mutate(contenteditable: value)
     }
 
@@ -14151,11 +15566,21 @@ extension Mark: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Mark {
         return mutate(draggable: value)
     }
+    
+    public func draggable(_ value: Bool = true) -> Mark {
+        return mutate(draggable: value)
+    }
 
+    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> Mark {
+        return mutate(enterkeyhint: value.rawValue)
+    }
+    
+    public func enterKey(_ value: Values.Hint) -> Mark {
         return mutate(enterkeyhint: value.rawValue)
     }
     
@@ -14168,7 +15593,7 @@ extension Mark: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return self
     }
 
-    @available(*, deprecated, message: "The inputmode attribute is actually an enumerated attribute. Use the inputMode(_: Mode) modifier instead.")
+    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
     public func inputMode(_ value: String) -> Mark {
         return mutate(inputmode: value)
     }
@@ -14229,7 +15654,12 @@ extension Mark: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(role: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> Mark {
+        return mutate(spellcheck: value)
+    }
+    
+    public func spellcheck(_ value: Bool = true) -> Mark {
         return mutate(spellcheck: value)
     }
 
@@ -14254,8 +15684,18 @@ extension Mark: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(title: value)
     }
     
+    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Mark {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func translate(_ value: Bool = true) -> Mark {
+        
+        if value {
+            return mutate(translate: "yes")
+        }
+        
+        return mutate(translate: "no")
     }
     
     public func inert(_ condition: Bool = true) -> Mark {
@@ -14442,7 +15882,12 @@ extension Bdi: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(class: value)
     }
 
+    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> Bdi {
+        return mutate(contenteditable: value)
+    }
+    
+    public func editable(_ value: Bool = true) -> Bdi {
         return mutate(contenteditable: value)
     }
 
@@ -14450,11 +15895,21 @@ extension Bdi: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Bdi {
         return mutate(draggable: value)
     }
+    
+    public func draggable(_ value: Bool = true) -> Bdi {
+        return mutate(draggable: value)
+    }
 
+    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> Bdi {
+        return mutate(enterkeyhint: value.rawValue)
+    }
+    
+    public func enterKey(_ value: Values.Hint) -> Bdi {
         return mutate(enterkeyhint: value.rawValue)
     }
     
@@ -14467,7 +15922,7 @@ extension Bdi: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return self
     }
 
-    @available(*, deprecated, message: "The inputmode attribute is actually an enumerated attribute. Use the inputMode(_: Mode) modifier instead.")
+    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
     public func inputMode(_ value: String) -> Bdi {
         return mutate(inputmode: value)
     }
@@ -14528,7 +15983,12 @@ extension Bdi: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(role: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> Bdi {
+        return mutate(spellcheck: value)
+    }
+    
+    public func spellcheck(_ value: Bool = true) -> Bdi {
         return mutate(spellcheck: value)
     }
 
@@ -14553,8 +16013,18 @@ extension Bdi: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(title: value)
     }
     
+    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Bdi {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func translate(_ value: Bool = true) -> Bdi {
+        
+        if value {
+            return mutate(translate: "yes")
+        }
+        
+        return mutate(translate: "no")
     }
     
     public func inert(_ condition: Bool = true) -> Bdi {
@@ -14735,7 +16205,12 @@ extension Bdo: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(class: value)
     }
 
+    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> Bdo {
+        return mutate(contenteditable: value)
+    }
+    
+    public func editable(_ value: Bool = true) -> Bdo {
         return mutate(contenteditable: value)
     }
 
@@ -14743,11 +16218,21 @@ extension Bdo: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Bdo {
         return mutate(draggable: value)
     }
+    
+    public func draggable(_ value: Bool = true) -> Bdo {
+        return mutate(draggable: value)
+    }
 
+    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> Bdo {
+        return mutate(enterkeyhint: value.rawValue)
+    }
+    
+    public func enterKey(_ value: Values.Hint) -> Bdo {
         return mutate(enterkeyhint: value.rawValue)
     }
     
@@ -14760,7 +16245,7 @@ extension Bdo: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return self
     }
 
-    @available(*, deprecated, message: "The inputmode attribute is actually an enumerated attribute. Use the inputMode(_: Mode) modifier instead.")
+    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
     public func inputMode(_ value: String) -> Bdo {
         return mutate(inputmode: value)
     }
@@ -14821,7 +16306,12 @@ extension Bdo: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(role: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> Bdo {
+        return mutate(spellcheck: value)
+    }
+    
+    public func spellcheck(_ value: Bool = true) -> Bdo {
         return mutate(spellcheck: value)
     }
 
@@ -14846,8 +16336,18 @@ extension Bdo: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(title: value)
     }
     
+    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Bdo {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func translate(_ value: Bool = true) -> Bdo {
+        
+        if value {
+            return mutate(translate: "yes")
+        }
+        
+        return mutate(translate: "no")
     }
     
     public func inert(_ condition: Bool = true) -> Bdo {
@@ -15030,7 +16530,12 @@ extension Span: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(class: value)
     }
 
+    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> Span {
+        return mutate(contenteditable: value)
+    }
+    
+    public func editable(_ value: Bool = true) -> Span {
         return mutate(contenteditable: value)
     }
 
@@ -15038,11 +16543,21 @@ extension Span: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Span {
         return mutate(draggable: value)
     }
+    
+    public func draggable(_ value: Bool = true) -> Span {
+        return mutate(draggable: value)
+    }
 
+    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> Span {
+        return mutate(enterkeyhint: value.rawValue)
+    }
+    
+    public func enterKey(_ value: Values.Hint) -> Span {
         return mutate(enterkeyhint: value.rawValue)
     }
     
@@ -15055,7 +16570,7 @@ extension Span: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return self
     }
 
-    @available(*, deprecated, message: "The inputmode attribute is actually an enumerated attribute. Use the inputMode(_: Mode) modifier instead.")
+    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
     public func inputMode(_ value: String) -> Span {
         return mutate(inputmode: value)
     }
@@ -15116,7 +16631,12 @@ extension Span: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(role: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> Span {
+        return mutate(spellcheck: value)
+    }
+    
+    public func spellcheck(_ value: Bool = true) -> Span {
         return mutate(spellcheck: value)
     }
 
@@ -15141,8 +16661,18 @@ extension Span: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(title: value)
     }
     
+    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Span {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func translate(_ value: Bool = true) -> Span {
+        
+        if value {
+            return mutate(translate: "yes")
+        }
+        
+        return mutate(translate: "no")
     }
     
     public func inert(_ condition: Bool = true) -> Span {
@@ -15316,7 +16846,12 @@ extension LineBreak: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(class: value)
     }
 
+    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> LineBreak {
+        return mutate(contenteditable: value)
+    }
+    
+    public func editable(_ value: Bool = true) -> LineBreak {
         return mutate(contenteditable: value)
     }
 
@@ -15324,11 +16859,21 @@ extension LineBreak: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> LineBreak {
         return mutate(draggable: value)
     }
+    
+    public func draggable(_ value: Bool = true) -> LineBreak {
+        return mutate(draggable: value)
+    }
 
+    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> LineBreak {
+        return mutate(enterkeyhint: value.rawValue)
+    }
+    
+    public func enterKey(_ value: Values.Hint) -> LineBreak {
         return mutate(enterkeyhint: value.rawValue)
     }
     
@@ -15341,7 +16886,7 @@ extension LineBreak: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return self
     }
 
-    @available(*, deprecated, message: "The inputmode attribute is actually an enumerated attribute. Use the inputMode(_: Mode) modifier instead.")
+    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
     public func inputMode(_ value: String) -> LineBreak {
         return mutate(inputmode: value)
     }
@@ -15402,7 +16947,12 @@ extension LineBreak: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(role: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> LineBreak {
+        return mutate(spellcheck: value)
+    }
+    
+    public func spellcheck(_ value: Bool = true) -> LineBreak {
         return mutate(spellcheck: value)
     }
 
@@ -15427,8 +16977,18 @@ extension LineBreak: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(title: value)
     }
     
+    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> LineBreak {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func translate(_ value: Bool = true) -> LineBreak {
+        
+        if value {
+            return mutate(translate: "yes")
+        }
+        
+        return mutate(translate: "no")
     }
     
     public func inert(_ condition: Bool = true) -> LineBreak {
@@ -15606,7 +17166,12 @@ extension WordBreak: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(class: value)
     }
 
+    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> WordBreak {
+        return mutate(contenteditable: value)
+    }
+    
+    public func editable(_ value: Bool = true) -> WordBreak {
         return mutate(contenteditable: value)
     }
 
@@ -15614,11 +17179,21 @@ extension WordBreak: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> WordBreak {
         return mutate(draggable: value)
     }
+    
+    public func draggable(_ value: Bool = true) -> WordBreak {
+        return mutate(draggable: value)
+    }
 
+    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> WordBreak {
+        return mutate(enterkeyhint: value.rawValue)
+    }
+    
+    public func enterKey(_ value: Values.Hint) -> WordBreak {
         return mutate(enterkeyhint: value.rawValue)
     }
     
@@ -15631,7 +17206,7 @@ extension WordBreak: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return self
     }
 
-    @available(*, deprecated, message: "The inputmode attribute is actually an enumerated attribute. Use the inputMode(_: Mode) modifier instead.")
+    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
     public func inputMode(_ value: String) -> WordBreak {
         return mutate(inputmode: value)
     }
@@ -15692,7 +17267,12 @@ extension WordBreak: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(role: value.rawValue)
     }
     
+    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> WordBreak {
+        return mutate(spellcheck: value)
+    }
+    
+    public func spellcheck(_ value: Bool = true) -> WordBreak {
         return mutate(spellcheck: value)
     }
 
@@ -15717,8 +17297,18 @@ extension WordBreak: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(title: value)
     }
     
+    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> WordBreak {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func translate(_ value: Bool = true) -> WordBreak {
+        
+        if value {
+            return mutate(translate: "yes")
+        }
+        
+        return mutate(translate: "no")
     }
     
     public func inert(_ condition: Bool = true) -> WordBreak {
@@ -15901,7 +17491,12 @@ extension InsertedText: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttri
         return mutate(class: value)
     }
 
+    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> InsertedText {
+        return mutate(contenteditable: value)
+    }
+    
+    public func editable(_ value: Bool = true) -> InsertedText {
         return mutate(contenteditable: value)
     }
 
@@ -15909,11 +17504,21 @@ extension InsertedText: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttri
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> InsertedText {
         return mutate(draggable: value)
     }
+    
+    public func draggable(_ value: Bool = true) -> InsertedText {
+        return mutate(draggable: value)
+    }
 
+    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> InsertedText {
+        return mutate(enterkeyhint: value.rawValue)
+    }
+    
+    public func enterKey(_ value: Values.Hint) -> InsertedText {
         return mutate(enterkeyhint: value.rawValue)
     }
     
@@ -15926,7 +17531,7 @@ extension InsertedText: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttri
         return self
     }
 
-    @available(*, deprecated, message: "The inputmode attribute is actually an enumerated attribute. Use the inputMode(_: Mode) modifier instead.")
+    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
     public func inputMode(_ value: String) -> InsertedText {
         return mutate(inputmode: value)
     }
@@ -15987,7 +17592,12 @@ extension InsertedText: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttri
         return mutate(role: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> InsertedText {
+        return mutate(spellcheck: value)
+    }
+    
+    public func spellcheck(_ value: Bool = true) -> InsertedText {
         return mutate(spellcheck: value)
     }
 
@@ -16012,8 +17622,18 @@ extension InsertedText: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttri
         return mutate(title: value)
     }
     
+    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> InsertedText {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func translate(_ value: Bool = true) -> InsertedText {
+        
+        if value {
+            return mutate(translate: "yes")
+        }
+        
+        return mutate(translate: "no")
     }
     
     public func inert(_ condition: Bool = true) -> InsertedText {
@@ -16204,7 +17824,12 @@ extension DeletedText: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
         return mutate(class: value)
     }
 
+    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> DeletedText {
+        return mutate(contenteditable: value)
+    }
+    
+    public func editable(_ value: Bool = true) -> DeletedText {
         return mutate(contenteditable: value)
     }
 
@@ -16212,11 +17837,21 @@ extension DeletedText: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> DeletedText {
         return mutate(draggable: value)
     }
+    
+    public func draggable(_ value: Bool = true) -> DeletedText {
+        return mutate(draggable: value)
+    }
 
+    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> DeletedText {
+        return mutate(enterkeyhint: value.rawValue)
+    }
+    
+    public func enterKey(_ value: Values.Hint) -> DeletedText {
         return mutate(enterkeyhint: value.rawValue)
     }
     
@@ -16229,7 +17864,7 @@ extension DeletedText: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
         return self
     }
 
-    @available(*, deprecated, message: "The inputmode attribute is actually an enumerated attribute. Use the inputMode(_: Mode) modifier instead.")
+    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
     public func inputMode(_ value: String) -> DeletedText {
         return mutate(inputmode: value)
     }
@@ -16290,7 +17925,12 @@ extension DeletedText: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
         return mutate(role: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> DeletedText {
+        return mutate(spellcheck: value)
+    }
+    
+    public func spellcheck(_ value: Bool = true) -> DeletedText {
         return mutate(spellcheck: value)
     }
 
@@ -16315,8 +17955,18 @@ extension DeletedText: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
         return mutate(title: value)
     }
     
+    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> DeletedText {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func translate(_ value: Bool = true) -> DeletedText {
+        
+        if value {
+            return mutate(translate: "yes")
+        }
+        
+        return mutate(translate: "no")
     }
     
     public func inert(_ condition: Bool = true) -> DeletedText {
@@ -16512,19 +18162,34 @@ extension Picture: GlobalAttributes, GlobalEventAttributes {
         return mutate(class: value)
     }
 
+    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> Picture {
+        return mutate(contenteditable: value)
+    }
+    
+    public func editable(_ value: Bool = true) -> Picture {
         return mutate(contenteditable: value)
     }
 
     public func direction(_ value: Values.Direction) -> Picture {
         return mutate(dir: value.rawValue)
     }
-
+    
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Picture {
         return mutate(draggable: value)
     }
+    
+    public func draggable(_ value: Bool = true) -> Picture {
+        return mutate(draggable: value)
+    }
 
+    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> Picture {
+        return mutate(enterkeyhint: value.rawValue)
+    }
+    
+    public func enterKey(_ value: Values.Hint) -> Picture {
         return mutate(enterkeyhint: value.rawValue)
     }
     
@@ -16537,7 +18202,7 @@ extension Picture: GlobalAttributes, GlobalEventAttributes {
         return self
     }
 
-    @available(*, deprecated, message: "The inputmode attribute is actually an enumerated attribute. Use the inputMode(_: Mode) modifier instead.")
+    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
     public func inputMode(_ value: String) -> Picture {
         return mutate(inputmode: value)
     }
@@ -16598,7 +18263,12 @@ extension Picture: GlobalAttributes, GlobalEventAttributes {
         return mutate(role: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> Picture {
+        return mutate(spellcheck: value)
+    }
+    
+    public func spellcheck(_ value: Bool = true) -> Picture {
         return mutate(spellcheck: value)
     }
 
@@ -16623,8 +18293,18 @@ extension Picture: GlobalAttributes, GlobalEventAttributes {
         return mutate(title: value)
     }
     
+    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Picture {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func translate(_ value: Bool = true) -> Picture {
+        
+        if value {
+            return mutate(translate: "yes")
+        }
+        
+        return mutate(translate: "no")
     }
     
     public func inert(_ condition: Bool = true) -> Picture {
@@ -16729,7 +18409,12 @@ extension Image: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return mutate(crossorigin: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> Image {
+        return mutate(contenteditable: value)
+    }
+    
+    public func editable(_ value: Bool = true) -> Image {
         return mutate(contenteditable: value)
     }
 
@@ -16737,11 +18422,21 @@ extension Image: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Image {
         return mutate(draggable: value)
     }
+    
+    public func draggable(_ value: Bool = true) -> Image {
+        return mutate(draggable: value)
+    }
 
+    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> Image {
+        return mutate(enterkeyhint: value.rawValue)
+    }
+    
+    public func enterKey(_ value: Values.Hint) -> Image {
         return mutate(enterkeyhint: value.rawValue)
     }
     
@@ -16754,7 +18449,7 @@ extension Image: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return self
     }
 
-    @available(*, deprecated, message: "The inputmode attribute is actually an enumerated attribute. Use the inputMode(_: Mode) modifier instead.")
+    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
     public func inputMode(_ value: String) -> Image {
         return mutate(inputmode: value)
     }
@@ -16819,7 +18514,12 @@ extension Image: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return mutate(role: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> Image {
+        return mutate(spellcheck: value)
+    }
+    
+    public func spellcheck(_ value: Bool = true) -> Image {
         return mutate(spellcheck: value)
     }
 
@@ -16844,8 +18544,18 @@ extension Image: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return mutate(title: value)
     }
     
+    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Image {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func translate(_ value: Bool = true) -> Image {
+        
+        if value {
+            return mutate(translate: "yes")
+        }
+        
+        return mutate(translate: "no")
     }
     
     public func inert(_ condition: Bool = true) -> Image {
@@ -17099,7 +18809,12 @@ extension InlineFrame: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
         return mutate(class: value)
     }
 
+    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> InlineFrame {
+        return mutate(contenteditable: value)
+    }
+    
+    public func editable(_ value: Bool = true) -> InlineFrame {
         return mutate(contenteditable: value)
     }
 
@@ -17107,11 +18822,21 @@ extension InlineFrame: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> InlineFrame {
         return mutate(draggable: value)
     }
+    
+    public func draggable(_ value: Bool = true) -> InlineFrame {
+        return mutate(draggable: value)
+    }
 
+    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> InlineFrame {
+        return mutate(enterkeyhint: value.rawValue)
+    }
+    
+    public func enterKey(_ value: Values.Hint) -> InlineFrame {
         return mutate(enterkeyhint: value.rawValue)
     }
     
@@ -17124,7 +18849,7 @@ extension InlineFrame: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
         return self
     }
 
-    @available(*, deprecated, message: "The inputmode attribute is actually an enumerated attribute. Use the inputMode(_: Mode) modifier instead.")
+    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
     public func inputMode(_ value: String) -> InlineFrame {
         return mutate(inputmode: value)
     }
@@ -17185,7 +18910,12 @@ extension InlineFrame: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
         return mutate(role: value.rawValue)
     }
     
+    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> InlineFrame {
+        return mutate(spellcheck: value)
+    }
+    
+    public func spellcheck(_ value: Bool = true) -> InlineFrame {
         return mutate(spellcheck: value)
     }
 
@@ -17210,8 +18940,18 @@ extension InlineFrame: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
         return mutate(title: value)
     }
     
+    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> InlineFrame {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func translate(_ value: Bool = true) -> InlineFrame {
+        
+        if value {
+            return mutate(translate: "yes")
+        }
+        
+        return mutate(translate: "no")
     }
     
     public func inert(_ condition: Bool = true) -> InlineFrame {
@@ -17431,19 +19171,34 @@ extension Embed: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return mutate(class: value)
     }
 
+    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> Embed {
+        return mutate(contenteditable: value)
+    }
+    
+    public func editable(_ value: Bool = true) -> Embed {
         return mutate(contenteditable: value)
     }
 
     public func direction(_ value: Values.Direction) -> Embed {
         return mutate(dir: value.rawValue)
     }
-
+    
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Embed {
         return mutate(draggable: value)
     }
+    
+    public func draggable(_ value: Bool = true) -> Embed {
+        return mutate(draggable: value)
+    }
 
+    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> Embed {
+        return mutate(enterkeyhint: value.rawValue)
+    }
+    
+    public func enterKey(_ value: Values.Hint) -> Embed {
         return mutate(enterkeyhint: value.rawValue)
     }
     
@@ -17456,7 +19211,7 @@ extension Embed: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return self
     }
 
-    @available(*, deprecated, message: "The inputmode attribute is actually an enumerated attribute. Use the inputMode(_: Mode) modifier instead.")
+    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
     public func inputMode(_ value: String) -> Embed {
         return mutate(inputmode: value)
     }
@@ -17517,7 +19272,12 @@ extension Embed: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return mutate(role: value.rawValue)
     }
     
+    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> Embed {
+        return mutate(spellcheck: value)
+    }
+    
+    public func spellcheck(_ value: Bool = true) -> Embed {
         return mutate(spellcheck: value)
     }
 
@@ -17542,8 +19302,18 @@ extension Embed: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return mutate(title: value)
     }
     
+    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Embed {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func translate(_ value: Bool = true) -> Embed {
+        
+        if value {
+            return mutate(translate: "yes")
+        }
+        
+        return mutate(translate: "no")
     }
     
     public func inert(_ condition: Bool = true) -> Embed {
@@ -17747,7 +19517,12 @@ extension Object: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return mutate(class: value)
     }
 
+    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> Object {
+        return mutate(contenteditable: value)
+    }
+    
+    public func editable(_ value: Bool = true) -> Object {
         return mutate(contenteditable: value)
     }
 
@@ -17755,11 +19530,21 @@ extension Object: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Object {
         return mutate(draggable: value)
     }
+    
+    public func draggable(_ value: Bool = true) -> Object {
+        return mutate(draggable: value)
+    }
 
+    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> Object {
+        return mutate(enterkeyhint: value.rawValue)
+    }
+    
+    public func enterKey(_ value: Values.Hint) -> Object {
         return mutate(enterkeyhint: value.rawValue)
     }
     
@@ -17772,7 +19557,7 @@ extension Object: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return self
     }
 
-    @available(*, deprecated, message: "The inputmode attribute is actually an enumerated attribute. Use the inputMode(_: Mode) modifier instead.")
+    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
     public func inputMode(_ value: String) -> Object {
         return mutate(inputmode: value)
     }
@@ -17833,7 +19618,12 @@ extension Object: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return mutate(role: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> Object {
+        return mutate(spellcheck: value)
+    }
+    
+    public func spellcheck(_ value: Bool = true) -> Object {
         return mutate(spellcheck: value)
     }
 
@@ -17858,8 +19648,18 @@ extension Object: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return mutate(title: value)
     }
     
+    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Object {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func translate(_ value: Bool = true) -> Object {
+        
+        if value {
+            return mutate(translate: "yes")
+        }
+        
+        return mutate(translate: "no")
     }
     
     public func inert(_ condition: Bool = true) -> Object {
@@ -18068,7 +19868,12 @@ extension Video: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return mutate(class: value)
     }
 
+    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> Video {
+        return mutate(contenteditable: value)
+    }
+    
+    public func editable(_ value: Bool = true) -> Video {
         return mutate(contenteditable: value)
     }
 
@@ -18076,11 +19881,21 @@ extension Video: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Video {
         return mutate(draggable: value)
     }
+    
+    public func draggable(_ value: Bool = true) -> Video {
+        return mutate(draggable: value)
+    }
 
+    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> Video {
+        return mutate(enterkeyhint: value.rawValue)
+    }
+    
+    public func enterKey(_ value: Values.Hint) -> Video {
         return mutate(enterkeyhint: value.rawValue)
     }
     
@@ -18093,7 +19908,7 @@ extension Video: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return self
     }
 
-    @available(*, deprecated, message: "The inputmode attribute is actually an enumerated attribute. Use the inputMode(_: Mode) modifier instead.")
+    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
     public func inputMode(_ value: String) -> Video {
         return mutate(inputmode: value)
     }
@@ -18154,7 +19969,12 @@ extension Video: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return mutate(role: value.rawValue)
     }
     
+    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> Video {
+        return mutate(spellcheck: value)
+    }
+    
+    public func spellcheck(_ value: Bool = true) -> Video {
         return mutate(spellcheck: value)
     }
 
@@ -18179,8 +19999,18 @@ extension Video: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return mutate(title: value)
     }
     
+    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Video {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func translate(_ value: Bool = true) -> Video {
+        
+        if value {
+            return mutate(translate: "yes")
+        }
+        
+        return mutate(translate: "no")
     }
     
     public func inert(_ condition: Bool = true) -> Video {
@@ -18428,7 +20258,12 @@ extension Audio: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return mutate(crossorigin: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> Audio {
+        return mutate(contenteditable: value)
+    }
+    
+    public func editable(_ value: Bool = true) -> Audio {
         return mutate(contenteditable: value)
     }
 
@@ -18436,11 +20271,21 @@ extension Audio: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Audio {
         return mutate(draggable: value)
     }
+    
+    public func draggable(_ value: Bool = true) -> Audio {
+        return mutate(draggable: value)
+    }
 
+    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> Audio {
+        return mutate(enterkeyhint: value.rawValue)
+    }
+    
+    public func enterKey(_ value: Values.Hint) -> Audio {
         return mutate(enterkeyhint: value.rawValue)
     }
     
@@ -18453,7 +20298,7 @@ extension Audio: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return self
     }
 
-    @available(*, deprecated, message: "The inputmode attribute is actually an enumerated attribute. Use the inputMode(_: Mode) modifier instead.")
+    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
     public func inputMode(_ value: String) -> Audio {
         return mutate(inputmode: value)
     }
@@ -18514,7 +20359,12 @@ extension Audio: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return mutate(role: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> Audio {
+        return mutate(spellcheck: value)
+    }
+    
+    public func spellcheck(_ value: Bool = true) -> Audio {
         return mutate(spellcheck: value)
     }
 
@@ -18539,8 +20389,18 @@ extension Audio: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return mutate(title: value)
     }
     
+    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Audio {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func translate(_ value: Bool = true) -> Audio {
+        
+        if value {
+            return mutate(translate: "yes")
+        }
+        
+        return mutate(translate: "no")
     }
     
     public func inert(_ condition: Bool = true) -> Audio {
@@ -18705,8 +20565,7 @@ extension Audio: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
 ///     .useMap("lorem")
 /// Map {
 ///     Area()
-///         .shape(.circle)
-///         .coordinates("10, 10, 10 ,10")
+///         .shape(.circle, coordinates: "10, 10, 10, 10")
 ///         .alternate("Lorem ipsum...")
 ///         .reference("https://...")
 /// }
@@ -18769,7 +20628,12 @@ extension Map: GlobalAttributes, GlobalEventAttributes, NameAttribute {
         return mutate(class: value)
     }
 
+    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> Map {
+        return mutate(contenteditable: value)
+    }
+    
+    public func editable(_ value: Bool = true) -> Map {
         return mutate(contenteditable: value)
     }
 
@@ -18777,11 +20641,21 @@ extension Map: GlobalAttributes, GlobalEventAttributes, NameAttribute {
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Map {
         return mutate(draggable: value)
     }
+    
+    public func draggable(_ value: Bool = true) -> Map {
+        return mutate(draggable: value)
+    }
 
+    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> Map {
+        return mutate(enterkeyhint: value.rawValue)
+    }
+    
+    public func enterKey(_ value: Values.Hint) -> Map {
         return mutate(enterkeyhint: value.rawValue)
     }
     
@@ -18794,7 +20668,7 @@ extension Map: GlobalAttributes, GlobalEventAttributes, NameAttribute {
         return self
     }
 
-    @available(*, deprecated, message: "The inputmode attribute is actually an enumerated attribute. Use the inputMode(_: Mode) modifier instead.")
+    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
     public func inputMode(_ value: String) -> Map {
         return mutate(inputmode: value)
     }
@@ -18855,7 +20729,12 @@ extension Map: GlobalAttributes, GlobalEventAttributes, NameAttribute {
         return mutate(role: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> Map {
+        return mutate(spellcheck: value)
+    }
+    
+    public func spellcheck(_ value: Bool = true) -> Map {
         return mutate(spellcheck: value)
     }
 
@@ -18880,8 +20759,18 @@ extension Map: GlobalAttributes, GlobalEventAttributes, NameAttribute {
         return mutate(title: value)
     }
     
+    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Map {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func translate(_ value: Bool = true) -> Map {
+        
+        if value {
+            return mutate(translate: "yes")
+        }
+        
+        return mutate(translate: "no")
     }
     
     public func inert(_ condition: Bool = true) -> Map {
@@ -18998,7 +20887,12 @@ extension Form: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, A
         return mutate(class: value)
     }
 
+    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> Form {
+        return mutate(contenteditable: value)
+    }
+    
+    public func editable(_ value: Bool = true) -> Form {
         return mutate(contenteditable: value)
     }
 
@@ -19006,11 +20900,21 @@ extension Form: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, A
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Form {
         return mutate(draggable: value)
     }
+    
+    public func draggable(_ value: Bool = true) -> Form {
+        return mutate(draggable: value)
+    }
 
+    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> Form {
+        return mutate(enterkeyhint: value.rawValue)
+    }
+    
+    public func enterKey(_ value: Values.Hint) -> Form {
         return mutate(enterkeyhint: value.rawValue)
     }
     
@@ -19023,7 +20927,7 @@ extension Form: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, A
         return self
     }
 
-    @available(*, deprecated, message: "The inputmode attribute is actually an enumerated attribute. Use the inputMode(_: Mode) modifier instead.")
+    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
     public func inputMode(_ value: String) -> Form {
         return mutate(inputmode: value)
     }
@@ -19084,7 +20988,12 @@ extension Form: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, A
         return mutate(role: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> Form {
+        return mutate(spellcheck: value)
+    }
+    
+    public func spellcheck(_ value: Bool = true) -> Form {
         return mutate(spellcheck: value)
     }
 
@@ -19109,8 +21018,18 @@ extension Form: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, A
         return mutate(title: value)
     }
     
+    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Form {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func translate(_ value: Bool = true) -> Form {
+        
+        if value {
+            return mutate(translate: "yes")
+        }
+        
+        return mutate(translate: "no")
     }
     
     public func inert(_ condition: Bool = true) -> Form {
@@ -19126,7 +21045,7 @@ extension Form: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, A
         return mutate(action: value)
     }
     
-    @available(*, deprecated, message: "The autocomplete attribute is actually a enum attribute. You should use autocomplete(_:) instead.")
+    @available(*, unavailable, message: "Use the autocomplete(_:) modifier instead.")
     public func hasCompletion(_ value: Bool) -> Form {
 
         if value {
@@ -19342,7 +21261,12 @@ extension DataList: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(class: value)
     }
 
+    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> DataList {
+        return mutate(contenteditable: value)
+    }
+    
+    public func editable(_ value: Bool = true) -> DataList {
         return mutate(contenteditable: value)
     }
 
@@ -19350,11 +21274,21 @@ extension DataList: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> DataList {
         return mutate(draggable: value)
     }
+    
+    public func draggable(_ value: Bool = true) -> DataList {
+        return mutate(draggable: value)
+    }
 
+    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> DataList {
+        return mutate(enterkeyhint: value.rawValue)
+    }
+    
+    public func enterKey(_ value: Values.Hint) -> DataList {
         return mutate(enterkeyhint: value.rawValue)
     }
     
@@ -19367,7 +21301,7 @@ extension DataList: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return self
     }
 
-    @available(*, deprecated, message: "The inputmode attribute is actually an enumerated attribute. Use the inputMode(_: Mode) modifier instead.")
+    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
     public func inputMode(_ value: String) -> DataList {
         return mutate(inputmode: value)
     }
@@ -19428,7 +21362,12 @@ extension DataList: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(role: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> DataList {
+        return mutate(spellcheck: value)
+    }
+    
+    public func spellcheck(_ value: Bool = true) -> DataList {
         return mutate(spellcheck: value)
     }
 
@@ -19453,8 +21392,18 @@ extension DataList: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(title: value)
     }
     
+    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> DataList {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func translate(_ value: Bool = true) -> DataList {
+        
+        if value {
+            return mutate(translate: "yes")
+        }
+        
+        return mutate(translate: "no")
     }
     
     public func inert(_ condition: Bool = true) -> DataList {
@@ -19639,7 +21588,12 @@ extension Output: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return mutate(class: value)
     }
 
+    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> Output {
+        return mutate(contenteditable: value)
+    }
+    
+    public func editable(_ value: Bool = true) -> Output {
         return mutate(contenteditable: value)
     }
 
@@ -19647,11 +21601,21 @@ extension Output: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Output {
         return mutate(draggable: value)
     }
+    
+    public func draggable(_ value: Bool = true) -> Output {
+        return mutate(draggable: value)
+    }
 
+    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> Output {
+        return mutate(enterkeyhint: value.rawValue)
+    }
+    
+    public func enterKey(_ value: Values.Hint) -> Output {
         return mutate(enterkeyhint: value.rawValue)
     }
     
@@ -19664,7 +21628,7 @@ extension Output: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return self
     }
 
-    @available(*, deprecated, message: "The inputmode attribute is actually an enumerated attribute. Use the inputMode(_: Mode) modifier instead.")
+    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
     public func inputMode(_ value: String) -> Output {
         return mutate(inputmode: value)
     }
@@ -19725,7 +21689,12 @@ extension Output: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return mutate(role: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> Output {
+        return mutate(spellcheck: value)
+    }
+    
+    public func spellcheck(_ value: Bool = true) -> Output {
         return mutate(spellcheck: value)
     }
 
@@ -19750,8 +21719,18 @@ extension Output: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return mutate(title: value)
     }
     
+    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Output {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func translate(_ value: Bool = true) -> Output {
+        
+        if value {
+            return mutate(translate: "yes")
+        }
+        
+        return mutate(translate: "no")
     }
     
     public func inert(_ condition: Bool = true) -> Output {
@@ -19948,7 +21927,12 @@ extension Progress: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(class: value)
     }
 
+    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> Progress {
+        return mutate(contenteditable: value)
+    }
+    
+    public func editable(_ value: Bool = true) -> Progress {
         return mutate(contenteditable: value)
     }
 
@@ -19956,11 +21940,21 @@ extension Progress: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Progress {
         return mutate(draggable: value)
     }
+    
+    public func draggable(_ value: Bool = true) -> Progress {
+        return mutate(draggable: value)
+    }
 
+    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> Progress {
+        return mutate(enterkeyhint: value.rawValue)
+    }
+    
+    public func enterKey(_ value: Values.Hint) -> Progress {
         return mutate(enterkeyhint: value.rawValue)
     }
     
@@ -19973,7 +21967,7 @@ extension Progress: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return self
     }
 
-    @available(*, deprecated, message: "The inputmode attribute is actually an enumerated attribute. Use the inputMode(_: Mode) modifier instead.")
+    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
     public func inputMode(_ value: String) -> Progress {
         return mutate(inputmode: value)
     }
@@ -20034,7 +22028,12 @@ extension Progress: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(role: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> Progress {
+        return mutate(spellcheck: value)
+    }
+    
+    public func spellcheck(_ value: Bool = true) -> Progress {
         return mutate(spellcheck: value)
     }
 
@@ -20059,8 +22058,18 @@ extension Progress: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(title: value)
     }
     
+    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Progress {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func translate(_ value: Bool = true) -> Progress {
+        
+        if value {
+            return mutate(translate: "yes")
+        }
+        
+        return mutate(translate: "no")
     }
     
     public func inert(_ condition: Bool = true) -> Progress {
@@ -20264,7 +22273,12 @@ extension Meter: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return mutate(class: value)
     }
 
+    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> Meter {
+        return mutate(contenteditable: value)
+    }
+    
+    public func editable(_ value: Bool = true) -> Meter {
         return mutate(contenteditable: value)
     }
 
@@ -20272,11 +22286,21 @@ extension Meter: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Meter {
         return mutate(draggable: value)
     }
+    
+    public func draggable(_ value: Bool = true) -> Meter {
+        return mutate(draggable: value)
+    }
 
+    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> Meter {
+        return mutate(enterkeyhint: value.rawValue)
+    }
+    
+    public func enterKey(_ value: Values.Hint) -> Meter {
         return mutate(enterkeyhint: value.rawValue)
     }
     
@@ -20289,7 +22313,7 @@ extension Meter: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return self
     }
 
-    @available(*, deprecated, message: "The inputmode attribute is actually an enumerated attribute. Use the inputMode(_: Mode) modifier instead.")
+    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
     public func inputMode(_ value: String) -> Meter {
         return mutate(inputmode: value)
     }
@@ -20349,8 +22373,13 @@ extension Meter: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
     public func role(_ value: Values.Role) -> Meter {
         return mutate(role: value.rawValue)
     }
-
+    
+    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> Meter {
+        return mutate(spellcheck: value)
+    }
+    
+    public func spellcheck(_ value: Bool = true) -> Meter {
         return mutate(spellcheck: value)
     }
 
@@ -20375,8 +22404,18 @@ extension Meter: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return mutate(title: value)
     }
     
+    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Meter {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func translate(_ value: Bool = true) -> Meter {
+        
+        if value {
+            return mutate(translate: "yes")
+        }
+        
+        return mutate(translate: "no")
     }
     
     public func inert(_ condition: Bool = true) -> Meter {
@@ -20597,7 +22636,12 @@ extension Details: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
         return mutate(class: value)
     }
 
+    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> Details {
+        return mutate(contenteditable: value)
+    }
+    
+    public func editable(_ value: Bool = true) -> Details {
         return mutate(contenteditable: value)
     }
 
@@ -20605,11 +22649,21 @@ extension Details: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Details {
         return mutate(draggable: value)
     }
+    
+    public func draggable(_ value: Bool = true) -> Details {
+        return mutate(draggable: value)
+    }
 
+    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> Details {
+        return mutate(enterkeyhint: value.rawValue)
+    }
+    
+    public func enterKey(_ value: Values.Hint) -> Details {
         return mutate(enterkeyhint: value.rawValue)
     }
     
@@ -20622,7 +22676,7 @@ extension Details: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
         return self
     }
 
-    @available(*, deprecated, message: "The inputmode attribute is actually an enumerated attribute. Use the inputMode(_: Mode) modifier instead.")
+    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
     public func inputMode(_ value: String) -> Details {
         return mutate(inputmode: value)
     }
@@ -20683,7 +22737,12 @@ extension Details: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
         return mutate(role: value.rawValue)
     }
     
+    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> Details {
+        return mutate(spellcheck: value)
+    }
+    
+    public func spellcheck(_ value: Bool = true) -> Details {
         return mutate(spellcheck: value)
     }
 
@@ -20708,8 +22767,18 @@ extension Details: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
         return mutate(title: value)
     }
     
+    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Details {
         return mutate(translate: value.rawValue)
+    }   
+    
+    public func translate(_ value: Bool = true) -> Details {
+        
+        if value {
+            return mutate(translate: "yes")
+        }
+        
+        return mutate(translate: "no")
     }
     
     public func inert(_ condition: Bool = true) -> Details {
@@ -20721,8 +22790,23 @@ extension Details: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
         return self
     }
 
-    public func isOpen(_ value: Bool) -> Details {
-        return mutate(open: value)
+    @available(*, deprecated, message: "Use the open(_:) modifier instead.")
+    public func isOpen(_ condition: Bool = true) -> Details {
+
+        if condition {
+            return mutate(open: "open")
+        }
+        
+        return self
+    }
+    
+    public func open(_ condition: Bool = true) -> Details {
+
+        if condition {
+            return mutate(open: "open")
+        }
+        
+        return self
     }
     
     public func popover(_ value: Values.Popover.State) -> Details {
@@ -20905,7 +22989,12 @@ extension Dialog: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return mutate(class: value)
     }
 
+    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> Dialog {
+        return mutate(contenteditable: value)
+    }
+    
+    public func editable(_ value: Bool = true) -> Dialog {
         return mutate(contenteditable: value)
     }
 
@@ -20913,11 +23002,21 @@ extension Dialog: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Dialog {
         return mutate(draggable: value)
     }
+    
+    public func draggable(_ value: Bool = true) -> Dialog {
+        return mutate(draggable: value)
+    }
 
+    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> Dialog {
+        return mutate(enterkeyhint: value.rawValue)
+    }
+    
+    public func enterKey(_ value: Values.Hint) -> Dialog {
         return mutate(enterkeyhint: value.rawValue)
     }
     
@@ -20930,7 +23029,7 @@ extension Dialog: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return self
     }
 
-    @available(*, deprecated, message: "The inputmode attribute is actually an enumerated attribute. Use the inputMode(_: Mode) modifier instead.")
+    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
     public func inputMode(_ value: String) -> Dialog {
         return mutate(inputmode: value)
     }
@@ -20991,7 +23090,12 @@ extension Dialog: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return mutate(role: value.rawValue)
     }
     
+    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> Dialog {
+        return mutate(spellcheck: value)
+    }
+    
+    public func spellcheck(_ value: Bool = true) -> Dialog {
         return mutate(spellcheck: value)
     }
 
@@ -21016,8 +23120,18 @@ extension Dialog: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return mutate(title: value)
     }
     
+    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Dialog {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func translate(_ value: Bool = true) -> Dialog {
+        
+        if value {
+            return mutate(translate: "yes")
+        }
+        
+        return mutate(translate: "no")
     }
     
     public func inert(_ condition: Bool = true) -> Dialog {
@@ -21029,8 +23143,23 @@ extension Dialog: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return self
     }
 
-    public func isOpen(_ value: Bool) -> Dialog {
-        return mutate(open: value)
+    @available(*, deprecated, message: "Use the open(_:) modifier instead.")
+    public func isOpen(_ condition: Bool) -> Dialog {
+
+        if condition {
+            return mutate(open: "open")
+        }
+        
+        return self
+    }
+    
+    public func open(_ condition: Bool = true) -> Dialog {
+        
+        if condition {
+            return mutate(open: "open")
+        }
+        
+        return self
     }
     
     public func popover(_ value: Values.Popover.State) -> Dialog {
@@ -21208,7 +23337,12 @@ extension Script: GlobalAttributes, GlobalEventAttributes, AsynchronouslyAttribu
         return mutate(crossorigin: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> Script {
+        return mutate(contenteditable: value)
+    }
+    
+    public func editable(_ value: Bool = true) -> Script {
         return mutate(contenteditable: value)
     }
     
@@ -21220,11 +23354,21 @@ extension Script: GlobalAttributes, GlobalEventAttributes, AsynchronouslyAttribu
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Script {
         return mutate(draggable: value)
     }
+    
+    public func draggable(_ value: Bool = true) -> Script {
+        return mutate(draggable: value)
+    }
 
+    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> Script {
+        return mutate(enterkeyhint: value.rawValue)
+    }
+    
+    public func enterKey(_ value: Values.Hint) -> Script {
         return mutate(enterkeyhint: value.rawValue)
     }
     
@@ -21237,7 +23381,7 @@ extension Script: GlobalAttributes, GlobalEventAttributes, AsynchronouslyAttribu
         return self
     }
 
-    @available(*, deprecated, message: "The inputmode attribute is actually an enumerated attribute. Use the inputMode(_: Mode) modifier instead.")
+    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
     public func inputMode(_ value: String) -> Script {
         return mutate(inputmode: value)
     }
@@ -21306,7 +23450,12 @@ extension Script: GlobalAttributes, GlobalEventAttributes, AsynchronouslyAttribu
         return mutate(role: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> Script {
+        return mutate(spellcheck: value)
+    }
+    
+    public func spellcheck(_ value: Bool = true) -> Script {
         return mutate(spellcheck: value)
     }
 
@@ -21331,8 +23480,18 @@ extension Script: GlobalAttributes, GlobalEventAttributes, AsynchronouslyAttribu
         return mutate(title: value)
     }
     
+    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Script {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func translate(_ value: Bool = true) -> Script {
+        
+        if value {
+            return mutate(translate: "yes")
+        }
+        
+        return mutate(translate: "no")
     }
     
     public func inert(_ condition: Bool = true) -> Script {
@@ -21469,7 +23628,12 @@ extension NoScript: GlobalAttributes, GlobalEventAttributes {
         return mutate(class: value)
     }
 
+    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> NoScript {
+        return mutate(contenteditable: value)
+    }
+    
+    public func editable(_ value: Bool = true) -> NoScript {
         return mutate(contenteditable: value)
     }
 
@@ -21477,11 +23641,21 @@ extension NoScript: GlobalAttributes, GlobalEventAttributes {
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> NoScript {
         return mutate(draggable: value)
     }
+    
+    public func draggable(_ value: Bool = true) -> NoScript {
+        return mutate(draggable: value)
+    }
 
+    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> NoScript {
+        return mutate(enterkeyhint: value.rawValue)
+    }
+    
+    public func enterKey(_ value: Values.Hint) -> NoScript {
         return mutate(enterkeyhint: value.rawValue)
     }
     
@@ -21494,7 +23668,7 @@ extension NoScript: GlobalAttributes, GlobalEventAttributes {
         return self
     }
 
-    @available(*, deprecated, message: "The inputmode attribute is actually an enumerated attribute. Use the inputMode(_: Mode) modifier instead.")
+    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
     public func inputMode(_ value: String) -> NoScript {
         return mutate(inputmode: value)
     }
@@ -21555,7 +23729,12 @@ extension NoScript: GlobalAttributes, GlobalEventAttributes {
         return mutate(role: value.rawValue)
     }
     
+    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> NoScript {
+        return mutate(spellcheck: value)
+    }
+    
+    public func spellcheck(_ value: Bool = true) -> NoScript {
         return mutate(spellcheck: value)
     }
 
@@ -21580,8 +23759,18 @@ extension NoScript: GlobalAttributes, GlobalEventAttributes {
         return mutate(title: value)
     }
     
+    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> NoScript {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func translate(_ value: Bool = true) -> NoScript {
+        
+        if value {
+            return mutate(translate: "yes")
+        }
+        
+        return mutate(translate: "no")
     }
     
     public func inert(_ condition: Bool = true) -> NoScript {
@@ -21695,7 +23884,12 @@ extension Template: GlobalAttributes, GlobalEventAttributes, ShadowRootModeAttri
         return mutate(class: value)
     }
 
+    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> Template {
+        return mutate(contenteditable: value)
+    }
+    
+    public func editable(_ value: Bool = true) -> Template {
         return mutate(contenteditable: value)
     }
 
@@ -21703,11 +23897,21 @@ extension Template: GlobalAttributes, GlobalEventAttributes, ShadowRootModeAttri
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Template {
         return mutate(draggable: value)
     }
+    
+    public func draggable(_ value: Bool = true) -> Template {
+        return mutate(draggable: value)
+    }
 
+    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> Template {
+        return mutate(enterkeyhint: value.rawValue)
+    }
+    
+    public func enterKey(_ value: Values.Hint) -> Template {
         return mutate(enterkeyhint: value.rawValue)
     }
     
@@ -21720,7 +23924,7 @@ extension Template: GlobalAttributes, GlobalEventAttributes, ShadowRootModeAttri
         return self
     }
 
-    @available(*, deprecated, message: "The inputmode attribute is actually an enumerated attribute. Use the inputMode(_: Mode) modifier instead.")
+    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
     public func inputMode(_ value: String) -> Template {
         return mutate(inputmode: value)
     }
@@ -21781,7 +23985,12 @@ extension Template: GlobalAttributes, GlobalEventAttributes, ShadowRootModeAttri
         return mutate(role: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> Template {
+        return mutate(spellcheck: value)
+    }
+    
+    public func spellcheck(_ value: Bool = true) -> Template {
         return mutate(spellcheck: value)
     }
 
@@ -21806,8 +24015,18 @@ extension Template: GlobalAttributes, GlobalEventAttributes, ShadowRootModeAttri
         return mutate(title: value)
     }
     
+    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Template {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func translate(_ value: Bool = true) -> Template {
+        
+        if value {
+            return mutate(translate: "yes")
+        }
+        
+        return mutate(translate: "no")
     }
     
     public func inert(_ condition: Bool = true) -> Template {
@@ -21914,7 +24133,12 @@ extension Canvas: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return mutate(class: value)
     }
 
+    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> Canvas {
+        return mutate(contenteditable: value)
+    }
+    
+    public func editable(_ value: Bool = true) -> Canvas {
         return mutate(contenteditable: value)
     }
 
@@ -21922,11 +24146,21 @@ extension Canvas: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Canvas {
         return mutate(draggable: value)
     }
+    
+    public func draggable(_ value: Bool = true) -> Canvas {
+        return mutate(draggable: value)
+    }
 
+    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> Canvas {
+        return mutate(enterkeyhint: value.rawValue)
+    }
+    
+    public func enterKey(_ value: Values.Hint) -> Canvas {
         return mutate(enterkeyhint: value.rawValue)
     }
     
@@ -21939,7 +24173,7 @@ extension Canvas: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return self
     }
 
-    @available(*, deprecated, message: "The inputmode attribute is actually an enumerated attribute. Use the inputMode(_: Mode) modifier instead.")
+    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
     public func inputMode(_ value: String) -> Canvas {
         return mutate(inputmode: value)
     }
@@ -22000,7 +24234,12 @@ extension Canvas: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return mutate(role: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> Canvas {
+        return mutate(spellcheck: value)
+    }
+    
+    public func spellcheck(_ value: Bool = true) -> Canvas {
         return mutate(spellcheck: value)
     }
 
@@ -22025,8 +24264,18 @@ extension Canvas: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return mutate(title: value)
     }
     
+    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Canvas {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func translate(_ value: Bool = true) -> Canvas {
+        
+        if value {
+            return mutate(translate: "yes")
+        }
+        
+        return mutate(translate: "no")
     }
     
     public func inert(_ condition: Bool = true) -> Canvas {
@@ -22224,7 +24473,12 @@ extension Table: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return mutate(class: value)
     }
 
+    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> Table {
+        return mutate(contenteditable: value)
+    }
+    
+    public func editable(_ value: Bool = true) -> Table {
         return mutate(contenteditable: value)
     }
 
@@ -22232,11 +24486,21 @@ extension Table: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Table {
         return mutate(draggable: value)
     }
+    
+    public func draggable(_ value: Bool = true) -> Table {
+        return mutate(draggable: value)
+    }
 
+    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> Table {
+        return mutate(enterkeyhint: value.rawValue)
+    }
+    
+    public func enterKey(_ value: Values.Hint) -> Table {
         return mutate(enterkeyhint: value.rawValue)
     }
     
@@ -22249,7 +24513,7 @@ extension Table: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return self
     }
 
-    @available(*, deprecated, message: "The inputmode attribute is actually an enumerated attribute. Use the inputMode(_: Mode) modifier instead.")
+    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
     public func inputMode(_ value: String) -> Table {
         return mutate(inputmode: value)
     }
@@ -22310,7 +24574,12 @@ extension Table: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return mutate(role: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> Table {
+        return mutate(spellcheck: value)
+    }
+    
+    public func spellcheck(_ value: Bool = true) -> Table {
         return mutate(spellcheck: value)
     }
 
@@ -22335,8 +24604,18 @@ extension Table: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return mutate(title: value)
     }
     
+    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Table {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func translate(_ value: Bool = true) -> Table {
+        
+        if value {
+            return mutate(translate: "yes")
+        }
+        
+        return mutate(translate: "no")
     }
     
     public func inert(_ condition: Bool = true) -> Table {
@@ -22554,30 +24833,40 @@ extension Vector: GlobalVectorAttributes, WidthAttribute, HeightAttribute, ViewB
         return self.mutate(viewbox: "\(x) \(y) \(width) \(height)")
     }
     
-    public func fill(_ value: String) -> Vector {
-        return self.mutate(fill: value)
+    public func fill(_ color: String, opacity: Double? = nil) -> Vector {
+        return self.mutate(fill: color).mutate(fillopacity: opacity)  
     }
     
+    @available(*, deprecated, message: "Use the stroke(_:width:opacity:cap:join:) modifier instead.")
     public func stroke(_ value: String) -> Vector {
         return self.mutate(stroke: value)
     }
     
+    public func stroke(_ color: String, width: Int? = nil, opacity: Double? = nil, cap: Values.Linecap? = nil, join: Values.Linejoin? = nil) -> Vector {
+        return self.mutate(stroke: color).mutate(strokewidth: width).mutate(strokeopacity: opacity).mutate(strokelinecap: cap?.rawValue).mutate(strokelinejoin: join?.rawValue)
+    }
+    
+    @available(*, deprecated, message: "Use the stroke(_:width:opacity:cap:join:) modifier instead.")
     public func strokeWidth(_ size: Int) -> Vector {
         return self.mutate(strokewidth: size)
     }
     
+    @available(*, deprecated, message: "Use the fill(_:opacity:) modifier instead.")
     public func fillOpacity(_ value: Double) -> Vector {
         return self.mutate(fillopacity: value)
     }
     
+    @available(*, deprecated, message: "Use the stroke(_:width:opacity:cap:join:) modifier instead.")
     public func strokeOpacity(_ value: Double) -> Vector {
         return self.mutate(strokeopacity: value)
     }
     
+    @available(*, deprecated, message: "Use the stroke(_:width:opacity:cap:join:) modifier instead.")
     public func strokeLineCap(_ value: Values.Linecap) -> Vector {
         return self.mutate(strokelinecap: value.rawValue)
     }
     
+    @available(*, deprecated, message: "Use the stroke(_:width:opacity:cap:join:) modifier instead.")
     public func strokeLineJoin(_ value: Values.Linejoin) -> Vector {
         return self.mutate(strokelinejoin: value.rawValue)
     }
@@ -22667,7 +24956,12 @@ extension Slot: GlobalAttributes, NameAttribute {
         return mutate(class: value)
     }
     
+    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> Slot {
+        return mutate(contenteditable: value)
+    }
+    
+    public func editable(_ value: Bool = true) -> Slot {
         return mutate(contenteditable: value)
     }
     
@@ -22675,11 +24969,21 @@ extension Slot: GlobalAttributes, NameAttribute {
         return mutate(dir: value.rawValue)
     }
     
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Slot {
         return mutate(draggable: value)
     }
     
+    public func draggable(_ value: Bool = true) -> Slot {
+        return mutate(draggable: value)
+    }
+    
+    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> Slot {
+        return mutate(enterkeyhint: value.rawValue)
+    }
+    
+    public func enterKey(_ value: Values.Hint) -> Slot {
         return mutate(enterkeyhint: value.rawValue)
     }
     
@@ -22692,7 +24996,7 @@ extension Slot: GlobalAttributes, NameAttribute {
         return self
     }
     
-    @available(*, deprecated, message: "The inputmode attribute is actually an enumerated attribute. Use the inputMode(_: Mode) modifier instead.")
+    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
     public func inputMode(_ value: String) -> Slot {
         return mutate(inputmode: value)
     }
@@ -22753,7 +25057,12 @@ extension Slot: GlobalAttributes, NameAttribute {
         return mutate(role: value.rawValue)
     }
     
+    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> Slot {
+        return mutate(spellcheck: value)
+    }
+    
+    public func spellcheck(_ value: Bool = true) -> Slot {
         return mutate(spellcheck: value)
     }
     
@@ -22778,8 +25087,18 @@ extension Slot: GlobalAttributes, NameAttribute {
         return mutate(title: value)
     }
     
+    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Slot {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func translate(_ value: Bool = true) -> Slot {
+        
+        if value {
+            return mutate(translate: "yes")
+        }
+        
+        return mutate(translate: "no")
     }
     
     public func inert(_ condition: Bool = true) -> Slot {

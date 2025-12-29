@@ -58,7 +58,7 @@ public struct Circle: ContentNode, VectorElement {
 }
 
 extension Circle: GlobalVectorAttributes, CenterPointAttribute, RadiusAttribute {
-    
+
     public func id(_ value: String) -> Circle {
         return self.mutate(id: value)
     }
@@ -75,14 +75,20 @@ extension Circle: GlobalVectorAttributes, CenterPointAttribute, RadiusAttribute 
         return self.mutate(style: TaintedString(value, as: .css(.attribute)))
     }
     
-    public func fill(_ value: String) -> Circle {
-        return self.mutate(fill: value)
+    public func fill(_ color: String, opacity: Double? = nil) -> Circle {
+        return self.mutate(fill: color).mutate(fillopacity: opacity)   
     }
     
+    @available(*, deprecated, message: "Use the stroke(_:width:opacity:cap:join:) modifier instead.")
     public func stroke(_ value: String) -> Circle {
         return self.mutate(stroke: value)
     }
     
+    public func stroke(_ color: String, width: Int? = nil, opacity: Double? = nil, cap: Values.Linecap? = nil, join: Values.Linejoin? = nil) -> Circle {
+        return self.mutate(stroke: color).mutate(strokewidth: width).mutate(strokeopacity: opacity).mutate(strokelinecap: cap?.rawValue).mutate(strokelinejoin: join?.rawValue)
+    }
+    
+    @available(*, deprecated, message: "Use the stroke(_:width:opacity:cap:join:) modifier instead.")
     public func strokeWidth(_ size: Int) -> Circle {
         return self.mutate(strokewidth: size)
     }
@@ -108,18 +114,22 @@ extension Circle: GlobalVectorAttributes, CenterPointAttribute, RadiusAttribute 
         return self.mutate(radius: size)
     }
     
+    @available(*, deprecated, message: "Use the fill(_:opacity:) modifier instead.")
     public func fillOpacity(_ value: Double) -> Circle {
         return self.mutate(fillopacity: value)
     }
     
+    @available(*, deprecated, message: "Use the stroke(_:width:opacity:cap:join:) modifier instead.")
     public func strokeOpacity(_ value: Double) -> Circle {
         return self.mutate(strokeopacity: value)
     }
     
+    @available(*, deprecated, message: "Use the stroke(_:width:opacity:cap:join:) modifier instead.")
     public func strokeLineCap(_ value: Values.Linecap) -> Circle {
         return self.mutate(strokelinecap: value.rawValue)
     }
     
+    @available(*, deprecated, message: "Use the stroke(_:width:opacity:cap:join:) modifier instead.")
     public func strokeLineJoin(_ value: Values.Linejoin) -> Circle {
         return self.mutate(strokelinejoin: value.rawValue)
     }
@@ -200,14 +210,20 @@ extension Rectangle: GlobalVectorAttributes, WidthAttribute, HeightAttribute, Ra
         return self.mutate(style: TaintedString(value, as: .css(.attribute)))
     }
     
-    public func fill(_ value: String) -> Rectangle {
-        return self.mutate(fill: value)
+    public func fill(_ color: String, opacity: Double? = nil) -> Rectangle {
+        return self.mutate(fill: color).mutate(fillopacity: opacity)  
     }
     
+    @available(*, deprecated, message: "Use the stroke(_:width:opacity:cap:join:) modifier instead.")
     public func stroke(_ value: String) -> Rectangle {
         return self.mutate(stroke: value)
     }
+
+    public func stroke(_ color: String, width: Int? = nil, opacity: Double? = nil, cap: Values.Linecap? = nil, join: Values.Linejoin? = nil) -> Rectangle {
+        return self.mutate(stroke: color).mutate(strokewidth: width).mutate(strokeopacity: opacity).mutate(strokelinecap: cap?.rawValue).mutate(strokelinejoin: join?.rawValue)
+    }
     
+    @available(*, deprecated, message: "Use the stroke(_:width:opacity:cap:join:) modifier instead.")
     public func strokeWidth(_ size: Int) -> Rectangle {
         return self.mutate(strokewidth: size)
     }
@@ -254,18 +270,22 @@ extension Rectangle: GlobalVectorAttributes, WidthAttribute, HeightAttribute, Ra
         return self.mutate(height: size)
     }
     
+    @available(*, deprecated, message: "Use the fill(_:opacity:) modifier instead.")
     public func fillOpacity(_ value: Double) -> Rectangle {
         return self.mutate(fillopacity: value)
     }
     
+    @available(*, deprecated, message: "Use the stroke(_:width:opacity:cap:join:) modifier instead.")
     public func strokeOpacity(_ value: Double) -> Rectangle {
         return self.mutate(strokeopacity: value)
     }
     
+    @available(*, deprecated, message: "Use the stroke(_:width:opacity:cap:join:) modifier instead.")
     public func strokeLineCap(_ value: Values.Linecap) -> Rectangle {
         return self.mutate(strokelinecap: value.rawValue)
     }
     
+    @available(*, deprecated, message: "Use the stroke(_:width:opacity:cap:join:) modifier instead.")
     public func strokeLineJoin(_ value: Values.Linejoin) -> Rectangle {
         return self.mutate(strokelinejoin: value.rawValue)
     }
@@ -346,14 +366,20 @@ extension Ellipse: GlobalVectorAttributes, CenterPointAttribute, RadiusPointAttr
         return self.mutate(style: TaintedString(value, as: .css(.attribute)))
     }
     
-    public func fill(_ value: String) -> Ellipse {
-        return self.mutate(fill: value)
+    public func fill(_ color: String, opacity: Double? = nil) -> Ellipse {
+        return self.mutate(fill: color).mutate(fillopacity: opacity)  
     }
     
+    @available(*, deprecated, message: "Use the stroke(_:width:opacity:cap:join:) modifier instead.")
     public func stroke(_ value: String) -> Ellipse {
         return self.mutate(stroke: value)
     }
     
+    public func stroke(_ color: String, width: Int? = nil, opacity: Double? = nil, cap: Values.Linecap? = nil, join: Values.Linejoin? = nil) -> Ellipse {
+        return self.mutate(stroke: color).mutate(strokewidth: width).mutate(strokeopacity: opacity).mutate(strokelinecap: cap?.rawValue).mutate(strokelinejoin: join?.rawValue)
+    }
+    
+    @available(*, deprecated, message: "Use the stroke(_:width:opacity:cap:join:) modifier instead.")
     public func strokeWidth(_ size: Int) -> Ellipse {
         return self.mutate(strokewidth: size)
     }
@@ -392,18 +418,22 @@ extension Ellipse: GlobalVectorAttributes, CenterPointAttribute, RadiusPointAttr
         return self.mutate(rx: point.x).mutate(ry: point.y)
     }
     
+    @available(*, deprecated, message: "Use the fill(_:opacity:) modifier instead.")
     public func fillOpacity(_ value: Double) -> Ellipse {
         return self.mutate(fillopacity: value)
     }
     
+    @available(*, deprecated, message: "Use the stroke(_:width:opacity:cap:join:) modifier instead.")
     public func strokeOpacity(_ value: Double) -> Ellipse {
         return self.mutate(strokeopacity: value)
     }
     
+    @available(*, deprecated, message: "Use the stroke(_:width:opacity:cap:join:) modifier instead.")
     public func strokeLineCap(_ value: Values.Linecap) -> Ellipse {
         return self.mutate(strokelinecap: value.rawValue)
     }
     
+    @available(*, deprecated, message: "Use the stroke(_:width:opacity:cap:join:) modifier instead.")
     public func strokeLineJoin(_ value: Values.Linejoin) -> Ellipse {
         return self.mutate(strokelinejoin: value.rawValue)
     }
@@ -484,30 +514,40 @@ extension Line: GlobalVectorAttributes {
         return self.mutate(style: TaintedString(value, as: .css(.attribute)))
     }
     
-    public func fill(_ value: String) -> Line {
-        return self.mutate(fill: value)
+    public func fill(_ color: String, opacity: Double? = nil) -> Line {
+        return self.mutate(fill: color).mutate(fillopacity: opacity)  
     }
     
+    @available(*, deprecated, message: "Use the stroke(_:width:opacity:cap:join:) modifier instead.")
     public func stroke(_ value: String) -> Line {
         return self.mutate(stroke: value)
     }
     
+    public func stroke(_ color: String, width: Int? = nil, opacity: Double? = nil, cap: Values.Linecap? = nil, join: Values.Linejoin? = nil) -> Line {
+        return self.mutate(stroke: color).mutate(strokewidth: width).mutate(strokeopacity: opacity).mutate(strokelinecap: cap?.rawValue).mutate(strokelinejoin: join?.rawValue)
+    }
+    
+    @available(*, deprecated, message: "Use the stroke(_:width:opacity:cap:join:) modifier instead.")
     public func strokeWidth(_ size: Int) -> Line {
         return self.mutate(strokewidth: size)
     }
     
+    @available(*, deprecated, message: "Use the fill(_:opacity:) modifier instead.")
     public func fillOpacity(_ value: Double) -> Line {
         return self.mutate(fillopacity: value)
     }
     
+    @available(*, deprecated, message: "Use the stroke(_:width:opacity:cap:join:) modifier instead.")
     public func strokeOpacity(_ value: Double) -> Line {
         return self.mutate(strokeopacity: value)
     }
     
+    @available(*, deprecated, message: "Use the stroke(_:width:opacity:cap:join:) modifier instead.")
     public func strokeLineCap(_ value: Values.Linecap) -> Line {
         return self.mutate(strokelinecap: value.rawValue)
     }
     
+    @available(*, deprecated, message: "Use the stroke(_:width:opacity:cap:join:) modifier instead.")
     public func strokeLineJoin(_ value: Values.Linejoin) -> Line {
         return self.mutate(strokelinejoin: value.rawValue)
     }
@@ -587,30 +627,40 @@ extension Polygon: GlobalVectorAttributes, PointsAttribute {
         return self.mutate(style: TaintedString(value, as: .css(.attribute)))
     }
     
-    public func fill(_ value: String) -> Polygon {
-        return self.mutate(fill: value)
+    public func fill(_ color: String, opacity: Double? = nil) -> Polygon {
+        return self.mutate(fill: color).mutate(fillopacity: opacity)  
     }
     
+    @available(*, deprecated, message: "Use the stroke(_:width:opacity:cap:join:) modifier instead.")
     public func stroke(_ value: String) -> Polygon {
         return self.mutate(stroke: value)
     }
     
+    public func stroke(_ color: String, width: Int? = nil, opacity: Double? = nil, cap: Values.Linecap? = nil, join: Values.Linejoin? = nil) -> Polygon {
+        return self.mutate(stroke: color).mutate(strokewidth: width).mutate(strokeopacity: opacity).mutate(strokelinecap: cap?.rawValue).mutate(strokelinejoin: join?.rawValue)
+    }
+    
+    @available(*, deprecated, message: "Use the stroke(_:width:opacity:cap:join:) modifier instead.")
     public func strokeWidth(_ size: Int) -> Polygon {
         return self.mutate(strokewidth: size)
     }
     
+    @available(*, deprecated, message: "Use the fill(_:opacity:) modifier instead.")
     public func fillOpacity(_ value: Double) -> Polygon {
         return self.mutate(fillopacity: value)
     }
     
+    @available(*, deprecated, message: "Use the stroke(_:width:opacity:cap:join:) modifier instead.")
     public func strokeOpacity(_ value: Double) -> Polygon {
         return self.mutate(strokeopacity: value)
     }
     
+    @available(*, deprecated, message: "Use the stroke(_:width:opacity:cap:join:) modifier instead.")
     public func strokeLineCap(_ value: Values.Linecap) -> Polygon {
         return self.mutate(strokelinecap: value.rawValue)
     }
     
+    @available(*, deprecated, message: "Use the stroke(_:width:opacity:cap:join:) modifier instead.")
     public func strokeLineJoin(_ value: Values.Linejoin) -> Polygon {
         return self.mutate(strokelinejoin: value.rawValue)
     }
@@ -694,30 +744,40 @@ extension Polyline: GlobalVectorAttributes, PointsAttribute {
         return self.mutate(style: TaintedString(value, as: .css(.attribute)))
     }
     
-    public func fill(_ value: String) -> Polyline {
-        return self.mutate(fill: value)
+    public func fill(_ color: String, opacity: Double? = nil) -> Polyline {
+        return self.mutate(fill: color).mutate(fillopacity: opacity)  
     }
     
+    @available(*, deprecated, message: "Use the stroke(_:width:opacity:cap:join:) modifier instead.")
     public func stroke(_ value: String) -> Polyline {
         return self.mutate(stroke: value)
     }
     
+    public func stroke(_ color: String, width: Int? = nil, opacity: Double? = nil, cap: Values.Linecap? = nil, join: Values.Linejoin? = nil) -> Polyline {
+        return self.mutate(stroke: color).mutate(strokewidth: width).mutate(strokeopacity: opacity).mutate(strokelinecap: cap?.rawValue).mutate(strokelinejoin: join?.rawValue)
+    }
+    
+    @available(*, deprecated, message: "Use the stroke(_:width:opacity:cap:join:) modifier instead.")
     public func strokeWidth(_ size: Int) -> Polyline {
         return self.mutate(strokewidth: size)
     }
     
+    @available(*, deprecated, message: "Use the fill(_:opacity:) modifier instead.")
     public func fillOpacity(_ value: Double) -> Polyline {
         return self.mutate(fillopacity: value)
     }
     
+    @available(*, deprecated, message: "Use the stroke(_:width:opacity:cap:join:) modifier instead.")
     public func strokeOpacity(_ value: Double) -> Polyline {
         return self.mutate(strokeopacity: value)
     }
     
+    @available(*, deprecated, message: "Use the stroke(_:width:opacity:cap:join:) modifier instead.")
     public func strokeLineCap(_ value: Values.Linecap) -> Polyline {
         return self.mutate(strokelinecap: value.rawValue)
     }
     
+    @available(*, deprecated, message: "Use the stroke(_:width:opacity:cap:join:) modifier instead.")
     public func strokeLineJoin(_ value: Values.Linejoin) -> Polyline {
         return self.mutate(strokelinejoin: value.rawValue)
     }
@@ -801,30 +861,40 @@ extension Path: GlobalVectorAttributes, DrawAttribute {
         return self.mutate(style: TaintedString(value, as: .css(.attribute)))
     }
 
-    public func fill(_ value: String) -> Path {
-        return self.mutate(fill: value)
+    public func fill(_ color: String, opacity: Double? = nil) -> Path {
+        return self.mutate(fill: color).mutate(fillopacity: opacity)  
     }
     
+    @available(*, deprecated, message: "Use the stroke(_:width:opacity:cap:join:) modifier instead.")
     public func stroke(_ value: String) -> Path {
         return self.mutate(stroke: value)
     }
     
+    public func stroke(_ color: String, width: Int? = nil, opacity: Double? = nil, cap: Values.Linecap? = nil, join: Values.Linejoin? = nil) -> Path {
+        return self.mutate(stroke: color).mutate(strokewidth: width).mutate(strokeopacity: opacity).mutate(strokelinecap: cap?.rawValue).mutate(strokelinejoin: join?.rawValue)
+    }
+    
+    @available(*, deprecated, message: "Use the stroke(_:width:opacity:cap:join:) modifier instead.")
     public func strokeWidth(_ size: Int) -> Path {
         return self.mutate(strokewidth: size)
     }
     
+    @available(*, deprecated, message: "Use the fill(_:opacity:) modifier instead.")
     public func fillOpacity(_ value: Double) -> Path {
         return self.mutate(fillopacity: value)
     }
     
+    @available(*, deprecated, message: "Use the stroke(_:width:opacity:cap:join:) modifier instead.")
     public func strokeOpacity(_ value: Double) -> Path {
         return self.mutate(strokeopacity: value)
     }
     
+    @available(*, deprecated, message: "Use the stroke(_:width:opacity:cap:join:) modifier instead.")
     public func strokeLineCap(_ value: Values.Linecap) -> Path {
         return self.mutate(strokelinecap: value.rawValue)
     }
     
+    @available(*, deprecated, message: "Use the stroke(_:width:opacity:cap:join:) modifier instead.")
     public func strokeLineJoin(_ value: Values.Linejoin) -> Path {
         return self.mutate(strokelinejoin: value.rawValue)
     }
@@ -907,30 +977,40 @@ extension Group: GlobalVectorAttributes {
         return self.mutate(style: TaintedString(value, as: .css(.attribute)))
     }
 
-    public func fill(_ value: String) -> Group {
-        return self.mutate(fill: value)
+    public func fill(_ color: String, opacity: Double? = nil) -> Group {
+        return self.mutate(fill: color).mutate(fillopacity: opacity)  
     }
 
+    @available(*, deprecated, message: "Use the stroke(_:width:opacity:cap:join:) modifier instead.")
     public func stroke(_ value: String) -> Group {
         return self.mutate(stroke: value)
     }
+    
+    public func stroke(_ color: String, width: Int? = nil, opacity: Double? = nil, cap: Values.Linecap? = nil, join: Values.Linejoin? = nil) -> Group {
+        return self.mutate(stroke: color).mutate(strokewidth: width).mutate(strokeopacity: opacity).mutate(strokelinecap: cap?.rawValue).mutate(strokelinejoin: join?.rawValue)
+    }
 
+    @available(*, deprecated, message: "Use the stroke(_:width:opacity:cap:join:) modifier instead.")
     public func strokeWidth(_ size: Int) -> Group {
         return self.mutate(strokewidth: size)
     }
 
+    @available(*, deprecated, message: "Use the fill(_:opacity:) modifier instead.")
     public func fillOpacity(_ value: Double) -> Group {
         return self.mutate(fillopacity: value)
     }
 
+    @available(*, deprecated, message: "Use the stroke(_:width:opacity:cap:join:) modifier instead.")
     public func strokeOpacity(_ value: Double) -> Group {
         return self.mutate(strokeopacity: value)
     }
 
+    @available(*, deprecated, message: "Use the stroke(_:width:opacity:cap:join:) modifier instead.")
     public func strokeLineCap(_ value: Values.Linecap) -> Group {
         return self.mutate(strokelinecap: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the stroke(_:width:opacity:cap:join:) modifier instead.")
     public func strokeLineJoin(_ value: Values.Linejoin) -> Group {
         return self.mutate(strokelinejoin: value.rawValue)
     }
@@ -1042,30 +1122,40 @@ extension Use: GlobalVectorAttributes, ReferenceAttribute, WidthAttribute, Heigh
         return self.mutate(style: TaintedString(value, as: .css(.attribute)))
     }
     
-    public func fill(_ value: String) -> Use {
-        return self.mutate(fill: value)
+    public func fill(_ color: String, opacity: Double? = nil) -> Use {
+        return self.mutate(fill: color).mutate(fillopacity: opacity)  
     }
     
+    @available(*, deprecated, message: "Use the stroke(_:width:opacity:cap:join:) modifier instead.")
     public func stroke(_ value: String) -> Use {
         return self.mutate(stroke: value)
     }
     
+    public func stroke(_ color: String, width: Int? = nil, opacity: Double? = nil, cap: Values.Linecap? = nil, join: Values.Linejoin? = nil) -> Use {
+        return self.mutate(stroke: color).mutate(strokewidth: width).mutate(strokeopacity: opacity).mutate(strokelinecap: cap?.rawValue).mutate(strokelinejoin: join?.rawValue)
+    }
+    
+    @available(*, deprecated, message: "Use the stroke(_:width:opacity:cap:join:) modifier instead.")
     public func strokeWidth(_ size: Int) -> Use {
         return self.mutate(strokewidth: size)
     }
     
+    @available(*, deprecated, message: "Use the fill(_:opacity:) modifier instead.")
     public func fillOpacity(_ value: Double) -> Use {
         return self.mutate(fillopacity: value)
     }
     
+    @available(*, deprecated, message: "Use the stroke(_:width:opacity:cap:join:) modifier instead.")
     public func strokeOpacity(_ value: Double) -> Use {
         return self.mutate(strokeopacity: value)
     }
     
+    @available(*, deprecated, message: "Use the stroke(_:width:opacity:cap:join:) modifier instead.")
     public func strokeLineCap(_ value: Values.Linecap) -> Use {
         return self.mutate(strokelinecap: value.rawValue)
     }
     
+    @available(*, deprecated, message: "Use the stroke(_:width:opacity:cap:join:) modifier instead.")
     public func strokeLineJoin(_ value: Values.Linejoin) -> Use {
         return self.mutate(strokelinejoin: value.rawValue)
     }

@@ -124,7 +124,12 @@ extension Html: GlobalAttributes, GlobalEventAttributes {
         return mutate(class: value)
     }
 
+    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> Html {
+        return mutate(contenteditable: value)
+    }
+    
+    public func editable(_ value: Bool = true) -> Html {
         return mutate(contenteditable: value)
     }
 
@@ -132,11 +137,21 @@ extension Html: GlobalAttributes, GlobalEventAttributes {
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Html {
         return mutate(draggable: value)
     }
+    
+    public func draggable(_ value: Bool = true) -> Html {
+        return mutate(draggable: value)
+    }
 
+    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> Html {
+        return mutate(enterkeyhint: value.rawValue)
+    }
+    
+    public func enterKey(_ value: Values.Hint) -> Html {
         return mutate(enterkeyhint: value.rawValue)
     }
     
@@ -149,7 +164,7 @@ extension Html: GlobalAttributes, GlobalEventAttributes {
         return self
     }
 
-    @available(*, deprecated, message: "The inputmode attribute is actually an enumerated attribute. Use the inputMode(_: Mode) modifier instead.")
+    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
     public func inputMode(_ value: String) -> Html {
         return mutate(inputmode: value)
     }
@@ -210,7 +225,12 @@ extension Html: GlobalAttributes, GlobalEventAttributes {
         return mutate(role: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> Html {
+        return mutate(spellcheck: value)
+    }
+    
+    public func spellcheck(_ value: Bool = true) -> Html {
         return mutate(spellcheck: value)
     }
 
@@ -235,8 +255,18 @@ extension Html: GlobalAttributes, GlobalEventAttributes {
         return mutate(title: value)
     }
     
+    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Html {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func translate(_ value: Bool = true) -> Html {
+        
+        if value {
+            return mutate(translate: "yes")
+        }
+        
+        return mutate(translate: "no")
     }
     
     public func inert(_ condition: Bool = true) -> Html {

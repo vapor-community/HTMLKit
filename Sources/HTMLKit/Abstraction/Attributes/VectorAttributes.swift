@@ -40,20 +40,30 @@ public protocol FillAttribute: Attribute {
     /// Vector {
     ///     Circle {
     ///     }
-    ///     .fill("black")
+    ///     .fill("black", opacity: 0.5)
     /// }
     /// ```
     ///
     /// - Parameter color: The color to fill shape with.
+    /// - Parameter opacity: The opacity to apply.
     ///
     /// - Returns: The element
-    func fill(_ color: String) -> Self
+    func fill(_ color: String, opacity: Double?) -> Self
 }
 
 extension FillAttribute where Self: ContentNode {
     
     internal func mutate(fill value: String) -> Self {
         return self.mutate(key: "fill", value: value)
+    }
+    
+    internal func mutate(fillopacity value: Double?) -> Self {
+        
+        if let value = value {
+            return self.mutate(key: "fill-opacity", value: value)
+        }
+        
+        return self
     }
 }
 
@@ -94,20 +104,60 @@ public protocol StrokeAttribute: Attribute {
     /// Vector {
     ///     Circle {
     ///     }
-    ///     .stroke("#000000")
+    ///     .stroke("#000000", width: 1, opacity: 0.5, cap: .square, join: .bevel)
     /// }
     /// ```
     ///
     /// - Parameter color: The color to fill the stroke with.
+    /// - Parameter width: The thickness to apply to the stroke.
+    /// - Parameter opacity: The level to apply to the stroke.
+    /// - Parameter cap: The shape to end the stroke.
+    /// - Parameter join: The shape when two lines meet.
     ///
-    /// - Returns: The element
-    func stroke(_ color: String) -> Self
+    /// - Returns: The element    
+    func stroke(_ color: String, width: Int?, opacity: Double?, cap: Values.Linecap?, join: Values.Linejoin?) -> Self
 }
 
 extension StrokeAttribute where Self: ContentNode {
     
     internal func mutate(stroke value: String) -> Self {
         return self.mutate(key: "stroke", value: value)
+    }
+    
+    internal func mutate(strokewidth value: Int?) -> Self {
+        
+        if let value = value {
+            return self.mutate(key: "stroke-width", value: value)
+        }
+        
+        return self
+    }
+    
+    internal func mutate(strokeopacity value: Double?) -> Self {
+        
+        if let value = value {
+            return self.mutate(key: "stroke-opacity", value: value)
+        }
+        
+        return self
+    }
+    
+    internal func mutate(strokelinecap value: String?) -> Self {
+        
+        if let value = value {
+            return self.mutate(key: "stroke-linecap", value: value)
+        }
+        
+        return self
+    }
+    
+    internal func mutate(strokelinejoin value: String?) -> Self {
+        
+        if let value = value {
+            return self.mutate(key: "stroke-linejoin", value: value)
+        }
+        
+        return self
     }
 }
 
