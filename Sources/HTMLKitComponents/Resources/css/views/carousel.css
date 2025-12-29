@@ -62,11 +62,11 @@
 
 .indicator {
     --borderRadius: 5px;
-    --borderColor: var(--systemBackgroundColor);
+    --borderColor: var(--systemBorderColor);
     --borderOpacity: 1.0;
-    --backgroundColor: var(--systemBackgroundColor);
+    --backgroundColor: var(--systemBorderColor);
     --backgroundOpacity: 1.0;
-    
+
     position: relative;
     display: inline-block;
     inline-size: 40px;

@@ -213,6 +213,7 @@
     padding-block-end: var(--paddingBlockEnd);
     padding-inline-start: var(--paddingInlineStart);
     padding-inline-end: var(--paddingInlineEnd);
+    font-family: system-ui;
     font-size: var(--fontSize);
     font-weight: var(--fontWeight);
     line-height: var(--lineHeight);
