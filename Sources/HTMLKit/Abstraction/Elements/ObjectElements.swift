@@ -67,7 +67,12 @@ extension Parameter: GlobalAttributes, GlobalEventAttributes, NameAttribute, Val
         return mutate(class: value)
     }
 
+    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> Parameter {
+        return mutate(contenteditable: value)
+    }
+    
+    public func editable(_ value: Bool = true) -> Parameter {
         return mutate(contenteditable: value)
     }
 
@@ -75,11 +80,21 @@ extension Parameter: GlobalAttributes, GlobalEventAttributes, NameAttribute, Val
         return mutate(dir: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Parameter {
         return mutate(draggable: value)
     }
+    
+    public func draggable(_ value: Bool = true) -> Parameter {
+        return mutate(draggable: value)
+    }
 
+    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> Parameter {
+        return mutate(enterkeyhint: value.rawValue)
+    }
+    
+    public func enterKey(_ value: Values.Hint) -> Parameter {
         return mutate(enterkeyhint: value.rawValue)
     }
     
@@ -92,7 +107,7 @@ extension Parameter: GlobalAttributes, GlobalEventAttributes, NameAttribute, Val
         return self
     }
 
-    @available(*, deprecated, message: "The inputmode attribute is actually an enumerated attribute. Use the inputMode(_: Mode) modifier instead.")
+    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
     public func inputMode(_ value: String) -> Parameter {
         return mutate(inputmode: value)
     }
@@ -153,7 +168,12 @@ extension Parameter: GlobalAttributes, GlobalEventAttributes, NameAttribute, Val
         return mutate(role: value.rawValue)
     }
 
+    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> Parameter {
+        return mutate(spellcheck: value)
+    }
+    
+    public func spellcheck(_ value: Bool = true) -> Parameter {
         return mutate(spellcheck: value)
     }
 
@@ -178,8 +198,18 @@ extension Parameter: GlobalAttributes, GlobalEventAttributes, NameAttribute, Val
         return mutate(title: value)
     }
     
+    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Parameter {
         return mutate(translate: value.rawValue)
+    }
+    
+    public func translate(_ value: Bool = true) -> Parameter {
+        
+        if value {
+            return mutate(translate: "yes")
+        }
+        
+        return mutate(translate: "no")
     }
     
     public func inert(_ condition: Bool = true) -> Parameter {
