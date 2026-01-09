@@ -2,7 +2,7 @@ import Foundation
 
 /// A type that represents the localization
 @_documentation(visibility: internal)
-public class Localization {
+public struct Localization: Sendable {
     
     /// A enumeration of errors regarding the localization rendering
     public enum Errors: Error, Equatable {
@@ -81,14 +81,14 @@ public class Localization {
     /// Sets the source directory
     ///
     /// - Parameter source: The directory where the translations should be loaded from.
-    public func set(source: URL) {
+    public mutating func set(source: URL) {
         self.tables = load(source: source)
     }
     
     /// Sets the default locale
     ///
     /// - Parameter locale: A locale tag e.g. en-US
-    public func set(locale: String) {
+    public mutating func set(locale: String) {
         self.locale = Locale(tag: locale)
     }
     
