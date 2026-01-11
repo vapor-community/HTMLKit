@@ -3,7 +3,7 @@ import OrderedCollections
 
 /// The alias combines the global attributes of the basic attributes.
 @_documentation(visibility: internal)
-public typealias GlobalAttributes = AccessKeyAttribute & AutocapitalizeAttribute & AutofocusAttribute & ClassAttribute & EditAttribute & DirectionAttribute & DragAttribute & EnterKeyAttribute & HiddenAttribute & InputModeAttribute & IsAttribute & ItemAttribute & ItemIdAttribute & ItemPropertyAttribute & ItemReferenceAttribute & ItemScopeAttribute & ItemTypeAttribute & IdentifierAttribute & LanguageAttribute & NonceAttribute & RoleAttribute & SpellCheckAttribute & StyleAttribute & TabulatorAttribute & TitleAttribute & TranslateAttribute & InertAttribute & PopoverAttribute
+public typealias GlobalAttributes = AccessKeyAttribute & AutocapitalizeAttribute & AutofocusAttribute & ClassAttribute & EditAttribute & DirectionAttribute & DragAttribute & EnterKeyAttribute & HiddenAttribute & InputModeAttribute & IsAttribute & ItemAttribute & ItemPropertyAttribute & IdentifierAttribute & LanguageAttribute & NonceAttribute & RoleAttribute & SpellCheckAttribute & StyleAttribute & TabulatorAttribute & TitleAttribute & TranslateAttribute & InertAttribute & PopoverAttribute
 
 /// A type that provides the `accessKey` modifier.
 @_documentation(visibility: internal)
@@ -1680,6 +1680,10 @@ public protocol ItemAttribute: Attribute {
 
 extension ItemAttribute where Self: ContentNode {
     
+    internal func mutate(itemscope value: String) -> Self {
+        return self.mutate(key: "itemscope", value: value)
+    }
+    
     internal func mutate(itemid value: String?) -> Self {
         
         if let value = value {
@@ -1710,6 +1714,10 @@ extension ItemAttribute where Self: ContentNode {
 
 extension ItemAttribute where Self: EmptyNode {
     
+    internal func mutate(itemscope value: String) -> Self {
+        return self.mutate(key: "itemscope", value: value)
+    }
+    
     internal func mutate(itemid value: String?) -> Self {
         
         if let value = value {
@@ -1735,38 +1743,6 @@ extension ItemAttribute where Self: EmptyNode {
         }
         
         return self
-    }
-}
-
-/// A type that provides the `itemId` modifier.
-@_documentation(visibility: internal)
-public protocol ItemIdAttribute: Attribute {
- 
-    /// Set an unique identifier for an item.
-    ///
-    /// ```swift
-    /// DefinitionList {
-    /// }
-    /// .itemId("urn:...")
-    /// ```
-    ///
-    /// - Parameter value: The identifier to name the item after.
-    ///
-    /// - Returns: The element
-    func itemId(_ value: String) -> Self
-}
-
-extension ItemIdAttribute where Self: ContentNode {
-    
-    internal func mutate(itemid value: String) -> Self {
-        return self.mutate(key: "itemid", value: value)
-    }
-}
-
-extension ItemIdAttribute where Self: EmptyNode {
-    
-    internal func mutate(itemid value: String) -> Self {
-        return self.mutate(key: "itemid", value: value)
     }
 }
 
@@ -1800,101 +1776,6 @@ extension ItemPropertyAttribute where Self: EmptyNode {
     
     internal func mutate(itemprop value: String) -> Self {
         return self.mutate(key: "itemprop", value: value)
-    }
-}
-
-/// A type that provides the `itemReference` modifier.
-@_documentation(visibility: internal)
-public protocol ItemReferenceAttribute: Attribute {
- 
-    /// Refer to other elements with additional item properties.
-    ///
-    /// ```swift
-    /// DefinitionList {
-    /// }
-    /// .itemReference("foo bar")
-    /// ```
-    ///
-    /// - Parameter value: The identifiers to relate to.
-    ///
-    /// - Returns: The element
-    func itemReference(_ value: String) -> Self
-}
-
-extension ItemReferenceAttribute where Self: ContentNode {
-    
-    internal func mutate(itemref value: String) -> Self {
-        return self.mutate(key: "itemref", value: value)
-    }
-}
-
-extension ItemReferenceAttribute where Self: EmptyNode {
-    
-    internal func mutate(itemref value: String) -> Self {
-        return self.mutate(key: "itemref", value: value)
-    }
-}
-
-/// A type that provides the `itemScope` modifier.
-@_documentation(visibility: internal)
-public protocol ItemScopeAttribute: Attribute {
- 
-    /// Create a new item scope.
-    ///
-    /// ```swift
-    /// DefinitionList {
-    ///     "Lorem ipsum..."
-    /// }
-    /// .itemScope()
-    /// ```
-    ///
-    /// - Returns: The element
-    func itemScope(_ value: String) -> Self
-}
-
-extension ItemScopeAttribute where Self: ContentNode {
-    
-    internal func mutate(itemscope value: String) -> Self {
-        return self.mutate(key: "itemscope", value: value)
-    }
-}
-
-extension ItemScopeAttribute where Self: EmptyNode {
-    
-    internal func mutate(itemscope value: String) -> Self {
-        return self.mutate(key: "itemscope", value: value)
-    }
-}
-
-/// A type that provides the `itemType` modifier.
-@_documentation(visibility: internal)
-public protocol ItemTypeAttribute: Attribute {
- 
-    /// Refer to an item vocabulary.
-    ///
-    /// ```swift
-    /// DefintionList {
-    /// }
-    /// .itemType("https://...")
-    /// ```
-    ///
-    /// - Parameter url: The url of the vocabulary to use.
-    ///
-    /// - Returns: The element
-    func itemType(_ url: String) -> Self
-}
-
-extension ItemTypeAttribute where Self: ContentNode {
-    
-    internal func mutate(itemtype value: String) -> Self {
-        return self.mutate(key: "itemtype", value: value)
-    }
-}
-
-extension ItemTypeAttribute where Self: EmptyNode {
-    
-    internal func mutate(itemtype value: String) -> Self {
-        return self.mutate(key: "itemtype", value: value)
     }
 }
 

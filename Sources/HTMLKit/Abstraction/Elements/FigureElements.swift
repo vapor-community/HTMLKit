@@ -132,7 +132,7 @@ extension FigureCaption: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttr
         return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements.joined(separator: " "))
     }
 
-    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
+    @available(*, unavailable, message: "Use the item(id:as:for:) modifier instead.")
     public func itemId(_ value: String) -> FigureCaption {
         return mutate(itemid: value)
     }
@@ -141,17 +141,17 @@ extension FigureCaption: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttr
         return mutate(itemprop: value)
     }
 
-    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
+    @available(*, unavailable, message: "Use the item(id:as:for:) modifier instead.")
     public func itemReference(_ value: String) -> FigureCaption {
         return mutate(itemref: value)
     }
 
-    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
+    @available(*, unavailable, message: "Use the item(id:as:for:) modifier instead.")
     public func itemScope(_ value: String) -> FigureCaption {
         return mutate(itemscope: value)
     }
     
-    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
+    @available(*, unavailable, message: "Use the item(id:as:for:) modifier instead.")
     public func itemType(_ value: String) -> FigureCaption {
         return mutate(itemtype: value)
     }

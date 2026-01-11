@@ -22,10 +22,9 @@ public struct Parameter: EmptyNode, ObjectElement {
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    @available(*, deprecated, message: "The parameter element is no longer part of the web standards. Use the data attribute of the object element instead.")
+    @available(*, unavailable, message: "Use the data attribute of the object element instead.")
     public init() {}
     
-    @available(*, deprecated, message: "The parameter element is no longer part of the web standards. Use the data attribute of the object element instead.")
     internal init(attributes: OrderedDictionary<String, Any>?) {
         self.attributes = attributes
     }
@@ -123,7 +122,7 @@ extension Parameter: GlobalAttributes, GlobalEventAttributes, NameAttribute, Val
         return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements.joined(separator: " "))
     }
 
-    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
+    @available(*, unavailable, message: "Use the item(id:as:for:) modifier instead.")
     public func itemId(_ value: String) -> Parameter {
         return mutate(itemid: value)
     }
@@ -132,17 +131,17 @@ extension Parameter: GlobalAttributes, GlobalEventAttributes, NameAttribute, Val
         return mutate(itemprop: value)
     }
 
-    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
+    @available(*, unavailable, message: "Use the item(id:as:for:) modifier instead.")
     public func itemReference(_ value: String) -> Parameter {
         return mutate(itemref: value)
     }
 
-    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
+    @available(*, unavailable, message: "Use the item(id:as:for:) modifier instead.")
     public func itemScope(_ value: String) -> Parameter {
         return mutate(itemscope: value)
     }
     
-    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
+    @available(*, unavailable, message: "Use the item(id:as:for:) modifier instead.")
     public func itemType(_ value: String) -> Parameter {
         return mutate(itemtype: value)
     }
