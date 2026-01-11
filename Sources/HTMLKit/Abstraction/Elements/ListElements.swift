@@ -116,11 +116,6 @@ extension ListItem: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return self
     }
 
-    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
-    public func inputMode(_ value: String) -> ListItem {
-        return mutate(inputmode: value)
-    }
-
     public func inputMode(_ value: Values.Mode) -> ListItem {
         return mutate(inputmode: value.rawValue)
     }

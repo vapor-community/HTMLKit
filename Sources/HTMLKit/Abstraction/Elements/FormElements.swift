@@ -103,11 +103,6 @@ extension Input: GlobalAttributes, GlobalEventAttributes, AcceptAttribute, Alter
         
         return self
     }
-
-    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
-    public func inputMode(_ value: String) -> Input {
-        return mutate(inputmode: value)
-    }
     
     public func inputMode(_ value: Values.Mode) -> Input {
         return mutate(inputmode: value.rawValue)
@@ -245,16 +240,6 @@ extension Input: GlobalAttributes, GlobalEventAttributes, AcceptAttribute, Alter
     
     public func alternate(verbatim value: String) -> Input {
         return mutate(alternate: value)
-    }
-    
-    @available(*, unavailable, message: "Use the autocomplete(_:) modifier instead.")
-    public func hasCompletion(_ value: Bool) -> Input {
-
-        if value {
-            return mutate(autocomplete: "on")
-        }
-        
-        return mutate(autocomplete: "off")
     }
     
     public func autocomplete(_ value: Values.Completion) -> Input {
@@ -545,11 +530,6 @@ extension Label: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         }
         
         return self
-    }
-
-    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
-    public func inputMode(_ value: String) -> Label {
-        return mutate(inputmode: value)
     }
     
     public func inputMode(_ value: Values.Mode) -> Label {
@@ -891,11 +871,6 @@ extension Select: GlobalAttributes, GlobalEventAttributes, AutocompleteAttribute
         
         return self
     }
-
-    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
-    public func inputMode(_ value: String) -> Select {
-        return mutate(inputmode: value)
-    }
     
     public func inputMode(_ value: Values.Mode) -> Select {
         return mutate(inputmode: value.rawValue)
@@ -1004,16 +979,6 @@ extension Select: GlobalAttributes, GlobalEventAttributes, AutocompleteAttribute
         }
         
         return self
-    }
-
-    @available(*, unavailable, message: "Use the autocomplete(_:) modifier instead.")
-    public func hasCompletion(_ value: Bool) -> Select {
-
-        if value {
-            return mutate(autocomplete: "on")
-        }
-        
-        return mutate(autocomplete: "off")
     }
     
     public func autocomplete(_ value: Values.Completion) -> Select {
@@ -1194,11 +1159,6 @@ extension TextArea: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         
         return self
     }
-
-    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
-    public func inputMode(_ value: String) -> TextArea {
-        return mutate(inputmode: value)
-    }
     
     public func inputMode(_ value: Values.Mode) -> TextArea {
         return mutate(inputmode: value.rawValue)
@@ -1307,16 +1267,6 @@ extension TextArea: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         }
         
         return self
-    }
-
-    @available(*, unavailable, message: "Use the autocomplete(_:) modifier instead.")
-    public func hasCompletion(_ value: Bool) -> TextArea {
-
-        if value {
-            return mutate(autocomplete: "on")
-        }
-        
-        return mutate(autocomplete: "off")
     }
     
     public func autocomplete(_ value: Values.Completion) -> TextArea {
@@ -1609,11 +1559,6 @@ extension Button: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         }
         
         return self
-    }
-
-    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
-    public func inputMode(_ value: String) -> Button {
-        return mutate(inputmode: value)
     }
     
     public func inputMode(_ value: Values.Mode) -> Button {
@@ -1998,11 +1943,6 @@ extension Fieldset: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         }
         
         return self
-    }
-
-    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
-    public func inputMode(_ value: String) -> Fieldset {
-        return mutate(inputmode: value)
     }
     
     public func inputMode(_ value: Values.Mode) -> Fieldset {

@@ -107,11 +107,6 @@ extension Head: GlobalAttributes, GlobalEventAttributes {
         return self
     }
     
-    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
-    public func inputMode(_ value: String) -> Head {
-        return mutate(inputmode: value)
-    }
-    
     public func inputMode(_ value: Values.Mode) -> Head {
         return mutate(inputmode: value.rawValue)
     }
@@ -359,11 +354,6 @@ extension Body: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, W
         }
         
         return self
-    }
-
-    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
-    public func inputMode(_ value: String) -> Body {
-        return mutate(inputmode: value)
     }
     
     public func inputMode(_ value: Values.Mode) -> Body {

@@ -121,11 +121,6 @@ extension OptionGroup: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
         
         return self
     }
-
-    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
-    public func inputMode(_ value: String) -> OptionGroup {
-        return mutate(inputmode: value)
-    }
     
     public func inputMode(_ value: Values.Mode) -> OptionGroup {
         return mutate(inputmode: value.rawValue)
@@ -470,11 +465,6 @@ extension Option: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         }
         
         return self
-    }
-
-    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
-    public func inputMode(_ value: String) -> Option {
-        return mutate(inputmode: value)
     }
     
     public func inputMode(_ value: Values.Mode) -> Option {
@@ -855,11 +845,6 @@ extension Legend: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
         
         return self
     }
-
-    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
-    public func inputMode(_ value: String) -> Legend {
-        return mutate(inputmode: value)
-    }
     
     public func inputMode(_ value: Values.Mode) -> Legend {
         return mutate(inputmode: value.rawValue)
@@ -1184,11 +1169,6 @@ extension Summary: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
         }
         
         return self
-    }
-
-    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
-    public func inputMode(_ value: String) -> Summary {
-        return mutate(inputmode: value)
     }
     
     public func inputMode(_ value: Values.Mode) -> Summary {

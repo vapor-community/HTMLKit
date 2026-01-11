@@ -163,11 +163,6 @@ extension Html: GlobalAttributes, GlobalEventAttributes {
         
         return self
     }
-
-    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
-    public func inputMode(_ value: String) -> Html {
-        return mutate(inputmode: value)
-    }
     
     public func inputMode(_ value: Values.Mode) -> Html {
         return mutate(inputmode: value.rawValue)

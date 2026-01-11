@@ -109,11 +109,6 @@ extension Area: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, A
         
         return self
     }
-    
-    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
-    public func inputMode(_ value: String) -> Area {
-        return mutate(inputmode: value)
-    }
 
     public func inputMode(_ value: Values.Mode) -> Area {
         return mutate(inputmode: value.rawValue)

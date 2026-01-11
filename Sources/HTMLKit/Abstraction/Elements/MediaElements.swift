@@ -102,11 +102,6 @@ extension Source: GlobalAttributes, GlobalEventAttributes, TypeAttribute, Source
         
         return self
     }
-
-    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
-    public func inputMode(_ value: String) -> Source {
-        return mutate(inputmode: value)
-    }
     
     public func inputMode(_ value: Values.Mode) -> Source {
         return mutate(inputmode: value.rawValue)
@@ -402,11 +397,6 @@ extension Track: GlobalAttributes, GlobalEventAttributes, KindAttribute, SourceA
         }
         
         return self
-    }
-
-    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
-    public func inputMode(_ value: String) -> Track {
-        return mutate(inputmode: value)
     }
     
     public func inputMode(_ value: Values.Mode) -> Track {

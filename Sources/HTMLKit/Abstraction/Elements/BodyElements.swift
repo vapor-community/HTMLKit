@@ -255,11 +255,6 @@ extension Article: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
         
         return self
     }
-
-    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
-    public func inputMode(_ value: String) -> Article {
-        return mutate(inputmode: value)
-    }
     
     public func inputMode(_ value: Values.Mode) -> Article {
         return mutate(inputmode: value.rawValue)
@@ -584,11 +579,6 @@ extension Section: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
         }
         
         return self
-    }
-
-    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
-    public func inputMode(_ value: String) -> Section {
-        return mutate(inputmode: value)
     }
     
     public func inputMode(_ value: Values.Mode) -> Section {
@@ -917,11 +907,6 @@ extension Navigation: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
         
         return self
     }
-
-    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
-    public func inputMode(_ value: String) -> Navigation {
-        return mutate(inputmode: value)
-    }
     
     public func inputMode(_ value: Values.Mode) -> Navigation {
         return mutate(inputmode: value.rawValue)
@@ -1246,11 +1231,6 @@ extension Aside: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return self
     }
 
-    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
-    public func inputMode(_ value: String) -> Aside {
-        return mutate(inputmode: value)
-    }
-
     public func inputMode(_ value: Values.Mode) -> Aside {
         return mutate(inputmode: value.rawValue)
     }
@@ -1569,11 +1549,6 @@ extension Heading1: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         }
         
         return self
-    }
-    
-    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
-    public func inputMode(_ value: String) -> Heading1 {
-        return mutate(inputmode: value)
     }
     
     public func inputMode(_ value: Values.Mode) -> Heading1 {
@@ -1903,11 +1878,6 @@ extension Heading2: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return self
     }
     
-    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
-    public func inputMode(_ value: String) -> Heading2 {
-        return mutate(inputmode: value)
-    }
-    
     public func inputMode(_ value: Values.Mode) -> Heading2 {
         return mutate(inputmode: value.rawValue)
     }
@@ -2233,11 +2203,6 @@ extension Heading3: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         }
         
         return self
-    }
-
-    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
-    public func inputMode(_ value: String) -> Heading3 {
-        return mutate(inputmode: value)
     }
     
     public func inputMode(_ value: Values.Mode) -> Heading3 {
@@ -2566,11 +2531,6 @@ extension Heading4: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         
         return self
     }
-
-    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
-    public func inputMode(_ value: String) -> Heading4 {
-        return mutate(inputmode: value)
-    }
     
     public func inputMode(_ value: Values.Mode) -> Heading4 {
         return mutate(inputmode: value.rawValue)
@@ -2898,11 +2858,6 @@ extension Heading5: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         
         return self
     }
-
-    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
-    public func inputMode(_ value: String) -> Heading5 {
-        return mutate(inputmode: value)
-    }
     
     public func inputMode(_ value: Values.Mode) -> Heading5 {
         return mutate(inputmode: value.rawValue)
@@ -3229,11 +3184,6 @@ extension Heading6: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         }
         
         return self
-    }
-
-    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
-    public func inputMode(_ value: String) -> Heading6 {
-        return mutate(inputmode: value)
     }
     
     public func inputMode(_ value: Values.Mode) -> Heading6 {
@@ -3568,11 +3518,6 @@ extension HeadingGroup: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttri
         return self
     }
 
-    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
-    public func inputMode(_ value: String) -> HeadingGroup {
-        return mutate(inputmode: value)
-    }
-
     public func inputMode(_ value: Values.Mode) -> HeadingGroup {
         return mutate(inputmode: value.rawValue)
     }
@@ -3893,11 +3838,6 @@ extension Header: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
         
         return self
     }
-
-    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
-    public func inputMode(_ value: String) -> Header {
-        return mutate(inputmode: value)
-    }
     
     public func inputMode(_ value: Values.Mode) -> Header {
         return mutate(inputmode: value.rawValue)
@@ -4216,11 +4156,6 @@ extension Footer: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
         }
         
         return self
-    }
-
-    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
-    public func inputMode(_ value: String) -> Footer {
-        return mutate(inputmode: value)
     }
     
     public func inputMode(_ value: Values.Mode) -> Footer {
@@ -4548,11 +4483,6 @@ extension Address: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
         
         return self
     }
-
-    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
-    public func inputMode(_ value: String) -> Address {
-        return mutate(inputmode: value)
-    }
     
     public func inputMode(_ value: Values.Mode) -> Address {
         return mutate(inputmode: value.rawValue)
@@ -4872,11 +4802,6 @@ extension Paragraph: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         }
         
         return self
-    }
-
-    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
-    public func inputMode(_ value: String) -> Paragraph {
-        return mutate(inputmode: value)
     }
     
     public func inputMode(_ value: Values.Mode) -> Paragraph {
@@ -5201,11 +5126,6 @@ extension HorizontalRule: GlobalAttributes, GlobalEventAttributes, GlobalAriaAtt
         }
         
         return self
-    }
-
-    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
-    public func inputMode(_ value: String) -> HorizontalRule {
-        return mutate(inputmode: value)
     }
     
     public func inputMode(_ value: Values.Mode) -> HorizontalRule {
@@ -5533,11 +5453,6 @@ extension PreformattedText: GlobalAttributes, GlobalEventAttributes, GlobalAriaA
         
         return self
     }
-
-    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
-    public func inputMode(_ value: String) -> PreformattedText {
-        return mutate(inputmode: value)
-    }
     
     public func inputMode(_ value: Values.Mode) -> PreformattedText {
         return mutate(inputmode: value.rawValue)
@@ -5857,11 +5772,6 @@ extension Blockquote: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
         }
         
         return self
-    }
-
-    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
-    public func inputMode(_ value: String) -> Blockquote {
-        return mutate(inputmode: value)
     }
 
     public func inputMode(_ value: Values.Mode) -> Blockquote {
@@ -6198,11 +6108,6 @@ extension OrderedList: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
         }
         
         return self
-    }
-
-    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
-    public func inputMode(_ value: String) -> OrderedList {
-        return mutate(inputmode: value)
     }
     
     public func inputMode(_ value: Values.Mode) -> OrderedList {
@@ -6541,11 +6446,6 @@ extension UnorderedList: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttr
         
         return self
     }
-
-    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
-    public func inputMode(_ value: String) -> UnorderedList {
-        return mutate(inputmode: value)
-    }
     
     public func inputMode(_ value: Values.Mode) -> UnorderedList {
         return mutate(inputmode: value.rawValue)
@@ -6878,11 +6778,6 @@ extension Menu: GlobalAttributes {
         return self
     }
     
-    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
-    public func inputMode(_ value: String) -> Menu {
-        return mutate(inputmode: value)
-    }
-    
     public func inputMode(_ value: Values.Mode) -> Menu {
         return mutate(inputmode: value.rawValue)
     }
@@ -7112,11 +7007,6 @@ extension DescriptionList: GlobalAttributes, GlobalEventAttributes, GlobalAriaAt
         }
         
         return self
-    }
-
-    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
-    public func inputMode(_ value: String) -> DescriptionList {
-        return mutate(inputmode: value)
     }
     
     public func inputMode(_ value: Values.Mode) -> DescriptionList {
@@ -7444,11 +7334,6 @@ extension Figure: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
         return self
     }
     
-    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
-    public func inputMode(_ value: String) -> Figure {
-        return mutate(inputmode: value)
-    }
-    
     public func inputMode(_ value: Values.Mode) -> Figure {
         return mutate(inputmode: value.rawValue)
     }
@@ -7769,11 +7654,6 @@ extension Anchor: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         }
         
         return self
-    }
-
-    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
-    public func inputMode(_ value: String) -> Anchor {
-        return mutate(inputmode: value)
     }
     
     public func inputMode(_ value: Values.Mode) -> Anchor {
@@ -8151,11 +8031,6 @@ extension Emphasize: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return self
     }
 
-    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
-    public func inputMode(_ value: String) -> Emphasize {
-        return mutate(inputmode: value)
-    }
-
     public func inputMode(_ value: Values.Mode) -> Emphasize {
         return mutate(inputmode: value.rawValue)
     }
@@ -8478,11 +8353,6 @@ extension Strong: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
         return self
     }
 
-    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
-    public func inputMode(_ value: String) -> Strong {
-        return mutate(inputmode: value)
-    }
-
     public func inputMode(_ value: Values.Mode) -> Strong {
         return mutate(inputmode: value.rawValue)
     }
@@ -8803,11 +8673,6 @@ extension Small: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         }
         
         return self
-    }
-
-    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
-    public func inputMode(_ value: String) -> Small {
-        return mutate(inputmode: value)
     }
     
     public func inputMode(_ value: Values.Mode) -> Small {
@@ -9138,11 +9003,6 @@ extension StrikeThrough: GlobalAttributes, GlobalEventAttributes {
         
         return self
     }
-
-    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
-    public func inputMode(_ value: String) -> StrikeThrough {
-        return mutate(inputmode: value)
-    }
     
     public func inputMode(_ value: Values.Mode) -> StrikeThrough {
         return mutate(inputmode: value.rawValue)
@@ -9403,11 +9263,6 @@ extension Main: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         }
         
         return self
-    }
-
-    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
-    public func inputMode(_ value: String) -> Main {
-        return mutate(inputmode: value)
     }
 
     public func inputMode(_ value: Values.Mode) -> Main {
@@ -9737,11 +9592,6 @@ extension Search: GlobalAttributes {
         return self
     }
     
-    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
-    public func inputMode(_ value: String) -> Search {
-        return mutate(inputmode: value)
-    }
-    
     public func inputMode(_ value: Values.Mode) -> Search {
         return mutate(inputmode: value.rawValue)
     }
@@ -9964,11 +9814,6 @@ extension Division: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         }
         
         return self
-    }
-
-    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
-    public func inputMode(_ value: String) -> Division {
-        return mutate(inputmode: value)
     }
     
     public func inputMode(_ value: Values.Mode) -> Division {
@@ -10295,11 +10140,6 @@ extension Definition: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
         
         return self
     }
-
-    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
-    public func inputMode(_ value: String) -> Definition {
-        return mutate(inputmode: value)
-    }
     
     public func inputMode(_ value: Values.Mode) -> Definition {
         return mutate(inputmode: value.rawValue)
@@ -10624,11 +10464,6 @@ extension Cite: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return self
     }
     
-    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
-    public func inputMode(_ value: String) -> Cite {
-        return mutate(inputmode: value)
-    }
-    
     public func inputMode(_ value: Values.Mode) -> Cite {
         return mutate(inputmode: value.rawValue)
     }
@@ -10949,11 +10784,6 @@ extension ShortQuote: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
         }
         
         return self
-    }
-    
-    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
-    public func inputMode(_ value: String) -> ShortQuote {
-        return mutate(inputmode: value)
     }
     
     public func inputMode(_ value: Values.Mode) -> ShortQuote {
@@ -11282,11 +11112,6 @@ extension Abbreviation: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttri
         
         return self
     }
-
-    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
-    public func inputMode(_ value: String) -> Abbreviation {
-        return mutate(inputmode: value)
-    }
     
     public func inputMode(_ value: Values.Mode) -> Abbreviation {
         return mutate(inputmode: value.rawValue)
@@ -11609,11 +11434,6 @@ extension Ruby: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         }
         
         return self
-    }
-   
-    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
-    public func inputMode(_ value: String) -> Ruby {
-        return mutate(inputmode: value)
     }
     
     public func inputMode(_ value: Values.Mode) -> Ruby {
@@ -11939,11 +11759,6 @@ extension Data: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, V
         }
         
         return self
-    }
-    
-    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
-    public func inputMode(_ value: String) -> Data {
-        return mutate(inputmode: value)
     }
     
     public func inputMode(_ value: Values.Mode) -> Data {
@@ -12282,11 +12097,6 @@ extension Time: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, D
         
         return self
     }
-
-    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
-    public func inputMode(_ value: String) -> Time {
-        return mutate(inputmode: value)
-    }
     
     public func inputMode(_ value: Values.Mode) -> Time {
         return mutate(inputmode: value.rawValue)
@@ -12616,11 +12426,6 @@ extension Code: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return self
     }
 
-    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
-    public func inputMode(_ value: String) -> Code {
-        return mutate(inputmode: value)
-    }
-
     public func inputMode(_ value: Values.Mode) -> Code {
         return mutate(inputmode: value.rawValue)
     }
@@ -12944,11 +12749,6 @@ extension Variable: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         
         return self
     }
-
-    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
-    public func inputMode(_ value: String) -> Variable {
-        return mutate(inputmode: value)
-    }
     
     public func inputMode(_ value: Values.Mode) -> Variable {
         return mutate(inputmode: value.rawValue)
@@ -13268,11 +13068,6 @@ extension SampleOutput: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttri
         }
         
         return self
-    }
-
-    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
-    public func inputMode(_ value: String) -> SampleOutput {
-        return mutate(inputmode: value)
     }
 
     public func inputMode(_ value: Values.Mode) -> SampleOutput {
@@ -13598,11 +13393,6 @@ extension KeyboardInput: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttr
         
         return self
     }
-
-    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
-    public func inputMode(_ value: String) -> KeyboardInput {
-        return mutate(inputmode: value)
-    }
     
     public func inputMode(_ value: Values.Mode) -> KeyboardInput {
         return mutate(inputmode: value.rawValue)
@@ -13927,11 +13717,6 @@ extension Subscript: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         
         return self
     }
-
-    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
-    public func inputMode(_ value: String) -> Subscript {
-        return mutate(inputmode: value)
-    }
     
     public func inputMode(_ value: Values.Mode) -> Subscript {
         return mutate(inputmode: value.rawValue)
@@ -14254,11 +14039,6 @@ extension Superscript: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
         }
         
         return self
-    }
-
-    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
-    public func inputMode(_ value: String) -> Superscript {
-        return mutate(inputmode: value)
     }
     
     public func inputMode(_ value: Values.Mode) -> Superscript {
@@ -14583,11 +14363,6 @@ extension Italic: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
         }
         
         return self
-    }
-
-    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
-    public func inputMode(_ value: String) -> Italic {
-        return mutate(inputmode: value)
     }
 
     public func inputMode(_ value: Values.Mode) -> Italic {
@@ -14920,11 +14695,6 @@ extension Bold: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         
         return self
     }
-
-    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
-    public func inputMode(_ value: String) -> Bold {
-        return mutate(inputmode: value)
-    }
     
     public func inputMode(_ value: Values.Mode) -> Bold {
         return mutate(inputmode: value.rawValue)
@@ -15255,11 +15025,6 @@ extension Underline: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         }
         
         return self
-    }
-
-    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
-    public func inputMode(_ value: String) -> Underline {
-        return mutate(inputmode: value)
     }
     
     public func inputMode(_ value: Values.Mode) -> Underline {
@@ -15592,11 +15357,6 @@ extension Mark: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         
         return self
     }
-
-    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
-    public func inputMode(_ value: String) -> Mark {
-        return mutate(inputmode: value)
-    }
     
     public func inputMode(_ value: Values.Mode) -> Mark {
         return mutate(inputmode: value.rawValue)
@@ -15921,11 +15681,6 @@ extension Bdi: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         
         return self
     }
-
-    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
-    public func inputMode(_ value: String) -> Bdi {
-        return mutate(inputmode: value)
-    }
     
     public func inputMode(_ value: Values.Mode) -> Bdi {
         return mutate(inputmode: value.rawValue)
@@ -16243,11 +15998,6 @@ extension Bdo: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         }
         
         return self
-    }
-
-    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
-    public func inputMode(_ value: String) -> Bdo {
-        return mutate(inputmode: value)
     }
     
     public func inputMode(_ value: Values.Mode) -> Bdo {
@@ -16569,11 +16319,6 @@ extension Span: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         
         return self
     }
-
-    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
-    public func inputMode(_ value: String) -> Span {
-        return mutate(inputmode: value)
-    }
     
     public func inputMode(_ value: Values.Mode) -> Span {
         return mutate(inputmode: value.rawValue)
@@ -16884,11 +16629,6 @@ extension LineBreak: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         }
         
         return self
-    }
-
-    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
-    public func inputMode(_ value: String) -> LineBreak {
-        return mutate(inputmode: value)
     }
     
     public func inputMode(_ value: Values.Mode) -> LineBreak {
@@ -17204,11 +16944,6 @@ extension WordBreak: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         }
         
         return self
-    }
-
-    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
-    public func inputMode(_ value: String) -> WordBreak {
-        return mutate(inputmode: value)
     }
 
     public func inputMode(_ value: Values.Mode) -> WordBreak {
@@ -17529,11 +17264,6 @@ extension InsertedText: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttri
         }
         
         return self
-    }
-
-    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
-    public func inputMode(_ value: String) -> InsertedText {
-        return mutate(inputmode: value)
     }
 
     public func inputMode(_ value: Values.Mode) -> InsertedText {
@@ -17862,11 +17592,6 @@ extension DeletedText: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
         }
         
         return self
-    }
-
-    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
-    public func inputMode(_ value: String) -> DeletedText {
-        return mutate(inputmode: value)
     }
     
     public func inputMode(_ value: Values.Mode) -> DeletedText {
@@ -18201,11 +17926,6 @@ extension Picture: GlobalAttributes, GlobalEventAttributes {
         
         return self
     }
-
-    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
-    public func inputMode(_ value: String) -> Picture {
-        return mutate(inputmode: value)
-    }
     
     public func inputMode(_ value: Values.Mode) -> Picture {
         return mutate(inputmode: value.rawValue)
@@ -18447,11 +18167,6 @@ extension Image: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         }
         
         return self
-    }
-
-    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
-    public func inputMode(_ value: String) -> Image {
-        return mutate(inputmode: value)
     }
 
     public func inputMode(_ value: Values.Mode) -> Image {
@@ -18848,11 +18563,6 @@ extension InlineFrame: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
         
         return self
     }
-
-    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
-    public func inputMode(_ value: String) -> InlineFrame {
-        return mutate(inputmode: value)
-    }
     
     public func inputMode(_ value: Values.Mode) -> InlineFrame {
         return mutate(inputmode: value.rawValue)
@@ -19210,11 +18920,6 @@ extension Embed: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         
         return self
     }
-
-    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
-    public func inputMode(_ value: String) -> Embed {
-        return mutate(inputmode: value)
-    }
     
     public func inputMode(_ value: Values.Mode) -> Embed {
         return mutate(inputmode: value.rawValue)
@@ -19555,11 +19260,6 @@ extension Object: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         }
         
         return self
-    }
-
-    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
-    public func inputMode(_ value: String) -> Object {
-        return mutate(inputmode: value)
     }
     
     public func inputMode(_ value: Values.Mode) -> Object {
@@ -19906,11 +19606,6 @@ extension Video: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         }
         
         return self
-    }
-
-    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
-    public func inputMode(_ value: String) -> Video {
-        return mutate(inputmode: value)
     }
     
     public func inputMode(_ value: Values.Mode) -> Video {
@@ -20297,11 +19992,6 @@ extension Audio: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         
         return self
     }
-
-    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
-    public func inputMode(_ value: String) -> Audio {
-        return mutate(inputmode: value)
-    }
     
     public func inputMode(_ value: Values.Mode) -> Audio {
         return mutate(inputmode: value.rawValue)
@@ -20667,11 +20357,6 @@ extension Map: GlobalAttributes, GlobalEventAttributes, NameAttribute {
         
         return self
     }
-
-    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
-    public func inputMode(_ value: String) -> Map {
-        return mutate(inputmode: value)
-    }
     
     public func inputMode(_ value: Values.Mode) -> Map {
         return mutate(inputmode: value.rawValue)
@@ -20926,11 +20611,6 @@ extension Form: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, A
         
         return self
     }
-
-    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
-    public func inputMode(_ value: String) -> Form {
-        return mutate(inputmode: value)
-    }
     
     public func inputMode(_ value: Values.Mode) -> Form {
         return mutate(inputmode: value.rawValue)
@@ -21043,16 +20723,6 @@ extension Form: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, A
 
     public func action(_ value: String) -> Form {
         return mutate(action: value)
-    }
-    
-    @available(*, unavailable, message: "Use the autocomplete(_:) modifier instead.")
-    public func hasCompletion(_ value: Bool) -> Form {
-
-        if value {
-            return mutate(autocomplete: "on")
-        }
-        
-        return mutate(autocomplete: "off")
     }
     
     public func autocomplete(_ value: Values.Completion) -> Form {
@@ -21299,11 +20969,6 @@ extension DataList: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         }
         
         return self
-    }
-
-    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
-    public func inputMode(_ value: String) -> DataList {
-        return mutate(inputmode: value)
     }
 
     public func inputMode(_ value: Values.Mode) -> DataList {
@@ -21626,11 +21291,6 @@ extension Output: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         }
         
         return self
-    }
-
-    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
-    public func inputMode(_ value: String) -> Output {
-        return mutate(inputmode: value)
     }
     
     public func inputMode(_ value: Values.Mode) -> Output {
@@ -21965,11 +21625,6 @@ extension Progress: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         }
         
         return self
-    }
-
-    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
-    public func inputMode(_ value: String) -> Progress {
-        return mutate(inputmode: value)
     }
 
     public func inputMode(_ value: Values.Mode) -> Progress {
@@ -22311,11 +21966,6 @@ extension Meter: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         }
         
         return self
-    }
-
-    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
-    public func inputMode(_ value: String) -> Meter {
-        return mutate(inputmode: value)
     }
 
     public func inputMode(_ value: Values.Mode) -> Meter {
@@ -22676,11 +22326,6 @@ extension Details: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
         return self
     }
 
-    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
-    public func inputMode(_ value: String) -> Details {
-        return mutate(inputmode: value)
-    }
-
     public func inputMode(_ value: Values.Mode) -> Details {
         return mutate(inputmode: value.rawValue)
     }
@@ -23027,11 +22672,6 @@ extension Dialog: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         }
         
         return self
-    }
-
-    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
-    public func inputMode(_ value: String) -> Dialog {
-        return mutate(inputmode: value)
     }
     
     public func inputMode(_ value: Values.Mode) -> Dialog {
@@ -23380,11 +23020,6 @@ extension Script: GlobalAttributes, GlobalEventAttributes, AsynchronouslyAttribu
         
         return self
     }
-
-    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
-    public func inputMode(_ value: String) -> Script {
-        return mutate(inputmode: value)
-    }
     
     public func inputMode(_ value: Values.Mode) -> Script {
         return mutate(inputmode: value.rawValue)
@@ -23668,11 +23303,6 @@ extension NoScript: GlobalAttributes, GlobalEventAttributes {
         return self
     }
 
-    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
-    public func inputMode(_ value: String) -> NoScript {
-        return mutate(inputmode: value)
-    }
-
     public func inputMode(_ value: Values.Mode) -> NoScript {
         return mutate(inputmode: value.rawValue)
     }
@@ -23923,11 +23553,6 @@ extension Template: GlobalAttributes, GlobalEventAttributes, ShadowRootModeAttri
         
         return self
     }
-
-    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
-    public func inputMode(_ value: String) -> Template {
-        return mutate(inputmode: value)
-    }
     
     public func inputMode(_ value: Values.Mode) -> Template {
         return mutate(inputmode: value.rawValue)
@@ -24171,11 +23796,6 @@ extension Canvas: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         }
         
         return self
-    }
-
-    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
-    public func inputMode(_ value: String) -> Canvas {
-        return mutate(inputmode: value)
     }
 
     public func inputMode(_ value: Values.Mode) -> Canvas {
@@ -24511,11 +24131,6 @@ extension Table: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         }
         
         return self
-    }
-
-    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
-    public func inputMode(_ value: String) -> Table {
-        return mutate(inputmode: value)
     }
 
     public func inputMode(_ value: Values.Mode) -> Table {
@@ -24994,11 +24609,6 @@ extension Slot: GlobalAttributes, NameAttribute {
         }
         
         return self
-    }
-    
-    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
-    public func inputMode(_ value: String) -> Slot {
-        return mutate(inputmode: value)
     }
     
     public func inputMode(_ value: Values.Mode) -> Slot {

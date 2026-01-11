@@ -109,11 +109,6 @@ extension Title: GlobalAttributes, GlobalEventAttributes {
         return self
     }
     
-    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
-    public func inputMode(_ value: String) -> Title {
-        return mutate(inputmode: value)
-    }
-    
     public func inputMode(_ value: Values.Mode) -> Title {
         return mutate(inputmode: value.rawValue)
     }
@@ -360,11 +355,6 @@ extension Base: GlobalAttributes, GlobalEventAttributes, ReferenceAttribute, Tar
         return self
     }
     
-    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
-    public func inputMode(_ value: String) -> Base {
-        return mutate(inputmode: value)
-    }
-    
     public func inputMode(_ value: Values.Mode) -> Base {
         return mutate(inputmode: value.rawValue)
     }
@@ -609,11 +599,6 @@ extension Meta: GlobalAttributes, GlobalEventAttributes, ContentAttribute, NameA
         }
         
         return self
-    }
-
-    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
-    public func inputMode(_ value: String) -> Meta {
-        return mutate(inputmode: value)
     }
     
     public func inputMode(_ value: Values.Mode) -> Meta {
@@ -896,11 +881,6 @@ extension Style: GlobalAttributes, GlobalEventAttributes, TypeAttribute, MediaAt
         
         return self
     }
-
-    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
-    public func inputMode(_ value: String) -> Style {
-        return mutate(inputmode: value)
-    }
     
     public func inputMode(_ value: Values.Mode) -> Style {
         return mutate(inputmode: value.rawValue)
@@ -1165,11 +1145,6 @@ extension Link: GlobalAttributes, GlobalEventAttributes, ReferenceAttribute, Ref
         }
         
         return self
-    }
-
-    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
-    public func inputMode(_ value: String) -> Link {
-        return mutate(inputmode: value)
     }
     
     public func inputMode(_ value: Values.Mode) -> Link {

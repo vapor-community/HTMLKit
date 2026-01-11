@@ -115,11 +115,6 @@ extension FigureCaption: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttr
         
         return self
     }
-
-    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
-    public func inputMode(_ value: String) -> FigureCaption {
-        return mutate(inputmode: value)
-    }
     
     public func inputMode(_ value: Values.Mode) -> FigureCaption {
         return mutate(inputmode: value.rawValue)

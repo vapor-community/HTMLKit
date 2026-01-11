@@ -119,11 +119,6 @@ extension TermName: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         
         return self
     }
-
-    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
-    public func inputMode(_ value: String) -> TermName {
-        return mutate(inputmode: value)
-    }
     
     public func inputMode(_ value: Values.Mode) -> TermName {
         return mutate(inputmode: value.rawValue)
@@ -448,11 +443,6 @@ extension TermDefinition: GlobalAttributes, GlobalEventAttributes, GlobalAriaAtt
         }
         
         return self
-    }
-
-    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
-    public func inputMode(_ value: String) -> TermDefinition {
-        return mutate(inputmode: value)
     }
     
     public func inputMode(_ value: Values.Mode) -> TermDefinition {
