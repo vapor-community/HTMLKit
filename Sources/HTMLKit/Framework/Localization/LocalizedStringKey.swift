@@ -2,7 +2,7 @@ import Foundation
 
 /// A string key for the localization
 @_documentation(visibility: internal)
-public struct LocalizedStringKey {
+public struct LocalizedStringKey: Sendable {
  
     /// The key value
     internal let value: String
