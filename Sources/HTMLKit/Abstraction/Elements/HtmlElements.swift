@@ -107,11 +107,6 @@ extension Head: GlobalAttributes, GlobalEventAttributes {
         return self
     }
     
-    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
-    public func inputMode(_ value: String) -> Head {
-        return mutate(inputmode: value)
-    }
-    
     public func inputMode(_ value: Values.Mode) -> Head {
         return mutate(inputmode: value.rawValue)
     }
@@ -128,7 +123,7 @@ extension Head: GlobalAttributes, GlobalEventAttributes {
         return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements.joined(separator:  " "))
     }
     
-    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
+    @available(*, unavailable, message: "Use the item(id:as:for:) modifier instead.")
     public func itemId(_ value: String) -> Head {
         return mutate(itemid: value)
     }
@@ -137,17 +132,17 @@ extension Head: GlobalAttributes, GlobalEventAttributes {
         return mutate(itemprop: value)
     }
     
-    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
+    @available(*, unavailable, message: "Use the item(id:as:for:) modifier instead.")
     public func itemReference(_ value: String) -> Head {
         return mutate(itemref: value)
     }
     
-    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
+    @available(*, unavailable, message: "Use the item(id:as:for:) modifier instead.")
     public func itemScope(_ value: String) -> Head {
         return mutate(itemscope: value)
     }
     
-    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
+    @available(*, unavailable, message: "Use the item(id:as:for:) modifier instead.")
     public func itemType(_ value: String) -> Head {
         return mutate(itemtype: value)
     }
@@ -360,11 +355,6 @@ extension Body: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, W
         
         return self
     }
-
-    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
-    public func inputMode(_ value: String) -> Body {
-        return mutate(inputmode: value)
-    }
     
     public func inputMode(_ value: Values.Mode) -> Body {
         return mutate(inputmode: value.rawValue)
@@ -382,7 +372,7 @@ extension Body: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, W
         return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements.joined(separator: " "))
     }
 
-    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
+    @available(*, unavailable, message: "Use the item(id:as:for:) modifier instead.")
     public func itemId(_ value: String) -> Body {
         return mutate(itemid: value)
     }
@@ -391,17 +381,17 @@ extension Body: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, W
         return mutate(itemprop: value)
     }
 
-    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
+    @available(*, unavailable, message: "Use the item(id:as:for:) modifier instead.")
     public func itemReference(_ value: String) -> Body {
         return mutate(itemref: value)
     }
 
-    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
+    @available(*, unavailable, message: "Use the item(id:as:for:) modifier instead.")
     public func itemScope(_ value: String) -> Body {
         return mutate(itemscope: value)
     }
     
-    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
+    @available(*, unavailable, message: "Use the item(id:as:for:) modifier instead.")
     public func itemType(_ value: String) -> Body {
         return mutate(itemtype: value)
     }

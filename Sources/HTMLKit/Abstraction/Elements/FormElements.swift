@@ -103,11 +103,6 @@ extension Input: GlobalAttributes, GlobalEventAttributes, AcceptAttribute, Alter
         
         return self
     }
-
-    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
-    public func inputMode(_ value: String) -> Input {
-        return mutate(inputmode: value)
-    }
     
     public func inputMode(_ value: Values.Mode) -> Input {
         return mutate(inputmode: value.rawValue)
@@ -125,7 +120,7 @@ extension Input: GlobalAttributes, GlobalEventAttributes, AcceptAttribute, Alter
         return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements.joined(separator: " "))
     }
 
-    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
+    @available(*, unavailable, message: "Use the item(id:as:for:) modifier instead.")
     public func itemId(_ value: String) -> Input {
         return mutate(itemid: value)
     }
@@ -134,17 +129,17 @@ extension Input: GlobalAttributes, GlobalEventAttributes, AcceptAttribute, Alter
         return mutate(itemprop: value)
     }
 
-    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
+    @available(*, unavailable, message: "Use the item(id:as:for:) modifier instead.")
     public func itemReference(_ value: String) -> Input {
         return mutate(itemref: value)
     }
 
-    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
+    @available(*, unavailable, message: "Use the item(id:as:for:) modifier instead.")
     public func itemScope(_ value: String) -> Input {
         return mutate(itemscope: value)
     }
     
-    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
+    @available(*, unavailable, message: "Use the item(id:as:for:) modifier instead.")
     public func itemType(_ value: String) -> Input {
         return mutate(itemtype: value)
     }
@@ -245,16 +240,6 @@ extension Input: GlobalAttributes, GlobalEventAttributes, AcceptAttribute, Alter
     
     public func alternate(verbatim value: String) -> Input {
         return mutate(alternate: value)
-    }
-    
-    @available(*, unavailable, message: "Use the autocomplete(_:) modifier instead.")
-    public func hasCompletion(_ value: Bool) -> Input {
-
-        if value {
-            return mutate(autocomplete: "on")
-        }
-        
-        return mutate(autocomplete: "off")
     }
     
     public func autocomplete(_ value: Values.Completion) -> Input {
@@ -546,11 +531,6 @@ extension Label: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         
         return self
     }
-
-    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
-    public func inputMode(_ value: String) -> Label {
-        return mutate(inputmode: value)
-    }
     
     public func inputMode(_ value: Values.Mode) -> Label {
         return mutate(inputmode: value.rawValue)
@@ -568,7 +548,7 @@ extension Label: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements.joined(separator: " "))
     }
 
-    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
+    @available(*, unavailable, message: "Use the item(id:as:for:) modifier instead.")
     public func itemId(_ value: String) -> Label {
         return mutate(itemid: value)
     }
@@ -577,17 +557,17 @@ extension Label: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return mutate(itemprop: value)
     }
 
-    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
+    @available(*, unavailable, message: "Use the item(id:as:for:) modifier instead.")
     public func itemReference(_ value: String) -> Label {
         return mutate(itemref: value)
     }
 
-    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
+    @available(*, unavailable, message: "Use the item(id:as:for:) modifier instead.")
     public func itemScope(_ value: String) -> Label {
         return mutate(itemscope: value)
     }
     
-    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
+    @available(*, unavailable, message: "Use the item(id:as:for:) modifier instead.")
     public func itemType(_ value: String) -> Label {
         return mutate(itemtype: value)
     }
@@ -891,11 +871,6 @@ extension Select: GlobalAttributes, GlobalEventAttributes, AutocompleteAttribute
         
         return self
     }
-
-    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
-    public func inputMode(_ value: String) -> Select {
-        return mutate(inputmode: value)
-    }
     
     public func inputMode(_ value: Values.Mode) -> Select {
         return mutate(inputmode: value.rawValue)
@@ -913,7 +888,7 @@ extension Select: GlobalAttributes, GlobalEventAttributes, AutocompleteAttribute
         return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements.joined(separator: " "))
     }
 
-    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
+    @available(*, unavailable, message: "Use the item(id:as:for:) modifier instead.")
     public func itemId(_ value: String) -> Select {
         return mutate(itemid: value)
     }
@@ -922,17 +897,17 @@ extension Select: GlobalAttributes, GlobalEventAttributes, AutocompleteAttribute
         return mutate(itemprop: value)
     }
 
-    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
+    @available(*, unavailable, message: "Use the item(id:as:for:) modifier instead.")
     public func itemReference(_ value: String) -> Select {
         return mutate(itemref: value)
     }
 
-    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
+    @available(*, unavailable, message: "Use the item(id:as:for:) modifier instead.")
     public func itemScope(_ value: String) -> Select {
         return mutate(itemscope: value)
     }
     
-    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
+    @available(*, unavailable, message: "Use the item(id:as:for:) modifier instead.")
     public func itemType(_ value: String) -> Select {
         return mutate(itemtype: value)
     }
@@ -1004,16 +979,6 @@ extension Select: GlobalAttributes, GlobalEventAttributes, AutocompleteAttribute
         }
         
         return self
-    }
-
-    @available(*, unavailable, message: "Use the autocomplete(_:) modifier instead.")
-    public func hasCompletion(_ value: Bool) -> Select {
-
-        if value {
-            return mutate(autocomplete: "on")
-        }
-        
-        return mutate(autocomplete: "off")
     }
     
     public func autocomplete(_ value: Values.Completion) -> Select {
@@ -1194,11 +1159,6 @@ extension TextArea: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         
         return self
     }
-
-    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
-    public func inputMode(_ value: String) -> TextArea {
-        return mutate(inputmode: value)
-    }
     
     public func inputMode(_ value: Values.Mode) -> TextArea {
         return mutate(inputmode: value.rawValue)
@@ -1216,7 +1176,7 @@ extension TextArea: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements.joined(separator: " "))
     }
 
-    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
+    @available(*, unavailable, message: "Use the item(id:as:for:) modifier instead.")
     public func itemId(_ value: String) -> TextArea {
         return mutate(itemid: value)
     }
@@ -1225,17 +1185,17 @@ extension TextArea: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(itemprop: value)
     }
 
-    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
+    @available(*, unavailable, message: "Use the item(id:as:for:) modifier instead.")
     public func itemReference(_ value: String) -> TextArea {
         return mutate(itemref: value)
     }
 
-    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
+    @available(*, unavailable, message: "Use the item(id:as:for:) modifier instead.")
     public func itemScope(_ value: String) -> TextArea {
         return mutate(itemscope: value)
     }
     
-    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
+    @available(*, unavailable, message: "Use the item(id:as:for:) modifier instead.")
     public func itemType(_ value: String) -> TextArea {
         return mutate(itemtype: value)
     }
@@ -1307,16 +1267,6 @@ extension TextArea: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         }
         
         return self
-    }
-
-    @available(*, unavailable, message: "Use the autocomplete(_:) modifier instead.")
-    public func hasCompletion(_ value: Bool) -> TextArea {
-
-        if value {
-            return mutate(autocomplete: "on")
-        }
-        
-        return mutate(autocomplete: "off")
     }
     
     public func autocomplete(_ value: Values.Completion) -> TextArea {
@@ -1610,11 +1560,6 @@ extension Button: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         
         return self
     }
-
-    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
-    public func inputMode(_ value: String) -> Button {
-        return mutate(inputmode: value)
-    }
     
     public func inputMode(_ value: Values.Mode) -> Button {
         return mutate(inputmode: value.rawValue)
@@ -1632,7 +1577,7 @@ extension Button: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements.joined(separator: " "))
     }
 
-    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
+    @available(*, unavailable, message: "Use the item(id:as:for:) modifier instead.")
     public func itemId(_ value: String) -> Button {
         return mutate(itemid: value)
     }
@@ -1641,17 +1586,17 @@ extension Button: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return mutate(itemprop: value)
     }
 
-    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
+    @available(*, unavailable, message: "Use the item(id:as:for:) modifier instead.")
     public func itemReference(_ value: String) -> Button {
         return mutate(itemref: value)
     }
 
-    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
+    @available(*, unavailable, message: "Use the item(id:as:for:) modifier instead.")
     public func itemScope(_ value: String) -> Button {
         return mutate(itemscope: value)
     }
     
-    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
+    @available(*, unavailable, message: "Use the item(id:as:for:) modifier instead.")
     public func itemType(_ value: String) -> Button {
         return mutate(itemtype: value)
     }
@@ -1999,11 +1944,6 @@ extension Fieldset: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         
         return self
     }
-
-    @available(*, unavailable, message: "Use the inputMode(_:) modifier instead.")
-    public func inputMode(_ value: String) -> Fieldset {
-        return mutate(inputmode: value)
-    }
     
     public func inputMode(_ value: Values.Mode) -> Fieldset {
         return mutate(inputmode: value.rawValue)
@@ -2021,7 +1961,7 @@ extension Fieldset: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements.joined(separator: " "))
     }
 
-    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
+    @available(*, unavailable, message: "Use the item(id:as:for:) modifier instead.")
     public func itemId(_ value: String) -> Fieldset {
         return mutate(itemid: value)
     }
@@ -2030,17 +1970,17 @@ extension Fieldset: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(itemprop: value)
     }
 
-    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
+    @available(*, unavailable, message: "Use the item(id:as:for:) modifier instead.")
     public func itemReference(_ value: String) -> Fieldset {
         return mutate(itemref: value)
     }
 
-    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
+    @available(*, unavailable, message: "Use the item(id:as:for:) modifier instead.")
     public func itemScope(_ value: String) -> Fieldset {
         return mutate(itemscope: value)
     }
     
-    @available(*, deprecated, message: "Use the item(id:as:for:) modifier instead.")
+    @available(*, unavailable, message: "Use the item(id:as:for:) modifier instead.")
     public func itemType(_ value: String) -> Fieldset {
         return mutate(itemtype: value)
     }
