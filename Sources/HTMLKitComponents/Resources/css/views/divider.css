@@ -1,11 +1,5 @@
-/*
- The stylesheet for the divider component.
- 
- default:
- background color: #000000
- 
- darkmode:
- background color: #FFFFFF
+/**
+ * The rulesets for the divider component.
  */
 
 .divider {

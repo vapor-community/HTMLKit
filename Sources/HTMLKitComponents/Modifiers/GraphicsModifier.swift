@@ -49,26 +49,26 @@ public protocol GraphicsModifier {
 extension GraphicsModifier where Self: Modifiable {
     
     internal func mutate(blur value: String) -> Self {
-        return self.mutate(class: "blur:\(value)")
+        return self.mutate(classes: "blur:\(value)")
     }
     
     internal func mutate(grayscale value: String) -> Self {
-        return self.mutate(class: "grayscale:\(value)")
+        return self.mutate(classes: "grayscale:\(value)")
     }
     
     internal func mutate(brightness value: String) -> Self {
-        return self.mutate(class: "brightness:\(value)")
+        return self.mutate(classes: "brightness:\(value)")
     }
     
     internal func mutate(saturation value: String) -> Self {
-        return self.mutate(class: "saturation:\(value)")
+        return self.mutate(classes: "saturation:\(value)")
     }
     
     internal func mutate(contrast value: String) -> Self {
-        return self.mutate(class: "contrast:\(value)")
+        return self.mutate(classes: "contrast:\(value)")
     }
     
     internal func mutate(shadow radius: String, color: String) -> Self {
-        return mutate(classes: ["shadow:\(radius)", "shadow:\(color)"])
+        return self.mutate(classes: "shadow:\(radius)", "shadow:\(color)")
     }
 }

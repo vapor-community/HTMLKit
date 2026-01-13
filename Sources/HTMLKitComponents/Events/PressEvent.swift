@@ -19,7 +19,7 @@ extension PressEvent where Self: Actionable {
     internal func mutate(clickevent actions: [Action]) -> Self {
         
         guard let identifier = self.id else {
-            fatalError("Initiative identifier unkown.")
+            fatalError("Initiative identifier unknown.")
         }
         
         let event = """
@@ -28,13 +28,13 @@ extension PressEvent where Self: Actionable {
                 });
                 """
         
-        return self.mutate(event: event)
+        return self.mutate(events: event)
     }
     
     internal func mutate(tapevent actions: [Action]) -> Self {
         
         guard let identifier = self.id else {
-            fatalError("Initiative identifier unkown.")
+            fatalError("Initiative identifier unknown.")
         }
         
         let event = """
@@ -43,13 +43,13 @@ extension PressEvent where Self: Actionable {
                 });
                 """
         
-        return self.mutate(event: event)
+        return self.mutate(events: event)
     }
     
     internal func mutate(pressevent actions: [Action]) -> Self {
         
         guard let identifier = self.id else {
-            fatalError("Initiative identifier unkown.")
+            fatalError("Initiative identifier unknown.")
         }
         
         let event = """
@@ -58,6 +58,6 @@ extension PressEvent where Self: Actionable {
                 });
                 """
         
-        return self.mutate(event: event)
+        return self.mutate(events: event)
     }
 }

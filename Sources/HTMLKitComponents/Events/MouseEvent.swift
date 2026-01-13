@@ -16,7 +16,7 @@ extension MouseEvent where Self: Actionable {
     internal func mutate(hoverevent actions: [Action]) -> Self {
         
         guard let identifier = self.id else {
-            fatalError("Initiative identifier unkown.")
+            fatalError("Initiative identifier unknown.")
         }
         
         let event = """
@@ -25,13 +25,13 @@ extension MouseEvent where Self: Actionable {
                 });
                 """
         
-        return self.mutate(event: event)
+        return self.mutate(events: event)
     }
     
     internal func mutate(leaveevent actions: [Action]) -> Self {
         
         guard let identifier = self.id else {
-            fatalError("Initiative identifier unkown.")
+            fatalError("Initiative identifier unknown.")
         }
         
         let event = """
@@ -40,6 +40,6 @@ extension MouseEvent where Self: Actionable {
                 });
                 """
         
-        return self.mutate(event: event)
+        return self.mutate(events: event)
     }
 }

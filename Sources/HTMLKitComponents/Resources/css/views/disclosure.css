@@ -1,3 +1,7 @@
+/**
+ * The rulesets for the disclosure component.
+ */
+
 .disclosure {
     position: relative;
     inline-size: 100%;

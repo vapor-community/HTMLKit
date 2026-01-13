@@ -1,32 +1,36 @@
-/*
- The stylesheet for the snippet component.
- 
- default:
- inline padding: 16px
- font size: 16px
- font weight: normal
- line height: 1.5;
- foreground color: #000000
- 
- darkmode:
- foreground color: #FFFFFF
+/**
+ * The rulesets for the snippet component.
  */
 
 .snippet {
     --paddingInlineStart: 1.0em;
     --paddingInlineEnd: 1.0em;
+    --paddingBlockStart: 0.5rem;
+    --paddingBlockEnd: 0.5rem;
     --fontSize: 1.0rem;
     --fontWeight: 400;
     --lineHeight: 1.5;
     --foregroundColor: var(--systemTextColor);
-    --backgroundColor: 0, 0%, 0%;
-    --backgroundOpacity: 0.0;
-    
+    --borderWidth: 1px;
+    --borderColor: var(--systemBorderColor);
+    --borderRadius: 0;
+    --borderOpacity: 1.0;
+    --backgroundColor: var(--systemBackgroundColor);
+    --backgroundOpacity: 1.0;
+
     position: relative;
+    padding-block-start: var(--paddingBlockStart);
+    padding-block-end: var(--paddingBlockEnd);
+    padding-inline-start: var(--paddingInlineStart);
+    padding-inline-end: var(--paddingInlineEnd);
     display: block;
     inline-size: 100%;
     block-size: auto;
     counter-reset: line;
+    border-width: var(--borderWidth);
+    border-style: solid;
+    border-color: hsla(var(--borderColor), var(--borderOpacity));
+    border-radius: var(--borderRadius);
     background-color: hsla(var(--backgroundColor), var(--backgroundOpacity));
     overflow-inline: auto;
 }

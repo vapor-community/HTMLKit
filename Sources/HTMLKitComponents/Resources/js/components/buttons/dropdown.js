@@ -1,7 +1,14 @@
 (function() {
 
     'use strict';
-    
+
+    /**
+     * Initiates the dropdown object.
+     *
+     * @constructor
+     *
+     * @param element
+     */
     const Dropdown = function (element) {
         
         this.element = element;
@@ -10,9 +17,9 @@
         
         this.initiateListener();
     };
- 
-    /*
-        Initiates the listeners
+
+    /**
+     * Initiates the listeners.
      */
     Dropdown.prototype.initiateListener = function () {
         
@@ -29,9 +36,9 @@
             }
         });
     };
-    
-    /*
-        Shows the dropdown list
+
+    /**
+     * Shows the dropdown list.
      */
     Dropdown.prototype.showDropdownList = function () {
         
@@ -48,9 +55,9 @@
         
         this.dropdownlist.classList.add('state:visible');
     };
-    
-    /*
-        Hides the dropdown list
+
+    /**
+     * Hides the dropdown list.
      */
     Dropdown.prototype.hideDropdownList = function () {
         this.dropdownlist.classList.remove('state:visible');

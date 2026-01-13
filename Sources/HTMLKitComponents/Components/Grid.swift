@@ -28,7 +28,7 @@ public struct Grid: View, Modifiable, Actionable {
     internal var id: String?
     
     /// The body content of the grid.
-    internal var content: [Content]
+    internal let content: [Content]
     
     /// The class names for the grid.
     internal var classes: [String]
@@ -112,7 +112,12 @@ extension Grid: MouseEvent {
 
 extension Grid: ViewModifier {
     
+    @available(*, deprecated, message: "Use the background(_:) modifier instead.")
     public func backgroundColor(_ color: Tokens.BackgroundColor) -> Grid {
+        return self.mutate(backgroundcolor: color.value)
+    }
+    
+    public func background(_ color: Tokens.BackgroundColor) -> Grid {
         return self.mutate(backgroundcolor: color.value)
     }
     
@@ -141,16 +146,17 @@ extension Grid: ViewModifier {
         return self.mutate(padding: length.value, insets: insets)
     }
     
+    @available(*, deprecated, message: "Use the border(_:width:shape:) modifier instead.")
     public func borderShape(_ shape: Tokens.BorderShape) -> Grid {
         return self.mutate(bordershape: shape.value)
     }
     
-    public func border(_ color: Tokens.BorderColor, width: Tokens.BorderWidth = .small) -> Grid {
-        return self.mutate(border: color.value, width: width.value)
+    public func border(_ color: Tokens.BorderColor, width: Tokens.BorderWidth = .small, shape: Tokens.BorderShape? = nil) -> Grid {
+        return self.mutate(border: color.value, width: width.value, shape: shape?.value)
     }
     
     public func frame(width: Tokens.ViewWidth, height: Tokens.ViewHeight? = nil, alignment: Tokens.FrameAlignment? = nil) -> Grid {
-        return mutate(frame: width.value, height: height?.value, alignment: alignment?.value)
+        return self.mutate(frame: width.value, height: height?.value, alignment: alignment?.value)
     }
     
     public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> Grid {

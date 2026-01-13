@@ -1,16 +1,5 @@
-/*
- The rulesets for the radioselect component.
- 
- defaults:
- border width: 1px;
- border color: #DFE3E7
- focus color: #0080FF
- background color: #FFFFFF
- 
- darkmode:
- border color: #484F56
- focus color: #0080FF
- background color: #FFFFFF
+/**
+ * The rulesets for the radioselect component.
  */
 
 .radioselect {

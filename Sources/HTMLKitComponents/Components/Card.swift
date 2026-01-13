@@ -19,10 +19,10 @@ public struct Card: View, Modifiable, Identifiable {
     internal var id: String?
     
     /// The header content of the card.
-    internal var header: [Content]?
+    internal let header: [Content]?
     
     /// The body content of the card.
-    internal var content: [Content]
+    internal let content: [Content]
     
     /// The class names for the card.
     internal var classes: [String]
@@ -32,6 +32,7 @@ public struct Card: View, Modifiable, Identifiable {
     /// - Parameter content: The card's content
     public init(@ContentBuilder<Content> content: () -> [Content]) {
         
+        self.header = nil
         self.content = content()
         self.classes = ["card"]
     }
@@ -95,7 +96,12 @@ extension Card: ViewModifier {
         return self.mutate(zindex: index.value)
     }
     
+    @available(*, deprecated, message: "Use the background(_:) modifier instead.")
     public func backgroundColor(_ color: Tokens.BackgroundColor) -> Card {
+        return self.mutate(backgroundcolor: color.value)
+    }
+    
+    public func background(_ color: Tokens.BackgroundColor) -> Card {
         return self.mutate(backgroundcolor: color.value)
     }
     
@@ -116,16 +122,17 @@ extension Card: ViewModifier {
         return self.mutate(padding: length.value, insets: insets)
     }
     
+    @available(*, deprecated, message: "Use the border(_:width:shape:) modifier instead.")
     public func borderShape(_ shape: Tokens.BorderShape) -> Card {
         return self.mutate(bordershape: shape.value)
     }
     
-    public func border(_ color: Tokens.BorderColor, width: Tokens.BorderWidth = .small) -> Card {
-        return self.mutate(border: color.value, width: width.value)
+    public func border(_ color: Tokens.BorderColor, width: Tokens.BorderWidth = .small, shape: Tokens.BorderShape? = nil) -> Card {
+        return self.mutate(border: color.value, width: width.value, shape: shape?.value)
     }
     
     public func frame(width: Tokens.ViewWidth, height: Tokens.ViewHeight? = nil, alignment: Tokens.FrameAlignment? = nil) -> Card {
-        return mutate(frame: width.value, height: height?.value, alignment: alignment?.value)
+        return self.mutate(frame: width.value, height: height?.value, alignment: alignment?.value)
     }
     
     public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> Card {
