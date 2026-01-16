@@ -27,15 +27,21 @@ public struct FigureCaption: ContentNode, FigureElement {
 
     internal var content: [Content]
     
+    internal var context: EscapeContext
+    
     /// Create a figure caption.
     ///
     /// - Parameter content: The caption's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
+        
+        self.context = .tainted(.html)
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, Any>?, context: EscapeContext, content: [Content]) {
+        
         self.attributes = attributes
+        self.context = context
         self.content = content
     }
     

@@ -24,13 +24,19 @@ final class AttributesTests: XCTestCase {
         var attributes: OrderedDictionary<String, Any>?
 
         var content: [Content]
+        
+        var context: EscapeContext
 
         init(@ContentBuilder<Content> content: () -> [Content]) {
+            
+            self.context = .tainted(.html)
             self.content = content()
         }
         
-        init(attributes: OrderedDictionary<String, Any>?, content: [Content]) {
+        init(attributes: OrderedDictionary<String, Any>?, context: EscapeContext, content: [Content]) {
+            
             self.attributes = attributes
+            self.context = context
             self.content = content
         }
         

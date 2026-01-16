@@ -10,7 +10,7 @@ import OrderedCollections
 ///     }
 /// }
 /// ```
-public struct Head: ContentNode, HtmlElement {
+public struct Head: ContentNode, HtmlElement {    
 
     internal var name: String { "head" }
 
@@ -18,15 +18,21 @@ public struct Head: ContentNode, HtmlElement {
 
     internal var content: [HeadElement]
     
+    internal var context: EscapeContext
+    
     /// Create a head.
     ///
     /// - Parameter content: The head's content.
     public init(@ContentBuilder<HeadElement> content: () -> [HeadElement]) {
+        
+        self.context = .trusted
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: [HeadElement]) {
+    internal init(attributes: OrderedDictionary<String, Any>?, context: EscapeContext, content: [HeadElement]) {
+        
         self.attributes = attributes
+        self.context = context
         self.content = content
     }
     
@@ -266,16 +272,22 @@ public struct Body: ContentNode, HtmlElement {
     internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: [BodyElement]
+    
+    internal var context: EscapeContext
 
     /// Create a body.
     ///
     /// - Parameter content: The body's content.
     public init(@ContentBuilder<BodyElement> content: () -> [BodyElement]) {
+        
+        self.context = .trusted
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: [BodyElement]) {
+    internal init(attributes: OrderedDictionary<String, Any>?, context: EscapeContext, content: [BodyElement]) {
+        
         self.attributes = attributes
+        self.context = context
         self.content = content
     }
     

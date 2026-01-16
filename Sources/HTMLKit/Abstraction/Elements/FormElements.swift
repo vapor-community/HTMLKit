@@ -442,16 +442,22 @@ public struct Label: ContentNode, FormElement {
     internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: [Content]
+    
+    internal var context: EscapeContext
 
     /// Create a label.
     ///
     /// - Parameter content: The label's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
+        
+        self.context = .tainted(.html)
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, Any>?, context: EscapeContext, content: [Content]) {
+        
         self.attributes = attributes
+        self.context = context
         self.content = content
     }
     
@@ -753,6 +759,8 @@ extension Label: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
 extension Label: Localizable {
     
     public init(_ localizedKey: LocalizedStringKey, tableName: String? = nil) {
+        
+        self.context = .tainted(.html)
         self.content = [LocalizedString(key: localizedKey, table: tableName)]
     }
 }
@@ -783,15 +791,21 @@ public struct Select: ContentNode, FormElement {
 
     internal var content: [Content]
     
+    internal var context: EscapeContext
+    
     /// Create a select.
     ///
     /// - Parameter content: The select's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
+        
+        self.context = .tainted(.html)
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, Any>?, context: EscapeContext, content: [Content]) {
+        
         self.attributes = attributes
+        self.context = context
         self.content = content
     }
     
@@ -1071,15 +1085,21 @@ public struct TextArea: ContentNode, FormElement {
 
     internal var content: [String]
     
+    internal var context: EscapeContext
+    
     /// Create a text area.
     ///
     /// - Parameter content: The area's content.
     public init(@ContentBuilder<String> content: () -> [String]) {
+        
+        self.context = .tainted(.html)
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: [String]) {
+    internal init(attributes: OrderedDictionary<String, Any>?, context: EscapeContext, content: [String]) {
+        
         self.attributes = attributes
+        self.context = context
         self.content = content
     }
     
@@ -1472,15 +1492,21 @@ public struct Button: ContentNode, FormElement {
 
     internal var content: [Content]
     
+    internal var context: EscapeContext
+    
     /// Create a button.
     ///
     /// - Parameter content: The button's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
+        
+        self.context = .tainted(.html)
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, Any>?, context: EscapeContext, content: [Content]) {
+        
         self.attributes = attributes
+        self.context = context
         self.content = content
     }
     
@@ -1825,6 +1851,8 @@ extension Button: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
 extension Button: Localizable {
     
     public init(_ localizedKey: LocalizedStringKey, tableName: String? = nil) {
+        
+        self.context = .tainted(.html)
         self.content = [LocalizedString(key: localizedKey, table: tableName)]
     }
 }
@@ -1856,15 +1884,21 @@ public struct Fieldset: ContentNode, FormElement {
 
     internal var content: [Content]
     
+    internal var context: EscapeContext
+    
     /// Create a fieldset.
     ///
     /// - Parameter content: The set's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
+        
+        self.context = .tainted(.html)
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, Any>?, context: EscapeContext, content: [Content]) {
+        
         self.attributes = attributes
+        self.context = context
         self.content = content
     }
     

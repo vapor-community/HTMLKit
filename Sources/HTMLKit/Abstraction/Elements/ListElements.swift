@@ -27,15 +27,21 @@ public struct ListItem: ContentNode, ListElement {
 
     internal var content: [Content]
     
+    internal var context: EscapeContext
+    
     /// Create a list item.
     ///
     /// - Parameter content: The item's content
     public init(@ContentBuilder<Content> content: () -> [Content]) {
+        
+        self.context = .tainted(.html)
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, Any>?, context: EscapeContext, content: [Content]) {
+        
         self.attributes = attributes
+        self.context = context
         self.content = content
     }
     

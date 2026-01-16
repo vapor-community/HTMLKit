@@ -20,12 +20,12 @@ extension Attribute where Self: ContentNode {
     internal func mutate(key: String, value: Any) -> Self {
         
         guard var attributes = self.attributes else {
-            return .init(attributes: [key: value], content: content)
+            return .init(attributes: [key: value], context: context, content: content)
         }
         
         attributes[key] = value
         
-        return .init(attributes: attributes, content: content)
+        return .init(attributes: attributes, context: context, content: content)
     }
 }
 
@@ -48,11 +48,11 @@ extension Attribute where Self: CustomNode {
     internal func mutate(key: String, value: Any) -> Self {
         
         guard var attributes = self.attributes else {
-            return .init(name: name, attributes:  [key: value], content: content)
+            return .init(name: name, attributes:  [key: value], context: context, content: content)
         }
         
         attributes[key] = value
         
-        return .init(name: name, attributes: attributes, content: content)
+        return .init(name: name, attributes: attributes, context: context, content: content)
     }
 }

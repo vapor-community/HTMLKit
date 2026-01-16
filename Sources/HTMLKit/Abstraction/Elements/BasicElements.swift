@@ -8,14 +8,18 @@ import OrderedCollections
 /// ```swift
 /// Comment("Lorem ipsum")
 /// ```
-public struct Comment: CommentNode, GlobalElement {
+public struct Comment: CommentNode, GlobalElement {    
     
     internal var content: String
+    
+    internal var context: EscapeContext
     
     /// Create a comment.
     ///
     /// - Parameter content: The text of the comment.
     public init(_ content: String) {
+        
+        self.context = .tainted(.html)
         self.content = content
     }
 }
@@ -37,10 +41,14 @@ public struct Document: DocumentNode, BasicElement {
     
     internal var content: String
     
+    internal var context: EscapeContext
+    
     /// Create a document.
     ///
     /// - Parameter value: The type to declare.
     public init(_ value: Values.Doctype) {
+
+        self.context = .trusted        
         self.content = value.rawValue
     }
 }
@@ -74,16 +82,22 @@ public struct Html: ContentNode, BasicElement {
     internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: [HtmlElement]
+    
+    internal var context: EscapeContext
 
     /// Create a html.
     ///
     /// - Parameter content: The html's content.
     public init(@ContentBuilder<HtmlElement> content: () -> [HtmlElement]) {
+        
+        self.context = .trusted
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: [HtmlElement]) {
+    internal init(attributes: OrderedDictionary<String, Any>?, context: EscapeContext, content: [HtmlElement]) {
+        
         self.attributes = attributes
+        self.context = context
         self.content = content
     }
     
@@ -317,22 +331,26 @@ public struct Custom: CustomNode, GlobalElement {
     public var attributes: OrderedDictionary<String, Any>?
 
     public var content: [Content]
+    
+    public var context: EscapeContext
 
     /// Create a custom.
     ///
     /// - Parameters:
     ///   - name: The tag to use for the element.
     ///   - content: The custom's content.
-    public init(name: String, @ContentBuilder<Content> content: () -> [Content]) {
+    public init(name: String, context: EscapeContext = .tainted(.html), @ContentBuilder<Content> content: () -> [Content]) {
         
         self.name = name
+        self.context = context
         self.content = content()
     }
     
-    public init(name: String, attributes: OrderedDictionary<String, Any>?, content: [Content]) {
+    public init(name: String, attributes: OrderedDictionary<String, Any>?, context: EscapeContext = .tainted(.html), content: [Content]) {
         
         self.name = name
         self.attributes = attributes
+        self.context = context
         self.content = content
     }
     

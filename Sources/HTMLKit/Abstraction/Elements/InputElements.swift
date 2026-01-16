@@ -32,16 +32,22 @@ public struct OptionGroup: ContentNode, InputElement {
     internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: [Content]
+    
+    internal var context: EscapeContext
 
     /// Create a option group.
     ///
     /// - Parameter content: The group's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
+        
+        self.context = .tainted(.html)
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, Any>?, context: EscapeContext, content: [Content]) {
+        
         self.attributes = attributes
+        self.context = context
         self.content = content
     }
     
@@ -377,16 +383,22 @@ public struct Option: ContentNode, InputElement {
     internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: [String]
+    
+    internal var context: EscapeContext
 
     /// Create a option.
     ///
     /// - Parameter content: The option's content.
     public init(@ContentBuilder<String> content: () -> [String]) {
+        
+        self.context = .tainted(.html)
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: [String]) {
+    internal init(attributes: OrderedDictionary<String, Any>?, context: EscapeContext, content: [String]) {
+        
         self.attributes = attributes
+        self.context = context
         self.content = content
     }
     
@@ -754,18 +766,22 @@ public struct Legend: ContentNode, InputElement {
     internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: [Content]
+    
+    internal var context: EscapeContext
 
     /// Create a legend.
     ///
     /// - Parameter content: The legend's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
         
+        self.context = .tainted(.html)
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, Any>?, context: EscapeContext, content: [Content]) {
         
         self.attributes = attributes
+        self.context = context
         self.content = content
     }
     
@@ -1081,16 +1097,22 @@ public struct Summary: ContentNode, InputElement {
     internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: [Content]
+    
+    internal var context: EscapeContext
 
     /// Create a summary.
     ///
     /// - Parameter content: The summary's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
+        
+        self.context = .tainted(.html)
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, Any>?, context: EscapeContext, content: [Content]) {
+        
         self.attributes = attributes
+        self.context = context
         self.content = content
     }
     

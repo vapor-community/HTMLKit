@@ -50,17 +50,23 @@ public struct Caption: ContentNode, TableElement {
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal  var content: [Content]
+    internal var content: [Content]
+    
+    internal var context: EscapeContext
     
     /// Create a caption.
     ///
     /// - Parameter content: The caption's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
+        
+        self.context = .tainted(.html)
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, Any>?, context: EscapeContext, content: [Content]) {
+        
         self.attributes = attributes
+        self.context = context
         self.content = content
     }
     
@@ -374,17 +380,23 @@ public struct ColumnGroup: ContentNode, TableElement {
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal  var content: [Content]
+    internal var content: [Content]
+    
+    internal var context: EscapeContext
     
     /// Create a column group.
     ///
     /// - Parameter content: The group's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
+        
+        self.context = .tainted(.html)
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, Any>?, context: EscapeContext, content: [Content]) {
+        
         self.attributes = attributes
+        self.context = context
         self.content = content
     }
     
@@ -876,17 +888,23 @@ public struct TableBody: ContentNode, TableElement {
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal  var content: [Content]
+    internal var content: [Content]
+    
+    internal var context: EscapeContext
     
     /// Create a table body.
     ///
     /// - Parameter content: The body's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
+        
+        self.context = .tainted(.html)
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, Any>?, context: EscapeContext, content: [Content]) {
+        
         self.attributes = attributes
+        self.context = context
         self.content = content
     }
     
@@ -1217,17 +1235,23 @@ public struct TableHead: ContentNode, TableElement {
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal  var content: [Content]
+    internal var content: [Content]
+    
+    internal var context: EscapeContext
 
     /// Create a table head.
     ///
     /// - Parameter content: The head's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
+        
+        self.context = .tainted(.html)
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, Any>?, context: EscapeContext, content: [Content]) {
+        
         self.attributes = attributes
+        self.context = context
         self.content = content
     }
     
@@ -1558,17 +1582,23 @@ public struct TableFoot: ContentNode, TableElement {
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal  var content: [Content]
+    internal var content: [Content]
+    
+    internal var context: EscapeContext
 
     /// Create a table foot.
     ///
     /// - Parameter content: The foot's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
+        
+        self.context = .tainted(.html)
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, Any>?, context: EscapeContext, content: [Content]) {
+        
         self.attributes = attributes
+        self.context = context
         self.content = content
     }
     
@@ -1885,17 +1915,23 @@ public struct TableRow: ContentNode, TableElement {
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal  var content: [Content]
+    internal var content: [Content]
+    
+    internal var context: EscapeContext
 
     /// Create a table row.
     ///
     /// - Parameter content: The row's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
+        
+        self.context = .tainted(.html)
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, Any>?, context: EscapeContext, content: [Content]) {
+        
         self.attributes = attributes
+        self.context = context
         self.content = content
     }
     
@@ -2217,17 +2253,23 @@ public struct DataCell: ContentNode, TableElement {
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal  var content: [Content]
+    internal var content: [Content]
+    
+    internal var context: EscapeContext
 
     /// Create a data cell.
     ///
     /// - Parameter content: The cell's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
+        
+        self.context = .tainted(.html)
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, Any>?, context: EscapeContext, content: [Content]) {
+        
         self.attributes = attributes
+        self.context = context
         self.content = content
     }
     
@@ -2557,17 +2599,23 @@ public struct HeaderCell: ContentNode, TableElement {
 
     internal var attributes: OrderedDictionary<String, Any>?
 
-    internal  var content: [Content]
+    internal var content: [Content]
+    
+    internal var context: EscapeContext
 
     /// Create a header cell.
     ///
     /// - Parameter content: The cell's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
+        
+        self.context = .tainted(.html)
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, Any>?, context: EscapeContext, content: [Content]) {
+        
         self.attributes = attributes
+        self.context = context
         self.content = content
     }
     
@@ -2885,6 +2933,8 @@ extension HeaderCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
 extension HeaderCell: Localizable {   
     
     public init(_ localizedKey: LocalizedStringKey, tableName: String? = nil) {
+        
+        self.context = .tainted(.html)
         self.content = [LocalizedString(key: localizedKey, table: tableName)]
     }
 }

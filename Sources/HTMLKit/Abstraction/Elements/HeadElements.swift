@@ -20,15 +20,21 @@ public struct Title: ContentNode, HeadElement, VectorElement {
 
     internal var content: [Content]
     
+    internal var context: EscapeContext
+    
     /// Create a title.
     ///
     /// - Parameter content: The title's content.
     public init(@ContentBuilder<String> content: () -> [String]) {
+        
+        self.context = .tainted(.html)
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, Any>?, context: EscapeContext, content: [Content]) {
+        
         self.attributes = attributes
+        self.context = context
         self.content = content
     }
     
@@ -250,6 +256,8 @@ extension Title: GlobalAttributes, GlobalEventAttributes {
 extension Title: Localizable {
     
     public init(_ localizedKey: LocalizedStringKey, tableName: String? = nil) {
+        
+        self.context = .tainted(.html)
         self.content = [LocalizedString(key: localizedKey, table: tableName)]
     }
 }
@@ -784,12 +792,16 @@ public struct Style: ContentNode, HeadElement {
     internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: [Content]
+    
+    internal var context: EscapeContext
 
     /// Create a style.
     ///
     /// - Parameter content: The style's content.
     @available(*, deprecated, message: "Use the init(content:) -> [String] initializer instead.")
     public init(@ContentBuilder<Content> content: () -> [Content]) {
+        
+        self.context = .tainted(.css)
         self.content = content()
     }
 
@@ -797,11 +809,15 @@ public struct Style: ContentNode, HeadElement {
     ///
     /// - Parameter content: The style's content.
     public init(@ContentBuilder<String> content: () -> [String]) {
-        self.content = [TaintedString(content().joined(), as: .css(.element))]
+        
+        self.context = .tainted(.css)
+        self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, Any>?, context: EscapeContext, content: [Content]) {
+        
         self.attributes = attributes
+        self.context = context
         self.content = content
     }
     

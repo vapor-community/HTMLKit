@@ -31,15 +31,21 @@ public struct TermName: ContentNode, DescriptionElement {
 
     internal var content: [Content]
     
+    internal var context: EscapeContext
+    
     /// Create a term name.
     ///
     /// - Parameter content: The name's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
+        
+        self.context = .tainted(.html)
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, Any>?, context: EscapeContext, content: [Content]) {
+        
         self.attributes = attributes
+        self.context = context
         self.content = content
     }
     
@@ -356,15 +362,21 @@ public struct TermDefinition: ContentNode, DescriptionElement {
 
     internal var content: [Content]
     
+    internal var context: EscapeContext
+    
     /// Creates a term definition.
     ///
     /// - Parameter content: The definition's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
+        
+        self.context = .tainted(.html)
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, Any>?, context: EscapeContext, content: [Content]) {
+        
         self.attributes = attributes
+        self.context = context
         self.content = content
     }
     

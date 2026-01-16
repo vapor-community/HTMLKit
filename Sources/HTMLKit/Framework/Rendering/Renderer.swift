@@ -208,7 +208,7 @@ public struct Renderer {
         result += ">"
         
         if let contents = element.content as? [Content] {
-            try render(contents: contents, on: &result)
+            try render(contents: contents, on: &result, within: element.context)
         }
         
         result += "</\(element.name)>"
@@ -706,6 +706,116 @@ public struct Renderer {
 
                 return encoder.encode(sanitized, as: .js(.element))
             }
+        }
+    }
+    
+    private func render(contents: [Content], on result: inout String, within context: EscapeContext) throws {
+        
+        for content in contents {
+            
+            switch content {
+            case let content as [Content]:
+                try render(contents: content, on: &result, within: context)
+                
+            case let view as View:
+                result += try render(view: view)
+                
+            case let element as any ContentNode:
+                try render(element: element, on: &result)
+                
+            case let element as EmptyNode:
+                try render(element: element, on: &result)
+                
+            case let element as DocumentNode:
+                render(element: element, on: &result)
+                
+            case let element as CommentNode:
+                render(element: element, on: &result)
+                
+            case let element as any CustomNode:
+                try render(element: element, on: &result)
+                
+            case let modifier as EnvironmentModifier:
+                try render(modifier: modifier, on: &result)
+                
+            case let value as EnvironmentValue:
+                result += try render(envelement: value)
+                
+            case let statement as Statement:
+                try render(statement: statement, on: &result)
+                
+            case let sequence as Sequence:
+                try render(loop: sequence, on: &result)
+                
+            case let string as LocalizedString:
+                result += try render(localized: string)
+                
+            case let string as MarkdownString:
+                
+                if !features.contains(.markdown) {
+                    result += escape(tainted: .init(string.raw, as: .html(.element)))
+                    
+                } else {
+                    result += try render(markstring: string)
+                }
+                
+            case let string as EnvironmentString:
+                try render(envstring: string, on: &result)
+                
+            case let string as HtmlString:
+                result += string.value
+                
+            case let string as TaintedString:
+                result += escape(tainted: string)
+                
+            case let doubleValue as Double:
+                result += String(doubleValue)
+                
+            case let floatValue as Float:
+                result += String(floatValue)
+                
+            case let intValue as Int:
+                result += String(intValue)
+                
+            case let stringValue as String:
+                
+                switch context {
+                case .trusted:
+                    result += stringValue
+                    
+                case .tainted(let subcontext):
+                    result += escape(element: stringValue, with: subcontext)
+                }
+                
+            case let date as Date:
+                
+                let formatter = DateFormatter()
+                formatter.timeZone = environment.timeZone ?? TimeZone.current
+                formatter.dateStyle = .medium
+                formatter.timeStyle = .short
+                
+                result += formatter.string(from: date)
+                
+            default:
+                throw Error.unknownContentType
+            }
+        }
+    }
+    
+    private func escape(element string: String, with context: EscapeContext.Subcontext) -> String {
+        
+        switch context {
+        case .html:
+            return encoder.encode(string, as: .html(.element))
+            
+        case .css:
+            return encoder.encode(string, as: .css(.element))
+            
+        case .js:
+            return encoder.encode(string, as: .js(.element))
+            
+        case .url:
+            return encoder.encode(string, as: .html(.element))
         }
     }
 }

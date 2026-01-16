@@ -25,16 +25,22 @@ public struct Circle: ContentNode, VectorElement {
     internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: [Content]
+    
+    internal var context: EscapeContext
 
     /// Create a circle.
     ///
     /// - Parameter content: The circle's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
+        
+        self.context = .tainted(.html)
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, Any>?, context: EscapeContext, content: [Content]) {
+        
         self.attributes = attributes
+        self.context = context
         self.content = content
     }
     
@@ -160,16 +166,22 @@ public struct Rectangle: ContentNode, VectorElement {
     internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: [Content]
+    
+    internal var context: EscapeContext
 
     /// Create a rectangle.
     ///
     /// - Parameter content: The rectangle's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
+        
+        self.context = .tainted(.html)
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, Any>?, context: EscapeContext, content: [Content]) {
+        
         self.attributes = attributes
+        self.context = context
         self.content = content
     }
     
@@ -317,15 +329,21 @@ public struct Ellipse: ContentNode, VectorElement {
 
     internal var content: [Content]
     
+    internal var context: EscapeContext
+    
     /// Create an ellipse.
     ///
     /// - Parameter content: The elliipse's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
+        
+        self.context = .tainted(.html)
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, Any>?, context: EscapeContext, content: [Content]) {
+        
         self.attributes = attributes
+        self.context = context
         self.content = content
     }
     
@@ -464,16 +482,22 @@ public struct Line: ContentNode, VectorElement {
     internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: [Content]
+    
+    internal var context: EscapeContext
 
     /// Creates a line.
     ///
     /// - Parameter content: The line's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
+        
+        self.context = .tainted(.html)
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, Any>?, context: EscapeContext, content: [Content]) {
+        
         self.attributes = attributes
+        self.context = context
         self.content = content
     }
     
@@ -577,16 +601,22 @@ public struct Polygon: ContentNode, VectorElement {
     internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: [Content]
+    
+    internal var context: EscapeContext
 
     /// Create a polygon.
     ///
     /// - Parameter content: The polygon's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
+        
+        self.context = .tainted(.html)
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, Any>?, context: EscapeContext, content: [Content]) {
+        
         self.attributes = attributes
+        self.context = context
         self.content = content
     }
     
@@ -694,16 +724,22 @@ public struct Polyline: ContentNode, VectorElement {
     internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: [Content]
+    
+    internal var context: EscapeContext
 
     /// Create a polyline.
     ///
     /// - Parameter content: The polyline's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
+        
+        self.context = .tainted(.html)
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, Any>?, context: EscapeContext, content: [Content]) {
+        
         self.attributes = attributes
+        self.context = context
         self.content = content
     }
     
@@ -811,16 +847,22 @@ public struct Path: ContentNode, VectorElement {
     internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: [Content]
+    
+    internal var context: EscapeContext
 
     /// Create a path.
     ///
     /// - Parameter content: The path's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
+        
+        self.context = .tainted(.html)
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, Any>?, context: EscapeContext, content: [Content]) {
+        
         self.attributes = attributes
+        self.context = context
         self.content = content
     }
     
@@ -927,16 +969,22 @@ public struct Group: ContentNode, VectorElement {
     internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: [Content]
+    
+    internal var context: EscapeContext
 
     /// Create a group.
     ///
     /// - Parameter content: The group's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
+        
+        self.context = .tainted(.html)
         self.content = content()
     }
 
-    internal init(attributes: OrderedDictionary<String, Any>?, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, Any>?, context: EscapeContext, content: [Content]) {
+        
         self.attributes = attributes
+        self.context = context
         self.content = content
     }
     
@@ -1043,16 +1091,22 @@ public struct Use: ContentNode, VectorElement {
     internal var attributes: OrderedDictionary<String, Any>?
 
     internal var content: [Content]
+    
+    internal var context: EscapeContext
 
     /// Create a use.
     ///
     /// - Parameter content: The use's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
+        
+        self.context = .tainted(.html)
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, Any>?, context: EscapeContext, content: [Content]) {
+        
         self.attributes = attributes
+        self.context = context
         self.content = content
     }
     
