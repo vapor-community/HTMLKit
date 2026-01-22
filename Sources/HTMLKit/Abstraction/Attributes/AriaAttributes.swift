@@ -15,14 +15,14 @@ public protocol AriaActiveDescendantAttribute: Attribute {
 
 extension AriaActiveDescendantAttribute where Self: ContentNode {
     
-    internal func mutate(ariaactivedescendant value: String) -> Self {
+    internal func mutate(ariaactivedescendant value: AttributeData) -> Self {
         return self.mutate(key: "aria-activedescendant", value: value)
     }
 }
 
 extension AriaActiveDescendantAttribute where Self: EmptyNode {
     
-    internal func mutate(ariaactivedescendant value: String) -> Self {
+    internal func mutate(ariaactivedescendant value: AttributeData) -> Self {
         return self.mutate(key: "aria-activedescendant", value: value)
     }
 }
@@ -42,14 +42,14 @@ public protocol AriaAtomicAttribute: Attribute {
 
 extension AriaAtomicAttribute where Self: ContentNode {
     
-    internal func mutate(ariaatomic value: Bool) -> Self {
+    internal func mutate(ariaatomic value: AttributeData) -> Self {
         return self.mutate(key: "aria-atomic", value: value)
     }
 }
 
 extension AriaAtomicAttribute where Self: EmptyNode {
     
-    internal func mutate(ariaatomic value: Bool) -> Self {
+    internal func mutate(ariaatomic value: AttributeData) -> Self {
         return self.mutate(key: "aria-atomic", value: value)
     }
 }
@@ -68,14 +68,14 @@ public protocol AriaAutoCompleteAttribute: Attribute {
 
 extension AriaAutoCompleteAttribute where Self: ContentNode {
     
-    internal func mutate(ariaautocomplete value: String) -> Self {
+    internal func mutate(ariaautocomplete value: AttributeData) -> Self {
         return self.mutate(key: "aria-autocomplete", value: value)
     }
 }
 
 extension AriaAutoCompleteAttribute where Self: EmptyNode {
     
-    internal func mutate(ariaautocomplete value: String) -> Self {
+    internal func mutate(ariaautocomplete value: AttributeData) -> Self {
         return self.mutate(key: "aria-autocomplete", value: value)
     }
 }
@@ -94,14 +94,14 @@ public protocol AriaBusyAttribute: Attribute {
 
 extension AriaBusyAttribute where Self: ContentNode {
     
-    internal func mutate(ariabusy value: Bool) -> Self {
+    internal func mutate(ariabusy value: AttributeData) -> Self {
         return self.mutate(key: "aria-busy", value: value)
     }
 }
 
 extension AriaBusyAttribute where Self: EmptyNode {
     
-    internal func mutate(ariabusy value: Bool) -> Self {
+    internal func mutate(ariabusy value: AttributeData) -> Self {
         return self.mutate(key: "aria-busy", value: value)
     }
 }
@@ -120,14 +120,14 @@ public protocol AriaCheckedAttribute: Attribute {
 
 extension AriaCheckedAttribute where Self: ContentNode {
     
-    internal func mutate(ariachecked value: String) -> Self {
+    internal func mutate(ariachecked value: AttributeData) -> Self {
         return self.mutate(key: "aria-checked", value: value)
     }
 }
 
 extension AriaCheckedAttribute where Self: EmptyNode {
     
-    internal func mutate(ariachecked value: String) -> Self {
+    internal func mutate(ariachecked value: AttributeData) -> Self {
         return self.mutate(key: "aria-checked", value: value)
     }
 }
@@ -146,14 +146,14 @@ public protocol AriaColumnCountAttribute: Attribute {
 
 extension AriaColumnCountAttribute where Self: ContentNode {
     
-    internal func mutate(ariacolcount value: Int) -> Self {
+    internal func mutate(ariacolcount value: AttributeData) -> Self {
         return self.mutate(key: "aria-colcount", value: value)
     }
 }
 
 extension AriaColumnCountAttribute where Self: EmptyNode {
     
-    internal func mutate(ariacolcount value: Int) -> Self {
+    internal func mutate(ariacolcount value: AttributeData) -> Self {
         return self.mutate(key: "aria-colcount", value: value)
     }
 }
@@ -172,14 +172,14 @@ public protocol AriaColumnIndexAttribute: Attribute {
 
 extension AriaColumnIndexAttribute where Self: ContentNode {
     
-    internal func mutate(ariacolindex value: Int) -> Self {
+    internal func mutate(ariacolindex value: AttributeData) -> Self {
         return self.mutate(key: "aria-colindex", value: value)
     }
 }
 
 extension AriaColumnIndexAttribute where Self: EmptyNode {
     
-    internal func mutate(ariacolindex value: Int) -> Self {
+    internal func mutate(ariacolindex value: AttributeData) -> Self {
         return self.mutate(key: "aria-colindex", value: value)
     }
 }
@@ -198,14 +198,14 @@ public protocol AriaColumnSpanAttribute: Attribute {
 
 extension AriaColumnSpanAttribute where Self: ContentNode {
     
-    internal func mutate(ariacolspan value: Int) -> Self {
+    internal func mutate(ariacolspan value: AttributeData) -> Self {
         return self.mutate(key: "aria-colspan", value: value)
     }
 }
 
 extension AriaColumnSpanAttribute where Self: EmptyNode {
     
-    internal func mutate(ariacolspan value: Int) -> Self {
+    internal func mutate(ariacolspan value: AttributeData) -> Self {
         return self.mutate(key: "aria-colspan", value: value)
     }
 }
@@ -224,14 +224,14 @@ public protocol AriaControlsAttribute: Attribute {
 
 extension AriaControlsAttribute where Self: ContentNode {
     
-    internal func mutate(ariacontrols value: String) -> Self {
+    internal func mutate(ariacontrols value: AttributeData) -> Self {
         return self.mutate(key: "aria-controls", value: value)
     }
 }
 
 extension AriaControlsAttribute where Self: EmptyNode {
     
-    internal func mutate(ariacontrols value: String) -> Self {
+    internal func mutate(ariacontrols value: AttributeData) -> Self {
         return self.mutate(key: "aria-controls", value: value)
     }
 }
@@ -250,14 +250,14 @@ public protocol AriaCurrentAttribute: Attribute {
 
 extension AriaCurrentAttribute where Self: ContentNode {
     
-    internal func mutate(ariacurrent value: String) -> Self {
+    internal func mutate(ariacurrent value: AttributeData) -> Self {
         return self.mutate(key: "aria-current", value: value)
     }
 }
 
 extension AriaCurrentAttribute where Self: EmptyNode {
     
-    internal func mutate(ariacurrent value: String) -> Self {
+    internal func mutate(ariacurrent value: AttributeData) -> Self {
         return self.mutate(key: "aria-current", value: value)
     }
 }
@@ -276,14 +276,14 @@ public protocol AriaDescribedAttribute: Attribute {
 
 extension AriaDescribedAttribute where Self: ContentNode {
     
-    internal func mutate(ariadescribedby value: String) -> Self {
+    internal func mutate(ariadescribedby value: AttributeData) -> Self {
         return self.mutate(key: "aria-describedby", value: value)
     }
 }
 
 extension AriaDescribedAttribute where Self: EmptyNode {
     
-    internal func mutate(ariadescribedby value: String) -> Self {
+    internal func mutate(ariadescribedby value: AttributeData) -> Self {
         return self.mutate(key: "aria-describedby", value: value)
     }
 }
@@ -302,14 +302,14 @@ public protocol AriaDetailsAttribute: Attribute {
 
 extension AriaDetailsAttribute where Self: ContentNode {
     
-    internal func mutate(ariadetails value: String) -> Self {
+    internal func mutate(ariadetails value: AttributeData) -> Self {
         return self.mutate(key: "aria-details", value: value)
     }
 }
 
 extension AriaDetailsAttribute where Self: EmptyNode {
     
-    internal func mutate(ariadetails value: String) -> Self {
+    internal func mutate(ariadetails value: AttributeData) -> Self {
         return self.mutate(key: "aria-details", value: value)
     }
 }
@@ -328,14 +328,14 @@ public protocol AriaDisabledAttribute: Attribute {
 
 extension AriaDisabledAttribute where Self: ContentNode {
     
-    internal func mutate(ariadisabled value: Bool) -> Self {
+    internal func mutate(ariadisabled value: AttributeData) -> Self {
         return self.mutate(key: "aria-disabled", value: value)
     }
 }
 
 extension AriaDisabledAttribute where Self: EmptyNode {
     
-    internal func mutate(ariadisabled value: Bool) -> Self {
+    internal func mutate(ariadisabled value: AttributeData) -> Self {
         return self.mutate(key: "aria-disabled", value: value)
     }
 }
@@ -354,14 +354,14 @@ public protocol AriaErrorMessageAttribute: Attribute {
 
 extension AriaErrorMessageAttribute where Self: ContentNode {
     
-    internal func mutate(ariaerrormessage value: String) -> Self {
+    internal func mutate(ariaerrormessage value: AttributeData) -> Self {
         return self.mutate(key: "aria-errormessage", value: value)
     }
 }
 
 extension AriaErrorMessageAttribute where Self: EmptyNode {
     
-    internal func mutate(ariaerrormessage value: String) -> Self {
+    internal func mutate(ariaerrormessage value: AttributeData) -> Self {
         return self.mutate(key: "aria-errormessage", value: value)
     }
 }
@@ -380,14 +380,14 @@ public protocol AriaExpandedAttribute: Attribute {
 
 extension AriaExpandedAttribute where Self: ContentNode {
     
-    internal func mutate(ariaexpanded value: Bool) -> Self {
+    internal func mutate(ariaexpanded value: AttributeData) -> Self {
         return self.mutate(key: "aria-expanded", value: value)
     }
 }
 
 extension AriaExpandedAttribute where Self: EmptyNode {
     
-    internal func mutate(ariaexpanded value: Bool) -> Self {
+    internal func mutate(ariaexpanded value: AttributeData) -> Self {
         return self.mutate(key: "aria-expanded", value: value)
     }
 }
@@ -406,14 +406,14 @@ public protocol AriaFlowToAttribute: Attribute {
 
 extension AriaFlowToAttribute where Self: ContentNode {
     
-    internal func mutate(ariaflowto value: String) -> Self {
+    internal func mutate(ariaflowto value: AttributeData) -> Self {
         return self.mutate(key: "aria-flowto", value: value)
     }
 }
 
 extension AriaFlowToAttribute where Self: EmptyNode {
     
-    internal func mutate(ariaflowto value: String) -> Self {
+    internal func mutate(ariaflowto value: AttributeData) -> Self {
         return self.mutate(key: "aria-flowto", value: value)
     }
 }
@@ -432,14 +432,14 @@ public protocol AriaPopupAttribute: Attribute {
 
 extension AriaPopupAttribute where Self: ContentNode {
     
-    internal func mutate(ariahaspopup value: String) -> Self {
+    internal func mutate(ariahaspopup value: AttributeData) -> Self {
         return self.mutate(key: "aria-haspopup", value: value)
     }
 }
 
 extension AriaPopupAttribute where Self: EmptyNode {
     
-    internal func mutate(ariahaspopup value: String) -> Self {
+    internal func mutate(ariahaspopup value: AttributeData) -> Self {
         return self.mutate(key: "aria-haspopup", value: value)
     }
 }
@@ -458,14 +458,14 @@ public protocol AriaHiddenAttribute: Attribute {
 
 extension AriaHiddenAttribute where Self: ContentNode {
     
-    internal func mutate(ariahidden value: Bool) -> Self {
+    internal func mutate(ariahidden value: AttributeData) -> Self {
         return self.mutate(key: "aria-hidden", value: value)
     }
 }
 
 extension AriaHiddenAttribute where Self: EmptyNode {
     
-    internal func mutate(ariahidden value: Bool) -> Self {
+    internal func mutate(ariahidden value: AttributeData) -> Self {
         return self.mutate(key: "aria-hidden", value: value)
     }
 }
@@ -484,14 +484,14 @@ public protocol AriaInvalidAttribute: Attribute {
 
 extension AriaInvalidAttribute where Self: ContentNode {
     
-    internal func mutate(ariainvalid value: String) -> Self {
+    internal func mutate(ariainvalid value: AttributeData) -> Self {
         return self.mutate(key:  "aria-invalid", value: value)
     }
 }
 
 extension AriaInvalidAttribute where Self: EmptyNode {
     
-    internal func mutate(ariainvalid value: String) -> Self {
+    internal func mutate(ariainvalid value: AttributeData) -> Self {
         return self.mutate(key:  "aria-invalid", value: value)
     }
 }
@@ -510,14 +510,14 @@ public protocol AriaShortcutsAttribute: Attribute {
 
 extension AriaShortcutsAttribute where Self: ContentNode {
     
-    internal func mutate(ariakeyshortcuts value: String) -> Self {
+    internal func mutate(ariakeyshortcuts value: AttributeData) -> Self {
         return self.mutate(key: "aria-keyshortcuts", value: value)
     }
 }
 
 extension AriaShortcutsAttribute where Self: EmptyNode {
     
-    internal func mutate(ariakeyshortcuts value: String) -> Self {
+    internal func mutate(ariakeyshortcuts value: AttributeData) -> Self {
         return self.mutate(key: "aria-keyshortcuts", value: value)
     }
 }
@@ -536,14 +536,14 @@ public protocol AriaLabelAttribute: Attribute {
 
 extension AriaLabelAttribute where Self: ContentNode {
     
-    internal func mutate(arialabel value: String) -> Self {
+    internal func mutate(arialabel value: AttributeData) -> Self {
         return self.mutate(key: "aria-label", value: value)
     }
 }
 
 extension AriaLabelAttribute where Self: EmptyNode {
     
-    internal func mutate(arialabel value: String) -> Self {
+    internal func mutate(arialabel value: AttributeData) -> Self {
         return self.mutate(key: "aria-label", value: value)
     }
 }
@@ -562,14 +562,14 @@ public protocol AriaLabeledAttribute: Attribute {
 
 extension AriaLabeledAttribute where Self: ContentNode {
     
-    internal func mutate(arialabeledby value: String) -> Self {
+    internal func mutate(arialabeledby value: AttributeData) -> Self {
         return self.mutate(key: "aria-labeledby", value: value)
     }
 }
 
 extension AriaLabeledAttribute where Self: EmptyNode {
     
-    internal func mutate(arialabeledby value: String) -> Self {
+    internal func mutate(arialabeledby value: AttributeData) -> Self {
         return self.mutate(key: "aria-labeledby", value: value)
     }
 }
@@ -588,14 +588,14 @@ public protocol AriaLevelAttribute: Attribute {
 
 extension AriaLevelAttribute where Self: ContentNode {
     
-    internal func mutate(arialevel value: Int) -> Self {
+    internal func mutate(arialevel value: AttributeData) -> Self {
         return self.mutate(key: "aria-level", value: value)
     }
 }
 
 extension AriaLevelAttribute where Self: EmptyNode {
     
-    internal func mutate(arialevel value: Int) -> Self {
+    internal func mutate(arialevel value: AttributeData) -> Self {
         return self.mutate(key: "aria-level", value: value)
     }
 }
@@ -614,14 +614,14 @@ public protocol AriaLiveAttribute: Attribute {
 
 extension AriaLiveAttribute where Self: ContentNode {
     
-    internal func mutate(arialive value: String) -> Self {
+    internal func mutate(arialive value: AttributeData) -> Self {
         return self.mutate(key: "aria-live", value: value)
     }
 }
 
 extension AriaLiveAttribute where Self: EmptyNode {
     
-    internal func mutate(arialive value: String) -> Self {
+    internal func mutate(arialive value: AttributeData) -> Self {
         return self.mutate(key: "aria-live", value: value)
     }
 }
@@ -640,14 +640,14 @@ public protocol AriaModalAttribute: Attribute {
 
 extension AriaModalAttribute where Self: ContentNode {
     
-    internal func mutate(ariamodal value: Bool) -> Self {
+    internal func mutate(ariamodal value: AttributeData) -> Self {
         return self.mutate(key: "aria-modal", value: value)
     }
 }
 
 extension AriaModalAttribute where Self: EmptyNode {
     
-    internal func mutate(ariamodal value: Bool) -> Self {
+    internal func mutate(ariamodal value: AttributeData) -> Self {
         return self.mutate(key: "aria-modal", value: value)
     }
 }
@@ -666,14 +666,14 @@ public protocol AriaMultilineAttribute: Attribute {
 
 extension AriaMultilineAttribute where Self: ContentNode {
     
-    internal func mutate(ariamultiline value: Bool) -> Self {
+    internal func mutate(ariamultiline value: AttributeData) -> Self {
         return self.mutate(key: "aria-multiline", value: value)
     }
 }
 
 extension AriaMultilineAttribute where Self: EmptyNode {
     
-    internal func mutate(ariamultiline value: Bool) -> Self {
+    internal func mutate(ariamultiline value: AttributeData) -> Self {
         return self.mutate(key: "aria-multiline", value: value)
     }
 }
@@ -692,14 +692,14 @@ public protocol AriaMultiselectAttribute: Attribute {
 
 extension AriaMultiselectAttribute where Self: ContentNode {
     
-    internal func mutate(ariamultiselectable value: Bool) -> Self {
+    internal func mutate(ariamultiselectable value: AttributeData) -> Self {
         return self.mutate(key: "aria-multiselectable", value: value)
     }
 }
 
 extension AriaMultiselectAttribute where Self: EmptyNode {
     
-    internal func mutate(ariamultiselectable value: Bool) -> Self {
+    internal func mutate(ariamultiselectable value: AttributeData) -> Self {
         return self.mutate(key: "aria-multiselectable", value: value)
     }
 }
@@ -718,14 +718,14 @@ public protocol AriaOrientationAttribute: Attribute {
 
 extension AriaOrientationAttribute where Self: ContentNode {
     
-    internal func mutate(ariaorientation value: String) -> Self {
+    internal func mutate(ariaorientation value: AttributeData) -> Self {
         return self.mutate(key: "aria-orientation", value: value)
     }
 }
 
 extension AriaOrientationAttribute where Self: EmptyNode {
     
-    internal func mutate(ariaorientation value: String) -> Self {
+    internal func mutate(ariaorientation value: AttributeData) -> Self {
         return self.mutate(key: "aria-orientation", value: value)
     }
 }
@@ -744,14 +744,14 @@ public protocol AriaOwnsAttribute: Attribute {
 
 extension AriaOwnsAttribute where Self: ContentNode {
     
-    internal func mutate(ariaowns value: String) -> Self {
+    internal func mutate(ariaowns value: AttributeData) -> Self {
         return self.mutate(key: "aria-owns", value: value)
     }
 }
 
 extension AriaOwnsAttribute where Self: EmptyNode {
     
-    internal func mutate(ariaowns value: String) -> Self {
+    internal func mutate(ariaowns value: AttributeData) -> Self {
         return self.mutate(key: "aria-owns", value: value)
     }
 }
@@ -770,14 +770,14 @@ public protocol AriaPlaceholderAttribute: Attribute {
 
 extension AriaPlaceholderAttribute where Self: ContentNode {
     
-    internal func mutate(ariaplaceholder value: String) -> Self {
+    internal func mutate(ariaplaceholder value: AttributeData) -> Self {
         return self.mutate(key: "aria-placeholder", value: value)
     }
 }
 
 extension AriaPlaceholderAttribute where Self: EmptyNode {
     
-    internal func mutate(ariaplaceholder value: String) -> Self {
+    internal func mutate(ariaplaceholder value: AttributeData) -> Self {
         return self.mutate(key: "aria-placeholder", value: value)
     }
 }
@@ -796,14 +796,14 @@ public protocol AriaPositionInsetAttribute: Attribute {
 
 extension AriaPositionInsetAttribute where Self: ContentNode {
     
-    internal func mutate(ariaposinset value: Int) -> Self {
+    internal func mutate(ariaposinset value: AttributeData) -> Self {
         return self.mutate(key: "aria-posinset", value: value)
     }
 }
 
 extension AriaPositionInsetAttribute where Self: EmptyNode {
     
-    internal func mutate(ariaposinset value: Int) -> Self {
+    internal func mutate(ariaposinset value: AttributeData) -> Self {
         return self.mutate(key: "aria-posinset", value: value)
     }
 }
@@ -822,14 +822,14 @@ public protocol AriaPressedAttribute: Attribute {
 
 extension AriaPressedAttribute where Self: ContentNode {
     
-    internal func mutate(ariapressed value: String) -> Self {
+    internal func mutate(ariapressed value: AttributeData) -> Self {
         return self.mutate(key: "aria-pressed", value: value)
     }
 }
 
 extension AriaPressedAttribute where Self: EmptyNode {
     
-    internal func mutate(ariapressed value: String) -> Self {
+    internal func mutate(ariapressed value: AttributeData) -> Self {
         return self.mutate(key: "aria-pressed", value: value)
     }
 }
@@ -848,14 +848,14 @@ public protocol AriaReadonlyAttribute: Attribute {
 
 extension AriaReadonlyAttribute where Self: ContentNode {
     
-    internal func mutate(ariareadonly value: Bool) -> Self {
+    internal func mutate(ariareadonly value: AttributeData) -> Self {
         return self.mutate(key: "aria-readonly", value: value)
     }
 }
 
 extension AriaReadonlyAttribute where Self: EmptyNode {
     
-    internal func mutate(ariareadonly value: Bool) -> Self {
+    internal func mutate(ariareadonly value: AttributeData) -> Self {
         return self.mutate(key: "aria-readonly", value: value)
     }
 }
@@ -874,14 +874,14 @@ public protocol AriaRelevantAttribute: Attribute {
 
 extension AriaRelevantAttribute where Self: ContentNode {
     
-    internal func mutate(ariarelevant value: String) -> Self {
+    internal func mutate(ariarelevant value: AttributeData) -> Self {
         return self.mutate(key: "aria-relevant", value: value)
     }
 }
 
 extension AriaRelevantAttribute where Self: EmptyNode {
     
-    internal func mutate(ariarelevant value: String) -> Self {
+    internal func mutate(ariarelevant value: AttributeData) -> Self {
         return self.mutate(key: "aria-relevant", value: value)
     }
 }
@@ -900,14 +900,14 @@ public protocol AriaRequiredAttribute: Attribute {
 
 extension AriaRequiredAttribute where Self: ContentNode {
     
-    internal func mutate(ariarequired value: Bool) -> Self {
+    internal func mutate(ariarequired value: AttributeData) -> Self {
         return self.mutate(key: "aria-required", value: value)
     }
 }
 
 extension AriaRequiredAttribute where Self: EmptyNode {
     
-    internal func mutate(ariarequired value: Bool) -> Self {
+    internal func mutate(ariarequired value: AttributeData) -> Self {
         return self.mutate(key: "aria-required", value: value)
     }
 }
@@ -926,14 +926,14 @@ public protocol AriaRoleDescriptionAttribute: Attribute {
 
 extension AriaRoleDescriptionAttribute where Self: ContentNode {
     
-    internal func mutate(ariaroledescription value: String) -> Self {
+    internal func mutate(ariaroledescription value: AttributeData) -> Self {
         return self.mutate(key: "aria-roledescription", value: value)
     }
 }
 
 extension AriaRoleDescriptionAttribute where Self: EmptyNode {
     
-    internal func mutate(ariaroledescription value: String) -> Self {
+    internal func mutate(ariaroledescription value: AttributeData) -> Self {
         return self.mutate(key: "aria-roledescription", value: value)
     }
 }
@@ -952,14 +952,14 @@ public protocol AriaRowCountAttribute: Attribute {
 
 extension AriaRowCountAttribute where Self: ContentNode {
     
-    internal func mutate(ariarowcount value: Int) -> Self {
+    internal func mutate(ariarowcount value: AttributeData) -> Self {
         return self.mutate(key: "aria-rowcount", value: value)
     }
 }
 
 extension AriaRowCountAttribute where Self: EmptyNode {
     
-    internal func mutate(ariarowcount value: Int) -> Self {
+    internal func mutate(ariarowcount value: AttributeData) -> Self {
         return self.mutate(key: "aria-rowcount", value: value)
     }
 }
@@ -978,14 +978,14 @@ public protocol AriaRowIndexAttribute: Attribute {
 
 extension AriaRowIndexAttribute where Self: ContentNode {
     
-    internal func mutate(ariarowindex value: Int) -> Self {
+    internal func mutate(ariarowindex value: AttributeData) -> Self {
         return self.mutate(key: "aria-rowindex", value: value)
     }
 }
 
 extension AriaRowIndexAttribute where Self: EmptyNode {
     
-    internal func mutate(ariarowindex value: Int) -> Self {
+    internal func mutate(ariarowindex value: AttributeData) -> Self {
         return self.mutate(key: "aria-rowindex", value: value)
     }
 }
@@ -1004,14 +1004,14 @@ public protocol AriaRowSpanAttribute: Attribute {
 
 extension AriaRowSpanAttribute where Self: ContentNode {
     
-    internal func mutate(ariarowspan value: Int) -> Self {
+    internal func mutate(ariarowspan value: AttributeData) -> Self {
         return self.mutate(key: "aria-rowspan", value: value)
     }
 }
 
 extension AriaRowSpanAttribute where Self: EmptyNode {
     
-    internal func mutate(ariarowspan value: Int) -> Self {
+    internal func mutate(ariarowspan value: AttributeData) -> Self {
         return self.mutate(key: "aria-rowspan", value: value)
     }
 }
@@ -1030,14 +1030,14 @@ public protocol AriaSelectedAttribute: Attribute {
 
 extension AriaSelectedAttribute where Self: ContentNode {
     
-    internal func mutate(ariaselected value: String) -> Self {
+    internal func mutate(ariaselected value: AttributeData) -> Self {
         return self.mutate(key: "aria-selected", value: value)
     }
 }
 
 extension AriaSelectedAttribute where Self: EmptyNode {
     
-    internal func mutate(ariaselected value: String) -> Self {
+    internal func mutate(ariaselected value: AttributeData) -> Self {
         return self.mutate(key: "aria-selected", value: value)
     }
 }
@@ -1056,14 +1056,14 @@ public protocol AriaSetSizeAttribute: Attribute {
 
 extension AriaSetSizeAttribute where Self: ContentNode {
     
-    internal func mutate(ariasetsize value: Int) -> Self {
+    internal func mutate(ariasetsize value: AttributeData) -> Self {
         return self.mutate(key: "aria-setsize", value: value)
     }
 }
 
 extension AriaSetSizeAttribute where Self: EmptyNode {
     
-    internal func mutate(ariasetsize value: Int) -> Self {
+    internal func mutate(ariasetsize value: AttributeData) -> Self {
         return self.mutate(key: "aria-setsize", value: value)
     }
 }
@@ -1082,14 +1082,14 @@ public protocol AriaSortAttribute: Attribute {
 
 extension AriaSortAttribute where Self: ContentNode {
     
-    internal func mutate(ariasort value: String) -> Self {
+    internal func mutate(ariasort value: AttributeData) -> Self {
         return self.mutate(key: "aria-sort", value: value)
     }
 }
 
 extension AriaSortAttribute where Self: EmptyNode {
     
-    internal func mutate(ariasort value: String) -> Self {
+    internal func mutate(ariasort value: AttributeData) -> Self {
         return self.mutate(key: "aria-sort", value: value)
     }
 }
@@ -1108,14 +1108,14 @@ public protocol AriaValueMaximumAttribute: Attribute {
 
 extension AriaValueMaximumAttribute where Self: ContentNode {
     
-    internal func mutate(ariavaluemax value: Float) -> Self {
+    internal func mutate(ariavaluemax value: AttributeData) -> Self {
         return self.mutate(key: "aria-valuemax", value: value)
     }
 }
 
 extension AriaValueMaximumAttribute where Self: EmptyNode {
     
-    internal func mutate(ariavaluemax value: Float) -> Self {
+    internal func mutate(ariavaluemax value: AttributeData) -> Self {
         return self.mutate(key: "aria-valuemax", value: value)
     }
 }
@@ -1134,14 +1134,14 @@ public protocol AriaValueMininumAttribute: Attribute {
 
 extension AriaValueMininumAttribute where Self: ContentNode {
     
-    internal func mutate(ariavaluemin value: Float) -> Self {
+    internal func mutate(ariavaluemin value: AttributeData) -> Self {
         return self.mutate(key: "aria-valuemin", value: value)
     }
 }
 
 extension AriaValueMininumAttribute where Self: EmptyNode {
     
-    internal func mutate(ariavaluemin value: Float) -> Self {
+    internal func mutate(ariavaluemin value: AttributeData) -> Self {
         return self.mutate(key: "aria-valuemin", value: value)
     }
 }
@@ -1160,14 +1160,14 @@ public protocol AriaValueNowAttribute: Attribute {
 
 extension AriaValueNowAttribute where Self: ContentNode {
     
-    internal func mutate(ariavaluenow value: Float) -> Self {
+    internal func mutate(ariavaluenow value: AttributeData) -> Self {
         return self.mutate(key: "aria-valuenow", value: value)
     }
 }
 
 extension AriaValueNowAttribute where Self: EmptyNode {
     
-    internal func mutate(ariavaluenow value: Float) -> Self {
+    internal func mutate(ariavaluenow value: AttributeData) -> Self {
         return self.mutate(key: "aria-valuenow", value: value)
     }
 }
@@ -1186,14 +1186,14 @@ public protocol AriaValueTextAttribute: Attribute {
 
 extension AriaValueTextAttribute where Self: ContentNode {
     
-    internal func mutate(ariavaluetext value: String) -> Self {
+    internal func mutate(ariavaluetext value: AttributeData) -> Self {
         return self.mutate(key: "aria-valuetext", value: value)
     }
 }
 
 extension AriaValueTextAttribute where Self: EmptyNode {
     
-    internal func mutate(ariavaluetext value: String) -> Self {
+    internal func mutate(ariavaluetext value: AttributeData) -> Self {
         return self.mutate(key: "aria-valuetext", value: value)
     }
 }

@@ -458,27 +458,76 @@ public struct Renderer {
     /// - Parameter attributes: The attributes to render
     ///
     /// - Returns: The string representation
-    private func render(attributes: OrderedDictionary<String, Any>, on result: inout String) throws {
+    private func render(attributes: OrderedDictionary<String, AttributeData>, on result: inout String) throws {
         
         for attribute in attributes {
             
             result += " \(attribute.key)=\""
             
-            switch attribute.value {
-            case let string as LocalizedString:
-                result += try render(localized: string)
+            switch attribute.value.context {
+            case .trusted:
                 
-            case let value as EnvironmentValue:
-                result += try render(envattribute: value)
+                switch attribute.value.value {
+                case .string(let string):
+                    
+                    result += string
+                    
+                case .bool(let bool):
+                    
+                    result += "\(bool)"
+                    
+                case .double(let double):
+                    
+                    result += "\(double)"
+                    
+                case .float(let float):
+                    
+                    result += "\(float)"
+                    
+                case .int(let int):
+                    
+                    result += "\(int)"
+                    
+                case .localized(let localized):
+                    
+                    result += try render(localized: localized)
+                    
+                case .environment(let environment):
+                    
+                    result += try render(envattribute: environment)
+                }
                 
-            case let string as TaintedString:
-                result += escape(tainted: string)
+            case .tainted(let subcontext):
                 
-            case let string as String:
-                result += escape(tainted: .init(string, as: .html(.attribute)))
-                
-            default:
-                result += "\(attribute.value)"
+                switch attribute.value.value {
+                case .string(let string):
+                    
+                    result += escape(attribute: string, with: subcontext)
+                    
+                case .bool(let bool):
+                    
+                    result += "\(bool)"
+                    
+                case .double(let double):
+                    
+                    result += "\(double)"
+                    
+                case .float(let float):
+                    
+                    result += "\(float)"
+                    
+                case .int(let int):
+                    
+                    result += "\(int)"
+                    
+                case .localized(let localized):
+                    
+                    result += try render(localized: localized)
+                    
+                case .environment(let environment):
+                    
+                    result += try render(envattribute: environment)
+                }
             }
             
             result += "\""
@@ -809,13 +858,38 @@ public struct Renderer {
             return encoder.encode(string, as: .html(.element))
             
         case .css:
-            return encoder.encode(string, as: .css(.element))
+            
+            // To prevent breaking out of context
+            let sanitized = sanitizer.strip("style", from: string)
+            
+            return encoder.encode(sanitized, as: .css(.element))
             
         case .js:
-            return encoder.encode(string, as: .js(.element))
+            
+            // To prevent breaking out of context
+            let sanitized = sanitizer.strip("script", from: string)
+            
+            return encoder.encode(sanitized, as: .js(.element))
             
         case .url:
             return encoder.encode(string, as: .html(.element))
+        }
+    }
+    
+    private func escape(attribute string: String, with context: EscapeContext.Subcontext) -> String {
+        
+        switch context {
+        case .html:
+            return encoder.encode(string, as: .html(.attribute))
+            
+        case .css:
+            return encoder.encode(string, as: .css(.attribute))
+            
+        case .js:
+            return encoder.encode(string, as: .js(.attribute))
+            
+        case .url:
+            return encoder.encode(string, as: .html(.attribute))
         }
     }
 }

@@ -48,7 +48,7 @@ public struct Caption: ContentNode, TableElement {
 
     internal var name: String { "caption" }
 
-    internal var attributes: OrderedDictionary<String, Any>?
+    internal var attributes: OrderedDictionary<String, AttributeData>?
 
     internal var content: [Content]
     
@@ -63,7 +63,7 @@ public struct Caption: ContentNode, TableElement {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
         
         self.attributes = attributes
         self.context = context
@@ -92,272 +92,324 @@ public struct Caption: ContentNode, TableElement {
 extension Caption: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
     
     public func accessKey(_ value: Character) -> Caption {
-        return mutate(accesskey: value)
+        return mutate(accesskey: .init("\(value)", context: .trusted))
     }
 
     public func autocapitalize(_ value: Values.Capitalization) -> Caption {
-        return mutate(autocapitalize: value.rawValue)
+        return mutate(autocapitalize: .init(value.rawValue, context: .trusted))
     }
 
     public func autofocus() -> Caption {
-        return mutate(autofocus: "autofocus")
+        return mutate(autofocus: .init("autofocus", context: .trusted))
     }
 
     public func `class`(_ value: String) -> Caption {
-        return mutate(class: value)
+        return mutate(class: .init(value, context: .tainted(.html)))
     }
 
     @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> Caption {
-        return mutate(contenteditable: value)
+        return mutate(contenteditable: .init(value, context: .trusted))
     }
     
     public func editable(_ value: Bool = true) -> Caption {
-        return mutate(contenteditable: value)
+        return mutate(contenteditable: .init(value, context: .trusted))
     }
 
     public func direction(_ value: Values.Direction) -> Caption {
-        return mutate(dir: value.rawValue)
+        return mutate(dir: .init(value.rawValue, context: .trusted))
     }
 
     @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Caption {
-        return mutate(draggable: value)
+        return mutate(draggable: .init(value, context: .trusted))
     }
     
     public func draggable(_ value: Bool = true) -> Caption {
-        return mutate(draggable: value)
+        return mutate(draggable: .init(value, context: .trusted))
     }
 
     @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> Caption {
-        return mutate(enterkeyhint: value.rawValue)
+        return mutate(enterkeyhint: .init(value.rawValue, context: .trusted))
     }
     
     public func enterKey(_ value: Values.Hint) -> Caption {
-        return mutate(enterkeyhint: value.rawValue)
+        return mutate(enterkeyhint: .init(value.rawValue, context: .trusted))
     }
     
     public func hidden(_ condition: Bool = true) -> Caption {
         
         if condition {
-            return mutate(hidden: "hidden")
+            return mutate(hidden: .init("hidden", context: .trusted))
         }
         
         return self
     }
     
     public func inputMode(_ value: Values.Mode) -> Caption {
-        return mutate(inputmode: value.rawValue)
+        return mutate(inputmode: .init(value.rawValue, context: .trusted))
     }
 
     public func `is`(_ value: String) -> Caption {
-        return mutate(is: value)
+        return mutate(is: .init(value, context: .tainted(.html)))
     }
     
     public func item(id: String? = nil, as schema: URL? = nil, for elements: [String]? = nil) -> Caption {
-        return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements?.joined(separator: " "))
+
+        var copy = self
+        
+        copy = copy.mutate(itemscope: .init("itemscope", context: .trusted))
+        
+        if let id = id {
+            copy = copy.mutate(itemid: .init(id, context: .tainted(.html)))
+        }
+        
+        if let schema = schema {
+            copy = copy.mutate(itemtype: .init(schema.absoluteString, context: .tainted(.html)))
+        }
+        
+        if let elements = elements {
+            copy = copy.mutate(itemref: .init(elements.joined(separator: " "), context: .tainted(.html)))
+        }
+        
+        return copy
     }
     
     public func item(id: String? = nil, as schema: URL? = nil, for elements: String...) -> Caption {
-        return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements.joined(separator: " "))
+
+        var copy = self
+        
+        copy = copy.mutate(itemscope: .init("itemscope", context: .trusted))
+        
+        if let id = id {
+            copy = copy.mutate(itemid: .init(id, context: .tainted(.html)))
+        }
+        
+        if let schema = schema {
+            copy = copy.mutate(itemtype: .init(schema.absoluteString, context: .tainted(.html)))
+        }
+        
+        copy = copy.mutate(itemref: .init(elements.joined(separator: " "), context: .tainted(.html)))
+        
+        return copy
     }
 
     @available(*, unavailable, message: "Use the item(id:as:for:) modifier instead.")
     public func itemId(_ value: String) -> Caption {
-        return mutate(itemid: value)
+        return mutate(itemid: .init(value, context: .tainted(.html)))
     }
 
     public func itemProperty(_ value: String) -> Caption {
-        return mutate(itemprop: value)
+        return mutate(itemprop: .init(value, context: .tainted(.html)))
     }
 
     @available(*, unavailable, message: "Use the item(id:as:for:) modifier instead.")
     public func itemReference(_ value: String) -> Caption {
-        return mutate(itemref: value)
+        return mutate(itemref: .init(value, context: .tainted(.html)))
     }
 
     @available(*, unavailable, message: "Use the item(id:as:for:) modifier instead.")
     public func itemScope(_ value: String) -> Caption {
-        return mutate(itemscope: value)
+        return mutate(itemscope: .init(value, context: .tainted(.html)))
     }
     
     @available(*, unavailable, message: "Use the item(id:as:for:) modifier instead.")
     public func itemType(_ value: String) -> Caption {
-        return mutate(itemtype: value)
+        return mutate(itemtype: .init(value, context: .tainted(.html)))
     }
 
     public func id(_ value: String) -> Caption {
-        return mutate(id: value)
+        return mutate(id: .init(value, context: .tainted(.html)))
     }
 
     public func language(_ value: Values.Language) -> Caption {
-        return mutate(lang: value.rawValue)
+        return mutate(lang: .init(value.rawValue, context: .trusted))
     }
 
     public func nonce(_ value: String) -> Caption {
-        return mutate(nonce: value)
+        return mutate(nonce: .init(value, context: .tainted(.html)))
     }
     
     public func role(_ value: Values.Role) -> Caption {
-        return mutate(role: value.rawValue)
+        return mutate(role: .init(value.rawValue, context: .trusted))
     }
 
     @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> Caption {
-        return mutate(spellcheck: value)
+        return mutate(spellcheck: .init(value, context: .trusted))
     }
     
     public func spellcheck(_ value: Bool = true) -> Caption {
-        return mutate(spellcheck: value)
+        return mutate(spellcheck: .init(value, context: .trusted))
     }
 
     public func style(_ value: String) -> Caption {
-        return mutate(style: TaintedString(value, as: .css(.attribute)))
+        return mutate(style: .init(value, context: .tainted(.css)))
     }
 
     public func tabIndex(_ value: Int) -> Caption {
-        return mutate(tabindex: value)
+        return mutate(tabindex: .init(value, context: .trusted))
     }
 
     @_disfavoredOverload
     public func title(_ value: String) -> Caption {
-        return mutate(title: value)
+        return mutate(title: .init(value, context: .tainted(.html)))
     }
     
     public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Caption {
-        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+        return mutate(title: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
     }
     
     public func title(verbatim value: String) -> Caption {
-        return mutate(title: value)
+        return mutate(title: .init(value, context: .tainted(.html)))
     }
     
     @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Caption {
-        return mutate(translate: value.rawValue)
+        return mutate(translate: .init(value.rawValue, context: .trusted))
     }
     
     public func translate(_ value: Bool = true) -> Caption {
         
         if value {
-            return mutate(translate: "yes")
+            return mutate(translate: .init("yes", context: .trusted))
         }
         
-        return mutate(translate: "no")
+        return mutate(translate: .init("no", context: .trusted))
     }
     
     public func inert(_ condition: Bool = true) -> Caption {
 
         if condition {
-            return mutate(inert: "inert")
+            return mutate(inert: .init("inert", context: .trusted))
         }
         
         return self
     }
     
     public func popover(_ value: Values.Popover.State) -> Caption {
-        return mutate(popover: value.rawValue)
+        return mutate(popover: .init(value.rawValue, context: .trusted))
     }
     
-    public func custom(key: String, value: Any) -> Caption {
-        return mutate(key: key, value: value)
+    public func custom(key: String, value: String, context: EscapeContext = .tainted(.html)) -> Caption {
+        return mutate(key: key, value: .init(value, context: context))
+    }
+    
+    public func custom(key: String, value: Int) -> Caption {
+        return mutate(key: key, value: .init(value, context: .trusted))
+    }
+    
+    public func custom(key: String, value: Double) -> Caption {
+        return mutate(key: key, value: .init(value, context: .trusted))
+    }
+    
+    public func custom(key: String, value: Bool) -> Caption {
+        return mutate(key: key, value: .init(value, context: .trusted))
+    }
+    
+    public func custom(key: String, value: Float) -> Caption {
+        return mutate(key: key, value: .init(value, context: .trusted))
+    }
+    
+    public func custom(key: String, value: EnvironmentValue, context: EscapeContext = .tainted(.html)) -> Caption {
+        return mutate(key: key, value: .init(value, context: context))
     }
     
     public func on(event: Events.Drag, _ value: String) -> Caption {
-        return mutate(key: event.rawValue, value: TaintedString(value, as: .js(.attribute)))
+        return mutate(key: event.rawValue, value: .init(value, context: .tainted(.js)))
     }
     
     public func on(event: Events.Clipboard, _ value: String) -> Caption {
-        return mutate(key: event.rawValue, value: TaintedString(value, as: .js(.attribute)))
+        return mutate(key: event.rawValue, value: .init(value, context: .tainted(.js)))
     }
     
     public func on(event: Events.Keyboard, _ value: String) -> Caption {
-        return mutate(key: event.rawValue, value: TaintedString(value, as: .js(.attribute)))
+        return mutate(key: event.rawValue, value: .init(value, context: .tainted(.js)))
     }
     
     public func on(event: Events.Mouse, _ value: String) -> Caption {
-        return mutate(key: event.rawValue, value: TaintedString(value, as: .js(.attribute)))
+        return mutate(key: event.rawValue, value: .init(value, context: .tainted(.js)))
     }
     
     public func on(event: Events.Wheel, _ value: String) -> Caption {
-        return mutate(key: event.rawValue, value: TaintedString(value, as: .js(.attribute)))
+        return mutate(key: event.rawValue, value: .init(value, context: .tainted(.js)))
     }
     
     public func aria(atomic value: Bool) -> Caption {
-        return mutate(ariaatomic: value)
+        return mutate(ariaatomic: .init(value, context: .trusted))
     }
     
     public func aria(busy value: Bool) -> Caption {
-        return mutate(ariabusy: value)
+        return mutate(ariabusy: .init(value, context: .trusted))
     }
     
     public func aria(controls value: String) -> Caption {
-        return mutate(ariacontrols: value)
+        return mutate(ariacontrols: .init(value, context: .tainted(.html)))
     }
     
     public func aria(current value: Values.Accessibility.Current) -> Caption {
-        return mutate(ariacurrent: value.rawValue)
+        return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
     }
     
     public func aria(describedBy value: String) -> Caption {
-        return mutate(ariadescribedby: value)
+        return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
     public func aria(details value: String) -> Caption {
-        return mutate(ariadetails: value)
+        return mutate(ariadetails: .init(value, context: .tainted(.html)))
     }
     
     public func aria(disabled value: Bool) -> Caption {
-        return mutate(ariadisabled: value)
+        return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
     public func aria(errorMessage value: String) -> Caption {
-        return mutate(ariaerrormessage: value)
+        return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
     
     public func aria(flowTo value: String) -> Caption {
-        return mutate(ariaflowto: value)
+        return mutate(ariaflowto: .init(value, context: .tainted(.html)))
     }
     
     public func aria(hasPopup value: Values.Accessibility.Popup) -> Caption {
-        return mutate(ariahaspopup: value.rawValue)
+        return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
     public func aria(hidden value: Bool) -> Caption {
-        return mutate(ariahidden: value)
+        return mutate(ariahidden: .init(value, context: .trusted))
     }
     
     public func aria(invalid value: Values.Accessibility.Invalid) -> Caption {
-        return mutate(ariainvalid: value.rawValue)
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
     }
     
     public func aria(keyShortcuts value: String) -> Caption {
-        return mutate(ariakeyshortcuts: value)
+        return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
     public func aria(label value: String) -> Caption {
-        return mutate(arialabel: value)
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
     public func aria(labeledBy value: String) -> Caption {
-        return mutate(arialabeledby: value)
+        return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
     public func aria(live value: Values.Accessibility.Live) -> Caption {
-        return mutate(arialive: value.rawValue)
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
     public func aria(owns value: String) -> Caption {
-        return mutate(ariaowns: value)
+        return mutate(ariaowns: .init(value, context: .tainted(.html)))
     }
     
     public func aria(relevant value: Values.Accessibility.Relevant) -> Caption {
-        return mutate(ariarelevant: value.rawValue)
+        return mutate(ariarelevant: .init(value.rawValue, context: .trusted))
     }
     
     public func aria(roleDescription value: String) -> Caption {
-        return mutate(ariaroledescription: value)
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
     }
 }
 
@@ -378,7 +430,7 @@ public struct ColumnGroup: ContentNode, TableElement {
 
     internal var name: String { "colgroup" }
 
-    internal var attributes: OrderedDictionary<String, Any>?
+    internal var attributes: OrderedDictionary<String, AttributeData>?
 
     internal var content: [Content]
     
@@ -393,7 +445,7 @@ public struct ColumnGroup: ContentNode, TableElement {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
         
         self.attributes = attributes
         self.context = context
@@ -422,200 +474,252 @@ public struct ColumnGroup: ContentNode, TableElement {
 extension ColumnGroup: GlobalAttributes, GlobalEventAttributes, SpanAttribute {
     
     public func accessKey(_ value: Character) -> ColumnGroup {
-        return mutate(accesskey: value)
+        return mutate(accesskey: .init("\(value)", context: .trusted))
     }
 
     public func autocapitalize(_ value: Values.Capitalization) -> ColumnGroup {
-        return mutate(autocapitalize: value.rawValue)
+        return mutate(autocapitalize: .init(value.rawValue, context: .trusted))
     }
 
     public func autofocus() -> ColumnGroup {
-        return mutate(autofocus: "autofocus")
+        return mutate(autofocus: .init("autofocus", context: .trusted))
     }
 
     public func `class`(_ value: String) -> ColumnGroup {
-        return mutate(class: value)
+        return mutate(class: .init(value, context: .tainted(.html)))
     }
     
     @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> ColumnGroup {
-        return mutate(contenteditable: value)
+        return mutate(contenteditable: .init(value, context: .trusted))
     }
     
     public func editable(_ value: Bool = true) -> ColumnGroup {
-        return mutate(contenteditable: value)
+        return mutate(contenteditable: .init(value, context: .trusted))
     }
 
     public func direction(_ value: Values.Direction) -> ColumnGroup {
-        return mutate(dir: value.rawValue)
+        return mutate(dir: .init(value.rawValue, context: .trusted))
     }
 
     @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> ColumnGroup {
-        return mutate(draggable: value)
+        return mutate(draggable: .init(value, context: .trusted))
     }
     
     public func draggable(_ value: Bool = true) -> ColumnGroup {
-        return mutate(draggable: value)
+        return mutate(draggable: .init(value, context: .trusted))
     }
 
     @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> ColumnGroup {
-        return mutate(enterkeyhint: value.rawValue)
+        return mutate(enterkeyhint: .init(value.rawValue, context: .trusted))
     }
     
     public func enterKey(_ value: Values.Hint) -> ColumnGroup {
-        return mutate(enterkeyhint: value.rawValue)
+        return mutate(enterkeyhint: .init(value.rawValue, context: .trusted))
     }
     
     public func hidden(_ condition: Bool = true) -> ColumnGroup {
         
         if condition {
-            return mutate(hidden: "hidden")
+            return mutate(hidden: .init("hidden", context: .trusted))
         }
         
         return self
     }
     
     public func inputMode(_ value: Values.Mode) -> ColumnGroup {
-        return mutate(inputmode: value.rawValue)
+        return mutate(inputmode: .init(value.rawValue, context: .trusted))
     }
 
     public func `is`(_ value: String) -> ColumnGroup {
-        return mutate(is: value)
+        return mutate(is: .init(value, context: .tainted(.html)))
     }
     
     public func item(id: String? = nil, as schema: URL? = nil, for elements: [String]? = nil) -> ColumnGroup {
-        return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements?.joined(separator: " "))
+
+        var copy = self
+        
+        copy = copy.mutate(itemscope: .init("itemscope", context: .trusted))
+        
+        if let id = id {
+            copy = copy.mutate(itemid: .init(id, context: .tainted(.html)))
+        }
+        
+        if let schema = schema {
+            copy = copy.mutate(itemtype: .init(schema.absoluteString, context: .tainted(.html)))
+        }
+        
+        if let elements = elements {
+            copy = copy.mutate(itemref: .init(elements.joined(separator: " "), context: .tainted(.html)))
+        }
+        
+        return copy
     }
     
     public func item(id: String? = nil, as schema: URL? = nil, for elements: String...) -> ColumnGroup {
-        return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements.joined(separator: " "))
+        
+        var copy = self
+        
+        copy = copy.mutate(itemscope: .init("itemscope", context: .trusted))
+        
+        if let id = id {
+            copy = copy.mutate(itemid: .init(id, context: .tainted(.html)))
+        }
+        
+        if let schema = schema {
+            copy = copy.mutate(itemtype: .init(schema.absoluteString, context: .tainted(.html)))
+        }
+        
+        copy = copy.mutate(itemref: .init(elements.joined(separator: " "), context: .tainted(.html)))
+        
+        return copy
     }
 
     @available(*, unavailable, message: "Use the item(id:as:for:) modifier instead.")
     public func itemId(_ value: String) -> ColumnGroup {
-        return mutate(itemid: value)
+        return mutate(itemid: .init(value, context: .tainted(.html)))
     }
 
     public func itemProperty(_ value: String) -> ColumnGroup {
-        return mutate(itemprop: value)
+        return mutate(itemprop: .init(value, context: .tainted(.html)))
     }
 
     @available(*, unavailable, message: "Use the item(id:as:for:) modifier instead.")
     public func itemReference(_ value: String) -> ColumnGroup {
-        return mutate(itemref: value)
+        return mutate(itemref: .init(value, context: .tainted(.html)))
     }
 
     @available(*, unavailable, message: "Use the item(id:as:for:) modifier instead.")
     public func itemScope(_ value: String) -> ColumnGroup {
-        return mutate(itemscope: value)
+        return mutate(itemscope: .init(value, context: .tainted(.html)))
     }
     
     @available(*, unavailable, message: "Use the item(id:as:for:) modifier instead.")
     public func itemType(_ value: String) -> ColumnGroup {
-        return mutate(itemtype: value)
+        return mutate(itemtype: .init(value, context: .tainted(.html)))
     }
 
     public func id(_ value: String) -> ColumnGroup {
-        return mutate(id: value)
+        return mutate(id: .init(value, context: .tainted(.html)))
     }
 
     public func language(_ value: Values.Language) -> ColumnGroup {
-        return mutate(lang: value.rawValue)
+        return mutate(lang: .init(value.rawValue, context: .trusted))
     }
 
     public func nonce(_ value: String) -> ColumnGroup {
-        return mutate(nonce: value)
+        return mutate(nonce: .init(value, context: .tainted(.html)))
     }
     
     public func role(_ value: Values.Role) -> ColumnGroup {
-        return mutate(role: value.rawValue)
+        return mutate(role: .init(value.rawValue, context: .trusted))
     }
 
     @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> ColumnGroup {
-        return mutate(spellcheck: value)
+        return mutate(spellcheck: .init(value, context: .trusted))
     }
     
     public func spellcheck(_ value: Bool = true) -> ColumnGroup {
-        return mutate(spellcheck: value)
+        return mutate(spellcheck: .init(value, context: .trusted))
     }
 
     public func style(_ value: String) -> ColumnGroup {
-        return mutate(style: TaintedString(value, as: .css(.attribute)))
+        return mutate(style: .init(value, context: .tainted(.css)))
     }
 
     public func tabIndex(_ value: Int) -> ColumnGroup {
-        return mutate(tabindex: value)
+        return mutate(tabindex: .init(value, context: .trusted))
     }
 
     @_disfavoredOverload
     public func title(_ value: String) -> ColumnGroup {
-        return mutate(title: value)
+        return mutate(title: .init(value, context: .tainted(.html)))
     }
     
     public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> ColumnGroup {
-        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+        return mutate(title: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
     }
     
     public func title(verbatim value: String) -> ColumnGroup {
-        return mutate(title: value)
+        return mutate(title: .init(value, context: .tainted(.html)))
     }
     
     @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> ColumnGroup {
-        return mutate(translate: value.rawValue)
+        return mutate(translate: .init(value.rawValue, context: .trusted))
     }
     
     public func translate(_ value: Bool = true) -> ColumnGroup {
         
         if value {
-            return mutate(translate: "yes")
+            return mutate(translate: .init("yes", context: .trusted))
         }
         
-        return mutate(translate: "no")
+        return mutate(translate: .init("no", context: .trusted))
     }
     
     public func inert(_ condition: Bool = true) -> ColumnGroup {
 
         if condition {
-            return mutate(inert: "inert")
+            return mutate(inert: .init("inert", context: .trusted))
         }
         
         return self
     }
 
     public func span(_ size: Int) -> ColumnGroup {
-        return mutate(span: size)
+        return mutate(span: .init(size, context: .trusted))
     }
     
     public func popover(_ value: Values.Popover.State) -> ColumnGroup {
-        return mutate(popover: value.rawValue)
+        return mutate(popover: .init(value.rawValue, context: .trusted))
     }
     
-    public func custom(key: String, value: Any) -> ColumnGroup {
-        return mutate(key: key, value: value)
+    public func custom(key: String, value: String, context: EscapeContext = .tainted(.html)) -> ColumnGroup {
+        return mutate(key: key, value: .init(value, context: context))
+    }
+    
+    public func custom(key: String, value: Int) -> ColumnGroup {
+        return mutate(key: key, value: .init(value, context: .trusted))
+    }
+    
+    public func custom(key: String, value: Double) -> ColumnGroup {
+        return mutate(key: key, value: .init(value, context: .trusted))
+    }
+    
+    public func custom(key: String, value: Bool) -> ColumnGroup {
+        return mutate(key: key, value: .init(value, context: .trusted))
+    }
+    
+    public func custom(key: String, value: Float) -> ColumnGroup {
+        return mutate(key: key, value: .init(value, context: .trusted))
+    }
+    
+    public func custom(key: String, value: EnvironmentValue, context: EscapeContext = .tainted(.html)) -> ColumnGroup {
+        return mutate(key: key, value: .init(value, context: context))
     }
     
     public func on(event: Events.Drag, _ value: String) -> ColumnGroup {
-        return mutate(key: event.rawValue, value: TaintedString(value, as: .js(.attribute)))
+        return mutate(key: event.rawValue, value: .init(value, context: .tainted(.js)))
     }
     
     public func on(event: Events.Clipboard, _ value: String) -> ColumnGroup {
-        return mutate(key: event.rawValue, value: TaintedString(value, as: .js(.attribute)))
+        return mutate(key: event.rawValue, value: .init(value, context: .tainted(.js)))
     }
     
     public func on(event: Events.Wheel, _ value: String) -> ColumnGroup {
-        return mutate(key: event.rawValue, value: TaintedString(value, as: .js(.attribute)))
+        return mutate(key: event.rawValue, value: .init(value, context: .tainted(.js)))
     }
     
     public func on(event: Events.Keyboard, _ value: String) -> ColumnGroup {
-        return mutate(key: event.rawValue, value: TaintedString(value, as: .js(.attribute)))
+        return mutate(key: event.rawValue, value: .init(value, context: .tainted(.js)))
     }
     
     public func on(event: Events.Mouse, _ value: String) -> ColumnGroup {
-        return mutate(key: event.rawValue, value: TaintedString(value, as: .js(.attribute)))
+        return mutate(key: event.rawValue, value: .init(value, context: .tainted(.js)))
     }
 }
 
@@ -637,7 +741,7 @@ public struct Column: EmptyNode, TableElement {
     
     internal var name: String { "col" }
 
-    internal var attributes: OrderedDictionary<String, Any>?
+    internal var attributes: OrderedDictionary<String, AttributeData>?
 
     /// Create a column.
     public init() {}
@@ -645,7 +749,7 @@ public struct Column: EmptyNode, TableElement {
     @available(*, deprecated, message: "The column element is actually an empty element. Use Column() instead.")
      public init(@ContentBuilder<Content> content: () -> [Content]) {}
     
-    internal init(attributes: OrderedDictionary<String, Any>?) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>?) {
         self.attributes = attributes
     }
     
@@ -671,200 +775,252 @@ public struct Column: EmptyNode, TableElement {
 extension Column: GlobalAttributes, GlobalEventAttributes, SpanAttribute {
     
     public func accessKey(_ value: Character) -> Column {
-        return mutate(accesskey: value)
+        return mutate(accesskey: .init("\(value)", context: .trusted))
     }
 
     public func autocapitalize(_ value: Values.Capitalization) -> Column {
-        return mutate(autocapitalize: value.rawValue)
+        return mutate(autocapitalize: .init(value.rawValue, context: .trusted))
     }
 
     public func autofocus() -> Column {
-        return mutate(autofocus: "autofocus")
+        return mutate(autofocus: .init("autofocus", context: .trusted))
     }
 
     public func `class`(_ value: String) -> Column {
-        return mutate(class: value)
+        return mutate(class: .init(value, context: .tainted(.html)))
     }
 
     @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> Column {
-        return mutate(contenteditable: value)
+        return mutate(contenteditable: .init(value, context: .trusted))
     }
     
     public func editable(_ value: Bool = true) -> Column {
-        return mutate(contenteditable: value)
+        return mutate(contenteditable: .init(value, context: .trusted))
     }
 
     public func direction(_ value: Values.Direction) -> Column {
-        return mutate(dir: value.rawValue)
+        return mutate(dir: .init(value.rawValue, context: .trusted))
     }
 
     @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Column {
-        return mutate(draggable: value)
+        return mutate(draggable: .init(value, context: .trusted))
     }
     
     public func draggable(_ value: Bool = true) -> Column {
-        return mutate(draggable: value)
+        return mutate(draggable: .init(value, context: .trusted))
     }
 
     @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> Column {
-        return mutate(enterkeyhint: value.rawValue)
+        return mutate(enterkeyhint: .init(value.rawValue, context: .trusted))
     }
     
     public func enterKey(_ value: Values.Hint) -> Column {
-        return mutate(enterkeyhint: value.rawValue)
+        return mutate(enterkeyhint: .init(value.rawValue, context: .trusted))
     }
     
     public func hidden(_ condition: Bool = true) -> Column {
         
         if condition {
-            return mutate(hidden: "hidden")
+            return mutate(hidden: .init("hidden", context: .trusted))
         }
         
         return self
     }
 
     public func inputMode(_ value: Values.Mode) -> Column {
-        return mutate(inputmode: value.rawValue)
+        return mutate(inputmode: .init(value.rawValue, context: .trusted))
     }
     
     public func `is`(_ value: String) -> Column {
-        return mutate(is: value)
+        return mutate(is: .init(value, context: .tainted(.html)))
     }
     
     public func item(id: String? = nil, as schema: URL? = nil, for elements: [String]? = nil) -> Column {
-        return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements?.joined(separator: " "))
+
+        var copy = self
+        
+        copy = copy.mutate(itemscope: .init("itemscope", context: .trusted))
+        
+        if let id = id {
+            copy = copy.mutate(itemid: .init(id, context: .tainted(.html)))
+        }
+        
+        if let schema = schema {
+            copy = copy.mutate(itemtype: .init(schema.absoluteString, context: .tainted(.html)))
+        }
+        
+        if let elements = elements {
+            copy = copy.mutate(itemref: .init(elements.joined(separator: " "), context: .tainted(.html)))
+        }
+        
+        return copy
     }
     
     public func item(id: String? = nil, as schema: URL? = nil, for elements: String...) -> Column {
-        return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements.joined(separator: " "))
+
+        var copy = self
+        
+        copy = copy.mutate(itemscope: .init("itemscope", context: .trusted))
+        
+        if let id = id {
+            copy = copy.mutate(itemid: .init(id, context: .tainted(.html)))
+        }
+        
+        if let schema = schema {
+            copy = copy.mutate(itemtype: .init(schema.absoluteString, context: .tainted(.html)))
+        }
+        
+        copy = copy.mutate(itemref: .init(elements.joined(separator: " "), context: .tainted(.html)))
+        
+        return copy
     }
 
     @available(*, unavailable, message: "Use the item(id:as:for:) modifier instead.")
     public func itemId(_ value: String) -> Column {
-        return mutate(itemid: value)
+        return mutate(itemid: .init(value, context: .tainted(.html)))
     }
 
     public func itemProperty(_ value: String) -> Column {
-        return mutate(itemprop: value)
+        return mutate(itemprop: .init(value, context: .tainted(.html)))
     }
 
     @available(*, unavailable, message: "Use the item(id:as:for:) modifier instead.")
     public func itemReference(_ value: String) -> Column {
-        return mutate(itemref: value)
+        return mutate(itemref: .init(value, context: .tainted(.html)))
     }
 
     @available(*, unavailable, message: "Use the item(id:as:for:) modifier instead.")
     public func itemScope(_ value: String) -> Column {
-        return mutate(itemscope: value)
+        return mutate(itemscope: .init(value, context: .tainted(.html)))
     }
     
     @available(*, unavailable, message: "Use the item(id:as:for:) modifier instead.")
     public func itemType(_ value: String) -> Column {
-        return mutate(itemtype: value)
+        return mutate(itemtype: .init(value, context: .tainted(.html)))
     }
 
     public func id(_ value: String) -> Column {
-        return mutate(id: value)
+        return mutate(id: .init(value, context: .tainted(.html)))
     }
 
     public func language(_ value: Values.Language) -> Column {
-        return mutate(lang: value.rawValue)
+        return mutate(lang: .init(value.rawValue, context: .trusted))
     }
 
     public func nonce(_ value: String) -> Column {
-        return mutate(nonce: value)
+        return mutate(nonce: .init(value, context: .tainted(.html)))
     }
     
     public func role(_ value: Values.Role) -> Column {
-        return mutate(role: value.rawValue)
+        return mutate(role: .init(value.rawValue, context: .trusted))
     }
 
     @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> Column {
-        return mutate(spellcheck: value)
+        return mutate(spellcheck: .init(value, context: .trusted))
     }
     
     public func spellcheck(_ value: Bool = true) -> Column {
-        return mutate(spellcheck: value)
+        return mutate(spellcheck: .init(value, context: .trusted))
     }
 
     public func style(_ value: String) -> Column {
-        return mutate(style: TaintedString(value, as: .css(.attribute)))
+        return mutate(style: .init(value, context: .tainted(.css)))
     }
 
     public func tabIndex(_ value: Int) -> Column {
-        return mutate(tabindex: value)
+        return mutate(tabindex: .init(value, context: .trusted))
     }
 
     @_disfavoredOverload
     public func title(_ value: String) -> Column {
-        return mutate(title: value)
+        return mutate(title: .init(value, context: .tainted(.html)))
     }
     
     public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Column {
-        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+        return mutate(title: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
     }
     
     public func title(verbatim value: String) -> Column {
-        return mutate(title: value)
+        return mutate(title: .init(value, context: .tainted(.html)))
     }
     
     @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Column {
-        return mutate(translate: value.rawValue)
+        return mutate(translate: .init(value.rawValue, context: .trusted))
     }
     
     public func translate(_ value: Bool = true) -> Column {
         
         if value {
-            return mutate(translate: "yes")
+            return mutate(translate: .init("yes", context: .trusted))
         }
         
-        return mutate(translate: "no")
+        return mutate(translate: .init("no", context: .trusted))
     }
     
     public func inert(_ condition: Bool = true) -> Column {
 
         if condition {
-            return mutate(inert: "inert")
+            return mutate(inert: .init("inert", context: .trusted))
         }
         
         return self
     }
     
     public func span(_ size: Int) -> Column {
-        return mutate(span: size)
+        return mutate(span: .init(size, context: .trusted))
     }
     
     public func popover(_ value: Values.Popover.State) -> Column {
-        return mutate(popover: value.rawValue)
+        return mutate(popover: .init(value.rawValue, context: .trusted))
     }
     
-    public func custom(key: String, value: Any) -> Column {
-        return mutate(key: key, value: value)
+    public func custom(key: String, value: String, context: EscapeContext = .tainted(.html)) -> Column {
+        return mutate(key: key, value: .init(value, context: context))
+    }
+    
+    public func custom(key: String, value: Int) -> Column {
+        return mutate(key: key, value: .init(value, context: .trusted))
+    }
+    
+    public func custom(key: String, value: Double) -> Column {
+        return mutate(key: key, value: .init(value, context: .trusted))
+    }
+    
+    public func custom(key: String, value: Bool) -> Column {
+        return mutate(key: key, value: .init(value, context: .trusted))
+    }
+    
+    public func custom(key: String, value: Float) -> Column {
+        return mutate(key: key, value: .init(value, context: .trusted))
+    }
+    
+    public func custom(key: String, value: EnvironmentValue, context: EscapeContext = .tainted(.html)) -> Column {
+        return mutate(key: key, value: .init(value, context: context))
     }
     
     public func on(event: Events.Drag, _ value: String) -> Column {
-        return mutate(key: event.rawValue, value: TaintedString(value, as: .js(.attribute)))
+        return mutate(key: event.rawValue, value: .init(value, context: .tainted(.js)))
     }
     
     public func on(event: Events.Clipboard, _ value: String) -> Column {
-        return mutate(key: event.rawValue, value: TaintedString(value, as: .js(.attribute)))
+        return mutate(key: event.rawValue, value: .init(value, context: .tainted(.js)))
     }
     
     public func on(event: Events.Keyboard, _ value: String) -> Column {
-        return mutate(key: event.rawValue, value: TaintedString(value, as: .js(.attribute)))
+        return mutate(key: event.rawValue, value: .init(value, context: .tainted(.js)))
     }
     
     public func on(event: Events.Mouse, _ value: String) -> Column {
-        return mutate(key: event.rawValue, value: TaintedString(value, as: .js(.attribute)))
+        return mutate(key: event.rawValue, value: .init(value, context: .tainted(.js)))
     }
     
     public func on(event: Events.Wheel, _ value: String) -> Column {
-        return mutate(key: event.rawValue, value: TaintedString(value, as: .js(.attribute)))
+        return mutate(key: event.rawValue, value: .init(value, context: .tainted(.js)))
     }
 }
 
@@ -886,7 +1042,7 @@ public struct TableBody: ContentNode, TableElement {
 
     internal var name: String { "tbody" }
 
-    internal var attributes: OrderedDictionary<String, Any>?
+    internal var attributes: OrderedDictionary<String, AttributeData>?
 
     internal var content: [Content]
     
@@ -901,7 +1057,7 @@ public struct TableBody: ContentNode, TableElement {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
         
         self.attributes = attributes
         self.context = context
@@ -930,280 +1086,332 @@ public struct TableBody: ContentNode, TableElement {
 extension TableBody: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, WidthAttribute, HeightAttribute {
     
     public func accessKey(_ value: Character) -> TableBody {
-        return mutate(accesskey: value)
+        return mutate(accesskey: .init("\(value)", context: .trusted))
     }
 
     public func autocapitalize(_ value: Values.Capitalization) -> TableBody {
-        return mutate(autocapitalize: value.rawValue)
+        return mutate(autocapitalize: .init(value.rawValue, context: .trusted))
     }
 
     public func autofocus() -> TableBody {
-        return mutate(autofocus: "autofocus")
+        return mutate(autofocus: .init("autofocus", context: .trusted))
     }
 
     public func `class`(_ value: String) -> TableBody {
-        return mutate(class: value)
+        return mutate(class: .init(value, context: .tainted(.html)))
     }
 
     @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> TableBody {
-        return mutate(contenteditable: value)
+        return mutate(contenteditable: .init(value, context: .trusted))
     }
     
     public func editable(_ value: Bool = true) -> TableBody {
-        return mutate(contenteditable: value)
+        return mutate(contenteditable: .init(value, context: .trusted))
     }
 
     public func direction(_ value: Values.Direction) -> TableBody {
-        return mutate(dir: value.rawValue)
+        return mutate(dir: .init(value.rawValue, context: .trusted))
     }
 
     @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> TableBody {
-        return mutate(draggable: value)
+        return mutate(draggable: .init(value, context: .trusted))
     }
     
     public func draggable(_ value: Bool = true) -> TableBody {
-        return mutate(draggable: value)
+        return mutate(draggable: .init(value, context: .trusted))
     }
 
     @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> TableBody {
-        return mutate(enterkeyhint: value.rawValue)
+        return mutate(enterkeyhint: .init(value.rawValue, context: .trusted))
     }
     
     public func enterKey(_ value: Values.Hint) -> TableBody {
-        return mutate(enterkeyhint: value.rawValue)
+        return mutate(enterkeyhint: .init(value.rawValue, context: .trusted))
     }
     
     public func hidden(_ condition: Bool = true) -> TableBody {
         
         if condition {
-            return mutate(hidden: "hidden")
+            return mutate(hidden: .init("hidden", context: .trusted))
         }
         
         return self
     }
     
     public func inputMode(_ value: Values.Mode) -> TableBody {
-        return mutate(inputmode: value.rawValue)
+        return mutate(inputmode: .init(value.rawValue, context: .trusted))
     }
 
     public func `is`(_ value: String) -> TableBody {
-        return mutate(is: value)
+        return mutate(is: .init(value, context: .tainted(.html)))
     }
     
     public func item(id: String? = nil, as schema: URL? = nil, for elements: [String]? = nil) -> TableBody {
-        return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements?.joined(separator: " "))
+
+        var copy = self
+        
+        copy = copy.mutate(itemscope: .init("itemscope", context: .trusted))
+        
+        if let id = id {
+            copy = copy.mutate(itemid: .init(id, context: .tainted(.html)))
+        }
+        
+        if let schema = schema {
+            copy = copy.mutate(itemtype: .init(schema.absoluteString, context: .tainted(.html)))
+        }
+        
+        if let elements = elements {
+            copy = copy.mutate(itemref: .init(elements.joined(separator: " "), context: .tainted(.html)))
+        }
+        
+        return copy
     }
     
     public func item(id: String? = nil, as schema: URL? = nil, for elements: String...) -> TableBody {
-        return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements.joined(separator: " "))
+
+        var copy = self
+        
+        copy = copy.mutate(itemscope: .init("itemscope", context: .trusted))
+        
+        if let id = id {
+            copy = copy.mutate(itemid: .init(id, context: .tainted(.html)))
+        }
+        
+        if let schema = schema {
+            copy = copy.mutate(itemtype: .init(schema.absoluteString, context: .tainted(.html)))
+        }
+        
+        copy = copy.mutate(itemref: .init(elements.joined(separator: " "), context: .tainted(.html)))
+        
+        return copy
     }
 
     @available(*, unavailable, message: "Use the item(id:as:for:) modifier instead.")
     public func itemId(_ value: String) -> TableBody {
-        return mutate(itemid: value)
+        return mutate(itemid: .init(value, context: .tainted(.html)))
     }
 
     public func itemProperty(_ value: String) -> TableBody {
-        return mutate(itemprop: value)
+        return mutate(itemprop: .init(value, context: .tainted(.html)))
     }
 
     @available(*, unavailable, message: "Use the item(id:as:for:) modifier instead.")
     public func itemReference(_ value: String) -> TableBody {
-        return mutate(itemref: value)
+        return mutate(itemref: .init(value, context: .tainted(.html)))
     }
 
     @available(*, unavailable, message: "Use the item(id:as:for:) modifier instead.")
     public func itemScope(_ value: String) -> TableBody {
-        return mutate(itemscope: value)
+        return mutate(itemscope: .init(value, context: .tainted(.html)))
     }
     
     @available(*, unavailable, message: "Use the item(id:as:for:) modifier instead.")
     public func itemType(_ value: String) -> TableBody {
-        return mutate(itemtype: value)
+        return mutate(itemtype: .init(value, context: .tainted(.html)))
     }
 
     public func id(_ value: String) -> TableBody {
-        return mutate(id: value)
+        return mutate(id: .init(value, context: .tainted(.html)))
     }
     
     public func language(_ value: Values.Language) -> TableBody {
-        return mutate(lang: value.rawValue)
+        return mutate(lang: .init(value.rawValue, context: .trusted))
     }
 
     public func nonce(_ value: String) -> TableBody {
-        return mutate(nonce: value)
+        return mutate(nonce: .init(value, context: .tainted(.html)))
     }
     
     public func role(_ value: Values.Role) -> TableBody {
-        return mutate(role: value.rawValue)
+        return mutate(role: .init(value.rawValue, context: .trusted))
     }
 
     @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> TableBody {
-        return mutate(spellcheck: value)
+        return mutate(spellcheck: .init(value, context: .trusted))
     }
     
     public func spellcheck(_ value: Bool = true) -> TableBody {
-        return mutate(spellcheck: value)
+        return mutate(spellcheck: .init(value, context: .trusted))
     }
 
     public func style(_ value: String) -> TableBody {
-        return mutate(style: TaintedString(value, as: .css(.attribute)))
+        return mutate(style: .init(value, context: .tainted(.css)))
     }
 
     public func tabIndex(_ value: Int) -> TableBody {
-        return mutate(tabindex: value)
+        return mutate(tabindex: .init(value, context: .trusted))
     }
 
     @_disfavoredOverload
     public func title(_ value: String) -> TableBody {
-        return mutate(title: value)
+        return mutate(title: .init(value, context: .tainted(.html)))
     }
     
     public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> TableBody {
-        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+        return mutate(title: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
     }
     
     public func title(verbatim value: String) -> TableBody {
-        return mutate(title: value)
+        return mutate(title: .init(value, context: .tainted(.html)))
     }
     
     @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> TableBody {
-        return mutate(translate: value.rawValue)
+        return mutate(translate: .init(value.rawValue, context: .trusted))
     }
     
     public func translate(_ value: Bool = true) -> TableBody {
         
         if value {
-            return mutate(translate: "yes")
+            return mutate(translate: .init("yes", context: .trusted))
         }
         
-        return mutate(translate: "no")
+        return mutate(translate: .init("no", context: .trusted))
     }
     
     public func inert(_ condition: Bool = true) -> TableBody {
 
         if condition {
-            return mutate(inert: "inert")
+            return mutate(inert: .init("inert", context: .trusted))
         }
         
         return self
     }
     
     public func width(_ size: Int) -> TableBody {
-        return mutate(width: size)
+        return mutate(width: .init(size, context: .trusted))
     }
     
     public func height(_ size: Int) -> TableBody {
-        return mutate(height: size)
+        return mutate(height: .init(size, context: .trusted))
     }
     
     public func popover(_ value: Values.Popover.State) -> TableBody {
-        return mutate(popover: value.rawValue)
+        return mutate(popover: .init(value.rawValue, context: .trusted))
     }
     
-    public func custom(key: String, value: Any) -> TableBody {
-        return mutate(key: key, value: value)
+    public func custom(key: String, value: String, context: EscapeContext = .tainted(.html)) -> TableBody {
+        return mutate(key: key, value: .init(value, context: context))
+    }
+    
+    public func custom(key: String, value: Int) -> TableBody {
+        return mutate(key: key, value: .init(value, context: .trusted))
+    }
+    
+    public func custom(key: String, value: Double) -> TableBody {
+        return mutate(key: key, value: .init(value, context: .trusted))
+    }
+    
+    public func custom(key: String, value: Bool) -> TableBody {
+        return mutate(key: key, value: .init(value, context: .trusted))
+    }
+    
+    public func custom(key: String, value: Float) -> TableBody {
+        return mutate(key: key, value: .init(value, context: .trusted))
+    }
+    
+    public func custom(key: String, value: EnvironmentValue, context: EscapeContext = .tainted(.html)) -> TableBody {
+        return mutate(key: key, value: .init(value, context: context))
     }
     
     public func on(event: Events.Drag, _ value: String) -> TableBody {
-        return mutate(key: event.rawValue, value: TaintedString(value, as: .js(.attribute)))
+        return mutate(key: event.rawValue, value: .init(value, context: .tainted(.js)))
     }
     
     public func on(event: Events.Clipboard, _ value: String) -> TableBody {
-        return mutate(key: event.rawValue, value: TaintedString(value, as: .js(.attribute)))
+        return mutate(key: event.rawValue, value: .init(value, context: .tainted(.js)))
     }
     
     public func on(event: Events.Wheel, _ value: String) -> TableBody {
-        return mutate(key: event.rawValue, value: TaintedString(value, as: .js(.attribute)))
+        return mutate(key: event.rawValue, value: .init(value, context: .tainted(.js)))
     }
     
     public func on(event: Events.Keyboard, _ value: String) -> TableBody {
-        return mutate(key: event.rawValue, value: TaintedString(value, as: .js(.attribute)))
+        return mutate(key: event.rawValue, value: .init(value, context: .tainted(.js)))
     }
     
     public func on(event: Events.Mouse, _ value: String) -> TableBody {
-        return mutate(key: event.rawValue, value: TaintedString(value, as: .js(.attribute)))
+        return mutate(key: event.rawValue, value: .init(value, context: .tainted(.js)))
     }
     
     public func aria(atomic value: Bool) -> TableBody {
-        return mutate(ariaatomic: value)
+        return mutate(ariaatomic: .init(value, context: .trusted))
     }
     
     public func aria(busy value: Bool) -> TableBody {
-        return mutate(ariabusy: value)
+        return mutate(ariabusy: .init(value, context: .trusted))
     }
     
     public func aria(controls value: String) -> TableBody {
-        return mutate(ariacontrols: value)
+        return mutate(ariacontrols: .init(value, context: .tainted(.html)))
     }
     
     public func aria(current value: Values.Accessibility.Current) -> TableBody {
-        return mutate(ariacurrent: value.rawValue)
+        return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
     }
     
     public func aria(describedBy value: String) -> TableBody {
-        return mutate(ariadescribedby: value)
+        return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
     public func aria(details value: String) -> TableBody {
-        return mutate(ariadetails: value)
+        return mutate(ariadetails: .init(value, context: .tainted(.html)))
     }
     
     public func aria(disabled value: Bool) -> TableBody {
-        return mutate(ariadisabled: value)
+        return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
     public func aria(errorMessage value: String) -> TableBody {
-        return mutate(ariaerrormessage: value)
+        return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
     
     public func aria(flowTo value: String) -> TableBody {
-        return mutate(ariaflowto: value)
+        return mutate(ariaflowto: .init(value, context: .tainted(.html)))
     }
     
     public func aria(hasPopup value: Values.Accessibility.Popup) -> TableBody {
-        return mutate(ariahaspopup: value.rawValue)
+        return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
     public func aria(hidden value: Bool) -> TableBody {
-        return mutate(ariahidden: value)
+        return mutate(ariahidden: .init(value, context: .trusted))
     }
     
     public func aria(invalid value: Values.Accessibility.Invalid) -> TableBody {
-        return mutate(ariainvalid: value.rawValue)
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
     }
     
     public func aria(keyShortcuts value: String) -> TableBody {
-        return mutate(ariakeyshortcuts: value)
+        return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
     public func aria(label value: String) -> TableBody {
-        return mutate(arialabel: value)
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
     public func aria(labeledBy value: String) -> TableBody {
-        return mutate(arialabeledby: value)
+        return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
     public func aria(live value: Values.Accessibility.Live) -> TableBody {
-        return mutate(arialive: value.rawValue)
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
     public func aria(owns value: String) -> TableBody {
-        return mutate(ariaowns: value)
+        return mutate(ariaowns: .init(value, context: .tainted(.html)))
     }
     
     public func aria(relevant value: Values.Accessibility.Relevant) -> TableBody {
-        return mutate(ariarelevant: value.rawValue)
+        return mutate(ariarelevant: .init(value.rawValue, context: .trusted))
     }
     
     public func aria(roleDescription value: String) -> TableBody {
-        return mutate(ariaroledescription: value)
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
     }
 }
 
@@ -1233,7 +1441,7 @@ public struct TableHead: ContentNode, TableElement {
 
     internal var name: String { "thead" }
 
-    internal var attributes: OrderedDictionary<String, Any>?
+    internal var attributes: OrderedDictionary<String, AttributeData>?
 
     internal var content: [Content]
     
@@ -1248,7 +1456,7 @@ public struct TableHead: ContentNode, TableElement {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
         
         self.attributes = attributes
         self.context = context
@@ -1277,280 +1485,332 @@ public struct TableHead: ContentNode, TableElement {
 extension TableHead: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, WidthAttribute, HeightAttribute {
     
     public func accessKey(_ value: Character) -> TableHead {
-        return mutate(accesskey: value)
+        return mutate(accesskey: .init("\(value)", context: .trusted))
     }
 
     public func autocapitalize(_ value: Values.Capitalization) -> TableHead {
-        return mutate(autocapitalize: value.rawValue)
+        return mutate(autocapitalize: .init(value.rawValue, context: .trusted))
     }
 
     public func autofocus() -> TableHead {
-        return mutate(autofocus: "autofocus")
+        return mutate(autofocus: .init("autofocus", context: .trusted))
     }
 
     public func `class`(_ value: String) -> TableHead {
-        return mutate(class: value)
+        return mutate(class: .init(value, context: .tainted(.html)))
     }
 
     @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> TableHead {
-        return mutate(contenteditable: value)
+        return mutate(contenteditable: .init(value, context: .trusted))
     }
     
     public func editable(_ value: Bool = true) -> TableHead {
-        return mutate(contenteditable: value)
+        return mutate(contenteditable: .init(value, context: .trusted))
     }
 
     public func direction(_ value: Values.Direction) -> TableHead {
-        return mutate(dir: value.rawValue)
+        return mutate(dir: .init(value.rawValue, context: .trusted))
     }
 
     @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> TableHead {
-        return mutate(draggable: value)
+        return mutate(draggable: .init(value, context: .trusted))
     }
     
     public func draggable(_ value: Bool = true) -> TableHead {
-        return mutate(draggable: value)
+        return mutate(draggable: .init(value, context: .trusted))
     }
 
     @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> TableHead {
-        return mutate(enterkeyhint: value.rawValue)
+        return mutate(enterkeyhint: .init(value.rawValue, context: .trusted))
     }
     
     public func enterKey(_ value: Values.Hint) -> TableHead {
-        return mutate(enterkeyhint: value.rawValue)
+        return mutate(enterkeyhint: .init(value.rawValue, context: .trusted))
     }
     
     public func hidden(_ condition: Bool = true) -> TableHead {
         
         if condition {
-            return mutate(hidden: "hidden")
+            return mutate(hidden: .init("hidden", context: .trusted))
         }
         
         return self
     }
     
     public func inputMode(_ value: Values.Mode) -> TableHead {
-        return mutate(inputmode: value.rawValue)
+        return mutate(inputmode: .init(value.rawValue, context: .trusted))
     }
 
     public func `is`(_ value: String) -> TableHead {
-        return mutate(is: value)
+        return mutate(is: .init(value, context: .tainted(.html)))
     }
     
     public func item(id: String? = nil, as schema: URL? = nil, for elements: [String]? = nil) -> TableHead {
-        return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements?.joined(separator: " "))
+
+        var copy = self
+        
+        copy = copy.mutate(itemscope: .init("itemscope", context: .trusted))
+        
+        if let id = id {
+            copy = copy.mutate(itemid: .init(id, context: .tainted(.html)))
+        }
+        
+        if let schema = schema {
+            copy = copy.mutate(itemtype: .init(schema.absoluteString, context: .tainted(.html)))
+        }
+        
+        if let elements = elements {
+            copy = copy.mutate(itemref: .init(elements.joined(separator: " "), context: .tainted(.html)))
+        }
+        
+        return copy
     }
     
     public func item(id: String? = nil, as schema: URL? = nil, for elements: String...) -> TableHead {
-        return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements.joined(separator: " "))
+
+        var copy = self
+        
+        copy = copy.mutate(itemscope: .init("itemscope", context: .trusted))
+        
+        if let id = id {
+            copy = copy.mutate(itemid: .init(id, context: .tainted(.html)))
+        }
+        
+        if let schema = schema {
+            copy = copy.mutate(itemtype: .init(schema.absoluteString, context: .tainted(.html)))
+        }
+        
+        copy = copy.mutate(itemref: .init(elements.joined(separator: " "), context: .tainted(.html)))
+        
+        return copy
     }
 
     @available(*, unavailable, message: "Use the item(id:as:for:) modifier instead.")
     public func itemId(_ value: String) -> TableHead {
-        return mutate(itemid: value)
+        return mutate(itemid: .init(value, context: .tainted(.html)))
     }
 
     public func itemProperty(_ value: String) -> TableHead {
-        return mutate(itemprop: value)
+        return mutate(itemprop: .init(value, context: .tainted(.html)))
     }
 
     @available(*, unavailable, message: "Use the item(id:as:for:) modifier instead.")
     public func itemReference(_ value: String) -> TableHead {
-        return mutate(itemref: value)
+        return mutate(itemref: .init(value, context: .tainted(.html)))
     }
 
     @available(*, unavailable, message: "Use the item(id:as:for:) modifier instead.")
     public func itemScope(_ value: String) -> TableHead {
-        return mutate(itemscope: value)
+        return mutate(itemscope: .init(value, context: .tainted(.html)))
     }
     
     @available(*, unavailable, message: "Use the item(id:as:for:) modifier instead.")
     public func itemType(_ value: String) -> TableHead {
-        return mutate(itemtype: value)
+        return mutate(itemtype: .init(value, context: .tainted(.html)))
     }
 
     public func id(_ value: String) -> TableHead {
-        return mutate(id: value)
+        return mutate(id: .init(value, context: .tainted(.html)))
     }
 
     public func language(_ value: Values.Language) -> TableHead {
-        return mutate(lang: value.rawValue)
+        return mutate(lang: .init(value.rawValue, context: .trusted))
     }
 
     public func nonce(_ value: String) -> TableHead {
-        return mutate(nonce: value)
+        return mutate(nonce: .init(value, context: .tainted(.html)))
     }
     
     public func role(_ value: Values.Role) -> TableHead {
-        return mutate(role: value.rawValue)
+        return mutate(role: .init(value.rawValue, context: .trusted))
     }
 
     @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> TableHead {
-        return mutate(spellcheck: value)
+        return mutate(spellcheck: .init(value, context: .trusted))
     }
     
     public func spellcheck(_ value: Bool = true) -> TableHead {
-        return mutate(spellcheck: value)
+        return mutate(spellcheck: .init(value, context: .trusted))
     }
 
     public func style(_ value: String) -> TableHead {
-        return mutate(style: TaintedString(value, as: .css(.attribute)))
+        return mutate(style: .init(value, context: .tainted(.css)))
     }
 
     public func tabIndex(_ value: Int) -> TableHead {
-        return mutate(tabindex: value)
+        return mutate(tabindex: .init(value, context: .trusted))
     }
 
     @_disfavoredOverload
     public func title(_ value: String) -> TableHead {
-        return mutate(title: value)
+        return mutate(title: .init(value, context: .tainted(.html)))
     }
     
     public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> TableHead {
-        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+        return mutate(title: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
     }
     
     public func title(verbatim value: String) -> TableHead {
-        return mutate(title: value)
+        return mutate(title: .init(value, context: .tainted(.html)))
     }
     
     @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> TableHead {
-        return mutate(translate: value.rawValue)
+        return mutate(translate: .init(value.rawValue, context: .trusted))
     }
     
     public func translate(_ value: Bool = true) -> TableHead {
         
         if value {
-            return mutate(translate: "yes")
+            return mutate(translate: .init("yes", context: .trusted))
         }
         
-        return mutate(translate: "no")
+        return mutate(translate: .init("no", context: .trusted))
     }
     
     public func inert(_ condition: Bool = true) -> TableHead {
 
         if condition {
-            return mutate(inert: "inert")
+            return mutate(inert: .init("inert", context: .trusted))
         }
         
         return self
     }
 
     public func width(_ size: Int) -> TableHead {
-        return mutate(width: size)
+        return mutate(width: .init(size, context: .trusted))
     }
     
     public func height(_ size: Int) -> TableHead {
-        return mutate(height: size)
+        return mutate(height: .init(size, context: .trusted))
     }
     
     public func popover(_ value: Values.Popover.State) -> TableHead {
-        return mutate(popover: value.rawValue)
+        return mutate(popover: .init(value.rawValue, context: .trusted))
     }
     
-    public func custom(key: String, value: Any) -> TableHead {
-        return mutate(key: key, value: value)
+    public func custom(key: String, value: String, context: EscapeContext = .tainted(.html)) -> TableHead {
+        return mutate(key: key, value: .init(value, context: context))
+    }
+    
+    public func custom(key: String, value: Int) -> TableHead {
+        return mutate(key: key, value: .init(value, context: .trusted))
+    }
+    
+    public func custom(key: String, value: Double) -> TableHead {
+        return mutate(key: key, value: .init(value, context: .trusted))
+    }
+    
+    public func custom(key: String, value: Bool) -> TableHead {
+        return mutate(key: key, value: .init(value, context: .trusted))
+    }
+    
+    public func custom(key: String, value: Float) -> TableHead {
+        return mutate(key: key, value: .init(value, context: .trusted))
+    }
+    
+    public func custom(key: String, value: EnvironmentValue, context: EscapeContext = .tainted(.html)) -> TableHead {
+        return mutate(key: key, value: .init(value, context: context))
     }
     
     public func on(event: Events.Drag, _ value: String) -> TableHead {
-        return mutate(key: event.rawValue, value: TaintedString(value, as: .js(.attribute)))
+        return mutate(key: event.rawValue, value: .init(value, context: .tainted(.js)))
     }
     
     public func on(event: Events.Clipboard, _ value: String) -> TableHead {
-        return mutate(key: event.rawValue, value: TaintedString(value, as: .js(.attribute)))
+        return mutate(key: event.rawValue, value: .init(value, context: .tainted(.js)))
     }
     
     public func on(event: Events.Keyboard, _ value: String) -> TableHead {
-        return mutate(key: event.rawValue, value: TaintedString(value, as: .js(.attribute)))
+        return mutate(key: event.rawValue, value: .init(value, context: .tainted(.js)))
     }
     
     public func on(event: Events.Mouse, _ value: String) -> TableHead {
-        return mutate(key: event.rawValue, value: TaintedString(value, as: .js(.attribute)))
+        return mutate(key: event.rawValue, value: .init(value, context: .tainted(.js)))
     }
     
     public func on(event: Events.Wheel, _ value: String) -> TableHead {
-        return mutate(key: event.rawValue, value: TaintedString(value, as: .js(.attribute)))
+        return mutate(key: event.rawValue, value: .init(value, context: .tainted(.js)))
     }
     
     public func aria(atomic value: Bool) -> TableHead {
-        return mutate(ariaatomic: value)
+        return mutate(ariaatomic: .init(value, context: .trusted))
     }
     
     public func aria(busy value: Bool) -> TableHead {
-        return mutate(ariabusy: value)
+        return mutate(ariabusy: .init(value, context: .trusted))
     }
     
     public func aria(controls value: String) -> TableHead {
-        return mutate(ariacontrols: value)
+        return mutate(ariacontrols: .init(value, context: .tainted(.html)))
     }
     
     public func aria(current value: Values.Accessibility.Current) -> TableHead {
-        return mutate(ariacurrent: value.rawValue)
+        return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
     }
     
     public func aria(describedBy value: String) -> TableHead {
-        return mutate(ariadescribedby: value)
+        return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
     public func aria(details value: String) -> TableHead {
-        return mutate(ariadetails: value)
+        return mutate(ariadetails: .init(value, context: .tainted(.html)))
     }
     
     public func aria(disabled value: Bool) -> TableHead {
-        return mutate(ariadisabled: value)
+        return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
     public func aria(errorMessage value: String) -> TableHead {
-        return mutate(ariaerrormessage: value)
+        return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
     
     public func aria(flowTo value: String) -> TableHead {
-        return mutate(ariaflowto: value)
+        return mutate(ariaflowto: .init(value, context: .tainted(.html)))
     }
     
     public func aria(hasPopup value: Values.Accessibility.Popup) -> TableHead {
-        return mutate(ariahaspopup: value.rawValue)
+        return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
     public func aria(hidden value: Bool) -> TableHead {
-        return mutate(ariahidden: value)
+        return mutate(ariahidden: .init(value, context: .trusted))
     }
     
     public func aria(invalid value: Values.Accessibility.Invalid) -> TableHead {
-        return mutate(ariainvalid: value.rawValue)
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
     }
     
     public func aria(keyShortcuts value: String) -> TableHead {
-        return mutate(ariakeyshortcuts: value)
+        return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
     public func aria(label value: String) -> TableHead {
-        return mutate(arialabel: value)
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
     public func aria(labeledBy value: String) -> TableHead {
-        return mutate(arialabeledby: value)
+        return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
     public func aria(live value: Values.Accessibility.Live) -> TableHead {
-        return mutate(arialive: value.rawValue)
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
     public func aria(owns value: String) -> TableHead {
-        return mutate(ariaowns: value)
+        return mutate(ariaowns: .init(value, context: .tainted(.html)))
     }
     
     public func aria(relevant value: Values.Accessibility.Relevant) -> TableHead {
-        return mutate(ariarelevant: value.rawValue)
+        return mutate(ariarelevant: .init(value.rawValue, context: .trusted))
     }
     
     public func aria(roleDescription value: String) -> TableHead {
-        return mutate(ariaroledescription: value)
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
     }
 }
 
@@ -1580,7 +1840,7 @@ public struct TableFoot: ContentNode, TableElement {
 
     internal var name: String { "tfoot" }
 
-    internal var attributes: OrderedDictionary<String, Any>?
+    internal var attributes: OrderedDictionary<String, AttributeData>?
 
     internal var content: [Content]
     
@@ -1595,7 +1855,7 @@ public struct TableFoot: ContentNode, TableElement {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
         
         self.attributes = attributes
         self.context = context
@@ -1624,272 +1884,324 @@ public struct TableFoot: ContentNode, TableElement {
 extension TableFoot: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
     
     public func accessKey(_ value: Character) -> TableFoot {
-        return mutate(accesskey: value)
+        return mutate(accesskey: .init("\(value)", context: .trusted))
     }
 
     public func autocapitalize(_ value: Values.Capitalization) -> TableFoot {
-        return mutate(autocapitalize: value.rawValue)
+        return mutate(autocapitalize: .init(value.rawValue, context: .trusted))
     }
 
     public func autofocus() -> TableFoot {
-        return mutate(autofocus: "autofocus")
+        return mutate(autofocus: .init("autofocus", context: .trusted))
     }
 
     public func `class`(_ value: String) -> TableFoot {
-        return mutate(class: value)
+        return mutate(class: .init(value, context: .tainted(.html)))
     }
 
     @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> TableFoot {
-        return mutate(contenteditable: value)
+        return mutate(contenteditable: .init(value, context: .trusted))
     }
     
     public func editable(_ value: Bool = true) -> TableFoot {
-        return mutate(contenteditable: value)
+        return mutate(contenteditable: .init(value, context: .trusted))
     }
 
     public func direction(_ value: Values.Direction) -> TableFoot {
-        return mutate(dir: value.rawValue)
+        return mutate(dir: .init(value.rawValue, context: .trusted))
     }
 
     @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> TableFoot {
-        return mutate(draggable: value)
+        return mutate(draggable: .init(value, context: .trusted))
     }
     
     public func draggable(_ value: Bool = true) -> TableFoot {
-        return mutate(draggable: value)
+        return mutate(draggable: .init(value, context: .trusted))
     }
 
     @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> TableFoot {
-        return mutate(enterkeyhint: value.rawValue)
+        return mutate(enterkeyhint: .init(value.rawValue, context: .trusted))
     }
     
     public func enterKey(_ value: Values.Hint) -> TableFoot {
-        return mutate(enterkeyhint: value.rawValue)
+        return mutate(enterkeyhint: .init(value.rawValue, context: .trusted))
     }
     
     public func hidden(_ condition: Bool = true) -> TableFoot {
         
         if condition {
-            return mutate(hidden: "hidden")
+            return mutate(hidden: .init("hidden", context: .trusted))
         }
         
         return self
     }
     
     public func inputMode(_ value: Values.Mode) -> TableFoot {
-        return mutate(inputmode: value.rawValue)
+        return mutate(inputmode: .init(value.rawValue, context: .trusted))
     }
 
     public func `is`(_ value: String) -> TableFoot {
-        return mutate(is: value)
+        return mutate(is: .init(value, context: .tainted(.html)))
     }
     
     public func item(id: String? = nil, as schema: URL? = nil, for elements: [String]? = nil) -> TableFoot {
-        return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements?.joined(separator: " "))
+
+        var copy = self
+        
+        copy = copy.mutate(itemscope: .init("itemscope", context: .trusted))
+        
+        if let id = id {
+            copy = copy.mutate(itemid: .init(id, context: .tainted(.html)))
+        }
+        
+        if let schema = schema {
+            copy = copy.mutate(itemtype: .init(schema.absoluteString, context: .tainted(.html)))
+        }
+        
+        if let elements = elements {
+            copy = copy.mutate(itemref: .init(elements.joined(separator: " "), context: .tainted(.html)))
+        }
+        
+        return copy
     }
     
     public func item(id: String? = nil, as schema: URL? = nil, for elements: String...) -> TableFoot {
-        return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements.joined(separator: " "))
+        
+        var copy = self
+        
+        copy = copy.mutate(itemscope: .init("itemscope", context: .trusted))
+        
+        if let id = id {
+            copy = copy.mutate(itemid: .init(id, context: .tainted(.html)))
+        }
+        
+        if let schema = schema {
+            copy = copy.mutate(itemtype: .init(schema.absoluteString, context: .tainted(.html)))
+        }
+        
+        copy = copy.mutate(itemref: .init(elements.joined(separator: " "), context: .tainted(.html)))
+        
+        return copy
     }
 
     @available(*, unavailable, message: "Use the item(id:as:for:) modifier instead.")
     public func itemId(_ value: String) -> TableFoot {
-        return mutate(itemid: value)
+        return mutate(itemid: .init(value, context: .tainted(.html)))
     }
 
     public func itemProperty(_ value: String) -> TableFoot {
-        return mutate(itemprop: value)
+        return mutate(itemprop: .init(value, context: .tainted(.html)))
     }
 
     @available(*, unavailable, message: "Use the item(id:as:for:) modifier instead.")
     public func itemReference(_ value: String) -> TableFoot {
-        return mutate(itemref: value)
+        return mutate(itemref: .init(value, context: .tainted(.html)))
     }
 
     @available(*, unavailable, message: "Use the item(id:as:for:) modifier instead.")
     public func itemScope(_ value: String) -> TableFoot {
-        return mutate(itemscope: value)
+        return mutate(itemscope: .init(value, context: .tainted(.html)))
     }
     
     @available(*, unavailable, message: "Use the item(id:as:for:) modifier instead.")
     public func itemType(_ value: String) -> TableFoot {
-        return mutate(itemtype: value)
+        return mutate(itemtype: .init(value, context: .tainted(.html)))
     }
 
     public func id(_ value: String) -> TableFoot {
-        return mutate(id: value)
+        return mutate(id: .init(value, context: .tainted(.html)))
     }
 
     public func language(_ value: Values.Language) -> TableFoot {
-        return mutate(lang: value.rawValue)
+        return mutate(lang: .init(value.rawValue, context: .trusted))
     }
 
     public func nonce(_ value: String) -> TableFoot {
-        return mutate(nonce: value)
+        return mutate(nonce: .init(value, context: .tainted(.html)))
     }
     
     public func role(_ value: Values.Role) -> TableFoot {
-        return mutate(role: value.rawValue)
+        return mutate(role: .init(value.rawValue, context: .trusted))
     }
     
     @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> TableFoot {
-        return mutate(spellcheck: value)
+        return mutate(spellcheck: .init(value, context: .trusted))
     }
     
     public func spellcheck(_ value: Bool = true) -> TableFoot {
-        return mutate(spellcheck: value)
+        return mutate(spellcheck: .init(value, context: .trusted))
     }
 
     public func style(_ value: String) -> TableFoot {
-        return mutate(style: TaintedString(value, as: .css(.attribute)))
+        return mutate(style: .init(value, context: .tainted(.css)))
     }
 
     public func tabIndex(_ value: Int) -> TableFoot {
-        return mutate(tabindex: value)
+        return mutate(tabindex: .init(value, context: .trusted))
     }
 
     @_disfavoredOverload
     public func title(_ value: String) -> TableFoot {
-        return mutate(title: value)
+        return mutate(title: .init(value, context: .tainted(.html)))
     }
     
     public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> TableFoot {
-        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+        return mutate(title: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
     }
     
     public func title(verbatim value: String) -> TableFoot {
-        return mutate(title: value)
+        return mutate(title: .init(value, context: .tainted(.html)))
     }
     
     @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> TableFoot {
-        return mutate(translate: value.rawValue)
+        return mutate(translate: .init(value.rawValue, context: .trusted))
     }
     
     public func translate(_ value: Bool = true) -> TableFoot {
         
         if value {
-            return mutate(translate: "yes")
+            return mutate(translate: .init("yes", context: .trusted))
         }
         
-        return mutate(translate: "no")
+        return mutate(translate: .init("no", context: .trusted))
     }
     
     public func inert(_ condition: Bool = true) -> TableFoot {
 
         if condition {
-            return mutate(inert: "inert")
+            return mutate(inert: .init("inert", context: .trusted))
         }
         
         return self
     }
     
     public func popover(_ value: Values.Popover.State) -> TableFoot {
-        return mutate(popover: value.rawValue)
+        return mutate(popover: .init(value.rawValue, context: .trusted))
     }
     
-    public func custom(key: String, value: Any) -> TableFoot {
-        return mutate(key: key, value: value)
+    public func custom(key: String, value: String, context: EscapeContext = .tainted(.html)) -> TableFoot {
+        return mutate(key: key, value: .init(value, context: context))
+    }
+    
+    public func custom(key: String, value: Int) -> TableFoot {
+        return mutate(key: key, value: .init(value, context: .trusted))
+    }
+    
+    public func custom(key: String, value: Double) -> TableFoot {
+        return mutate(key: key, value: .init(value, context: .trusted))
+    }
+    
+    public func custom(key: String, value: Bool) -> TableFoot {
+        return mutate(key: key, value: .init(value, context: .trusted))
+    }
+    
+    public func custom(key: String, value: Float) -> TableFoot {
+        return mutate(key: key, value: .init(value, context: .trusted))
+    }
+    
+    public func custom(key: String, value: EnvironmentValue, context: EscapeContext = .tainted(.html)) -> TableFoot {
+        return mutate(key: key, value: .init(value, context: context))
     }
     
     public func on(event: Events.Drag, _ value: String) -> TableFoot {
-        return mutate(key: event.rawValue, value: TaintedString(value, as: .js(.attribute)))
+        return mutate(key: event.rawValue, value: .init(value, context: .tainted(.js)))
     }
     
     public func on(event: Events.Clipboard, _ value: String) -> TableFoot {
-        return mutate(key: event.rawValue, value: TaintedString(value, as: .js(.attribute)))
+        return mutate(key: event.rawValue, value: .init(value, context: .tainted(.js)))
     }
     
     public func on(event: Events.Keyboard, _ value: String) -> TableFoot {
-        return mutate(key: event.rawValue, value: TaintedString(value, as: .js(.attribute)))
+        return mutate(key: event.rawValue, value: .init(value, context: .tainted(.js)))
     }
     
     public func on(event: Events.Mouse, _ value: String) -> TableFoot {
-        return mutate(key: event.rawValue, value: TaintedString(value, as: .js(.attribute)))
+        return mutate(key: event.rawValue, value: .init(value, context: .tainted(.js)))
     }
     
     public func on(event: Events.Wheel, _ value: String) -> TableFoot {
-        return mutate(key: event.rawValue, value: TaintedString(value, as: .js(.attribute)))
+        return mutate(key: event.rawValue, value: .init(value, context: .tainted(.js)))
     }
     
     public func aria(atomic value: Bool) -> TableFoot {
-        return mutate(ariaatomic: value)
+        return mutate(ariaatomic: .init(value, context: .trusted))
     }
     
     public func aria(busy value: Bool) -> TableFoot {
-        return mutate(ariabusy: value)
+        return mutate(ariabusy: .init(value, context: .trusted))
     }
     
     public func aria(controls value: String) -> TableFoot {
-        return mutate(ariacontrols: value)
+        return mutate(ariacontrols: .init(value, context: .tainted(.html)))
     }
     
     public func aria(current value: Values.Accessibility.Current) -> TableFoot {
-        return mutate(ariacurrent: value.rawValue)
+        return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
     }
     
     public func aria(describedBy value: String) -> TableFoot {
-        return mutate(ariadescribedby: value)
+        return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
     public func aria(details value: String) -> TableFoot {
-        return mutate(ariadetails: value)
+        return mutate(ariadetails: .init(value, context: .tainted(.html)))
     }
     
     public func aria(disabled value: Bool) -> TableFoot {
-        return mutate(ariadisabled: value)
+        return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
     public func aria(errorMessage value: String) -> TableFoot {
-        return mutate(ariaerrormessage: value)
+        return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
     
     public func aria(flowTo value: String) -> TableFoot {
-        return mutate(ariaflowto: value)
+        return mutate(ariaflowto: .init(value, context: .tainted(.html)))
     }
     
     public func aria(hasPopup value: Values.Accessibility.Popup) -> TableFoot {
-        return mutate(ariahaspopup: value.rawValue)
+        return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
     public func aria(hidden value: Bool) -> TableFoot {
-        return mutate(ariahidden: value)
+        return mutate(ariahidden: .init(value, context: .trusted))
     }
     
     public func aria(invalid value: Values.Accessibility.Invalid) -> TableFoot {
-        return mutate(ariainvalid: value.rawValue)
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
     }
     
     public func aria(keyShortcuts value: String) -> TableFoot {
-        return mutate(ariakeyshortcuts: value)
+        return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
     public func aria(label value: String) -> TableFoot {
-        return mutate(arialabel: value)
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
     public func aria(labeledBy value: String) -> TableFoot {
-        return mutate(arialabeledby: value)
+        return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
     public func aria(live value: Values.Accessibility.Live) -> TableFoot {
-        return mutate(arialive: value.rawValue)
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
     public func aria(owns value: String) -> TableFoot {
-        return mutate(ariaowns: value)
+        return mutate(ariaowns: .init(value, context: .tainted(.html)))
     }
     
     public func aria(relevant value: Values.Accessibility.Relevant) -> TableFoot {
-        return mutate(ariarelevant: value.rawValue)
+        return mutate(ariarelevant: .init(value.rawValue, context: .trusted))
     }
     
     public func aria(roleDescription value: String) -> TableFoot {
-        return mutate(ariaroledescription: value)
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
     }
 }
 
@@ -1913,7 +2225,7 @@ public struct TableRow: ContentNode, TableElement {
 
     internal var name: String { "tr" }
 
-    internal var attributes: OrderedDictionary<String, Any>?
+    internal var attributes: OrderedDictionary<String, AttributeData>?
 
     internal var content: [Content]
     
@@ -1928,7 +2240,7 @@ public struct TableRow: ContentNode, TableElement {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
         
         self.attributes = attributes
         self.context = context
@@ -1957,280 +2269,332 @@ public struct TableRow: ContentNode, TableElement {
 extension TableRow: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, WidthAttribute, HeightAttribute {
     
     public func accessKey(_ value: Character) -> TableRow {
-        return mutate(accesskey: value)
+        return mutate(accesskey: .init("\(value)", context: .trusted))
     }
 
     public func autocapitalize(_ value: Values.Capitalization) -> TableRow {
-        return mutate(autocapitalize: value.rawValue)
+        return mutate(autocapitalize: .init(value.rawValue, context: .trusted))
     }
 
     public func autofocus() -> TableRow {
-        return mutate(autofocus: "autofocus")
+        return mutate(autofocus: .init("autofocus", context: .trusted))
     }
 
     public func `class`(_ value: String) -> TableRow {
-        return mutate(class: value)
+        return mutate(class: .init(value, context: .tainted(.html)))
     }
 
     @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> TableRow {
-        return mutate(contenteditable: value)
+        return mutate(contenteditable: .init(value, context: .trusted))
     }
     
     public func editable(_ value: Bool = true) -> TableRow {
-        return mutate(contenteditable: value)
+        return mutate(contenteditable: .init(value, context: .trusted))
     }
 
     public func direction(_ value: Values.Direction) -> TableRow {
-        return mutate(dir: value.rawValue)
+        return mutate(dir: .init(value.rawValue, context: .trusted))
     }
 
     @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> TableRow {
-        return mutate(draggable: value)
+        return mutate(draggable: .init(value, context: .trusted))
     }
     
     public func draggable(_ value: Bool = true) -> TableRow {
-        return mutate(draggable: value)
+        return mutate(draggable: .init(value, context: .trusted))
     }
 
     @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> TableRow {
-        return mutate(enterkeyhint: value.rawValue)
+        return mutate(enterkeyhint: .init(value.rawValue, context: .trusted))
     }
     
     public func enterKey(_ value: Values.Hint) -> TableRow {
-        return mutate(enterkeyhint: value.rawValue)
+        return mutate(enterkeyhint: .init(value.rawValue, context: .trusted))
     }
     
     public func hidden(_ condition: Bool = true) -> TableRow {
         
         if condition {
-            return mutate(hidden: "hidden")
+            return mutate(hidden: .init("hidden", context: .trusted))
         }
         
         return self
     }
     
     public func inputMode(_ value: Values.Mode) -> TableRow {
-        return mutate(inputmode: value.rawValue)
+        return mutate(inputmode: .init(value.rawValue, context: .trusted))
     }
 
     public func `is`(_ value: String) -> TableRow {
-        return mutate(is: value)
+        return mutate(is: .init(value, context: .tainted(.html)))
     }
     
     public func item(id: String? = nil, as schema: URL? = nil, for elements: [String]? = nil) -> TableRow {
-        return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements?.joined(separator: " "))
+
+        var copy = self
+        
+        copy = copy.mutate(itemscope: .init("itemscope", context: .trusted))
+        
+        if let id = id {
+            copy = copy.mutate(itemid: .init(id, context: .tainted(.html)))
+        }
+        
+        if let schema = schema {
+            copy = copy.mutate(itemtype: .init(schema.absoluteString, context: .tainted(.html)))
+        }
+        
+        if let elements = elements {
+            copy = copy.mutate(itemref: .init(elements.joined(separator: " "), context: .tainted(.html)))
+        }
+        
+        return copy
     }
     
     public func item(id: String? = nil, as schema: URL? = nil, for elements: String...) -> TableRow {
-        return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements.joined(separator: " "))
+
+        var copy = self
+        
+        copy = copy.mutate(itemscope: .init("itemscope", context: .trusted))
+        
+        if let id = id {
+            copy = copy.mutate(itemid: .init(id, context: .tainted(.html)))
+        }
+        
+        if let schema = schema {
+            copy = copy.mutate(itemtype: .init(schema.absoluteString, context: .tainted(.html)))
+        }
+        
+        copy = copy.mutate(itemref: .init(elements.joined(separator: " "), context: .tainted(.html)))
+        
+        return copy
     }
 
     @available(*, unavailable, message: "Use the item(id:as:for:) modifier instead.")
     public func itemId(_ value: String) -> TableRow {
-        return mutate(itemid: value)
+        return mutate(itemid: .init(value, context: .tainted(.html)))
     }
 
     public func itemProperty(_ value: String) -> TableRow {
-        return mutate(itemprop: value)
+        return mutate(itemprop: .init(value, context: .tainted(.html)))
     }
 
     @available(*, unavailable, message: "Use the item(id:as:for:) modifier instead.")
     public func itemReference(_ value: String) -> TableRow {
-        return mutate(itemref: value)
+        return mutate(itemref: .init(value, context: .tainted(.html)))
     }
 
     @available(*, unavailable, message: "Use the item(id:as:for:) modifier instead.")
     public func itemScope(_ value: String) -> TableRow {
-        return mutate(itemscope: value)
+        return mutate(itemscope: .init(value, context: .tainted(.html)))
     }
     
     @available(*, unavailable, message: "Use the item(id:as:for:) modifier instead.")
     public func itemType(_ value: String) -> TableRow {
-        return mutate(itemtype: value)
+        return mutate(itemtype: .init(value, context: .tainted(.html)))
     }
 
     public func id(_ value: String) -> TableRow {
-        return mutate(id: value)
+        return mutate(id: .init(value, context: .tainted(.html)))
     }
 
     public func language(_ value: Values.Language) -> TableRow {
-        return mutate(lang: value.rawValue)
+        return mutate(lang: .init(value.rawValue, context: .trusted))
     }
 
     public func nonce(_ value: String) -> TableRow {
-        return mutate(nonce: value)
+        return mutate(nonce: .init(value, context: .tainted(.html)))
     }
     
     public func role(_ value: Values.Role) -> TableRow {
-        return mutate(role: value.rawValue)
+        return mutate(role: .init(value.rawValue, context: .trusted))
     }
 
     @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> TableRow {
-        return mutate(spellcheck: value)
+        return mutate(spellcheck: .init(value, context: .trusted))
     }
     
     public func spellcheck(_ value: Bool = true) -> TableRow {
-        return mutate(spellcheck: value)
+        return mutate(spellcheck: .init(value, context: .trusted))
     }
 
     public func style(_ value: String) -> TableRow {
-        return mutate(style: TaintedString(value, as: .css(.attribute)))
+        return mutate(style: .init(value, context: .tainted(.css)))
     }
 
     public func tabIndex(_ value: Int) -> TableRow {
-        return mutate(tabindex: value)
+        return mutate(tabindex: .init(value, context: .trusted))
     }
 
     @_disfavoredOverload
     public func title(_ value: String) -> TableRow {
-        return mutate(title: value)
+        return mutate(title: .init(value, context: .tainted(.html)))
     }
     
     public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> TableRow {
-        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+        return mutate(title: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
     }
     
     public func title(verbatim value: String) -> TableRow {
-        return mutate(title: value)
+        return mutate(title: .init(value, context: .tainted(.html)))
     }
     
     @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> TableRow {
-        return mutate(translate: value.rawValue)
+        return mutate(translate: .init(value.rawValue, context: .trusted))
     }
     
     public func translate(_ value: Bool = true) -> TableRow {
         
         if value {
-            return mutate(translate: "yes")
+            return mutate(translate: .init("yes", context: .trusted))
         }
         
-        return mutate(translate: "no")
+        return mutate(translate: .init("no", context: .trusted))
     }
     
     public func inert(_ condition: Bool = true) -> TableRow {
 
         if condition {
-            return mutate(inert: "inert")
+            return mutate(inert: .init("inert", context: .trusted))
         }
         
         return self
     }
 
     public func width(_ size: Int) -> TableRow {
-        return mutate(width: size)
+        return mutate(width: .init(size, context: .trusted))
     }
     
     public func height(_ size: Int) -> TableRow {
-        return mutate(height: size)
+        return mutate(height: .init(size, context: .trusted))
     }
     
     public func popover(_ value: Values.Popover.State) -> TableRow {
-        return mutate(popover: value.rawValue)
+        return mutate(popover: .init(value.rawValue, context: .trusted))
     }
     
-    public func custom(key: String, value: Any) -> TableRow {
-        return mutate(key: key, value: value)
+    public func custom(key: String, value: String, context: EscapeContext = .tainted(.html)) -> TableRow {
+        return mutate(key: key, value: .init(value, context: context))
+    }
+    
+    public func custom(key: String, value: Int) -> TableRow {
+        return mutate(key: key, value: .init(value, context: .trusted))
+    }
+    
+    public func custom(key: String, value: Double) -> TableRow {
+        return mutate(key: key, value: .init(value, context: .trusted))
+    }
+    
+    public func custom(key: String, value: Bool) -> TableRow {
+        return mutate(key: key, value: .init(value, context: .trusted))
+    }
+    
+    public func custom(key: String, value: Float) -> TableRow {
+        return mutate(key: key, value: .init(value, context: .trusted))
+    }
+    
+    public func custom(key: String, value: EnvironmentValue, context: EscapeContext = .tainted(.html)) -> TableRow {
+        return mutate(key: key, value: .init(value, context: context))
     }
     
     public func on(event: Events.Drag, _ value: String) -> TableRow {
-        return mutate(key: event.rawValue, value: TaintedString(value, as: .js(.attribute)))
+        return mutate(key: event.rawValue, value: .init(value, context: .tainted(.js)))
     }
     
     public func on(event: Events.Clipboard, _ value: String) -> TableRow {
-        return mutate(key: event.rawValue, value: TaintedString(value, as: .js(.attribute)))
+        return mutate(key: event.rawValue, value: .init(value, context: .tainted(.js)))
     }
     
     public func on(event: Events.Keyboard, _ value: String) -> TableRow {
-        return mutate(key: event.rawValue, value: TaintedString(value, as: .js(.attribute)))
+        return mutate(key: event.rawValue, value: .init(value, context: .tainted(.js)))
     }
     
     public func on(event: Events.Mouse, _ value: String) -> TableRow {
-        return mutate(key: event.rawValue, value: TaintedString(value, as: .js(.attribute)))
+        return mutate(key: event.rawValue, value: .init(value, context: .tainted(.js)))
     }
     
     public func on(event: Events.Wheel, _ value: String) -> TableRow {
-        return mutate(key: event.rawValue, value: TaintedString(value, as: .js(.attribute)))
+        return mutate(key: event.rawValue, value: .init(value, context: .tainted(.js)))
     }
     
     public func aria(atomic value: Bool) -> TableRow {
-        return mutate(ariaatomic: value)
+        return mutate(ariaatomic: .init(value, context: .trusted))
     }
     
     public func aria(busy value: Bool) -> TableRow {
-        return mutate(ariabusy: value)
+        return mutate(ariabusy: .init(value, context: .trusted))
     }
     
     public func aria(controls value: String) -> TableRow {
-        return mutate(ariacontrols: value)
+        return mutate(ariacontrols: .init(value, context: .tainted(.html)))
     }
     
     public func aria(current value: Values.Accessibility.Current) -> TableRow {
-        return mutate(ariacurrent: value.rawValue)
+        return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
     }
     
     public func aria(describedBy value: String) -> TableRow {
-        return mutate(ariadescribedby: value)
+        return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
     public func aria(details value: String) -> TableRow {
-        return mutate(ariadetails: value)
+        return mutate(ariadetails: .init(value, context: .tainted(.html)))
     }
     
     public func aria(disabled value: Bool) -> TableRow {
-        return mutate(ariadisabled: value)
+        return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
     public func aria(errorMessage value: String) -> TableRow {
-        return mutate(ariaerrormessage: value)
+        return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
     
     public func aria(flowTo value: String) -> TableRow {
-        return mutate(ariaflowto: value)
+        return mutate(ariaflowto: .init(value, context: .tainted(.html)))
     }
     
     public func aria(hasPopup value: Values.Accessibility.Popup) -> TableRow {
-        return mutate(ariahaspopup: value.rawValue)
+        return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
     public func aria(hidden value: Bool) -> TableRow {
-        return mutate(ariahidden: value)
+        return mutate(ariahidden: .init(value, context: .trusted))
     }
     
     public func aria(invalid value: Values.Accessibility.Invalid) -> TableRow {
-        return mutate(ariainvalid: value.rawValue)
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
     }
     
     public func aria(keyShortcuts value: String) -> TableRow {
-        return mutate(ariakeyshortcuts: value)
+        return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
     public func aria(label value: String) -> TableRow {
-        return mutate(arialabel: value)
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
     public func aria(labeledBy value: String) -> TableRow {
-        return mutate(arialabeledby: value)
+        return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
     public func aria(live value: Values.Accessibility.Live) -> TableRow {
-        return mutate(arialive: value.rawValue)
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
     public func aria(owns value: String) -> TableRow {
-        return mutate(ariaowns: value)
+        return mutate(ariaowns: .init(value, context: .tainted(.html)))
     }
     
     public func aria(relevant value: Values.Accessibility.Relevant) -> TableRow {
-        return mutate(ariarelevant: value.rawValue)
+        return mutate(ariarelevant: .init(value.rawValue, context: .trusted))
     }
     
     public func aria(roleDescription value: String) -> TableRow {
-        return mutate(ariaroledescription: value)
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
     }
 }
 
@@ -2251,7 +2615,7 @@ public struct DataCell: ContentNode, TableElement {
 
     internal var name: String { "td" }
 
-    internal var attributes: OrderedDictionary<String, Any>?
+    internal var attributes: OrderedDictionary<String, AttributeData>?
 
     internal var content: [Content]
     
@@ -2266,7 +2630,7 @@ public struct DataCell: ContentNode, TableElement {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
         
         self.attributes = attributes
         self.context = context
@@ -2295,288 +2659,341 @@ public struct DataCell: ContentNode, TableElement {
 extension DataCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, ColumnSpanAttribute, RowSpanAttribute, HeadersAttribute {
 
     public func accessKey(_ value: Character) -> DataCell {
-        return mutate(accesskey: value)
+        return mutate(accesskey: .init("\(value)", context: .trusted))
     }
 
     public func autocapitalize(_ value: Values.Capitalization) -> DataCell {
-        return mutate(autocapitalize: value.rawValue)
+        return mutate(autocapitalize: .init(value.rawValue, context: .trusted))
     }
 
     public func autofocus() -> DataCell {
-        return mutate(autofocus: "autofocus")
+        return mutate(autofocus: .init("autofocus", context: .trusted))
     }
 
     public func `class`(_ value: String) -> DataCell {
-        return mutate(class: value)
+        return mutate(class: .init(value, context: .tainted(.html)))
     }
 
     @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> DataCell {
-        return mutate(contenteditable: value)
+        return mutate(contenteditable: .init(value, context: .trusted))
     }
     
     public func editable(_ value: Bool = true) -> DataCell {
-        return mutate(contenteditable: value)
+        return mutate(contenteditable: .init(value, context: .trusted))
     }
 
     public func direction(_ value: Values.Direction) -> DataCell {
-        return mutate(dir: value.rawValue)
+        return mutate(dir: .init(value.rawValue, context: .trusted))
     }
 
     @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> DataCell {
-        return mutate(draggable: value)
+        return mutate(draggable: .init(value, context: .trusted))
     }
     
     public func draggable(_ value: Bool = true) -> DataCell {
-        return mutate(draggable: value)
+        return mutate(draggable: .init(value, context: .trusted))
     }
 
     @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> DataCell {
-        return mutate(enterkeyhint: value.rawValue)
+        return mutate(enterkeyhint: .init(value.rawValue, context: .trusted))
     }
     
     public func enterKey(_ value: Values.Hint) -> DataCell {
-        return mutate(enterkeyhint: value.rawValue)
+        return mutate(enterkeyhint: .init(value.rawValue, context: .trusted))
     }
     
     public func hidden(_ condition: Bool = true) -> DataCell {
         
         if condition {
-            return mutate(hidden: "hidden")
+            return mutate(hidden: .init("hidden", context: .trusted))
         }
         
         return self
     }
     
     public func inputMode(_ value: Values.Mode) -> DataCell {
-        return mutate(inputmode: value.rawValue)
+        return mutate(inputmode: .init(value.rawValue, context: .trusted))
     }
 
     public func `is`(_ value: String) -> DataCell {
-        return mutate(is: value)
+        return mutate(is: .init(value, context: .tainted(.html)))
     }
     
     public func item(id: String? = nil, as schema: URL? = nil, for elements: [String]? = nil) -> DataCell {
-        return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements?.joined(separator: " "))
+
+        var copy = self
+        
+        copy = copy.mutate(itemscope: .init("itemscope", context: .trusted))
+        
+        if let id = id {
+            copy = copy.mutate(itemid: .init(id, context: .tainted(.html)))
+        }
+        
+        if let schema = schema {
+            copy = copy.mutate(itemtype: .init(schema.absoluteString, context: .tainted(.html)))
+        }
+        
+        if let elements = elements {
+            copy = copy.mutate(itemref: .init(elements.joined(separator: " "), context: .tainted(.html)))
+        }
+        
+        return copy
     }
     
     public func item(id: String? = nil, as schema: URL? = nil, for elements: String...) -> DataCell {
-        return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements.joined(separator: " "))
+
+        
+        var copy = self
+        
+        copy = copy.mutate(itemscope: .init("itemscope", context: .trusted))
+        
+        if let id = id {
+            copy = copy.mutate(itemid: .init(id, context: .tainted(.html)))
+        }
+        
+        if let schema = schema {
+            copy = copy.mutate(itemtype: .init(schema.absoluteString, context: .tainted(.html)))
+        }
+        
+        copy = copy.mutate(itemref: .init(elements.joined(separator: " "), context: .tainted(.html)))
+        
+        return copy
     }
 
     @available(*, unavailable, message: "Use the item(id:as:for:) modifier instead.")
     public func itemId(_ value: String) -> DataCell {
-        return mutate(itemid: value)
+        return mutate(itemid: .init(value, context: .tainted(.html)))
     }
 
     public func itemProperty(_ value: String) -> DataCell {
-        return mutate(itemprop: value)
+        return mutate(itemprop: .init(value, context: .tainted(.html)))
     }
 
     @available(*, unavailable, message: "Use the item(id:as:for:) modifier instead.")
     public func itemReference(_ value: String) -> DataCell {
-        return mutate(itemref: value)
+        return mutate(itemref: .init(value, context: .tainted(.html)))
     }
 
     @available(*, unavailable, message: "Use the item(id:as:for:) modifier instead.")
     public func itemScope(_ value: String) -> DataCell {
-        return mutate(itemscope: value)
+        return mutate(itemscope: .init(value, context: .tainted(.html)))
     }
     
     @available(*, unavailable, message: "Use the item(id:as:for:) modifier instead.")
     public func itemType(_ value: String) -> DataCell {
-        return mutate(itemtype: value)
+        return mutate(itemtype: .init(value, context: .tainted(.html)))
     }
 
     public func id(_ value: String) -> DataCell {
-        return mutate(id: value)
+        return mutate(id: .init(value, context: .tainted(.html)))
     }
 
     public func language(_ value: Values.Language) -> DataCell {
-        return mutate(lang: value.rawValue)
+        return mutate(lang: .init(value.rawValue, context: .trusted))
     }
 
     public func nonce(_ value: String) -> DataCell {
-        return mutate(nonce: value)
+        return mutate(nonce: .init(value, context: .tainted(.html)))
     }
     
     public func role(_ value: Values.Role) -> DataCell {
-        return mutate(role: value.rawValue)
+        return mutate(role: .init(value.rawValue, context: .trusted))
     }
 
     @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> DataCell {
-        return mutate(spellcheck: value)
+        return mutate(spellcheck: .init(value, context: .trusted))
     }
     
     public func spellcheck(_ value: Bool = true) -> DataCell {
-        return mutate(spellcheck: value)
+        return mutate(spellcheck: .init(value, context: .trusted))
     }
 
     public func style(_ value: String) -> DataCell {
-        return mutate(style: TaintedString(value, as: .css(.attribute)))
+        return mutate(style: .init(value, context: .tainted(.css)))
     }
 
     public func tabIndex(_ value: Int) -> DataCell {
-        return mutate(tabindex: value)
+        return mutate(tabindex: .init(value, context: .trusted))
     }
 
     @_disfavoredOverload
     public func title(_ value: String) -> DataCell {
-        return mutate(title: value)
+        return mutate(title: .init(value, context: .tainted(.html)))
     }
     
     public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> DataCell {
-        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+        return mutate(title: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
     }
     
     public func title(verbatim value: String) -> DataCell {
-        return mutate(title: value)
+        return mutate(title: .init(value, context: .tainted(.html)))
     }
     
     @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> DataCell {
-        return mutate(translate: value.rawValue)
+        return mutate(translate: .init(value.rawValue, context: .trusted))
     }
     
     public func translate(_ value: Bool = true) -> DataCell {
         
         if value {
-            return mutate(translate: "yes")
+            return mutate(translate: .init("yes", context: .trusted))
         }
         
-        return mutate(translate: "no")
+        return mutate(translate: .init("no", context: .trusted))
     }
     
     public func inert(_ condition: Bool = true) -> DataCell {
 
         if condition {
-            return mutate(inert: "inert")
+            return mutate(inert: .init("inert", context: .trusted))
         }
         
         return self
     }
 
     public func columnSpan(_ size: Int) -> DataCell {
-        return mutate(colspan: size)
+        return mutate(colspan: .init(size, context: .trusted))
     }
     
     public func rowSpan(_ size: Int) -> DataCell {
-        return mutate(rowspan: size)
+        return mutate(rowspan: .init(size, context: .trusted))
     }
     
     public func headers(_ ids: [String]) -> DataCell {
-        return mutate(headers: ids.joined(separator: " "))
+        return mutate(headers: .init(ids.joined(separator: " "), context: .tainted(.html)))
     }
     
     public func headers(_ ids: String...) -> DataCell {
-        return mutate(headers: ids.joined(separator: " "))
+        return mutate(headers: .init(ids.joined(separator: " "), context: .tainted(.html)))
     }
     
     public func popover(_ value: Values.Popover.State) -> DataCell {
-        return mutate(popover: value.rawValue)
+        return mutate(popover: .init(value.rawValue, context: .trusted))
     }
     
-    public func custom(key: String, value: Any) -> DataCell {
-        return mutate(key: key, value: value)
+    public func custom(key: String, value: String, context: EscapeContext = .tainted(.html)) -> DataCell {
+        return mutate(key: key, value: .init(value, context: context))
+    }
+    
+    public func custom(key: String, value: Int) -> DataCell {
+        return mutate(key: key, value: .init(value, context: .trusted))
+    }
+    
+    public func custom(key: String, value: Double) -> DataCell {
+        return mutate(key: key, value: .init(value, context: .trusted))
+    }
+    
+    public func custom(key: String, value: Bool) -> DataCell {
+        return mutate(key: key, value: .init(value, context: .trusted))
+    }
+    
+    public func custom(key: String, value: Float) -> DataCell {
+        return mutate(key: key, value: .init(value, context: .trusted))
+    }
+    
+    public func custom(key: String, value: EnvironmentValue, context: EscapeContext = .tainted(.html)) -> DataCell {
+        return mutate(key: key, value: .init(value, context: context))
     }
     
     public func on(event: Events.Drag, _ value: String) -> DataCell {
-        return mutate(key: event.rawValue, value: TaintedString(value, as: .js(.attribute)))
+        return mutate(key: event.rawValue, value: .init(value, context: .tainted(.js)))
     }
     
     public func on(event: Events.Clipboard, _ value: String) -> DataCell {
-        return mutate(key: event.rawValue, value: TaintedString(value, as: .js(.attribute)))
+        return mutate(key: event.rawValue, value: .init(value, context: .tainted(.js)))
     }
     
     public func on(event: Events.Keyboard, _ value: String) -> DataCell {
-        return mutate(key: event.rawValue, value: TaintedString(value, as: .js(.attribute)))
+        return mutate(key: event.rawValue, value: .init(value, context: .tainted(.js)))
     }
     
     public func on(event: Events.Mouse, _ value: String) -> DataCell {
-        return mutate(key: event.rawValue, value: TaintedString(value, as: .js(.attribute)))
+        return mutate(key: event.rawValue, value: .init(value, context: .tainted(.js)))
     }
     
     public func on(event: Events.Wheel, _ value: String) -> DataCell {
-        return mutate(key: event.rawValue, value: TaintedString(value, as: .js(.attribute)))
+        return mutate(key: event.rawValue, value: .init(value, context: .tainted(.js)))
     }
     
     public func aria(atomic value: Bool) -> DataCell {
-        return mutate(ariaatomic: value)
+        return mutate(ariaatomic: .init(value, context: .trusted))
     }
     
     public func aria(busy value: Bool) -> DataCell {
-        return mutate(ariabusy: value)
+        return mutate(ariabusy: .init(value, context: .trusted))
     }
     
     public func aria(controls value: String) -> DataCell {
-        return mutate(ariacontrols: value)
+        return mutate(ariacontrols: .init(value, context: .tainted(.html)))
     }
     
     public func aria(current value: Values.Accessibility.Current) -> DataCell {
-        return mutate(ariacurrent: value.rawValue)
+        return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
     }
     
     public func aria(describedBy value: String) -> DataCell {
-        return mutate(ariadescribedby: value)
+        return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
     public func aria(details value: String) -> DataCell {
-        return mutate(ariadetails: value)
+        return mutate(ariadetails: .init(value, context: .tainted(.html)))
     }
     
     public func aria(disabled value: Bool) -> DataCell {
-        return mutate(ariadisabled: value)
+        return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
     public func aria(errorMessage value: String) -> DataCell {
-        return mutate(ariaerrormessage: value)
+        return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
     
     public func aria(flowTo value: String) -> DataCell {
-        return mutate(ariaflowto: value)
+        return mutate(ariaflowto: .init(value, context: .tainted(.html)))
     }
     
     public func aria(hasPopup value: Values.Accessibility.Popup) -> DataCell {
-        return mutate(ariahaspopup: value.rawValue)
+        return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
     public func aria(hidden value: Bool) -> DataCell {
-        return mutate(ariahidden: value)
+        return mutate(ariahidden: .init(value, context: .trusted))
     }
     
     public func aria(invalid value: Values.Accessibility.Invalid) -> DataCell {
-        return mutate(ariainvalid: value.rawValue)
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
     }
     
     public func aria(keyShortcuts value: String) -> DataCell {
-        return mutate(ariakeyshortcuts: value)
+        return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
     public func aria(label value: String) -> DataCell {
-        return mutate(arialabel: value)
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
     public func aria(labeledBy value: String) -> DataCell {
-        return mutate(arialabeledby: value)
+        return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
     public func aria(live value: Values.Accessibility.Live) -> DataCell {
-        return mutate(arialive: value.rawValue)
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
     public func aria(owns value: String) -> DataCell {
-        return mutate(ariaowns: value)
+        return mutate(ariaowns: .init(value, context: .tainted(.html)))
     }
     
     public func aria(relevant value: Values.Accessibility.Relevant) -> DataCell {
-        return mutate(ariarelevant: value.rawValue)
+        return mutate(ariarelevant: .init(value.rawValue, context: .trusted))
     }
     
     public func aria(roleDescription value: String) -> DataCell {
-        return mutate(ariaroledescription: value)
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
     }
 }
 
@@ -2597,7 +3014,7 @@ public struct HeaderCell: ContentNode, TableElement {
 
     internal var name: String { "th" }
 
-    internal var attributes: OrderedDictionary<String, Any>?
+    internal var attributes: OrderedDictionary<String, AttributeData>?
 
     internal var content: [Content]
     
@@ -2612,7 +3029,7 @@ public struct HeaderCell: ContentNode, TableElement {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
         
         self.attributes = attributes
         self.context = context
@@ -2641,292 +3058,344 @@ public struct HeaderCell: ContentNode, TableElement {
 extension HeaderCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, ColumnSpanAttribute, RowSpanAttribute, HeadersAttribute, ScopeAttribute {
     
     public func accessKey(_ value: Character) -> HeaderCell {
-        return mutate(accesskey: value)
+        return mutate(accesskey: .init("\(value)", context: .trusted))
     }
 
     public func autocapitalize(_ value: Values.Capitalization) -> HeaderCell {
-        return mutate(autocapitalize: value.rawValue)
+        return mutate(autocapitalize: .init(value.rawValue, context: .trusted))
     }
 
     public func autofocus() -> HeaderCell {
-        return mutate(autofocus: "autofocus")
+        return mutate(autofocus: .init("autofocus", context: .trusted))
     }
 
     public func `class`(_ value: String) -> HeaderCell {
-        return mutate(class: value)
+        return mutate(class: .init(value, context: .tainted(.html)))
     }
 
     @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> HeaderCell {
-        return mutate(contenteditable: value)
+        return mutate(contenteditable: .init(value, context: .trusted))
     }
     
     public func editable(_ value: Bool = true) -> HeaderCell {
-        return mutate(contenteditable: value)
+        return mutate(contenteditable: .init(value, context: .trusted))
     }
 
     public func direction(_ value: Values.Direction) -> HeaderCell {
-        return mutate(dir: value.rawValue)
+        return mutate(dir: .init(value.rawValue, context: .trusted))
     }
 
     @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> HeaderCell {
-        return mutate(draggable: value)
+        return mutate(draggable: .init(value, context: .trusted))
     }
     
     public func draggable(_ value: Bool = true) -> HeaderCell {
-        return mutate(draggable: value)
+        return mutate(draggable: .init(value, context: .trusted))
     }
 
     @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> HeaderCell {
-        return mutate(enterkeyhint: value.rawValue)
+        return mutate(enterkeyhint: .init(value.rawValue, context: .trusted))
     }
     
     public func enterKey(_ value: Values.Hint) -> HeaderCell {
-        return mutate(enterkeyhint: value.rawValue)
+        return mutate(enterkeyhint: .init(value.rawValue, context: .trusted))
     }
     
     public func hidden(_ condition: Bool = true) -> HeaderCell {
         
         if condition {
-            return mutate(hidden: "hidden")
+            return mutate(hidden: .init("hidden", context: .trusted))
         }
         
         return self
     }
     
     public func inputMode(_ value: Values.Mode) -> HeaderCell {
-        return mutate(inputmode: value.rawValue)
+        return mutate(inputmode: .init(value.rawValue, context: .trusted))
     }
 
     public func `is`(_ value: String) -> HeaderCell {
-        return mutate(is: value)
+        return mutate(is: .init(value, context: .tainted(.html)))
     }
     
     public func item(id: String? = nil, as schema: URL? = nil, for elements: [String]? = nil) -> HeaderCell {
-        return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements?.joined(separator: " "))
+
+        var copy = self
+        
+        copy = copy.mutate(itemscope: .init("itemscope", context: .trusted))
+        
+        if let id = id {
+            copy = copy.mutate(itemid: .init(id, context: .tainted(.html)))
+        }
+        
+        if let schema = schema {
+            copy = copy.mutate(itemtype: .init(schema.absoluteString, context: .tainted(.html)))
+        }
+        
+        if let elements = elements {
+            copy = copy.mutate(itemref: .init(elements.joined(separator: " "), context: .tainted(.html)))
+        }
+        
+        return copy
     }
     
     public func item(id: String? = nil, as schema: URL? = nil, for elements: String...) -> HeaderCell {
-        return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements.joined(separator: " "))
+
+        var copy = self
+        
+        copy = copy.mutate(itemscope: .init("itemscope", context: .trusted))
+        
+        if let id = id {
+            copy = copy.mutate(itemid: .init(id, context: .tainted(.html)))
+        }
+        
+        if let schema = schema {
+            copy = copy.mutate(itemtype: .init(schema.absoluteString, context: .tainted(.html)))
+        }
+        
+        copy = copy.mutate(itemref: .init(elements.joined(separator: " "), context: .tainted(.html)))
+        
+        return copy
     }
 
     @available(*, unavailable, message: "Use the item(id:as:for:) modifier instead.")
     public func itemId(_ value: String) -> HeaderCell {
-        return mutate(itemid: value)
+        return mutate(itemid: .init(value, context: .tainted(.html)))
     }
 
     public func itemProperty(_ value: String) -> HeaderCell {
-        return mutate(itemprop: value)
+        return mutate(itemprop: .init(value, context: .tainted(.html)))
     }
 
     @available(*, unavailable, message: "Use the item(id:as:for:) modifier instead.")
     public func itemReference(_ value: String) -> HeaderCell {
-        return mutate(itemref: value)
+        return mutate(itemref: .init(value, context: .tainted(.html)))
     }
 
     @available(*, unavailable, message: "Use the item(id:as:for:) modifier instead.")
     public func itemScope(_ value: String) -> HeaderCell {
-        return mutate(itemscope: value)
+        return mutate(itemscope: .init(value, context: .tainted(.html)))
     }
     
     @available(*, unavailable, message: "Use the item(id:as:for:) modifier instead.")
     public func itemType(_ value: String) -> HeaderCell {
-        return mutate(itemtype: value)
+        return mutate(itemtype: .init(value, context: .tainted(.html)))
     }
 
     public func id(_ value: String) -> HeaderCell {
-        return mutate(id: value)
+        return mutate(id: .init(value, context: .tainted(.html)))
     }
     
     public func language(_ value: Values.Language) -> HeaderCell {
-        return mutate(lang: value.rawValue)
+        return mutate(lang: .init(value.rawValue, context: .trusted))
     }
 
     public func nonce(_ value: String) -> HeaderCell {
-        return mutate(nonce: value)
+        return mutate(nonce: .init(value, context: .tainted(.html)))
     }
     
     public func role(_ value: Values.Role) -> HeaderCell {
-        return mutate(role: value.rawValue)
+        return mutate(role: .init(value.rawValue, context: .trusted))
     }
 
     @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> HeaderCell {
-        return  mutate(spellcheck: value)
+        return mutate(spellcheck: .init(value, context: .trusted))
     }
     
     public func spellcheck(_ value: Bool = true) -> HeaderCell {
-        return mutate(spellcheck: value)
+        return mutate(spellcheck: .init(value, context: .trusted))
     }
 
     public func style(_ value: String) -> HeaderCell {
-        return mutate(style: TaintedString(value, as: .css(.attribute)))
+        return mutate(style: .init(value, context: .tainted(.css)))
     }
 
     public func tabIndex(_ value: Int) -> HeaderCell {
-        return mutate(tabindex: value)
+        return mutate(tabindex: .init(value, context: .trusted))
     }
 
     @_disfavoredOverload
     public func title(_ value: String) -> HeaderCell {
-        return mutate(title: value)
+        return mutate(title: .init(value, context: .tainted(.html)))
     }
     
     public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> HeaderCell {
-        return mutate(title: LocalizedString(key: localizedKey, table: tableName))
+        return mutate(title: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
     }
     
     public func title(verbatim value: String) -> HeaderCell {
-        return mutate(title: value)
+        return mutate(title: .init(value, context: .tainted(.html)))
     }
     
     @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> HeaderCell {
-        return mutate(translate: value.rawValue)
+        return mutate(translate: .init(value.rawValue, context: .trusted))
     }
     
     public func translate(_ value: Bool = true) -> HeaderCell {
         
         if value {
-            return mutate(translate: "yes")
+            return mutate(translate: .init("yes", context: .trusted))
         }
         
-        return mutate(translate: "no")
+        return mutate(translate: .init("no", context: .trusted))
     }
     
     public func inert(_ condition: Bool = true) -> HeaderCell {
 
         if condition {
-            return mutate(inert: "inert")
+            return mutate(inert: .init("inert", context: .trusted))
         }
         
         return self
     }
 
     public func columnSpan(_ size: Int) -> HeaderCell {
-        return mutate(colspan: size)
+        return mutate(colspan: .init(size, context: .trusted))
     }
     
     public func rowSpan(_ size: Int) -> HeaderCell {
-        return mutate(rowspan: size)
+        return mutate(rowspan: .init(size, context: .trusted))
     }
     
     public func headers(_ ids: [String]) -> HeaderCell {
-        return mutate(headers: ids.joined(separator: " "))
+        return mutate(headers: .init(ids.joined(separator: " "), context: .tainted(.html)))
     }
     
     public func headers(_ ids: String...) -> HeaderCell {
-        return mutate(headers: ids.joined(separator: " "))
+        return mutate(headers: .init(ids.joined(separator: " "), context: .tainted(.html)))
     }
     
     public func scope(_ value: Values.Scope) -> HeaderCell {
-        return mutate(scope: value.rawValue)
+        return mutate(scope: .init(value.rawValue, context: .trusted))
     }
     
     public func popover(_ value: Values.Popover.State) -> HeaderCell {
-        return mutate(popover: value.rawValue)
+        return mutate(popover: .init(value.rawValue, context: .trusted))
     }
     
-    public func custom(key: String, value: Any) -> HeaderCell {
-        return mutate(key: key, value: value)
+    public func custom(key: String, value: String, context: EscapeContext = .tainted(.html)) -> HeaderCell {
+        return mutate(key: key, value: .init(value, context: context))
+    }
+    
+    public func custom(key: String, value: Int) -> HeaderCell {
+        return mutate(key: key, value: .init(value, context: .trusted))
+    }
+    
+    public func custom(key: String, value: Double) -> HeaderCell {
+        return mutate(key: key, value: .init(value, context: .trusted))
+    }
+    
+    public func custom(key: String, value: Bool) -> HeaderCell {
+        return mutate(key: key, value: .init(value, context: .trusted))
+    }
+    
+    public func custom(key: String, value: Float) -> HeaderCell {
+        return mutate(key: key, value: .init(value, context: .trusted))
+    }
+    
+    public func custom(key: String, value: EnvironmentValue, context: EscapeContext = .tainted(.html)) -> HeaderCell {
+        return mutate(key: key, value: .init(value, context: context))
     }
     
     public func on(event: Events.Drag, _ value: String) -> HeaderCell {
-        return mutate(key: event.rawValue, value: TaintedString(value, as: .js(.attribute)))
+        return mutate(key: event.rawValue, value: .init(value, context: .tainted(.js)))
     }
     
     public func on(event: Events.Clipboard, _ value: String) -> HeaderCell {
-        return mutate(key: event.rawValue, value: TaintedString(value, as: .js(.attribute)))
+        return mutate(key: event.rawValue, value: .init(value, context: .tainted(.js)))
     }
     
     public func on(event: Events.Keyboard, _ value: String) -> HeaderCell {
-        return mutate(key: event.rawValue, value: TaintedString(value, as: .js(.attribute)))
+        return mutate(key: event.rawValue, value: .init(value, context: .tainted(.js)))
     }
     
     public func on(event: Events.Mouse, _ value: String) -> HeaderCell {
-        return mutate(key: event.rawValue, value: TaintedString(value, as: .js(.attribute)))
+        return mutate(key: event.rawValue, value: .init(value, context: .tainted(.js)))
     }
     
     public func on(event: Events.Wheel, _ value: String) -> HeaderCell {
-        return mutate(key: event.rawValue, value: TaintedString(value, as: .js(.attribute)))
+        return mutate(key: event.rawValue, value: .init(value, context: .tainted(.js)))
     }
     
     public func aria(atomic value: Bool) -> HeaderCell {
-        return mutate(ariaatomic: value)
+        return mutate(ariaatomic: .init(value, context: .trusted))
     }
     
     public func aria(busy value: Bool) -> HeaderCell {
-        return mutate(ariabusy: value)
+        return mutate(ariabusy: .init(value, context: .trusted))
     }
     
     public func aria(controls value: String) -> HeaderCell {
-        return mutate(ariacontrols: value)
+        return mutate(ariacontrols: .init(value, context: .tainted(.html)))
     }
     
     public func aria(current value: Values.Accessibility.Current) -> HeaderCell {
-        return mutate(ariacurrent: value.rawValue)
+        return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
     }
     
     public func aria(describedBy value: String) -> HeaderCell {
-        return mutate(ariadescribedby: value)
+        return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
     public func aria(details value: String) -> HeaderCell {
-        return mutate(ariadetails: value)
+        return mutate(ariadetails: .init(value, context: .tainted(.html)))
     }
     
     public func aria(disabled value: Bool) -> HeaderCell {
-        return mutate(ariadisabled: value)
+        return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
     public func aria(errorMessage value: String) -> HeaderCell {
-        return mutate(ariaerrormessage: value)
+        return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
     
     public func aria(flowTo value: String) -> HeaderCell {
-        return mutate(ariaflowto: value)
+        return mutate(ariaflowto: .init(value, context: .tainted(.html)))
     }
     
     public func aria(hasPopup value: Values.Accessibility.Popup) -> HeaderCell {
-        return mutate(ariahaspopup: value.rawValue)
+        return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
     public func aria(hidden value: Bool) -> HeaderCell {
-        return mutate(ariahidden: value)
+        return mutate(ariahidden: .init(value, context: .trusted))
     }
     
     public func aria(invalid value: Values.Accessibility.Invalid) -> HeaderCell {
-        return mutate(ariainvalid: value.rawValue)
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
     }
     
     public func aria(keyShortcuts value: String) -> HeaderCell {
-        return mutate(ariakeyshortcuts: value)
+        return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
     public func aria(label value: String) -> HeaderCell {
-        return mutate(arialabel: value)
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
     public func aria(labeledBy value: String) -> HeaderCell {
-        return mutate(arialabeledby: value)
+        return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
     public func aria(live value: Values.Accessibility.Live) -> HeaderCell {
-        return mutate(arialive: value.rawValue)
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
     public func aria(owns value: String) -> HeaderCell {
-        return mutate(ariaowns: value)
+        return mutate(ariaowns: .init(value, context: .tainted(.html)))
     }
     
     public func aria(relevant value: Values.Accessibility.Relevant) -> HeaderCell {
-        return mutate(ariarelevant: value.rawValue)
+        return mutate(ariarelevant: .init(value.rawValue, context: .trusted))
     }
     
     public func aria(roleDescription value: String) -> HeaderCell {
-        return mutate(ariaroledescription: value)
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
     }
 }
 

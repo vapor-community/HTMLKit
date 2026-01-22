@@ -11,13 +11,22 @@ import OrderedCollections
 @_documentation(visibility: internal)
 public protocol Attribute {
     
-    /// The func adds
-    func custom(key: String, value: Any) -> Self
+    func custom(key: String, value: String, context: EscapeContext) -> Self
+    
+    func custom(key: String, value: Int) -> Self
+    
+    func custom(key: String, value: Double) -> Self
+    
+    func custom(key: String, value: Bool) -> Self
+    
+    func custom(key: String, value: Float) -> Self
+    
+    func custom(key: String, value: EnvironmentValue, context: EscapeContext) -> Self
 }
 
 extension Attribute where Self: ContentNode {
     
-    internal func mutate(key: String, value: Any) -> Self {
+    internal func mutate(key: String, value: AttributeData) -> Self {
         
         guard var attributes = self.attributes else {
             return .init(attributes: [key: value], context: context, content: content)
@@ -31,7 +40,7 @@ extension Attribute where Self: ContentNode {
 
 extension Attribute where Self: EmptyNode {
     
-    internal func mutate(key: String, value: Any) -> Self {
+    internal func mutate(key: String, value: AttributeData) -> Self {
         
         guard var attributes = self.attributes else {
             return .init(attributes:  [key: value])
@@ -45,7 +54,7 @@ extension Attribute where Self: EmptyNode {
 
 extension Attribute where Self: CustomNode {
     
-    internal func mutate(key: String, value: Any) -> Self {
+    internal func mutate(key: String, value: AttributeData) -> Self {
         
         guard var attributes = self.attributes else {
             return .init(name: name, attributes:  [key: value], context: context, content: content)

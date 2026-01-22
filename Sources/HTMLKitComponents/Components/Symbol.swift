@@ -309,7 +309,7 @@ extension Symbol {
     
     fileprivate static func parse(node: XMLNode) throws -> VectorElement? {
         
-        var tempAttributes: OrderedDictionary<String, Any> = [:]
+        var tempAttributes: OrderedDictionary<String, AttributeData> = [:]
         var tempContent: [Content] = []
         
         guard let element = node as? XMLElement else {
@@ -325,7 +325,10 @@ extension Symbol {
             for attribute in attributes {
                 
                 if let attributeName = attribute.localName {
-                    tempAttributes[attributeName] = attribute.stringValue
+                    
+                    if let stringValue = attribute.stringValue {
+                        tempAttributes[attributeName] = AttributeData(stringValue, context: .trusted)
+                    }
                 }
             }
         }

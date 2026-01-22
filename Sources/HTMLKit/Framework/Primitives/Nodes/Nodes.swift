@@ -15,7 +15,7 @@ internal protocol ContentNode: Node {
     var name: String { get }
     
     /// The attributes of the node.
-    var attributes: OrderedDictionary<String, Any>? { get }
+    var attributes: OrderedDictionary<String, AttributeData>? { get }
     
     /// The content of the node.
     var content: [Content] { get }
@@ -28,7 +28,7 @@ internal protocol ContentNode: Node {
     /// - Parameters:
     ///    - attributes:
     ///    - content:
-    init(attributes: OrderedDictionary<String, Any>?, context: EscapeContext, content: [Content])
+    init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content])
 }
 
 extension ContentNode {
@@ -53,13 +53,13 @@ internal protocol EmptyNode: Node {
     var name: String { get }
     
     /// The attributes of the node.
-    var attributes: OrderedDictionary<String, Any>? { get }
+    var attributes: OrderedDictionary<String, AttributeData>? { get }
     
     /// Initiates a node.
     ///
     /// - Parameters:
     ///    - attributes:
-    init(attributes: OrderedDictionary<String, Any>?)
+    init(attributes: OrderedDictionary<String, AttributeData>?)
 }
 
 extension EmptyNode {
@@ -107,7 +107,7 @@ public protocol CustomNode: Node {
     var name: String { get set }
     
     /// The attributes of the node.
-    var attributes: OrderedDictionary<String, Any>? { get }
+    var attributes: OrderedDictionary<String, AttributeData>? { get }
     
     /// The content of the node.
     var content: [Content] { get }
@@ -120,7 +120,7 @@ public protocol CustomNode: Node {
     /// - Parameters:
     ///    - attributes:
     ///    - content:
-    init(name: String, attributes: OrderedDictionary<String, Any>?, context: EscapeContext, content: [Content])
+    init(name: String, attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content])
 }
 
 extension CustomNode {
