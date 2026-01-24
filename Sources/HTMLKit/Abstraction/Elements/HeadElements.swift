@@ -1204,11 +1204,11 @@ extension Style: GlobalAttributes, GlobalEventAttributes, TypeAttribute, MediaAt
     }
     
     public func media(_ queries: [MediaQuery]) -> Style {
-        return mutate(media: .init(queries.map { $0.rawValue }.joined(separator: ", "), context: .trusted))
+        return mutate(media: .init(queries.map { $0.rawValue }.joined(separator: ", "), context: .tainted(.html)))
     }
     
     public func media(_ queries: MediaQuery...) -> Style {
-        return mutate(media: .init(queries.map { $0.rawValue }.joined(separator: ", "), context: .trusted))
+        return mutate(media: .init(queries.map { $0.rawValue }.joined(separator: ", "), context: .tainted(.html)))
     }
     
     public func blocking(_ value: Values.Blocking) -> Style {
@@ -1533,11 +1533,11 @@ extension Link: GlobalAttributes, GlobalEventAttributes, ReferenceAttribute, Ref
     }
     
     public func media(_ queries: [MediaQuery]) -> Link {
-        return mutate(media: .init(queries.map { $0.rawValue }.joined(separator: ", "), context: .trusted))
+        return mutate(media: .init(queries.map { $0.rawValue }.joined(separator: ", "), context: .tainted(.html)))
     }
     
     public func media(_ queries: MediaQuery...) -> Link {
-        return mutate(media: .init(queries.map { $0.rawValue }.joined(separator: ", "), context: .trusted))
+        return mutate(media: .init(queries.map { $0.rawValue }.joined(separator: ", "), context: .tainted(.html)))
     }
     
     public func referrerPolicy(_ value: Values.Policy) -> Link {

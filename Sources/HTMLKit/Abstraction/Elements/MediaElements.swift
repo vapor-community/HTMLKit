@@ -262,19 +262,19 @@ extension Source: GlobalAttributes, GlobalEventAttributes, TypeAttribute, Source
     }
     
     public func sourceSet(_ candidates: [SourceCandidate]) -> Source {
-        return mutate(sourceset: .init(candidates.map { $0.rawValue }.joined(separator: ", "), context: .trusted))
+        return mutate(sourceset: .init(candidates.map { $0.rawValue }.joined(separator: ", "), context: .tainted(.html)))
     }
     
     public func sourceSet(_ candidates: SourceCandidate...) -> Source {
-        return mutate(sourceset: .init(candidates.map { $0.rawValue }.joined(separator: ", "), context: .trusted))
+        return mutate(sourceset: .init(candidates.map { $0.rawValue }.joined(separator: ", "), context: .tainted(.html)))
     }
     
     public func sizes(_ candidates: [SizeCandidate]) -> Source {
-        return mutate(sizes: .init(candidates.map { $0.rawValue }.joined(separator: ", "), context: .trusted))
+        return mutate(sizes: .init(candidates.map { $0.rawValue }.joined(separator: ", "), context: .tainted(.html)))
     }
     
     public func sizes(_ candidates: SizeCandidate...) -> Source {
-        return mutate(sizes: .init(candidates.map { $0.rawValue }.joined(separator: ", "), context: .trusted))
+        return mutate(sizes: .init(candidates.map { $0.rawValue }.joined(separator: ", "), context: .tainted(.html)))
     }
     
     public func media(_ value: String) -> Source {
@@ -282,11 +282,11 @@ extension Source: GlobalAttributes, GlobalEventAttributes, TypeAttribute, Source
     }
     
     public func media(_ queries: [MediaQuery]) -> Source {
-        return mutate(media: .init(queries.map { $0.rawValue }.joined(separator: ", "), context: .trusted))
+        return mutate(media: .init(queries.map { $0.rawValue }.joined(separator: ", "), context: .tainted(.html)))
     }
     
     public func media(_ queries: MediaQuery...) -> Source {
-        return mutate(media: .init(queries.map { $0.rawValue }.joined(separator: ", "), context: .trusted))
+        return mutate(media: .init(queries.map { $0.rawValue }.joined(separator: ", "), context: .tainted(.html)))
     }
     
     public func width(_ size: Int) -> Source {

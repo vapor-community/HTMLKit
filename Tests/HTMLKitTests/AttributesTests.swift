@@ -410,11 +410,11 @@ final class AttributesTests: XCTestCase {
         }
         
         func media(_ queries: [MediaQuery]) -> Tag {
-            return self.mutate(media: .init(queries.map { $0.rawValue }.joined(separator: ", "), context: .trusted))
+            return self.mutate(media: .init(queries.map { $0.rawValue }.joined(separator: ", "), context: .tainted(.html)))
         }
         
         func media(_ queries: MediaQuery...) -> Tag {
-            return self.mutate(media: .init(queries.map { $0.rawValue }.joined(separator: ", "), context: .trusted))
+            return self.mutate(media: .init(queries.map { $0.rawValue }.joined(separator: ", "), context: .tainted(.html)))
         }
         
         func method(_ value: HTMLKit.Values.Method) -> Tag {
@@ -567,11 +567,11 @@ final class AttributesTests: XCTestCase {
         }
         
         func sizes(_ candidates: [SizeCandidate]) -> Tag {
-            return self.mutate(sizes: .init(candidates.map { $0.rawValue }.joined(separator: ", "), context: .trusted))
+            return self.mutate(sizes: .init(candidates.map { $0.rawValue }.joined(separator: ", "), context: .tainted(.html)))
         }
         
         func sizes(_ candidates: SizeCandidate...) -> Tag {
-            return self.mutate(sizes: .init(candidates.map { $0.rawValue }.joined(separator: ", "), context: .trusted))
+            return self.mutate(sizes: .init(candidates.map { $0.rawValue }.joined(separator: ", "), context: .tainted(.html)))
         }
         
         func slot(_ value: String) -> Tag {
@@ -599,11 +599,11 @@ final class AttributesTests: XCTestCase {
         }
         
         func sourceSet(_ candidates: [SourceCandidate]) -> Tag {
-            return mutate(sourceset: .init(candidates.map { $0.rawValue }.joined(separator: ", "), context: .trusted))
+            return mutate(sourceset: .init(candidates.map { $0.rawValue }.joined(separator: ", "), context: .tainted(.html)))
         }
         
         func sourceSet(_ candidates: SourceCandidate...) -> Tag {
-            return mutate(sourceset: .init(candidates.map { $0.rawValue }.joined(separator: ", "), context: .trusted))
+            return mutate(sourceset: .init(candidates.map { $0.rawValue }.joined(separator: ", "), context: .tainted(.html)))
         }
         
         func start(_ size: Int) -> Tag {

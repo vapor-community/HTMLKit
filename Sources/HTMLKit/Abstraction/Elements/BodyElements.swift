@@ -9164,11 +9164,11 @@ extension Anchor: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
     }
     
     public func media(_ queries: [MediaQuery]) -> Anchor {
-        return mutate(media: .init(queries.map { $0.rawValue }.joined(separator: ", "), context: .trusted))
+        return mutate(media: .init(queries.map { $0.rawValue }.joined(separator: ", "), context: .tainted(.html)))
     }
     
     public func media(_ queries: MediaQuery...) -> Anchor {
-        return mutate(media: .init(queries.map { $0.rawValue }.joined(separator: ", "), context: .trusted))
+        return mutate(media: .init(queries.map { $0.rawValue }.joined(separator: ", "), context: .tainted(.html)))
     }
     
     public func ping(_ value: String) -> Anchor {
@@ -21593,19 +21593,19 @@ extension Image: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
     }
     
     public func sourceSet(_ candidates: [SourceCandidate]) -> Image {
-        return mutate(sourceset: .init(candidates.map { $0.rawValue }.joined(separator: ", "), context: .trusted))
+        return mutate(sourceset: .init(candidates.map { $0.rawValue }.joined(separator: ", "), context: .tainted(.html)))
     }
     
     public func sourceSet(_ candidates: SourceCandidate...) -> Image {
-        return mutate(sourceset: .init(candidates.map { $0.rawValue }.joined(separator: ", "), context: .trusted))
+        return mutate(sourceset: .init(candidates.map { $0.rawValue }.joined(separator: ", "), context: .tainted(.html)))
     }
     
     public func sizes(_ candidates: [SizeCandidate]) -> Image {
-        return mutate(sourceset: .init(candidates.map { $0.rawValue }.joined(separator: ", "), context: .trusted))
+        return mutate(sourceset: .init(candidates.map { $0.rawValue }.joined(separator: ", "), context: .tainted(.html)))
     }
     
     public func sizes(_ candidates: SizeCandidate...) -> Image {
-        return mutate(sourceset: .init(candidates.map { $0.rawValue }.joined(separator: ", "), context: .trusted))
+        return mutate(sourceset: .init(candidates.map { $0.rawValue }.joined(separator: ", "), context: .tainted(.html)))
     }
     
     public func width(_ size: Int) -> Image {
