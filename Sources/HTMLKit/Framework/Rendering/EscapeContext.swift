@@ -1,4 +1,5 @@
 /// A companion type that informs about trusted or tainted content.
+@_documentation(visibility: internal)
 public enum EscapeContext {
     
     /// The subcontext that describes the content.

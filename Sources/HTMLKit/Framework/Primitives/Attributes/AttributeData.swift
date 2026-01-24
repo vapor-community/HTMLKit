@@ -1,53 +1,54 @@
-/// A type that holds the data.
+/// A type that represents the attribute data.
+@_documentation(visibility: internal)
 public struct AttributeData {
     
-    /// A type that holds the data.
-    internal enum DataValue {
+    /// An enumeration of potential values.
+    internal enum Value {
         
-        /// A string value
+        /// A string value.
         case string(String)
         
-        /// A int value
+        /// An integer value.
         case int(Int)
         
-        /// A double value
+        /// A double value.
         case double(Double)
         
-        /// A booleanl value
+        /// A boolean value.
         case bool(Bool)
         
-        /// A float value
+        /// A float value.
         case float(Float)
         
-        /// A localized string
+        /// A localized string.
         case localized(LocalizedString)
         
-        /// A environment value
+        /// An environment value.
         case environment(EnvironmentValue)
     }
     
-    /// The
+    /// The context of the data.
     internal var context: EscapeContext
     
-    /// The actual data value.
-    internal var value: DataValue
+    /// The value of the data.
+    internal var value: Value
     
     /// Create a string attribute.
     /// 
     /// - Parameters:
-    ///   - value: The string value
-    ///   - context: Whether the value is safe
+    ///   - value: The string value.
+    ///   - context: Whether the value is trustworthy.
     public init(_ value: String, context: EscapeContext) {
         
         self.context = context
         self.value = .string(value)
     }
     
-    /// Create a int attribute.
+    /// Create an int attribute.
     /// 
     /// - Parameters:
-    ///   - value: The int value
-    ///   - context: Whether the value is safe
+    ///   - value: The int value.
+    ///   - context: Whether the value is trustworthy.
     public init(_ value: Int, context: EscapeContext) {
         
         self.context = context
@@ -58,7 +59,7 @@ public struct AttributeData {
     /// 
     /// - Parameters:
     ///   - value: The double value
-    ///   - context: Whether the value is safe
+    ///   - context: Whether the value is trustworthy.
     public init(_ value: Double, context: EscapeContext) {
         
         self.context = context
@@ -69,7 +70,7 @@ public struct AttributeData {
     /// 
     /// - Parameters:
     ///   - value: The string value
-    ///   - context: Whether the value is safe
+    ///   - context: Whether the value is trustworthy.
     public init(_ value: Bool, context: EscapeContext) {
         
         self.context = context
@@ -79,8 +80,8 @@ public struct AttributeData {
     /// Create a float attribute.
     /// 
     /// - Parameters:
-    ///   - value: The float value
-    ///   - context: Whether the value is safe
+    ///   - value: The float value.
+    ///   - context: Whether the value is trustworthy.
     public init(_ value: Float, context: EscapeContext) {
         
         self.context = context
@@ -90,18 +91,18 @@ public struct AttributeData {
     /// Create a localiized attribute.
     /// 
     /// - Parameters:
-    ///   - value: The string value
-    ///   - context: Whether the value is safe
+    ///   - value: The string value.
+    ///   - context: Whether the value is trustworthy.
     public init(_ value: LocalizedString, context: EscapeContext) {
         
         self.context = context
         self.value = .localized(value)
     }
     
-    /// Create a environment attribute.
+    /// Create an environment attribute.
     /// 
     /// - Parameters:
-    ///   - value: The string value
+    ///   - value: The string value.
     ///   - context: Whether the value is safe
     public init(_ value: EnvironmentValue, context: EscapeContext) {
         
