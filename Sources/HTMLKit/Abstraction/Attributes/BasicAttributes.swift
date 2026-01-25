@@ -515,13 +515,27 @@ public protocol ClassAttribute: Attribute{
     /// Paragraph {
     ///     "Lorem ipsum..."
     /// }
-    /// .class("text")
+    /// .class(["text", "white"])
     /// ```
     ///
-    /// - Parameter value: The class to apply to.
+    /// - Parameter names: The class to apply to.
     ///
     /// - Returns: The element
-    func `class`(_ value: String) -> Self
+    func `class`(_ names: [String]) -> Self
+    
+    /// Use a style class on an element.
+    ///
+    /// ```swift
+    /// Paragraph {
+    ///     "Lorem ipsum..."
+    /// }
+    /// .class("text", "white")
+    /// ```
+    ///
+    /// - Parameter names: The class to apply to.
+    ///
+    /// - Returns: The element
+    func `class`(_ names: String...) -> Self
 }
 
 extension ClassAttribute where Self: ContentNode {

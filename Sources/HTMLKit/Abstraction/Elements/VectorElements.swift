@@ -73,8 +73,12 @@ extension Circle: GlobalVectorAttributes, CenterPointAttribute, RadiusAttribute 
         return mutate(tabindex: .init(value, context: .trusted))
     }
     
-    public func `class`(_ value: String) -> Circle {
-        return self.mutate(class: .init(value, context: .tainted(.html)))
+    public func `class`(_ names: [String]) -> Circle {
+        return self.mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func `class`(_ names: String...) -> Circle {
+        return self.mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
     }
     
     public func style(_ value: String) -> Circle {
@@ -264,8 +268,12 @@ extension Rectangle: GlobalVectorAttributes, WidthAttribute, HeightAttribute, Ra
         return mutate(tabindex: .init(value, context: .trusted))
     }
     
-    public func `class`(_ value: String) -> Rectangle {
-        return self.mutate(class: .init(value, context: .tainted(.html)))
+    public func `class`(_ names: [String]) -> Rectangle {
+        return self.mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func `class`(_ names: String...) -> Rectangle {
+        return self.mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
     }
     
     public func style(_ value: String) -> Rectangle {
@@ -476,8 +484,12 @@ extension Ellipse: GlobalVectorAttributes, CenterPointAttribute, RadiusPointAttr
         return mutate(tabindex: .init(value, context: .trusted))
     }
     
-    public func `class`(_ value: String) -> Ellipse {
-        return self.mutate(class: .init(value, context: .tainted(.html)))
+    public func `class`(_ names: [String]) -> Ellipse {
+        return self.mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func `class`(_ names: String...) -> Ellipse {
+        return self.mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
     }
     
     public func style(_ value: String) -> Ellipse {
@@ -680,8 +692,12 @@ extension Line: GlobalVectorAttributes {
         return mutate(tabindex: .init(value, context: .trusted))
     }
     
-    public func `class`(_ value: String) -> Line {
-        return self.mutate(class: .init(value, context: .tainted(.html)))
+    public func `class`(_ names: [String]) -> Line {
+        return self.mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func `class`(_ names: String...) -> Line {
+        return self.mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
     }
     
     public func style(_ value: String) -> Line {
@@ -849,8 +865,12 @@ extension Polygon: GlobalVectorAttributes, PointsAttribute {
         return mutate(tabindex: .init(value, context: .trusted))
     }
     
-    public func `class`(_ value: String) -> Polygon {
-        return self.mutate(class: .init(value, context: .tainted(.html)))
+    public func `class`(_ names: [String]) -> Polygon {
+        return self.mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func `class`(_ names: String...) -> Polygon {
+        return self.mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
     }
     
     public func style(_ value: String) -> Polygon {
@@ -1022,8 +1042,12 @@ extension Polyline: GlobalVectorAttributes, PointsAttribute {
         return mutate(tabindex: .init(value, context: .trusted))
     }
     
-    public func `class`(_ value: String) -> Polyline {
-        return self.mutate(class: .init(value, context: .tainted(.html)))
+    public func `class`(_ names: [String]) -> Polyline {
+        return self.mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func `class`(_ names: String...) -> Polyline {
+        return self.mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
     }
     
     public func style(_ value: String) -> Polyline {
@@ -1195,8 +1219,12 @@ extension Path: GlobalVectorAttributes, DrawAttribute {
         return mutate(tabindex: .init(value, context: .trusted))
     }
     
-    public func `class`(_ value: String) -> Path {
-        return self.mutate(class: .init(value, context: .tainted(.html)))
+    public func `class`(_ names: [String]) -> Path {
+        return self.mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func `class`(_ names: String...) -> Path {
+        return self.mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
     }
     
     public func style(_ value: String) -> Path {
@@ -1367,8 +1395,12 @@ extension Group: GlobalVectorAttributes {
         return mutate(tabindex: .init(value, context: .trusted))
     }
 
-    public func `class`(_ value: String) -> Group {
-        return self.mutate(class: .init(value, context: .tainted(.html)))
+    public func `class`(_ names: [String]) -> Group {
+        return self.mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func `class`(_ names: String...) -> Group {
+        return self.mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
     }
 
     public func style(_ value: String) -> Group {
@@ -1568,8 +1600,12 @@ extension Use: GlobalVectorAttributes, ReferenceAttribute, WidthAttribute, Heigh
         return self.mutate(height: .init(size, context: .trusted))
     }
     
-    public func `class`(_ value: String) -> Use {
-        return self.mutate(class: .init(value, context: .tainted(.html)))
+    public func `class`(_ names: [String]) -> Use {
+        return self.mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func `class`(_ names: String...) -> Use {
+        return self.mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
     }
     
     public func style(_ value: String) -> Use {

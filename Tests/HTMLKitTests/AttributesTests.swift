@@ -56,8 +56,12 @@ final class AttributesTests: XCTestCase {
             return self.mutate(autofocus: .init("autofocus", context: .trusted))
         }
         
-        func `class`(_ value: String) -> Tag {
-            return self.mutate(class: .init(value, context: .tainted(.html)))
+        func `class`(_ names: [String]) -> Tag {
+            return self.mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
+        }
+        
+        func `class`(_ names: String...) -> Tag {
+            return self.mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
         }
         
         func direction(_ value: Values.Direction) -> Tag {
