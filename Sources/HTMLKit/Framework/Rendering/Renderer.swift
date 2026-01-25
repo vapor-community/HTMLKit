@@ -95,7 +95,7 @@ public struct Renderer {
         var result = ""
         
         if let contents = view.body as? [Content] {
-            try render(contents: contents, on: &result)
+            try render(contents: contents, on: &result, within: .tainted(.html))
         }
         
         return result
@@ -106,13 +106,13 @@ public struct Renderer {
     /// - Parameter contents: The content to process
     ///
     /// - Returns: A string representation of the content
-    private func render(contents: [Content], on result: inout String) throws {
+    private func render(contents: [Content], on result: inout String, within context: EscapeContext) throws {
         
         for content in contents {
             
             switch content {
             case let content as [Content]:
-                try render(contents: content, on: &result)
+                try render(contents: content, on: &result, within: context)
                 
             case let view as View:
                 result += try render(view: view)
@@ -132,50 +132,27 @@ public struct Renderer {
             case let element as any CustomNode:
                 try render(element: element, on: &result)
                 
-            case let modifier as EnvironmentModifier:
-                try render(modifier: modifier, on: &result)
+            case let string as String:
                 
-            case let value as EnvironmentValue:
-                result += try render(envelement: value)
-                
-            case let statement as Statement:
-                try render(statement: statement, on: &result)
-                
-            case let sequence as Sequence:
-                try render(loop: sequence, on: &result)
-                
-            case let string as LocalizedString:
-                result += try render(localized: string)
-                
-            case let string as MarkdownString:
-                
-                if !features.contains(.markdown) {
-                    result += escape(tainted: .init(string.raw, as: .html(.element)))
+                switch context {
+                case .trusted:
+                    result += string
                     
-                } else {
-                    result += try render(markstring: string)
+                case .tainted(let subcontext):
+                    result += escape(element: string, with: subcontext)
                 }
                 
-            case let string as EnvironmentString:
-                try render(envstring: string, on: &result)
+            case let double as Double:
+                result += "\(double)"
                 
-            case let string as HtmlString:
-                result += string.value
+            case let int as Int:
+                result += "\(int)"
                 
-            case let string as TaintedString:
-                result += escape(tainted: string)
+            case let float as Float:
+                result += "\(float)"
                 
-            case let doubleValue as Double:
-                result += String(doubleValue)
-                
-            case let floatValue as Float:
-                result += String(floatValue)
-                
-            case let intValue as Int:
-                result += String(intValue)
-                
-            case let stringValue as String:
-                result += escape(tainted: .init(stringValue, as: .html(.element)))
+            case let bool as Bool:
+                result += "\(bool)"
                 
             case let date as Date:
                 
@@ -185,6 +162,37 @@ public struct Renderer {
                 formatter.timeStyle = .short
                 
                 result += formatter.string(from: date)
+            
+            case let string as LocalizedString:
+
+                switch context {
+                case .trusted:
+                    result += try render(localized: string)
+                    
+                case .tainted(let subcontext):
+                    result +=  escape(element: try render(localized: string), with: subcontext)
+                }
+                
+            case let string as MarkdownString:
+                result += try render(markdownstring: string, within: context)
+                
+            case let modifier as EnvironmentModifier:
+                try render(modifier: modifier, on: &result, within: context)
+                
+            case let value as EnvironmentValue:
+                result += try render(envelement: value, within: context)
+                
+            case let statement as Statement:
+                try render(statement: statement, on: &result, within: context)
+                
+            case let sequence as Sequence:
+                try render(loop: sequence, on: &result, within: context)
+                
+            case let string as EnvironmentString:
+                try render(envstring: string, on: &result, within: context)
+                
+            case let string as HtmlString:
+                result += string.value
                 
             default:
                 throw Error.unknownContentType
@@ -208,7 +216,7 @@ public struct Renderer {
         result += ">"
         
         if let contents = element.content as? [Content] {
-            try render(contents: contents, on: &result)
+            try render(contents: contents, on: &result, within: element.context)
         }
         
         result += "</\(element.name)>"
@@ -239,7 +247,13 @@ public struct Renderer {
 
         result += "<!DOCTYPE "
         
-        result += element.content
+        switch element.context {
+        case .trusted:
+            result += element.content
+            
+        case .tainted(let subcontext):
+            result += escape(element: element.content, with: subcontext)
+        }
         
         result += ">"
     }
@@ -253,7 +267,13 @@ public struct Renderer {
         
         result += "<!--"
     
-        result += escape(tainted: .init(element.content, as: .html(.element)))
+        switch element.context {
+        case .trusted:
+            result += element.content
+            
+        case .tainted(let subcontext):
+            result += escape(element: element.content, with: subcontext)
+        }
         
         result += "-->"
     }
@@ -274,7 +294,7 @@ public struct Renderer {
         result += ">"
         
         if let contents = element.content as? [Content] {
-            try render(contents: contents, on: &result)
+            try render(contents: contents, on: &result, within: element.context)
         }
         
         result += "</\(element.name)>"
@@ -338,13 +358,13 @@ public struct Renderer {
     /// - Parameter modifier: The modifier to apply to
     ///
     /// - Returns: The string interpolation of the fellow content
-    private func render(modifier: EnvironmentModifier, on result: inout String) throws {
+    private func render(modifier: EnvironmentModifier, on result: inout String, within context: EscapeContext) throws {
         
         if let value = modifier.value {
             self.environment.upsert(value, for: modifier.key)
         }
         
-        try render(contents: modifier.content, on: &result)
+        try render(contents: modifier.content, on: &result, within: context)
     }
     
     /// Renders a environment value
@@ -352,11 +372,21 @@ public struct Renderer {
     /// - Parameter value: The environment value to resolve
     ///
     /// - Returns: The string representation
-    private func render(envattribute value: EnvironmentValue) throws -> String {
+    private func render(envattribute value: EnvironmentValue, within context: EscapeContext) throws -> String {
         
         let value = try self.environment.resolve(value: value)
         
         switch value {
+        case let stringValue as String:
+            
+            switch context {
+            case .trusted:
+                return stringValue
+                
+            case .tainted(let subcontext):
+                return escape(attribute: stringValue, with: subcontext)
+            }
+            
         case let floatValue as Float:
             return String(floatValue)
             
@@ -365,9 +395,6 @@ public struct Renderer {
             
         case let doubleValue as Double:
             return String(doubleValue)
-            
-        case let stringValue as String:
-            return escape(tainted: .init(stringValue, as: .html(.attribute)))
             
         case let dateValue as Date:
             
@@ -388,11 +415,21 @@ public struct Renderer {
     /// - Parameter value: The environment value to resolve
     ///
     /// - Returns: The string representation
-    private func render(envelement value: EnvironmentValue) throws -> String {
+    private func render(envelement value: EnvironmentValue, within context: EscapeContext) throws -> String {
         
         let value = try self.environment.resolve(value: value)
         
         switch value {
+        case let stringValue as String:
+
+            switch context {
+            case .trusted:
+                return stringValue
+                
+            case .tainted(let subcontext):
+                return escape(element: stringValue, with: subcontext)
+            }
+            
         case let floatValue as Float:
             return String(floatValue)
             
@@ -401,9 +438,6 @@ public struct Renderer {
             
         case let doubleValue as Double:
             return String(doubleValue)
-            
-        case let stringValue as String:
-            return escape(tainted: .init(stringValue, as: .html(.element)))
             
         case let dateValue as Date:
             
@@ -424,7 +458,7 @@ public struct Renderer {
     /// - Parameter statement: The statement to resolve
     ///
     /// - Returns: The rendered condition
-    private func render(statement: Statement, on result: inout String) throws {
+    private func render(statement: Statement, on result: inout String, within context: EscapeContext) throws {
         
         var evaluation = false
         
@@ -446,10 +480,10 @@ public struct Renderer {
         }
         
         if evaluation {
-            try render(contents: statement.first, on: &result)
+            try render(contents: statement.first, on: &result, within: context)
             
         } else {
-            try render(contents: statement.second, on: &result)
+            try render(contents: statement.second, on: &result, within: context)
         }
     }
     
@@ -458,27 +492,52 @@ public struct Renderer {
     /// - Parameter attributes: The attributes to render
     ///
     /// - Returns: The string representation
-    private func render(attributes: OrderedDictionary<String, Any>, on result: inout String) throws {
+    private func render(attributes: OrderedDictionary<String, AttributeData>, on result: inout String) throws {
         
         for attribute in attributes {
             
             result += " \(attribute.key)=\""
             
-            switch attribute.value {
-            case let string as LocalizedString:
-                result += try render(localized: string)
+            switch attribute.value.value {
+            case .string(let string):
                 
-            case let value as EnvironmentValue:
-                result += try render(envattribute: value)
+                switch attribute.value.context {
+                case .trusted:
+                    result += string
+                    
+                case .tainted(let subcontext):
+                    result += escape(attribute: string, with: subcontext)
+                }
                 
-            case let string as TaintedString:
-                result += escape(tainted: string)
+            case .bool(let bool):
                 
-            case let string as String:
-                result += escape(tainted: .init(string, as: .html(.attribute)))
+                result += "\(bool)"
                 
-            default:
-                result += "\(attribute.value)"
+            case .double(let double):
+                
+                result += "\(double)"
+                
+            case .float(let float):
+                
+                result += "\(float)"
+                
+            case .int(let int):
+                
+                result += "\(int)"
+                
+            case .localized(let localized):
+                
+                switch attribute.value.context {
+                case .trusted:
+                    result += try render(localized: localized)
+                    
+                case .tainted(let subcontext):
+                    result += try escape(attribute: render(localized: localized), with: subcontext)
+                }
+                
+            case .environment(let environment):
+                
+                result += try render(envattribute: environment, within: attribute.value.context)
             }
             
             result += "\""
@@ -490,8 +549,19 @@ public struct Renderer {
     /// - Parameter markstring: The string to render
     ///
     /// - Returns: The string representation
-    private func render(markstring: MarkdownString) throws -> String {
-        return markdown.render(string: escape(tainted: .init(markstring.raw, as: .html(.element))))
+    private func render(markdownstring: MarkdownString, within context: EscapeContext) throws -> String {
+        
+        if !features.contains(.markdown) {
+            return markdownstring.raw
+        }
+        
+        switch context {
+        case .trusted:
+            return self.markdown.render(string: markdownstring.raw)
+            
+        case .tainted(let subcontext):
+            return self.markdown.render(string: escape(element: markdownstring.raw, with: subcontext))
+        }
     }
     
     /// Renders a environment string
@@ -499,8 +569,8 @@ public struct Renderer {
     /// - Parameter envstring: The string to render
     ///
     /// - Returns: The string representation
-    private func render(envstring: EnvironmentString, on result: inout String) throws {
-        return try render(contents: envstring.values, on: &result)
+    private func render(envstring: EnvironmentString, on result: inout String, within context: EscapeContext) throws {
+        return try render(contents: envstring.values, on: &result, within: context)
     }
     
     /// Renders an environment loop
@@ -508,7 +578,7 @@ public struct Renderer {
     /// - Parameter loop: The sequence to resolve
     ///
     /// - Returns: The string representation
-    private func render(loop: Sequence, on result: inout String) throws {
+    private func render(loop: Sequence, on result: inout String, within context: EscapeContext) throws {
         
         let value = try environment.resolve(value: loop.value)
         
@@ -517,7 +587,7 @@ public struct Renderer {
         }
         
         for value in sequence {
-            try render(loop: loop.content, with: value, on: &result)
+            try render(loop: loop.content, with: value, on: &result, within: context)
         }
     }
     
@@ -527,16 +597,13 @@ public struct Renderer {
     ///   - contents: The content to render
     ///   - value: The value to resolve the environment value with
     ///   - result: The rendered content
-    private func render(loop contents: [Content], with value: Any, on result: inout String) throws {
+    private func render(loop contents: [Content], with value: Any, on result: inout String, within context: EscapeContext) throws {
         
         for content in contents {
             
             switch content {
             case let element as any ContentNode:
-                try render(loop: element, with: value, on: &result)
-                
-            case let element as any CustomNode:
-                try render(loop: element, with: value, on: &result)
+                try render(loop: element, with: value, on: &result, within: context)
                 
             case let element as EmptyNode:
                 try render(element: element, on: &result)
@@ -544,27 +611,48 @@ public struct Renderer {
             case let element as CommentNode:
                 render(element: element, on: &result)
                 
-            case let string as LocalizedString:
-                result += try render(localized: string)
-                
-            case let string as MarkdownString:
-                result += try render(markstring: string)
-                
-            case let string as EnvironmentString:
-                try render(envstring: string, on: &result)
-                
-            case let string as HtmlString:
-                result += string.value
-                
-            case let string as TaintedString:
-                result += escape(tainted: string)
+            case let element as any CustomNode:
+                try render(loop: element, with: value, on: &result, within: context)
                 
             case let string as String:
-                result += escape(tainted: .init(string, as: .html(.element)))
+
+                switch context {
+                case .trusted:
+                    result += string
+                    
+                case .tainted(let subcontext):
+                    result += escape(element: string, with: subcontext)
+                }
+                
+            case let string as LocalizedString:
+
+                switch context {
+                case .trusted:
+                    result += try render(localized: string)
+                    
+                case .tainted(let subcontext):
+                    result +=  escape(element: try render(localized: string), with: subcontext)
+                }
+                
+            case let string as MarkdownString:
+                result += try render(markdownstring: string, within: context)
+                
+            case let string as EnvironmentString:
+                try render(envstring: string, on: &result, within: context)
                 
             case is EnvironmentValue:
                 
                 switch value {
+                case let stringValue as String:
+
+                    switch context {
+                    case .trusted:
+                        result += stringValue
+                        
+                    case .tainted(let subcontext):
+                        result += escape(element: stringValue, with: subcontext)
+                    }
+                    
                 case let floatValue as Float:
                     result += String(floatValue)
                     
@@ -573,9 +661,6 @@ public struct Renderer {
                     
                 case let doubleValue as Double:
                     result += String(doubleValue)
-                    
-                case let stringValue as String:
-                    result += escape(tainted: .init(stringValue, as: .html(.element)))
                     
                 case let dateValue as Date:
                     
@@ -590,6 +675,9 @@ public struct Renderer {
                     throw Error.unknownValueType
                 }
                 
+            case let string as HtmlString:
+                result += string.value
+                
             default:
                 throw Error.unknownContentType
             }
@@ -602,7 +690,7 @@ public struct Renderer {
     ///   - element: The element to render
     ///   - value: The value to resolve the environment value with
     ///   - result: The result
-    private func render(loop element: some ContentNode, with value: Any, on result: inout String) throws {
+    private func render(loop element: some ContentNode, with value: Any, on result: inout String, within context: EscapeContext) throws {
         
         result += "<\(element.name)"
         
@@ -613,7 +701,7 @@ public struct Renderer {
         result += ">"
         
         if let contents = element.content as? [Content] {
-            try render(loop: contents, with: value, on: &result)
+            try render(loop: contents, with: value, on: &result, within: context)
         }
         
         result += "</\(element.name)>"
@@ -625,7 +713,7 @@ public struct Renderer {
     ///   - element: The element to render
     ///   - value: The value to resolve the environment value with
     ///   - result: The string representation
-    private func render(loop element: some CustomNode, with value: Any, on result: inout String) throws {
+    private func render(loop element: some CustomNode, with value: Any, on result: inout String, within context: EscapeContext) throws {
         
         result += "<\(element.name)"
         
@@ -636,7 +724,7 @@ public struct Renderer {
         result += ">"
         
         if let contents = element.content as? [Content] {
-            try render(loop: contents, with: value, on: &result)
+            try render(loop: contents, with: value, on: &result, within: context)
         }
         
         result += "</\(element.name)>"
@@ -648,64 +736,69 @@ public struct Renderer {
     ///   - envstring: The environment string to render
     ///   - value: The raw value to resolve the environment value with
     ///   - result: The string representation
-    private func render(loop envstring: EnvironmentString, with value: Any, on result: inout String) throws {
-        try render(loop: envstring.values, with: value, on: &result)
+    private func render(loop envstring: EnvironmentString, with value: Any, on result: inout String, within context: EscapeContext) throws {
+        try render(loop: envstring.values, with: value, on: &result, within: context)
     }
     
-    /// Escapes a tainted string
-    /// 
-    /// It takes precautions such as output encoding and input sanitization to ensure a safe output. Though the escaping alone 
-    /// does not guarantee complete safety. It only helps mitigate the risk.
+    /// Escapes a tainted element.
     ///
     /// - Parameter string: The string value to escape.
+    /// - Parameter context: The context of the string.
     ///  
     /// - Returns: The untainted string
-    private func escape(tainted string: TaintedString) -> String {
-
+    private func escape(element string: String, with context: EscapeContext.Subcontext) -> String {
+        
         if !features.contains(.escaping) {
-            
-            // Bail early, if the escaping is not desired
-            return string.value
+            return string
         }
         
-        switch string.context {
-        case .html(let subcontext):
+        switch context {
+        case .html:
+            return encoder.encode(string, as: .html(.element))
             
-            switch subcontext {
-            case .attribute:
-                return encoder.encode(string.value, as: .html(.attribute))
-                
-            case .element:
-                return encoder.encode(string.value, as: .html(.element))
-            }
+        case .css:
             
-        case .css(let subcontext):
+            // To prevent breaking out of context
+            let sanitized = sanitizer.strip("style", from: string)
             
-            switch subcontext {
-            case .attribute:
-                return encoder.encode(string.value, as: .css(.attribute))
-                
-            case .element:
-                
-                // To prevent breaking out of context
-                let sanitized = sanitizer.strip("style", from: string.value)
+            return encoder.encode(sanitized, as: .css(.element))
             
-                return encoder.encode(sanitized, as: .css(.element))
-            }
+        case .js:
             
-        case .js(let subcontext):
+            // To prevent breaking out of context
+            let sanitized = sanitizer.strip("script", from: string)
             
-            switch subcontext {
-            case .attribute:
-                return encoder.encode(string.value, as: .js(.attribute))
-                
-            case .element:
-                
-                // To prevent breaking out of context
-                let sanitized = sanitizer.strip("script", from: string.value)
-
-                return encoder.encode(sanitized, as: .js(.element))
-            }
+            return encoder.encode(sanitized, as: .js(.element))
+            
+        case .url:
+            return encoder.encode(string, as: .html(.element))
+        }
+    }
+    
+    /// Escapes a tainted attribute.
+    /// 
+    /// - Parameter string: The string value to escape.
+    /// - Parameter context: The context of the string.
+    ///  
+    /// - Returns: The untainted string
+    private func escape(attribute string: String, with context: EscapeContext.Subcontext) -> String {
+        
+        if !features.contains(.escaping) {
+            return string
+        }
+        
+        switch context {
+        case .html:
+            return encoder.encode(string, as: .html(.attribute))
+            
+        case .css:
+            return encoder.encode(string, as: .css(.attribute))
+            
+        case .js:
+            return encoder.encode(string, as: .js(.attribute))
+            
+        case .url:
+            return encoder.encode(string, as: .html(.attribute))
         }
     }
 }

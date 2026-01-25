@@ -15,17 +15,20 @@ internal protocol ContentNode: Node {
     var name: String { get }
     
     /// The attributes of the node.
-    var attributes: OrderedDictionary<String, Any>? { get }
+    var attributes: OrderedDictionary<String, AttributeData>? { get }
     
     /// The content of the node.
     var content: [Content] { get }
+    
+    /// The context of the node.
+    var context: EscapeContext { get }
     
     /// Initiates a node.
     ///
     /// - Parameters:
     ///    - attributes:
     ///    - content:
-    init(attributes: OrderedDictionary<String, Any>?, content: [Content])
+    init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content])
 }
 
 extension ContentNode {
@@ -33,12 +36,12 @@ extension ContentNode {
     internal func modify(_ element: Self) -> Self {
         
         guard var attributes = self.attributes else {
-            return .init(attributes: element.attributes, content: self.content)
+            return .init(attributes: element.attributes, context: self.context, content: self.content)
         }
         
         attributes.merge(element.attributes!) { (_, new) in new }
        
-        return .init(attributes: attributes, content: self.content)
+        return .init(attributes: attributes, context: self.context, content: self.content)
     }
 }
 
@@ -50,13 +53,13 @@ internal protocol EmptyNode: Node {
     var name: String { get }
     
     /// The attributes of the node.
-    var attributes: OrderedDictionary<String, Any>? { get }
+    var attributes: OrderedDictionary<String, AttributeData>? { get }
     
     /// Initiates a node.
     ///
     /// - Parameters:
     ///    - attributes:
-    init(attributes: OrderedDictionary<String, Any>?)
+    init(attributes: OrderedDictionary<String, AttributeData>?)
 }
 
 extension EmptyNode {
@@ -79,6 +82,9 @@ internal protocol CommentNode: Node {
     
     /// The content of the node.
     var content: String { get }
+    
+    /// The context of the node.
+    var context: EscapeContext { get }
 }
 
 /// The protocol defines the document node.
@@ -87,6 +93,9 @@ internal protocol DocumentNode: Node {
     
     /// The content of the node.
     var content: String { get }
+    
+    /// The context of the node.
+    var context: EscapeContext { get }
 }
 
 @_documentation(visibility: internal)
@@ -98,17 +107,20 @@ public protocol CustomNode: Node {
     var name: String { get set }
     
     /// The attributes of the node.
-    var attributes: OrderedDictionary<String, Any>? { get }
+    var attributes: OrderedDictionary<String, AttributeData>? { get }
     
     /// The content of the node.
     var content: [Content] { get }
+    
+    /// The context of the node.
+    var context: EscapeContext { get }
     
     /// Initiates a node.
     ///
     /// - Parameters:
     ///    - attributes:
     ///    - content:
-    init(name: String, attributes: OrderedDictionary<String, Any>?, content: [Content])
+    init(name: String, attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content])
 }
 
 extension CustomNode {
@@ -116,11 +128,11 @@ extension CustomNode {
     internal func modify(_ element: Self) -> Self {
         
         guard var attributes = self.attributes else {
-            return .init(name: element.name, attributes: element.attributes, content: self.content)
+            return .init(name: element.name, attributes: element.attributes, context: self.context, content: self.content)
         }
         
         attributes.merge(element.attributes!) { (_, new) in new }
        
-        return .init(name: element.name, attributes: attributes, content: self.content)
+        return .init(name: element.name, attributes: attributes, context: self.context, content: self.content)
     }
 }
