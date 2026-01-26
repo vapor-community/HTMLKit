@@ -51,10 +51,17 @@ public struct OptionGroup: ContentNode, InputElement {
         self.content = content
     }
     
-    public func modify(if condition: Bool, element: (OptionGroup) -> OptionGroup) -> OptionGroup {
+    public func modify(if condition: Bool, use strategy: MergeStrategy = .replacing, element: (OptionGroup) -> OptionGroup) -> OptionGroup {
         
         if condition {
-            return self.modify(element(self))
+
+            switch strategy {
+            case .combining:
+                return self.combine(element(self))
+                
+            case .replacing:
+                return self.replace(element(self))
+            }
         }
         
         return self
@@ -66,7 +73,7 @@ public struct OptionGroup: ContentNode, InputElement {
             return self
         }
         
-        return self.modify(element(self, value as T))
+        return self.replace(element(self, value as T))
     }
 }
 
@@ -458,10 +465,17 @@ public struct Option: ContentNode, InputElement {
         self.content = content
     }
     
-    public func modify(if condition: Bool, element: (Option) -> Option) -> Option {
+    public func modify(if condition: Bool, use strategy: MergeStrategy = .replacing, element: (Option) -> Option) -> Option {
         
         if condition {
-            return self.modify(element(self))
+
+            switch strategy {
+            case .combining:
+                return self.combine(element(self))
+                
+            case .replacing:
+                return self.replace(element(self))
+            }
         }
         
         return self
@@ -473,7 +487,7 @@ public struct Option: ContentNode, InputElement {
             return self
         }
         
-        return self.modify(element(self, value as T))
+        return self.replace(element(self, value as T))
     }
 }
 
@@ -897,10 +911,17 @@ public struct Legend: ContentNode, InputElement {
         self.content = content
     }
     
-    public func modify(if condition: Bool, element: (Legend) -> Legend) -> Legend {
+    public func modify(if condition: Bool, use strategy: MergeStrategy = .replacing, element: (Legend) -> Legend) -> Legend {
         
         if condition {
-            return self.modify(element(self))
+
+            switch strategy {
+            case .combining:
+                return self.combine(element(self))
+                
+            case .replacing:
+                return self.replace(element(self))
+            }
         }
         
         return self
@@ -912,7 +933,7 @@ public struct Legend: ContentNode, InputElement {
             return self
         }
         
-        return self.modify(element(self, value as T))
+        return self.replace(element(self, value as T))
     }
 }
 
@@ -1284,10 +1305,17 @@ public struct Summary: ContentNode, InputElement {
         self.content = content
     }
     
-    public func modify(if condition: Bool, element: (Summary) -> Summary) -> Summary {
+    public func modify(if condition: Bool, use strategy: MergeStrategy = .replacing, element: (Summary) -> Summary) -> Summary {
         
         if condition {
-            return self.modify(element(self))
+
+            switch strategy {
+            case .combining:
+                return self.combine(element(self))
+                
+            case .replacing:
+                return self.replace(element(self))
+            }
         }
         
         return self
@@ -1299,7 +1327,7 @@ public struct Summary: ContentNode, InputElement {
             return self
         }
         
-        return self.modify(element(self, value as T))
+        return self.replace(element(self, value as T))
     }
 }
 

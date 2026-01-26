@@ -44,10 +44,17 @@ public struct Circle: ContentNode, VectorElement {
         self.content = content
     }
     
-    public func modify(if condition: Bool, element: (Circle) -> Circle) -> Circle {
+    public func modify(if condition: Bool, use strategy: MergeStrategy = .replacing, element: (Circle) -> Circle) -> Circle {
         
         if condition {
-            return self.modify(element(self))
+
+            switch strategy {
+            case .combining:
+                return self.combine(element(self))
+                
+            case .replacing:
+                return self.replace(element(self))
+            }
         }
         
         return self
@@ -59,7 +66,7 @@ public struct Circle: ContentNode, VectorElement {
             return self
         }
         
-        return self.modify(element(self, value as T))
+        return self.replace(element(self, value as T))
     }
 }
 
@@ -239,10 +246,17 @@ public struct Rectangle: ContentNode, VectorElement {
         self.content = content
     }
     
-    public func modify(if condition: Bool, element: (Rectangle) -> Rectangle) -> Rectangle {
+    public func modify(if condition: Bool, use strategy: MergeStrategy = .replacing, element: (Rectangle) -> Rectangle) -> Rectangle {
         
         if condition {
-            return self.modify(element(self))
+
+            switch strategy {
+            case .combining:
+                return self.combine(element(self))
+                
+            case .replacing:
+                return self.replace(element(self))
+            }
         }
         
         return self
@@ -254,7 +268,7 @@ public struct Rectangle: ContentNode, VectorElement {
             return self
         }
         
-        return self.modify(element(self, value as T))
+        return self.replace(element(self, value as T))
     }
 }
 
@@ -455,10 +469,17 @@ public struct Ellipse: ContentNode, VectorElement {
         self.content = content
     }
     
-    public func modify(if condition: Bool, element: (Ellipse) -> Ellipse) -> Ellipse {
+    public func modify(if condition: Bool, use strategy: MergeStrategy = .replacing, element: (Ellipse) -> Ellipse) -> Ellipse {
         
         if condition {
-            return self.modify(element(self))
+
+            switch strategy {
+            case .combining:
+                return self.combine(element(self))
+                
+            case .replacing:
+                return self.replace(element(self))
+            }
         }
         
         return self
@@ -470,7 +491,7 @@ public struct Ellipse: ContentNode, VectorElement {
             return self
         }
         
-        return self.modify(element(self, value as T))
+        return self.replace(element(self, value as T))
     }
 }
 
@@ -663,10 +684,17 @@ public struct Line: ContentNode, VectorElement {
         self.content = content
     }
     
-    public func modify(if condition: Bool, element: (Line) -> Line) -> Line {
+    public func modify(if condition: Bool, use strategy: MergeStrategy = .replacing, element: (Line) -> Line) -> Line {
         
         if condition {
-            return self.modify(element(self))
+
+            switch strategy {
+            case .combining:
+                return self.combine(element(self))
+                
+            case .replacing:
+                return self.replace(element(self))
+            }
         }
         
         return self
@@ -678,7 +706,7 @@ public struct Line: ContentNode, VectorElement {
             return self
         }
         
-        return self.modify(element(self, value as T))
+        return self.replace(element(self, value as T))
     }
 }
 
@@ -836,10 +864,17 @@ public struct Polygon: ContentNode, VectorElement {
         self.content = content
     }
     
-    public func modify(if condition: Bool, element: (Polygon) -> Polygon) -> Polygon {
+    public func modify(if condition: Bool, use strategy: MergeStrategy = .replacing, element: (Polygon) -> Polygon) -> Polygon {
         
         if condition {
-            return self.modify(element(self))
+
+            switch strategy {
+            case .combining:
+                return self.combine(element(self))
+                
+            case .replacing:
+                return self.replace(element(self))
+            }
         }
         
         return self
@@ -851,7 +886,7 @@ public struct Polygon: ContentNode, VectorElement {
             return self
         }
         
-        return self.modify(element(self, value as T))
+        return self.replace(element(self, value as T))
     }
 }
 
@@ -1013,10 +1048,17 @@ public struct Polyline: ContentNode, VectorElement {
         self.content = content
     }
     
-    public func modify(if condition: Bool, element: (Polyline) -> Polyline) -> Polyline {
+    public func modify(if condition: Bool, use strategy: MergeStrategy = .replacing, element: (Polyline) -> Polyline) -> Polyline {
         
         if condition {
-            return self.modify(element(self))
+
+            switch strategy {
+            case .combining:
+                return self.combine(element(self))
+                
+            case .replacing:
+                return self.replace(element(self))
+            }
         }
         
         return self
@@ -1028,7 +1070,7 @@ public struct Polyline: ContentNode, VectorElement {
             return self
         }
         
-        return self.modify(element(self, value as T))
+        return self.replace(element(self, value as T))
     }
 }
 
@@ -1190,10 +1232,17 @@ public struct Path: ContentNode, VectorElement {
         self.content = content
     }
     
-    public func modify(if condition: Bool, element: (Path) -> Path) -> Path {
+    public func modify(if condition: Bool, use strategy: MergeStrategy = .replacing, element: (Path) -> Path) -> Path {
         
         if condition {
-            return self.modify(element(self))
+
+            switch strategy {
+            case .combining:
+                return self.combine(element(self))
+                
+            case .replacing:
+                return self.replace(element(self))
+            }
         }
         
         return self
@@ -1205,7 +1254,7 @@ public struct Path: ContentNode, VectorElement {
             return self
         }
         
-        return self.modify(element(self, value as T))
+        return self.replace(element(self, value as T))
     }
 }
 
@@ -1366,10 +1415,17 @@ public struct Group: ContentNode, VectorElement {
         self.content = content
     }
     
-    public func modify(if condition: Bool, element: (Group) -> Group) -> Group {
+    public func modify(if condition: Bool, use strategy: MergeStrategy = .replacing, element: (Group) -> Group) -> Group {
         
         if condition {
-            return self.modify(element(self))
+
+            switch strategy {
+            case .combining:
+                return self.combine(element(self))
+                
+            case .replacing:
+                return self.replace(element(self))
+            }
         }
         
         return self
@@ -1381,7 +1437,7 @@ public struct Group: ContentNode, VectorElement {
             return self
         }
         
-        return self.modify(element(self, value as T))
+        return self.replace(element(self, value as T))
     }
 }
 
@@ -1542,10 +1598,17 @@ public struct Use: ContentNode, VectorElement {
         self.content = content
     }
     
-    public func modify(if condition: Bool, element: (Use) -> Use) -> Use {
+    public func modify(if condition: Bool, use strategy: MergeStrategy = .replacing, element: (Use) -> Use) -> Use {
         
         if condition {
-            return self.modify(element(self))
+
+            switch strategy {
+            case .combining:
+                return self.combine(element(self))
+                
+            case .replacing:
+                return self.replace(element(self))
+            }
         }
         
         return self
@@ -1557,7 +1620,7 @@ public struct Use: ContentNode, VectorElement {
             return self
         }
         
-        return self.modify(element(self, value as T))
+        return self.replace(element(self, value as T))
     }
 }
 

@@ -26,10 +26,17 @@ public struct Source: EmptyNode, MediaElement {
         self.attributes = attributes
     }
     
-    public func modify(if condition: Bool, element: (Source) -> Source) -> Source {
+    public func modify(if condition: Bool, use strategy: MergeStrategy = .replacing, element: (Source) -> Source) -> Source {
         
         if condition {
-            return self.modify(element(self))
+
+            switch strategy {
+            case .combining:
+                return self.combine(element(self))
+                
+            case .replacing:
+                return self.replace(element(self))
+            }
         }
         
         return self
@@ -41,7 +48,7 @@ public struct Source: EmptyNode, MediaElement {
             return self
         }
         
-        return self.modify(element(self, value as T))
+        return self.replace(element(self, value as T))
     }
 }
 
@@ -378,10 +385,17 @@ public struct Track: EmptyNode, MediaElement {
         self.attributes = attributes
     }
     
-    public func modify(if condition: Bool, element: (Track) -> Track) -> Track {
+    public func modify(if condition: Bool, use strategy: MergeStrategy = .replacing, element: (Track) -> Track) -> Track {
         
         if condition {
-            return self.modify(element(self))
+
+            switch strategy {
+            case .combining:
+                return self.combine(element(self))
+                
+            case .replacing:
+                return self.replace(element(self))
+            }
         }
         
         return self
@@ -393,7 +407,7 @@ public struct Track: EmptyNode, MediaElement {
             return self
         }
         
-        return self.modify(element(self, value as T))
+        return self.replace(element(self, value as T))
     }
 }
 

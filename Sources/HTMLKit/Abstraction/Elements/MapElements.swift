@@ -33,10 +33,17 @@ public struct Area: EmptyNode, MapElement {
         self.attributes = attributes
     }
     
-    public func modify(if condition: Bool, element: (Area) -> Area) -> Area {
+    public func modify(if condition: Bool, use strategy: MergeStrategy = .replacing, element: (Area) -> Area) -> Area {
         
         if condition {
-            return self.modify(element(self))
+
+            switch strategy {
+            case .combining:
+                return self.combine(element(self))
+                
+            case .replacing:
+                return self.replace(element(self))
+            }
         }
         
         return self
@@ -48,7 +55,7 @@ public struct Area: EmptyNode, MapElement {
             return self
         }
         
-        return self.modify(element(self, value as T))
+        return self.replace(element(self, value as T))
     }
 }
 

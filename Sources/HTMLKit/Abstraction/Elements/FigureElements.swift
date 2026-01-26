@@ -45,10 +45,17 @@ public struct FigureCaption: ContentNode, FigureElement {
         self.content = content
     }
     
-    public func modify(if condition: Bool, element: (FigureCaption) -> FigureCaption) -> FigureCaption {
+    public func modify(if condition: Bool, use strategy: MergeStrategy = .replacing, element: (FigureCaption) -> FigureCaption) -> FigureCaption {
         
         if condition {
-            return self.modify(element(self))
+
+            switch strategy {
+            case .combining:
+                return self.combine(element(self))
+                
+            case .replacing:
+                return self.replace(element(self))
+            }
         }
         
         return self
@@ -60,7 +67,7 @@ public struct FigureCaption: ContentNode, FigureElement {
             return self
         }
         
-        return self.modify(element(self, value as T))
+        return self.replace(element(self, value as T))
     }
 }
 

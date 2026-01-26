@@ -38,10 +38,17 @@ public struct Title: ContentNode, HeadElement, VectorElement {
         self.content = content
     }
     
-    public func modify(if condition: Bool, element: (Title) -> Title) -> Title {
+    public func modify(if condition: Bool, use strategy: MergeStrategy = .replacing, element: (Title) -> Title) -> Title {
         
         if condition {
-            return self.modify(element(self))
+
+            switch strategy {
+            case .combining:
+                return self.combine(element(self))
+                
+            case .replacing:
+                return self.replace(element(self))
+            }
         }
         
         return self
@@ -53,7 +60,7 @@ public struct Title: ContentNode, HeadElement, VectorElement {
             return self
         }
         
-        return self.modify(element(self, value as T))
+        return self.replace(element(self, value as T))
     }
 }
 
@@ -342,10 +349,17 @@ public struct Base: EmptyNode, HeadElement {
         self.attributes = attributes
     }
     
-    public func modify(if condition: Bool, element: (Base) -> Base) -> Base {
+    public func modify(if condition: Bool, use strategy: MergeStrategy = .replacing, element: (Base) -> Base) -> Base {
         
         if condition {
-            return self.modify(element(self))
+
+            switch strategy {
+            case .combining:
+                return self.combine(element(self))
+                
+            case .replacing:
+                return self.replace(element(self))
+            }
         }
         
         return self
@@ -357,7 +371,7 @@ public struct Base: EmptyNode, HeadElement {
             return self
         }
         
-        return self.modify(element(self, value as T))
+        return self.replace(element(self, value as T))
     }
 }
 
@@ -644,10 +658,17 @@ public struct Meta: EmptyNode, HeadElement {
         self.attributes = attributes
     }
     
-    public func modify(if condition: Bool, element: (Meta) -> Meta) -> Meta {
+    public func modify(if condition: Bool, use strategy: MergeStrategy = .replacing, element: (Meta) -> Meta) -> Meta {
         
         if condition {
-            return self.modify(element(self))
+
+            switch strategy {
+            case .combining:
+                return self.combine(element(self))
+                
+            case .replacing:
+                return self.replace(element(self))
+            }
         }
         
         return self
@@ -659,7 +680,7 @@ public struct Meta: EmptyNode, HeadElement {
             return self
         }
         
-        return self.modify(element(self, value as T))
+        return self.replace(element(self, value as T))
     }
 }
 
@@ -989,10 +1010,17 @@ public struct Style: ContentNode, HeadElement {
         self.content = content
     }
     
-    public func modify(if condition: Bool, element: (Style) -> Style) -> Style {
+    public func modify(if condition: Bool, use strategy: MergeStrategy = .replacing, element: (Style) -> Style) -> Style {
         
         if condition {
-            return self.modify(element(self))
+
+            switch strategy {
+            case .combining:
+                return self.combine(element(self))
+                
+            case .replacing:
+                return self.replace(element(self))
+            }
         }
         
         return self
@@ -1004,7 +1032,7 @@ public struct Style: ContentNode, HeadElement {
             return self
         }
         
-        return self.modify(element(self, value as T))
+        return self.replace(element(self, value as T))
     }
 }
 
@@ -1302,10 +1330,17 @@ public struct Link: EmptyNode, HeadElement, BodyElement {
         self.attributes = attributes
     }
     
-    public func modify(if condition: Bool, element: (Link) -> Link) -> Link {
+    public func modify(if condition: Bool, use strategy: MergeStrategy = .replacing, element: (Link) -> Link) -> Link {
         
         if condition {
-            return self.modify(element(self))
+
+            switch strategy {
+            case .combining:
+                return self.combine(element(self))
+                
+            case .replacing:
+                return self.replace(element(self))
+            }
         }
         
         return self
@@ -1317,7 +1352,7 @@ public struct Link: EmptyNode, HeadElement, BodyElement {
             return self
         }
         
-        return self.modify(element(self, value as T))
+        return self.replace(element(self, value as T))
     }
 }
 

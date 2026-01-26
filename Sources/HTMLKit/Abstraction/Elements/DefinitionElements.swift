@@ -49,10 +49,17 @@ public struct TermName: ContentNode, DescriptionElement {
         self.content = content
     }
     
-    public func modify(if condition: Bool, element: (TermName) -> TermName) -> TermName {
+    public func modify(if condition: Bool, use strategy: MergeStrategy = .replacing, element: (TermName) -> TermName) -> TermName {
         
         if condition {
-            return self.modify(element(self))
+
+            switch strategy {
+            case .combining:
+                return self.combine(element(self))
+                
+            case .replacing:
+                return self.replace(element(self))
+            }
         }
         
         return self
@@ -64,7 +71,7 @@ public struct TermName: ContentNode, DescriptionElement {
             return self
         }
         
-        return self.modify(element(self, value as T))
+        return self.replace(element(self, value as T))
     }
 }
 
@@ -436,10 +443,17 @@ public struct TermDefinition: ContentNode, DescriptionElement {
         self.content = content
     }
     
-    public func modify(if condition: Bool, element: (TermDefinition) -> TermDefinition) -> TermDefinition {
+    public func modify(if condition: Bool, use strategy: MergeStrategy = .replacing, element: (TermDefinition) -> TermDefinition) -> TermDefinition {
         
         if condition {
-            return self.modify(element(self))
+
+            switch strategy {
+            case .combining:
+                return self.combine(element(self))
+                
+            case .replacing:
+                return self.replace(element(self))
+            }
         }
         
         return self
@@ -451,7 +465,7 @@ public struct TermDefinition: ContentNode, DescriptionElement {
             return self
         }
         
-        return self.modify(element(self, value as T))
+        return self.replace(element(self, value as T))
     }
 }
 

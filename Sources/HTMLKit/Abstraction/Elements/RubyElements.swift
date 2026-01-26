@@ -47,10 +47,17 @@ public struct RubyText: ContentNode, RubyElement {
         self.content = content
     }
     
-    public func modify(if condition: Bool, element: (RubyText) -> RubyText) -> RubyText {
+    public func modify(if condition: Bool, use strategy: MergeStrategy = .replacing, element: (RubyText) -> RubyText) -> RubyText {
         
         if condition {
-            return self.modify(element(self))
+
+            switch strategy {
+            case .combining:
+                return self.combine(element(self))
+                
+            case .replacing:
+                return self.replace(element(self))
+            }
         }
         
         return self
@@ -62,7 +69,7 @@ public struct RubyText: ContentNode, RubyElement {
             return self
         }
         
-        return self.modify(element(self, value as T))
+        return self.replace(element(self, value as T))
     }
 }
 
@@ -438,10 +445,17 @@ public struct RubyPronunciation: ContentNode, RubyElement {
         self.content = content
     }
     
-    public func modify(if condition: Bool, element: (RubyPronunciation) -> RubyPronunciation) -> RubyPronunciation {
+    public func modify(if condition: Bool, use strategy: MergeStrategy = .replacing, element: (RubyPronunciation) -> RubyPronunciation) -> RubyPronunciation {
         
         if condition {
-            return self.modify(element(self))
+
+            switch strategy {
+            case .combining:
+                return self.combine(element(self))
+                
+            case .replacing:
+                return self.replace(element(self))
+            }
         }
         
         return self
@@ -453,7 +467,7 @@ public struct RubyPronunciation: ContentNode, RubyElement {
             return self
         }
         
-        return self.modify(element(self, value as T))
+        return self.replace(element(self, value as T))
     }
 }
 

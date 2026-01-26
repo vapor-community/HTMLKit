@@ -29,10 +29,17 @@ public struct Parameter: EmptyNode, ObjectElement {
         self.attributes = attributes
     }
     
-    public func modify(if condition: Bool, element: (Parameter) -> Parameter) -> Parameter {
+    public func modify(if condition: Bool, use strategy: MergeStrategy = .replacing, element: (Parameter) -> Parameter) -> Parameter {
         
         if condition {
-            return self.modify(element(self))
+
+            switch strategy {
+            case .combining:
+                return self.combine(element(self))
+                
+            case .replacing:
+                return self.replace(element(self))
+            }
         }
         
         return self
@@ -44,7 +51,7 @@ public struct Parameter: EmptyNode, ObjectElement {
             return self
         }
         
-        return self.modify(element(self, value as T))
+        return self.replace(element(self, value as T))
     }
 }
 

@@ -3,7 +3,7 @@
 public struct EnumeratedList {
     
     /// The values within the list.
-    internal let values: [String]
+    internal var values: [String]
     
     /// The separator for the list.
     internal let separator: String
@@ -22,6 +22,10 @@ public struct EnumeratedList {
     /// The string represenation of the list.
     internal var description: String {
         return values.joined(separator: separator)
+    }
+    
+    internal mutating func append(_ values: [String]) {
+        self.values.append(contentsOf: values)
     }
 }
 

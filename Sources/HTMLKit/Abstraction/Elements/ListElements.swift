@@ -45,10 +45,17 @@ public struct ListItem: ContentNode, ListElement {
         self.content = content
     }
     
-    public func modify(if condition: Bool, element: (ListItem) -> ListItem) -> ListItem {
+    public func modify(if condition: Bool, use strategy: MergeStrategy = .replacing, element: (ListItem) -> ListItem) -> ListItem {
         
         if condition {
-            return modify(element(self))
+
+            switch strategy {
+            case .combining:
+                return self.combine(element(self))
+                
+            case .replacing:
+                return self.replace(element(self))
+            }
         }
         
         return self
@@ -60,7 +67,7 @@ public struct ListItem: ContentNode, ListElement {
             return self
         }
         
-        return self.modify(element(self, value as T))
+        return self.replace(element(self, value as T))
     }
 }
 

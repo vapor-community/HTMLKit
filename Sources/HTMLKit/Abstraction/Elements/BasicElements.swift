@@ -101,10 +101,17 @@ public struct Html: ContentNode, BasicElement {
         self.content = content
     }
     
-    public func modify(if condition: Bool, element: (Html) -> Html) -> Html {
+    public func modify(if condition: Bool, use strategy: MergeStrategy = .replacing, element: (Html) -> Html) -> Html {
         
         if condition {
-            return self.modify(element(self))
+
+            switch strategy {
+            case .combining:
+                return self.combine(element(self))
+                
+            case .replacing:
+                return self.replace(element(self))
+            }
         }
         
         return self
@@ -116,7 +123,7 @@ public struct Html: ContentNode, BasicElement {
             return self
         }
         
-        return self.modify(element(self, value as T))
+        return self.replace(element(self, value as T))
     }
 }
 
@@ -410,10 +417,17 @@ public struct Custom: CustomNode, GlobalElement {
         self.content = content
     }
     
-    public func modify(if condition: Bool, element: (Custom) -> Custom) -> Custom {
+    public func modify(if condition: Bool, use strategy: MergeStrategy = .replacing, element: (Custom) -> Custom) -> Custom {
         
         if condition {
-            return self.modify(element(self))
+
+            switch strategy {
+            case .combining:
+                return self.combine(element(self))
+                
+            case .replacing:
+                return self.replace(element(self))
+            }
         }
         
         return self
@@ -425,7 +439,7 @@ public struct Custom: CustomNode, GlobalElement {
             return self
         }
         
-        return self.modify(element(self, value as T))
+        return self.replace(element(self, value as T))
     }
 }
 

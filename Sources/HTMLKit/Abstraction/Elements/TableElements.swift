@@ -70,10 +70,17 @@ public struct Caption: ContentNode, TableElement {
         self.content = content
     }
     
-    public func modify(if condition: Bool, element: (Caption) -> Caption) -> Caption {
+    public func modify(if condition: Bool, use strategy: MergeStrategy = .replacing, element: (Caption) -> Caption) -> Caption {
         
         if condition {
-            return self.modify(element(self))
+
+            switch strategy {
+            case .combining:
+                return self.combine(element(self))
+                
+            case .replacing:
+                return self.replace(element(self))
+            }
         }
         
         return self
@@ -85,7 +92,7 @@ public struct Caption: ContentNode, TableElement {
             return self
         }
         
-        return self.modify(element(self, value as T))
+        return self.replace(element(self, value as T))
     }
 }
 
@@ -456,10 +463,17 @@ public struct ColumnGroup: ContentNode, TableElement {
         self.content = content
     }
     
-    public func modify(if condition: Bool, element: (ColumnGroup) -> ColumnGroup) -> ColumnGroup {
+    public func modify(if condition: Bool, use strategy: MergeStrategy = .replacing, element: (ColumnGroup) -> ColumnGroup) -> ColumnGroup {
         
         if condition {
-            return self.modify(element(self))
+
+            switch strategy {
+            case .combining:
+                return self.combine(element(self))
+                
+            case .replacing:
+                return self.replace(element(self))
+            }
         }
         
         return self
@@ -471,7 +485,7 @@ public struct ColumnGroup: ContentNode, TableElement {
             return self
         }
         
-        return self.modify(element(self, value as T))
+        return self.replace(element(self, value as T))
     }
 }
 
@@ -761,10 +775,17 @@ public struct Column: EmptyNode, TableElement {
         self.attributes = attributes
     }
     
-    public func modify(if condition: Bool, element: (Column) -> Column) -> Column {
+    public func modify(if condition: Bool, use strategy: MergeStrategy = .replacing, element: (Column) -> Column) -> Column {
         
         if condition {
-            return self.modify(element(self))
+
+            switch strategy {
+            case .combining:
+                return self.combine(element(self))
+                
+            case .replacing:
+                return self.replace(element(self))
+            }
         }
         
         return self
@@ -776,7 +797,7 @@ public struct Column: EmptyNode, TableElement {
             return self
         }
         
-        return self.modify(element(self, value as T))
+        return self.replace(element(self, value as T))
     }
 }
 
@@ -1076,10 +1097,17 @@ public struct TableBody: ContentNode, TableElement {
         self.content = content
     }
     
-    public func modify(if condition: Bool, element: (TableBody) -> TableBody) -> TableBody {
+    public func modify(if condition: Bool, use strategy: MergeStrategy = .replacing, element: (TableBody) -> TableBody) -> TableBody {
         
         if condition {
-            return self.modify(element(self))
+
+            switch strategy {
+            case .combining:
+                return self.combine(element(self))
+                
+            case .replacing:
+                return self.replace(element(self))
+            }
         }
         
         return self
@@ -1091,7 +1119,7 @@ public struct TableBody: ContentNode, TableElement {
             return self
         }
         
-        return self.modify(element(self, value as T))
+        return self.replace(element(self, value as T))
     }
 }
 
@@ -1479,10 +1507,17 @@ public struct TableHead: ContentNode, TableElement {
         self.content = content
     }
     
-    public func modify(if condition: Bool, element: (TableHead) -> TableHead) -> TableHead {
+    public func modify(if condition: Bool, use strategy: MergeStrategy = .replacing, element: (TableHead) -> TableHead) -> TableHead {
         
         if condition {
-            return self.modify(element(self))
+
+            switch strategy {
+            case .combining:
+                return self.combine(element(self))
+                
+            case .replacing:
+                return self.replace(element(self))
+            }
         }
         
         return self
@@ -1494,7 +1529,7 @@ public struct TableHead: ContentNode, TableElement {
             return self
         }
         
-        return self.modify(element(self, value as T))
+        return self.replace(element(self, value as T))
     }
 }
 
@@ -1882,10 +1917,17 @@ public struct TableFoot: ContentNode, TableElement {
         self.content = content
     }
     
-    public func modify(if condition: Bool, element: (TableFoot) -> TableFoot) -> TableFoot {
+    public func modify(if condition: Bool, use strategy: MergeStrategy = .replacing, element: (TableFoot) -> TableFoot) -> TableFoot {
         
         if condition {
-            return self.modify(element(self))
+
+            switch strategy {
+            case .combining:
+                return self.combine(element(self))
+                
+            case .replacing:
+                return self.replace(element(self))
+            }
         }
         
         return self
@@ -1897,7 +1939,7 @@ public struct TableFoot: ContentNode, TableElement {
             return self
         }
         
-        return self.modify(element(self, value as T))
+        return self.replace(element(self, value as T))
     }
 }
 
@@ -2271,10 +2313,17 @@ public struct TableRow: ContentNode, TableElement {
         self.content = content
     }
     
-    public func modify(if condition: Bool, element: (TableRow) -> TableRow) -> TableRow {
+    public func modify(if condition: Bool, use strategy: MergeStrategy = .replacing, element: (TableRow) -> TableRow) -> TableRow {
         
         if condition {
-            return self.modify(element(self))
+
+            switch strategy {
+            case .combining:
+                return self.combine(element(self))
+                
+            case .replacing:
+                return self.replace(element(self))
+            }
         }
         
         return self
@@ -2286,7 +2335,7 @@ public struct TableRow: ContentNode, TableElement {
             return self
         }
         
-        return self.modify(element(self, value as T))
+        return self.replace(element(self, value as T))
     }
 }
 
@@ -2665,10 +2714,17 @@ public struct DataCell: ContentNode, TableElement {
         self.content = content
     }
     
-    public func modify(if condition: Bool, element: (DataCell) -> DataCell) -> DataCell {
+    public func modify(if condition: Bool, use strategy: MergeStrategy = .replacing, element: (DataCell) -> DataCell) -> DataCell {
         
         if condition {
-            return self.modify(element(self))
+
+            switch strategy {
+            case .combining:
+                return self.combine(element(self))
+                
+            case .replacing:
+                return self.replace(element(self))
+            }
         }
         
         return self
@@ -2680,7 +2736,7 @@ public struct DataCell: ContentNode, TableElement {
             return self
         }
         
-        return self.modify(element(self, value as T))
+        return self.replace(element(self, value as T))
     }
 }
 
@@ -3068,10 +3124,17 @@ public struct HeaderCell: ContentNode, TableElement {
         self.content = content
     }
     
-    public func modify(if condition: Bool, element: (HeaderCell) -> HeaderCell) -> HeaderCell {
+    public func modify(if condition: Bool, use strategy: MergeStrategy = .replacing, element: (HeaderCell) -> HeaderCell) -> HeaderCell {
         
         if condition {
-            return self.modify(element(self))
+
+            switch strategy {
+            case .combining:
+                return self.combine(element(self))
+                
+            case .replacing:
+                return self.replace(element(self))
+            }
         }
         
         return self
@@ -3083,7 +3146,7 @@ public struct HeaderCell: ContentNode, TableElement {
             return self
         }
         
-        return self.modify(element(self, value as T))
+        return self.replace(element(self, value as T))
     }
 }
 

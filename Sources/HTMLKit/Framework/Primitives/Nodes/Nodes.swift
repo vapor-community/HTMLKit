@@ -33,13 +33,51 @@ internal protocol ContentNode: Node {
 
 extension ContentNode {
     
-    internal func modify(_ element: Self) -> Self {
+    /// Replaces the attributes, with the new values taking precedence.
+    /// 
+    /// - Parameter element: The element to replace with.
+    /// 
+    /// - Returns: The element
+    internal func replace(_ element: Self) -> Self {
         
         guard var attributes = self.attributes else {
             return .init(attributes: element.attributes, context: self.context, content: self.content)
         }
         
         attributes.merge(element.attributes!) { (_, new) in new }
+       
+        return .init(attributes: attributes, context: self.context, content: self.content)
+    }
+    
+    /// Combines the attributes, incorporating the new values.
+    /// 
+    /// - Parameter element: The element to combine with.
+    /// 
+    /// - Returns: The element
+    internal func combine(_ element: Self) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: element.attributes, context: self.context, content: self.content)
+        }
+        
+        for (key, value) in attributes {
+            
+            if let attribute = element.attributes?[key] {
+                
+                if case .list(var old) = value.value, case .list(let new) = attribute.value {
+                    
+                    if old != new {
+                        
+                        old.append(new.values)
+                        
+                        attributes[key] = .init(old, context: value.context)
+                    }
+                    
+                } else {
+                    attributes[key] = attribute
+                }
+            }
+        }
        
         return .init(attributes: attributes, context: self.context, content: self.content)
     }
@@ -64,7 +102,12 @@ internal protocol EmptyNode: Node {
 
 extension EmptyNode {
     
-    internal func modify(_ element: Self) -> Self {
+    /// Replaces the attributes, with the new values taking precedence.
+    /// 
+    /// - Parameter element: The element to replace with.
+    /// 
+    /// - Returns: The element
+    internal func replace(_ element: Self) -> Self {
         
         guard var attributes = self.attributes else {
             return .init(attributes: element.attributes)
@@ -72,6 +115,39 @@ extension EmptyNode {
         
         attributes.merge(element.attributes!) { (_, new) in new }
         
+        return .init(attributes: attributes)
+    }
+    
+    /// Combines the attributes, incorporating the new values.
+    /// 
+    /// - Parameter element: The element to combine with.
+    /// 
+    /// - Returns: The element
+    internal func combine(_ element: Self) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(attributes: element.attributes)
+        }
+        
+        for (key, value) in attributes {
+            
+            if let attribute = element.attributes?[key] {
+                
+                if case .list(var old) = value.value, case .list(let new) = attribute.value {
+                    
+                    if old != new {
+                        
+                        old.append(new.values)
+                     
+                        attributes[key] = .init(old, context: value.context)
+                    }
+                    
+                } else {
+                    attributes[key] = attribute
+                }
+            }
+        }
+       
         return .init(attributes: attributes)
     }
 }
@@ -125,13 +201,51 @@ public protocol CustomNode: Node {
 
 extension CustomNode {
     
-    internal func modify(_ element: Self) -> Self {
+    /// Replaces the attributes, with the new values taking precedence.
+    /// 
+    /// - Parameter element: The element to replace with.
+    /// 
+    /// - Returns: The element
+    internal func replace(_ element: Self) -> Self {
         
         guard var attributes = self.attributes else {
             return .init(name: element.name, attributes: element.attributes, context: self.context, content: self.content)
         }
         
         attributes.merge(element.attributes!) { (_, new) in new }
+       
+        return .init(name: element.name, attributes: attributes, context: self.context, content: self.content)
+    }
+    
+    /// Combines the attributes, incorporating the new values.
+    /// 
+    /// - Parameter element: The element to combine with.
+    /// 
+    /// - Returns: The element
+    internal func combine(_ element: Self) -> Self {
+        
+        guard var attributes = self.attributes else {
+            return .init(name: element.name, attributes: element.attributes, context: self.context, content: self.content)
+        }
+        
+        for (key, value) in attributes {
+            
+            if let attribute = element.attributes?[key] {
+                
+                if case .list(var old) = value.value, case .list(let new) = attribute.value {
+                    
+                    if old != new {
+                        
+                        old.append(new.values)
+                     
+                        attributes[key] = .init(old, context: value.context)
+                    }
+                    
+                } else {
+                    attributes[key] = attribute
+                }
+            }
+        }
        
         return .init(name: element.name, attributes: attributes, context: self.context, content: self.content)
     }
