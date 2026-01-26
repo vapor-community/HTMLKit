@@ -116,7 +116,7 @@ final class AttributesTests: XCTestCase {
             }
             
             if let elements = elements {
-                copy = copy.mutate(itemref: .init(elements.joined(separator: " "), context: .tainted(.html)))
+                copy = copy.mutate(itemref: .init(EnumeratedList(values: elements, separator: " "), context: .tainted(.html)))
             }
             
             return copy
@@ -136,7 +136,7 @@ final class AttributesTests: XCTestCase {
                 copy = copy.mutate(itemtype: .init(schema.absoluteString, context: .tainted(.html)))
             }
             
-            copy = copy.mutate(itemref: .init(elements.joined(separator: " "), context: .tainted(.html)))
+            copy = copy.mutate(itemref: .init(EnumeratedList(values: elements, separator: " "), context: .tainted(.html)))
             
             return copy
         }
@@ -192,19 +192,19 @@ final class AttributesTests: XCTestCase {
         }
         
         func accept(_ specifiers: [String]) -> Tag {
-            return self.mutate(accept: .init(specifiers.joined(separator: ", "), context: .tainted(.html)))
+            return self.mutate(accept: .init(EnumeratedList(values: specifiers, separator: ", "), context: .tainted(.html)))
         }
         
         func accept(_ specifiers: String...) -> Tag {
-            return self.mutate(accept: .init(specifiers.joined(separator: ", "), context: .tainted(.html)))
+            return self.mutate(accept: .init(EnumeratedList(values: specifiers, separator: ", "), context: .tainted(.html)))
         }
         
         func accept(_ specifiers: [Values.Media]) -> Tag {
-            return self.mutate(accept: .init(specifiers.map { $0.rawValue }.joined(separator: ", "), context: .trusted))
+            return self.mutate(accept: .init(EnumeratedList(values: specifiers, separator: ", "), context: .trusted))
         }
         
         func accept(_ specifiers: Values.Media...) -> Tag {
-            return self.mutate(accept: .init(specifiers.map { $0.rawValue }.joined(separator: ", "), context: .trusted))
+            return self.mutate(accept: .init(EnumeratedList(values: specifiers, separator: ", "), context: .trusted))
         }
         
         func action(_ value: String) -> Tag {
@@ -228,12 +228,21 @@ final class AttributesTests: XCTestCase {
             return self.mutate(async: .init("async", context: .trusted))
         }
         
-        func autocomplete(_ value: Values.Completion) -> Tag {
-            return mutate(autocomplete: .init(value.rawValue, context: .trusted))
+        public func autocomplete(_ value: Bool) -> Tag {
+
+            if value {
+                return mutate(autocomplete: .init("on", context: .trusted))
+            }
+            
+            return mutate(autocomplete: .init("off", context: .trusted))
         }
         
-        func autocomplete(_ values: OrderedSet<Values.Completion>) -> Tag {
-            return mutate(autocomplete: .init(values.map { $0.rawValue }.joined(separator: " "), context: .trusted))
+        func autocomplete(_ values: [Values.Completion]) -> Tag {
+            return mutate(autocomplete: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+        }
+        
+        func autocomplete(_ values: Values.Completion...) -> Tag {
+            return mutate(autocomplete: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
         }
         
         func autoplay(_ condition: Bool = true) -> Tag {
@@ -340,11 +349,11 @@ final class AttributesTests: XCTestCase {
         }
         
         func headers(_ ids: [String]) -> Tag {
-            return self.mutate(headers: .init(ids.joined(separator: " "), context: .tainted(.html)))
+            return self.mutate(headers: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
         }
         
         func headers(_ ids: String...) -> Tag {
-            return self.mutate(headers: .init(ids.joined(separator: " "), context: .tainted(.html)))
+            return self.mutate(headers: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
         }
         
         func height(_ size: Int) -> Tag {
@@ -414,11 +423,11 @@ final class AttributesTests: XCTestCase {
         }
         
         func media(_ queries: [MediaQuery]) -> Tag {
-            return self.mutate(media: .init(queries.map { $0.rawValue }.joined(separator: ", "), context: .tainted(.html)))
+            return self.mutate(media: .init(EnumeratedList(values: queries, separator: ", "), context: .tainted(.html)))
         }
         
         func media(_ queries: MediaQuery...) -> Tag {
-            return self.mutate(media: .init(queries.map { $0.rawValue }.joined(separator: ", "), context: .tainted(.html)))
+            return self.mutate(media: .init(EnumeratedList(values: queries, separator: ", "), context: .tainted(.html)))
         }
         
         func method(_ value: HTMLKit.Values.Method) -> Tag {
@@ -546,12 +555,12 @@ final class AttributesTests: XCTestCase {
             return self.mutate(sandbox: .init("sandbox", context: .trusted))
         }
         
-        func sandbox(_ value: Values.Permission) -> Tag {
-            return self.mutate(sandbox: .init(value.rawValue, context: .trusted))
+        func sandbox(_ values: [Values.Permission]) -> Tag {
+            return self.mutate(sandbox: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
         }
         
-        func sandbox(_ values: OrderedSet<Values.Permission>) -> Tag {
-            return self.mutate(sandbox: .init(values.map { $0.rawValue }.joined(separator: " "), context: .trusted))
+        func sandbox(_ values: Values.Permission...) -> Tag {
+            return self.mutate(sandbox: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
         }
         
         func scope(_ value: Values.Scope) -> Tag {
@@ -571,11 +580,11 @@ final class AttributesTests: XCTestCase {
         }
         
         func sizes(_ candidates: [SizeCandidate]) -> Tag {
-            return self.mutate(sizes: .init(candidates.map { $0.rawValue }.joined(separator: ", "), context: .tainted(.html)))
+            return self.mutate(sizes: .init(EnumeratedList(values: candidates, separator: ", "), context: .tainted(.html)))
         }
         
         func sizes(_ candidates: SizeCandidate...) -> Tag {
-            return self.mutate(sizes: .init(candidates.map { $0.rawValue }.joined(separator: ", "), context: .tainted(.html)))
+            return self.mutate(sizes: .init(EnumeratedList(values: candidates, separator: ", "), context: .tainted(.html)))
         }
         
         func slot(_ value: String) -> Tag {
@@ -603,11 +612,11 @@ final class AttributesTests: XCTestCase {
         }
         
         func sourceSet(_ candidates: [SourceCandidate]) -> Tag {
-            return mutate(sourceset: .init(candidates.map { $0.rawValue }.joined(separator: ", "), context: .tainted(.html)))
+            return mutate(sourceset: .init(EnumeratedList(values: candidates, separator: ", "), context: .tainted(.html)))
         }
         
         func sourceSet(_ candidates: SourceCandidate...) -> Tag {
-            return mutate(sourceset: .init(candidates.map { $0.rawValue }.joined(separator: ", "), context: .tainted(.html)))
+            return mutate(sourceset: .init(EnumeratedList(values: candidates, separator: ", "), context: .tainted(.html)))
         }
         
         func start(_ size: Int) -> Tag {
@@ -860,11 +869,11 @@ final class AttributesTests: XCTestCase {
         }
         
         func integrity(_ hashes: String...) -> Tag {
-            return self.mutate(integrity: .init(hashes.joined(separator: " "), context: .tainted(.html)))
+            return self.mutate(integrity: .init(EnumeratedList(values: hashes, separator: " "), context: .tainted(.html)))
         }
         
         func integrity(_ hashes: [String]) -> Tag {
-            return self.mutate(integrity: .init(hashes.joined(separator: " "), context: .tainted(.html)))
+            return self.mutate(integrity: .init(EnumeratedList(values: hashes, separator: " "), context: .tainted(.html)))
         }
         
         func crossOrigin(_ value: Credential.Mode) -> Tag {
@@ -1335,10 +1344,10 @@ final class AttributesTests: XCTestCase {
     func testCompleteAttribute() throws {
         
         let view = TestView {
-            Tag {}.autocomplete(.on)
-            Tag {}.autocomplete(.off)
+            Tag {}.autocomplete(true)
+            Tag {}.autocomplete(false)
             Tag {}.autocomplete([.organization, .organizationTitle])
-            Tag {}.autocomplete([.birthday, .birthday])
+            Tag {}.autocomplete(.organization, .organizationTitle)
         }
         
         XCTAssertEqual(try renderer.render(view: view),
@@ -1346,7 +1355,7 @@ final class AttributesTests: XCTestCase {
                        <tag autocomplete="on"></tag>\
                        <tag autocomplete="off"></tag>\
                        <tag autocomplete="organization organization-title"></tag>\
-                       <tag autocomplete="bday"></tag>
+                       <tag autocomplete="organization organization-title"></tag>
                        """
         )
     }

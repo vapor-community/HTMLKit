@@ -142,7 +142,7 @@ extension Title: GlobalAttributes, GlobalEventAttributes {
         }
         
         if let elements = elements {
-            copy = copy.mutate(itemref: .init(elements.joined(separator: " "), context: .tainted(.html)))
+            copy = copy.mutate(itemref: .init(EnumeratedList(values: elements, separator: " "), context: .tainted(.html)))
         }
         
         return copy
@@ -162,7 +162,7 @@ extension Title: GlobalAttributes, GlobalEventAttributes {
             copy = copy.mutate(itemtype: .init(schema.absoluteString, context: .tainted(.html)))
         }
         
-        copy = copy.mutate(itemref: .init(elements.joined(separator: " "), context: .tainted(.html)))
+        copy = copy.mutate(itemref: .init(EnumeratedList(values: elements, separator: " "), context: .tainted(.html)))
         
         return copy
     }
@@ -446,7 +446,7 @@ extension Base: GlobalAttributes, GlobalEventAttributes, ReferenceAttribute, Tar
         }
         
         if let elements = elements {
-            copy = copy.mutate(itemref: .init(elements.joined(separator: " "), context: .tainted(.html)))
+            copy = copy.mutate(itemref: .init(EnumeratedList(values: elements, separator: " "), context: .tainted(.html)))
         }
         
         return copy
@@ -466,7 +466,7 @@ extension Base: GlobalAttributes, GlobalEventAttributes, ReferenceAttribute, Tar
             copy = copy.mutate(itemtype: .init(schema.absoluteString, context: .tainted(.html)))
         }
         
-        copy = copy.mutate(itemref: .init(elements.joined(separator: " "), context: .tainted(.html)))
+        copy = copy.mutate(itemref: .init(EnumeratedList(values: elements, separator: " "), context: .tainted(.html)))
         
         return copy
     }
@@ -748,7 +748,7 @@ extension Meta: GlobalAttributes, GlobalEventAttributes, ContentAttribute, NameA
         }
         
         if let elements = elements {
-            copy = copy.mutate(itemref: .init(elements.joined(separator: " "), context: .tainted(.html)))
+            copy = copy.mutate(itemref: .init(EnumeratedList(values: elements, separator: " "), context: .tainted(.html)))
         }
         
         return copy
@@ -768,7 +768,7 @@ extension Meta: GlobalAttributes, GlobalEventAttributes, ContentAttribute, NameA
             copy = copy.mutate(itemtype: .init(schema.absoluteString, context: .tainted(.html)))
         }
         
-        copy = copy.mutate(itemref: .init(elements.joined(separator: " "), context: .tainted(.html)))
+        copy = copy.mutate(itemref: .init(EnumeratedList(values: elements, separator: " "), context: .tainted(.html)))
         
         return copy
     }
@@ -1093,7 +1093,7 @@ extension Style: GlobalAttributes, GlobalEventAttributes, TypeAttribute, MediaAt
         }
         
         if let elements = elements {
-            copy = copy.mutate(itemref: .init(elements.joined(separator: " "), context: .tainted(.html)))
+            copy = copy.mutate(itemref: .init(EnumeratedList(values: elements, separator: " "), context: .tainted(.html)))
         }
         
         return copy
@@ -1113,7 +1113,7 @@ extension Style: GlobalAttributes, GlobalEventAttributes, TypeAttribute, MediaAt
             copy = copy.mutate(itemtype: .init(schema.absoluteString, context: .tainted(.html)))
         }
         
-        copy = copy.mutate(itemref: .init(elements.joined(separator: " "), context: .tainted(.html)))
+        copy = copy.mutate(itemref: .init(EnumeratedList(values: elements, separator: " "), context: .tainted(.html)))
         
         return copy
     }
@@ -1220,11 +1220,11 @@ extension Style: GlobalAttributes, GlobalEventAttributes, TypeAttribute, MediaAt
     }
     
     public func media(_ queries: [MediaQuery]) -> Style {
-        return mutate(media: .init(queries.map { $0.rawValue }.joined(separator: ", "), context: .tainted(.html)))
+        return mutate(media: .init(EnumeratedList(values: queries, separator: ", "), context: .tainted(.html)))
     }
     
     public func media(_ queries: MediaQuery...) -> Style {
-        return mutate(media: .init(queries.map { $0.rawValue }.joined(separator: ", "), context: .tainted(.html)))
+        return mutate(media: .init(EnumeratedList(values: queries, separator: ", "), context: .tainted(.html)))
     }
     
     public func blocking(_ value: Values.Blocking) -> Style {
@@ -1396,11 +1396,11 @@ extension Link: GlobalAttributes, GlobalEventAttributes, ReferenceAttribute, Ref
     }
     
     public func integrity(_ hashes: String...) -> Link {
-        return mutate(integrity: .init(hashes.joined(separator: " "), context: .tainted(.html)))
+        return mutate(integrity: .init(EnumeratedList(values: hashes, separator: " "), context: .tainted(.html)))
     }
     
     public func integrity(_ hashes: [String]) -> Link {
-        return mutate(integrity: .init(hashes.joined(separator: " "), context: .tainted(.html)))
+        return mutate(integrity: .init(EnumeratedList(values: hashes, separator: " "), context: .tainted(.html)))
     }
 
     public func `is`(_ value: String) -> Link {
@@ -1422,7 +1422,7 @@ extension Link: GlobalAttributes, GlobalEventAttributes, ReferenceAttribute, Ref
         }
         
         if let elements = elements {
-            copy = copy.mutate(itemref: .init(elements.joined(separator: " "), context: .tainted(.html)))
+            copy = copy.mutate(itemref: .init(EnumeratedList(values: elements, separator: " "), context: .tainted(.html)))
         }
         
         return copy
@@ -1442,7 +1442,7 @@ extension Link: GlobalAttributes, GlobalEventAttributes, ReferenceAttribute, Ref
             copy = copy.mutate(itemtype: .init(schema.absoluteString, context: .tainted(.html)))
         }
         
-        copy = copy.mutate(itemref: .init(elements.joined(separator: " "), context: .tainted(.html)))
+        copy = copy.mutate(itemref: .init(EnumeratedList(values: elements, separator: " "), context: .tainted(.html)))
         
         return copy
     }
@@ -1553,11 +1553,11 @@ extension Link: GlobalAttributes, GlobalEventAttributes, ReferenceAttribute, Ref
     }
     
     public func media(_ queries: [MediaQuery]) -> Link {
-        return mutate(media: .init(queries.map { $0.rawValue }.joined(separator: ", "), context: .tainted(.html)))
+        return mutate(media: .init(EnumeratedList(values: queries, separator: ", "), context: .tainted(.html)))
     }
     
     public func media(_ queries: MediaQuery...) -> Link {
-        return mutate(media: .init(queries.map { $0.rawValue }.joined(separator: ", "), context: .tainted(.html)))
+        return mutate(media: .init(EnumeratedList(values: queries, separator: ", "), context: .tainted(.html)))
     }
     
     public func referrerPolicy(_ value: Values.Policy) -> Link {
@@ -1569,11 +1569,11 @@ extension Link: GlobalAttributes, GlobalEventAttributes, ReferenceAttribute, Ref
     }
     
     public func sizes(_ candidates: [String]) -> Link {
-        return mutate(sizes: .init(candidates.map { $0 }.joined(separator: " "), context: .tainted(.html)))
+        return mutate(sizes: .init(EnumeratedList(values: candidates, separator: " "), context: .tainted(.html)))
     }
     
     public func sizes(_ candidates: String...) -> Link {
-        return mutate(sizes: .init(candidates.map { $0 }.joined(separator: " "), context: .tainted(.html)))
+        return mutate(sizes: .init(EnumeratedList(values: candidates, separator: " "), context: .tainted(.html)))
     }
     
     public func type(_ value: Values.Media) -> Link {

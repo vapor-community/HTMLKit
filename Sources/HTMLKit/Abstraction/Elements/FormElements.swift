@@ -131,7 +131,7 @@ extension Input: GlobalAttributes, GlobalEventAttributes, AcceptAttribute, Alter
         }
         
         if let elements = elements {
-            copy = copy.mutate(itemref: .init(elements.joined(separator: " "), context: .tainted(.html)))
+            copy = copy.mutate(itemref: .init(EnumeratedList(values: elements, separator: " "), context: .tainted(.html)))
         }
         
         return copy
@@ -151,7 +151,7 @@ extension Input: GlobalAttributes, GlobalEventAttributes, AcceptAttribute, Alter
             copy = copy.mutate(itemtype: .init(schema.absoluteString, context: .tainted(.html)))
         }
         
-        copy = copy.mutate(itemref: .init(elements.joined(separator: " "), context: .tainted(.html)))
+        copy = copy.mutate(itemref: .init(EnumeratedList(values: elements, separator: " "), context: .tainted(.html)))
         
         return copy
     }
@@ -250,19 +250,19 @@ extension Input: GlobalAttributes, GlobalEventAttributes, AcceptAttribute, Alter
     }
     
     public func accept(_ specifiers: [String]) -> Input {
-        return mutate(accept: .init(specifiers.joined(separator: ", "), context: .tainted(.html)))
+        return mutate(accept: .init(EnumeratedList(values: specifiers, separator: ", "), context: .tainted(.html)))
     }
 
     public func accept(_ specifiers: String...) -> Input {
-        return mutate(accept: .init(specifiers.joined(separator: ", "), context: .tainted(.html)))
+        return mutate(accept: .init(EnumeratedList(values: specifiers, separator: ", "), context: .tainted(.html)))
     }
     
     public func accept(_ specifiers: [Values.Media]) -> Input {
-        return mutate(accept: .init(specifiers.map { $0.rawValue }.joined(separator: ", "), context: .trusted))
+        return mutate(accept: .init(EnumeratedList(values: specifiers, separator: ", "), context: .trusted))
     }
 
     public func accept(_ specifiers: Values.Media...) -> Input {
-        return mutate(accept: .init(specifiers.map { $0.rawValue }.joined(separator: ", "), context: .trusted))
+        return mutate(accept: .init(EnumeratedList(values: specifiers, separator: ", "), context: .trusted))
     }
     
     @_disfavoredOverload
@@ -278,12 +278,21 @@ extension Input: GlobalAttributes, GlobalEventAttributes, AcceptAttribute, Alter
         return mutate(alternate: .init(value, context: .tainted(.html)))
     }
     
-    public func autocomplete(_ value: Values.Completion) -> Input {
-        return mutate(autocomplete: .init(value.rawValue, context: .trusted))
+    public func autocomplete(_ value: Bool) -> Input {
+
+        if value {
+            return mutate(autocomplete: .init("on", context: .trusted))
+        }
+        
+        return mutate(autocomplete: .init("off", context: .trusted))
     }
     
-    public func autocomplete(_ values: OrderedSet<Values.Completion>) -> Input {
-        return mutate(autocomplete: .init(values.map { $0.rawValue }.joined(separator: " "), context: .trusted))
+    public func autocomplete(_ values: [Values.Completion]) -> Input {
+        return mutate(autocomplete: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func autocomplete(_ values: Values.Completion...) -> Input {
+        return mutate(autocomplete: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
     }
     
     public func checked(_ condition: Bool = true) -> Input {
@@ -630,7 +639,7 @@ extension Label: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         }
         
         if let elements = elements {
-            copy = copy.mutate(itemref: .init(elements.joined(separator: " "), context: .tainted(.html)))
+            copy = copy.mutate(itemref: .init(EnumeratedList(values: elements, separator: " "), context: .tainted(.html)))
         }
         
         return copy
@@ -650,7 +659,7 @@ extension Label: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
             copy = copy.mutate(itemtype: .init(schema.absoluteString, context: .tainted(.html)))
         }
         
-        copy = copy.mutate(itemref: .init(elements.joined(separator: " "), context: .tainted(.html)))
+        copy = copy.mutate(itemref: .init(EnumeratedList(values: elements, separator: " "), context: .tainted(.html)))
         
         return copy
     }
@@ -1034,7 +1043,7 @@ extension Select: GlobalAttributes, GlobalEventAttributes, AutocompleteAttribute
         }
         
         if let elements = elements {
-            copy = copy.mutate(itemref: .init(elements.joined(separator: " "), context: .tainted(.html)))
+            copy = copy.mutate(itemref: .init(EnumeratedList(values: elements, separator: " "), context: .tainted(.html)))
         }
         
         return copy
@@ -1054,7 +1063,7 @@ extension Select: GlobalAttributes, GlobalEventAttributes, AutocompleteAttribute
             copy = copy.mutate(itemtype: .init(schema.absoluteString, context: .tainted(.html)))
         }
         
-        copy = copy.mutate(itemref: .init(elements.joined(separator: " "), context: .tainted(.html)))
+        copy = copy.mutate(itemref: .init(EnumeratedList(values: elements, separator: " "), context: .tainted(.html)))
         
         return copy
     }
@@ -1152,12 +1161,21 @@ extension Select: GlobalAttributes, GlobalEventAttributes, AutocompleteAttribute
         return self
     }
     
-    public func autocomplete(_ value: Values.Completion) -> Select {
-        return mutate(autocomplete: .init(value.rawValue, context: .trusted))
+    public func autocomplete(_ value: Bool) -> Select {
+
+        if value {
+            return mutate(autocomplete: .init("on", context: .trusted))
+        }
+        
+        return mutate(autocomplete: .init("off", context: .trusted))
     }
     
-    public func autocomplete(_ values: OrderedSet<Values.Completion>) -> Select {
-        return mutate(autocomplete: .init(values.map { $0.rawValue }.joined(separator: " "), context: .trusted))
+    public func autocomplete(_ values: [Values.Completion]) -> Select {
+        return mutate(autocomplete: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func autocomplete(_ values: Values.Completion...) -> Select {
+        return mutate(autocomplete: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
     }
     
     public func disabled(_ condition: Bool = true) -> Select {
@@ -1384,7 +1402,7 @@ extension TextArea: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         }
         
         if let elements = elements {
-            copy = copy.mutate(itemref: .init(elements.joined(separator: " "), context: .tainted(.html)))
+            copy = copy.mutate(itemref: .init(EnumeratedList(values: elements, separator: " "), context: .tainted(.html)))
         }
         
         return copy
@@ -1404,7 +1422,7 @@ extension TextArea: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
             copy = copy.mutate(itemtype: .init(schema.absoluteString, context: .tainted(.html)))
         }
         
-        copy = copy.mutate(itemref: .init(elements.joined(separator: " "), context: .tainted(.html)))
+        copy = copy.mutate(itemref: .init(EnumeratedList(values: elements, separator: " "), context: .tainted(.html)))
         
         return copy
     }
@@ -1502,12 +1520,21 @@ extension TextArea: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return self
     }
     
-    public func autocomplete(_ value: Values.Completion) -> TextArea {
-        return mutate(autocomplete: .init(value.rawValue, context: .trusted))
+    public func autocomplete(_ value: Bool) -> TextArea {
+
+        if value {
+            return mutate(autocomplete: .init("on", context: .trusted))
+        }
+        
+        return mutate(autocomplete: .init("off", context: .trusted))
     }
     
-    public func autocomplete(_ values: OrderedSet<Values.Completion>) -> TextArea {
-        return mutate(autocomplete: .init(values.map { $0.rawValue }.joined(separator: " "), context: .trusted))
+    public func autocomplete(_ values: [Values.Completion]) -> TextArea {
+        return mutate(autocomplete: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func autocomplete(_ values: Values.Completion...) -> TextArea {
+        return mutate(autocomplete: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
     }
     
     public func columns(_ size: Int) -> TextArea {
@@ -1847,7 +1874,7 @@ extension Button: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         }
         
         if let elements = elements {
-            copy = copy.mutate(itemref: .init(elements.joined(separator: " "), context: .tainted(.html)))
+            copy = copy.mutate(itemref: .init(EnumeratedList(values: elements, separator: " "), context: .tainted(.html)))
         }
         
         return copy
@@ -1867,7 +1894,7 @@ extension Button: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
             copy = copy.mutate(itemtype: .init(schema.absoluteString, context: .tainted(.html)))
         }
         
-        copy = copy.mutate(itemref: .init(elements.joined(separator: " "), context: .tainted(.html)))
+        copy = copy.mutate(itemref: .init(EnumeratedList(values: elements, separator: " "), context: .tainted(.html)))
         
         return copy
     }
@@ -2304,7 +2331,7 @@ extension Fieldset: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         }
         
         if let elements = elements {
-            copy = copy.mutate(itemref: .init(elements.joined(separator: " "), context: .tainted(.html)))
+            copy = copy.mutate(itemref: .init(EnumeratedList(values: elements, separator: " "), context: .tainted(.html)))
         }
         
         return copy
@@ -2324,7 +2351,7 @@ extension Fieldset: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
             copy = copy.mutate(itemtype: .init(schema.absoluteString, context: .tainted(.html)))
         }
         
-        copy = copy.mutate(itemref: .init(elements.joined(separator: " "), context: .tainted(.html)))
+        copy = copy.mutate(itemref: .init(EnumeratedList(values: elements, separator: " "), context: .tainted(.html)))
         
         return copy
     }

@@ -130,7 +130,7 @@ extension Source: GlobalAttributes, GlobalEventAttributes, TypeAttribute, Source
         }
         
         if let elements = elements {
-            copy = copy.mutate(itemref: .init(elements.joined(separator: " "), context: .tainted(.html)))
+            copy = copy.mutate(itemref: .init(EnumeratedList(values: elements, separator: " "), context: .tainted(.html)))
         }
         
         return copy
@@ -150,7 +150,7 @@ extension Source: GlobalAttributes, GlobalEventAttributes, TypeAttribute, Source
             copy = copy.mutate(itemtype: .init(schema.absoluteString, context: .tainted(.html)))
         }
         
-        copy = copy.mutate(itemref: .init(elements.joined(separator: " "), context: .tainted(.html)))
+        copy = copy.mutate(itemref: .init(EnumeratedList(values: elements, separator: " "), context: .tainted(.html)))
         
         return copy
     }
@@ -266,19 +266,19 @@ extension Source: GlobalAttributes, GlobalEventAttributes, TypeAttribute, Source
     }
     
     public func sourceSet(_ candidates: [SourceCandidate]) -> Source {
-        return mutate(sourceset: .init(candidates.map { $0.rawValue }.joined(separator: ", "), context: .tainted(.html)))
+        return mutate(sourceset: .init(EnumeratedList(values: candidates, separator: ", "), context: .tainted(.html)))
     }
     
     public func sourceSet(_ candidates: SourceCandidate...) -> Source {
-        return mutate(sourceset: .init(candidates.map { $0.rawValue }.joined(separator: ", "), context: .tainted(.html)))
+        return mutate(sourceset: .init(EnumeratedList(values: candidates, separator: ", "), context: .tainted(.html)))
     }
     
     public func sizes(_ candidates: [SizeCandidate]) -> Source {
-        return mutate(sizes: .init(candidates.map { $0.rawValue }.joined(separator: ", "), context: .tainted(.html)))
+        return mutate(sizes: .init(EnumeratedList(values: candidates, separator: ", "), context: .tainted(.html)))
     }
     
     public func sizes(_ candidates: SizeCandidate...) -> Source {
-        return mutate(sizes: .init(candidates.map { $0.rawValue }.joined(separator: ", "), context: .tainted(.html)))
+        return mutate(sizes: .init(EnumeratedList(values: candidates, separator: ", "), context: .tainted(.html)))
     }
     
     public func media(_ value: String) -> Source {
@@ -286,11 +286,11 @@ extension Source: GlobalAttributes, GlobalEventAttributes, TypeAttribute, Source
     }
     
     public func media(_ queries: [MediaQuery]) -> Source {
-        return mutate(media: .init(queries.map { $0.rawValue }.joined(separator: ", "), context: .tainted(.html)))
+        return mutate(media: .init(EnumeratedList(values: queries, separator: ", "), context: .tainted(.html)))
     }
     
     public func media(_ queries: MediaQuery...) -> Source {
-        return mutate(media: .init(queries.map { $0.rawValue }.joined(separator: ", "), context: .tainted(.html)))
+        return mutate(media: .init(EnumeratedList(values: queries, separator: ", "), context: .tainted(.html)))
     }
     
     public func width(_ size: Int) -> Source {
@@ -482,7 +482,7 @@ extension Track: GlobalAttributes, GlobalEventAttributes, KindAttribute, SourceA
         }
         
         if let elements = elements {
-            copy = copy.mutate(itemref: .init(elements.joined(separator: " "), context: .tainted(.html)))
+            copy = copy.mutate(itemref: .init(EnumeratedList(values: elements, separator: " "), context: .tainted(.html)))
         }
         
         return copy
@@ -502,7 +502,7 @@ extension Track: GlobalAttributes, GlobalEventAttributes, KindAttribute, SourceA
             copy = copy.mutate(itemtype: .init(schema.absoluteString, context: .tainted(.html)))
         }
         
-        copy = copy.mutate(itemref: .init(elements.joined(separator: " "), context: .tainted(.html)))
+        copy = copy.mutate(itemref: .init(EnumeratedList(values: elements, separator: " "), context: .tainted(.html)))
         
         return copy
     }

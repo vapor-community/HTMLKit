@@ -307,18 +307,18 @@ extension AutocapitalizeAttribute where Self: EmptyNode {
 /// A type that provides the `autocomplete` modifier.
 @_documentation(visibility: internal)
 public protocol AutocompleteAttribute: Attribute {
-    
+
     /// Specify an auto completion.
     ///
     /// ```swift
     /// Input()
-    ///     .autocomplete(.off)
+    ///     .autocomplete(true)
     /// ```
     ///
-    /// - Parameter value: The value to be expected.
+    /// - Parameter values: The values to be expected.
     ///
     /// - Returns: The element
-    func autocomplete(_ value: Values.Completion) -> Self
+    func autocomplete(_ value: Bool) -> Self
     
     /// Specify an auto completion.
     ///
@@ -330,7 +330,19 @@ public protocol AutocompleteAttribute: Attribute {
     /// - Parameter values: The values to be expected.
     ///
     /// - Returns: The element
-    func autocomplete(_ values: OrderedSet<Values.Completion>) -> Self
+    func autocomplete(_ values: [Values.Completion]) -> Self
+    
+    /// Specify an auto completion.
+    ///
+    /// ```swift
+    /// Input()
+    ///     .autocomplete(.organization, .organizationTitle)
+    /// ```
+    ///
+    /// - Parameter values: The values to be expected.
+    ///
+    /// - Returns: The element
+    func autocomplete(_ values: Values.Completion...) -> Self
 }
 
 extension AutocompleteAttribute where Self: ContentNode {
@@ -2951,9 +2963,9 @@ public protocol SandboxAttribute: Attribute {
     /// InlineFrame {
     /// }
     /// .source("https://...")
-    /// .sandbox(.allowDownloads)
+    /// .sandbox([.allowDownloads, .allowPopups])
     /// ```
-    func sandbox(_ value: Values.Permission) -> Self
+    func sandbox(_ values: [Values.Permission]) -> Self
     
     /// Define the permissions for the element.
     ///
@@ -2961,9 +2973,9 @@ public protocol SandboxAttribute: Attribute {
     /// InlineFrame {
     /// }
     /// .source("https://...")
-    /// .sandbox([.allowDownloads, .allowPopups])
+    /// .sandbox(.allowDownloads, .allowPopups)
     /// ```
-    func sandbox(_ values: OrderedSet<Values.Permission>) -> Self
+    func sandbox(_ values: Values.Permission...) -> Self
 }
 
 extension SandboxAttribute where Self: ContentNode {

@@ -25,6 +25,45 @@ public struct EnumeratedList {
     }
 }
 
+extension EnumeratedList {
+    
+    internal init(values: [SizeCandidate], separator: String) {
+        
+        self.values = values.map(\.rawValue)
+        self.separator = separator
+    }
+    
+    internal init(values: [SourceCandidate], separator: String) {
+        
+        self.values = values.map(\.rawValue)
+        self.separator = separator
+    }
+    
+    internal init(values: [MediaQuery], separator: String) {
+        
+        self.values = values.map(\.rawValue)
+        self.separator = separator
+    }
+    
+    internal init(values: [Values.Media], separator: String) {
+        
+        self.values = values.map(\.rawValue)
+        self.separator = separator
+    }
+    
+    internal init(values: [Values.Completion], separator: String) {
+        
+        self.values = values.map(\.rawValue)
+        self.separator = separator
+    }
+    
+    internal init(values: [Values.Permission], separator: String) {
+     
+        self.values = values.map(\.rawValue)
+        self.separator = separator
+    }
+}
+
 extension EnumeratedList: Equatable {
     
     public static func == (lhs: EnumeratedList, rhs: EnumeratedList) -> Bool {

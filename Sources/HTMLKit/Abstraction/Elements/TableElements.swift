@@ -174,7 +174,7 @@ extension Caption: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
         }
         
         if let elements = elements {
-            copy = copy.mutate(itemref: .init(elements.joined(separator: " "), context: .tainted(.html)))
+            copy = copy.mutate(itemref: .init(EnumeratedList(values: elements, separator: " "), context: .tainted(.html)))
         }
         
         return copy
@@ -194,7 +194,7 @@ extension Caption: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
             copy = copy.mutate(itemtype: .init(schema.absoluteString, context: .tainted(.html)))
         }
         
-        copy = copy.mutate(itemref: .init(elements.joined(separator: " "), context: .tainted(.html)))
+        copy = copy.mutate(itemref: .init(EnumeratedList(values: elements, separator: " "), context: .tainted(.html)))
         
         return copy
     }
@@ -560,7 +560,7 @@ extension ColumnGroup: GlobalAttributes, GlobalEventAttributes, SpanAttribute {
         }
         
         if let elements = elements {
-            copy = copy.mutate(itemref: .init(elements.joined(separator: " "), context: .tainted(.html)))
+            copy = copy.mutate(itemref: .init(EnumeratedList(values: elements, separator: " "), context: .tainted(.html)))
         }
         
         return copy
@@ -580,7 +580,7 @@ extension ColumnGroup: GlobalAttributes, GlobalEventAttributes, SpanAttribute {
             copy = copy.mutate(itemtype: .init(schema.absoluteString, context: .tainted(.html)))
         }
         
-        copy = copy.mutate(itemref: .init(elements.joined(separator: " "), context: .tainted(.html)))
+        copy = copy.mutate(itemref: .init(EnumeratedList(values: elements, separator: " "), context: .tainted(.html)))
         
         return copy
     }
@@ -865,7 +865,7 @@ extension Column: GlobalAttributes, GlobalEventAttributes, SpanAttribute {
         }
         
         if let elements = elements {
-            copy = copy.mutate(itemref: .init(elements.joined(separator: " "), context: .tainted(.html)))
+            copy = copy.mutate(itemref: .init(EnumeratedList(values: elements, separator: " "), context: .tainted(.html)))
         }
         
         return copy
@@ -885,7 +885,7 @@ extension Column: GlobalAttributes, GlobalEventAttributes, SpanAttribute {
             copy = copy.mutate(itemtype: .init(schema.absoluteString, context: .tainted(.html)))
         }
         
-        copy = copy.mutate(itemref: .init(elements.joined(separator: " "), context: .tainted(.html)))
+        copy = copy.mutate(itemref: .init(EnumeratedList(values: elements, separator: " "), context: .tainted(.html)))
         
         return copy
     }
@@ -1180,7 +1180,7 @@ extension TableBody: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         }
         
         if let elements = elements {
-            copy = copy.mutate(itemref: .init(elements.joined(separator: " "), context: .tainted(.html)))
+            copy = copy.mutate(itemref: .init(EnumeratedList(values: elements, separator: " "), context: .tainted(.html)))
         }
         
         return copy
@@ -1200,7 +1200,7 @@ extension TableBody: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
             copy = copy.mutate(itemtype: .init(schema.absoluteString, context: .tainted(.html)))
         }
         
-        copy = copy.mutate(itemref: .init(elements.joined(separator: " "), context: .tainted(.html)))
+        copy = copy.mutate(itemref: .init(EnumeratedList(values: elements, separator: " "), context: .tainted(.html)))
         
         return copy
     }
@@ -1583,7 +1583,7 @@ extension TableHead: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         }
         
         if let elements = elements {
-            copy = copy.mutate(itemref: .init(elements.joined(separator: " "), context: .tainted(.html)))
+            copy = copy.mutate(itemref: .init(EnumeratedList(values: elements, separator: " "), context: .tainted(.html)))
         }
         
         return copy
@@ -1603,7 +1603,7 @@ extension TableHead: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
             copy = copy.mutate(itemtype: .init(schema.absoluteString, context: .tainted(.html)))
         }
         
-        copy = copy.mutate(itemref: .init(elements.joined(separator: " "), context: .tainted(.html)))
+        copy = copy.mutate(itemref: .init(EnumeratedList(values: elements, separator: " "), context: .tainted(.html)))
         
         return copy
     }
@@ -1986,7 +1986,7 @@ extension TableFoot: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         }
         
         if let elements = elements {
-            copy = copy.mutate(itemref: .init(elements.joined(separator: " "), context: .tainted(.html)))
+            copy = copy.mutate(itemref: .init(EnumeratedList(values: elements, separator: " "), context: .tainted(.html)))
         }
         
         return copy
@@ -2006,7 +2006,7 @@ extension TableFoot: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
             copy = copy.mutate(itemtype: .init(schema.absoluteString, context: .tainted(.html)))
         }
         
-        copy = copy.mutate(itemref: .init(elements.joined(separator: " "), context: .tainted(.html)))
+        copy = copy.mutate(itemref: .init(EnumeratedList(values: elements, separator: " "), context: .tainted(.html)))
         
         return copy
     }
@@ -2375,7 +2375,7 @@ extension TableRow: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         }
         
         if let elements = elements {
-            copy = copy.mutate(itemref: .init(elements.joined(separator: " "), context: .tainted(.html)))
+            copy = copy.mutate(itemref: .init(EnumeratedList(values: elements, separator: " "), context: .tainted(.html)))
         }
         
         return copy
@@ -2395,7 +2395,7 @@ extension TableRow: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
             copy = copy.mutate(itemtype: .init(schema.absoluteString, context: .tainted(.html)))
         }
         
-        copy = copy.mutate(itemref: .init(elements.joined(separator: " "), context: .tainted(.html)))
+        copy = copy.mutate(itemref: .init(EnumeratedList(values: elements, separator: " "), context: .tainted(.html)))
         
         return copy
     }
@@ -2769,7 +2769,7 @@ extension DataCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         }
         
         if let elements = elements {
-            copy = copy.mutate(itemref: .init(elements.joined(separator: " "), context: .tainted(.html)))
+            copy = copy.mutate(itemref: .init(EnumeratedList(values: elements, separator: " "), context: .tainted(.html)))
         }
         
         return copy
@@ -2790,7 +2790,7 @@ extension DataCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
             copy = copy.mutate(itemtype: .init(schema.absoluteString, context: .tainted(.html)))
         }
         
-        copy = copy.mutate(itemref: .init(elements.joined(separator: " "), context: .tainted(.html)))
+        copy = copy.mutate(itemref: .init(EnumeratedList(values: elements, separator: " "), context: .tainted(.html)))
         
         return copy
     }
@@ -2897,11 +2897,11 @@ extension DataCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
     }
     
     public func headers(_ ids: [String]) -> DataCell {
-        return mutate(headers: .init(ids.joined(separator: " "), context: .tainted(.html)))
+        return mutate(headers: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
     }
     
     public func headers(_ ids: String...) -> DataCell {
-        return mutate(headers: .init(ids.joined(separator: " "), context: .tainted(.html)))
+        return mutate(headers: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
     }
     
     public func popover(_ value: Values.Popover.State) -> DataCell {
@@ -3172,7 +3172,7 @@ extension HeaderCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
         }
         
         if let elements = elements {
-            copy = copy.mutate(itemref: .init(elements.joined(separator: " "), context: .tainted(.html)))
+            copy = copy.mutate(itemref: .init(EnumeratedList(values: elements, separator: " "), context: .tainted(.html)))
         }
         
         return copy
@@ -3192,7 +3192,7 @@ extension HeaderCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
             copy = copy.mutate(itemtype: .init(schema.absoluteString, context: .tainted(.html)))
         }
         
-        copy = copy.mutate(itemref: .init(elements.joined(separator: " "), context: .tainted(.html)))
+        copy = copy.mutate(itemref: .init(EnumeratedList(values: elements, separator: " "), context: .tainted(.html)))
         
         return copy
     }
@@ -3299,11 +3299,11 @@ extension HeaderCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
     }
     
     public func headers(_ ids: [String]) -> HeaderCell {
-        return mutate(headers: .init(ids.joined(separator: " "), context: .tainted(.html)))
+        return mutate(headers: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
     }
     
     public func headers(_ ids: String...) -> HeaderCell {
-        return mutate(headers: .init(ids.joined(separator: " "), context: .tainted(.html)))
+        return mutate(headers: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
     }
     
     public func scope(_ value: Values.Scope) -> HeaderCell {
