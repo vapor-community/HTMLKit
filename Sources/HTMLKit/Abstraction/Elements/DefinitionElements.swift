@@ -65,13 +65,19 @@ public struct TermName: ContentNode, DescriptionElement {
         return self
     }
     
-    public func modify<T>(unwrap value: T?, element: (TermName, T) -> TermName) -> TermName {
+    public func modify<T>(unwrap value: T?, use strategy: MergeStrategy = .replacing, element: (TermName, T) -> TermName) -> TermName {
         
         guard let value = value else {
             return self
         }
         
-        return self.replace(element(self, value as T))
+        switch strategy {
+        case .combining:
+            return self.combine(element(self, value as T))
+            
+        case .replacing:
+            return self.replace(element(self, value as T))
+        }
     }
 }
 
@@ -459,13 +465,19 @@ public struct TermDefinition: ContentNode, DescriptionElement {
         return self
     }
     
-    public func modify<T>(unwrap value: T?, element: (TermDefinition, T) -> TermDefinition) -> TermDefinition {
+    public func modify<T>(unwrap value: T?, use strategy: MergeStrategy = .replacing, element: (TermDefinition, T) -> TermDefinition) -> TermDefinition {
         
         guard let value = value else {
             return self
         }
         
-        return self.replace(element(self, value as T))
+        switch strategy {
+        case .combining:
+            return self.combine(element(self, value as T))
+            
+        case .replacing:
+            return self.replace(element(self, value as T))
+        }
     }
 }
 

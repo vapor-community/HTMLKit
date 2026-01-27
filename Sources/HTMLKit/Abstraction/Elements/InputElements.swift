@@ -67,13 +67,19 @@ public struct OptionGroup: ContentNode, InputElement {
         return self
     }
     
-    public func modify<T>(unwrap value: T?, element: (OptionGroup, T) -> OptionGroup) -> OptionGroup {
+    public func modify<T>(unwrap value: T?, use strategy: MergeStrategy = .replacing, element: (OptionGroup, T) -> OptionGroup) -> OptionGroup {
         
         guard let value = value else {
             return self
         }
         
-        return self.replace(element(self, value as T))
+        switch strategy {
+        case .combining:
+            return self.combine(element(self, value as T))
+            
+        case .replacing:
+            return self.replace(element(self, value as T))
+        }
     }
 }
 
@@ -481,13 +487,19 @@ public struct Option: ContentNode, InputElement {
         return self
     }
     
-    public func modify<T>(unwrap value: T?, element: (Option, T) -> Option) -> Option {
+    public func modify<T>(unwrap value: T?, use strategy: MergeStrategy = .replacing, element: (Option, T) -> Option) -> Option {
         
         guard let value = value else {
             return self
         }
         
-        return self.replace(element(self, value as T))
+        switch strategy {
+        case .combining:
+            return self.combine(element(self, value as T))
+            
+        case .replacing:
+            return self.replace(element(self, value as T))
+        }
     }
 }
 
@@ -927,13 +939,19 @@ public struct Legend: ContentNode, InputElement {
         return self
     }
     
-    public func modify<T>(unwrap value: T?, element: (Legend, T) -> Legend) -> Legend {
+    public func modify<T>(unwrap value: T?, use strategy: MergeStrategy = .replacing, element: (Legend, T) -> Legend) -> Legend {
         
         guard let value = value else {
             return self
         }
         
-        return self.replace(element(self, value as T))
+        switch strategy {
+        case .combining:
+            return self.combine(element(self, value as T))
+            
+        case .replacing:
+            return self.replace(element(self, value as T))
+        }
     }
 }
 
@@ -1321,13 +1339,19 @@ public struct Summary: ContentNode, InputElement {
         return self
     }
     
-    public func modify<T>(unwrap value: T?, element: (Summary, T) -> Summary) -> Summary {
+    public func modify<T>(unwrap value: T?, use strategy: MergeStrategy = .replacing, element: (Summary, T) -> Summary) -> Summary {
         
         guard let value = value else {
             return self
         }
         
-        return self.replace(element(self, value as T))
+        switch strategy {
+        case .combining:
+            return self.combine(element(self, value as T))
+            
+        case .replacing:
+            return self.replace(element(self, value as T))
+        }
     }
 }
 

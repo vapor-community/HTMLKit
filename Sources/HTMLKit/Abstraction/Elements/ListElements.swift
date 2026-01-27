@@ -61,13 +61,19 @@ public struct ListItem: ContentNode, ListElement {
         return self
     }
     
-    public func modify<T>(unwrap value: T?, element: (ListItem, T) -> ListItem) -> ListItem {
+    public func modify<T>(unwrap value: T?, use strategy: MergeStrategy = .replacing, element: (ListItem, T) -> ListItem) -> ListItem {
         
         guard let value = value else {
             return self
         }
         
-        return self.replace(element(self, value as T))
+        switch strategy {
+        case .combining:
+            return self.combine(element(self, value as T))
+            
+        case .replacing:
+            return self.replace(element(self, value as T))
+        }
     }
 }
 

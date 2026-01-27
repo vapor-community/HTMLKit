@@ -239,6 +239,26 @@ final class RenderingTests: XCTestCase {
         )
     }
     
+    func testUnwrappedAttributeConcatenation() throws {
+        
+        let passcode: String? = "ipsum"
+        
+        let view = TestView {
+            Division {
+            }
+            .class("lorem")
+            .modify(unwrap: passcode, use: .combining) {
+                $0.class($1)
+            }
+        }
+        
+        XCTAssertEqual(try renderer!.render(view: view),
+                       """
+                       <div class="lorem ipsum"></div>
+                       """
+        )
+    }
+    
     func testRenderingCustomProperty() throws {
         
         let view = TestView {

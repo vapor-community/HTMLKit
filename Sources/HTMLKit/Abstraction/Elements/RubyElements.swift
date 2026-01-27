@@ -63,13 +63,19 @@ public struct RubyText: ContentNode, RubyElement {
         return self
     }
     
-    public func modify<T>(unwrap value: T?, element: (RubyText, T) -> RubyText) -> RubyText {
+    public func modify<T>(unwrap value: T?, use strategy: MergeStrategy = .replacing, element: (RubyText, T) -> RubyText) -> RubyText {
         
         guard let value = value else {
             return self
         }
         
-        return self.replace(element(self, value as T))
+        switch strategy {
+        case .combining:
+            return self.combine(element(self, value as T))
+            
+        case .replacing:
+            return self.replace(element(self, value as T))
+        }
     }
 }
 
@@ -461,13 +467,19 @@ public struct RubyPronunciation: ContentNode, RubyElement {
         return self
     }
     
-    public func modify<T>(unwrap value: T?, element: (RubyPronunciation, T) -> RubyPronunciation) -> RubyPronunciation {
+    public func modify<T>(unwrap value: T?, use strategy: MergeStrategy = .replacing, element: (RubyPronunciation, T) -> RubyPronunciation) -> RubyPronunciation {
         
         guard let value = value else {
             return self
         }
         
-        return self.replace(element(self, value as T))
+        switch strategy {
+        case .combining:
+            return self.combine(element(self, value as T))
+            
+        case .replacing:
+            return self.replace(element(self, value as T))
+        }
     }
 }
 

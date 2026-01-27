@@ -49,13 +49,19 @@ public struct Area: EmptyNode, MapElement {
         return self
     }
     
-    public func modify<T>(unwrap value: T?, element: (Area, T) -> Area) -> Area {
+    public func modify<T>(unwrap value: T?, use strategy: MergeStrategy = .replacing, element: (Area, T) -> Area) -> Area {
         
         guard let value = value else {
             return self
         }
         
-        return self.replace(element(self, value as T))
+        switch strategy {
+        case .combining:
+            return self.combine(element(self, value as T))
+            
+        case .replacing:
+            return self.replace(element(self, value as T))
+        }
     }
 }
 

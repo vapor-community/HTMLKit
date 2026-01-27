@@ -61,13 +61,19 @@ public struct FigureCaption: ContentNode, FigureElement {
         return self
     }
     
-    public func modify<T>(unwrap value: T?, element: (FigureCaption, T) -> FigureCaption) -> FigureCaption {
+    public func modify<T>(unwrap value: T?, use strategy: MergeStrategy = .replacing, element: (FigureCaption, T) -> FigureCaption) -> FigureCaption {
         
         guard let value = value else {
             return self
         }
         
-        return self.replace(element(self, value as T))
+        switch strategy {
+        case .combining:
+            return self.combine(element(self, value as T))
+            
+        case .replacing:
+            return self.replace(element(self, value as T))
+        }
     }
 }
 

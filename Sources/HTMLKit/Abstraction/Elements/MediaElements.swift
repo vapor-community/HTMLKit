@@ -42,13 +42,19 @@ public struct Source: EmptyNode, MediaElement {
         return self
     }
     
-    public func modify<T>(unwrap value: T?, element: (Source, T) -> Source) -> Source {
+    public func modify<T>(unwrap value: T?, use strategy: MergeStrategy = .replacing, element: (Source, T) -> Source) -> Source {
         
         guard let value = value else {
             return self
         }
         
-        return self.replace(element(self, value as T))
+        switch strategy {
+        case .combining:
+            return self.combine(element(self, value as T))
+            
+        case .replacing:
+            return self.replace(element(self, value as T))
+        }
     }
 }
 
@@ -401,13 +407,19 @@ public struct Track: EmptyNode, MediaElement {
         return self
     }
     
-    public func modify<T>(unwrap value: T?, element: (Track, T) -> Track) -> Track {
+    public func modify<T>(unwrap value: T?, use strategy: MergeStrategy = .replacing, element: (Track, T) -> Track) -> Track {
         
         guard let value = value else {
             return self
         }
         
-        return self.replace(element(self, value as T))
+        switch strategy {
+        case .combining:
+            return self.combine(element(self, value as T))
+            
+        case .replacing:
+            return self.replace(element(self, value as T))
+        }
     }
 }
 

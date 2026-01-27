@@ -45,13 +45,19 @@ public struct Parameter: EmptyNode, ObjectElement {
         return self
     }
     
-    public func modify<T>(unwrap value: T?, element: (Parameter, T) -> Parameter) -> Parameter {
+    public func modify<T>(unwrap value: T?, use strategy: MergeStrategy = .replacing, element: (Parameter, T) -> Parameter) -> Parameter {
         
         guard let value = value else {
             return self
         }
         
-        return self.replace(element(self, value as T))
+        switch strategy {
+        case .combining:
+            return self.combine(element(self, value as T))
+            
+        case .replacing:
+            return self.replace(element(self, value as T))
+        }
     }
 }
 

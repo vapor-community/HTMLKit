@@ -43,13 +43,19 @@ public struct Input: EmptyNode, FormElement {
         return self
     }
     
-    public func modify<T>(unwrap value: T?, element: (Input, T) -> Input) -> Input {
+    public func modify<T>(unwrap value: T?, use strategy: MergeStrategy = .replacing, element: (Input, T) -> Input) -> Input {
         
         guard let value = value else {
             return self
         }
         
-        return self.replace(element(self, value as T))
+        switch strategy {
+        case .combining:
+            return self.combine(element(self, value as T))
+            
+        case .replacing:
+            return self.replace(element(self, value as T))
+        }
     }
 }
 
@@ -558,13 +564,19 @@ public struct Label: ContentNode, FormElement {
         return self
     }
     
-    public func modify<T>(unwrap value: T?, element: (Label, T) -> Label) -> Label {
+    public func modify<T>(unwrap value: T?, use strategy: MergeStrategy = .replacing, element: (Label, T) -> Label) -> Label {
         
         guard let value = value else {
             return self
         }
         
-        return self.replace(element(self, value as T))
+        switch strategy {
+        case .combining:
+            return self.combine(element(self, value as T))
+            
+        case .replacing:
+            return self.replace(element(self, value as T))
+        }
     }
 }
 
@@ -969,13 +981,19 @@ public struct Select: ContentNode, FormElement {
         return self
     }
     
-    public func modify<T>(unwrap value: T?, element: (Select, T) -> Select) -> Select {
+    public func modify<T>(unwrap value: T?, use strategy: MergeStrategy = .replacing, element: (Select, T) -> Select) -> Select {
         
         guard let value = value else {
             return self
         }
         
-        return self.replace(element(self, value as T))
+        switch strategy {
+        case .combining:
+            return self.combine(element(self, value as T))
+            
+        case .replacing:
+            return self.replace(element(self, value as T))
+        }
     }
 }
 
@@ -1335,13 +1353,19 @@ public struct TextArea: ContentNode, FormElement {
         return self
     }
     
-    public func modify<T>(unwrap value: T?, element: (TextArea, T) -> TextArea) -> TextArea {
+    public func modify<T>(unwrap value: T?, use strategy: MergeStrategy = .replacing, element: (TextArea, T) -> TextArea) -> TextArea {
         
         guard let value = value else {
             return self
         }
         
-        return self.replace(element(self, value as T))
+        switch strategy {
+        case .combining:
+            return self.combine(element(self, value as T))
+            
+        case .replacing:
+            return self.replace(element(self, value as T))
+        }
     }
 }
 
@@ -1814,13 +1838,19 @@ public struct Button: ContentNode, FormElement {
         return self
     }
     
-    public func modify<T>(unwrap value: T?, element: (Button, T) -> Button) -> Button {
+    public func modify<T>(unwrap value: T?, use strategy: MergeStrategy = .replacing, element: (Button, T) -> Button) -> Button {
         
         guard let value = value else {
             return self
         }
         
-        return self.replace(element(self, value as T))
+        switch strategy {
+        case .combining:
+            return self.combine(element(self, value as T))
+            
+        case .replacing:
+            return self.replace(element(self, value as T))
+        }
     }
 }
 
@@ -2278,13 +2308,19 @@ public struct Fieldset: ContentNode, FormElement {
         return self
     }
     
-    public func modify<T>(unwrap value: T?, element: (Fieldset, T) -> Fieldset) -> Fieldset {
+    public func modify<T>(unwrap value: T?, use strategy: MergeStrategy = .replacing, element: (Fieldset, T) -> Fieldset) -> Fieldset {
         
         guard let value = value else {
             return self
         }
         
-        return self.replace(element(self, value as T))
+        switch strategy {
+        case .combining:
+            return self.combine(element(self, value as T))
+            
+        case .replacing:
+            return self.replace(element(self, value as T))
+        }
     }
 }
 

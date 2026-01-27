@@ -52,13 +52,19 @@ public struct Head: ContentNode, HtmlElement {
         return self
     }
     
-    public func modify<T>(unwrap value: T?, element: (Head, T) -> Head) -> Head {
+    public func modify<T>(unwrap value: T?, use strategy: MergeStrategy = .replacing, element: (Head, T) -> Head) -> Head {
         
         guard let value = value else {
             return self
         }
         
-        return self.replace(element(self, value as T))
+        switch strategy {
+        case .combining:
+            return self.combine(element(self, value as T))
+            
+        case .replacing:
+            return self.replace(element(self, value as T))
+        }
     }
 }
 
@@ -370,13 +376,19 @@ public struct Body: ContentNode, HtmlElement {
         return self
     }
     
-    public func modify<T>(unwrap value: T?, element: (Body, T) -> Body) -> Body {
+    public func modify<T>(unwrap value: T?, use strategy: MergeStrategy = .replacing, element: (Body, T) -> Body) -> Body {
         
         guard let value = value else {
             return self
         }
         
-        return self.replace(element(self, value as T))
+        switch strategy {
+        case .combining:
+            return self.combine(element(self, value as T))
+            
+        case .replacing:
+            return self.replace(element(self, value as T))
+        }
     }
 }
 

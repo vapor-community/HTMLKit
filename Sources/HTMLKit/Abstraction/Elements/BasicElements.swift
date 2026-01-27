@@ -117,13 +117,19 @@ public struct Html: ContentNode, BasicElement {
         return self
     }
     
-    public func modify<T>(unwrap value: T?, element: (Html, T) -> Html) -> Html {
+    public func modify<T>(unwrap value: T?, use strategy: MergeStrategy = .replacing, element: (Html, T) -> Html) -> Html {
         
         guard let value = value else {
             return self
         }
         
-        return self.replace(element(self, value as T))
+        switch strategy {
+        case .combining:
+            return self.combine(element(self, value as T))
+            
+        case .replacing:
+            return self.replace(element(self, value as T))
+        }
     }
 }
 
@@ -433,13 +439,19 @@ public struct Custom: CustomNode, GlobalElement {
         return self
     }
     
-    public func modify<T>(unwrap value: T?, element: (Custom, T) -> Custom) -> Custom {
+    public func modify<T>(unwrap value: T?, use strategy: MergeStrategy = .replacing, element: (Custom, T) -> Custom) -> Custom {
         
         guard let value = value else {
             return self
         }
         
-        return self.replace(element(self, value as T))
+        switch strategy {
+        case .combining:
+            return self.combine(element(self, value as T))
+            
+        case .replacing:
+            return self.replace(element(self, value as T))
+        }
     }
 }
 

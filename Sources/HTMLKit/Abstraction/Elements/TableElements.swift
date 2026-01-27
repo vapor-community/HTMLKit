@@ -86,13 +86,19 @@ public struct Caption: ContentNode, TableElement {
         return self
     }
     
-    public func modify<T>(unwrap value: T?, element: (Caption, T) -> Caption) -> Caption {
+    public func modify<T>(unwrap value: T?, use strategy: MergeStrategy = .replacing, element: (Caption, T) -> Caption) -> Caption {
         
         guard let value = value else {
             return self
         }
         
-        return self.replace(element(self, value as T))
+        switch strategy {
+        case .combining:
+            return self.combine(element(self, value as T))
+            
+        case .replacing:
+            return self.replace(element(self, value as T))
+        }
     }
 }
 
@@ -479,13 +485,19 @@ public struct ColumnGroup: ContentNode, TableElement {
         return self
     }
     
-    public func modify<T>(unwrap value: T?, element: (ColumnGroup, T) -> ColumnGroup) -> ColumnGroup {
+    public func modify<T>(unwrap value: T?, use strategy: MergeStrategy = .replacing, element: (ColumnGroup, T) -> ColumnGroup) -> ColumnGroup {
         
         guard let value = value else {
             return self
         }
         
-        return self.replace(element(self, value as T))
+        switch strategy {
+        case .combining:
+            return self.combine(element(self, value as T))
+            
+        case .replacing:
+            return self.replace(element(self, value as T))
+        }
     }
 }
 
@@ -791,13 +803,19 @@ public struct Column: EmptyNode, TableElement {
         return self
     }
     
-    public func modify<T>(unwrap value: T?, element: (Column, T) -> Column) -> Column {
+    public func modify<T>(unwrap value: T?, use strategy: MergeStrategy = .replacing, element: (Column, T) -> Column) -> Column {
         
         guard let value = value else {
             return self
         }
         
-        return self.replace(element(self, value as T))
+        switch strategy {
+        case .combining:
+            return self.combine(element(self, value as T))
+            
+        case .replacing:
+            return self.replace(element(self, value as T))
+        }
     }
 }
 
@@ -1113,13 +1131,19 @@ public struct TableBody: ContentNode, TableElement {
         return self
     }
     
-    public func modify<T>(unwrap value: T?, element: (TableBody, T) -> TableBody) -> TableBody {
+    public func modify<T>(unwrap value: T?, use strategy: MergeStrategy = .replacing, element: (TableBody, T) -> TableBody) -> TableBody {
         
         guard let value = value else {
             return self
         }
         
-        return self.replace(element(self, value as T))
+        switch strategy {
+        case .combining:
+            return self.combine(element(self, value as T))
+            
+        case .replacing:
+            return self.replace(element(self, value as T))
+        }
     }
 }
 
@@ -1523,13 +1547,19 @@ public struct TableHead: ContentNode, TableElement {
         return self
     }
     
-    public func modify<T>(unwrap value: T?, element: (TableHead, T) -> TableHead) -> TableHead {
+    public func modify<T>(unwrap value: T?, use strategy: MergeStrategy = .replacing, element: (TableHead, T) -> TableHead) -> TableHead {
         
         guard let value = value else {
             return self
         }
         
-        return self.replace(element(self, value as T))
+        switch strategy {
+        case .combining:
+            return self.combine(element(self, value as T))
+            
+        case .replacing:
+            return self.replace(element(self, value as T))
+        }
     }
 }
 
@@ -1933,13 +1963,19 @@ public struct TableFoot: ContentNode, TableElement {
         return self
     }
     
-    public func modify<T>(unwrap value: T?, element: (TableFoot, T) -> TableFoot) -> TableFoot {
+    public func modify<T>(unwrap value: T?, use strategy: MergeStrategy = .replacing, element: (TableFoot, T) -> TableFoot) -> TableFoot {
         
         guard let value = value else {
             return self
         }
         
-        return self.replace(element(self, value as T))
+        switch strategy {
+        case .combining:
+            return self.combine(element(self, value as T))
+            
+        case .replacing:
+            return self.replace(element(self, value as T))
+        }
     }
 }
 
@@ -2329,13 +2365,19 @@ public struct TableRow: ContentNode, TableElement {
         return self
     }
     
-    public func modify<T>(unwrap value: T?, element: (TableRow, T) -> TableRow) -> TableRow {
+    public func modify<T>(unwrap value: T?, use strategy: MergeStrategy = .replacing, element: (TableRow, T) -> TableRow) -> TableRow {
         
         guard let value = value else {
             return self
         }
         
-        return self.replace(element(self, value as T))
+        switch strategy {
+        case .combining:
+            return self.combine(element(self, value as T))
+            
+        case .replacing:
+            return self.replace(element(self, value as T))
+        }
     }
 }
 
@@ -2730,13 +2772,19 @@ public struct DataCell: ContentNode, TableElement {
         return self
     }
     
-    public func modify<T>(unwrap value: T?, element: (DataCell, T) -> DataCell) -> DataCell {
+    public func modify<T>(unwrap value: T?, use strategy: MergeStrategy = .replacing, element: (DataCell, T) -> DataCell) -> DataCell {
         
         guard let value = value else {
             return self
         }
         
-        return self.replace(element(self, value as T))
+        switch strategy {
+        case .combining:
+            return self.combine(element(self, value as T))
+            
+        case .replacing:
+            return self.replace(element(self, value as T))
+        }
     }
 }
 
@@ -3140,13 +3188,19 @@ public struct HeaderCell: ContentNode, TableElement {
         return self
     }
     
-    public func modify<T>(unwrap value: T?, element: (HeaderCell, T) -> HeaderCell) -> HeaderCell {
+    public func modify<T>(unwrap value: T?, use strategy: MergeStrategy = .replacing, element: (HeaderCell, T) -> HeaderCell) -> HeaderCell {
         
         guard let value = value else {
             return self
         }
         
-        return self.replace(element(self, value as T))
+        switch strategy {
+        case .combining:
+            return self.combine(element(self, value as T))
+            
+        case .replacing:
+            return self.replace(element(self, value as T))
+        }
     }
 }
 
