@@ -119,46 +119,46 @@ public protocol TextModifier {
 extension TextModifier where Self: Modifiable {
     
     internal func mutate(fontfamily value: String) -> Self {
-        return self.mutate(class: "font:\(value)")
+        return self.mutate(classes: "font:\(value)")
     }
     
     internal func mutate(textstyle value: String) -> Self {
-        return self.mutate(class: "style:\(value)")
+        return self.mutate(classes: "style:\(value)")
     }
     
     internal func mutate(foregroundcolor value: String) -> Self {
-        return self.mutate(class: "foreground:\(value)")
+        return self.mutate(classes: "foreground:\(value)")
     }
     
     internal func mutate(fontsize value: String) -> Self {
-        return self.mutate(class: "size:\(value)")
+        return self.mutate(classes: "size:\(value)")
     }
     
     internal func mutate(fontweight value: String) -> Self {
-        return self.mutate(class: "weight:\(value)")
+        return self.mutate(classes: "weight:\(value)")
     }
     
     internal func mutate(textcase value: String) -> Self {
-        return self.mutate(class: "case:\(value)")
+        return self.mutate(classes: "case:\(value)")
     }
     
     internal func mutate(fontstyle value: String) -> Self {
-        return self.mutate(class: "style:\(value)")
+        return self.mutate(classes: "style:\(value)")
     }
     
     internal func mutate(textdecoration value: String) -> Self {
-        return self.mutate(class: "decoration:\(value)")
+        return self.mutate(classes: "decoration:\(value)")
     }
     
     internal func mutate(lineheight value: String) -> Self {
-        return self.mutate(class: "height:\(value)")
+        return self.mutate(classes: "height:\(value)")
     }
     
     internal func mutate(linelimit value: String) -> Self {
-        return self.mutate(class: "limit:\(value)")
+        return self.mutate(classes: "limit:\(value)")
     }
     
     internal func mutate(shadow radius: String, color: String) -> Self {
-        return mutate(classes: ["shadow:\(radius)", "shadow:\(color)"])
+        return self.mutate(classes: "shadow:\(radius)", "shadow:\(color)")
     }
 }

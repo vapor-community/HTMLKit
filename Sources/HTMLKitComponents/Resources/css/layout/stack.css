@@ -1,5 +1,5 @@
-/*
- The rulsets for the horizontal stack component.
+/**
+ * The rulesets for the horizontal stack component.
  */
 
 .hstack {
@@ -99,8 +99,8 @@
     box-shadow: 0 5px 5px -5px hsla(var(--shadowColor), 0.3), 0 6px 6px -6px hsla(var(--shadowColor), 0.3);
 }
 
-/*
- The rulesets for the vertical stack component.
+/**
+ * The rulesets for the vertical stack component.
  */
 
 .vstack {
@@ -182,8 +182,8 @@
     box-shadow: 0 5px 5px -5px hsla(var(--shadowColor), 0.3), 0 6px 6px -6px hsla(var(--shadowColor), 0.3);
 }
 
-/*
- The rulesets for the z-axis stack component.
+/**
+ * The rulesets for the overlay stack component.
  */
 
 .zstack {

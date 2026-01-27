@@ -15,10 +15,10 @@ import HTMLKit
 public struct BarMark: View, Modifiable {
     
     /// The value of the mark.
-    internal var value: Int
+    internal let value: Int
     
     /// The title of the mark.
-    internal var label: String
+    internal let label: String
     
     /// The class names of the bar mark.
     internal var classes: [String]
@@ -54,6 +54,6 @@ public struct BarMark: View, Modifiable {
     ///
     /// - Returns: The mark
     public func foregroundColor(_ color: Tokens.ForegroundColor) -> BarMark {
-        return self.mutate(class: "foreground:\(color.value)")
+        return self.mutate(classes: "foreground:\(color.value)")
     }
 }

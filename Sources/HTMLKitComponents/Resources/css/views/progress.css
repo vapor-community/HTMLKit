@@ -1,3 +1,7 @@
+/**
+ * The rulesets for the progress component.
+ */
+
 .progress {
     --borderWidth: 1px;
     --borderColor: var(--systemBorderColor);

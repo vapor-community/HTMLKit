@@ -7,19 +7,19 @@ internal protocol Modifiable {
 
 extension Modifiable {
     
-    internal func mutate(`class`: String) -> Self {
-        
-        var newSelf = self
-        newSelf.classes.append(`class`)
-        
-        return newSelf
-    }
-    
     internal func mutate(classes: [String]) -> Self {
         
-        var newSelf = self
-        newSelf.classes.append(contentsOf: classes)
+        var copy = self
+        copy.classes.append(contentsOf: classes)
         
-        return newSelf
+        return copy
+    }
+    
+    internal func mutate(classes: String...) -> Self {
+        
+        var copy = self
+        copy.classes.append(contentsOf: classes)
+        
+        return copy
     }
 }

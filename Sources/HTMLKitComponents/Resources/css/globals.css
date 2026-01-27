@@ -1,35 +1,9 @@
+/**
+ * The rulesets for the globals.
+ */
+
 :root {
-    
-    /*
-     The variables for the typography.
-     
-     font family: system-ui...; (font-stack)
-     */
-    
     --fontFamily: system-ui, sans-serif;
-    
-    /*
-     The variables for the colors.
-     
-     black color: #000000
-     white color: #FFFFFF
-     blue color: #4098D7
-     brown color: #BF7140
-     cyan color: #38BEC9
-     green color: #57AE5B
-     indigo color: #647ACB
-     mint color: #91E697
-     pink color: #DA4A91
-     purple color: #724BB7
-     red color: #D64545
-     teal color: #3EBD93
-     orange color: #E67635
-     yellow color: #F7D070
-     gray color: #9E9E9E
-     silver color: #F7F7F7
-     accent color: #007FFF
-     */
-    
     --redColor: 0, 64%, 55%;
     --orangeColor: 22, 78%, 55%;
     --yellowColor: 43, 89%, 70%;
@@ -53,36 +27,7 @@
     --systemFocusColor: 210, 100%, 50%;
 }
 
-/*
- dark version
- */
-
 .scheme\:dark {
-    
-    color-scheme: dark;
-    
-    /*
-     The variables for the colors.
-     
-     black color: #000000
-     white color: #FFFFFF
-     blue color: #4098D7
-     brown color: #BF7140
-     cyan color: #38BEC9
-     green color: #57AE5B
-     indigo color: #647ACB
-     mint color: #91E697
-     pink color: #DA4A91
-     purple color: #724BB7
-     red color: #D64545
-     teal color: #3EBD93
-     orange color: #E67635
-     yellow color: #F7D070
-     gray color: #9E9E9E
-     silver color: #F7F7F7
-     accent color: #007FFF
-     */
-    
     --redColor: 0, 74%, 45%;
     --orangeColor: 22, 88%, 45%;
     --yellowColor: 43, 99%, 60%;
@@ -104,6 +49,8 @@
     --systemBorderColor: 210, 9%, 31%;
     --systemTextColor: 0, 0%, 100%;
     --systemFocusColor: 210, 100%, 50%;
+
+    color-scheme: dark;
 }
 
 *,

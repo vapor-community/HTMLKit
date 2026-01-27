@@ -27,7 +27,7 @@ import HTMLKit
 public struct Scroll: View {
     
     /// The body content of the scroll.
-    internal var content: [Content]
+    internal let content: [Content]
     
     /// The class names for the scroll.
     internal var classes: [String]

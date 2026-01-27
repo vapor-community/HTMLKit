@@ -1,22 +1,5 @@
-/*
- The stylesheet for the button component.
- 
- default:
- block padding: 8px
- inline padding: 16px
- font size: 16px
- font weight: normal
- line height: 1.5
- foreground color: #FFFFFF
- border width: 1px
- border color: #DFE3E7
- border radius: 0
- background color: #FFFFFF
- 
- darkmode:
- foreground color: #FFFFFF
- border color: #484F56
- background color: #22262a
+/**
+ * The rulesets for the button component.
  */
 
 .button {
