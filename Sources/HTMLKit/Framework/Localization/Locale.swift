@@ -2,10 +2,10 @@
 ///
 /// A locale holds information about language, region and cultural preferences.
 @_documentation(visibility: internal)
-public struct Locale: Hashable {
+public struct Locale: Hashable, Sendable {
     
     /// A enumeration of potential language tags
-    public enum Tag: String {
+    public enum Tag: String, Sendable {
         
         case arabic = "ar"
         case belarusian = "be"
