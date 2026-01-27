@@ -181,6 +181,26 @@ final class RenderingTests: XCTestCase {
         )
     }
     
+    func testAttributeConcatenation() throws {
+        
+        let isModified: Bool = true
+        
+        let view = TestView {
+            Division {
+            }
+            .class("lorem")
+            .modify(if: isModified, use: .combining) {
+                $0.class("ipsum")
+            }
+        }
+        
+        XCTAssertEqual(try renderer!.render(view: view),
+                       """
+                       <div class="lorem ipsum"></div>
+                       """
+        )
+    }
+    
     func testUnmodified() throws {
         
         let isModified: Bool = false
@@ -215,6 +235,26 @@ final class RenderingTests: XCTestCase {
         XCTAssertEqual(try renderer!.render(view: view),
                        """
                        <input placeholder="test">
+                       """
+        )
+    }
+    
+    func testUnwrappedAttributeConcatenation() throws {
+        
+        let passcode: String? = "ipsum"
+        
+        let view = TestView {
+            Division {
+            }
+            .class("lorem")
+            .modify(unwrap: passcode, use: .combining) {
+                $0.class($1)
+            }
+        }
+        
+        XCTAssertEqual(try renderer!.render(view: view),
+                       """
+                       <div class="lorem ipsum"></div>
                        """
         )
     }

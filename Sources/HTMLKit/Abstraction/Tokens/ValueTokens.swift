@@ -1982,9 +1982,11 @@ public enum Values {
     public enum Completion: String {
         
         /// Enables completion.
+        @available(*, deprecated, message: "Use the autocomplete() modifier instead.")
         case on
         
         /// Disables completion.
+        @available(*, deprecated, message: "Use the autocomplete() modifier instead.")
         case off
         
         /// Expects a name.

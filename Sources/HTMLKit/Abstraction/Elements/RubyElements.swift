@@ -47,22 +47,35 @@ public struct RubyText: ContentNode, RubyElement {
         self.content = content
     }
     
-    public func modify(if condition: Bool, element: (RubyText) -> RubyText) -> RubyText {
+    public func modify(if condition: Bool, use strategy: MergeStrategy = .replacing, element: (RubyText) -> RubyText) -> RubyText {
         
         if condition {
-            return self.modify(element(self))
+
+            switch strategy {
+            case .combining:
+                return self.combine(element(self))
+                
+            case .replacing:
+                return self.replace(element(self))
+            }
         }
         
         return self
     }
     
-    public func modify<T>(unwrap value: T?, element: (RubyText, T) -> RubyText) -> RubyText {
+    public func modify<T>(unwrap value: T?, use strategy: MergeStrategy = .replacing, element: (RubyText, T) -> RubyText) -> RubyText {
         
         guard let value = value else {
             return self
         }
         
-        return self.modify(element(self, value as T))
+        switch strategy {
+        case .combining:
+            return self.combine(element(self, value as T))
+            
+        case .replacing:
+            return self.replace(element(self, value as T))
+        }
     }
 }
 
@@ -80,8 +93,12 @@ extension RubyText: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(autofocus: .init("autofocus", context: .trusted))
     }
 
-    public func `class`(_ value: String) -> RubyText {
-        return mutate(class: .init(value, context: .tainted(.html)))
+    public func `class`(_ names: [String]) -> RubyText {
+        return mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func `class`(_ names: String...) -> RubyText {
+        return mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
     }
 
     @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
@@ -147,7 +164,7 @@ extension RubyText: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         }
         
         if let elements = elements {
-            copy = copy.mutate(itemref: .init(elements.joined(separator: " "), context: .tainted(.html)))
+            copy = copy.mutate(itemref: .init(EnumeratedList(values: elements, separator: " "), context: .tainted(.html)))
         }
         
         return copy
@@ -167,7 +184,7 @@ extension RubyText: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
             copy = copy.mutate(itemtype: .init(schema.absoluteString, context: .tainted(.html)))
         }
         
-        copy = copy.mutate(itemref: .init(elements.joined(separator: " "), context: .tainted(.html)))
+        copy = copy.mutate(itemref: .init(EnumeratedList(values: elements, separator: " "), context: .tainted(.html)))
         
         return copy
     }
@@ -434,22 +451,35 @@ public struct RubyPronunciation: ContentNode, RubyElement {
         self.content = content
     }
     
-    public func modify(if condition: Bool, element: (RubyPronunciation) -> RubyPronunciation) -> RubyPronunciation {
+    public func modify(if condition: Bool, use strategy: MergeStrategy = .replacing, element: (RubyPronunciation) -> RubyPronunciation) -> RubyPronunciation {
         
         if condition {
-            return self.modify(element(self))
+
+            switch strategy {
+            case .combining:
+                return self.combine(element(self))
+                
+            case .replacing:
+                return self.replace(element(self))
+            }
         }
         
         return self
     }
     
-    public func modify<T>(unwrap value: T?, element: (RubyPronunciation, T) -> RubyPronunciation) -> RubyPronunciation {
+    public func modify<T>(unwrap value: T?, use strategy: MergeStrategy = .replacing, element: (RubyPronunciation, T) -> RubyPronunciation) -> RubyPronunciation {
         
         guard let value = value else {
             return self
         }
         
-        return self.modify(element(self, value as T))
+        switch strategy {
+        case .combining:
+            return self.combine(element(self, value as T))
+            
+        case .replacing:
+            return self.replace(element(self, value as T))
+        }
     }
 }
 
@@ -467,8 +497,12 @@ extension RubyPronunciation: GlobalAttributes, GlobalEventAttributes, GlobalAria
         return mutate(autofocus: .init("autofocus", context: .trusted))
     }
 
-    public func `class`(_ value: String) -> RubyPronunciation {
-        return mutate(class: .init(value, context: .tainted(.html)))
+    public func `class`(_ names: [String]) -> RubyPronunciation {
+        return mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func `class`(_ names: String...) -> RubyPronunciation {
+        return mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
     }
 
     @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
@@ -534,7 +568,7 @@ extension RubyPronunciation: GlobalAttributes, GlobalEventAttributes, GlobalAria
         }
         
         if let elements = elements {
-            copy = copy.mutate(itemref: .init(elements.joined(separator: " "), context: .tainted(.html)))
+            copy = copy.mutate(itemref: .init(EnumeratedList(values: elements, separator: " "), context: .tainted(.html)))
         }
         
         return copy
@@ -554,7 +588,7 @@ extension RubyPronunciation: GlobalAttributes, GlobalEventAttributes, GlobalAria
             copy = copy.mutate(itemtype: .init(schema.absoluteString, context: .tainted(.html)))
         }
         
-        copy = copy.mutate(itemref: .init(elements.joined(separator: " "), context: .tainted(.html)))
+        copy = copy.mutate(itemref: .init(EnumeratedList(values: elements, separator: " "), context: .tainted(.html)))
         
         return copy
     }

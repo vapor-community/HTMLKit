@@ -51,22 +51,35 @@ public struct OptionGroup: ContentNode, InputElement {
         self.content = content
     }
     
-    public func modify(if condition: Bool, element: (OptionGroup) -> OptionGroup) -> OptionGroup {
+    public func modify(if condition: Bool, use strategy: MergeStrategy = .replacing, element: (OptionGroup) -> OptionGroup) -> OptionGroup {
         
         if condition {
-            return self.modify(element(self))
+
+            switch strategy {
+            case .combining:
+                return self.combine(element(self))
+                
+            case .replacing:
+                return self.replace(element(self))
+            }
         }
         
         return self
     }
     
-    public func modify<T>(unwrap value: T?, element: (OptionGroup, T) -> OptionGroup) -> OptionGroup {
+    public func modify<T>(unwrap value: T?, use strategy: MergeStrategy = .replacing, element: (OptionGroup, T) -> OptionGroup) -> OptionGroup {
         
         guard let value = value else {
             return self
         }
         
-        return self.modify(element(self, value as T))
+        switch strategy {
+        case .combining:
+            return self.combine(element(self, value as T))
+            
+        case .replacing:
+            return self.replace(element(self, value as T))
+        }
     }
 }
 
@@ -84,8 +97,12 @@ extension OptionGroup: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
         return mutate(autofocus: .init("autofocus", context: .trusted))
     }
 
-    public func `class`(_ value: String) -> OptionGroup {
-        return mutate(class: .init(value, context: .tainted(.html)))
+    public func `class`(_ names: [String]) -> OptionGroup {
+        return mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func `class`(_ names: String...) -> OptionGroup {
+        return mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
     }
 
     @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
@@ -151,7 +168,7 @@ extension OptionGroup: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
         }
         
         if let elements = elements {
-            copy = copy.mutate(itemref: .init(elements.joined(separator: " "), context: .tainted(.html)))
+            copy = copy.mutate(itemref: .init(EnumeratedList(values: elements, separator: " "), context: .tainted(.html)))
         }
         
         return copy
@@ -171,7 +188,7 @@ extension OptionGroup: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
             copy = copy.mutate(itemtype: .init(schema.absoluteString, context: .tainted(.html)))
         }
         
-        copy = copy.mutate(itemref: .init(elements.joined(separator: " "), context: .tainted(.html)))
+        copy = copy.mutate(itemref: .init(EnumeratedList(values: elements, separator: " "), context: .tainted(.html)))
         
         return copy
     }
@@ -454,22 +471,35 @@ public struct Option: ContentNode, InputElement {
         self.content = content
     }
     
-    public func modify(if condition: Bool, element: (Option) -> Option) -> Option {
+    public func modify(if condition: Bool, use strategy: MergeStrategy = .replacing, element: (Option) -> Option) -> Option {
         
         if condition {
-            return self.modify(element(self))
+
+            switch strategy {
+            case .combining:
+                return self.combine(element(self))
+                
+            case .replacing:
+                return self.replace(element(self))
+            }
         }
         
         return self
     }
     
-    public func modify<T>(unwrap value: T?, element: (Option, T) -> Option) -> Option {
+    public func modify<T>(unwrap value: T?, use strategy: MergeStrategy = .replacing, element: (Option, T) -> Option) -> Option {
         
         guard let value = value else {
             return self
         }
         
-        return self.modify(element(self, value as T))
+        switch strategy {
+        case .combining:
+            return self.combine(element(self, value as T))
+            
+        case .replacing:
+            return self.replace(element(self, value as T))
+        }
     }
 }
 
@@ -487,8 +517,12 @@ extension Option: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return mutate(autofocus: .init("autofocus", context: .trusted))
     }
 
-    public func `class`(_ value: String) -> Option {
-        return mutate(class: .init(value, context: .tainted(.html)))
+    public func `class`(_ names: [String]) -> Option {
+        return mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func `class`(_ names: String...) -> Option {
+        return mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
     }
 
     @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
@@ -554,7 +588,7 @@ extension Option: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         }
         
         if let elements = elements {
-            copy = copy.mutate(itemref: .init(elements.joined(separator: " "), context: .tainted(.html)))
+            copy = copy.mutate(itemref: .init(EnumeratedList(values: elements, separator: " "), context: .tainted(.html)))
         }
         
         return copy
@@ -574,7 +608,7 @@ extension Option: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
             copy = copy.mutate(itemtype: .init(schema.absoluteString, context: .tainted(.html)))
         }
         
-        copy = copy.mutate(itemref: .init(elements.joined(separator: " "), context: .tainted(.html)))
+        copy = copy.mutate(itemref: .init(EnumeratedList(values: elements, separator: " "), context: .tainted(.html)))
         
         return copy
     }
@@ -889,22 +923,35 @@ public struct Legend: ContentNode, InputElement {
         self.content = content
     }
     
-    public func modify(if condition: Bool, element: (Legend) -> Legend) -> Legend {
+    public func modify(if condition: Bool, use strategy: MergeStrategy = .replacing, element: (Legend) -> Legend) -> Legend {
         
         if condition {
-            return self.modify(element(self))
+
+            switch strategy {
+            case .combining:
+                return self.combine(element(self))
+                
+            case .replacing:
+                return self.replace(element(self))
+            }
         }
         
         return self
     }
     
-    public func modify<T>(unwrap value: T?, element: (Legend, T) -> Legend) -> Legend {
+    public func modify<T>(unwrap value: T?, use strategy: MergeStrategy = .replacing, element: (Legend, T) -> Legend) -> Legend {
         
         guard let value = value else {
             return self
         }
         
-        return self.modify(element(self, value as T))
+        switch strategy {
+        case .combining:
+            return self.combine(element(self, value as T))
+            
+        case .replacing:
+            return self.replace(element(self, value as T))
+        }
     }
 }
 
@@ -922,8 +969,12 @@ extension Legend: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
         return mutate(autofocus: .init("autofocus", context: .trusted))
     }
 
-    public func `class`(_ value: String) -> Legend {
-        return mutate(class: .init(value, context: .tainted(.html)))
+    public func `class`(_ names: [String]) -> Legend {
+        return mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func `class`(_ names: String...) -> Legend {
+        return mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
     }
 
     @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
@@ -989,7 +1040,7 @@ extension Legend: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
         }
         
         if let elements = elements {
-            copy = copy.mutate(itemref: .init(elements.joined(separator: " "), context: .tainted(.html)))
+            copy = copy.mutate(itemref: .init(EnumeratedList(values: elements, separator: " "), context: .tainted(.html)))
         }
         
         return copy
@@ -1009,7 +1060,7 @@ extension Legend: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
             copy = copy.mutate(itemtype: .init(schema.absoluteString, context: .tainted(.html)))
         }
         
-        copy = copy.mutate(itemref: .init(elements.joined(separator: " "), context: .tainted(.html)))
+        copy = copy.mutate(itemref: .init(EnumeratedList(values: elements, separator: " "), context: .tainted(.html)))
         
         return copy
     }
@@ -1272,22 +1323,35 @@ public struct Summary: ContentNode, InputElement {
         self.content = content
     }
     
-    public func modify(if condition: Bool, element: (Summary) -> Summary) -> Summary {
+    public func modify(if condition: Bool, use strategy: MergeStrategy = .replacing, element: (Summary) -> Summary) -> Summary {
         
         if condition {
-            return self.modify(element(self))
+
+            switch strategy {
+            case .combining:
+                return self.combine(element(self))
+                
+            case .replacing:
+                return self.replace(element(self))
+            }
         }
         
         return self
     }
     
-    public func modify<T>(unwrap value: T?, element: (Summary, T) -> Summary) -> Summary {
+    public func modify<T>(unwrap value: T?, use strategy: MergeStrategy = .replacing, element: (Summary, T) -> Summary) -> Summary {
         
         guard let value = value else {
             return self
         }
         
-        return self.modify(element(self, value as T))
+        switch strategy {
+        case .combining:
+            return self.combine(element(self, value as T))
+            
+        case .replacing:
+            return self.replace(element(self, value as T))
+        }
     }
 }
 
@@ -1305,8 +1369,12 @@ extension Summary: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
         return mutate(autofocus: .init("autofocus", context: .trusted))
     }
 
-    public func `class`(_ value: String) -> Summary {
-        return mutate(class: .init(value, context: .tainted(.html)))
+    public func `class`(_ names: [String]) -> Summary {
+        return mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func `class`(_ names: String...) -> Summary {
+        return mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
     }
 
     @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
@@ -1372,7 +1440,7 @@ extension Summary: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
         }
         
         if let elements = elements {
-            copy = copy.mutate(itemref: .init(elements.joined(separator: " "), context: .tainted(.html)))
+            copy = copy.mutate(itemref: .init(EnumeratedList(values: elements, separator: " "), context: .tainted(.html)))
         }
         
         return copy
@@ -1392,7 +1460,7 @@ extension Summary: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
             copy = copy.mutate(itemtype: .init(schema.absoluteString, context: .tainted(.html)))
         }
         
-        copy = copy.mutate(itemref: .init(elements.joined(separator: " "), context: .tainted(.html)))
+        copy = copy.mutate(itemref: .init(EnumeratedList(values: elements, separator: " "), context: .tainted(.html)))
         
         return copy
     }

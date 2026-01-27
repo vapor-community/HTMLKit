@@ -38,22 +38,35 @@ public struct Title: ContentNode, HeadElement, VectorElement {
         self.content = content
     }
     
-    public func modify(if condition: Bool, element: (Title) -> Title) -> Title {
+    public func modify(if condition: Bool, use strategy: MergeStrategy = .replacing, element: (Title) -> Title) -> Title {
         
         if condition {
-            return self.modify(element(self))
+
+            switch strategy {
+            case .combining:
+                return self.combine(element(self))
+                
+            case .replacing:
+                return self.replace(element(self))
+            }
         }
         
         return self
     }
     
-    public func modify<T>(unwrap value: T?, element: (Title, T) -> Title) -> Title {
+    public func modify<T>(unwrap value: T?, use strategy: MergeStrategy = .replacing, element: (Title, T) -> Title) -> Title {
         
         guard let value = value else {
             return self
         }
         
-        return self.modify(element(self, value as T))
+        switch strategy {
+        case .combining:
+            return self.combine(element(self, value as T))
+            
+        case .replacing:
+            return self.replace(element(self, value as T))
+        }
     }
 }
 
@@ -71,8 +84,12 @@ extension Title: GlobalAttributes, GlobalEventAttributes {
         return mutate(autofocus: .init("autofocus", context: .trusted))
     }
     
-    public func `class`(_ value: String) -> Title {
-        return mutate(class: .init(value, context: .tainted(.html)))
+    public func `class`(_ names: [String]) -> Title {
+        return mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func `class`(_ names: String...) -> Title {
+        return mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
     }
     
     @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
@@ -138,7 +155,7 @@ extension Title: GlobalAttributes, GlobalEventAttributes {
         }
         
         if let elements = elements {
-            copy = copy.mutate(itemref: .init(elements.joined(separator: " "), context: .tainted(.html)))
+            copy = copy.mutate(itemref: .init(EnumeratedList(values: elements, separator: " "), context: .tainted(.html)))
         }
         
         return copy
@@ -158,7 +175,7 @@ extension Title: GlobalAttributes, GlobalEventAttributes {
             copy = copy.mutate(itemtype: .init(schema.absoluteString, context: .tainted(.html)))
         }
         
-        copy = copy.mutate(itemref: .init(elements.joined(separator: " "), context: .tainted(.html)))
+        copy = copy.mutate(itemref: .init(EnumeratedList(values: elements, separator: " "), context: .tainted(.html)))
         
         return copy
     }
@@ -338,22 +355,35 @@ public struct Base: EmptyNode, HeadElement {
         self.attributes = attributes
     }
     
-    public func modify(if condition: Bool, element: (Base) -> Base) -> Base {
+    public func modify(if condition: Bool, use strategy: MergeStrategy = .replacing, element: (Base) -> Base) -> Base {
         
         if condition {
-            return self.modify(element(self))
+
+            switch strategy {
+            case .combining:
+                return self.combine(element(self))
+                
+            case .replacing:
+                return self.replace(element(self))
+            }
         }
         
         return self
     }
     
-    public func modify<T>(unwrap value: T?, element: (Base, T) -> Base) -> Base {
+    public func modify<T>(unwrap value: T?, use strategy: MergeStrategy = .replacing, element: (Base, T) -> Base) -> Base {
         
         guard let value = value else {
             return self
         }
         
-        return self.modify(element(self, value as T))
+        switch strategy {
+        case .combining:
+            return self.combine(element(self, value as T))
+            
+        case .replacing:
+            return self.replace(element(self, value as T))
+        }
     }
 }
 
@@ -371,8 +401,12 @@ extension Base: GlobalAttributes, GlobalEventAttributes, ReferenceAttribute, Tar
         return mutate(autofocus: .init("autofocus", context: .trusted))
     }
     
-    public func `class`(_ value: String) -> Base {
-        return mutate(class: .init(value, context: .tainted(.html)))
+    public func `class`(_ names: [String]) -> Base {
+        return mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func `class`(_ names: String...) -> Base {
+        return mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
     }
     
     @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
@@ -438,7 +472,7 @@ extension Base: GlobalAttributes, GlobalEventAttributes, ReferenceAttribute, Tar
         }
         
         if let elements = elements {
-            copy = copy.mutate(itemref: .init(elements.joined(separator: " "), context: .tainted(.html)))
+            copy = copy.mutate(itemref: .init(EnumeratedList(values: elements, separator: " "), context: .tainted(.html)))
         }
         
         return copy
@@ -458,7 +492,7 @@ extension Base: GlobalAttributes, GlobalEventAttributes, ReferenceAttribute, Tar
             copy = copy.mutate(itemtype: .init(schema.absoluteString, context: .tainted(.html)))
         }
         
-        copy = copy.mutate(itemref: .init(elements.joined(separator: " "), context: .tainted(.html)))
+        copy = copy.mutate(itemref: .init(EnumeratedList(values: elements, separator: " "), context: .tainted(.html)))
         
         return copy
     }
@@ -636,22 +670,35 @@ public struct Meta: EmptyNode, HeadElement {
         self.attributes = attributes
     }
     
-    public func modify(if condition: Bool, element: (Meta) -> Meta) -> Meta {
+    public func modify(if condition: Bool, use strategy: MergeStrategy = .replacing, element: (Meta) -> Meta) -> Meta {
         
         if condition {
-            return self.modify(element(self))
+
+            switch strategy {
+            case .combining:
+                return self.combine(element(self))
+                
+            case .replacing:
+                return self.replace(element(self))
+            }
         }
         
         return self
     }
     
-    public func modify<T>(unwrap value: T?, element: (Meta, T) -> Meta) -> Meta {
+    public func modify<T>(unwrap value: T?, use strategy: MergeStrategy = .replacing, element: (Meta, T) -> Meta) -> Meta {
         
         guard let value = value else {
             return self
         }
         
-        return self.modify(element(self, value as T))
+        switch strategy {
+        case .combining:
+            return self.combine(element(self, value as T))
+            
+        case .replacing:
+            return self.replace(element(self, value as T))
+        }
     }
 }
 
@@ -669,8 +716,12 @@ extension Meta: GlobalAttributes, GlobalEventAttributes, ContentAttribute, NameA
         return mutate(autofocus: .init("autofocus", context: .trusted))
     }
 
-    public func `class`(_ value: String) -> Meta {
-        return mutate(class: .init(value, context: .tainted(.html)))
+    public func `class`(_ names: [String]) -> Meta {
+        return mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func `class`(_ names: String...) -> Meta {
+        return mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
     }
 
     @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
@@ -736,7 +787,7 @@ extension Meta: GlobalAttributes, GlobalEventAttributes, ContentAttribute, NameA
         }
         
         if let elements = elements {
-            copy = copy.mutate(itemref: .init(elements.joined(separator: " "), context: .tainted(.html)))
+            copy = copy.mutate(itemref: .init(EnumeratedList(values: elements, separator: " "), context: .tainted(.html)))
         }
         
         return copy
@@ -756,7 +807,7 @@ extension Meta: GlobalAttributes, GlobalEventAttributes, ContentAttribute, NameA
             copy = copy.mutate(itemtype: .init(schema.absoluteString, context: .tainted(.html)))
         }
         
-        copy = copy.mutate(itemref: .init(elements.joined(separator: " "), context: .tainted(.html)))
+        copy = copy.mutate(itemref: .init(EnumeratedList(values: elements, separator: " "), context: .tainted(.html)))
         
         return copy
     }
@@ -977,22 +1028,35 @@ public struct Style: ContentNode, HeadElement {
         self.content = content
     }
     
-    public func modify(if condition: Bool, element: (Style) -> Style) -> Style {
+    public func modify(if condition: Bool, use strategy: MergeStrategy = .replacing, element: (Style) -> Style) -> Style {
         
         if condition {
-            return self.modify(element(self))
+
+            switch strategy {
+            case .combining:
+                return self.combine(element(self))
+                
+            case .replacing:
+                return self.replace(element(self))
+            }
         }
         
         return self
     }
     
-    public func modify<T>(unwrap value: T?, element: (Style, T) -> Style) -> Style {
+    public func modify<T>(unwrap value: T?, use strategy: MergeStrategy = .replacing, element: (Style, T) -> Style) -> Style {
         
         guard let value = value else {
             return self
         }
         
-        return self.modify(element(self, value as T))
+        switch strategy {
+        case .combining:
+            return self.combine(element(self, value as T))
+            
+        case .replacing:
+            return self.replace(element(self, value as T))
+        }
     }
 }
 
@@ -1010,8 +1074,12 @@ extension Style: GlobalAttributes, GlobalEventAttributes, TypeAttribute, MediaAt
         return mutate(autofocus: .init("autofocus", context: .trusted))
     }
 
-    public func `class`(_ value: String) -> Style {
-        return mutate(class: .init(value, context: .tainted(.html)))
+    public func `class`(_ names: [String]) -> Style {
+        return mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func `class`(_ names: String...) -> Style {
+        return mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
     }
 
     @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
@@ -1077,7 +1145,7 @@ extension Style: GlobalAttributes, GlobalEventAttributes, TypeAttribute, MediaAt
         }
         
         if let elements = elements {
-            copy = copy.mutate(itemref: .init(elements.joined(separator: " "), context: .tainted(.html)))
+            copy = copy.mutate(itemref: .init(EnumeratedList(values: elements, separator: " "), context: .tainted(.html)))
         }
         
         return copy
@@ -1097,7 +1165,7 @@ extension Style: GlobalAttributes, GlobalEventAttributes, TypeAttribute, MediaAt
             copy = copy.mutate(itemtype: .init(schema.absoluteString, context: .tainted(.html)))
         }
         
-        copy = copy.mutate(itemref: .init(elements.joined(separator: " "), context: .tainted(.html)))
+        copy = copy.mutate(itemref: .init(EnumeratedList(values: elements, separator: " "), context: .tainted(.html)))
         
         return copy
     }
@@ -1204,11 +1272,11 @@ extension Style: GlobalAttributes, GlobalEventAttributes, TypeAttribute, MediaAt
     }
     
     public func media(_ queries: [MediaQuery]) -> Style {
-        return mutate(media: .init(queries.map { $0.rawValue }.joined(separator: ", "), context: .tainted(.html)))
+        return mutate(media: .init(EnumeratedList(values: queries, separator: ", "), context: .tainted(.html)))
     }
     
     public func media(_ queries: MediaQuery...) -> Style {
-        return mutate(media: .init(queries.map { $0.rawValue }.joined(separator: ", "), context: .tainted(.html)))
+        return mutate(media: .init(EnumeratedList(values: queries, separator: ", "), context: .tainted(.html)))
     }
     
     public func blocking(_ value: Values.Blocking) -> Style {
@@ -1286,22 +1354,35 @@ public struct Link: EmptyNode, HeadElement, BodyElement {
         self.attributes = attributes
     }
     
-    public func modify(if condition: Bool, element: (Link) -> Link) -> Link {
+    public func modify(if condition: Bool, use strategy: MergeStrategy = .replacing, element: (Link) -> Link) -> Link {
         
         if condition {
-            return self.modify(element(self))
+
+            switch strategy {
+            case .combining:
+                return self.combine(element(self))
+                
+            case .replacing:
+                return self.replace(element(self))
+            }
         }
         
         return self
     }
     
-    public func modify<T>(unwrap value: T?, element: (Link, T) -> Link) -> Link {
+    public func modify<T>(unwrap value: T?, use strategy: MergeStrategy = .replacing, element: (Link, T) -> Link) -> Link {
         
         guard let value = value else {
             return self
         }
         
-        return self.modify(element(self, value as T))
+        switch strategy {
+        case .combining:
+            return self.combine(element(self, value as T))
+            
+        case .replacing:
+            return self.replace(element(self, value as T))
+        }
     }
 }
 
@@ -1323,8 +1404,12 @@ extension Link: GlobalAttributes, GlobalEventAttributes, ReferenceAttribute, Ref
         return mutate(autofocus: .init("autofocus", context: .trusted))
     }
 
-    public func `class`(_ value: String) -> Link {
-        return mutate(class: .init(value, context: .tainted(.html)))
+    public func `class`(_ names: [String]) -> Link {
+        return mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func `class`(_ names: String...) -> Link {
+        return mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
     }
     
     public func crossOrigin(_ value: Credential.Mode) -> Link {
@@ -1376,11 +1461,11 @@ extension Link: GlobalAttributes, GlobalEventAttributes, ReferenceAttribute, Ref
     }
     
     public func integrity(_ hashes: String...) -> Link {
-        return mutate(integrity: .init(hashes.joined(separator: " "), context: .tainted(.html)))
+        return mutate(integrity: .init(EnumeratedList(values: hashes, separator: " "), context: .tainted(.html)))
     }
     
     public func integrity(_ hashes: [String]) -> Link {
-        return mutate(integrity: .init(hashes.joined(separator: " "), context: .tainted(.html)))
+        return mutate(integrity: .init(EnumeratedList(values: hashes, separator: " "), context: .tainted(.html)))
     }
 
     public func `is`(_ value: String) -> Link {
@@ -1402,7 +1487,7 @@ extension Link: GlobalAttributes, GlobalEventAttributes, ReferenceAttribute, Ref
         }
         
         if let elements = elements {
-            copy = copy.mutate(itemref: .init(elements.joined(separator: " "), context: .tainted(.html)))
+            copy = copy.mutate(itemref: .init(EnumeratedList(values: elements, separator: " "), context: .tainted(.html)))
         }
         
         return copy
@@ -1422,7 +1507,7 @@ extension Link: GlobalAttributes, GlobalEventAttributes, ReferenceAttribute, Ref
             copy = copy.mutate(itemtype: .init(schema.absoluteString, context: .tainted(.html)))
         }
         
-        copy = copy.mutate(itemref: .init(elements.joined(separator: " "), context: .tainted(.html)))
+        copy = copy.mutate(itemref: .init(EnumeratedList(values: elements, separator: " "), context: .tainted(.html)))
         
         return copy
     }
@@ -1533,11 +1618,11 @@ extension Link: GlobalAttributes, GlobalEventAttributes, ReferenceAttribute, Ref
     }
     
     public func media(_ queries: [MediaQuery]) -> Link {
-        return mutate(media: .init(queries.map { $0.rawValue }.joined(separator: ", "), context: .tainted(.html)))
+        return mutate(media: .init(EnumeratedList(values: queries, separator: ", "), context: .tainted(.html)))
     }
     
     public func media(_ queries: MediaQuery...) -> Link {
-        return mutate(media: .init(queries.map { $0.rawValue }.joined(separator: ", "), context: .tainted(.html)))
+        return mutate(media: .init(EnumeratedList(values: queries, separator: ", "), context: .tainted(.html)))
     }
     
     public func referrerPolicy(_ value: Values.Policy) -> Link {
@@ -1549,11 +1634,11 @@ extension Link: GlobalAttributes, GlobalEventAttributes, ReferenceAttribute, Ref
     }
     
     public func sizes(_ candidates: [String]) -> Link {
-        return mutate(sizes: .init(candidates.map { $0 }.joined(separator: " "), context: .tainted(.html)))
+        return mutate(sizes: .init(EnumeratedList(values: candidates, separator: " "), context: .tainted(.html)))
     }
     
     public func sizes(_ candidates: String...) -> Link {
-        return mutate(sizes: .init(candidates.map { $0 }.joined(separator: " "), context: .tainted(.html)))
+        return mutate(sizes: .init(EnumeratedList(values: candidates, separator: " "), context: .tainted(.html)))
     }
     
     public func type(_ value: Values.Media) -> Link {

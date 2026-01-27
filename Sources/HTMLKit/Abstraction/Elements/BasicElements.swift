@@ -101,22 +101,35 @@ public struct Html: ContentNode, BasicElement {
         self.content = content
     }
     
-    public func modify(if condition: Bool, element: (Html) -> Html) -> Html {
+    public func modify(if condition: Bool, use strategy: MergeStrategy = .replacing, element: (Html) -> Html) -> Html {
         
         if condition {
-            return self.modify(element(self))
+
+            switch strategy {
+            case .combining:
+                return self.combine(element(self))
+                
+            case .replacing:
+                return self.replace(element(self))
+            }
         }
         
         return self
     }
     
-    public func modify<T>(unwrap value: T?, element: (Html, T) -> Html) -> Html {
+    public func modify<T>(unwrap value: T?, use strategy: MergeStrategy = .replacing, element: (Html, T) -> Html) -> Html {
         
         guard let value = value else {
             return self
         }
         
-        return self.modify(element(self, value as T))
+        switch strategy {
+        case .combining:
+            return self.combine(element(self, value as T))
+            
+        case .replacing:
+            return self.replace(element(self, value as T))
+        }
     }
 }
 
@@ -134,8 +147,12 @@ extension Html: GlobalAttributes, GlobalEventAttributes {
         return mutate(autofocus: .init("autofocus", context: .trusted))
     }
 
-    public func `class`(_ value: String) -> Html {
-        return mutate(class: .init(value, context: .tainted(.html)))
+    public func `class`(_ names: [String]) -> Html {
+        return mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func `class`(_ names: String...) -> Html {
+        return mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
     }
 
     @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
@@ -201,7 +218,7 @@ extension Html: GlobalAttributes, GlobalEventAttributes {
         }
         
         if let elements = elements {
-            copy = copy.mutate(itemref: .init(elements.joined(separator: " "), context: .tainted(.html)))
+            copy = copy.mutate(itemref: .init(EnumeratedList(values: elements, separator: " "), context: .tainted(.html)))
         }
         
         return copy
@@ -221,7 +238,7 @@ extension Html: GlobalAttributes, GlobalEventAttributes {
             copy = copy.mutate(itemtype: .init(schema.absoluteString, context: .tainted(.html)))
         }
         
-        copy = copy.mutate(itemref: .init(elements.joined(separator: " "), context: .tainted(.html)))
+        copy = copy.mutate(itemref: .init(EnumeratedList(values: elements, separator: " "), context: .tainted(.html)))
         
         return copy
     }
@@ -406,22 +423,35 @@ public struct Custom: CustomNode, GlobalElement {
         self.content = content
     }
     
-    public func modify(if condition: Bool, element: (Custom) -> Custom) -> Custom {
+    public func modify(if condition: Bool, use strategy: MergeStrategy = .replacing, element: (Custom) -> Custom) -> Custom {
         
         if condition {
-            return self.modify(element(self))
+
+            switch strategy {
+            case .combining:
+                return self.combine(element(self))
+                
+            case .replacing:
+                return self.replace(element(self))
+            }
         }
         
         return self
     }
     
-    public func modify<T>(unwrap value: T?, element: (Custom, T) -> Custom) -> Custom {
+    public func modify<T>(unwrap value: T?, use strategy: MergeStrategy = .replacing, element: (Custom, T) -> Custom) -> Custom {
         
         guard let value = value else {
             return self
         }
         
-        return self.modify(element(self, value as T))
+        switch strategy {
+        case .combining:
+            return self.combine(element(self, value as T))
+            
+        case .replacing:
+            return self.replace(element(self, value as T))
+        }
     }
 }
 
