@@ -259,6 +259,49 @@ final class RenderingTests: XCTestCase {
         )
     }
     
+    func testUnwrappedAttributeAttachment() throws {
+        
+        let passcode: String? = "ipsum"
+        
+        let view = TestView {
+            Input()
+                .class("lorem")
+                .modify(unwrap: passcode, use: .combining) {
+                    $0.placeholder($1)
+                }
+        }
+        
+        XCTAssertEqual(try renderer!.render(view: view),
+                       """
+                       <input class="lorem" placeholder="ipsum">
+                       """
+        )
+    }
+    
+    func testModifiedAndContextChange() throws {
+        
+        let view = TestView {
+            Input()
+                .class("<h1>lorem</h1>")
+                .modify(if: false, use: .combining) {
+                    $0.custom(key: "class", value: "<h1>ipsum</h1>", context: .trusted)
+                }
+            
+            Input()
+                .class("<h1>lorem</h1>")
+                .modify(if: true, use: .combining) {
+                    $0.custom(key: "class", value: "<h1>ipsum</h1>", context: .trusted)
+                }
+        }
+        
+        XCTAssertEqual(try renderer!.render(view: view),
+                       """
+                       <input class="&lt;h1>lorem&lt;/h1>">\
+                       <input class="<h1>ipsum</h1>">
+                       """
+        )
+    }
+    
     func testRenderingCustomProperty() throws {
         
         let view = TestView {

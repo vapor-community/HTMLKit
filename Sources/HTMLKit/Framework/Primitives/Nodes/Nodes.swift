@@ -40,13 +40,17 @@ extension ContentNode {
     /// - Returns: The element
     internal func replace(_ element: Self) -> Self {
         
-        guard var attributes = self.attributes else {
-            return .init(attributes: element.attributes, context: self.context, content: self.content)
+        guard var lhs = self.attributes else {
+            return element
         }
         
-        attributes.merge(element.attributes!) { (_, new) in new }
+        guard let rhs = element.attributes else {
+            return self
+        }
+        
+        lhs.merge(rhs) { (_, new) in new }
        
-        return .init(attributes: attributes, context: self.context, content: self.content)
+        return .init(attributes: lhs, context: self.context, content: self.content)
     }
     
     /// Combines the attributes, incorporating the new values.
@@ -56,30 +60,38 @@ extension ContentNode {
     /// - Returns: The element
     internal func combine(_ element: Self) -> Self {
         
-        guard var attributes = self.attributes else {
-            return .init(attributes: element.attributes, context: self.context, content: self.content)
+        guard var lhs = self.attributes else {
+            return element
         }
         
-        for (key, value) in attributes {
+        guard let rhs = element.attributes else {
+            return self
+        }
+        
+        for (key, value) in rhs {
             
-            if let attribute = element.attributes?[key] {
+            if let attribute = lhs[key] {
                 
-                if case .list(var old) = value.value, case .list(let new) = attribute.value {
+                switch (attribute.value, value.value) {
+                case (.list(var old), .list(let new)):
                     
                     if old != new {
                         
                         old.append(new.values)
                         
-                        attributes[key] = .init(old, context: value.context)
+                        lhs[key] = .init(old, context: value.context)
                     }
                     
-                } else {
-                    attributes[key] = attribute
+                default:
+                    lhs[key] = value
                 }
+                
+            } else {
+                lhs[key] = value
             }
         }
        
-        return .init(attributes: attributes, context: self.context, content: self.content)
+        return .init(attributes: lhs, context: self.context, content: self.content)
     }
 }
 
@@ -109,13 +121,17 @@ extension EmptyNode {
     /// - Returns: The element
     internal func replace(_ element: Self) -> Self {
         
-        guard var attributes = self.attributes else {
-            return .init(attributes: element.attributes)
+        guard var lhs = self.attributes else {
+            return element
         }
         
-        attributes.merge(element.attributes!) { (_, new) in new }
+        guard let rhs = element.attributes else {
+            return self
+        }
         
-        return .init(attributes: attributes)
+        lhs.merge(rhs) { (_, new) in new }
+        
+        return .init(attributes: lhs)
     }
     
     /// Combines the attributes, incorporating the new values.
@@ -125,30 +141,38 @@ extension EmptyNode {
     /// - Returns: The element
     internal func combine(_ element: Self) -> Self {
         
-        guard var attributes = self.attributes else {
-            return .init(attributes: element.attributes)
+        guard var lhs = self.attributes else {
+            return element
         }
         
-        for (key, value) in attributes {
+        guard let rhs = element.attributes else {
+            return self
+        }
+        
+        for (key, value) in rhs {
             
-            if let attribute = element.attributes?[key] {
+            if let attribute = lhs[key] {
                 
-                if case .list(var old) = value.value, case .list(let new) = attribute.value {
+                switch (attribute.value, value.value) {
+                case (.list(var old), .list(let new)):
                     
                     if old != new {
                         
                         old.append(new.values)
-                     
-                        attributes[key] = .init(old, context: value.context)
+                        
+                        lhs[key] = .init(old, context: value.context)
                     }
                     
-                } else {
-                    attributes[key] = attribute
+                default:
+                    lhs[key] = value
                 }
+                
+            } else {
+                lhs[key] = value
             }
         }
        
-        return .init(attributes: attributes)
+        return .init(attributes: lhs)
     }
 }
 
@@ -208,13 +232,17 @@ extension CustomNode {
     /// - Returns: The element
     internal func replace(_ element: Self) -> Self {
         
-        guard var attributes = self.attributes else {
-            return .init(name: element.name, attributes: element.attributes, context: self.context, content: self.content)
+        guard var lhs = self.attributes else {
+            return element
         }
         
-        attributes.merge(element.attributes!) { (_, new) in new }
+        guard let rhs = element.attributes else {
+            return self
+        }
+        
+        lhs.merge(rhs) { (_, new) in new }
        
-        return .init(name: element.name, attributes: attributes, context: self.context, content: self.content)
+        return .init(name: element.name, attributes: lhs, context: self.context, content: self.content)
     }
     
     /// Combines the attributes, incorporating the new values.
@@ -224,29 +252,37 @@ extension CustomNode {
     /// - Returns: The element
     internal func combine(_ element: Self) -> Self {
         
-        guard var attributes = self.attributes else {
-            return .init(name: element.name, attributes: element.attributes, context: self.context, content: self.content)
+        guard var lhs = self.attributes else {
+            return element
         }
         
-        for (key, value) in attributes {
+        guard let rhs = element.attributes else {
+            return self
+        }
+        
+        for (key, value) in rhs {
             
-            if let attribute = element.attributes?[key] {
+            if let attribute = lhs[key] {
                 
-                if case .list(var old) = value.value, case .list(let new) = attribute.value {
+                switch (attribute.value, value.value) {
+                case (.list(var old), .list(let new)):
                     
                     if old != new {
                         
                         old.append(new.values)
-                     
-                        attributes[key] = .init(old, context: value.context)
+                        
+                        lhs[key] = .init(old, context: value.context)
                     }
                     
-                } else {
-                    attributes[key] = attribute
+                default:
+                    lhs[key] = value
                 }
+                
+            } else {
+                lhs[key] = value
             }
         }
        
-        return .init(name: element.name, attributes: attributes, context: self.context, content: self.content)
+        return .init(name: element.name, attributes: lhs, context: self.context, content: self.content)
     }
 }
