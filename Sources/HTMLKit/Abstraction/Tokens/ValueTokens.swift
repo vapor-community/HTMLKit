@@ -860,9 +860,6 @@ public enum Values {
         /// Indicates a ressource preload.
         case preload
         
-        @available(*, unavailable, message: "It is no longer part of the web standards.")
-        case prerender
-        
         /// Indicates a page pagination.
         case prev
         
@@ -874,9 +871,6 @@ public enum Values {
         
         /// Indicates a content tag.
         case tag
-        
-        @available(*, unavailable, message: "It is no longer part of the web standards. Use 'icon' instead.")
-        case shortcutIcon = "shortcut icon"
         
         /// Indicates a touch icon.
         case appleTouchIcon = "apple-touch-icon"
@@ -1223,17 +1217,11 @@ public enum Values {
         /// Indicates a select list.
         case combobox
         
-        @available(*, unavailable, message: "It is an abstract role and should not be used.")
-        case command
-        
         /// Indicates a text comment.
         case comment
         
         /// Indicates a page aside.
         case complementary
-        
-        @available(*, unavailable, message: "It is an abstract role and should not be used.")
-        case composite
         
         /// Indicates a page footer.
         case contentInfo = "contentinfo"
@@ -1243,9 +1231,6 @@ public enum Values {
         
         /// Indicates a dialog window.
         case dialog
-        
-        @available(*, unavailable, message: "It is no longer part of the web standards. Use 'list' instead.")
-        case directory
         
         /// Indicates a read mode.
         case document
@@ -1273,12 +1258,6 @@ public enum Values {
         
         /// Indicates an image set.
         case img
-        
-        @available(*, unavailable, message: "It is an abstract role and should not be used.")
-        case input
-        
-        @available(*, unavailable, message: "It is an abstract role and should not be used.")
-        case landmark
         
         /// Indicates an item list.
         case list
@@ -1340,14 +1319,8 @@ public enum Values {
         /// Indicates a radio select.
         case radio
         
-        @available(*, unavailable, message: "It is an abstract role and should not be used.")
-        case range
-        
         /// Indicates a content section.
         case region
-        
-        @available(*, unavailable, message: "It is an abstract role and should not be used.")
-        case roleType = "roletype"
         
         /// Indicates a table row.
         case row
@@ -1367,20 +1340,11 @@ public enum Values {
         /// Indicates a search control.
         case searchBox = "searchbox"
         
-        @available(*, unavailable, message: "It is an abstract role and should not be used.")
-        case sectionHead = "sectionhead"
-        
-        @available(*, unavailable, message: "It is an abstract role and should not be used.")
-        case select
-        
         /// Indicates a content divider.
         case separator
         
         /// Indicates a status mesage.
         case status
-        
-        @available(*, unavailable, message: "It is an abstract role and should not be used.")
-        case structure
         
         /// Indicates a content suggestion.
         case suggestion
@@ -1423,12 +1387,6 @@ public enum Values {
         
         /// Indicates a tree item.
         case treeItem = "treeitem"
-        
-        @available(*, unavailable, message: "It is an abstract role and should not be used.")
-        case widget
-        
-        @available(*, unavailable, message: "It is an abstract role and should not be used.")
-        case window
     }
 
     /// The corner shape of the stroke edge.
@@ -2024,9 +1982,11 @@ public enum Values {
     public enum Completion: String {
         
         /// Enables completion.
+        @available(*, deprecated, message: "Use the autocomplete() modifier instead.")
         case on
         
         /// Disables completion.
+        @available(*, deprecated, message: "Use the autocomplete() modifier instead.")
         case off
         
         /// Expects a name.

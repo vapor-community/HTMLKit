@@ -22,120 +22,193 @@ public struct Circle: ContentNode, VectorElement {
 
     internal var name: String { "circle" }
 
-    internal var attributes: OrderedDictionary<String, Any>?
+    internal var attributes: OrderedDictionary<String, AttributeData>?
 
     internal var content: [Content]
+    
+    internal var context: EscapeContext
 
     /// Create a circle.
     ///
     /// - Parameter content: The circle's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
+        
+        self.context = .tainted(.html)
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+        
         self.attributes = attributes
+        self.context = context
         self.content = content
     }
     
-    public func modify(if condition: Bool, element: (Circle) -> Circle) -> Circle {
+    public func modify(if condition: Bool, use strategy: MergeStrategy = .replacing, element: (Circle) -> Circle) -> Circle {
         
         if condition {
-            return self.modify(element(self))
+
+            switch strategy {
+            case .combining:
+                return self.combine(element(self))
+                
+            case .replacing:
+                return self.replace(element(self))
+            }
         }
         
         return self
     }
     
-    public func modify<T>(unwrap value: T?, element: (Circle, T) -> Circle) -> Circle {
+    public func modify<T>(unwrap value: T?, use strategy: MergeStrategy = .replacing, element: (Circle, T) -> Circle) -> Circle {
         
         guard let value = value else {
             return self
         }
         
-        return self.modify(element(self, value as T))
+        switch strategy {
+        case .combining:
+            return self.combine(element(self, value as T))
+            
+        case .replacing:
+            return self.replace(element(self, value as T))
+        }
     }
 }
 
 extension Circle: GlobalVectorAttributes, CenterPointAttribute, RadiusAttribute {
 
     public func id(_ value: String) -> Circle {
-        return self.mutate(id: value)
+        return mutate(id: .init(value, context: .tainted(.html)))
     }
     
     public func tabIndex(_ value: Int) -> Circle {
-        return self.mutate(tabindex: value)
+        return mutate(tabindex: .init(value, context: .trusted))
     }
     
-    public func `class`(_ value: String) -> Circle {
-        return self.mutate(class: value)
+    public func `class`(_ names: [String]) -> Circle {
+        return self.mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func `class`(_ names: String...) -> Circle {
+        return self.mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
     }
     
     public func style(_ value: String) -> Circle {
-        return self.mutate(style: TaintedString(value, as: .css(.attribute)))
+        return self.mutate(style: .init(value, context: .tainted(.css)))
     }
     
     public func fill(_ color: String, opacity: Double? = nil) -> Circle {
-        return self.mutate(fill: color).mutate(fillopacity: opacity)   
+ 
+        var copy = self
+        
+        copy = copy.mutate(fill: .init(color, context: .tainted(.html)))
+        
+        if let opacity = opacity {
+            copy = copy.mutate(fillopacity: .init(opacity, context: .trusted))
+        }
+        
+        return copy
     }
     
     @available(*, deprecated, message: "Use the stroke(_:width:opacity:cap:join:) modifier instead.")
     public func stroke(_ value: String) -> Circle {
-        return self.mutate(stroke: value)
+        return self.mutate(stroke: .init(value, context: .tainted(.html)))
     }
     
     public func stroke(_ color: String, width: Int? = nil, opacity: Double? = nil, cap: Values.Linecap? = nil, join: Values.Linejoin? = nil) -> Circle {
-        return self.mutate(stroke: color).mutate(strokewidth: width).mutate(strokeopacity: opacity).mutate(strokelinecap: cap?.rawValue).mutate(strokelinejoin: join?.rawValue)
+
+        var copy = self
+        
+        copy = copy.mutate(stroke: .init(color, context: .tainted(.html)))
+        
+        if let width = width {
+            copy = copy.mutate(strokewidth: .init(width, context: .trusted))
+        }
+        
+        if let opacity = opacity {
+            copy = copy.mutate(strokeopacity: .init(opacity, context: .trusted))
+        }
+        
+        if let cap = cap {
+            copy = copy.mutate(strokelinecap: .init(cap.rawValue, context: .trusted))
+        }
+        
+        if let join = join {
+            copy = copy.mutate(strokelinejoin: .init(join.rawValue, context: .trusted))
+        }
+        
+        return copy
     }
     
     @available(*, deprecated, message: "Use the stroke(_:width:opacity:cap:join:) modifier instead.")
     public func strokeWidth(_ size: Int) -> Circle {
-        return self.mutate(strokewidth: size)
+        return self.mutate(strokewidth: .init(size, context: .trusted))
     }
     
     @available(*, deprecated, message: "Use the center(x:y:) modifier instead.")
     public func centerPoint(_ point: (Int, Int)) -> Circle {
-        return self.mutate(cx: "\(point.0)").mutate(cy: "\(point.1)")
+        return self.mutate(cx: .init(point.0, context: .trusted)).mutate(cy: .init(point.1, context: .trusted))
     }
     
     public func center(x: Int, y: Int) -> Circle {
-        return self.mutate(cx: "\(x)").mutate(cy: "\(y)")
+        return self.mutate(cx: .init(x, context: .trusted)).mutate(cy: .init(y, context: .trusted))
     }
     
     public func center(x: Double, y: Double) -> Circle {
-        return self.mutate(cx: "\(x)").mutate(cy: "\(y)")
+        return self.mutate(cx: .init(x, context: .trusted)).mutate(cy: .init(y, context: .trusted))
     }
     
     public func center(_ point: UnitPoint) -> Circle {
-        return self.mutate(cx: point.x).mutate(cy: point.y)
+        return self.mutate(cx: .init(point.x, context: .trusted)).mutate(cy: .init(point.y, context: .trusted))
     }
     
     public func radius(_ size: Int) -> Circle {
-        return self.mutate(radius: size)
+        return self.mutate(radius: .init(size, context: .trusted))
     }
     
     @available(*, deprecated, message: "Use the fill(_:opacity:) modifier instead.")
     public func fillOpacity(_ value: Double) -> Circle {
-        return self.mutate(fillopacity: value)
+        return self.mutate(fillopacity: .init(value, context: .trusted))
     }
     
     @available(*, deprecated, message: "Use the stroke(_:width:opacity:cap:join:) modifier instead.")
     public func strokeOpacity(_ value: Double) -> Circle {
-        return self.mutate(strokeopacity: value)
+        return self.mutate(strokeopacity: .init(value, context: .trusted))
     }
     
     @available(*, deprecated, message: "Use the stroke(_:width:opacity:cap:join:) modifier instead.")
     public func strokeLineCap(_ value: Values.Linecap) -> Circle {
-        return self.mutate(strokelinecap: value.rawValue)
+        return self.mutate(strokelinecap: .init(value.rawValue, context: .trusted))
     }
     
     @available(*, deprecated, message: "Use the stroke(_:width:opacity:cap:join:) modifier instead.")
     public func strokeLineJoin(_ value: Values.Linejoin) -> Circle {
-        return self.mutate(strokelinejoin: value.rawValue)
+        return self.mutate(strokelinejoin: .init(value.rawValue, context: .trusted))
     }
     
-    public func custom(key: String, value: Any) -> Circle {
-        return self.mutate(key: key, value: value)
+    public func custom(key: String, value: String, context: EscapeContext = .tainted(.html)) -> Circle {
+        return mutate(key: key, value: .init(value, context: context))
+    }
+    
+    public func custom(key: String, value: Int) -> Circle {
+        return mutate(key: key, value: .init(value, context: .trusted))
+    }
+    
+    public func custom(key: String, value: Double) -> Circle {
+        return mutate(key: key, value: .init(value, context: .trusted))
+    }
+    
+    public func custom(key: String, value: Bool) -> Circle {
+        return mutate(key: key, value: .init(value, context: .trusted))
+    }
+    
+    public func custom(key: String, value: Float) -> Circle {
+        return mutate(key: key, value: .init(value, context: .trusted))
+    }
+    
+    public func custom(key: String, value: EnvironmentValue, context: EscapeContext = .tainted(.html)) -> Circle {
+        return mutate(key: key, value: .init(value, context: context))
     }
 }
 
@@ -157,141 +230,214 @@ public struct Rectangle: ContentNode, VectorElement {
 
     internal var name: String { "rect" }
 
-    internal var attributes: OrderedDictionary<String, Any>?
+    internal var attributes: OrderedDictionary<String, AttributeData>?
 
     internal var content: [Content]
+    
+    internal var context: EscapeContext
 
     /// Create a rectangle.
     ///
     /// - Parameter content: The rectangle's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
+        
+        self.context = .tainted(.html)
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+        
         self.attributes = attributes
+        self.context = context
         self.content = content
     }
     
-    public func modify(if condition: Bool, element: (Rectangle) -> Rectangle) -> Rectangle {
+    public func modify(if condition: Bool, use strategy: MergeStrategy = .replacing, element: (Rectangle) -> Rectangle) -> Rectangle {
         
         if condition {
-            return self.modify(element(self))
+
+            switch strategy {
+            case .combining:
+                return self.combine(element(self))
+                
+            case .replacing:
+                return self.replace(element(self))
+            }
         }
         
         return self
     }
     
-    public func modify<T>(unwrap value: T?, element: (Rectangle, T) -> Rectangle) -> Rectangle {
+    public func modify<T>(unwrap value: T?, use strategy: MergeStrategy = .replacing, element: (Rectangle, T) -> Rectangle) -> Rectangle {
         
         guard let value = value else {
             return self
         }
         
-        return self.modify(element(self, value as T))
+        switch strategy {
+        case .combining:
+            return self.combine(element(self, value as T))
+            
+        case .replacing:
+            return self.replace(element(self, value as T))
+        }
     }
 }
 
 extension Rectangle: GlobalVectorAttributes, WidthAttribute, HeightAttribute, RadiusPointAttribute, PositionPointAttribute {
 
     public func id(_ value: String) -> Rectangle {
-        return self.mutate(id: value)
+        return mutate(id: .init(value, context: .tainted(.html)))
     }
     
     public func tabIndex(_ value: Int) -> Rectangle {
-        return self.mutate(tabindex: value)
+        return mutate(tabindex: .init(value, context: .trusted))
     }
     
-    public func `class`(_ value: String) -> Rectangle {
-        return self.mutate(class: value)
+    public func `class`(_ names: [String]) -> Rectangle {
+        return self.mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func `class`(_ names: String...) -> Rectangle {
+        return self.mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
     }
     
     public func style(_ value: String) -> Rectangle {
-        return self.mutate(style: TaintedString(value, as: .css(.attribute)))
+        return self.mutate(style: .init(value, context: .tainted(.css)))
     }
     
     public func fill(_ color: String, opacity: Double? = nil) -> Rectangle {
-        return self.mutate(fill: color).mutate(fillopacity: opacity)  
+
+        var copy = self
+        
+        copy = copy.mutate(fill: .init(color, context: .tainted(.html)))
+        
+        if let opacity = opacity {
+            copy = copy.mutate(fillopacity: .init(opacity, context: .trusted))
+        }
+        
+        return copy
     }
     
     @available(*, deprecated, message: "Use the stroke(_:width:opacity:cap:join:) modifier instead.")
     public func stroke(_ value: String) -> Rectangle {
-        return self.mutate(stroke: value)
+        return self.mutate(stroke: .init(value, context: .tainted(.html)))
     }
 
     public func stroke(_ color: String, width: Int? = nil, opacity: Double? = nil, cap: Values.Linecap? = nil, join: Values.Linejoin? = nil) -> Rectangle {
-        return self.mutate(stroke: color).mutate(strokewidth: width).mutate(strokeopacity: opacity).mutate(strokelinecap: cap?.rawValue).mutate(strokelinejoin: join?.rawValue)
+
+        var copy = self
+        
+        copy = copy.mutate(stroke: .init(color, context: .tainted(.html)))
+        
+        if let width = width {
+            copy = copy.mutate(strokewidth: .init(width, context: .trusted))
+        }
+        
+        if let opacity = opacity {
+            copy = copy.mutate(strokeopacity: .init(opacity, context: .trusted))
+        }
+        
+        if let cap = cap {
+            copy = copy.mutate(strokelinecap: .init(cap.rawValue, context: .trusted))
+        }
+        
+        if let join = join {
+            copy = copy.mutate(strokelinejoin: .init(join.rawValue, context: .trusted))
+        }
+        
+        return copy
     }
     
     @available(*, deprecated, message: "Use the stroke(_:width:opacity:cap:join:) modifier instead.")
     public func strokeWidth(_ size: Int) -> Rectangle {
-        return self.mutate(strokewidth: size)
+        return self.mutate(strokewidth: .init(size, context: .trusted))
     }
     
     @available(*, deprecated, message: "Use the radius(x:y:) modifier instead.")
     public func radiusPoint(_ point: (Int, Int)) -> Rectangle {
-        return self.mutate(rx: "\(point.0)").mutate(ry: "\(point.1)")
+        return self.mutate(rx: .init(point.0, context: .trusted)).mutate(ry: .init(point.1, context: .trusted))
     }
     
     public func radius(x: Int, y: Int) -> Rectangle {
-        return self.mutate(rx: "\(x)").mutate(ry: "\(y)")
+        return self.mutate(rx: .init(x, context: .trusted)).mutate(ry: .init(y, context: .trusted))
     }
     
     public func radius(x: Double, y: Double) -> Rectangle {
-        return self.mutate(rx: "\(x)").mutate(ry: "\(y)")
+        return self.mutate(rx: .init(x, context: .trusted)).mutate(ry: .init(y, context: .trusted))
     }
     
     public func radius(_ point: UnitPoint) -> Rectangle {
-        return self.mutate(rx: point.x).mutate(ry: point.y)
+        return self.mutate(rx: .init(point.x, context: .trusted)).mutate(ry: .init(point.y, context: .trusted))
     }
     
     @available(*, deprecated, message: "Use the position(x:y:) modifier instead.")
     public func positionPoint(_ point: (Int, Int)) -> Rectangle {
-        return self.mutate(x: "\(point.0)").mutate(y: "\(point.1)")
+        return self.mutate(x:  .init(point.0, context: .trusted)).mutate(y: .init(point.1, context: .trusted))
     }
     
     public func position(x: Int, y: Int) -> Rectangle {
-        return self.mutate(x: "\(x)").mutate(y: "\(y)")
+        return self.mutate(x: .init(x, context: .trusted)).mutate(y: .init(x, context: .trusted))
     }
     
     public func position(x: Double, y: Double) -> Rectangle {
-        return self.mutate(x: "\(x)").mutate(y: "\(y)")
+        return self.mutate(x: .init(x, context: .trusted)).mutate(y: .init(x, context: .trusted))
     }
     
     public func position(_ point: UnitPoint) -> Rectangle {
-        return self.mutate(x: point.x).mutate(y: point.y)
+        return self.mutate(x: .init(point.x, context: .trusted)).mutate(y: .init(point.y, context: .trusted))
     }
     
     public func width(_ size: Int) -> Rectangle {
-        return self.mutate(width: size)
+        return self.mutate(width: .init(size, context: .trusted))
     }
     
     public func height(_ size: Int) -> Rectangle {
-        return self.mutate(height: size)
+        return self.mutate(height: .init(size, context: .trusted))
     }
     
     @available(*, deprecated, message: "Use the fill(_:opacity:) modifier instead.")
     public func fillOpacity(_ value: Double) -> Rectangle {
-        return self.mutate(fillopacity: value)
+        return self.mutate(fillopacity: .init(value, context: .trusted))
     }
     
     @available(*, deprecated, message: "Use the stroke(_:width:opacity:cap:join:) modifier instead.")
     public func strokeOpacity(_ value: Double) -> Rectangle {
-        return self.mutate(strokeopacity: value)
+        return self.mutate(strokeopacity: .init(value, context: .trusted))
     }
     
     @available(*, deprecated, message: "Use the stroke(_:width:opacity:cap:join:) modifier instead.")
     public func strokeLineCap(_ value: Values.Linecap) -> Rectangle {
-        return self.mutate(strokelinecap: value.rawValue)
+        return self.mutate(strokelinecap: .init(value.rawValue, context: .trusted))
     }
     
     @available(*, deprecated, message: "Use the stroke(_:width:opacity:cap:join:) modifier instead.")
     public func strokeLineJoin(_ value: Values.Linejoin) -> Rectangle {
-        return self.mutate(strokelinejoin: value.rawValue)
+        return self.mutate(strokelinejoin: .init(value.rawValue, context: .trusted))
     }
     
-    public func custom(key: String, value: Any) -> Rectangle {
-        return self.mutate(key: key, value: value)
+    public func custom(key: String, value: String, context: EscapeContext = .tainted(.html)) -> Rectangle {
+        return mutate(key: key, value: .init(value, context: context))
+    }
+    
+    public func custom(key: String, value: Int) -> Rectangle {
+        return mutate(key: key, value: .init(value, context: .trusted))
+    }
+    
+    public func custom(key: String, value: Double) -> Rectangle {
+        return mutate(key: key, value: .init(value, context: .trusted))
+    }
+    
+    public func custom(key: String, value: Bool) -> Rectangle {
+        return mutate(key: key, value: .init(value, context: .trusted))
+    }
+    
+    public func custom(key: String, value: Float) -> Rectangle {
+        return mutate(key: key, value: .init(value, context: .trusted))
+    }
+    
+    public func custom(key: String, value: EnvironmentValue, context: EscapeContext = .tainted(.html)) -> Rectangle {
+        return mutate(key: key, value: .init(value, context: context))
     }
 }
 
@@ -313,133 +459,206 @@ public struct Ellipse: ContentNode, VectorElement {
 
     internal var name: String { "ellipse" }
 
-    internal var attributes: OrderedDictionary<String, Any>?
+    internal var attributes: OrderedDictionary<String, AttributeData>?
 
     internal var content: [Content]
+    
+    internal var context: EscapeContext
     
     /// Create an ellipse.
     ///
     /// - Parameter content: The elliipse's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
+        
+        self.context = .tainted(.html)
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+        
         self.attributes = attributes
+        self.context = context
         self.content = content
     }
     
-    public func modify(if condition: Bool, element: (Ellipse) -> Ellipse) -> Ellipse {
+    public func modify(if condition: Bool, use strategy: MergeStrategy = .replacing, element: (Ellipse) -> Ellipse) -> Ellipse {
         
         if condition {
-            return self.modify(element(self))
+
+            switch strategy {
+            case .combining:
+                return self.combine(element(self))
+                
+            case .replacing:
+                return self.replace(element(self))
+            }
         }
         
         return self
     }
     
-    public func modify<T>(unwrap value: T?, element: (Ellipse, T) -> Ellipse) -> Ellipse {
+    public func modify<T>(unwrap value: T?, use strategy: MergeStrategy = .replacing, element: (Ellipse, T) -> Ellipse) -> Ellipse {
         
         guard let value = value else {
             return self
         }
         
-        return self.modify(element(self, value as T))
+        switch strategy {
+        case .combining:
+            return self.combine(element(self, value as T))
+            
+        case .replacing:
+            return self.replace(element(self, value as T))
+        }
     }
 }
 
 extension Ellipse: GlobalVectorAttributes, CenterPointAttribute, RadiusPointAttribute {
     
     public func id(_ value: String) -> Ellipse {
-        return self.mutate(id: value)
+        return mutate(id: .init(value, context: .tainted(.html)))
     }
     
     public func tabIndex(_ value: Int) -> Ellipse {
-        return self.mutate(tabindex: value)
+        return mutate(tabindex: .init(value, context: .trusted))
     }
     
-    public func `class`(_ value: String) -> Ellipse {
-        return self.mutate(class: value)
+    public func `class`(_ names: [String]) -> Ellipse {
+        return self.mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func `class`(_ names: String...) -> Ellipse {
+        return self.mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
     }
     
     public func style(_ value: String) -> Ellipse {
-        return self.mutate(style: TaintedString(value, as: .css(.attribute)))
+        return self.mutate(style: .init(value, context: .tainted(.css)))
     }
     
     public func fill(_ color: String, opacity: Double? = nil) -> Ellipse {
-        return self.mutate(fill: color).mutate(fillopacity: opacity)  
+
+        var copy = self
+        
+        copy = copy.mutate(fill: .init(color, context: .tainted(.html)))
+        
+        if let opacity = opacity {
+            copy = copy.mutate(fillopacity: .init(opacity, context: .trusted))
+        }
+        
+        return copy
     }
     
     @available(*, deprecated, message: "Use the stroke(_:width:opacity:cap:join:) modifier instead.")
     public func stroke(_ value: String) -> Ellipse {
-        return self.mutate(stroke: value)
+        return self.mutate(stroke: .init(value, context: .tainted(.html)))
     }
     
     public func stroke(_ color: String, width: Int? = nil, opacity: Double? = nil, cap: Values.Linecap? = nil, join: Values.Linejoin? = nil) -> Ellipse {
-        return self.mutate(stroke: color).mutate(strokewidth: width).mutate(strokeopacity: opacity).mutate(strokelinecap: cap?.rawValue).mutate(strokelinejoin: join?.rawValue)
+
+        var copy = self
+        
+        copy = copy.mutate(stroke: .init(color, context: .tainted(.html)))
+        
+        if let width = width {
+            copy = copy.mutate(strokewidth: .init(width, context: .trusted))
+        }
+        
+        if let opacity = opacity {
+            copy = copy.mutate(strokeopacity: .init(opacity, context: .trusted))
+        }
+        
+        if let cap = cap {
+            copy = copy.mutate(strokelinecap: .init(cap.rawValue, context: .trusted))
+        }
+        
+        if let join = join {
+            copy = copy.mutate(strokelinejoin: .init(join.rawValue, context: .trusted))
+        }
+        
+        return copy
     }
     
     @available(*, deprecated, message: "Use the stroke(_:width:opacity:cap:join:) modifier instead.")
     public func strokeWidth(_ size: Int) -> Ellipse {
-        return self.mutate(strokewidth: size)
+        return self.mutate(strokewidth: .init(size, context: .trusted))
     }
     
     @available(*, deprecated, message: "Use the center(x:y:) modifier instead.")
     public func centerPoint(_ point: (Int, Int)) -> Ellipse {
-        return self.mutate(cx: "\(point.0)").mutate(cy: "\(point.1)")
+        return self.mutate(cx: .init(point.0, context: .trusted)).mutate(cy: .init(point.1, context: .trusted))
     }
     
     public func center(x: Int, y: Int) -> Ellipse {
-        return self.mutate(cx: "\(x)").mutate(cy: "\(y)")
+        return self.mutate(cx: .init(x, context: .trusted)).mutate(cy: .init(y, context: .trusted))
     }
     
     public func center(x: Double, y: Double) -> Ellipse {
-        return self.mutate(cx: "\(x)").mutate(cy: "\(y)")
+        return self.mutate(cx: .init(x, context: .trusted)).mutate(cy: .init(y, context: .trusted))
     }
     
     public func center(_ point: UnitPoint) -> Ellipse {
-        return self.mutate(cx: point.x).mutate(cy: point.y)
+        return self.mutate(cx: .init(point.x, context: .trusted)).mutate(cy: .init(point.y, context: .trusted))
     }
     
     @available(*, deprecated, message: "Use the radius(x:y:) modifier instead.")
     public func radiusPoint(_ point: (Int, Int)) -> Ellipse {
-        return self.mutate(rx: "\(point.0)").mutate(ry: "\(point.1)")
+        return self.mutate(rx: .init(point.0, context: .trusted)).mutate(ry: .init(point.1, context: .trusted))
     }
     
     public func radius(x: Int, y: Int) -> Ellipse {
-        return self.mutate(rx: "\(x)").mutate(ry: "\(y)")
+        return self.mutate(rx: .init(x, context: .trusted)).mutate(ry: .init(y, context: .trusted))
     }
     
     public func radius(x: Double, y: Double) -> Ellipse {
-        return self.mutate(rx: "\(x)").mutate(ry: "\(y)")
+        return self.mutate(rx: .init(x, context: .trusted)).mutate(ry: .init(y, context: .trusted))
     }
     
     public func radius(_ point: UnitPoint) -> Ellipse {
-        return self.mutate(rx: point.x).mutate(ry: point.y)
+        return self.mutate(rx: .init(point.x, context: .trusted)).mutate(ry: .init(point.y, context: .trusted))
     }
     
     @available(*, deprecated, message: "Use the fill(_:opacity:) modifier instead.")
     public func fillOpacity(_ value: Double) -> Ellipse {
-        return self.mutate(fillopacity: value)
+        return self.mutate(fillopacity: .init(value, context: .trusted))
     }
     
     @available(*, deprecated, message: "Use the stroke(_:width:opacity:cap:join:) modifier instead.")
     public func strokeOpacity(_ value: Double) -> Ellipse {
-        return self.mutate(strokeopacity: value)
+        return self.mutate(strokeopacity: .init(value, context: .trusted))
     }
     
     @available(*, deprecated, message: "Use the stroke(_:width:opacity:cap:join:) modifier instead.")
     public func strokeLineCap(_ value: Values.Linecap) -> Ellipse {
-        return self.mutate(strokelinecap: value.rawValue)
+        return self.mutate(strokelinecap: .init(value.rawValue, context: .trusted))
     }
     
     @available(*, deprecated, message: "Use the stroke(_:width:opacity:cap:join:) modifier instead.")
     public func strokeLineJoin(_ value: Values.Linejoin) -> Ellipse {
-        return self.mutate(strokelinejoin: value.rawValue)
+        return self.mutate(strokelinejoin: .init(value.rawValue, context: .trusted))
     }
     
-    public func custom(key: String, value: Any) -> Ellipse {
-        return self.mutate(key: key, value: value)
+    public func custom(key: String, value: String, context: EscapeContext = .tainted(.html)) -> Ellipse {
+        return mutate(key: key, value: .init(value, context: context))
+    }
+    
+    public func custom(key: String, value: Int) -> Ellipse {
+        return mutate(key: key, value: .init(value, context: .trusted))
+    }
+    
+    public func custom(key: String, value: Double) -> Ellipse {
+        return mutate(key: key, value: .init(value, context: .trusted))
+    }
+    
+    public func custom(key: String, value: Bool) -> Ellipse {
+        return mutate(key: key, value: .init(value, context: .trusted))
+    }
+    
+    public func custom(key: String, value: Float) -> Ellipse {
+        return mutate(key: key, value: .init(value, context: .trusted))
+    }
+    
+    public func custom(key: String, value: EnvironmentValue, context: EscapeContext = .tainted(.html)) -> Ellipse {
+        return mutate(key: key, value: .init(value, context: context))
     }
 }
 
@@ -461,99 +680,172 @@ public struct Line: ContentNode, VectorElement {
 
     internal var name: String { "line" }
 
-    internal var attributes: OrderedDictionary<String, Any>?
+    internal var attributes: OrderedDictionary<String, AttributeData>?
 
     internal var content: [Content]
+    
+    internal var context: EscapeContext
 
     /// Creates a line.
     ///
     /// - Parameter content: The line's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
+        
+        self.context = .tainted(.html)
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+        
         self.attributes = attributes
+        self.context = context
         self.content = content
     }
     
-    public func modify(if condition: Bool, element: (Line) -> Line) -> Line {
+    public func modify(if condition: Bool, use strategy: MergeStrategy = .replacing, element: (Line) -> Line) -> Line {
         
         if condition {
-            return self.modify(element(self))
+
+            switch strategy {
+            case .combining:
+                return self.combine(element(self))
+                
+            case .replacing:
+                return self.replace(element(self))
+            }
         }
         
         return self
     }
     
-    public func modify<T>(unwrap value: T?, element: (Line, T) -> Line) -> Line {
+    public func modify<T>(unwrap value: T?, use strategy: MergeStrategy = .replacing, element: (Line, T) -> Line) -> Line {
         
         guard let value = value else {
             return self
         }
         
-        return self.modify(element(self, value as T))
+        switch strategy {
+        case .combining:
+            return self.combine(element(self, value as T))
+            
+        case .replacing:
+            return self.replace(element(self, value as T))
+        }
     }
 }
 
 extension Line: GlobalVectorAttributes {
     
     public func id(_ value: String) -> Line {
-        return self.mutate(id: value)
+        return mutate(id: .init(value, context: .tainted(.html)))
     }
     
     public func tabIndex(_ value: Int) -> Line {
-        return self.mutate(tabindex: value)
+        return mutate(tabindex: .init(value, context: .trusted))
     }
     
-    public func `class`(_ value: String) -> Line {
-        return self.mutate(class: value)
+    public func `class`(_ names: [String]) -> Line {
+        return self.mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func `class`(_ names: String...) -> Line {
+        return self.mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
     }
     
     public func style(_ value: String) -> Line {
-        return self.mutate(style: TaintedString(value, as: .css(.attribute)))
+        return self.mutate(style: .init(value, context: .tainted(.css)))
     }
     
     public func fill(_ color: String, opacity: Double? = nil) -> Line {
-        return self.mutate(fill: color).mutate(fillopacity: opacity)  
+
+        var copy = self
+        
+        copy = copy.mutate(fill: .init(color, context: .tainted(.html)))
+        
+        if let opacity = opacity {
+            copy = copy.mutate(fillopacity: .init(opacity, context: .trusted))
+        }
+        
+        return copy
     }
     
     @available(*, deprecated, message: "Use the stroke(_:width:opacity:cap:join:) modifier instead.")
     public func stroke(_ value: String) -> Line {
-        return self.mutate(stroke: value)
+        return self.mutate(stroke: .init(value, context: .tainted(.html)))
     }
     
     public func stroke(_ color: String, width: Int? = nil, opacity: Double? = nil, cap: Values.Linecap? = nil, join: Values.Linejoin? = nil) -> Line {
-        return self.mutate(stroke: color).mutate(strokewidth: width).mutate(strokeopacity: opacity).mutate(strokelinecap: cap?.rawValue).mutate(strokelinejoin: join?.rawValue)
+
+        var copy = self
+        
+        copy = copy.mutate(stroke: .init(color, context: .tainted(.html)))
+        
+        if let width = width {
+            copy = copy.mutate(strokewidth: .init(width, context: .trusted))
+        }
+        
+        if let opacity = opacity {
+            copy = copy.mutate(strokeopacity: .init(opacity, context: .trusted))
+        }
+        
+        if let cap = cap {
+            copy = copy.mutate(strokelinecap: .init(cap.rawValue, context: .trusted))
+        }
+        
+        if let join = join {
+            copy = copy.mutate(strokelinejoin: .init(join.rawValue, context: .trusted))
+        }
+        
+        return copy
     }
     
     @available(*, deprecated, message: "Use the stroke(_:width:opacity:cap:join:) modifier instead.")
     public func strokeWidth(_ size: Int) -> Line {
-        return self.mutate(strokewidth: size)
+        return self.mutate(strokewidth: .init(size, context: .trusted))
     }
     
     @available(*, deprecated, message: "Use the fill(_:opacity:) modifier instead.")
     public func fillOpacity(_ value: Double) -> Line {
-        return self.mutate(fillopacity: value)
+        return self.mutate(fillopacity: .init(value, context: .trusted))
     }
     
     @available(*, deprecated, message: "Use the stroke(_:width:opacity:cap:join:) modifier instead.")
     public func strokeOpacity(_ value: Double) -> Line {
-        return self.mutate(strokeopacity: value)
+        return self.mutate(strokeopacity: .init(value, context: .trusted))
     }
     
     @available(*, deprecated, message: "Use the stroke(_:width:opacity:cap:join:) modifier instead.")
     public func strokeLineCap(_ value: Values.Linecap) -> Line {
-        return self.mutate(strokelinecap: value.rawValue)
+        return self.mutate(strokelinecap: .init(value.rawValue, context: .trusted))
     }
     
     @available(*, deprecated, message: "Use the stroke(_:width:opacity:cap:join:) modifier instead.")
     public func strokeLineJoin(_ value: Values.Linejoin) -> Line {
-        return self.mutate(strokelinejoin: value.rawValue)
+        return self.mutate(strokelinejoin: .init(value.rawValue, context: .trusted))
     }
     
-    public func custom(key: String, value: Any) -> Line {
-        return self.mutate(key: key, value: value)
+    public func custom(key: String, value: String, context: EscapeContext = .tainted(.html)) -> Line {
+        return mutate(key: key, value: .init(value, context: context))
+    }
+    
+    public func custom(key: String, value: Int) -> Line {
+        return mutate(key: key, value: .init(value, context: .trusted))
+    }
+    
+    public func custom(key: String, value: Double) -> Line {
+        return mutate(key: key, value: .init(value, context: .trusted))
+    }
+    
+    public func custom(key: String, value: Bool) -> Line {
+        return mutate(key: key, value: .init(value, context: .trusted))
+    }
+    
+    public func custom(key: String, value: Float) -> Line {
+        return mutate(key: key, value: .init(value, context: .trusted))
+    }
+    
+    public func custom(key: String, value: EnvironmentValue, context: EscapeContext = .tainted(.html)) -> Line {
+        return mutate(key: key, value: .init(value, context: context))
     }
 }
 
@@ -574,103 +866,176 @@ public struct Polygon: ContentNode, VectorElement {
 
     internal var name: String { "polygon" }
 
-    internal var attributes: OrderedDictionary<String, Any>?
+    internal var attributes: OrderedDictionary<String, AttributeData>?
 
     internal var content: [Content]
+    
+    internal var context: EscapeContext
 
     /// Create a polygon.
     ///
     /// - Parameter content: The polygon's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
+        
+        self.context = .tainted(.html)
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+        
         self.attributes = attributes
+        self.context = context
         self.content = content
     }
     
-    public func modify(if condition: Bool, element: (Polygon) -> Polygon) -> Polygon {
+    public func modify(if condition: Bool, use strategy: MergeStrategy = .replacing, element: (Polygon) -> Polygon) -> Polygon {
         
         if condition {
-            return self.modify(element(self))
+
+            switch strategy {
+            case .combining:
+                return self.combine(element(self))
+                
+            case .replacing:
+                return self.replace(element(self))
+            }
         }
         
         return self
     }
     
-    public func modify<T>(unwrap value: T?, element: (Polygon, T) -> Polygon) -> Polygon {
+    public func modify<T>(unwrap value: T?, use strategy: MergeStrategy = .replacing, element: (Polygon, T) -> Polygon) -> Polygon {
         
         guard let value = value else {
             return self
         }
         
-        return self.modify(element(self, value as T))
+        switch strategy {
+        case .combining:
+            return self.combine(element(self, value as T))
+            
+        case .replacing:
+            return self.replace(element(self, value as T))
+        }
     }
 }
 
 extension Polygon: GlobalVectorAttributes, PointsAttribute {
     
     public func id(_ value: String) -> Polygon {
-        return self.mutate(id: value)
+        return mutate(id: .init(value, context: .tainted(.html)))
     }
     
     public func tabIndex(_ value: Int) -> Polygon {
-        return self.mutate(tabindex: value)
+        return mutate(tabindex: .init(value, context: .trusted))
     }
     
-    public func `class`(_ value: String) -> Polygon {
-        return self.mutate(class: value)
+    public func `class`(_ names: [String]) -> Polygon {
+        return self.mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func `class`(_ names: String...) -> Polygon {
+        return self.mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
     }
     
     public func style(_ value: String) -> Polygon {
-        return self.mutate(style: TaintedString(value, as: .css(.attribute)))
+        return self.mutate(style: .init(value, context: .tainted(.css)))
     }
     
     public func fill(_ color: String, opacity: Double? = nil) -> Polygon {
-        return self.mutate(fill: color).mutate(fillopacity: opacity)  
+
+        var copy = self
+        
+        copy = copy.mutate(fill: .init(color, context: .tainted(.html)))
+        
+        if let opacity = opacity {
+            copy = copy.mutate(fillopacity: .init(opacity, context: .trusted))
+        }
+        
+        return copy
     }
     
     @available(*, deprecated, message: "Use the stroke(_:width:opacity:cap:join:) modifier instead.")
     public func stroke(_ value: String) -> Polygon {
-        return self.mutate(stroke: value)
+        return self.mutate(stroke: .init(value, context: .tainted(.html)))
     }
     
     public func stroke(_ color: String, width: Int? = nil, opacity: Double? = nil, cap: Values.Linecap? = nil, join: Values.Linejoin? = nil) -> Polygon {
-        return self.mutate(stroke: color).mutate(strokewidth: width).mutate(strokeopacity: opacity).mutate(strokelinecap: cap?.rawValue).mutate(strokelinejoin: join?.rawValue)
+
+        var copy = self
+        
+        copy = copy.mutate(stroke: .init(color, context: .tainted(.html)))
+        
+        if let width = width {
+            copy = copy.mutate(strokewidth: .init(width, context: .trusted))
+        }
+        
+        if let opacity = opacity {
+            copy = copy.mutate(strokeopacity: .init(opacity, context: .trusted))
+        }
+        
+        if let cap = cap {
+            copy = copy.mutate(strokelinecap: .init(cap.rawValue, context: .trusted))
+        }
+        
+        if let join = join {
+            copy = copy.mutate(strokelinejoin: .init(join.rawValue, context: .trusted))
+        }
+        
+        return copy
     }
     
     @available(*, deprecated, message: "Use the stroke(_:width:opacity:cap:join:) modifier instead.")
     public func strokeWidth(_ size: Int) -> Polygon {
-        return self.mutate(strokewidth: size)
+        return self.mutate(strokewidth: .init(size, context: .trusted))
     }
     
     @available(*, deprecated, message: "Use the fill(_:opacity:) modifier instead.")
     public func fillOpacity(_ value: Double) -> Polygon {
-        return self.mutate(fillopacity: value)
+        return self.mutate(fillopacity: .init(value, context: .trusted))
     }
     
     @available(*, deprecated, message: "Use the stroke(_:width:opacity:cap:join:) modifier instead.")
     public func strokeOpacity(_ value: Double) -> Polygon {
-        return self.mutate(strokeopacity: value)
+        return self.mutate(strokeopacity: .init(value, context: .trusted))
     }
     
     @available(*, deprecated, message: "Use the stroke(_:width:opacity:cap:join:) modifier instead.")
     public func strokeLineCap(_ value: Values.Linecap) -> Polygon {
-        return self.mutate(strokelinecap: value.rawValue)
+        return self.mutate(strokelinecap: .init(value.rawValue, context: .trusted))
     }
     
     @available(*, deprecated, message: "Use the stroke(_:width:opacity:cap:join:) modifier instead.")
     public func strokeLineJoin(_ value: Values.Linejoin) -> Polygon {
-        return self.mutate(strokelinejoin: value.rawValue)
+        return self.mutate(strokelinejoin: .init(value.rawValue, context: .trusted))
     }
     
     public func points(_ value: String) -> Polygon {
-        return self.mutate(points: value)
+        return self.mutate(points: .init(value, context: .tainted(.html)))
     }
     
-    public func custom(key: String, value: Any) -> Polygon {
-        return self.mutate(key: key, value: value)
+    public func custom(key: String, value: String, context: EscapeContext = .tainted(.html)) -> Polygon {
+        return mutate(key: key, value: .init(value, context: context))
+    }
+    
+    public func custom(key: String, value: Int) -> Polygon {
+        return mutate(key: key, value: .init(value, context: .trusted))
+    }
+    
+    public func custom(key: String, value: Double) -> Polygon {
+        return mutate(key: key, value: .init(value, context: .trusted))
+    }
+    
+    public func custom(key: String, value: Bool) -> Polygon {
+        return mutate(key: key, value: .init(value, context: .trusted))
+    }
+    
+    public func custom(key: String, value: Float) -> Polygon {
+        return mutate(key: key, value: .init(value, context: .trusted))
+    }
+    
+    public func custom(key: String, value: EnvironmentValue, context: EscapeContext = .tainted(.html)) -> Polygon {
+        return mutate(key: key, value: .init(value, context: context))
     }
 }
 
@@ -691,103 +1056,176 @@ public struct Polyline: ContentNode, VectorElement {
 
     internal var name: String { "polyline" }
 
-    internal var attributes: OrderedDictionary<String, Any>?
+    internal var attributes: OrderedDictionary<String, AttributeData>?
 
     internal var content: [Content]
+    
+    internal var context: EscapeContext
 
     /// Create a polyline.
     ///
     /// - Parameter content: The polyline's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
+        
+        self.context = .tainted(.html)
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+        
         self.attributes = attributes
+        self.context = context
         self.content = content
     }
     
-    public func modify(if condition: Bool, element: (Polyline) -> Polyline) -> Polyline {
+    public func modify(if condition: Bool, use strategy: MergeStrategy = .replacing, element: (Polyline) -> Polyline) -> Polyline {
         
         if condition {
-            return self.modify(element(self))
+
+            switch strategy {
+            case .combining:
+                return self.combine(element(self))
+                
+            case .replacing:
+                return self.replace(element(self))
+            }
         }
         
         return self
     }
     
-    public func modify<T>(unwrap value: T?, element: (Polyline, T) -> Polyline) -> Polyline {
+    public func modify<T>(unwrap value: T?, use strategy: MergeStrategy = .replacing, element: (Polyline, T) -> Polyline) -> Polyline {
         
         guard let value = value else {
             return self
         }
         
-        return self.modify(element(self, value as T))
+        switch strategy {
+        case .combining:
+            return self.combine(element(self, value as T))
+            
+        case .replacing:
+            return self.replace(element(self, value as T))
+        }
     }
 }
 
 extension Polyline: GlobalVectorAttributes, PointsAttribute {
     
     public func id(_ value: String) -> Polyline {
-        return self.mutate(id: value)
+        return mutate(id: .init(value, context: .tainted(.html)))
     }
     
     public func tabIndex(_ value: Int) -> Polyline {
-        return self.mutate(tabindex: value)
+        return mutate(tabindex: .init(value, context: .trusted))
     }
     
-    public func `class`(_ value: String) -> Polyline {
-        return self.mutate(class: value)
+    public func `class`(_ names: [String]) -> Polyline {
+        return self.mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func `class`(_ names: String...) -> Polyline {
+        return self.mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
     }
     
     public func style(_ value: String) -> Polyline {
-        return self.mutate(style: TaintedString(value, as: .css(.attribute)))
+        return self.mutate(style: .init(value, context: .tainted(.css)))
     }
     
     public func fill(_ color: String, opacity: Double? = nil) -> Polyline {
-        return self.mutate(fill: color).mutate(fillopacity: opacity)  
+
+        var copy = self
+        
+        copy = copy.mutate(fill: .init(color, context: .tainted(.html)))
+        
+        if let opacity = opacity {
+            copy = copy.mutate(fillopacity: .init(opacity, context: .trusted))
+        }
+        
+        return copy
     }
     
     @available(*, deprecated, message: "Use the stroke(_:width:opacity:cap:join:) modifier instead.")
     public func stroke(_ value: String) -> Polyline {
-        return self.mutate(stroke: value)
+        return self.mutate(stroke: .init(value, context: .tainted(.html)))
     }
     
     public func stroke(_ color: String, width: Int? = nil, opacity: Double? = nil, cap: Values.Linecap? = nil, join: Values.Linejoin? = nil) -> Polyline {
-        return self.mutate(stroke: color).mutate(strokewidth: width).mutate(strokeopacity: opacity).mutate(strokelinecap: cap?.rawValue).mutate(strokelinejoin: join?.rawValue)
+
+        var copy = self
+        
+        copy = copy.mutate(stroke: .init(color, context: .tainted(.html)))
+        
+        if let width = width {
+            copy = copy.mutate(strokewidth: .init(width, context: .trusted))
+        }
+        
+        if let opacity = opacity {
+            copy = copy.mutate(strokeopacity: .init(opacity, context: .trusted))
+        }
+        
+        if let cap = cap {
+            copy = copy.mutate(strokelinecap: .init(cap.rawValue, context: .trusted))
+        }
+        
+        if let join = join {
+            copy = copy.mutate(strokelinejoin: .init(join.rawValue, context: .trusted))
+        }
+        
+        return copy
     }
     
     @available(*, deprecated, message: "Use the stroke(_:width:opacity:cap:join:) modifier instead.")
     public func strokeWidth(_ size: Int) -> Polyline {
-        return self.mutate(strokewidth: size)
+        return self.mutate(strokewidth: .init(size, context: .trusted))
     }
     
     @available(*, deprecated, message: "Use the fill(_:opacity:) modifier instead.")
     public func fillOpacity(_ value: Double) -> Polyline {
-        return self.mutate(fillopacity: value)
+        return self.mutate(fillopacity: .init(value, context: .trusted))
     }
     
     @available(*, deprecated, message: "Use the stroke(_:width:opacity:cap:join:) modifier instead.")
     public func strokeOpacity(_ value: Double) -> Polyline {
-        return self.mutate(strokeopacity: value)
+        return self.mutate(strokeopacity: .init(value, context: .trusted))
     }
     
     @available(*, deprecated, message: "Use the stroke(_:width:opacity:cap:join:) modifier instead.")
     public func strokeLineCap(_ value: Values.Linecap) -> Polyline {
-        return self.mutate(strokelinecap: value.rawValue)
+        return self.mutate(strokelinecap: .init(value.rawValue, context: .trusted))
     }
     
     @available(*, deprecated, message: "Use the stroke(_:width:opacity:cap:join:) modifier instead.")
     public func strokeLineJoin(_ value: Values.Linejoin) -> Polyline {
-        return self.mutate(strokelinejoin: value.rawValue)
+        return self.mutate(strokelinejoin: .init(value.rawValue, context: .trusted))
     }
     
     public func points(_ value: String) -> Polyline {
-        return self.mutate(points: value)
+        return self.mutate(points: .init(value, context: .tainted(.html)))
     }
     
-    public func custom(key: String, value: Any) -> Polyline {
-        return self.mutate(key: key, value: value)
+    public func custom(key: String, value: String, context: EscapeContext = .tainted(.html)) -> Polyline {
+        return mutate(key: key, value: .init(value, context: context))
+    }
+    
+    public func custom(key: String, value: Int) -> Polyline {
+        return mutate(key: key, value: .init(value, context: .trusted))
+    }
+    
+    public func custom(key: String, value: Double) -> Polyline {
+        return mutate(key: key, value: .init(value, context: .trusted))
+    }
+    
+    public func custom(key: String, value: Bool) -> Polyline {
+        return mutate(key: key, value: .init(value, context: .trusted))
+    }
+    
+    public func custom(key: String, value: Float) -> Polyline {
+        return mutate(key: key, value: .init(value, context: .trusted))
+    }
+    
+    public func custom(key: String, value: EnvironmentValue, context: EscapeContext = .tainted(.html)) -> Polyline {
+        return mutate(key: key, value: .init(value, context: context))
     }
 }
 
@@ -808,103 +1246,176 @@ public struct Path: ContentNode, VectorElement {
 
     internal var name: String { "path" }
 
-    internal var attributes: OrderedDictionary<String, Any>?
+    internal var attributes: OrderedDictionary<String, AttributeData>?
 
     internal var content: [Content]
+    
+    internal var context: EscapeContext
 
     /// Create a path.
     ///
     /// - Parameter content: The path's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
+        
+        self.context = .tainted(.html)
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+        
         self.attributes = attributes
+        self.context = context
         self.content = content
     }
     
-    public func modify(if condition: Bool, element: (Path) -> Path) -> Path {
+    public func modify(if condition: Bool, use strategy: MergeStrategy = .replacing, element: (Path) -> Path) -> Path {
         
         if condition {
-            return self.modify(element(self))
+
+            switch strategy {
+            case .combining:
+                return self.combine(element(self))
+                
+            case .replacing:
+                return self.replace(element(self))
+            }
         }
         
         return self
     }
     
-    public func modify<T>(unwrap value: T?, element: (Path, T) -> Path) -> Path {
+    public func modify<T>(unwrap value: T?, use strategy: MergeStrategy = .replacing, element: (Path, T) -> Path) -> Path {
         
         guard let value = value else {
             return self
         }
         
-        return self.modify(element(self, value as T))
+        switch strategy {
+        case .combining:
+            return self.combine(element(self, value as T))
+            
+        case .replacing:
+            return self.replace(element(self, value as T))
+        }
     }
 }
 
 extension Path: GlobalVectorAttributes, DrawAttribute {
     
     public func id(_ value: String) -> Path {
-        return self.mutate(id: value)
+        return mutate(id: .init(value, context: .tainted(.html)))
     }
     
     public func tabIndex(_ value: Int) -> Path {
-        return self.mutate(tabindex: value)
+        return mutate(tabindex: .init(value, context: .trusted))
     }
     
-    public func `class`(_ value: String) -> Path {
-        return self.mutate(class: value)
+    public func `class`(_ names: [String]) -> Path {
+        return self.mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func `class`(_ names: String...) -> Path {
+        return self.mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
     }
     
     public func style(_ value: String) -> Path {
-        return self.mutate(style: TaintedString(value, as: .css(.attribute)))
+        return self.mutate(style: .init(value, context: .tainted(.css)))
     }
 
     public func fill(_ color: String, opacity: Double? = nil) -> Path {
-        return self.mutate(fill: color).mutate(fillopacity: opacity)  
+
+        var copy = self
+        
+        copy = copy.mutate(fill: .init(color, context: .tainted(.html)))
+        
+        if let opacity = opacity {
+            copy = copy.mutate(fillopacity: .init(opacity, context: .trusted))
+        }
+        
+        return copy
     }
     
     @available(*, deprecated, message: "Use the stroke(_:width:opacity:cap:join:) modifier instead.")
     public func stroke(_ value: String) -> Path {
-        return self.mutate(stroke: value)
+        return self.mutate(stroke: .init(value, context: .tainted(.html)))
     }
     
     public func stroke(_ color: String, width: Int? = nil, opacity: Double? = nil, cap: Values.Linecap? = nil, join: Values.Linejoin? = nil) -> Path {
-        return self.mutate(stroke: color).mutate(strokewidth: width).mutate(strokeopacity: opacity).mutate(strokelinecap: cap?.rawValue).mutate(strokelinejoin: join?.rawValue)
+
+        var copy = self
+        
+        copy = copy.mutate(stroke: .init(color, context: .tainted(.html)))
+        
+        if let width = width {
+            copy = copy.mutate(strokewidth: .init(width, context: .trusted))
+        }
+        
+        if let opacity = opacity {
+            copy = copy.mutate(strokeopacity: .init(opacity, context: .trusted))
+        }
+        
+        if let cap = cap {
+            copy = copy.mutate(strokelinecap: .init(cap.rawValue, context: .trusted))
+        }
+        
+        if let join = join {
+            copy = copy.mutate(strokelinejoin: .init(join.rawValue, context: .trusted))
+        }
+        
+        return copy
     }
     
     @available(*, deprecated, message: "Use the stroke(_:width:opacity:cap:join:) modifier instead.")
     public func strokeWidth(_ size: Int) -> Path {
-        return self.mutate(strokewidth: size)
+        return self.mutate(strokewidth: .init(size, context: .trusted))
     }
     
     @available(*, deprecated, message: "Use the fill(_:opacity:) modifier instead.")
     public func fillOpacity(_ value: Double) -> Path {
-        return self.mutate(fillopacity: value)
+        return self.mutate(fillopacity: .init(value, context: .trusted))
     }
     
     @available(*, deprecated, message: "Use the stroke(_:width:opacity:cap:join:) modifier instead.")
     public func strokeOpacity(_ value: Double) -> Path {
-        return self.mutate(strokeopacity: value)
+        return self.mutate(strokeopacity: .init(value, context: .trusted))
     }
     
     @available(*, deprecated, message: "Use the stroke(_:width:opacity:cap:join:) modifier instead.")
     public func strokeLineCap(_ value: Values.Linecap) -> Path {
-        return self.mutate(strokelinecap: value.rawValue)
+        return self.mutate(strokelinecap: .init(value.rawValue, context: .trusted))
     }
     
     @available(*, deprecated, message: "Use the stroke(_:width:opacity:cap:join:) modifier instead.")
     public func strokeLineJoin(_ value: Values.Linejoin) -> Path {
-        return self.mutate(strokelinejoin: value.rawValue)
+        return self.mutate(strokelinejoin: .init(value.rawValue, context: .trusted))
     }
     
     public func draw(_ value: String) -> Path {
-        return self.mutate(draw: value)
+        return self.mutate(draw: .init(value, context: .tainted(.html)))
     }
     
-    public func custom(key: String, value: Any) -> Path {
-        return self.mutate(key: key, value: value)
+    public func custom(key: String, value: String, context: EscapeContext = .tainted(.html)) -> Path {
+        return mutate(key: key, value: .init(value, context: context))
+    }
+    
+    public func custom(key: String, value: Int) -> Path {
+        return mutate(key: key, value: .init(value, context: .trusted))
+    }
+    
+    public func custom(key: String, value: Double) -> Path {
+        return mutate(key: key, value: .init(value, context: .trusted))
+    }
+    
+    public func custom(key: String, value: Bool) -> Path {
+        return mutate(key: key, value: .init(value, context: .trusted))
+    }
+    
+    public func custom(key: String, value: Float) -> Path {
+        return mutate(key: key, value: .init(value, context: .trusted))
+    }
+    
+    public func custom(key: String, value: EnvironmentValue, context: EscapeContext = .tainted(.html)) -> Path {
+        return mutate(key: key, value: .init(value, context: context))
     }
 }
 
@@ -924,99 +1435,172 @@ public struct Group: ContentNode, VectorElement {
 
     internal var name: String { "g" }
 
-    internal var attributes: OrderedDictionary<String, Any>?
+    internal var attributes: OrderedDictionary<String, AttributeData>?
 
     internal var content: [Content]
+    
+    internal var context: EscapeContext
 
     /// Create a group.
     ///
     /// - Parameter content: The group's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
+        
+        self.context = .tainted(.html)
         self.content = content()
     }
 
-    internal init(attributes: OrderedDictionary<String, Any>?, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+        
         self.attributes = attributes
+        self.context = context
         self.content = content
     }
     
-    public func modify(if condition: Bool, element: (Group) -> Group) -> Group {
+    public func modify(if condition: Bool, use strategy: MergeStrategy = .replacing, element: (Group) -> Group) -> Group {
         
         if condition {
-            return self.modify(element(self))
+
+            switch strategy {
+            case .combining:
+                return self.combine(element(self))
+                
+            case .replacing:
+                return self.replace(element(self))
+            }
         }
         
         return self
     }
     
-    public func modify<T>(unwrap value: T?, element: (Group, T) -> Group) -> Group {
+    public func modify<T>(unwrap value: T?, use strategy: MergeStrategy = .replacing, element: (Group, T) -> Group) -> Group {
         
         guard let value = value else {
             return self
         }
         
-        return self.modify(element(self, value as T))
+        switch strategy {
+        case .combining:
+            return self.combine(element(self, value as T))
+            
+        case .replacing:
+            return self.replace(element(self, value as T))
+        }
     }
 }
 
 extension Group: GlobalVectorAttributes {
 
     public func id(_ value: String) -> Group {
-        return self.mutate(id: value)
+        return mutate(id: .init(value, context: .tainted(.html)))
     }
 
     public func tabIndex(_ value: Int) -> Group {
-        return self.mutate(tabindex: value)
+        return mutate(tabindex: .init(value, context: .trusted))
     }
 
-    public func `class`(_ value: String) -> Group {
-        return self.mutate(class: value)
+    public func `class`(_ names: [String]) -> Group {
+        return self.mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func `class`(_ names: String...) -> Group {
+        return self.mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
     }
 
     public func style(_ value: String) -> Group {
-        return self.mutate(style: TaintedString(value, as: .css(.attribute)))
+        return self.mutate(style: .init(value, context: .tainted(.css)))
     }
 
     public func fill(_ color: String, opacity: Double? = nil) -> Group {
-        return self.mutate(fill: color).mutate(fillopacity: opacity)  
+
+        var copy = self
+        
+        copy = copy.mutate(fill: .init(color, context: .tainted(.html)))
+        
+        if let opacity = opacity {
+            copy = copy.mutate(fillopacity: .init(opacity, context: .trusted))
+        }
+        
+        return copy
     }
 
     @available(*, deprecated, message: "Use the stroke(_:width:opacity:cap:join:) modifier instead.")
     public func stroke(_ value: String) -> Group {
-        return self.mutate(stroke: value)
+        return self.mutate(stroke: .init(value, context: .tainted(.html)))
     }
     
     public func stroke(_ color: String, width: Int? = nil, opacity: Double? = nil, cap: Values.Linecap? = nil, join: Values.Linejoin? = nil) -> Group {
-        return self.mutate(stroke: color).mutate(strokewidth: width).mutate(strokeopacity: opacity).mutate(strokelinecap: cap?.rawValue).mutate(strokelinejoin: join?.rawValue)
+
+        var copy = self
+        
+        copy = copy.mutate(stroke: .init(color, context: .tainted(.html)))
+        
+        if let width = width {
+            copy = copy.mutate(strokewidth: .init(width, context: .trusted))
+        }
+        
+        if let opacity = opacity {
+            copy = copy.mutate(strokeopacity: .init(opacity, context: .trusted))
+        }
+        
+        if let cap = cap {
+            copy = copy.mutate(strokelinecap: .init(cap.rawValue, context: .trusted))
+        }
+        
+        if let join = join {
+            copy = copy.mutate(strokelinejoin: .init(join.rawValue, context: .trusted))
+        }
+        
+        return copy
     }
 
     @available(*, deprecated, message: "Use the stroke(_:width:opacity:cap:join:) modifier instead.")
     public func strokeWidth(_ size: Int) -> Group {
-        return self.mutate(strokewidth: size)
+        return self.mutate(strokewidth: .init(size, context: .trusted))
     }
 
     @available(*, deprecated, message: "Use the fill(_:opacity:) modifier instead.")
     public func fillOpacity(_ value: Double) -> Group {
-        return self.mutate(fillopacity: value)
+        return self.mutate(fillopacity: .init(value, context: .trusted))
     }
 
     @available(*, deprecated, message: "Use the stroke(_:width:opacity:cap:join:) modifier instead.")
     public func strokeOpacity(_ value: Double) -> Group {
-        return self.mutate(strokeopacity: value)
+        return self.mutate(strokeopacity: .init(value, context: .trusted))
     }
 
     @available(*, deprecated, message: "Use the stroke(_:width:opacity:cap:join:) modifier instead.")
     public func strokeLineCap(_ value: Values.Linecap) -> Group {
-        return self.mutate(strokelinecap: value.rawValue)
+        return self.mutate(strokelinecap: .init(value.rawValue, context: .trusted))
     }
 
     @available(*, deprecated, message: "Use the stroke(_:width:opacity:cap:join:) modifier instead.")
     public func strokeLineJoin(_ value: Values.Linejoin) -> Group {
-        return self.mutate(strokelinejoin: value.rawValue)
+        return self.mutate(strokelinejoin: .init(value.rawValue, context: .trusted))
     }
     
-    public func custom(key: String, value: Any) -> Group {
-        return self.mutate(key: key, value: value)
+    public func custom(key: String, value: String, context: EscapeContext = .tainted(.html)) -> Group {
+        return mutate(key: key, value: .init(value, context: context))
+    }
+    
+    public func custom(key: String, value: Int) -> Group {
+        return mutate(key: key, value: .init(value, context: .trusted))
+    }
+    
+    public func custom(key: String, value: Double) -> Group {
+        return mutate(key: key, value: .init(value, context: .trusted))
+    }
+    
+    public func custom(key: String, value: Bool) -> Group {
+        return mutate(key: key, value: .init(value, context: .trusted))
+    }
+    
+    public func custom(key: String, value: Float) -> Group {
+        return mutate(key: key, value: .init(value, context: .trusted))
+    }
+    
+    public func custom(key: String, value: EnvironmentValue, context: EscapeContext = .tainted(.html)) -> Group {
+        return mutate(key: key, value: .init(value, context: context))
     }
 }
 
@@ -1040,127 +1624,200 @@ public struct Use: ContentNode, VectorElement {
 
     internal var name: String { "use" }
 
-    internal var attributes: OrderedDictionary<String, Any>?
+    internal var attributes: OrderedDictionary<String, AttributeData>?
 
     internal var content: [Content]
+    
+    internal var context: EscapeContext
 
     /// Create a use.
     ///
     /// - Parameter content: The use's content.
     public init(@ContentBuilder<Content> content: () -> [Content]) {
+        
+        self.context = .tainted(.html)
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, Any>?, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+        
         self.attributes = attributes
+        self.context = context
         self.content = content
     }
     
-    public func modify(if condition: Bool, element: (Use) -> Use) -> Use {
+    public func modify(if condition: Bool, use strategy: MergeStrategy = .replacing, element: (Use) -> Use) -> Use {
         
         if condition {
-            return self.modify(element(self))
+
+            switch strategy {
+            case .combining:
+                return self.combine(element(self))
+                
+            case .replacing:
+                return self.replace(element(self))
+            }
         }
         
         return self
     }
     
-    public func modify<T>(unwrap value: T?, element: (Use, T) -> Use) -> Use {
+    public func modify<T>(unwrap value: T?, use strategy: MergeStrategy = .replacing, element: (Use, T) -> Use) -> Use {
         
         guard let value = value else {
             return self
         }
         
-        return self.modify(element(self, value as T))
+        switch strategy {
+        case .combining:
+            return self.combine(element(self, value as T))
+            
+        case .replacing:
+            return self.replace(element(self, value as T))
+        }
     }
 }
 
 extension Use: GlobalVectorAttributes, ReferenceAttribute, WidthAttribute, HeightAttribute, PositionPointAttribute {
 
     public func id(_ value: String) -> Use {
-        return self.mutate(id: value)
+        return mutate(id: .init(value, context: .tainted(.html)))
     }
     
     public func tabIndex(_ value: Int) -> Use {
-        return self.mutate(tabindex: value)
+        return mutate(tabindex: .init(value, context: .trusted))
     }
     
     public func reference(_ value: String) -> Use {
-        return self.mutate(href: value)
+        return self.mutate(href: .init(value, context: .tainted(.url)))
     }
     
     @available(*, deprecated, message: "Use the position(x:y:) modifier instead.")
     public func positionPoint(_ point: (Int, Int)) -> Use {
-        return self.mutate(x: "\(point.0)").mutate(y: "\(point.1)")
+        return self.mutate(x: .init(point.0, context: .trusted)).mutate(y: .init(point.1, context: .trusted))
     }
     
     public func position(x: Int, y: Int) -> Use {
-        return self.mutate(x: "\(x)").mutate(y: "\(y)")
+        return self.mutate(x: .init(x, context: .trusted)).mutate(y: .init(x, context: .trusted))
     }
     
     public func position(x: Double, y: Double) -> Use {
-        return self.mutate(x: "\(x)").mutate(y: "\(y)")
+        return self.mutate(x: .init(x, context: .trusted)).mutate(y: .init(x, context: .trusted))
     }
     
     public func position(_ point: UnitPoint) -> Use {
-        return self.mutate(x: point.x).mutate(y: point.y)
+        return self.mutate(x: .init(point.x, context: .trusted)).mutate(y: .init(point.y, context: .trusted))
     }
     
     public func width(_ size: Int) -> Use {
-        return self.mutate(width: size)
+        return self.mutate(width: .init(size, context: .trusted))
     }
     
     public func height(_ size: Int) -> Use {
-        return self.mutate(height: size)
+        return self.mutate(height: .init(size, context: .trusted))
     }
     
-    public func `class`(_ value: String) -> Use {
-        return self.mutate(class: value)
+    public func `class`(_ names: [String]) -> Use {
+        return self.mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func `class`(_ names: String...) -> Use {
+        return self.mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
     }
     
     public func style(_ value: String) -> Use {
-        return self.mutate(style: TaintedString(value, as: .css(.attribute)))
+        return self.mutate(style: .init(value, context: .tainted(.css)))
     }
     
     public func fill(_ color: String, opacity: Double? = nil) -> Use {
-        return self.mutate(fill: color).mutate(fillopacity: opacity)  
+
+        var copy = self
+        
+        copy = copy.mutate(fill: .init(color, context: .tainted(.html)))
+        
+        if let opacity = opacity {
+            copy = copy.mutate(fillopacity: .init(opacity, context: .trusted))
+        }
+        
+        return copy
     }
     
     @available(*, deprecated, message: "Use the stroke(_:width:opacity:cap:join:) modifier instead.")
     public func stroke(_ value: String) -> Use {
-        return self.mutate(stroke: value)
+        return self.mutate(stroke: .init(value, context: .tainted(.html)))
     }
     
     public func stroke(_ color: String, width: Int? = nil, opacity: Double? = nil, cap: Values.Linecap? = nil, join: Values.Linejoin? = nil) -> Use {
-        return self.mutate(stroke: color).mutate(strokewidth: width).mutate(strokeopacity: opacity).mutate(strokelinecap: cap?.rawValue).mutate(strokelinejoin: join?.rawValue)
+
+        var copy = self
+        
+        copy = copy.mutate(stroke: .init(color, context: .tainted(.html)))
+        
+        if let width = width {
+            copy = copy.mutate(strokewidth: .init(width, context: .trusted))
+        }
+        
+        if let opacity = opacity {
+            copy = copy.mutate(strokeopacity: .init(opacity, context: .trusted))
+        }
+        
+        if let cap = cap {
+            copy = copy.mutate(strokelinecap: .init(cap.rawValue, context: .trusted))
+        }
+        
+        if let join = join {
+            copy = copy.mutate(strokelinejoin: .init(join.rawValue, context: .trusted))
+        }
+        
+        return copy
     }
     
     @available(*, deprecated, message: "Use the stroke(_:width:opacity:cap:join:) modifier instead.")
     public func strokeWidth(_ size: Int) -> Use {
-        return self.mutate(strokewidth: size)
+        return self.mutate(strokewidth: .init(size, context: .trusted))
     }
     
     @available(*, deprecated, message: "Use the fill(_:opacity:) modifier instead.")
     public func fillOpacity(_ value: Double) -> Use {
-        return self.mutate(fillopacity: value)
+        return self.mutate(fillopacity: .init(value, context: .trusted))
     }
     
     @available(*, deprecated, message: "Use the stroke(_:width:opacity:cap:join:) modifier instead.")
     public func strokeOpacity(_ value: Double) -> Use {
-        return self.mutate(strokeopacity: value)
+        return self.mutate(strokeopacity: .init(value, context: .trusted))
     }
     
     @available(*, deprecated, message: "Use the stroke(_:width:opacity:cap:join:) modifier instead.")
     public func strokeLineCap(_ value: Values.Linecap) -> Use {
-        return self.mutate(strokelinecap: value.rawValue)
+        return self.mutate(strokelinecap: .init(value.rawValue, context: .trusted))
     }
     
     @available(*, deprecated, message: "Use the stroke(_:width:opacity:cap:join:) modifier instead.")
     public func strokeLineJoin(_ value: Values.Linejoin) -> Use {
-        return self.mutate(strokelinejoin: value.rawValue)
+        return self.mutate(strokelinejoin: .init(value.rawValue, context: .trusted))
     }
     
-    public func custom(key: String, value: Any) -> Use {
-        return self.mutate(key: key, value: value)
+    public func custom(key: String, value: String, context: EscapeContext = .tainted(.html)) -> Use {
+        return mutate(key: key, value: .init(value, context: context))
+    }
+    
+    public func custom(key: String, value: Int) -> Use {
+        return mutate(key: key, value: .init(value, context: .trusted))
+    }
+    
+    public func custom(key: String, value: Double) -> Use {
+        return mutate(key: key, value: .init(value, context: .trusted))
+    }
+    
+    public func custom(key: String, value: Bool) -> Use {
+        return mutate(key: key, value: .init(value, context: .trusted))
+    }
+    
+    public func custom(key: String, value: Float) -> Use {
+        return mutate(key: key, value: .init(value, context: .trusted))
+    }
+    
+    public func custom(key: String, value: EnvironmentValue, context: EscapeContext = .tainted(.html)) -> Use {
+        return mutate(key: key, value: .init(value, context: context))
     }
 }
