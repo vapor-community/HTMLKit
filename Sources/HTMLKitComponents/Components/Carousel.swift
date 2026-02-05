@@ -50,7 +50,7 @@ public struct Carousel: View, Identifiable, Modifiable {
             }
             .class("carousel-indication")
         }
-        .class(classes.joined(separator: " "))
+        .class(classes)
         .modify(unwrap: id) {
             $0.id($1)
         }

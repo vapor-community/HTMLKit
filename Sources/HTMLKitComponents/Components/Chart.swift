@@ -34,7 +34,7 @@ public struct Chart: View, Modifiable {
             content
         }
         .namespace("http://www.w3.org/2000/svg")
-        .class(classes.joined(separator: " "))
+        .class(classes)
     }
     
     /// Set the inner radius for the chart.

@@ -34,7 +34,7 @@ public struct FileDialog: View, Modifiable, Identifiable {
         Input()
             .type(.file)
             .name(name)
-            .class(classes.joined(separator: " "))
+            .class(classes)
             .modify(unwrap: id) {
                 $0.id($1)
             }

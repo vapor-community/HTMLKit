@@ -75,6 +75,6 @@ public struct Disclosure: View, Modifiable {
             }
             .class("disclosure-body")
         }
-        .class(classes.joined(separator: " "))
+        .class(classes)
     }
 }

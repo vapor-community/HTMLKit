@@ -56,7 +56,7 @@ public struct Button: View, Modifiable, Actionable {
             self.content
         }
         .type(role)
-        .class(self.classes.joined(separator: " "))
+        .class(classes)
         .modify(unwrap: id) {
             $0.id($1)
         }

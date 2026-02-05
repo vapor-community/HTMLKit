@@ -60,7 +60,7 @@ public struct TextField: View, Modifiable, Identifiable {
         Input()
             .type(.text)
             .name(name)
-            .class(classes.joined(separator: " "))
+            .class(classes)
             .modify(unwrap: id) {
                 $0.id($1)
             }

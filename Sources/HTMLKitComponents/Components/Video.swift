@@ -33,7 +33,6 @@ public struct Video: View, Modifiable, Identifiable {
     public init(source: EnvironmentValue) {
         
         self.source = .value(source)
-        
         self.classes = ["video"]
      }
     
@@ -42,7 +41,7 @@ public struct Video: View, Modifiable, Identifiable {
         }
         .source(source)
         .controls()
-        .class(classes.joined(separator: " "))
+        .class(classes)
         .modify(unwrap: id) {
             $0.id($1)
         }

@@ -117,7 +117,7 @@ public struct SelectField: View, Modifiable, Identifiable {
             }
             .class("selectfield-optionlist")
         }
-        .class(classes.joined(separator: " "))
+        .class(classes)
         .modify(unwrap: id) {
             $0.id($1)
         }

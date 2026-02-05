@@ -43,9 +43,9 @@ public struct BarMark: View, Modifiable {
             Custom(name: "text") {
                 label
             }
-            .custom(key: "class", value: "mark-label")
+            .custom(key: "class", value: "mark-label", context: .trusted)
         }
-        .class(classes.joined(separator: " "))
+        .class(classes)
     }
     
     /// Fill the foreground for the mark.

@@ -78,7 +78,7 @@ public struct Tabs: View, Identifiable, Modifiable {
             }
             .class("tabs-panes")
         }
-        .class(classes.joined(separator: " "))
+        .class(classes)
         .modify(unwrap: id) {
             $0.id($1)
         }

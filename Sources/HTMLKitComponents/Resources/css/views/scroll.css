@@ -6,6 +6,11 @@
     position: relative;
     padding-inline: 1px; /* temporary fix */
     padding-block: 1px; /* temporary fix */
+    scrollbar-width: none;
+}
+
+.scroll::-webkit-scrollbar {
+    display: none;
 }
 
 .scroll:has(> .hstack) {
@@ -22,10 +27,10 @@
     overscroll-behavior-block: contain;
 }
 
-.scroll.indicators\:false {
-    scrollbar-width: none;
+.scroll.indicators\:true {
+    scrollbar-width: auto;
 }
 
-.scroll.indicators\:false::-webkit-scrollbar {
-    display: none;
+.scroll.indicators\:true::-webkit-scrollbar {
+    display: unset;
 }

@@ -48,7 +48,7 @@ public struct List: View, Modifiable, Actionable {
                 .class("list-row")
             }
         }
-        .class(classes.joined(separator: " "))
+        .class(classes)
         .modify(unwrap: id) {
             $0.id($1)
         }

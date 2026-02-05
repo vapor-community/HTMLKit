@@ -68,7 +68,7 @@ public struct TextEditor: View, Modifiable, Identifiable {
         .modify(unwrap: id) {
             $0.id($1)
         }
-        .class(classes.joined(separator: " "))
+        .class(classes)
         .rows(rows)
         .modify(unwrap: prompt) {
             $0.placeholder($1)

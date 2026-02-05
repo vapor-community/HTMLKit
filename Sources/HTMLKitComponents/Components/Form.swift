@@ -55,7 +55,7 @@ public struct Form: View, Actionable {
         }
         .method(method)
         .encoding(encoding)
-        .class(classes.joined(separator: " "))
+        .class(classes)
         .modify(unwrap: id) {
             $0.id($1)
         }

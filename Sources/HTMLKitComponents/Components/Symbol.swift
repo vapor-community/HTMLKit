@@ -242,7 +242,7 @@ public struct Symbol: View, Modifiable {
             content
         }
         .viewBox(x: 0, y: 0, width: 20, height: 16)
-        .class(classes.joined(separator: " "))
+        .class(classes)
     }
     
     /// Set the size for the symbol.

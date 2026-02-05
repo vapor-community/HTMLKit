@@ -19,6 +19,6 @@ public struct Divider: View {
     
     public var body: Content {
         HorizontalRule()
-            .class(classes.joined(separator: " "))
+            .class(classes)
     }
 }

@@ -88,11 +88,11 @@ public struct LinkButton: View, Modifiable, Identifiable {
     
     public var body: Content {
         Anchor {
-            self.content
+            content
         }
-        .reference(self.destination)
+        .reference(destination)
         .target(target)
-        .class(self.classes.joined(separator: " "))
+        .class(classes)
         .role(.button)
         .modify(unwrap: id) {
             $0.id($1)

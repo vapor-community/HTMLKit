@@ -41,7 +41,7 @@ public struct SectorMark: View, Modifiable {
                 "\(value)"
             }
         }
-        .class(classes.joined(separator: " "))
+        .class(classes)
     }
     
     /// Fill the foreground for the mark.

@@ -52,6 +52,6 @@ public struct FieldLabel: View {
             content
         }
         .for(id)
-        .class(classes.joined(separator: " "))
+        .class(classes)
     }
 }

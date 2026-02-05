@@ -36,6 +36,12 @@ public struct Grid: View, Modifiable, Actionable {
     /// The event handlers on the grid.
     internal var events: [String]?
     
+    /// The horizontal content space of the grid.
+    internal let horizontalSpacing: Tokens.ContentSpace?
+    
+    /// The vertical content space of the grid.
+    internal let verticalSpacing: Tokens.ContentSpace?
+    
     /// Create a grid.
     ///
     /// - Parameters:
@@ -46,11 +52,8 @@ public struct Grid: View, Modifiable, Actionable {
         
         self.content = content()
         self.classes = ["grid", "ratio:\(ratio.value)"]
-        
-        if let spacing {
-            self.classes.append("horizontal-spacing:\(spacing.value)")
-            self.classes.append("vertical-spacing:\(spacing.value)")
-        }
+        self.horizontalSpacing = spacing
+        self.verticalSpacing = spacing
     }
     
     /// Creates a grid
@@ -64,23 +67,23 @@ public struct Grid: View, Modifiable, Actionable {
         
         self.content = content()
         self.classes = ["grid", "ratio:\(ratio.value)"]
-        
-        if let horizontalSpacing {
-            self.classes.append("horizontal-spacing:\(horizontalSpacing.value)")
-        }
-        
-        if let verticalSpacing {
-            self.classes.append("vertical-spacing:\(verticalSpacing.value)")
-        }
+        self.horizontalSpacing = horizontalSpacing
+        self.verticalSpacing = verticalSpacing
     }
     
     public var body: Content {
         Division {
             content
         }
-        .class(classes.joined(separator: " "))
+        .class(classes)
         .modify(unwrap: id) {
             $0.id($1)
+        }
+        .modify(unwrap: horizontalSpacing, use: .combining) {
+            $0.class("horizontal-spacing:\($1.value)")
+        }
+        .modify(unwrap: verticalSpacing, use: .combining) {
+            $0.class("vertical-spacing:\($1.value)")
         }
         if let events = self.events {
             Script {

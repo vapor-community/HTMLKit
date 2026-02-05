@@ -38,7 +38,7 @@ public struct Grouping: View, Modifiable, Identifiable {
         Division {
             content
         }
-        .class(classes.joined(separator: " "))
+        .class(classes)
         .modify(unwrap: id) {
             $0.id($1)
         }

@@ -70,7 +70,7 @@ public struct DatePicker: View, Modifiable, Identifiable {
                 }
             self.calendar
         }
-        .class(classes.joined(separator: " "))
+        .class(classes)
         .modify(unwrap: id) {
             $0.id($1)
         }

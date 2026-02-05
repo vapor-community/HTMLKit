@@ -25,6 +25,9 @@ public struct HStack: View, Actionable, Modifiable {
     
     /// The event handlers on the stack.
     internal var events: [String]?
+    
+    /// The content space of the stack.
+    internal let spacing: Tokens.ContentSpace?
      
     /// Create a horizontal stack
     ///
@@ -35,22 +38,20 @@ public struct HStack: View, Actionable, Modifiable {
     public init(alignment: Tokens.VerticalAlignment = .center, spacing: Tokens.ContentSpace? = nil, @ContentBuilder<Content> content: () -> [Content]) {
         
         self.content = content()
-        
-        if let spacing {
-            self.classes = ["hstack", "vertical-alignment:\(alignment.value)", "spacing:\(spacing.value)"]
-            
-        } else {
-            self.classes = ["hstack", "vertical-alignment:\(alignment.value)"]
-        }
+        self.classes = ["hstack", "vertical-alignment:\(alignment.value)"]
+        self.spacing = spacing
     }
     
     public var body: Content {
         Division {
             content
         }
-        .class(classes.joined(separator: " "))
+        .class(classes)
         .modify(unwrap: id) {
             $0.id($1)
+        }
+        .modify(unwrap: spacing, use: .combining) {
+            $0.class("spacing:\($1.value)")
         }
         if let events = self.events {
             Script {

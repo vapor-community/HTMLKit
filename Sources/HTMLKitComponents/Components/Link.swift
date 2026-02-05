@@ -66,7 +66,7 @@ public struct Link: View, Modifiable, Identifiable {
         }
         .reference(destination)
         .target(target)
-        .class(classes.joined(separator: " "))
+        .class(classes)
         .modify(unwrap: id) {
             $0.id($1)
         }

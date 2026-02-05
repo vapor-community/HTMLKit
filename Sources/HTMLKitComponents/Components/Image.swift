@@ -40,7 +40,7 @@ public struct Image: View, Modifiable, Identifiable {
         HTMLKit.Image()
             .source(source)
             .role(.img)
-            .class(classes.joined(separator: " "))
+            .class(classes)
             .modify(unwrap: id) {
                 $0.id($1)
             }

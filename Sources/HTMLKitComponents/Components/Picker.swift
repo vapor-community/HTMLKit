@@ -64,7 +64,7 @@ public struct Picker: View, Modifiable, Identifiable {
                     .tag(name)
             }
         }
-        .class(classes.joined(separator: " "))
+        .class(classes)
         .modify(unwrap: id) {
             $0.id($1)
         }

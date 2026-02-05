@@ -63,7 +63,7 @@ public struct SearchField: View, Modifiable, Identifiable {
             .modify(unwrap: id) {
                 $0.id($1)
             }
-            .class(classes.joined(separator: " "))
+            .class(classes)
             .modify(unwrap: value) {
                 $0.value($1)
             }

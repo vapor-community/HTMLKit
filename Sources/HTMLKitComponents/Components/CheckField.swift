@@ -78,7 +78,7 @@ public struct CheckField: View, Modifiable, Selectable, Identifiable {
                 $0.for($1)
             }
         }
-        .class(classes.joined(separator: " "))
+        .class(classes)
     }
     
     /// Set the identifier for the field.

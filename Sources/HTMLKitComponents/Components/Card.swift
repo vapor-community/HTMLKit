@@ -42,8 +42,7 @@ public struct Card: View, Modifiable, Identifiable {
     /// - Parameters:
     ///   - content: The card's content.
     ///   - header: The card's header.
-    public init(@ContentBuilder<Content> content: () -> [Content],
-                @ContentBuilder<Content> header: () -> [Content]) {
+    public init(@ContentBuilder<Content> content: () -> [Content], @ContentBuilder<Content> header: () -> [Content]) {
         
         self.content = content()
         self.header = header()
@@ -61,7 +60,7 @@ public struct Card: View, Modifiable, Identifiable {
             }
             .class("card-body")
         }
-        .class(classes.joined(separator: " "))
+        .class(classes)
         .modify(unwrap: id) {
             $0.id($1)
         }

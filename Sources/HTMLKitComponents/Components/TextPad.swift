@@ -90,7 +90,7 @@ public struct TextPad: View, Modifiable, Identifiable {
                             }
                             .type(.button)
                             .class("toolbar-tool")
-                            .custom(key: "data-command", value: "bold")
+                            .custom(key: "data-command", value: "bold", context: .trusted)
                             Span {
                                 "Bold"
                             }
@@ -111,7 +111,7 @@ public struct TextPad: View, Modifiable, Identifiable {
                             }
                             .type(.button)
                             .class("toolbar-tool")
-                            .custom(key: "data-command", value: "italic")
+                            .custom(key: "data-command", value: "italic", context: .trusted)
                             Span {
                                 "Italic"
                             }
@@ -132,7 +132,7 @@ public struct TextPad: View, Modifiable, Identifiable {
                             }
                             .type(.button)
                             .class("toolbar-tool")
-                            .custom(key: "data-command", value: "strikethrough")
+                            .custom(key: "data-command", value: "strikethrough", context: .trusted)
                             Span {
                                 "Strikethrough"
                             }
@@ -153,7 +153,7 @@ public struct TextPad: View, Modifiable, Identifiable {
                             }
                             .type(.button)
                             .class("toolbar-tool")
-                            .custom(key: "data-command", value: "link")
+                            .custom(key: "data-command", value: "link", context: .trusted)
                             Span {
                                 "Link"
                             }
@@ -174,7 +174,7 @@ public struct TextPad: View, Modifiable, Identifiable {
                             }
                             .type(.button)
                             .class("toolbar-tool")
-                            .custom(key: "data-command", value: "code")
+                            .custom(key: "data-command", value: "code", context: .trusted)
                             Span {
                                 "Code"
                             }
@@ -199,7 +199,7 @@ public struct TextPad: View, Modifiable, Identifiable {
                         }
                         .type(.button)
                         .class("toolbar-tool")
-                        .custom(key: "data-command", value: "bold")
+                        .custom(key: "data-command", value: "bold", context: .trusted)
                         Span {
                             "Bold"
                         }
@@ -220,7 +220,7 @@ public struct TextPad: View, Modifiable, Identifiable {
                         }
                         .type(.button)
                         .class("toolbar-tool")
-                        .custom(key: "data-command", value: "italic")
+                        .custom(key: "data-command", value: "italic", context: .trusted)
                         Span {
                             "Italic"
                         }
@@ -241,7 +241,7 @@ public struct TextPad: View, Modifiable, Identifiable {
                         }
                         .type(.button)
                         .class("toolbar-tool")
-                        .custom(key: "data-command", value: "strikethrough")
+                        .custom(key: "data-command", value: "strikethrough", context: .trusted)
                         Span {
                             "Strikethrough"
                         }
@@ -262,7 +262,7 @@ public struct TextPad: View, Modifiable, Identifiable {
                         }
                         .type(.button)
                         .class("toolbar-tool")
-                        .custom(key: "data-command", value: "link")
+                        .custom(key: "data-command", value: "link", context: .trusted)
                         Span {
                             "Link"
                         }
@@ -283,7 +283,7 @@ public struct TextPad: View, Modifiable, Identifiable {
                         }
                         .type(.button)
                         .class("toolbar-tool")
-                        .custom(key: "data-command", value: "code")
+                        .custom(key: "data-command", value: "code", context: .trusted)
                         Span {
                             "Code"
                         }
@@ -306,8 +306,8 @@ public struct TextPad: View, Modifiable, Identifiable {
                             .viewBox(x: 0, y: 0, width: 20, height: 16)
                         }
                         .type(.button)
-                        .class("toolbar-tool state:disabled")
-                        .custom(key: "data-command", value: "undo")
+                        .class("toolbar-tool", "state:disabled")
+                        .custom(key: "data-command", value: "undo", context: .trusted)
                         Span {
                             "Undo"
                         }
@@ -327,8 +327,8 @@ public struct TextPad: View, Modifiable, Identifiable {
                             .viewBox(x: 0, y: 0, width: 20, height: 16)
                         }
                         .type(.button)
-                        .class("toolbar-tool state:disabled")
-                        .custom(key: "data-command", value: "redo")
+                        .class("toolbar-tool", "state:disabled")
+                        .custom(key: "data-command", value: "redo", context: .trusted)
                         Span {
                             "Redo"
                         }
@@ -348,7 +348,7 @@ public struct TextPad: View, Modifiable, Identifiable {
                 $0.placeholder($1)
             }
         }
-        .class(classes.joined(separator: " "))
+        .class(classes)
         .modify(unwrap: id) {
             $0.id($1)
         }
