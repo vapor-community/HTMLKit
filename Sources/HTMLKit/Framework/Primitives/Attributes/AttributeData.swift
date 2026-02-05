@@ -25,6 +25,9 @@ public struct AttributeData {
         
         /// An environment value.
         case environment(EnvironmentValue)
+        
+        /// An enumerated list.
+        case list(EnumeratedList)
     }
     
     /// The context of the data.
@@ -108,5 +111,16 @@ public struct AttributeData {
         
         self.context = context
         self.value = .environment(value)
+    }
+    
+    /// Create an enumerated attribute.
+    /// 
+    /// - Parameters:
+    ///   - value: The enumerated list.
+    ///   - context: Whether the list is safe
+    public init(_ value: EnumeratedList, context: EscapeContext) {
+        
+        self.context = context
+        self.value = .list(value)
     }
 }

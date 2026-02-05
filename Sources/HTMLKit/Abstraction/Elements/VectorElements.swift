@@ -44,22 +44,35 @@ public struct Circle: ContentNode, VectorElement {
         self.content = content
     }
     
-    public func modify(if condition: Bool, element: (Circle) -> Circle) -> Circle {
+    public func modify(if condition: Bool, use strategy: MergeStrategy = .replacing, element: (Circle) -> Circle) -> Circle {
         
         if condition {
-            return self.modify(element(self))
+
+            switch strategy {
+            case .combining:
+                return self.combine(element(self))
+                
+            case .replacing:
+                return self.replace(element(self))
+            }
         }
         
         return self
     }
     
-    public func modify<T>(unwrap value: T?, element: (Circle, T) -> Circle) -> Circle {
+    public func modify<T>(unwrap value: T?, use strategy: MergeStrategy = .replacing, element: (Circle, T) -> Circle) -> Circle {
         
         guard let value = value else {
             return self
         }
         
-        return self.modify(element(self, value as T))
+        switch strategy {
+        case .combining:
+            return self.combine(element(self, value as T))
+            
+        case .replacing:
+            return self.replace(element(self, value as T))
+        }
     }
 }
 
@@ -73,8 +86,12 @@ extension Circle: GlobalVectorAttributes, CenterPointAttribute, RadiusAttribute 
         return mutate(tabindex: .init(value, context: .trusted))
     }
     
-    public func `class`(_ value: String) -> Circle {
-        return self.mutate(class: .init(value, context: .tainted(.html)))
+    public func `class`(_ names: [String]) -> Circle {
+        return self.mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func `class`(_ names: String...) -> Circle {
+        return self.mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
     }
     
     public func style(_ value: String) -> Circle {
@@ -235,22 +252,35 @@ public struct Rectangle: ContentNode, VectorElement {
         self.content = content
     }
     
-    public func modify(if condition: Bool, element: (Rectangle) -> Rectangle) -> Rectangle {
+    public func modify(if condition: Bool, use strategy: MergeStrategy = .replacing, element: (Rectangle) -> Rectangle) -> Rectangle {
         
         if condition {
-            return self.modify(element(self))
+
+            switch strategy {
+            case .combining:
+                return self.combine(element(self))
+                
+            case .replacing:
+                return self.replace(element(self))
+            }
         }
         
         return self
     }
     
-    public func modify<T>(unwrap value: T?, element: (Rectangle, T) -> Rectangle) -> Rectangle {
+    public func modify<T>(unwrap value: T?, use strategy: MergeStrategy = .replacing, element: (Rectangle, T) -> Rectangle) -> Rectangle {
         
         guard let value = value else {
             return self
         }
         
-        return self.modify(element(self, value as T))
+        switch strategy {
+        case .combining:
+            return self.combine(element(self, value as T))
+            
+        case .replacing:
+            return self.replace(element(self, value as T))
+        }
     }
 }
 
@@ -264,8 +294,12 @@ extension Rectangle: GlobalVectorAttributes, WidthAttribute, HeightAttribute, Ra
         return mutate(tabindex: .init(value, context: .trusted))
     }
     
-    public func `class`(_ value: String) -> Rectangle {
-        return self.mutate(class: .init(value, context: .tainted(.html)))
+    public func `class`(_ names: [String]) -> Rectangle {
+        return self.mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func `class`(_ names: String...) -> Rectangle {
+        return self.mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
     }
     
     public func style(_ value: String) -> Rectangle {
@@ -447,22 +481,35 @@ public struct Ellipse: ContentNode, VectorElement {
         self.content = content
     }
     
-    public func modify(if condition: Bool, element: (Ellipse) -> Ellipse) -> Ellipse {
+    public func modify(if condition: Bool, use strategy: MergeStrategy = .replacing, element: (Ellipse) -> Ellipse) -> Ellipse {
         
         if condition {
-            return self.modify(element(self))
+
+            switch strategy {
+            case .combining:
+                return self.combine(element(self))
+                
+            case .replacing:
+                return self.replace(element(self))
+            }
         }
         
         return self
     }
     
-    public func modify<T>(unwrap value: T?, element: (Ellipse, T) -> Ellipse) -> Ellipse {
+    public func modify<T>(unwrap value: T?, use strategy: MergeStrategy = .replacing, element: (Ellipse, T) -> Ellipse) -> Ellipse {
         
         guard let value = value else {
             return self
         }
         
-        return self.modify(element(self, value as T))
+        switch strategy {
+        case .combining:
+            return self.combine(element(self, value as T))
+            
+        case .replacing:
+            return self.replace(element(self, value as T))
+        }
     }
 }
 
@@ -476,8 +523,12 @@ extension Ellipse: GlobalVectorAttributes, CenterPointAttribute, RadiusPointAttr
         return mutate(tabindex: .init(value, context: .trusted))
     }
     
-    public func `class`(_ value: String) -> Ellipse {
-        return self.mutate(class: .init(value, context: .tainted(.html)))
+    public func `class`(_ names: [String]) -> Ellipse {
+        return self.mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func `class`(_ names: String...) -> Ellipse {
+        return self.mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
     }
     
     public func style(_ value: String) -> Ellipse {
@@ -651,22 +702,35 @@ public struct Line: ContentNode, VectorElement {
         self.content = content
     }
     
-    public func modify(if condition: Bool, element: (Line) -> Line) -> Line {
+    public func modify(if condition: Bool, use strategy: MergeStrategy = .replacing, element: (Line) -> Line) -> Line {
         
         if condition {
-            return self.modify(element(self))
+
+            switch strategy {
+            case .combining:
+                return self.combine(element(self))
+                
+            case .replacing:
+                return self.replace(element(self))
+            }
         }
         
         return self
     }
     
-    public func modify<T>(unwrap value: T?, element: (Line, T) -> Line) -> Line {
+    public func modify<T>(unwrap value: T?, use strategy: MergeStrategy = .replacing, element: (Line, T) -> Line) -> Line {
         
         guard let value = value else {
             return self
         }
         
-        return self.modify(element(self, value as T))
+        switch strategy {
+        case .combining:
+            return self.combine(element(self, value as T))
+            
+        case .replacing:
+            return self.replace(element(self, value as T))
+        }
     }
 }
 
@@ -680,8 +744,12 @@ extension Line: GlobalVectorAttributes {
         return mutate(tabindex: .init(value, context: .trusted))
     }
     
-    public func `class`(_ value: String) -> Line {
-        return self.mutate(class: .init(value, context: .tainted(.html)))
+    public func `class`(_ names: [String]) -> Line {
+        return self.mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func `class`(_ names: String...) -> Line {
+        return self.mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
     }
     
     public func style(_ value: String) -> Line {
@@ -820,22 +888,35 @@ public struct Polygon: ContentNode, VectorElement {
         self.content = content
     }
     
-    public func modify(if condition: Bool, element: (Polygon) -> Polygon) -> Polygon {
+    public func modify(if condition: Bool, use strategy: MergeStrategy = .replacing, element: (Polygon) -> Polygon) -> Polygon {
         
         if condition {
-            return self.modify(element(self))
+
+            switch strategy {
+            case .combining:
+                return self.combine(element(self))
+                
+            case .replacing:
+                return self.replace(element(self))
+            }
         }
         
         return self
     }
     
-    public func modify<T>(unwrap value: T?, element: (Polygon, T) -> Polygon) -> Polygon {
+    public func modify<T>(unwrap value: T?, use strategy: MergeStrategy = .replacing, element: (Polygon, T) -> Polygon) -> Polygon {
         
         guard let value = value else {
             return self
         }
         
-        return self.modify(element(self, value as T))
+        switch strategy {
+        case .combining:
+            return self.combine(element(self, value as T))
+            
+        case .replacing:
+            return self.replace(element(self, value as T))
+        }
     }
 }
 
@@ -849,8 +930,12 @@ extension Polygon: GlobalVectorAttributes, PointsAttribute {
         return mutate(tabindex: .init(value, context: .trusted))
     }
     
-    public func `class`(_ value: String) -> Polygon {
-        return self.mutate(class: .init(value, context: .tainted(.html)))
+    public func `class`(_ names: [String]) -> Polygon {
+        return self.mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func `class`(_ names: String...) -> Polygon {
+        return self.mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
     }
     
     public func style(_ value: String) -> Polygon {
@@ -993,22 +1078,35 @@ public struct Polyline: ContentNode, VectorElement {
         self.content = content
     }
     
-    public func modify(if condition: Bool, element: (Polyline) -> Polyline) -> Polyline {
+    public func modify(if condition: Bool, use strategy: MergeStrategy = .replacing, element: (Polyline) -> Polyline) -> Polyline {
         
         if condition {
-            return self.modify(element(self))
+
+            switch strategy {
+            case .combining:
+                return self.combine(element(self))
+                
+            case .replacing:
+                return self.replace(element(self))
+            }
         }
         
         return self
     }
     
-    public func modify<T>(unwrap value: T?, element: (Polyline, T) -> Polyline) -> Polyline {
+    public func modify<T>(unwrap value: T?, use strategy: MergeStrategy = .replacing, element: (Polyline, T) -> Polyline) -> Polyline {
         
         guard let value = value else {
             return self
         }
         
-        return self.modify(element(self, value as T))
+        switch strategy {
+        case .combining:
+            return self.combine(element(self, value as T))
+            
+        case .replacing:
+            return self.replace(element(self, value as T))
+        }
     }
 }
 
@@ -1022,8 +1120,12 @@ extension Polyline: GlobalVectorAttributes, PointsAttribute {
         return mutate(tabindex: .init(value, context: .trusted))
     }
     
-    public func `class`(_ value: String) -> Polyline {
-        return self.mutate(class: .init(value, context: .tainted(.html)))
+    public func `class`(_ names: [String]) -> Polyline {
+        return self.mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func `class`(_ names: String...) -> Polyline {
+        return self.mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
     }
     
     public func style(_ value: String) -> Polyline {
@@ -1166,22 +1268,35 @@ public struct Path: ContentNode, VectorElement {
         self.content = content
     }
     
-    public func modify(if condition: Bool, element: (Path) -> Path) -> Path {
+    public func modify(if condition: Bool, use strategy: MergeStrategy = .replacing, element: (Path) -> Path) -> Path {
         
         if condition {
-            return self.modify(element(self))
+
+            switch strategy {
+            case .combining:
+                return self.combine(element(self))
+                
+            case .replacing:
+                return self.replace(element(self))
+            }
         }
         
         return self
     }
     
-    public func modify<T>(unwrap value: T?, element: (Path, T) -> Path) -> Path {
+    public func modify<T>(unwrap value: T?, use strategy: MergeStrategy = .replacing, element: (Path, T) -> Path) -> Path {
         
         guard let value = value else {
             return self
         }
         
-        return self.modify(element(self, value as T))
+        switch strategy {
+        case .combining:
+            return self.combine(element(self, value as T))
+            
+        case .replacing:
+            return self.replace(element(self, value as T))
+        }
     }
 }
 
@@ -1195,8 +1310,12 @@ extension Path: GlobalVectorAttributes, DrawAttribute {
         return mutate(tabindex: .init(value, context: .trusted))
     }
     
-    public func `class`(_ value: String) -> Path {
-        return self.mutate(class: .init(value, context: .tainted(.html)))
+    public func `class`(_ names: [String]) -> Path {
+        return self.mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func `class`(_ names: String...) -> Path {
+        return self.mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
     }
     
     public func style(_ value: String) -> Path {
@@ -1338,22 +1457,35 @@ public struct Group: ContentNode, VectorElement {
         self.content = content
     }
     
-    public func modify(if condition: Bool, element: (Group) -> Group) -> Group {
+    public func modify(if condition: Bool, use strategy: MergeStrategy = .replacing, element: (Group) -> Group) -> Group {
         
         if condition {
-            return self.modify(element(self))
+
+            switch strategy {
+            case .combining:
+                return self.combine(element(self))
+                
+            case .replacing:
+                return self.replace(element(self))
+            }
         }
         
         return self
     }
     
-    public func modify<T>(unwrap value: T?, element: (Group, T) -> Group) -> Group {
+    public func modify<T>(unwrap value: T?, use strategy: MergeStrategy = .replacing, element: (Group, T) -> Group) -> Group {
         
         guard let value = value else {
             return self
         }
         
-        return self.modify(element(self, value as T))
+        switch strategy {
+        case .combining:
+            return self.combine(element(self, value as T))
+            
+        case .replacing:
+            return self.replace(element(self, value as T))
+        }
     }
 }
 
@@ -1367,8 +1499,12 @@ extension Group: GlobalVectorAttributes {
         return mutate(tabindex: .init(value, context: .trusted))
     }
 
-    public func `class`(_ value: String) -> Group {
-        return self.mutate(class: .init(value, context: .tainted(.html)))
+    public func `class`(_ names: [String]) -> Group {
+        return self.mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func `class`(_ names: String...) -> Group {
+        return self.mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
     }
 
     public func style(_ value: String) -> Group {
@@ -1510,22 +1646,35 @@ public struct Use: ContentNode, VectorElement {
         self.content = content
     }
     
-    public func modify(if condition: Bool, element: (Use) -> Use) -> Use {
+    public func modify(if condition: Bool, use strategy: MergeStrategy = .replacing, element: (Use) -> Use) -> Use {
         
         if condition {
-            return self.modify(element(self))
+
+            switch strategy {
+            case .combining:
+                return self.combine(element(self))
+                
+            case .replacing:
+                return self.replace(element(self))
+            }
         }
         
         return self
     }
     
-    public func modify<T>(unwrap value: T?, element: (Use, T) -> Use) -> Use {
+    public func modify<T>(unwrap value: T?, use strategy: MergeStrategy = .replacing, element: (Use, T) -> Use) -> Use {
         
         guard let value = value else {
             return self
         }
         
-        return self.modify(element(self, value as T))
+        switch strategy {
+        case .combining:
+            return self.combine(element(self, value as T))
+            
+        case .replacing:
+            return self.replace(element(self, value as T))
+        }
     }
 }
 
@@ -1568,8 +1717,12 @@ extension Use: GlobalVectorAttributes, ReferenceAttribute, WidthAttribute, Heigh
         return self.mutate(height: .init(size, context: .trusted))
     }
     
-    public func `class`(_ value: String) -> Use {
-        return self.mutate(class: .init(value, context: .tainted(.html)))
+    public func `class`(_ names: [String]) -> Use {
+        return self.mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func `class`(_ names: String...) -> Use {
+        return self.mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
     }
     
     public func style(_ value: String) -> Use {

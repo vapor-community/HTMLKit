@@ -538,6 +538,16 @@ public struct Renderer {
             case .environment(let environment):
                 
                 result += try render(envattribute: environment, within: attribute.value.context)
+                
+            case .list(let enumerated):
+                
+                switch attribute.value.context {
+                case .trusted:
+                    result += enumerated.description
+                    
+                case .tainted(let subcontext):
+                    result += escape(attribute: enumerated.description, with: subcontext)
+                }
             }
             
             result += "\""
