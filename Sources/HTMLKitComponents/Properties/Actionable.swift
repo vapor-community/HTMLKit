@@ -7,37 +7,37 @@ internal protocol Actionable: Identifiable {
 
 extension Actionable {
     
-    internal func mutate(event: String) -> Self {
-        
-        var newSelf = self
-        
-        if var events = newSelf.events {
-            
-            events.append(event)
-            
-            newSelf.events = events
-            
-        } else {
-            newSelf.events = [event]
-        }
-        
-        return newSelf
-    }
-    
     internal func mutate(events: [String]) -> Self {
         
-        var newSelf = self
+        var copy = self
         
-        if var events = newSelf.events {
+        if var events = copy.events {
             
             events.append(contentsOf: events)
             
-            newSelf.events = events
+            copy.events = events
             
         } else {
-            newSelf.events = events
+            copy.events = events
         }
         
-        return newSelf
+        return copy
+    }
+    
+    internal func mutate(events: String...) -> Self {
+        
+        var copy = self
+        
+        if var events = copy.events {
+            
+            events.append(contentsOf: events)
+            
+            copy.events = events
+            
+        } else {
+            copy.events = events
+        }
+        
+        return copy
     }
 }

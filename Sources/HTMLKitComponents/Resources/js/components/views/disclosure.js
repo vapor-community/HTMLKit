@@ -4,6 +4,10 @@
 
     /**
      * Initiates the disclosure object.
+     *
+     * @constructor
+     *
+     * @param element
      */
     const Disclosure = function (element) {
 

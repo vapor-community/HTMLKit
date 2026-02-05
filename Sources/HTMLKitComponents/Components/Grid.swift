@@ -28,13 +28,19 @@ public struct Grid: View, Modifiable, Actionable {
     internal var id: String?
     
     /// The body content of the grid.
-    internal var content: [Content]
+    internal let content: [Content]
     
     /// The class names for the grid.
     internal var classes: [String]
     
     /// The event handlers on the grid.
     internal var events: [String]?
+    
+    /// The horizontal content space of the grid.
+    internal let horizontalSpacing: Tokens.ContentSpace?
+    
+    /// The vertical content space of the grid.
+    internal let verticalSpacing: Tokens.ContentSpace?
     
     /// Create a grid.
     ///
@@ -46,11 +52,8 @@ public struct Grid: View, Modifiable, Actionable {
         
         self.content = content()
         self.classes = ["grid", "ratio:\(ratio.value)"]
-        
-        if let spacing {
-            self.classes.append("horizontal-spacing:\(spacing.value)")
-            self.classes.append("vertical-spacing:\(spacing.value)")
-        }
+        self.horizontalSpacing = spacing
+        self.verticalSpacing = spacing
     }
     
     /// Creates a grid
@@ -64,23 +67,23 @@ public struct Grid: View, Modifiable, Actionable {
         
         self.content = content()
         self.classes = ["grid", "ratio:\(ratio.value)"]
-        
-        if let horizontalSpacing {
-            self.classes.append("horizontal-spacing:\(horizontalSpacing.value)")
-        }
-        
-        if let verticalSpacing {
-            self.classes.append("vertical-spacing:\(verticalSpacing.value)")
-        }
+        self.horizontalSpacing = horizontalSpacing
+        self.verticalSpacing = verticalSpacing
     }
     
     public var body: Content {
         Division {
             content
         }
-        .class(classes.joined(separator: " "))
+        .class(classes)
         .modify(unwrap: id) {
             $0.id($1)
+        }
+        .modify(unwrap: horizontalSpacing, use: .combining) {
+            $0.class("horizontal-spacing:\($1.value)")
+        }
+        .modify(unwrap: verticalSpacing, use: .combining) {
+            $0.class("vertical-spacing:\($1.value)")
         }
         if let events = self.events {
             Script {
@@ -112,7 +115,12 @@ extension Grid: MouseEvent {
 
 extension Grid: ViewModifier {
     
+    @available(*, deprecated, message: "Use the background(_:) modifier instead.")
     public func backgroundColor(_ color: Tokens.BackgroundColor) -> Grid {
+        return self.mutate(backgroundcolor: color.value)
+    }
+    
+    public func background(_ color: Tokens.BackgroundColor) -> Grid {
         return self.mutate(backgroundcolor: color.value)
     }
     
@@ -141,16 +149,17 @@ extension Grid: ViewModifier {
         return self.mutate(padding: length.value, insets: insets)
     }
     
+    @available(*, deprecated, message: "Use the border(_:width:shape:) modifier instead.")
     public func borderShape(_ shape: Tokens.BorderShape) -> Grid {
         return self.mutate(bordershape: shape.value)
     }
     
-    public func border(_ color: Tokens.BorderColor, width: Tokens.BorderWidth = .small) -> Grid {
-        return self.mutate(border: color.value, width: width.value)
+    public func border(_ color: Tokens.BorderColor, width: Tokens.BorderWidth = .small, shape: Tokens.BorderShape? = nil) -> Grid {
+        return self.mutate(border: color.value, width: width.value, shape: shape?.value)
     }
     
     public func frame(width: Tokens.ViewWidth, height: Tokens.ViewHeight? = nil, alignment: Tokens.FrameAlignment? = nil) -> Grid {
-        return mutate(frame: width.value, height: height?.value, alignment: alignment?.value)
+        return self.mutate(frame: width.value, height: height?.value, alignment: alignment?.value)
     }
     
     public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> Grid {

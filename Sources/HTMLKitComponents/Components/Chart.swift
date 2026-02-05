@@ -34,7 +34,7 @@ public struct Chart: View, Modifiable {
             content
         }
         .namespace("http://www.w3.org/2000/svg")
-        .class(classes.joined(separator: " "))
+        .class(classes)
     }
     
     /// Set the inner radius for the chart.
@@ -43,6 +43,6 @@ public struct Chart: View, Modifiable {
     ///
     /// - Returns: The chart
     public func innerRadius(_ color: Tokens.InnerRadius) -> Chart {
-        return self.mutate(class: "radius:\(color.value)")
+        return self.mutate(classes: "radius:\(color.value)")
     }
 }

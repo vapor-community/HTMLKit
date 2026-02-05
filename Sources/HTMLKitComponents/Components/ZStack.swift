@@ -17,13 +17,13 @@ public struct ZStack: View, Actionable, Modifiable {
     internal var id: String?
     
     /// The body content of the stack.
-    internal var content: [Content]
+    internal let content: [Content]
     
     /// The class names for the stack.
     internal var classes: [String]
     
     /// The event handlers on the stack.
-    var events: [String]?
+    internal var events: [String]?
     
     /// Create a stack.
     ///
@@ -38,7 +38,7 @@ public struct ZStack: View, Actionable, Modifiable {
         Division {
             content
         }
-        .class(classes.joined(separator: " "))
+        .class(classes)
         .modify(unwrap: id) {
             $0.id($1)
         }
@@ -66,14 +66,14 @@ public struct ZStack: View, Actionable, Modifiable {
     ///
     /// - Returns: The stack
     public func shadow(_ radius: Tokens.BlurRadius = .small, color: Tokens.ShadowColor = .black) -> ZStack {
-        return self.mutate(classes: ["shadow:\(radius.value)", "shadow:\(color.value)"])
+        return self.mutate(classes: "shadow:\(radius.value)", "shadow:\(color.value)")
     }
     
     /// Clip the content for the stack.
     ///
     /// - Returns: The stack
     public func clipped() -> ZStack {
-        return self.mutate(class: "overflow:clip")
+        return self.mutate(classes: "overflow:clip")
     }
 }
 
@@ -90,7 +90,12 @@ extension ZStack: MouseEvent {
 
 extension ZStack: ViewModifier {
     
+    @available(*, deprecated, message: "Use the background(_:) modifier instead.")
     public func backgroundColor(_ color: Tokens.BackgroundColor) -> ZStack {
+        return self.mutate(backgroundcolor: color.value)
+    }
+    
+    public func background(_ color: Tokens.BackgroundColor) -> ZStack {
         return self.mutate(backgroundcolor: color.value)
     }
 
@@ -119,16 +124,17 @@ extension ZStack: ViewModifier {
         return self.mutate(padding: length.value, insets: insets)
     }
     
+    @available(*, deprecated, message: "Use the border(_:width:shape:) modifier instead.")
     public func borderShape(_ shape: Tokens.BorderShape) -> ZStack {
         return self.mutate(bordershape: shape.value)
     }
     
-    public func border(_ color: Tokens.BorderColor, width: Tokens.BorderWidth = .small) -> ZStack {
-        return self.mutate(border: color.value, width: width.value)
+    public func border(_ color: Tokens.BorderColor, width: Tokens.BorderWidth = .small, shape: Tokens.BorderShape? = nil) -> ZStack {
+        return self.mutate(border: color.value, width: width.value, shape: shape?.value)
     }
     
     public func frame(width: Tokens.ViewWidth, height: Tokens.ViewHeight? = nil, alignment: Tokens.FrameAlignment? = nil) -> ZStack {
-        return mutate(frame: width.value, height: height?.value, alignment: alignment?.value)
+        return self.mutate(frame: width.value, height: height?.value, alignment: alignment?.value)
     }
     
     public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> ZStack {

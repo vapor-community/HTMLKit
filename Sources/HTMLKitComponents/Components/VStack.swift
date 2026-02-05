@@ -22,13 +22,16 @@ public struct VStack: View, Actionable, Modifiable {
     internal var id: String?
     
     /// The body content of the stack.
-    internal var content: [Content]
+    internal let content: [Content]
     
     /// The class names for the stack.
     internal var classes: [String]
     
     /// The event handlers on the stack.
-    var events: [String]?
+    internal var events: [String]?
+    
+    /// The content space of the stack.
+    internal let spacing: Tokens.ContentSpace?
     
     /// Create a vertical stack.
     ///
@@ -39,22 +42,20 @@ public struct VStack: View, Actionable, Modifiable {
     public init(alignment: Tokens.HorizontalAlignment = .leading, spacing: Tokens.ContentSpace? = nil, @ContentBuilder<Content> content: () -> [Content]) {
         
         self.content = content()
-        
-        if let spacing {
-            self.classes = ["vstack", "horizontal-alignment:\(alignment.value)", "spacing:\(spacing.value)"]
-            
-        } else {
-            self.classes = ["vstack", "horizontal-alignment:\(alignment.value)"]
-        }
+        self.classes = ["vstack", "horizontal-alignment:\(alignment.value)"]
+        self.spacing = spacing
     }
     
     public var body: Content {
         Division {
             content
         }
-        .class(classes.joined(separator: " "))
+        .class(classes)
         .modify(unwrap: id) {
             $0.id($1)
+        }
+        .modify(unwrap: spacing, use: .combining) {
+            $0.class("spacing:\($1.value)")
         }
         if let events = self.events {
             Script {
@@ -80,14 +81,14 @@ public struct VStack: View, Actionable, Modifiable {
     ///
     /// - Returns: The stack
     public func shadow(_ radius: Tokens.BlurRadius = .small, color: Tokens.ShadowColor = .black) -> VStack {
-        return self.mutate(classes: ["shadow:\(radius.value)", "shadow:\(color.value)"])
+        return self.mutate(classes: "shadow:\(radius.value)", "shadow:\(color.value)")
     }
     
     /// Clip the content for the stack.
     ///
     /// - Returns: The stack
     public func clipped() -> VStack {
-        return self.mutate(class: "overflow:clip")
+        return self.mutate(classes: "overflow:clip")
     }
 }
 
@@ -104,7 +105,12 @@ extension VStack: MouseEvent {
 
 extension VStack: ViewModifier {
     
+    @available(*, deprecated, message: "Use the background(_:) modifier instead.")
     public func backgroundColor(_ color: Tokens.BackgroundColor) -> VStack {
+        return self.mutate(backgroundcolor: color.value)
+    }
+    
+    public func background(_ color: Tokens.BackgroundColor) -> VStack {
         return self.mutate(backgroundcolor: color.value)
     }
 
@@ -133,16 +139,17 @@ extension VStack: ViewModifier {
         return self.mutate(padding: length.value, insets: insets)
     }
     
+    @available(*, deprecated, message: "Use the border(_:width:shape:) modifier instead.")
     public func borderShape(_ shape: Tokens.BorderShape) -> VStack {
         return self.mutate(bordershape: shape.value)
     }
     
-    public func border(_ color: Tokens.BorderColor, width: Tokens.BorderWidth = .small) -> VStack {
-        return self.mutate(border: color.value, width: width.value)
+    public func border(_ color: Tokens.BorderColor, width: Tokens.BorderWidth = .small, shape: Tokens.BorderShape? = nil) -> VStack {
+        return self.mutate(border: color.value, width: width.value, shape: shape?.value)
     }
     
     public func frame(width: Tokens.ViewWidth, height: Tokens.ViewHeight? = nil, alignment: Tokens.FrameAlignment? = nil) -> VStack {
-        return mutate(frame: width.value, height: height?.value, alignment: alignment?.value)
+        return self.mutate(frame: width.value, height: height?.value, alignment: alignment?.value)
     }
     
     public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> VStack {

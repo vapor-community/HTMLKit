@@ -1,0 +1,16 @@
+/**
+ * The rulesets for the label component.
+ */
+
+.label {
+    --foregroundColor: var(--systemTextColor);
+
+    display: inline-block;
+    margin-block-start: 1.25rem;
+    margin-block-end: 0.625rem;
+    font-family: system-ui;
+    font-size: var(--fontSize);
+    font-weight: var(--fontWeight);
+    line-height: var(--lineHeight);
+    color: hsla(var(--foregroundColor), 1.0);
+}

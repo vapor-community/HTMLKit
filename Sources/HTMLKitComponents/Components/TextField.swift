@@ -60,7 +60,7 @@ public struct TextField: View, Modifiable, Identifiable {
         Input()
             .type(.text)
             .name(name)
-            .class(classes.joined(separator: " "))
+            .class(classes)
             .modify(unwrap: id) {
                 $0.id($1)
             }
@@ -130,15 +130,21 @@ extension TextField: ViewModifier {
         return self.mutate(padding: length.value, insets: insets)
     }
     
-    public func border(_ color: Tokens.BorderColor, width: Tokens.BorderWidth = .small) -> TextField {
-        return self.mutate(border: color.value, width: width.value)
+    public func border(_ color: Tokens.BorderColor, width: Tokens.BorderWidth = .small, shape: Tokens.BorderShape? = nil) -> TextField {
+        return self.mutate(border: color.value, width: width.value, shape: shape?.value)
     }
     
+    @available(*, deprecated, message: "Use the border(_:width:shape:) modifier instead.")
     public func borderShape(_ shape: Tokens.BorderShape) -> TextField {
         return self.mutate(bordershape: shape.value)
     }
     
+    @available(*, deprecated, message: "Use the background(_:) modifier instead.")
     public func backgroundColor(_ color: Tokens.BackgroundColor) -> TextField {
+        return self.mutate(backgroundcolor: color.value)
+    }
+    
+    public func background(_ color: Tokens.BackgroundColor) -> TextField {
         return self.mutate(backgroundcolor: color.value)
     }
     
@@ -147,7 +153,7 @@ extension TextField: ViewModifier {
     }
     
     public func frame(width: Tokens.ViewWidth, height: Tokens.ViewHeight? = nil, alignment: Tokens.FrameAlignment? = nil) -> TextField {
-        return mutate(frame: width.value, height: height?.value, alignment: alignment?.value)
+        return self.mutate(frame: width.value, height: height?.value, alignment: alignment?.value)
     }
     
     public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> TextField {

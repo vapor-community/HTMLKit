@@ -1,9 +1,13 @@
  (function() {
      
      'use strict';
-     
+
      /**
       * Initiates the textpad object.
+      *
+      * @constructor
+      *
+      * @param element
       */
      const Textpad = function (element) {
          

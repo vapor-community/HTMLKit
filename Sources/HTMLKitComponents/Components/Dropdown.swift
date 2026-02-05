@@ -24,10 +24,10 @@ public struct Dropdown: View, Modifiable, Identifiable {
     internal var id: String?
     
     /// The label content for the dropdown.
-    internal var label: [Content]
+    internal let label: [Content]
     
     /// The body content of the dropdown.
-    internal var content: [Content]
+    internal let content: [Content]
     
     /// The class names for the dropdown.
     internal var classes: [String]
@@ -55,7 +55,7 @@ public struct Dropdown: View, Modifiable, Identifiable {
             }
             .class("dropdown-content")
         }
-        .class(classes.joined(separator: " "))
+        .class(classes)
         .modify(unwrap: id) {
             $0.id($1)
         }
@@ -94,15 +94,21 @@ extension Dropdown: ViewModifier {
         return self.mutate(padding: length.value, insets: insets)
     }
     
+    @available(*, deprecated, message: "Use the border(_:width:shape:) modifier instead.")
     public func borderShape(_ shape: Tokens.BorderShape) -> Dropdown {
         return self.mutate(bordershape: shape.value)
     }
     
-    public func border(_ color: Tokens.BorderColor, width: Tokens.BorderWidth = .small) -> Dropdown {
-        return self.mutate(border: color.value, width: width.value)
+    public func border(_ color: Tokens.BorderColor, width: Tokens.BorderWidth = .small, shape: Tokens.BorderShape? = nil) -> Dropdown {
+        return self.mutate(border: color.value, width: width.value, shape: shape?.value)
     }
     
+    @available(*, deprecated, message: "Use the background(_:) modifier instead.")
     public func backgroundColor(_ color: Tokens.BackgroundColor) -> Dropdown {
+        return self.mutate(backgroundcolor: color.value)
+    }
+    
+    public func background(_ color: Tokens.BackgroundColor) -> Dropdown {
         return self.mutate(backgroundcolor: color.value)
     }
     
@@ -111,7 +117,7 @@ extension Dropdown: ViewModifier {
     }
     
     public func frame(width: Tokens.ViewWidth, height: Tokens.ViewHeight? = nil, alignment: Tokens.FrameAlignment? = nil) -> Dropdown {
-        return mutate(frame: width.value, height: height?.value, alignment: alignment?.value)
+        return self.mutate(frame: width.value, height: height?.value, alignment: alignment?.value)
     }
     
     public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> Dropdown {

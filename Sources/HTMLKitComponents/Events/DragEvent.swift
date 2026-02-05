@@ -16,7 +16,7 @@ extension DragEvent where Self: Actionable {
     internal func mutate(dragevent actions: [Action]) -> Self {
         
         guard let identifier = self.id else {
-            fatalError("Initiative identifier unkown.")
+            fatalError("Initiative identifier unknown.")
         }
         
         let event = """
@@ -25,13 +25,13 @@ extension DragEvent where Self: Actionable {
                 });
                 """
         
-        return self.mutate(event: event)
+        return self.mutate(events: event)
     }
     
     internal func mutate(dropevent actions: [Action]) -> Self {
         
         guard let identifier = self.id else {
-            fatalError("Initiative identifier unkown.")
+            fatalError("Initiative identifier unknown.")
         }
         
         let event = """
@@ -40,6 +40,6 @@ extension DragEvent where Self: Actionable {
                 });
                 """
         
-        return self.mutate(event: event)
+        return self.mutate(events: event)
     }
 }

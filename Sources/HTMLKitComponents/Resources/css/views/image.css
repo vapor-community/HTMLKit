@@ -1,12 +1,5 @@
-/*
- The rulesets for the image component.
- 
- default:
- inline size: 100%
- border width: 0
- border-radius: 0
- 
- darkmode:
+/**
+ * The rulesets for the image component.
  */
 
 .image {

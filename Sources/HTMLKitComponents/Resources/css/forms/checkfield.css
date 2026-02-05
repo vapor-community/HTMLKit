@@ -1,14 +1,5 @@
-/*
- The rulesets for the checkfield component.
- 
- defaults:
- border width: 1px;
- border color: #DFE3E7
- background color: #FFFFFF
- 
- darkmode:
- border color: #484F56
- background color: #FFFFFF
+/**
+ * The rulesets for the checkfield component.
  */
 
 .checkfield {

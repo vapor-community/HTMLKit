@@ -38,24 +38,18 @@ public protocol ImageModifier {
 extension ImageModifier where Self: Modifiable {
     
     internal func mutate(objectfit value: String) -> Self {
-        return self.mutate(class: "fit:\(value)")
+        return self.mutate(classes: "fit:\(value)")
     }
     
     internal func mutate(imagescale value: String) -> Self {
-        return self.mutate(class: "scale:\(value)")
+        return self.mutate(classes: "scale:\(value)")
     }
     
     internal func mutate(clipshape value: String) -> Self {
-        return self.mutate(class: "shape:\(value)")
+        return self.mutate(classes: "shape:\(value)")
     }
     
     internal func mutate(aspectratio ratio: String, fit: String) -> Self {
-        
-        var classes: [String] = []
-        
-        classes.append("aspect:\(ratio)")
-        classes.append("fit:\(fit)")
-        
-        return self.mutate(classes: classes)
+        return self.mutate(classes: "aspect:\(ratio)", "fit:\(fit)")
     }
 }

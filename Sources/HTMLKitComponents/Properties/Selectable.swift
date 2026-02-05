@@ -17,17 +17,17 @@ extension Selectable {
     
     internal func selected(_ condition: Bool) -> Self {
         
-        var newSelf = self
-        newSelf.isSelected = condition
+        var copy = self
+        copy.isSelected = condition
         
-        return newSelf
+        return copy
     }
     
     internal func tag(_ name: String) -> Self {
         
-        var newSelf = self
-        newSelf.name = name
+        var copy = self
+        copy.name = name
         
-        return newSelf
+        return copy
     }
 }

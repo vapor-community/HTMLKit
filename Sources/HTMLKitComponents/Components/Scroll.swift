@@ -26,8 +26,11 @@ import HTMLKit
 /// ```
 public struct Scroll: View {
     
+    /// The state of the scroll indicators.
+    internal let indicators: Bool
+    
     /// The body content of the scroll.
-    internal var content: [Content]
+    internal let content: [Content]
     
     /// The class names for the scroll.
     internal var classes: [String]
@@ -37,20 +40,34 @@ public struct Scroll: View {
     /// - Parameters:
     ///   - showIndicators: Whether the scroll indicators should show up.
     ///   - content: The scroll's content.
+    @available(*, deprecated, message: "Use init(indicators:content:) instead.")
+    @_disfavoredOverload
     public init(showIndicators: Bool = true, @ContentBuilder<Content> content: () -> [Content]) {
         
+        self.indicators = showIndicators
         self.content = content()
         self.classes = ["scroll"]
+    }
+    
+    /// Create a scroll.
+    ///
+    /// - Parameters:
+    ///   - indicators: Whether the scroll indicators should show up.
+    ///   - content: The scroll's content.
+    public init(indicators: Bool = true, @ContentBuilder<Content> content: () -> [Content]) {
         
-        if showIndicators != true {
-            self.classes.append("indicators:false")
-        }
+        self.indicators = indicators
+        self.content = content()
+        self.classes = ["scroll"]
     }
     
     public var body: Content {
         Division {
             content
         }
-        .class(classes.joined(separator: " "))
+        .class(classes)
+        .modify(if: indicators, use: .combining) {
+            $0.class("indicators:true")
+        }
     }
 }

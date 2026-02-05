@@ -20,7 +20,7 @@ public struct Grouping: View, Modifiable, Identifiable {
     internal var id: String?
     
     /// The body content of the grouping.
-    internal var content: [Content]
+    internal let content: [Content]
     
     /// The class names for the grouping.
     internal var classes: [String]
@@ -38,7 +38,7 @@ public struct Grouping: View, Modifiable, Identifiable {
         Division {
             content
         }
-        .class(classes.joined(separator: " "))
+        .class(classes)
         .modify(unwrap: id) {
             $0.id($1)
         }
@@ -54,19 +54,19 @@ public struct Grouping: View, Modifiable, Identifiable {
     /// - Returns: The grouping
     public func frame(width: Tokens.ViewWidth, height: Tokens.ViewHeight? = nil, alignment: Tokens.FrameAlignment? = nil) -> Grouping {
         
-        var newSelf = self
+        var copy = self
         
         if let height {
-            newSelf.classes.append("height:\(height.value)")
+            copy.classes.append("height:\(height.value)")
         }
         
         if let alignment {
-            newSelf.classes.append("frame-alignment:\(alignment.value)")
+            copy.classes.append("frame-alignment:\(alignment.value)")
         }
         
-        newSelf.classes.append("width:\(width.value)")
+        copy.classes.append("width:\(width.value)")
         
-        return newSelf
+        return copy
     }
     
     /// Set the identifier for the grouping.
@@ -82,7 +82,7 @@ public struct Grouping: View, Modifiable, Identifiable {
 extension Grouping: TextModifier {
     
     public func font(_ family: Tokens.FontFamily) -> Grouping {
-        return mutate(fontfamily: family.value)
+        return self.mutate(fontfamily: family.value)
     }
     
     public func textStyle(_ style: Tokens.TextStyle) -> Grouping {
@@ -162,6 +162,6 @@ extension Grouping: TextModifier {
     }
     
     public func shadow(_ radius: Tokens.BlurRadius, color: Tokens.ShadowColor = .black) -> Grouping {
-        return mutate(shadow: radius.value, color: color.value)
+        return self.mutate(shadow: radius.value, color: color.value)
     }
 }

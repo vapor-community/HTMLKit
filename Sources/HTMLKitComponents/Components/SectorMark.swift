@@ -15,10 +15,10 @@ import HTMLKit
 public struct SectorMark: View, Modifiable {
     
     /// The value of the mark.
-    internal var value: Int
+    internal let value: Int
     
     /// The title of the mark.
-    internal var label: String
+    internal let label: String
     
     /// The class names of the sector mark.
     internal var classes: [String]
@@ -41,7 +41,7 @@ public struct SectorMark: View, Modifiable {
                 "\(value)"
             }
         }
-        .class(classes.joined(separator: " "))
+        .class(classes)
     }
     
     /// Fill the foreground for the mark.
@@ -50,6 +50,6 @@ public struct SectorMark: View, Modifiable {
     ///
     /// - Returns: The mark
     public func foregroundColor(_ color: Tokens.ForegroundColor) -> SectorMark {
-        return self.mutate(class: "foreground:\(color.value)")
+        return self.mutate(classes: "foreground:\(color.value)")
     }
 }

@@ -34,7 +34,7 @@ public struct Tabs: View, Identifiable, Modifiable {
     internal var id: String?
     
     /// The panes of the tabs.
-    internal var content: [Pane]
+    internal let content: [Pane]
     
     /// The class names of the tabs.
     internal var classes: [String]
@@ -78,7 +78,7 @@ public struct Tabs: View, Identifiable, Modifiable {
             }
             .class("tabs-panes")
         }
-        .class(classes.joined(separator: " "))
+        .class(classes)
         .modify(unwrap: id) {
             $0.id($1)
         }
@@ -104,7 +104,12 @@ extension Tabs: ViewModifier {
         return self.mutate(zindex: index.value)
     }
     
+    @available(*, deprecated, message: "Use the background(_:) modifier instead.")
     public func backgroundColor(_ color: Tokens.BackgroundColor) -> Tabs {
+        return self.mutate(backgroundcolor: color.value)
+    }
+    
+    public func background(_ color: Tokens.BackgroundColor) -> Tabs {
         return self.mutate(backgroundcolor: color.value)
     }
     
@@ -125,16 +130,17 @@ extension Tabs: ViewModifier {
         return self.mutate(padding: length.value, insets: insets)
     }
     
+    @available(*, deprecated, message: "Use the border(_:width:shape:) modifier instead.")
     public func borderShape(_ shape: Tokens.BorderShape) -> Tabs {
         return self.mutate(bordershape: shape.value)
     }
     
-    public func border(_ color: Tokens.BorderColor, width: Tokens.BorderWidth = .small) -> Tabs {
-        return self.mutate(border: color.value, width: width.value)
+    public func border(_ color: Tokens.BorderColor, width: Tokens.BorderWidth = .small, shape: Tokens.BorderShape? = nil) -> Tabs {
+        return self.mutate(border: color.value, width: width.value, shape: shape?.value)
     }
     
     public func frame(width: Tokens.ViewWidth, height: Tokens.ViewHeight?, alignment: Tokens.FrameAlignment?) -> Tabs {
-        return mutate(frame: width.value, height: height?.value, alignment: alignment?.value)
+        return self.mutate(frame: width.value, height: height?.value, alignment: alignment?.value)
     }
     
     public func margin(insets: EdgeSet, length: Tokens.MarginLength) -> Tabs {
