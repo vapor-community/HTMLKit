@@ -1,7 +1,7 @@
 /// An option set of different features
 ///
 /// The feature set provides the flexibility to enable experimental features if desired.
-public struct Features: Swift.OptionSet {
+public struct Features: Swift.OptionSet, Sendable {
     
     public var rawValue: Int
     

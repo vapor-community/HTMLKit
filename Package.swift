@@ -1,4 +1,4 @@
-// swift-tools-version:5.9
+// swift-tools-version:5.10
 
 import PackageDescription
 
@@ -34,7 +34,10 @@ let package = Package(
                 .product(name: "Collections", package: "swift-collections"),
                 .product(name: "Logging", package: "swift-log"),
             ],
-            exclude: ["Abstraction/README.md", "Framework/README.md"]
+            exclude: ["Abstraction/README.md", "Framework/README.md"],
+            swiftSettings: [
+                .enableExperimentalFeature("StrictConcurrency=complete")
+            ]
         ),
         .target(
             name: "HTMLKitConverter",
@@ -56,6 +59,9 @@ let package = Package(
             dependencies: [
                 .target(name: "HTMLKit"),
                 .product(name: "Vapor", package: "vapor"),
+            ],
+            swiftSettings: [
+                .enableExperimentalFeature("StrictConcurrency=complete")
             ]
         ),
         .target(
