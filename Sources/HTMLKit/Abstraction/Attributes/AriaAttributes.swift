@@ -1068,26 +1068,37 @@ extension AriaSetSizeAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with accessibility handler.
+/// A type that provides the `accessibilitySort` modifier.
 @_documentation(visibility: internal)
-public protocol AriaSortAttribute: Attribute {
+public protocol SortAccessibilityAttribute: Attribute {
     
-    /// The function represents the html-attribute 'aria-sort'.
+    /// Indicate the direction of a sort order.
     ///
-    /// ```html
-    /// <tag aria-sort="" />
+    /// ```swift
+    /// Table {
+    ///    TableRow {
+    ///       HeaderCell {
+    ///          "Lorem ipsum"
+    ///       }
+    ///       .accessibilitySort(.ascending)
+    ///    }
+    /// }
     /// ```
-    func aria(sort value: Values.Accessibility.Sort) -> Self
+    ///
+    /// - Parameter value: The direction it is sort.
+    ///
+    /// - Returns: The element
+    func accessibilitySort(_ value: Values.Accessibility.Sort) -> Self
 }
 
-extension AriaSortAttribute where Self: ContentNode {
+extension SortAccessibilityAttribute where Self: ContentNode {
     
     internal func mutate(ariasort value: AttributeData) -> Self {
         return self.mutate(key: "aria-sort", value: value)
     }
 }
 
-extension AriaSortAttribute where Self: EmptyNode {
+extension SortAccessibilityAttribute where Self: EmptyNode {
     
     internal func mutate(ariasort value: AttributeData) -> Self {
         return self.mutate(key: "aria-sort", value: value)
