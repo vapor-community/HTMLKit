@@ -1,5 +1,5 @@
 @_documentation(visibility: internal)
-public typealias GlobalAriaAttributes = AriaAtomicAttribute & AriaBusyAttribute & AriaControlsAttribute & AriaCurrentAttribute & AriaDescribedAttribute & AriaDetailsAttribute & AriaDisabledAttribute & AriaErrorMessageAttribute & AriaFlowToAttribute & AriaPopupAttribute & AriaHiddenAttribute & AriaInvalidAttribute & AriaShortcutsAttribute & AriaLabelAttribute & AriaLabeledAttribute & AriaLiveAttribute & AriaOwnsAttribute & AriaRelevantAttribute & AriaRoleDescriptionAttribute
+public typealias GlobalAriaAttributes = AriaAtomicAttribute & AriaBusyAttribute & AriaControlsAttribute & AriaCurrentAttribute & AriaDescribedAttribute & AriaDetailsAttribute & AriaDisabledAttribute & AriaErrorMessageAttribute & FlowAccessibilityAttribute & AriaPopupAttribute & AriaHiddenAttribute & AriaInvalidAttribute & AriaShortcutsAttribute & AriaLabelAttribute & AriaLabeledAttribute & AriaLiveAttribute & AriaOwnsAttribute & AriaRelevantAttribute & AriaRoleDescriptionAttribute
 
 /// The protocol provides the element with accessibility handler.
 @_documentation(visibility: internal)
@@ -392,26 +392,55 @@ extension AriaExpandedAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with accessibility handler.
+/// A type that provides the `accessibilityFlowTo` modifier.
 @_documentation(visibility: internal)
-public protocol AriaFlowToAttribute: Attribute {
+public protocol FlowAccessibilityAttribute: Attribute {
     
-    /// The function represents the html-attribute 'aria-flowto'.
+    /// Suggest an alternate reading order.
     ///
-    /// ```html
-    /// <tag aria-flowto="" />
+    /// ```swift
+    /// Heading1 {
+    ///    "Lorem ipsum"
+    /// }
+    /// .accessibilityFlowTo(["id", "id"])
+    /// Article {
+    ///     "Lorem ipsum..."
+    /// }
+    /// .id("id")
     /// ```
-    func aria(flowTo value: String) -> Self
+    ///
+    /// - Parameter ids: The identifiers...
+    ///
+    /// - Returns: The element
+    func accessibilityFlowTo(_ ids: [String]) -> Self
+    
+    /// Suggest an alternate reading order.
+    ///
+    /// ```swift
+    /// Heading1 {
+    ///    "Lorem ipsum"
+    /// }
+    /// .accessibilityFlowTo("id", "id")
+    /// Article {
+    ///     "Lorem ipsum..."
+    /// }
+    /// .id("id")
+    /// ```
+    ///
+    /// - Parameter ids: The identifiers...
+    ///
+    /// - Returns: The element
+    func accessibilityFlowTo(_ ids: String...) -> Self
 }
 
-extension AriaFlowToAttribute where Self: ContentNode {
+extension FlowAccessibilityAttribute where Self: ContentNode {
     
     internal func mutate(ariaflowto value: AttributeData) -> Self {
         return self.mutate(key: "aria-flowto", value: value)
     }
 }
 
-extension AriaFlowToAttribute where Self: EmptyNode {
+extension FlowAccessibilityAttribute where Self: EmptyNode {
     
     internal func mutate(ariaflowto value: AttributeData) -> Self {
         return self.mutate(key: "aria-flowto", value: value)
