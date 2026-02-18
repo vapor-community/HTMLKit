@@ -777,26 +777,32 @@ extension AriaMultiselectAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with accessibility handler.
+/// A type that provides the `accessibilityOrientation` modifier.
 @_documentation(visibility: internal)
-public protocol AriaOrientationAttribute: Attribute {
+public protocol OrientationAccessibilityAttribute: Attribute {
     
-    /// The function represents the html-attribute 'aria-orientation'.
+    /// Indicate the orientation of the element.
     ///
-    /// ```html
-    /// <tag aria-orientation="" />
+    /// ```swift
+    /// Division {
+    /// }
+    /// .role(.scrollbar)
+    /// .accessibilityOrientation(.horizontal)
     /// ```
-    func aria(orientation value: Values.Accessibility.Orientation) -> Self
+    /// - Parameter value: The orientation the element is in.
+    ///
+    /// - Returns: The element
+    func accessibilityOrientation(_ value: Values.Accessibility.Orientation) -> Self
 }
 
-extension AriaOrientationAttribute where Self: ContentNode {
+extension OrientationAccessibilityAttribute where Self: ContentNode {
     
     internal func mutate(ariaorientation value: AttributeData) -> Self {
         return self.mutate(key: "aria-orientation", value: value)
     }
 }
 
-extension AriaOrientationAttribute where Self: EmptyNode {
+extension OrientationAccessibilityAttribute where Self: EmptyNode {
     
     internal func mutate(ariaorientation value: AttributeData) -> Self {
         return self.mutate(key: "aria-orientation", value: value)

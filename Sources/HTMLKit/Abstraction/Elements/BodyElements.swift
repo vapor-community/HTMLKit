@@ -7827,7 +7827,7 @@ public struct OrderedList: ContentNode, HtmlElement, BodyElement, FormElement, F
     }
 }
 
-extension OrderedList: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, ReversedAttribute, StartAttribute, TypeAttribute {
+extension OrderedList: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, ReversedAttribute, StartAttribute, TypeAttribute, OrientationAccessibilityAttribute {
     
     public func accessKey(_ value: Character) -> OrderedList {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -8187,6 +8187,10 @@ extension OrderedList: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
     public func aria(roleDescription value: String) -> OrderedList {
         return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
     }
+    
+    public func accessibilityOrientation(_ value: Values.Accessibility.Orientation) -> OrderedList {
+        return mutate(ariaorientation: .init(value.rawValue, context: .trusted))
+    }
 }
 
 /// An element that represents a unordered list.
@@ -8261,7 +8265,7 @@ public struct UnorderedList: ContentNode, HtmlElement, BodyElement, FormElement,
     }
 }
 
-extension UnorderedList: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
+extension UnorderedList: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, OrientationAccessibilityAttribute {
     
     public func accessKey(_ value: Character) -> UnorderedList {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -8608,6 +8612,10 @@ extension UnorderedList: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttr
     
     public func aria(roleDescription value: String) -> UnorderedList {
         return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityOrientation(_ value: Values.Accessibility.Orientation) -> UnorderedList {
+        return mutate(ariaorientation: .init(value.rawValue, context: .trusted))
     }
 }
 
@@ -12637,8 +12645,8 @@ public struct Division: ContentNode, HtmlElement, BodyElement, FormElement, Figu
     }
 }
 
-extension Division: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
-    
+extension Division: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, OrientationAccessibilityAttribute {
+
     public func accessKey(_ value: Character) -> Division {
         return mutate(accesskey: .init("\(value)", context: .trusted))
     }
@@ -12984,6 +12992,10 @@ extension Division: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
     
     public func aria(roleDescription value: String) -> Division {
         return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityOrientation(_ value: Values.Accessibility.Orientation) -> Division {
+        return mutate(ariaorientation: .init(value.rawValue, context: .trusted))
     }
 }
 
@@ -21081,7 +21093,7 @@ public struct Span: ContentNode, HtmlElement, BodyElement, FormElement, FigureEl
     }
 }
 
-extension Span: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
+extension Span: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, OrientationAccessibilityAttribute {
     
     public func accessKey(_ value: Character) -> Span {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -21428,6 +21440,10 @@ extension Span: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
     
     public func aria(roleDescription value: String) -> Span {
         return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityOrientation(_ value: Values.Accessibility.Orientation) -> Span {
+        return mutate(ariaorientation: .init(value.rawValue, context: .trusted))
     }
 }
 
