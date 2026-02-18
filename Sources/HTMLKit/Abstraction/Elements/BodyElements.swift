@@ -529,7 +529,20 @@ extension Article: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> Article {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ value: String) -> Article {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Article {
+        return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(verbatim value: String) -> Article {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
@@ -938,7 +951,20 @@ extension Section: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> Section {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ value: String) -> Section {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Section {
+        return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(verbatim value: String) -> Section {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
@@ -1349,7 +1375,20 @@ extension Navigation: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> Navigation {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ value: String) -> Navigation {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Navigation {
+        return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(verbatim value: String) -> Navigation {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
@@ -1756,7 +1795,20 @@ extension Aside: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> Aside {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ value: String) -> Aside {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Aside {
+        return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(verbatim value: String) -> Aside {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
@@ -2160,7 +2212,20 @@ extension Heading1: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> Heading1 {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ value: String) -> Heading1 {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Heading1 {
+        return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(verbatim value: String) -> Heading1 {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
@@ -2573,7 +2638,20 @@ extension Heading2: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> Heading2 {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ value: String) -> Heading2 {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Heading2 {
+        return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(verbatim value: String) -> Heading2 {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
@@ -2986,7 +3064,20 @@ extension Heading3: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> Heading3 {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ value: String) -> Heading3 {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Heading3 {
+        return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(verbatim value: String) -> Heading3 {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
@@ -3399,7 +3490,20 @@ extension Heading4: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> Heading4 {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ value: String) -> Heading4 {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Heading4 {
+        return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(verbatim value: String) -> Heading4 {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
@@ -3812,7 +3916,20 @@ extension Heading5: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> Heading5 {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ value: String) -> Heading5 {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Heading5 {
+        return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(verbatim value: String) -> Heading5 {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
@@ -4225,7 +4342,20 @@ extension Heading6: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> Heading6 {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ value: String) -> Heading6 {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Heading6 {
+        return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(verbatim value: String) -> Heading6 {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
@@ -4643,7 +4773,20 @@ extension HeadingGroup: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttri
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> HeadingGroup {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ value: String) -> HeadingGroup {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> HeadingGroup {
+        return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(verbatim value: String) -> HeadingGroup {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
@@ -5048,7 +5191,20 @@ extension Header: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> Header {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ value: String) -> Header {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Header {
+        return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(verbatim value: String) -> Header {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
@@ -5451,7 +5607,20 @@ extension Footer: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> Footer {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ value: String) -> Footer {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Footer {
+        return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(verbatim value: String) -> Footer {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
@@ -5861,7 +6030,20 @@ extension Address: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> Address {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ value: String) -> Address {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Address {
+        return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(verbatim value: String) -> Address {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
@@ -6265,7 +6447,20 @@ extension Paragraph: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> Paragraph {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ value: String) -> Paragraph {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Paragraph {
+        return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(verbatim value: String) -> Paragraph {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
@@ -6669,7 +6864,20 @@ extension HorizontalRule: GlobalAttributes, GlobalEventAttributes, GlobalAriaAtt
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> HorizontalRule {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ value: String) -> HorizontalRule {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> HorizontalRule {
+        return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(verbatim value: String) -> HorizontalRule {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
@@ -7079,7 +7287,20 @@ extension PreformattedText: GlobalAttributes, GlobalEventAttributes, GlobalAriaA
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> PreformattedText {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ value: String) -> PreformattedText {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> PreformattedText {
+        return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(verbatim value: String) -> PreformattedText {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
@@ -7487,7 +7708,20 @@ extension Blockquote: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> Blockquote {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ value: String) -> Blockquote {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Blockquote {
+        return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(verbatim value: String) -> Blockquote {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
@@ -7917,7 +8151,20 @@ extension OrderedList: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> OrderedList {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ value: String) -> OrderedList {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> OrderedList {
+        return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(verbatim value: String) -> OrderedList {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
@@ -8326,7 +8573,20 @@ extension UnorderedList: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttr
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> UnorderedList {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ value: String) -> UnorderedList {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> UnorderedList {
+        return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(verbatim value: String) -> UnorderedList {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
@@ -9047,7 +9307,20 @@ extension DescriptionList: GlobalAttributes, GlobalEventAttributes, GlobalAriaAt
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> DescriptionList {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ value: String) -> DescriptionList {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> DescriptionList {
+        return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(verbatim value: String) -> DescriptionList {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
@@ -9456,7 +9729,20 @@ extension Figure: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> Figure {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ value: String) -> Figure {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Figure {
+        return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(verbatim value: String) -> Figure {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
@@ -9906,7 +10192,20 @@ extension Anchor: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> Anchor {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ value: String) -> Anchor {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Anchor {
+        return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(verbatim value: String) -> Anchor {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
@@ -10323,7 +10622,20 @@ extension Emphasize: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> Emphasize {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ value: String) -> Emphasize {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Emphasize {
+        return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(verbatim value: String) -> Emphasize {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
@@ -10729,7 +11041,20 @@ extension Strong: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> Strong {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ value: String) -> Strong {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Strong {
+        return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(verbatim value: String) -> Strong {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
@@ -11135,7 +11460,20 @@ extension Small: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> Small {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ value: String) -> Small {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Small {
+        return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(verbatim value: String) -> Small {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
@@ -11888,7 +12226,20 @@ extension Main: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> Main {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ value: String) -> Main {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Main {
+        return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(verbatim value: String) -> Main {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
@@ -12598,7 +12949,20 @@ extension Division: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> Division {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ value: String) -> Division {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Division {
+        return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(verbatim value: String) -> Division {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
@@ -13007,7 +13371,20 @@ extension Definition: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> Definition {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ value: String) -> Definition {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Definition {
+        return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(verbatim value: String) -> Definition {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
@@ -13414,7 +13791,20 @@ extension Cite: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> Cite {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ value: String) -> Cite {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Cite {
+        return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(verbatim value: String) -> Cite {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
@@ -13824,7 +14214,20 @@ extension ShortQuote: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> ShortQuote {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ value: String) -> ShortQuote {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> ShortQuote {
+        return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(verbatim value: String) -> ShortQuote {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
@@ -14231,7 +14634,20 @@ extension Abbreviation: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttri
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> Abbreviation {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ value: String) -> Abbreviation {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Abbreviation {
+        return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(verbatim value: String) -> Abbreviation {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
@@ -14638,7 +15054,20 @@ extension Ruby: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> Ruby {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ value: String) -> Ruby {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Ruby {
+        return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(verbatim value: String) -> Ruby {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
@@ -15060,7 +15489,20 @@ extension Data: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, V
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> Data {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ value: String) -> Data {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Data {
+        return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(verbatim value: String) -> Data {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
@@ -15472,7 +15914,20 @@ extension Time: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, D
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> Time {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ value: String) -> Time {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Time {
+        return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(verbatim value: String) -> Time {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
@@ -15880,7 +16335,20 @@ extension Code: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> Code {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ value: String) -> Code {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Code {
+        return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(verbatim value: String) -> Code {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
@@ -16288,7 +16756,20 @@ extension Variable: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> Variable {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ value: String) -> Variable {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Variable {
+        return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(verbatim value: String) -> Variable {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
@@ -16692,7 +17173,20 @@ extension SampleOutput: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttri
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> SampleOutput {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ value: String) -> SampleOutput {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> SampleOutput {
+        return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(verbatim value: String) -> SampleOutput {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
@@ -17100,7 +17594,20 @@ extension KeyboardInput: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttr
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> KeyboardInput {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ value: String) -> KeyboardInput {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> KeyboardInput {
+        return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(verbatim value: String) -> KeyboardInput {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
@@ -17507,7 +18014,20 @@ extension Subscript: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> Subscript {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ value: String) -> Subscript {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Subscript {
+        return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(verbatim value: String) -> Subscript {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
@@ -17915,7 +18435,20 @@ extension Superscript: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> Superscript {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ value: String) -> Superscript {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Superscript {
+        return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(verbatim value: String) -> Superscript {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
@@ -18323,7 +18856,20 @@ extension Italic: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> Italic {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ value: String) -> Italic {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Italic {
+        return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(verbatim value: String) -> Italic {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
@@ -18740,7 +19286,20 @@ extension Bold: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> Bold {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ value: String) -> Bold {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Bold {
+        return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(verbatim value: String) -> Bold {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
@@ -19157,7 +19716,20 @@ extension Underline: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> Underline {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ value: String) -> Underline {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Underline {
+        return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(verbatim value: String) -> Underline {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
@@ -19574,7 +20146,20 @@ extension Mark: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> Mark {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ value: String) -> Mark {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Mark {
+        return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(verbatim value: String) -> Mark {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
@@ -19982,7 +20567,20 @@ extension Bdi: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> Bdi {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ value: String) -> Bdi {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Bdi {
+        return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(verbatim value: String) -> Bdi {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
@@ -20378,7 +20976,20 @@ extension Bdo: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> Bdo {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ value: String) -> Bdo {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Bdo {
+        return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(verbatim value: String) -> Bdo {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
@@ -20782,7 +21393,20 @@ extension Span: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> Span {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ value: String) -> Span {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Span {
+        return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(verbatim value: String) -> Span {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
@@ -21171,7 +21795,20 @@ extension LineBreak: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> LineBreak {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ value: String) -> LineBreak {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> LineBreak {
+        return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(verbatim value: String) -> LineBreak {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
@@ -21564,7 +22201,20 @@ extension WordBreak: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> WordBreak {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ value: String) -> WordBreak {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> WordBreak {
+        return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(verbatim value: String) -> WordBreak {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
@@ -21976,7 +22626,20 @@ extension InsertedText: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttri
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> InsertedText {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ value: String) -> InsertedText {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> InsertedText {
+        return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(verbatim value: String) -> InsertedText {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
@@ -22388,7 +23051,20 @@ extension DeletedText: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> DeletedText {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ value: String) -> DeletedText {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> DeletedText {
+        return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(verbatim value: String) -> DeletedText {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
@@ -23182,7 +23858,20 @@ extension Image: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> Image {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ value: String) -> Image {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Image {
+        return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(verbatim value: String) -> Image {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
@@ -23631,7 +24320,20 @@ extension InlineFrame: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> InlineFrame {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ value: String) -> InlineFrame {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> InlineFrame {
+        return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(verbatim value: String) -> InlineFrame {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
@@ -24042,7 +24744,20 @@ extension Embed: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> Embed {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ value: String) -> Embed {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Embed {
+        return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(verbatim value: String) -> Embed {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
@@ -24471,7 +25186,20 @@ extension Object: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> Object {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ value: String) -> Object {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Object {
+        return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(verbatim value: String) -> Object {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
@@ -24936,7 +25664,20 @@ extension Video: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> Video {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ value: String) -> Video {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Video {
+        return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(verbatim value: String) -> Video {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
@@ -25384,7 +26125,20 @@ extension Audio: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> Audio {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ value: String) -> Audio {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Audio {
+        return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(verbatim value: String) -> Audio {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
@@ -26165,7 +26919,20 @@ extension Form: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, A
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> Form {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ value: String) -> Form {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Form {
+        return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(verbatim value: String) -> Form {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
@@ -26576,7 +27343,20 @@ extension DataList: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> DataList {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ value: String) -> DataList {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> DataList {
+        return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(verbatim value: String) -> DataList {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
@@ -26994,7 +27774,20 @@ extension Output: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> Output {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ value: String) -> Output {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Output {
+        return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(verbatim value: String) -> Output {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
@@ -27417,7 +28210,20 @@ extension Progress: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> Progress {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ value: String) -> Progress {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Progress {
+        return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(verbatim value: String) -> Progress {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
@@ -27858,7 +28664,20 @@ extension Meter: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> Meter {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ value: String) -> Meter {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Meter {
+        return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(verbatim value: String) -> Meter {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
@@ -28290,7 +29109,20 @@ extension Details: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> Details {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ value: String) -> Details {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Details {
+        return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(verbatim value: String) -> Details {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
@@ -28718,7 +29550,20 @@ extension Dialog: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> Dialog {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ value: String) -> Dialog {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Dialog {
+        return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(verbatim value: String) -> Dialog {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
@@ -30140,7 +30985,20 @@ extension Canvas: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> Canvas {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ value: String) -> Canvas {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Canvas {
+        return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(verbatim value: String) -> Canvas {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
@@ -30559,7 +31417,20 @@ extension Table: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> Table {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ value: String) -> Table {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Table {
+        return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(verbatim value: String) -> Table {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     

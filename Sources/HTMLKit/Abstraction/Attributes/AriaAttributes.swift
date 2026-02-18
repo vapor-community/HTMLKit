@@ -1,5 +1,5 @@
 @_documentation(visibility: internal)
-public typealias GlobalAriaAttributes = AriaAtomicAttribute & AriaBusyAttribute & AriaControlsAttribute & AriaCurrentAttribute & AriaDescribedAttribute & AriaDetailsAttribute & AriaDisabledAttribute & AriaErrorMessageAttribute & FlowAccessibilityAttribute & AriaPopupAttribute & AriaHiddenAttribute & AriaInvalidAttribute & AriaShortcutsAttribute & AriaLabelAttribute & AriaLabeledAttribute & AriaLiveAttribute & AriaOwnsAttribute & AriaRelevantAttribute & AriaRoleDescriptionAttribute
+public typealias GlobalAriaAttributes = AriaAtomicAttribute & AriaBusyAttribute & AriaControlsAttribute & AriaCurrentAttribute & AriaDescribedAttribute & AriaDetailsAttribute & AriaDisabledAttribute & AriaErrorMessageAttribute & FlowAccessibilityAttribute & AriaPopupAttribute & AriaHiddenAttribute & AriaInvalidAttribute & AriaShortcutsAttribute & LabelAccessibilityAttribute & AriaLabeledAttribute & AriaLiveAttribute & AriaOwnsAttribute & AriaRelevantAttribute & AriaRoleDescriptionAttribute
 
 /// The protocol provides the element with accessibility handler.
 @_documentation(visibility: internal)
@@ -551,26 +551,70 @@ extension AriaShortcutsAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with accessibility handler.
+/// A type that provides the `accessibilityLabel` modifier.
 @_documentation(visibility: internal)
-public protocol AriaLabelAttribute: Attribute {
+public protocol LabelAccessibilityAttribute: Attribute {
     
-    /// The function represents the html-attribute 'aria-label'.
+    /// Indicate a label for the current element.
     ///
-    /// ```html
-    /// <tag aria-label="" />
+    /// ```swift
+    /// Button {
+    ///     Vector {
+    ///        Path {
+    ///        }
+    ///        .draw("M...")
+    ///     }
+    /// }
+    /// .accessibilityLabel("Lorem ipsum")
     /// ```
-    func aria(label value: String) -> Self
+    /// - Parameter value: The label to describe the element.
+    ///
+    /// - Returns: The element
+    func accessibilityLabel(_ value: String) -> Self
+    
+    /// Indicate a localized label for the current element.
+    ///
+    /// ```swift
+    /// Button {
+    ///     Vector {
+    ///        Path {
+    ///        }
+    ///        .draw("M...")
+    ///     }
+    /// }
+    /// .accessibilityLabel("Lorem ipsum")
+    /// ```
+    /// - Parameter value: The label to describe the element.
+    ///
+    /// - Returns: The element
+    func accessibilityLabel(_ localized: LocalizedStringKey, tableName: String?) -> Self
+    
+    /// Indicate a label for the current element.
+    ///
+    /// ```swift
+    /// Button {
+    ///     Vector {
+    ///        Path {
+    ///        }
+    ///        .draw("M...")
+    ///     }
+    /// }
+    /// .accessibilityLabel(verbatim: "Lorem ipsum")
+    /// ```
+    /// - Parameter value: The label to describe the element.
+    ///
+    /// - Returns: The element
+    func accessibilityLabel(verbatim value: String) -> Self
 }
 
-extension AriaLabelAttribute where Self: ContentNode {
+extension LabelAccessibilityAttribute where Self: ContentNode {
     
     internal func mutate(arialabel value: AttributeData) -> Self {
         return self.mutate(key: "aria-label", value: value)
     }
 }
 
-extension AriaLabelAttribute where Self: EmptyNode {
+extension LabelAccessibilityAttribute where Self: EmptyNode {
     
     internal func mutate(arialabel value: AttributeData) -> Self {
         return self.mutate(key: "aria-label", value: value)

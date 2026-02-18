@@ -402,7 +402,20 @@ extension ListItem: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> ListItem {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ value: String) -> ListItem {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> ListItem {
+        return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(verbatim value: String) -> ListItem {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
