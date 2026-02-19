@@ -12649,7 +12649,7 @@ public struct Division: ContentNode, HtmlElement, BodyElement, FormElement, Figu
     }
 }
 
-extension Division: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, OrientationAccessibilityAttribute, RequiredAccessibilityAttribute {
+extension Division: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, OrientationAccessibilityAttribute, RequiredAccessibilityAttribute, ReadOnlyAccessibilityAttribute {    
 
     public func accessKey(_ value: Character) -> Division {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -13004,6 +13004,10 @@ extension Division: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
     
     public func accessibilityRequired(_ value: Bool = true) -> Division {
         return mutate(ariarequired: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityReadonly(_ value: Bool = true) -> Division {
+        return mutate(ariareadonly: .init(value, context: .trusted))
     }
 }
 
@@ -21101,7 +21105,7 @@ public struct Span: ContentNode, HtmlElement, BodyElement, FormElement, FigureEl
     }
 }
 
-extension Span: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, OrientationAccessibilityAttribute, RequiredAccessibilityAttribute {
+extension Span: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, OrientationAccessibilityAttribute, RequiredAccessibilityAttribute, ReadOnlyAccessibilityAttribute {
     
     public func accessKey(_ value: Character) -> Span {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -21456,6 +21460,10 @@ extension Span: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, O
     
     public func accessibilityRequired(_ value: Bool = true) -> Span {
         return mutate(ariarequired: .init(value, context: .trusted))
+    }
+
+    public func accessibilityReadonly(_ value: Bool = true) -> Span {
+        return mutate(ariareadonly: .init(value, context: .trusted))
     }
 }
 

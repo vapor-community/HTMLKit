@@ -913,26 +913,33 @@ extension AriaPressedAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with accessibility handler.
+/// A type that provides the `accessibilityReadonly` modifier.
 @_documentation(visibility: internal)
-public protocol AriaReadonlyAttribute: Attribute {
+public protocol ReadOnlyAccessibilityAttribute: Attribute {
     
-    /// The function represents the html-attribute 'aria-readonly'.
+    /// Indicate the element as read only.
     ///
-    /// ```html
-    /// <tag aria-readonly="" />
+    /// ```swift
+    /// Division {
+    /// }
+    /// .role(.checkbox)
+    /// .accessibilityReadonly(true)
     /// ```
-    func aria(readonly value: Bool) -> Self
+    ///
+    /// - Parameter value: Whether the element should be read only.
+    ///
+    /// - Returns: The element
+    func accessibilityReadonly(_ value: Bool) -> Self
 }
 
-extension AriaReadonlyAttribute where Self: ContentNode {
+extension ReadOnlyAccessibilityAttribute where Self: ContentNode {
     
     internal func mutate(ariareadonly value: AttributeData) -> Self {
         return self.mutate(key: "aria-readonly", value: value)
     }
 }
 
-extension AriaReadonlyAttribute where Self: EmptyNode {
+extension ReadOnlyAccessibilityAttribute where Self: EmptyNode {
     
     internal func mutate(ariareadonly value: AttributeData) -> Self {
         return self.mutate(key: "aria-readonly", value: value)
