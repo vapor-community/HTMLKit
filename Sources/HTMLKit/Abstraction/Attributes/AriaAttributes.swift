@@ -965,26 +965,37 @@ extension AriaRelevantAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with accessibility handler.
+/// A type that provides the `accessibilityRequired` modifier.
 @_documentation(visibility: internal)
-public protocol AriaRequiredAttribute: Attribute {
+public protocol RequiredAccessibilityAttribute: Attribute {
     
-    /// The function represents the html-attribute 'aria-required'.
+    /// Indicate that input is required on the element.
     ///
-    /// ```html
-    /// <tag aria-required="" />
+    /// ```swift
+    /// UnorderedList {
+    ///    ListItem {
+    ///       "Lorem ipsum"
+    ///    }
+    ///    .role(radio)
+    /// }
+    /// .role(.radiogroup)
+    /// .accessibilityRequired(true)
     /// ```
-    func aria(required value: Bool) -> Self
+    ///
+    /// - Parameter condition: TODO
+    ///
+    /// - Returns: The element
+    func accessibilityRequired(_ value: Bool) -> Self
 }
 
-extension AriaRequiredAttribute where Self: ContentNode {
+extension RequiredAccessibilityAttribute where Self: ContentNode {
     
     internal func mutate(ariarequired value: AttributeData) -> Self {
         return self.mutate(key: "aria-required", value: value)
     }
 }
 
-extension AriaRequiredAttribute where Self: EmptyNode {
+extension RequiredAccessibilityAttribute where Self: EmptyNode {
     
     internal func mutate(ariarequired value: AttributeData) -> Self {
         return self.mutate(key: "aria-required", value: value)

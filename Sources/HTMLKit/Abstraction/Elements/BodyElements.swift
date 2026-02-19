@@ -6135,8 +6135,8 @@ public struct Paragraph: ContentNode, HtmlElement, BodyElement, FormElement, Fig
     }
 }
 
-extension Paragraph: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
-    
+extension Paragraph: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, RequiredAccessibilityAttribute {
+
     public func accessKey(_ value: Character) -> Paragraph {
         return mutate(accesskey: .init("\(value)", context: .trusted))
     }
@@ -6482,6 +6482,10 @@ extension Paragraph: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
     
     public func aria(roleDescription value: String) -> Paragraph {
         return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityRequired(_ value: Bool = true) -> Paragraph {
+        return mutate(ariarequired: .init(value, context: .trusted))
     }
 }
 
@@ -12645,7 +12649,7 @@ public struct Division: ContentNode, HtmlElement, BodyElement, FormElement, Figu
     }
 }
 
-extension Division: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, OrientationAccessibilityAttribute {
+extension Division: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, OrientationAccessibilityAttribute, RequiredAccessibilityAttribute {
 
     public func accessKey(_ value: Character) -> Division {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -12996,6 +13000,10 @@ extension Division: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
     
     public func accessibilityOrientation(_ value: Values.Accessibility.Orientation) -> Division {
         return mutate(ariaorientation: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityRequired(_ value: Bool = true) -> Division {
+        return mutate(ariarequired: .init(value, context: .trusted))
     }
 }
 
@@ -21093,7 +21101,7 @@ public struct Span: ContentNode, HtmlElement, BodyElement, FormElement, FigureEl
     }
 }
 
-extension Span: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, OrientationAccessibilityAttribute {
+extension Span: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, OrientationAccessibilityAttribute, RequiredAccessibilityAttribute {
     
     public func accessKey(_ value: Character) -> Span {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -21444,6 +21452,10 @@ extension Span: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, O
     
     public func accessibilityOrientation(_ value: Values.Accessibility.Orientation) -> Span {
         return mutate(ariaorientation: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityRequired(_ value: Bool = true) -> Span {
+        return mutate(ariarequired: .init(value, context: .trusted))
     }
 }
 
