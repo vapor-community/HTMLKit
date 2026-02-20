@@ -647,26 +647,33 @@ extension AriaLabeledAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with accessibility handler.
+/// A type that provides the `accessibilityLevel` modifier.
 @_documentation(visibility: internal)
-public protocol AriaLevelAttribute: Attribute {
+public protocol LevelAccessibilityAttribute: Attribute {
     
-    /// The function represents the html-attribute 'aria-level'.
+    /// Announce the hierarchical level of the element.
     ///
-    /// ```html
-    /// <tag aria-level="" />
+    /// ```swift
+    /// Division {
+    ///     "Lorem ipsum"
+    /// }
+    /// .role(.heading)
+    /// .accessibilityLevel(2)
     /// ```
-    func aria(level value: Int) -> Self
+    /// - Parameter value: The level the element is at.
+    ///
+    /// - Returns: The element
+    func accessibilityLevel(_ value: Int) -> Self
 }
 
-extension AriaLevelAttribute where Self: ContentNode {
+extension LevelAccessibilityAttribute where Self: ContentNode {
     
     internal func mutate(arialevel value: AttributeData) -> Self {
         return self.mutate(key: "aria-level", value: value)
     }
 }
 
-extension AriaLevelAttribute where Self: EmptyNode {
+extension LevelAccessibilityAttribute where Self: EmptyNode {
     
     internal func mutate(arialevel value: AttributeData) -> Self {
         return self.mutate(key: "aria-level", value: value)
