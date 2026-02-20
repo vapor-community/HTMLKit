@@ -699,26 +699,32 @@ extension AriaLiveAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with accessibility handler.
+/// A type that provides the `accessibilityModal` modifier.
 @_documentation(visibility: internal)
-public protocol AriaModalAttribute: Attribute {
+public protocol ModalAccessibilityAttribute: Attribute {
     
-    /// The function represents the html-attribute 'aria-modal'.
-    ///
-    /// ```html
-    /// <tag aria-modal="" />
+    /// Indicate whether an element is modal when displayed.
+    /// 
+    /// ```swift
+    /// Divsion {
+    /// }
+    /// .role(.dialog)
+    /// .accessibilityModal(true)
     /// ```
-    func aria(modal value: Bool) -> Self
+    /// - Parameter value: Whether the element is a modal.
+    ///
+    /// - Returns: The element
+    func accessibilityModal(_ value: Bool) -> Self
 }
 
-extension AriaModalAttribute where Self: ContentNode {
+extension ModalAccessibilityAttribute where Self: ContentNode {
     
     internal func mutate(ariamodal value: AttributeData) -> Self {
         return self.mutate(key: "aria-modal", value: value)
     }
 }
 
-extension AriaModalAttribute where Self: EmptyNode {
+extension ModalAccessibilityAttribute where Self: EmptyNode {
     
     internal func mutate(ariamodal value: AttributeData) -> Self {
         return self.mutate(key: "aria-modal", value: value)
