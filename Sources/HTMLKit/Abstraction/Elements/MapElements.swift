@@ -420,7 +420,12 @@ extension Area: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, A
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> Area {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityHidden(_ value: Bool = true) -> Area {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     

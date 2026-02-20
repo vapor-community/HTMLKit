@@ -381,7 +381,12 @@ extension TermName: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> TermName {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityHidden(_ value: Bool = true) -> TermName {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
@@ -803,7 +808,12 @@ extension TermDefinition: GlobalAttributes, GlobalEventAttributes, GlobalAriaAtt
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> TermDefinition {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityHidden(_ value: Bool = true) -> TermDefinition {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     

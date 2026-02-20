@@ -1,5 +1,5 @@
 @_documentation(visibility: internal)
-public typealias GlobalAriaAttributes = AriaAtomicAttribute & AriaBusyAttribute & AriaControlsAttribute & AriaCurrentAttribute & AriaDescribedAttribute & AriaDetailsAttribute & AriaDisabledAttribute & AriaErrorMessageAttribute & FlowAccessibilityAttribute & AriaPopupAttribute & AriaHiddenAttribute & AriaInvalidAttribute & AriaShortcutsAttribute & LabelAccessibilityAttribute & AriaLabeledAttribute & AriaLiveAttribute & AriaOwnsAttribute & AriaRelevantAttribute & AriaRoleDescriptionAttribute
+public typealias GlobalAriaAttributes = AriaAtomicAttribute & AriaBusyAttribute & AriaControlsAttribute & AriaCurrentAttribute & AriaDescribedAttribute & AriaDetailsAttribute & AriaDisabledAttribute & AriaErrorMessageAttribute & FlowAccessibilityAttribute & AriaPopupAttribute & HiddenAccessibilityAttribute & AriaInvalidAttribute & AriaShortcutsAttribute & LabelAccessibilityAttribute & AriaLabeledAttribute & AriaLiveAttribute & AriaOwnsAttribute & AriaRelevantAttribute & AriaRoleDescriptionAttribute
 
 /// The protocol provides the element with accessibility handler.
 @_documentation(visibility: internal)
@@ -475,24 +475,33 @@ extension AriaPopupAttribute where Self: EmptyNode {
 
 /// The protocol provides the element with accessibility handler.
 @_documentation(visibility: internal)
-public protocol AriaHiddenAttribute: Attribute {
+public protocol HiddenAccessibilityAttribute: Attribute {
     
-    /// The function represents the html-attribute 'aria-hidden'.
+    /// Indicate whether the element should be announced.
     ///
-    /// ```html
-    /// <tag aria-hidden="" />
+    /// ```swift
+    /// Vector {
+    ///    Path {
+    ///    }
+    ///    .draw("M...")
+    /// }
+    /// .accessibilityHidden()
     /// ```
-    func aria(hidden value: Bool) -> Self
+    ///
+    /// - Parameter value: Whether the element should be announced.
+    ///
+    /// - Returns: The element
+    func accessibilityHidden(_ value: Bool) -> Self
 }
 
-extension AriaHiddenAttribute where Self: ContentNode {
+extension HiddenAccessibilityAttribute where Self: ContentNode {
     
     internal func mutate(ariahidden value: AttributeData) -> Self {
         return self.mutate(key: "aria-hidden", value: value)
     }
 }
 
-extension AriaHiddenAttribute where Self: EmptyNode {
+extension HiddenAccessibilityAttribute where Self: EmptyNode {
     
     internal func mutate(ariahidden value: AttributeData) -> Self {
         return self.mutate(key: "aria-hidden", value: value)

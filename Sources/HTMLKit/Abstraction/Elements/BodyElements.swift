@@ -517,7 +517,12 @@ extension Article: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> Article {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityHidden(_ value: Bool = true) -> Article {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
@@ -939,7 +944,12 @@ extension Section: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> Section {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityHidden(_ value: Bool = true) -> Section {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
@@ -1363,7 +1373,12 @@ extension Navigation: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> Navigation {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityHidden(_ value: Bool = true) -> Navigation {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
@@ -1783,7 +1798,12 @@ extension Aside: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> Aside {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityHidden(_ value: Bool = true) -> Aside {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
@@ -2200,7 +2220,12 @@ extension Heading1: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> Heading1 {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityHidden(_ value: Bool = true) -> Heading1 {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
@@ -2626,7 +2651,12 @@ extension Heading2: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> Heading2 {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityHidden(_ value: Bool = true) -> Heading2 {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
@@ -3052,7 +3082,12 @@ extension Heading3: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> Heading3 {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityHidden(_ value: Bool = true) -> Heading3 {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
@@ -3478,7 +3513,12 @@ extension Heading4: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> Heading4 {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityHidden(_ value: Bool = true) -> Heading4 {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
@@ -3904,7 +3944,12 @@ extension Heading5: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> Heading5 {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityHidden(_ value: Bool = true) -> Heading5 {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
@@ -4330,7 +4375,12 @@ extension Heading6: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> Heading6 {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityHidden(_ value: Bool = true) -> Heading6 {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
@@ -4761,7 +4811,12 @@ extension HeadingGroup: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttri
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> HeadingGroup {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityHidden(_ value: Bool = true) -> HeadingGroup {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
@@ -5179,7 +5234,12 @@ extension Header: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> Header {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityHidden(_ value: Bool = true) -> Header {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
@@ -5595,7 +5655,12 @@ extension Footer: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> Footer {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityHidden(_ value: Bool = true) -> Footer {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
@@ -6018,7 +6083,12 @@ extension Address: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> Address {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityHidden(_ value: Bool = true) -> Address {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
@@ -6435,7 +6505,12 @@ extension Paragraph: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> Paragraph {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityHidden(_ value: Bool = true) -> Paragraph {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
@@ -6856,7 +6931,12 @@ extension HorizontalRule: GlobalAttributes, GlobalEventAttributes, GlobalAriaAtt
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> HorizontalRule {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityHidden(_ value: Bool = true) -> HorizontalRule {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
@@ -7279,7 +7359,12 @@ extension PreformattedText: GlobalAttributes, GlobalEventAttributes, GlobalAriaA
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> PreformattedText {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityHidden(_ value: Bool = true) -> PreformattedText {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
@@ -7700,7 +7785,12 @@ extension Blockquote: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> Blockquote {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityHidden(_ value: Bool = true) -> Blockquote {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
@@ -8143,7 +8233,12 @@ extension OrderedList: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> OrderedList {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityHidden(_ value: Bool = true) -> OrderedList {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
@@ -8569,7 +8664,12 @@ extension UnorderedList: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttr
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> UnorderedList {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityHidden(_ value: Bool = true) -> UnorderedList {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
@@ -9307,7 +9407,12 @@ extension DescriptionList: GlobalAttributes, GlobalEventAttributes, GlobalAriaAt
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> DescriptionList {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityHidden(_ value: Bool = true) -> DescriptionList {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
@@ -9729,7 +9834,12 @@ extension Figure: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> Figure {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityHidden(_ value: Bool = true) -> Figure {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
@@ -10192,7 +10302,12 @@ extension Anchor: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> Anchor {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityHidden(_ value: Bool = true) -> Anchor {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
@@ -10622,7 +10737,12 @@ extension Emphasize: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> Emphasize {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityHidden(_ value: Bool = true) -> Emphasize {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
@@ -11041,7 +11161,12 @@ extension Strong: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> Strong {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityHidden(_ value: Bool = true) -> Strong {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
@@ -11460,7 +11585,12 @@ extension Small: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> Small {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityHidden(_ value: Bool = true) -> Small {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
@@ -12226,7 +12356,12 @@ extension Main: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> Main {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityHidden(_ value: Bool = true) -> Main {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
@@ -12949,7 +13084,12 @@ extension Division: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> Division {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityHidden(_ value: Bool = true) -> Division {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
@@ -13391,7 +13531,12 @@ extension Definition: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> Definition {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityHidden(_ value: Bool = true) -> Definition {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
@@ -13811,7 +13956,12 @@ extension Cite: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> Cite {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityHidden(_ value: Bool = true) -> Cite {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
@@ -14234,7 +14384,12 @@ extension ShortQuote: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> ShortQuote {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityHidden(_ value: Bool = true) -> ShortQuote {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
@@ -14654,7 +14809,12 @@ extension Abbreviation: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttri
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> Abbreviation {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityHidden(_ value: Bool = true) -> Abbreviation {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
@@ -15074,7 +15234,12 @@ extension Ruby: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> Ruby {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityHidden(_ value: Bool = true) -> Ruby {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
@@ -15509,7 +15674,12 @@ extension Data: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, V
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> Data {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityHidden(_ value: Bool = true) -> Data {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
@@ -15934,7 +16104,12 @@ extension Time: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, D
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> Time {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityHidden(_ value: Bool = true) -> Time {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
@@ -16355,7 +16530,12 @@ extension Code: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> Code {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityHidden(_ value: Bool = true) -> Code {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
@@ -16776,7 +16956,12 @@ extension Variable: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> Variable {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityHidden(_ value: Bool = true) -> Variable {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
@@ -17193,7 +17378,12 @@ extension SampleOutput: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttri
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> SampleOutput {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityHidden(_ value: Bool = true) -> SampleOutput {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
@@ -17614,7 +17804,12 @@ extension KeyboardInput: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttr
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> KeyboardInput {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityHidden(_ value: Bool = true) -> KeyboardInput {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
@@ -18034,7 +18229,12 @@ extension Subscript: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> Subscript {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityHidden(_ value: Bool = true) -> Subscript {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
@@ -18455,7 +18655,12 @@ extension Superscript: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> Superscript {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityHidden(_ value: Bool = true) -> Superscript {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
@@ -18876,7 +19081,12 @@ extension Italic: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> Italic {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityHidden(_ value: Bool = true) -> Italic {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
@@ -19306,7 +19516,12 @@ extension Bold: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> Bold {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityHidden(_ value: Bool = true) -> Bold {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
@@ -19736,7 +19951,12 @@ extension Underline: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> Underline {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityHidden(_ value: Bool = true) -> Underline {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
@@ -20166,7 +20386,12 @@ extension Mark: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> Mark {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityHidden(_ value: Bool = true) -> Mark {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
@@ -20587,7 +20812,12 @@ extension Bdi: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> Bdi {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityHidden(_ value: Bool = true) -> Bdi {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
@@ -20996,7 +21226,12 @@ extension Bdo: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> Bdo {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityHidden(_ value: Bool = true) -> Bdo {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
@@ -21413,7 +21648,12 @@ extension Span: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, O
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> Span {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityHidden(_ value: Bool = true) -> Span {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
@@ -21827,7 +22067,12 @@ extension LineBreak: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> LineBreak {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityHidden(_ value: Bool = true) -> LineBreak {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
@@ -22233,7 +22478,12 @@ extension WordBreak: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> WordBreak {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityHidden(_ value: Bool = true) -> WordBreak {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
@@ -22658,7 +22908,12 @@ extension InsertedText: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttri
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> InsertedText {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityHidden(_ value: Bool = true) -> InsertedText {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
@@ -23083,7 +23338,12 @@ extension DeletedText: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> DeletedText {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityHidden(_ value: Bool = true) -> DeletedText {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
@@ -23890,7 +24150,12 @@ extension Image: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> Image {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityHidden(_ value: Bool = true) -> Image {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
@@ -24351,8 +24616,13 @@ extension InlineFrame: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
     public func aria(hasPopup value: Values.Accessibility.Popup) -> InlineFrame {
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
-    
+
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> InlineFrame {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityHidden(_ value: Bool = true) -> InlineFrame {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
@@ -24776,7 +25046,12 @@ extension Embed: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> Embed {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityHidden(_ value: Bool = true) -> Embed {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
@@ -25218,7 +25493,12 @@ extension Object: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> Object {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityHidden(_ value: Bool = true) -> Object {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
@@ -25696,7 +25976,12 @@ extension Video: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> Video {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityHidden(_ value: Bool = true) -> Video {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
@@ -26157,7 +26442,12 @@ extension Audio: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> Audio {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityHidden(_ value: Bool = true) -> Audio {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
@@ -26951,7 +27241,12 @@ extension Form: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, A
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> Form {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityHidden(_ value: Bool = true) -> Form {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
@@ -27375,7 +27670,12 @@ extension DataList: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> DataList {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityHidden(_ value: Bool = true) -> DataList {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
@@ -27806,7 +28106,12 @@ extension Output: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> Output {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityHidden(_ value: Bool = true) -> Output {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
@@ -28242,7 +28547,12 @@ extension Progress: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> Progress {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityHidden(_ value: Bool = true) -> Progress {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
@@ -28696,7 +29006,12 @@ extension Meter: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> Meter {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityHidden(_ value: Bool = true) -> Meter {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
@@ -29141,7 +29456,12 @@ extension Details: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> Details {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityHidden(_ value: Bool = true) -> Details {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
@@ -29582,7 +29902,12 @@ extension Dialog: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> Dialog {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityHidden(_ value: Bool = true) -> Dialog {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
@@ -31017,7 +31342,12 @@ extension Canvas: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> Canvas {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityHidden(_ value: Bool = true) -> Canvas {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
@@ -31449,7 +31779,12 @@ extension Table: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> Table {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityHidden(_ value: Bool = true) -> Table {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     

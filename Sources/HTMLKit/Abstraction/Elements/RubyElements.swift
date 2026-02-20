@@ -379,7 +379,12 @@ extension RubyText: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> RubyText {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityHidden(_ value: Bool = true) -> RubyText {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
@@ -806,7 +811,12 @@ extension RubyPronunciation: GlobalAttributes, GlobalEventAttributes, GlobalAria
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> RubyPronunciation {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityHidden(_ value: Bool = true) -> RubyPronunciation {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     

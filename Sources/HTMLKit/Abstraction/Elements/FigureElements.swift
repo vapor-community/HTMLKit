@@ -377,7 +377,12 @@ extension FigureCaption: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttr
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> FigureCaption {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityHidden(_ value: Bool = true) -> FigureCaption {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     

@@ -696,7 +696,12 @@ extension Body: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, W
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> Body {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityHidden(_ value: Bool = true) -> Body {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
