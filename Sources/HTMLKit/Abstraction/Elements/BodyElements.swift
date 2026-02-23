@@ -555,7 +555,12 @@ extension Article: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> Article {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> Article {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
@@ -982,7 +987,12 @@ extension Section: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> Section {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> Section {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
@@ -1411,7 +1421,12 @@ extension Navigation: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> Navigation {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> Navigation {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
@@ -1836,7 +1851,12 @@ extension Aside: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> Aside {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> Aside {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
@@ -2258,7 +2278,12 @@ extension Heading1: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> Heading1 {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> Heading1 {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
@@ -2689,7 +2714,12 @@ extension Heading2: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> Heading2 {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> Heading2 {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
@@ -3120,7 +3150,12 @@ extension Heading3: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> Heading3 {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> Heading3 {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
@@ -3551,7 +3586,12 @@ extension Heading4: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> Heading4 {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> Heading4 {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
@@ -3982,7 +4022,12 @@ extension Heading5: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> Heading5 {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> Heading5 {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
@@ -4413,7 +4458,12 @@ extension Heading6: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> Heading6 {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> Heading6 {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
@@ -4849,7 +4899,12 @@ extension HeadingGroup: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttri
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> HeadingGroup {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> HeadingGroup {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
@@ -5272,7 +5327,12 @@ extension Header: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> Header {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> Header {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
@@ -5693,7 +5753,12 @@ extension Footer: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> Footer {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> Footer {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
@@ -6121,7 +6186,12 @@ extension Address: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> Address {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> Address {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
@@ -6543,7 +6613,12 @@ extension Paragraph: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> Paragraph {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> Paragraph {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
@@ -6969,7 +7044,12 @@ extension HorizontalRule: GlobalAttributes, GlobalEventAttributes, GlobalAriaAtt
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> HorizontalRule {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> HorizontalRule {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
@@ -7397,7 +7477,12 @@ extension PreformattedText: GlobalAttributes, GlobalEventAttributes, GlobalAriaA
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> PreformattedText {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> PreformattedText {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
@@ -7823,7 +7908,12 @@ extension Blockquote: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> Blockquote {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> Blockquote {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
@@ -8271,7 +8361,12 @@ extension OrderedList: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> OrderedList {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> OrderedList {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
@@ -8702,7 +8797,12 @@ extension UnorderedList: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttr
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> UnorderedList {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> UnorderedList {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
@@ -9445,7 +9545,12 @@ extension DescriptionList: GlobalAttributes, GlobalEventAttributes, GlobalAriaAt
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> DescriptionList {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> DescriptionList {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
@@ -9872,7 +9977,12 @@ extension Figure: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> Figure {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> Figure {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
@@ -10340,7 +10450,12 @@ extension Anchor: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> Anchor {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> Anchor {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
@@ -10775,7 +10890,12 @@ extension Emphasize: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> Emphasize {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> Emphasize {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
@@ -11199,7 +11319,12 @@ extension Strong: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> Strong {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> Strong {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
@@ -11623,7 +11748,12 @@ extension Small: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> Small {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> Small {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
@@ -12394,7 +12524,12 @@ extension Main: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> Main {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> Main {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
@@ -13122,7 +13257,12 @@ extension Division: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> Division {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> Division {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
@@ -13569,7 +13709,12 @@ extension Definition: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> Definition {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> Definition {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
@@ -13994,7 +14139,12 @@ extension Cite: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> Cite {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> Cite {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
@@ -14422,7 +14572,12 @@ extension ShortQuote: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> ShortQuote {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> ShortQuote {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
@@ -14847,7 +15002,12 @@ extension Abbreviation: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttri
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> Abbreviation {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> Abbreviation {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
@@ -15272,7 +15432,12 @@ extension Ruby: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> Ruby {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> Ruby {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
@@ -15712,7 +15877,12 @@ extension Data: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, V
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> Data {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> Data {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
@@ -16142,7 +16312,12 @@ extension Time: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, D
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> Time {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> Time {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
@@ -16568,7 +16743,12 @@ extension Code: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> Code {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> Code {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
@@ -16994,7 +17174,12 @@ extension Variable: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> Variable {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> Variable {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
@@ -17416,7 +17601,12 @@ extension SampleOutput: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttri
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> SampleOutput {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> SampleOutput {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
@@ -17842,7 +18032,12 @@ extension KeyboardInput: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttr
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> KeyboardInput {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> KeyboardInput {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
@@ -18267,7 +18462,12 @@ extension Subscript: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> Subscript {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> Subscript {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
@@ -18693,7 +18893,12 @@ extension Superscript: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> Superscript {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> Superscript {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
@@ -19119,7 +19324,12 @@ extension Italic: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> Italic {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> Italic {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
@@ -19554,7 +19764,12 @@ extension Bold: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> Bold {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> Bold {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
@@ -19989,7 +20204,12 @@ extension Underline: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> Underline {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> Underline {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
@@ -20424,7 +20644,12 @@ extension Mark: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> Mark {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> Mark {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
@@ -20850,7 +21075,12 @@ extension Bdi: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> Bdi {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> Bdi {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
@@ -21264,7 +21494,12 @@ extension Bdo: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> Bdo {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> Bdo {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
@@ -21686,7 +21921,12 @@ extension Span: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, O
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> Span {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> Span {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
@@ -22105,7 +22345,12 @@ extension LineBreak: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> LineBreak {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> LineBreak {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
@@ -22516,7 +22761,12 @@ extension WordBreak: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> WordBreak {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> WordBreak {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
@@ -22946,7 +23196,12 @@ extension InsertedText: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttri
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> InsertedText {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> InsertedText {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
@@ -23376,7 +23631,12 @@ extension DeletedText: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> DeletedText {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> DeletedText {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
@@ -24188,7 +24448,12 @@ extension Image: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> Image {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> Image {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
@@ -24655,7 +24920,12 @@ extension InlineFrame: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> InlineFrame {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> InlineFrame {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
@@ -25084,7 +25354,12 @@ extension Embed: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> Embed {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> Embed {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
@@ -25531,7 +25806,12 @@ extension Object: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> Object {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> Object {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
@@ -26014,7 +26294,12 @@ extension Video: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> Video {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> Video {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
@@ -26480,7 +26765,12 @@ extension Audio: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> Audio {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> Audio {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
@@ -27279,7 +27569,12 @@ extension Form: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, A
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> Form {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> Form {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
@@ -27708,7 +28003,12 @@ extension DataList: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> DataList {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> DataList {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
@@ -28144,7 +28444,12 @@ extension Output: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> Output {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> Output {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
@@ -28585,7 +28890,12 @@ extension Progress: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> Progress {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> Progress {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
@@ -29044,7 +29354,12 @@ extension Meter: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> Meter {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> Meter {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
@@ -29494,7 +29809,12 @@ extension Details: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> Details {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> Details {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
@@ -29940,7 +30260,12 @@ extension Dialog: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> Dialog {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> Dialog {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
@@ -31380,7 +31705,12 @@ extension Canvas: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> Canvas {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> Canvas {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
@@ -31817,7 +32147,12 @@ extension Table: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> Table {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> Table {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     

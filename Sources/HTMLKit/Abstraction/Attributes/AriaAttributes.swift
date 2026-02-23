@@ -1,5 +1,5 @@
 @_documentation(visibility: internal)
-public typealias GlobalAriaAttributes = AriaAtomicAttribute & AriaBusyAttribute & AriaControlsAttribute & AriaCurrentAttribute & AriaDescribedAttribute & AriaDetailsAttribute & AriaDisabledAttribute & AriaErrorMessageAttribute & FlowAccessibilityAttribute & AriaPopupAttribute & HiddenAccessibilityAttribute & AriaInvalidAttribute & AriaShortcutsAttribute & LabelAccessibilityAttribute & AriaLabeledAttribute & AriaLiveAttribute & AriaOwnsAttribute & AriaRelevantAttribute & AriaRoleDescriptionAttribute
+public typealias GlobalAriaAttributes = AriaAtomicAttribute & AriaBusyAttribute & AriaControlsAttribute & AriaCurrentAttribute & AriaDescribedAttribute & AriaDetailsAttribute & AriaDisabledAttribute & AriaErrorMessageAttribute & FlowAccessibilityAttribute & AriaPopupAttribute & HiddenAccessibilityAttribute & AriaInvalidAttribute & AriaShortcutsAttribute & LabelAccessibilityAttribute & AriaLabeledAttribute & LiveAccessibilityAttribute & AriaOwnsAttribute & AriaRelevantAttribute & AriaRoleDescriptionAttribute
 
 /// The protocol provides the element with accessibility handler.
 @_documentation(visibility: internal)
@@ -689,26 +689,31 @@ extension LevelAccessibilityAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with accessibility handler.
+/// A type that provides the `accessibilityLive` modifier.
 @_documentation(visibility: internal)
-public protocol AriaLiveAttribute: Attribute {
+public protocol LiveAccessibilityAttribute: Attribute {
     
-    /// The function represents the html-attribute 'aria-live'.
+    /// Indicate that the element will be updated and how.
     ///
-    /// ```html
-    /// <tag aria-live="" />
+    /// ```swift
+    /// Division {
+    /// }
+    /// .accessibilityLive(.polite)
     /// ```
-    func aria(live value: Values.Accessibility.Live) -> Self
+    /// - Parameter value: The manner on how to notify.
+    ///
+    /// - Returns: The element
+    func accessibilityLive(_ value: Values.Accessibility.Live) -> Self
 }
 
-extension AriaLiveAttribute where Self: ContentNode {
+extension LiveAccessibilityAttribute where Self: ContentNode {
     
     internal func mutate(arialive value: AttributeData) -> Self {
         return self.mutate(key: "aria-live", value: value)
     }
 }
 
-extension AriaLiveAttribute where Self: EmptyNode {
+extension LiveAccessibilityAttribute where Self: EmptyNode {
     
     internal func mutate(arialive value: AttributeData) -> Self {
         return self.mutate(key: "aria-live", value: value)

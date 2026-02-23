@@ -922,7 +922,12 @@ extension Label: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> Label {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> Label {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
@@ -1823,7 +1828,12 @@ extension TextArea: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> TextArea {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> TextArea {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
@@ -2302,7 +2312,12 @@ extension Button: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> Button {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> Button {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
@@ -2760,7 +2775,12 @@ extension Fieldset: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> Fieldset {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> Fieldset {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     

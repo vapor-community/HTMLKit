@@ -734,7 +734,12 @@ extension Body: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, W
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> Body {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> Body {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     

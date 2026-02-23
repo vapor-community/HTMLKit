@@ -415,7 +415,12 @@ extension FigureCaption: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttr
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> FigureCaption {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> FigureCaption {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
