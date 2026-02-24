@@ -862,26 +862,59 @@ extension AriaOwnsAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with accessibility handler.
+/// A type that provides the `accessibilityHint` modifier.
 @_documentation(visibility: internal)
-public protocol AriaPlaceholderAttribute: Attribute {
+public protocol HintAccessibilityAttribute: Attribute {
     
-    /// The function represents the html-attribute 'aria-placeholder'.
-    ///
-    /// ```html
-    /// <tag aria-placeholder="" />
+    /// Provide a short hint.
+    /// 
+    /// ```swift
+    /// Division {
+    /// }
+    /// .role(.textbox)
+    /// .accessibilityHint("Lorem ipsum")
     /// ```
-    func aria(placeholder value: String) -> Self
+    /// - Parameter value: A hint to give more context.
+    ///
+    /// - Returns: The element
+    func accessibilityHint(_ value: String) -> Self
+    
+    /// Provide a localized short hint.
+    /// 
+    /// ```swift
+    /// Division {
+    /// }
+    /// .role(.textbox)
+    /// .accessibilityHint("Lorem ipsum")
+    /// ```
+    /// - Parameter localizedKey: The string key to be translated.
+    /// - Parameter tableName: The translation table to look in.
+    ///
+    /// - Returns: The element
+    func accessibilityHint(_ localized: LocalizedStringKey, tableName: String?) -> Self
+    
+    /// Provide a short hint without localization.
+    /// 
+    /// ```swift
+    /// Division {
+    /// }
+    /// .role(.textbox)
+    /// .accessibilityHint(verbatim: "Lorem ipsum")
+    /// ```
+    /// - Parameter value: A hint to give more context.
+    ///
+    /// - Returns: The element
+    func accessibilityHint(verbatim value: String) -> Self
 }
 
-extension AriaPlaceholderAttribute where Self: ContentNode {
+extension HintAccessibilityAttribute where Self: ContentNode {
     
     internal func mutate(ariaplaceholder value: AttributeData) -> Self {
         return self.mutate(key: "aria-placeholder", value: value)
     }
 }
 
-extension AriaPlaceholderAttribute where Self: EmptyNode {
+extension HintAccessibilityAttribute where Self: EmptyNode {
     
     internal func mutate(ariaplaceholder value: AttributeData) -> Self {
         return self.mutate(key: "aria-placeholder", value: value)
