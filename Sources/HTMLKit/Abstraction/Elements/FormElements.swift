@@ -859,7 +859,12 @@ extension Label: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
     public func aria(disabled value: Bool) -> Label {
+        return mutate(ariadisabled: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityDisabled(_ value: Bool = true) -> Label {
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
@@ -1765,7 +1770,12 @@ extension TextArea: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
     public func aria(disabled value: Bool) -> TextArea {
+        return mutate(ariadisabled: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityDisabled(_ value: Bool = true) -> TextArea {
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
@@ -2249,7 +2259,12 @@ extension Button: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
     public func aria(disabled value: Bool) -> Button {
+        return mutate(ariadisabled: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityDisabled(_ value: Bool = true) -> Button {
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
@@ -2712,7 +2727,12 @@ extension Fieldset: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
     public func aria(disabled value: Bool) -> Fieldset {
+        return mutate(ariadisabled: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityDisabled(_ value: Bool = true) -> Fieldset {
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     

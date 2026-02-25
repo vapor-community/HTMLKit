@@ -395,7 +395,12 @@ extension Area: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, A
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
     public func aria(disabled value: Bool) -> Area {
+        return mutate(ariadisabled: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityDisabled(_ value: Bool = true) -> Area {
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     

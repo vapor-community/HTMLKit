@@ -356,7 +356,12 @@ extension TermName: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
     public func aria(disabled value: Bool) -> TermName {
+        return mutate(ariadisabled: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityDisabled(_ value: Bool = true) -> TermName {
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
@@ -788,7 +793,12 @@ extension TermDefinition: GlobalAttributes, GlobalEventAttributes, GlobalAriaAtt
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
     public func aria(disabled value: Bool) -> TermDefinition {
+        return mutate(ariadisabled: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityDisabled(_ value: Bool = true) -> TermDefinition {
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     

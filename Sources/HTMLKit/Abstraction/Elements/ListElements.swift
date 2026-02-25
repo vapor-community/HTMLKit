@@ -365,7 +365,12 @@ extension ListItem: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
     public func aria(disabled value: Bool) -> ListItem {
+        return mutate(ariadisabled: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityDisabled(_ value: Bool = true) -> ListItem {
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     

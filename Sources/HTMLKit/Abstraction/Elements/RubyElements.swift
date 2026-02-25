@@ -354,7 +354,12 @@ extension RubyText: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
     public func aria(disabled value: Bool) -> RubyText {
+        return mutate(ariadisabled: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityDisabled(_ value: Bool = true) -> RubyText {
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
@@ -791,7 +796,12 @@ extension RubyPronunciation: GlobalAttributes, GlobalEventAttributes, GlobalAria
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
     public func aria(disabled value: Bool) -> RubyPronunciation {
+        return mutate(ariadisabled: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityDisabled(_ value: Bool = true) -> RubyPronunciation {
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     

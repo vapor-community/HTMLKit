@@ -1,5 +1,5 @@
 @_documentation(visibility: internal)
-public typealias GlobalAriaAttributes = AriaAtomicAttribute & AriaBusyAttribute & AriaControlsAttribute & AriaCurrentAttribute & AriaDescribedAttribute & AriaDetailsAttribute & AriaDisabledAttribute & AriaErrorMessageAttribute & FlowAccessibilityAttribute & AriaPopupAttribute & HiddenAccessibilityAttribute & AriaInvalidAttribute & AriaShortcutsAttribute & LabelAccessibilityAttribute & AriaLabeledAttribute & LiveAccessibilityAttribute & AriaOwnsAttribute & AriaRelevantAttribute & AriaRoleDescriptionAttribute
+public typealias GlobalAriaAttributes = AriaAtomicAttribute & AriaBusyAttribute & AriaControlsAttribute & AriaCurrentAttribute & AriaDescribedAttribute & AriaDetailsAttribute & DisabledAccessibilityAttribute & AriaErrorMessageAttribute & FlowAccessibilityAttribute & AriaPopupAttribute & HiddenAccessibilityAttribute & AriaInvalidAttribute & AriaShortcutsAttribute & LabelAccessibilityAttribute & AriaLabeledAttribute & LiveAccessibilityAttribute & AriaOwnsAttribute & AriaRelevantAttribute & AriaRoleDescriptionAttribute
 
 /// The protocol provides the element with accessibility handler.
 @_documentation(visibility: internal)
@@ -314,26 +314,33 @@ extension AriaDetailsAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with accessibility handler.
+/// A type that provides the `accessibilityDisabled` modifier.
 @_documentation(visibility: internal)
-public protocol AriaDisabledAttribute: Attribute {
+public protocol DisabledAccessibilityAttribute: Attribute {
     
-    /// The function represents the html-attribute 'aria-disabled'.
+    /// Indicate that the element is perceivable but disabled.
     ///
-    /// ```html
-    /// <tag aria-disabled="" />
+    /// ```swift
+    /// Division {
+    /// }
+    /// .role(.button)
+    /// .accessibilityDisabled()
     /// ```
-    func aria(disabled value: Bool) -> Self
+    ///
+    /// - Parameter value: Whether the element is disabled.
+    ///
+    /// - Returns: The element
+    func accessibilityDisabled(_ value: Bool) -> Self
 }
 
-extension AriaDisabledAttribute where Self: ContentNode {
+extension DisabledAccessibilityAttribute where Self: ContentNode {
     
     internal func mutate(ariadisabled value: AttributeData) -> Self {
         return self.mutate(key: "aria-disabled", value: value)
     }
 }
 
-extension AriaDisabledAttribute where Self: EmptyNode {
+extension DisabledAccessibilityAttribute where Self: EmptyNode {
     
     internal func mutate(ariadisabled value: AttributeData) -> Self {
         return self.mutate(key: "aria-disabled", value: value)

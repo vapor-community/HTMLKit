@@ -377,7 +377,12 @@ extension Caption: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
     public func aria(disabled value: Bool) -> Caption {
+        return mutate(ariadisabled: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityDisabled(_ value: Bool = true) -> Caption {
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
@@ -1462,7 +1467,12 @@ extension TableBody: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
     public func aria(disabled value: Bool) -> TableBody {
+        return mutate(ariadisabled: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityDisabled(_ value: Bool = true) -> TableBody {
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
@@ -1910,7 +1920,12 @@ extension TableHead: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
     public func aria(disabled value: Bool) -> TableHead {
+        return mutate(ariadisabled: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityDisabled(_ value: Bool = true) -> TableHead {
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
@@ -2350,7 +2365,12 @@ extension TableFoot: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
     public func aria(disabled value: Bool) -> TableFoot {
+        return mutate(ariadisabled: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityDisabled(_ value: Bool = true) -> TableFoot {
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
@@ -2792,7 +2812,12 @@ extension TableRow: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
     public func aria(disabled value: Bool) -> TableRow {
+        return mutate(ariadisabled: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityDisabled(_ value: Bool = true) -> TableRow {
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
@@ -3240,7 +3265,12 @@ extension DataCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
     public func aria(disabled value: Bool) -> DataCell {
+        return mutate(ariadisabled: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityDisabled(_ value: Bool = true) -> DataCell {
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
@@ -3691,7 +3721,12 @@ extension HeaderCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
     public func aria(disabled value: Bool) -> HeaderCell {
+        return mutate(ariadisabled: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityDisabled(_ value: Bool = true) -> HeaderCell {
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     

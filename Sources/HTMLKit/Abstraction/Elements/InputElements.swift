@@ -380,7 +380,12 @@ extension OptionGroup: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
     public func aria(disabled value: Bool) -> OptionGroup {
+        return mutate(ariadisabled: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityDisabled(_ value: Bool = true) -> OptionGroup {
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
@@ -854,7 +859,12 @@ extension Option: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
     public func aria(disabled value: Bool) -> Option {
+        return mutate(ariadisabled: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityDisabled(_ value: Bool = true) -> Option {
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
@@ -1294,7 +1304,12 @@ extension Legend: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
     public func aria(disabled value: Bool) -> Legend {
+        return mutate(ariadisabled: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityDisabled(_ value: Bool = true) -> Legend {
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
@@ -1726,7 +1741,12 @@ extension Summary: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
     public func aria(disabled value: Bool) -> Summary {
+        return mutate(ariadisabled: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityDisabled(_ value: Bool = true) -> Summary {
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
