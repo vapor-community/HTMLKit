@@ -15,7 +15,7 @@ final class AttributesTests: XCTestCase {
         @ContentBuilder<Content> var body: Content
     }
     
-    typealias AllAttributes = AccessKeyAttribute & AcceptAttribute & ActionAttribute & AlternateAttribute & AsynchronouslyAttribute & AutocapitalizeAttribute & AutocompleteAttribute & AutofocusAttribute & AutoplayAttribute & CharsetAttribute & CheckedAttribute & CiteAttribute & ClassAttribute & ColumnsAttribute & ColumnSpanAttribute & ContentAttribute & EditAttribute  & ControlsAttribute & CoordinatesAttribute & DataAttribute & DateTimeAttribute & DefaultAttribute & DeferAttribute & DirectionAttribute & DisabledAttribute & DownloadAttribute & DragAttribute & EncodingAttribute & EnterKeyAttribute & ForAttribute & FormAttribute & FormActionAttribute & EquivalentAttribute & HeadersAttribute & HeightAttribute & HiddenAttribute & HighAttribute & ReferenceAttribute & ReferenceLanguageAttribute & IdentifierAttribute & IsMapAttribute & InputModeAttribute & IsAttribute & ItemAttribute & ItemPropertyAttribute & KindAttribute & LabelAttribute & LanguageAttribute & ListAttribute & LoopAttribute & LowAttribute & MaximumValueAttribute & MaximumLengthAttribute & MediaAttribute & MethodAttribute & MinimumValueAttribute & MinimumLengthAttribute & MultipleAttribute & MutedAttribute & NameAttribute & NonceAttribute & NoValidateAttribute & OpenAttribute & OptimumAttribute & PatternAttribute & PartAttribute & PingAttribute & PlaceholderAttribute & PosterAttribute & PreloadAttribute & ReadOnlyAttribute & ReferrerPolicyAttribute & RelationshipAttribute & RequiredAttribute & ReversedAttribute & RoleAttribute & RowsAttribute & RowSpanAttribute & SandboxAttribute & ScopeAttribute & ShapeAttribute & SizeAttribute & SizesAttribute & SlotAttribute & SpanAttribute & SpellCheckAttribute & SourceAttribute & StartAttribute & StepAttribute & StyleAttribute & TabulatorAttribute & TargetAttribute & TitleAttribute & TranslateAttribute & TypeAttribute & ValueAttribute & WidthAttribute & WrapAttribute & PropertyAttribute & SelectedAttribute & WindowEventAttribute & FocusEventAttribute & PointerEventAttribute & MouseEventAttribute & WheelEventAttribute & InputEventAttribute & KeyboardEventAttribute & DragEventAttribute & ClipboardEventAttribute & SelectionEventAttribute & MediaEventAttribute & FormEventAttribute & DetailEventAttribute & AriaAtomicAttribute & AriaBusyAttribute & AriaControlsAttribute & AriaCurrentAttribute & AriaDescribedAttribute & AriaDetailsAttribute & AriaDisabledAttribute & AriaErrorMessageAttribute & AriaFlowToAttribute & AriaPopupAttribute & AriaHiddenAttribute & AriaInvalidAttribute & AriaShortcutsAttribute & AriaLabelAttribute & AriaLabeledAttribute & AriaLiveAttribute & AriaOwnsAttribute & AriaRelevantAttribute & AriaRoleDescriptionAttribute & DrawAttribute & FillAttribute & FillOpacityAttribute & StrokeAttribute & StrokeWidthAttribute & StrokeOpacityAttribute & StrokeLineCapAttribute & StrokeLineJoinAttribute & RadiusAttribute & PositionPointAttribute & RadiusPointAttribute & CenterPointAttribute & ViewBoxAttribute & NamespaceAttribute & PointsAttribute & ShadowRootModeAttribute & InertAttribute & FetchPriorityAttribute & LoadingAttribute & SourceSetAttribute & DecodingAttribute & BlockingAttribute & PopoverAttribute & PopoverTargetAttribute & PopoverActionAttribute & UseMapAttribute & PlaysInlineAttribute & IntegrityAttribute & AsAttribute & CrossOriginAttribute & SourceLanguageAttribute & SourceDocumentAttribute
+    typealias AllAttributes = AccessKeyAttribute & AcceptAttribute & ActionAttribute & AlternateAttribute & AsynchronouslyAttribute & AutocapitalizeAttribute & AutocompleteAttribute & AutofocusAttribute & AutoplayAttribute & CharsetAttribute & CheckedAttribute & CiteAttribute & ClassAttribute & ColumnsAttribute & ColumnSpanAttribute & ContentAttribute & EditAttribute  & ControlsAttribute & CoordinatesAttribute & DataAttribute & DateTimeAttribute & DefaultAttribute & DeferAttribute & DirectionAttribute & DisabledAttribute & DownloadAttribute & DragAttribute & EncodingAttribute & EnterKeyAttribute & ForAttribute & FormAttribute & FormActionAttribute & EquivalentAttribute & HeadersAttribute & HeightAttribute & HiddenAttribute & HighAttribute & ReferenceAttribute & ReferenceLanguageAttribute & IdentifierAttribute & IsMapAttribute & InputModeAttribute & IsAttribute & ItemAttribute & ItemPropertyAttribute & KindAttribute & LabelAttribute & LanguageAttribute & ListAttribute & LoopAttribute & LowAttribute & MaximumValueAttribute & MaximumLengthAttribute & MediaAttribute & MethodAttribute & MinimumValueAttribute & MinimumLengthAttribute & MultipleAttribute & MutedAttribute & NameAttribute & NonceAttribute & NoValidateAttribute & OpenAttribute & OptimumAttribute & PatternAttribute & PartAttribute & PingAttribute & PlaceholderAttribute & PosterAttribute & PreloadAttribute & ReadOnlyAttribute & ReferrerPolicyAttribute & RelationshipAttribute & RequiredAttribute & ReversedAttribute & RoleAttribute & RowsAttribute & RowSpanAttribute & SandboxAttribute & ScopeAttribute & ShapeAttribute & SizeAttribute & SizesAttribute & SlotAttribute & SpanAttribute & SpellCheckAttribute & SourceAttribute & StartAttribute & StepAttribute & StyleAttribute & TabulatorAttribute & TargetAttribute & TitleAttribute & TranslateAttribute & TypeAttribute & ValueAttribute & WidthAttribute & WrapAttribute & PropertyAttribute & SelectedAttribute & WindowEventAttribute & FocusEventAttribute & PointerEventAttribute & MouseEventAttribute & WheelEventAttribute & InputEventAttribute & KeyboardEventAttribute & DragEventAttribute & ClipboardEventAttribute & SelectionEventAttribute & MediaEventAttribute & FormEventAttribute & DetailEventAttribute & AriaAtomicAttribute & AriaBusyAttribute & AriaControlsAttribute & AriaCurrentAttribute & AriaDescribedAttribute & AriaDetailsAttribute & DisabledAccessibilityAttribute & AriaErrorMessageAttribute & FlowAccessibilityAttribute & AriaPopupAttribute & HiddenAccessibilityAttribute & AriaInvalidAttribute & AriaShortcutsAttribute & LabelAccessibilityAttribute & AriaLabeledAttribute & LiveAccessibilityAttribute & AriaOwnsAttribute & AriaRelevantAttribute & AriaRoleDescriptionAttribute & SortAccessibilityAttribute & OrientationAccessibilityAttribute & RequiredAccessibilityAttribute & ReadOnlyAccessibilityAttribute & ModalAccessibilityAttribute & LevelAccessibilityAttribute & HintAccessibilityAttribute & DrawAttribute & FillAttribute & FillOpacityAttribute & StrokeAttribute & StrokeWidthAttribute & StrokeOpacityAttribute & StrokeLineCapAttribute & StrokeLineJoinAttribute & RadiusAttribute & PositionPointAttribute & RadiusPointAttribute & CenterPointAttribute & ViewBoxAttribute & NamespaceAttribute & PointsAttribute & ShadowRootModeAttribute & InertAttribute & FetchPriorityAttribute & LoadingAttribute & SourceSetAttribute & DecodingAttribute & BlockingAttribute & PopoverAttribute & PopoverTargetAttribute & PopoverActionAttribute & UseMapAttribute & PlaysInlineAttribute & IntegrityAttribute & AsAttribute & CrossOriginAttribute & SourceLanguageAttribute & SourceDocumentAttribute
     
     struct Tag: ContentNode, GlobalElement, AllAttributes {
 
@@ -956,7 +956,7 @@ final class AttributesTests: XCTestCase {
             return mutate(ariadetails: .init(value, context: .tainted(.html)))
         }
         
-        func aria(disabled value: Bool) -> Tag {
+        func accessibilityDisabled(_ value: Bool = true) -> Tag {
             return mutate(ariadisabled: .init(value, context: .trusted))
         }
         
@@ -964,15 +964,19 @@ final class AttributesTests: XCTestCase {
             return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
         }
         
-        func aria(flowTo value: String) -> Tag {
-            return mutate(ariaflowto: .init(value, context: .tainted(.html)))
+        func accessibilityFlowTo(_ ids: [String]) -> Tag {
+            return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+        }
+        
+        func accessibilityFlowTo(_ ids: String...) -> Tag {
+            return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
         }
         
         func aria(hasPopup value: Values.Accessibility.Popup) -> Tag {
             return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
         }
         
-        func aria(hidden value: Bool) -> Tag {
+        func accessibilityHidden(_ value: Bool = true) -> Tag {
             return mutate(ariahidden: .init(value, context: .trusted))
         }
         
@@ -983,8 +987,16 @@ final class AttributesTests: XCTestCase {
         func aria(keyShortcuts value: String) -> Tag {
             return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
         }
+
+        func accessibilityLabel(_ value: String) -> Tag {
+            return mutate(arialabel: .init(value, context: .tainted(.html)))
+        }
         
-        func aria(label value: String) -> Tag {
+        func accessibilityLabel(_ localized: LocalizedStringKey, tableName: String? = nil) -> Tag {
+            return mutate(arialabel: .init(LocalizedString(key: localized, table: tableName), context: .tainted(.html)))
+        }
+        
+        func accessibilityLabel(verbatim value: String) -> Tag {
             return mutate(arialabel: .init(value, context: .tainted(.html)))
         }
         
@@ -992,7 +1004,7 @@ final class AttributesTests: XCTestCase {
             return mutate(arialabeledby: .init(value, context: .tainted(.html)))
         }
         
-        func aria(live value: Values.Accessibility.Live) -> Tag {
+        func accessibilityLive(_ value: Values.Accessibility.Live) -> Tag {
             return mutate(arialive: .init(value.rawValue, context: .trusted))
         }
         
@@ -1006,6 +1018,43 @@ final class AttributesTests: XCTestCase {
         
         func aria(roleDescription value: String) -> Tag {
             return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+        }
+        
+        func accessibilitySort(_ value: Values.Accessibility.Sort) -> Tag {
+            return mutate(ariasort: .init(value.rawValue, context: .trusted))
+        }
+        
+        func accessibilityOrientation(_ value: Values.Accessibility.Orientation) -> Tag {
+            return mutate(ariaorientation: .init(value.rawValue, context: .trusted))
+        }
+        
+        func accessibilityRequired(_ value: Bool = true) -> Tag {
+            return mutate(ariarequired: .init(value, context: .trusted))
+        }
+        
+        func accessibilityReadonly(_ value: Bool = true) -> Tag {
+            return mutate(ariareadonly: .init(value, context: .trusted))
+        }
+        
+        func accessibilityModal(_ value: Bool = true) -> Tag {
+            return mutate(ariamodal: .init(value, context: .trusted))
+        }
+        
+        func accessibilityLevel(_ value: Int) -> Tag {
+            return mutate(arialevel: .init(value, context: .trusted))
+        }
+        
+        @_disfavoredOverload
+        func accessibilityHint(_ value: String) -> Tag {
+            return mutate(ariaplaceholder: .init(value, context: .tainted(.html)))
+        }
+        
+        func accessibilityHint(_ localized: LocalizedStringKey, tableName: String? = nil) -> Tag {
+            return mutate(ariaplaceholder: .init(LocalizedString(key: localized, table: tableName), context: .tainted(.html)))
+        }
+        
+        func accessibilityHint(verbatim value: String) -> Tag {
+            return mutate(ariaplaceholder: .init(value, context: .tainted(.html)))
         }
         
         func shadowRootMode(_ value: Values.Shadow.Mode) -> Tag {
@@ -2840,14 +2889,18 @@ final class AttributesTests: XCTestCase {
         )
     }
     
-    func testDisabledAriaAttribute() throws {
+    func testDisabledAccessibilityAttribute() throws {
         
         let view = TestView {
-            Tag {}.aria(disabled: true)
+            Tag {}.accessibilityDisabled()
+            Tag {}.accessibilityDisabled(false)
+            Tag {}.accessibilityDisabled(true)
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
+                       <tag aria-disabled="true"></tag>\
+                       <tag aria-disabled="false"></tag>\
                        <tag aria-disabled="true"></tag>
                        """
         )
@@ -2866,15 +2919,19 @@ final class AttributesTests: XCTestCase {
         )
     }
     
-    func testFlowToAriaAttribute() throws {
+    func testFlowAccessibilityAttribute() throws {
         
         let view = TestView {
-            Tag {}.aria(flowTo: "flow")
+            Tag {}.accessibilityFlowTo("id")
+            Tag {}.accessibilityFlowTo("id", "id")
+            Tag {}.accessibilityFlowTo(["id", "id"])
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <tag aria-flowto="flow"></tag>
+                       <tag aria-flowto="id"></tag>\
+                       <tag aria-flowto="id id"></tag>\
+                       <tag aria-flowto="id id"></tag>
                        """
         )
     }
@@ -2892,14 +2949,18 @@ final class AttributesTests: XCTestCase {
         )
     }
     
-    func testHiddenAriaAttribute() throws {
+    func testHiddenAccessibilityAttribute() throws {
         
         let view = TestView {
-            Tag {}.aria(hidden: true)
+            Tag {}.accessibilityHidden()
+            Tag {}.accessibilityHidden(false)
+            Tag {}.accessibilityHidden(true)
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
+                       <tag aria-hidden="true"></tag>\
+                       <tag aria-hidden="false"></tag>\
                        <tag aria-hidden="true"></tag>
                        """
         )
@@ -2931,10 +2992,10 @@ final class AttributesTests: XCTestCase {
         )
     }
     
-    func testLabelAriaAttribute() throws {
+    func testLabelAccessibilityAttribute() throws {
         
         let view = TestView {
-            Tag {}.aria(label: "label")
+            Tag {}.accessibilityLabel("label")
         }
         
         XCTAssertEqual(try renderer.render(view: view),
@@ -2960,12 +3021,16 @@ final class AttributesTests: XCTestCase {
     func testLiveAriaAttribute() throws {
         
         let view = TestView {
-            Tag {}.aria(live: .polite)
+            Tag {}.accessibilityLive(.polite)
+            Tag {}.accessibilityLive(.assertive)
+            Tag {}.accessibilityLive(.off)
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <tag aria-live="polite"></tag>
+                       <tag aria-live="polite"></tag>\
+                       <tag aria-live="assertive"></tag>\
+                       <tag aria-live="off"></tag>
                        """
         )
     }
@@ -3005,6 +3070,113 @@ final class AttributesTests: XCTestCase {
         XCTAssertEqual(try renderer.render(view: view),
                        """
                        <tag aria-roledescription="description"></tag>
+                       """
+        )
+    }
+    
+    func testSortAccessibilityAttribute() throws {
+        
+        let view = TestView {
+            Tag {}.accessibilitySort(.ascending)
+        }
+        
+        XCTAssertEqual(try renderer.render(view: view),
+                       """
+                       <tag aria-sort="ascending"></tag>
+                       """
+        )
+    }
+    
+    func testOrientationAccessibilityAttribute() throws {
+        
+        let view = TestView {
+            Tag {}.accessibilityOrientation(.horizontal)
+            Tag {}.accessibilityOrientation(.vertical)
+            Tag {}.accessibilityOrientation(.undefined)
+        }
+        
+        XCTAssertEqual(try renderer.render(view: view),
+                       """
+                       <tag aria-orientation="horizontal"></tag>\
+                       <tag aria-orientation="vertical"></tag>\
+                       <tag aria-orientation="undefined"></tag>
+                       """
+        )
+    }
+    
+    func testRequiredAccessibilityAttribute() throws {
+        
+        let view = TestView {
+            Tag {}.accessibilityRequired()
+            Tag {}.accessibilityRequired(false)
+            Tag {}.accessibilityRequired(true)
+        }
+        
+        XCTAssertEqual(try renderer.render(view: view),
+                       """
+                       <tag aria-required="true"></tag>\
+                       <tag aria-required="false"></tag>\
+                       <tag aria-required="true"></tag>
+                       """
+        )
+    }
+    
+    func testReadOnlyAccessibilityAttribute() throws {
+        
+        let view = TestView {
+            Tag {}.accessibilityReadonly()
+            Tag {}.accessibilityReadonly(false)
+            Tag {}.accessibilityReadonly(true)
+        }
+        
+        XCTAssertEqual(try renderer.render(view: view),
+                       """
+                       <tag aria-readonly="true"></tag>\
+                       <tag aria-readonly="false"></tag>\
+                       <tag aria-readonly="true"></tag>
+                       """
+        )
+    }
+    
+    func testModalAccessibilityAttribute() throws {
+        
+        let view = TestView {
+            Tag {}.accessibilityModal()
+            Tag {}.accessibilityModal(false)
+            Tag {}.accessibilityModal(true)
+        }
+        
+        XCTAssertEqual(try renderer.render(view: view),
+                       """
+                       <tag aria-modal="true"></tag>\
+                       <tag aria-modal="false"></tag>\
+                       <tag aria-modal="true"></tag>
+                       """
+        )
+    }
+    
+    func testLevelAccessibilityAttribute() throws {
+        
+        let view = TestView {
+            Tag {}.accessibilityLevel(2)
+        }
+        
+        XCTAssertEqual(try renderer.render(view: view),
+                       """
+                       <tag aria-level="2"></tag>
+                       """
+        )
+    }
+    
+    func testHintAccessibilityAttribute() throws {
+        
+        let view = TestView {
+            Tag {}.accessibilityHint("Lorem ipsum...")
+        }
+        
+        XCTAssertEqual(try renderer.render(view: view),
+                       """
+                       <tag aria-placeholder="Lorem ipsum..."></tag>
                        """
         )
     }

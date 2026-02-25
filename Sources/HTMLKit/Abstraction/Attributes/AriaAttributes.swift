@@ -1,5 +1,5 @@
 @_documentation(visibility: internal)
-public typealias GlobalAriaAttributes = AriaAtomicAttribute & AriaBusyAttribute & AriaControlsAttribute & AriaCurrentAttribute & AriaDescribedAttribute & AriaDetailsAttribute & AriaDisabledAttribute & AriaErrorMessageAttribute & AriaFlowToAttribute & AriaPopupAttribute & AriaHiddenAttribute & AriaInvalidAttribute & AriaShortcutsAttribute & AriaLabelAttribute & AriaLabeledAttribute & AriaLiveAttribute & AriaOwnsAttribute & AriaRelevantAttribute & AriaRoleDescriptionAttribute
+public typealias GlobalAriaAttributes = AriaAtomicAttribute & AriaBusyAttribute & AriaControlsAttribute & AriaCurrentAttribute & AriaDescribedAttribute & AriaDetailsAttribute & DisabledAccessibilityAttribute & AriaErrorMessageAttribute & FlowAccessibilityAttribute & AriaPopupAttribute & HiddenAccessibilityAttribute & AriaInvalidAttribute & AriaShortcutsAttribute & LabelAccessibilityAttribute & AriaLabeledAttribute & LiveAccessibilityAttribute & AriaOwnsAttribute & AriaRelevantAttribute & AriaRoleDescriptionAttribute
 
 /// The protocol provides the element with accessibility handler.
 @_documentation(visibility: internal)
@@ -314,26 +314,33 @@ extension AriaDetailsAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with accessibility handler.
+/// A type that provides the `accessibilityDisabled` modifier.
 @_documentation(visibility: internal)
-public protocol AriaDisabledAttribute: Attribute {
+public protocol DisabledAccessibilityAttribute: Attribute {
     
-    /// The function represents the html-attribute 'aria-disabled'.
+    /// Indicate that the element is perceivable but disabled.
     ///
-    /// ```html
-    /// <tag aria-disabled="" />
+    /// ```swift
+    /// Division {
+    /// }
+    /// .role(.button)
+    /// .accessibilityDisabled()
     /// ```
-    func aria(disabled value: Bool) -> Self
+    ///
+    /// - Parameter value: Whether the element is disabled.
+    ///
+    /// - Returns: The element
+    func accessibilityDisabled(_ value: Bool) -> Self
 }
 
-extension AriaDisabledAttribute where Self: ContentNode {
+extension DisabledAccessibilityAttribute where Self: ContentNode {
     
     internal func mutate(ariadisabled value: AttributeData) -> Self {
         return self.mutate(key: "aria-disabled", value: value)
     }
 }
 
-extension AriaDisabledAttribute where Self: EmptyNode {
+extension DisabledAccessibilityAttribute where Self: EmptyNode {
     
     internal func mutate(ariadisabled value: AttributeData) -> Self {
         return self.mutate(key: "aria-disabled", value: value)
@@ -392,26 +399,55 @@ extension AriaExpandedAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with accessibility handler.
+/// A type that provides the `accessibilityFlowTo` modifier.
 @_documentation(visibility: internal)
-public protocol AriaFlowToAttribute: Attribute {
+public protocol FlowAccessibilityAttribute: Attribute {
     
-    /// The function represents the html-attribute 'aria-flowto'.
+    /// Suggest an alternate reading order.
     ///
-    /// ```html
-    /// <tag aria-flowto="" />
+    /// ```swift
+    /// Heading1 {
+    ///    "Lorem ipsum"
+    /// }
+    /// .accessibilityFlowTo(["id", "id"])
+    /// Article {
+    ///     "Lorem ipsum..."
+    /// }
+    /// .id("id")
     /// ```
-    func aria(flowTo value: String) -> Self
+    ///
+    /// - Parameter ids: The identifiers...
+    ///
+    /// - Returns: The element
+    func accessibilityFlowTo(_ ids: [String]) -> Self
+    
+    /// Suggest an alternate reading order.
+    ///
+    /// ```swift
+    /// Heading1 {
+    ///    "Lorem ipsum"
+    /// }
+    /// .accessibilityFlowTo("id", "id")
+    /// Article {
+    ///     "Lorem ipsum..."
+    /// }
+    /// .id("id")
+    /// ```
+    ///
+    /// - Parameter ids: The identifiers...
+    ///
+    /// - Returns: The element
+    func accessibilityFlowTo(_ ids: String...) -> Self
 }
 
-extension AriaFlowToAttribute where Self: ContentNode {
+extension FlowAccessibilityAttribute where Self: ContentNode {
     
     internal func mutate(ariaflowto value: AttributeData) -> Self {
         return self.mutate(key: "aria-flowto", value: value)
     }
 }
 
-extension AriaFlowToAttribute where Self: EmptyNode {
+extension FlowAccessibilityAttribute where Self: EmptyNode {
     
     internal func mutate(ariaflowto value: AttributeData) -> Self {
         return self.mutate(key: "aria-flowto", value: value)
@@ -446,24 +482,33 @@ extension AriaPopupAttribute where Self: EmptyNode {
 
 /// The protocol provides the element with accessibility handler.
 @_documentation(visibility: internal)
-public protocol AriaHiddenAttribute: Attribute {
+public protocol HiddenAccessibilityAttribute: Attribute {
     
-    /// The function represents the html-attribute 'aria-hidden'.
+    /// Indicate whether the element should be announced.
     ///
-    /// ```html
-    /// <tag aria-hidden="" />
+    /// ```swift
+    /// Vector {
+    ///    Path {
+    ///    }
+    ///    .draw("M...")
+    /// }
+    /// .accessibilityHidden()
     /// ```
-    func aria(hidden value: Bool) -> Self
+    ///
+    /// - Parameter value: Whether the element should be announced.
+    ///
+    /// - Returns: The element
+    func accessibilityHidden(_ value: Bool) -> Self
 }
 
-extension AriaHiddenAttribute where Self: ContentNode {
+extension HiddenAccessibilityAttribute where Self: ContentNode {
     
     internal func mutate(ariahidden value: AttributeData) -> Self {
         return self.mutate(key: "aria-hidden", value: value)
     }
 }
 
-extension AriaHiddenAttribute where Self: EmptyNode {
+extension HiddenAccessibilityAttribute where Self: EmptyNode {
     
     internal func mutate(ariahidden value: AttributeData) -> Self {
         return self.mutate(key: "aria-hidden", value: value)
@@ -522,26 +567,70 @@ extension AriaShortcutsAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with accessibility handler.
+/// A type that provides the `accessibilityLabel` modifier.
 @_documentation(visibility: internal)
-public protocol AriaLabelAttribute: Attribute {
+public protocol LabelAccessibilityAttribute: Attribute {
     
-    /// The function represents the html-attribute 'aria-label'.
+    /// Indicate a label for the current element.
     ///
-    /// ```html
-    /// <tag aria-label="" />
+    /// ```swift
+    /// Button {
+    ///     Vector {
+    ///        Path {
+    ///        }
+    ///        .draw("M...")
+    ///     }
+    /// }
+    /// .accessibilityLabel("Lorem ipsum")
     /// ```
-    func aria(label value: String) -> Self
+    /// - Parameter value: The label to describe the element.
+    ///
+    /// - Returns: The element
+    func accessibilityLabel(_ value: String) -> Self
+    
+    /// Indicate a localized label for the current element.
+    ///
+    /// ```swift
+    /// Button {
+    ///     Vector {
+    ///        Path {
+    ///        }
+    ///        .draw("M...")
+    ///     }
+    /// }
+    /// .accessibilityLabel("Lorem ipsum")
+    /// ```
+    /// - Parameter value: The label to describe the element.
+    ///
+    /// - Returns: The element
+    func accessibilityLabel(_ localized: LocalizedStringKey, tableName: String?) -> Self
+    
+    /// Indicate a label for the current element.
+    ///
+    /// ```swift
+    /// Button {
+    ///     Vector {
+    ///        Path {
+    ///        }
+    ///        .draw("M...")
+    ///     }
+    /// }
+    /// .accessibilityLabel(verbatim: "Lorem ipsum")
+    /// ```
+    /// - Parameter value: The label to describe the element.
+    ///
+    /// - Returns: The element
+    func accessibilityLabel(verbatim value: String) -> Self
 }
 
-extension AriaLabelAttribute where Self: ContentNode {
+extension LabelAccessibilityAttribute where Self: ContentNode {
     
     internal func mutate(arialabel value: AttributeData) -> Self {
         return self.mutate(key: "aria-label", value: value)
     }
 }
 
-extension AriaLabelAttribute where Self: EmptyNode {
+extension LabelAccessibilityAttribute where Self: EmptyNode {
     
     internal func mutate(arialabel value: AttributeData) -> Self {
         return self.mutate(key: "aria-label", value: value)
@@ -574,78 +663,96 @@ extension AriaLabeledAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with accessibility handler.
+/// A type that provides the `accessibilityLevel` modifier.
 @_documentation(visibility: internal)
-public protocol AriaLevelAttribute: Attribute {
+public protocol LevelAccessibilityAttribute: Attribute {
     
-    /// The function represents the html-attribute 'aria-level'.
+    /// Announce the hierarchical level of the element.
     ///
-    /// ```html
-    /// <tag aria-level="" />
+    /// ```swift
+    /// Division {
+    ///     "Lorem ipsum"
+    /// }
+    /// .role(.heading)
+    /// .accessibilityLevel(2)
     /// ```
-    func aria(level value: Int) -> Self
+    /// - Parameter value: The level the element is at.
+    ///
+    /// - Returns: The element
+    func accessibilityLevel(_ value: Int) -> Self
 }
 
-extension AriaLevelAttribute where Self: ContentNode {
+extension LevelAccessibilityAttribute where Self: ContentNode {
     
     internal func mutate(arialevel value: AttributeData) -> Self {
         return self.mutate(key: "aria-level", value: value)
     }
 }
 
-extension AriaLevelAttribute where Self: EmptyNode {
+extension LevelAccessibilityAttribute where Self: EmptyNode {
     
     internal func mutate(arialevel value: AttributeData) -> Self {
         return self.mutate(key: "aria-level", value: value)
     }
 }
 
-/// The protocol provides the element with accessibility handler.
+/// A type that provides the `accessibilityLive` modifier.
 @_documentation(visibility: internal)
-public protocol AriaLiveAttribute: Attribute {
+public protocol LiveAccessibilityAttribute: Attribute {
     
-    /// The function represents the html-attribute 'aria-live'.
+    /// Indicate that the element will be updated and how.
     ///
-    /// ```html
-    /// <tag aria-live="" />
+    /// ```swift
+    /// Division {
+    /// }
+    /// .accessibilityLive(.polite)
     /// ```
-    func aria(live value: Values.Accessibility.Live) -> Self
+    /// - Parameter value: The manner on how to notify.
+    ///
+    /// - Returns: The element
+    func accessibilityLive(_ value: Values.Accessibility.Live) -> Self
 }
 
-extension AriaLiveAttribute where Self: ContentNode {
+extension LiveAccessibilityAttribute where Self: ContentNode {
     
     internal func mutate(arialive value: AttributeData) -> Self {
         return self.mutate(key: "aria-live", value: value)
     }
 }
 
-extension AriaLiveAttribute where Self: EmptyNode {
+extension LiveAccessibilityAttribute where Self: EmptyNode {
     
     internal func mutate(arialive value: AttributeData) -> Self {
         return self.mutate(key: "aria-live", value: value)
     }
 }
 
-/// The protocol provides the element with accessibility handler.
+/// A type that provides the `accessibilityModal` modifier.
 @_documentation(visibility: internal)
-public protocol AriaModalAttribute: Attribute {
+public protocol ModalAccessibilityAttribute: Attribute {
     
-    /// The function represents the html-attribute 'aria-modal'.
-    ///
-    /// ```html
-    /// <tag aria-modal="" />
+    /// Indicate whether an element is modal when displayed.
+    /// 
+    /// ```swift
+    /// Divsion {
+    /// }
+    /// .role(.dialog)
+    /// .accessibilityModal(true)
     /// ```
-    func aria(modal value: Bool) -> Self
+    /// - Parameter value: Whether the element is a modal.
+    ///
+    /// - Returns: The element
+    func accessibilityModal(_ value: Bool) -> Self
 }
 
-extension AriaModalAttribute where Self: ContentNode {
+extension ModalAccessibilityAttribute where Self: ContentNode {
     
     internal func mutate(ariamodal value: AttributeData) -> Self {
         return self.mutate(key: "aria-modal", value: value)
     }
 }
 
-extension AriaModalAttribute where Self: EmptyNode {
+extension ModalAccessibilityAttribute where Self: EmptyNode {
     
     internal func mutate(ariamodal value: AttributeData) -> Self {
         return self.mutate(key: "aria-modal", value: value)
@@ -704,26 +811,32 @@ extension AriaMultiselectAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with accessibility handler.
+/// A type that provides the `accessibilityOrientation` modifier.
 @_documentation(visibility: internal)
-public protocol AriaOrientationAttribute: Attribute {
+public protocol OrientationAccessibilityAttribute: Attribute {
     
-    /// The function represents the html-attribute 'aria-orientation'.
+    /// Indicate the orientation of the element.
     ///
-    /// ```html
-    /// <tag aria-orientation="" />
+    /// ```swift
+    /// Division {
+    /// }
+    /// .role(.scrollbar)
+    /// .accessibilityOrientation(.horizontal)
     /// ```
-    func aria(orientation value: Values.Accessibility.Orientation) -> Self
+    /// - Parameter value: The orientation the element is in.
+    ///
+    /// - Returns: The element
+    func accessibilityOrientation(_ value: Values.Accessibility.Orientation) -> Self
 }
 
-extension AriaOrientationAttribute where Self: ContentNode {
+extension OrientationAccessibilityAttribute where Self: ContentNode {
     
     internal func mutate(ariaorientation value: AttributeData) -> Self {
         return self.mutate(key: "aria-orientation", value: value)
     }
 }
 
-extension AriaOrientationAttribute where Self: EmptyNode {
+extension OrientationAccessibilityAttribute where Self: EmptyNode {
     
     internal func mutate(ariaorientation value: AttributeData) -> Self {
         return self.mutate(key: "aria-orientation", value: value)
@@ -756,26 +869,59 @@ extension AriaOwnsAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with accessibility handler.
+/// A type that provides the `accessibilityHint` modifier.
 @_documentation(visibility: internal)
-public protocol AriaPlaceholderAttribute: Attribute {
+public protocol HintAccessibilityAttribute: Attribute {
     
-    /// The function represents the html-attribute 'aria-placeholder'.
-    ///
-    /// ```html
-    /// <tag aria-placeholder="" />
+    /// Provide a short hint.
+    /// 
+    /// ```swift
+    /// Division {
+    /// }
+    /// .role(.textbox)
+    /// .accessibilityHint("Lorem ipsum")
     /// ```
-    func aria(placeholder value: String) -> Self
+    /// - Parameter value: A hint to give more context.
+    ///
+    /// - Returns: The element
+    func accessibilityHint(_ value: String) -> Self
+    
+    /// Provide a localized short hint.
+    /// 
+    /// ```swift
+    /// Division {
+    /// }
+    /// .role(.textbox)
+    /// .accessibilityHint("Lorem ipsum")
+    /// ```
+    /// - Parameter localizedKey: The string key to be translated.
+    /// - Parameter tableName: The translation table to look in.
+    ///
+    /// - Returns: The element
+    func accessibilityHint(_ localized: LocalizedStringKey, tableName: String?) -> Self
+    
+    /// Provide a short hint without localization.
+    /// 
+    /// ```swift
+    /// Division {
+    /// }
+    /// .role(.textbox)
+    /// .accessibilityHint(verbatim: "Lorem ipsum")
+    /// ```
+    /// - Parameter value: A hint to give more context.
+    ///
+    /// - Returns: The element
+    func accessibilityHint(verbatim value: String) -> Self
 }
 
-extension AriaPlaceholderAttribute where Self: ContentNode {
+extension HintAccessibilityAttribute where Self: ContentNode {
     
     internal func mutate(ariaplaceholder value: AttributeData) -> Self {
         return self.mutate(key: "aria-placeholder", value: value)
     }
 }
 
-extension AriaPlaceholderAttribute where Self: EmptyNode {
+extension HintAccessibilityAttribute where Self: EmptyNode {
     
     internal func mutate(ariaplaceholder value: AttributeData) -> Self {
         return self.mutate(key: "aria-placeholder", value: value)
@@ -834,26 +980,33 @@ extension AriaPressedAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with accessibility handler.
+/// A type that provides the `accessibilityReadonly` modifier.
 @_documentation(visibility: internal)
-public protocol AriaReadonlyAttribute: Attribute {
+public protocol ReadOnlyAccessibilityAttribute: Attribute {
     
-    /// The function represents the html-attribute 'aria-readonly'.
+    /// Indicate the element as read only.
     ///
-    /// ```html
-    /// <tag aria-readonly="" />
+    /// ```swift
+    /// Division {
+    /// }
+    /// .role(.checkbox)
+    /// .accessibilityReadonly(true)
     /// ```
-    func aria(readonly value: Bool) -> Self
+    ///
+    /// - Parameter value: Whether the element should be read only.
+    ///
+    /// - Returns: The element
+    func accessibilityReadonly(_ value: Bool) -> Self
 }
 
-extension AriaReadonlyAttribute where Self: ContentNode {
+extension ReadOnlyAccessibilityAttribute where Self: ContentNode {
     
     internal func mutate(ariareadonly value: AttributeData) -> Self {
         return self.mutate(key: "aria-readonly", value: value)
     }
 }
 
-extension AriaReadonlyAttribute where Self: EmptyNode {
+extension ReadOnlyAccessibilityAttribute where Self: EmptyNode {
     
     internal func mutate(ariareadonly value: AttributeData) -> Self {
         return self.mutate(key: "aria-readonly", value: value)
@@ -886,26 +1039,37 @@ extension AriaRelevantAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with accessibility handler.
+/// A type that provides the `accessibilityRequired` modifier.
 @_documentation(visibility: internal)
-public protocol AriaRequiredAttribute: Attribute {
+public protocol RequiredAccessibilityAttribute: Attribute {
     
-    /// The function represents the html-attribute 'aria-required'.
+    /// Indicate that input is required on the element.
     ///
-    /// ```html
-    /// <tag aria-required="" />
+    /// ```swift
+    /// UnorderedList {
+    ///    ListItem {
+    ///       "Lorem ipsum"
+    ///    }
+    ///    .role(radio)
+    /// }
+    /// .role(.radiogroup)
+    /// .accessibilityRequired(true)
     /// ```
-    func aria(required value: Bool) -> Self
+    ///
+    /// - Parameter condition: TODO
+    ///
+    /// - Returns: The element
+    func accessibilityRequired(_ value: Bool) -> Self
 }
 
-extension AriaRequiredAttribute where Self: ContentNode {
+extension RequiredAccessibilityAttribute where Self: ContentNode {
     
     internal func mutate(ariarequired value: AttributeData) -> Self {
         return self.mutate(key: "aria-required", value: value)
     }
 }
 
-extension AriaRequiredAttribute where Self: EmptyNode {
+extension RequiredAccessibilityAttribute where Self: EmptyNode {
     
     internal func mutate(ariarequired value: AttributeData) -> Self {
         return self.mutate(key: "aria-required", value: value)
@@ -1068,26 +1232,37 @@ extension AriaSetSizeAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with accessibility handler.
+/// A type that provides the `accessibilitySort` modifier.
 @_documentation(visibility: internal)
-public protocol AriaSortAttribute: Attribute {
+public protocol SortAccessibilityAttribute: Attribute {
     
-    /// The function represents the html-attribute 'aria-sort'.
+    /// Indicate the direction of a sort order.
     ///
-    /// ```html
-    /// <tag aria-sort="" />
+    /// ```swift
+    /// Table {
+    ///    TableRow {
+    ///       HeaderCell {
+    ///          "Lorem ipsum"
+    ///       }
+    ///       .accessibilitySort(.ascending)
+    ///    }
+    /// }
     /// ```
-    func aria(sort value: Values.Accessibility.Sort) -> Self
+    ///
+    /// - Parameter value: The direction it is sort.
+    ///
+    /// - Returns: The element
+    func accessibilitySort(_ value: Values.Accessibility.Sort) -> Self
 }
 
-extension AriaSortAttribute where Self: ContentNode {
+extension SortAccessibilityAttribute where Self: ContentNode {
     
     internal func mutate(ariasort value: AttributeData) -> Self {
         return self.mutate(key: "aria-sort", value: value)
     }
 }
 
-extension AriaSortAttribute where Self: EmptyNode {
+extension SortAccessibilityAttribute where Self: EmptyNode {
     
     internal func mutate(ariasort value: AttributeData) -> Self {
         return self.mutate(key: "aria-sort", value: value)
