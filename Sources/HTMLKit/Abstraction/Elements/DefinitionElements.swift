@@ -433,8 +433,17 @@ extension TermName: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityOwns(_:) modifier instead.")
     public func aria(owns value: String) -> TermName {
         return mutate(ariaowns: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityOwns(_ ids: [String]) -> TermName {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityOwns(_ ids: String...) -> TermName {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
     }
     
     public func aria(relevant value: Values.Accessibility.Relevant) -> TermName {
@@ -870,8 +879,17 @@ extension TermDefinition: GlobalAttributes, GlobalEventAttributes, GlobalAriaAtt
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityOwns(_:) modifier instead.")
     public func aria(owns value: String) -> TermDefinition {
         return mutate(ariaowns: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityOwns(_ ids: [String]) -> TermDefinition {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityOwns(_ ids: String...) -> TermDefinition {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
     }
     
     public func aria(relevant value: Values.Accessibility.Relevant) -> TermDefinition {

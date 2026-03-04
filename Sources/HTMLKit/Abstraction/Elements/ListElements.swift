@@ -442,8 +442,17 @@ extension ListItem: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityOwns(_:) modifier instead.")
     public func aria(owns value: String) -> ListItem {
         return mutate(ariaowns: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityOwns(_ ids: [String]) -> ListItem {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityOwns(_ ids: String...) -> ListItem {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
     }
     
     public func aria(relevant value: Values.Accessibility.Relevant) -> ListItem {

@@ -454,8 +454,17 @@ extension Caption: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityOwns(_:) modifier instead.")
     public func aria(owns value: String) -> Caption {
         return mutate(ariaowns: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityOwns(_ ids: [String]) -> Caption {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityOwns(_ ids: String...) -> Caption {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
     }
     
     public func aria(relevant value: Values.Accessibility.Relevant) -> Caption {
@@ -1544,8 +1553,17 @@ extension TableBody: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityOwns(_:) modifier instead.")
     public func aria(owns value: String) -> TableBody {
         return mutate(ariaowns: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityOwns(_ ids: [String]) -> TableBody {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityOwns(_ ids: String...) -> TableBody {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
     }
     
     public func aria(relevant value: Values.Accessibility.Relevant) -> TableBody {
@@ -1997,8 +2015,17 @@ extension TableHead: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityOwns(_:) modifier instead.")
     public func aria(owns value: String) -> TableHead {
         return mutate(ariaowns: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityOwns(_ ids: [String]) -> TableHead {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityOwns(_ ids: String...) -> TableHead {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
     }
     
     public func aria(relevant value: Values.Accessibility.Relevant) -> TableHead {
@@ -2442,8 +2469,17 @@ extension TableFoot: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityOwns(_:) modifier instead.")
     public func aria(owns value: String) -> TableFoot {
         return mutate(ariaowns: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityOwns(_ ids: [String]) -> TableFoot {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityOwns(_ ids: String...) -> TableFoot {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
     }
     
     public func aria(relevant value: Values.Accessibility.Relevant) -> TableFoot {
@@ -2889,8 +2925,17 @@ extension TableRow: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityOwns(_:) modifier instead.")
     public func aria(owns value: String) -> TableRow {
         return mutate(ariaowns: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityOwns(_ ids: [String]) -> TableRow {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityOwns(_ ids: String...) -> TableRow {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
     }
     
     public func aria(relevant value: Values.Accessibility.Relevant) -> TableRow {
@@ -3342,8 +3387,17 @@ extension DataCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityOwns(_:) modifier instead.")
     public func aria(owns value: String) -> DataCell {
         return mutate(ariaowns: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityOwns(_ ids: [String]) -> DataCell {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityOwns(_ ids: String...) -> DataCell {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
     }
     
     public func aria(relevant value: Values.Accessibility.Relevant) -> DataCell {
@@ -3798,8 +3852,17 @@ extension HeaderCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityOwns(_:) modifier instead.")
     public func aria(owns value: String) -> HeaderCell {
         return mutate(ariaowns: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityOwns(_ ids: [String]) -> HeaderCell {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityOwns(_ ids: String...) -> HeaderCell {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
     }
     
     public func aria(relevant value: Values.Accessibility.Relevant) -> HeaderCell {

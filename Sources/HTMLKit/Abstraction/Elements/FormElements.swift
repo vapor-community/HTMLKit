@@ -936,8 +936,17 @@ extension Label: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityOwns(_:) modifier instead.")
     public func aria(owns value: String) -> Label {
         return mutate(ariaowns: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityOwns(_ ids: [String]) -> Label {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityOwns(_ ids: String...) -> Label {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
     }
     
     public func aria(relevant value: Values.Accessibility.Relevant) -> Label {
@@ -1847,8 +1856,17 @@ extension TextArea: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityOwns(_:) modifier instead.")
     public func aria(owns value: String) -> TextArea {
         return mutate(ariaowns: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityOwns(_ ids: [String]) -> TextArea {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityOwns(_ ids: String...) -> TextArea {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
     }
     
     public func aria(relevant value: Values.Accessibility.Relevant) -> TextArea {
@@ -2336,8 +2354,17 @@ extension Button: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityOwns(_:) modifier instead.")
     public func aria(owns value: String) -> Button {
         return mutate(ariaowns: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityOwns(_ ids: [String]) -> Button {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityOwns(_ ids: String...) -> Button {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
     }
     
     public func aria(relevant value: Values.Accessibility.Relevant) -> Button {
@@ -2804,8 +2831,17 @@ extension Fieldset: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityOwns(_:) modifier instead.")
     public func aria(owns value: String) -> Fieldset {
         return mutate(ariaowns: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityOwns(_ ids: [String]) -> Fieldset {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityOwns(_ ids: String...) -> Fieldset {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
     }
     
     public func aria(relevant value: Values.Accessibility.Relevant) -> Fieldset {

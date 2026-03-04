@@ -1,5 +1,5 @@
 @_documentation(visibility: internal)
-public typealias GlobalAriaAttributes = AriaAtomicAttribute & AriaBusyAttribute & AriaControlsAttribute & AriaCurrentAttribute & AriaDescribedAttribute & AriaDetailsAttribute & DisabledAccessibilityAttribute & AriaErrorMessageAttribute & FlowAccessibilityAttribute & AriaPopupAttribute & HiddenAccessibilityAttribute & AriaInvalidAttribute & AriaShortcutsAttribute & LabelAccessibilityAttribute & AriaLabeledAttribute & LiveAccessibilityAttribute & AriaOwnsAttribute & AriaRelevantAttribute & AriaRoleDescriptionAttribute
+public typealias GlobalAriaAttributes = AriaAtomicAttribute & AriaBusyAttribute & AriaControlsAttribute & AriaCurrentAttribute & AriaDescribedAttribute & AriaDetailsAttribute & DisabledAccessibilityAttribute & AriaErrorMessageAttribute & FlowAccessibilityAttribute & AriaPopupAttribute & HiddenAccessibilityAttribute & AriaInvalidAttribute & AriaShortcutsAttribute & LabelAccessibilityAttribute & AriaLabeledAttribute & LiveAccessibilityAttribute & OwnsAccessibilityAttribute & AriaRelevantAttribute & AriaRoleDescriptionAttribute
 
 /// The protocol provides the element with accessibility handler.
 @_documentation(visibility: internal)
@@ -843,26 +843,43 @@ extension OrientationAccessibilityAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with accessibility handler.
+/// A type that provides the `accessibilityOwns` modifier.
 @_documentation(visibility: internal)
-public protocol AriaOwnsAttribute: Attribute {
+public protocol OwnsAccessibilityAttribute: Attribute {
     
-    /// The function represents the html-attribute 'aria-owns'.
+    /// Identifies elements...
     ///
-    /// ```html
-    /// <tag aria-owns="" />
+    /// ```swift
+    /// Division {
+    /// }
+    /// .accessibilityOwns(["id", "id"])
     /// ```
-    func aria(owns value: String) -> Self
+    /// - Parameter ids: The identifiers to associate the element with.
+    ///
+    /// - Returns: The element
+    func accessibilityOwns(_ ids: [String]) -> Self
+    
+    /// Identifies elements...
+    ///
+    /// ```swift
+    /// Division {
+    /// }
+    /// .accessibilityOwns("id", "id")
+    /// ```
+    /// - Parameter ids: The identifiers to associate the element with.
+    ///
+    /// - Returns: The element
+    func accessibilityOwns(_ ids: String...) -> Self
 }
 
-extension AriaOwnsAttribute where Self: ContentNode {
+extension OwnsAccessibilityAttribute where Self: ContentNode {
     
     internal func mutate(ariaowns value: AttributeData) -> Self {
         return self.mutate(key: "aria-owns", value: value)
     }
 }
 
-extension AriaOwnsAttribute where Self: EmptyNode {
+extension OwnsAccessibilityAttribute where Self: EmptyNode {
     
     internal func mutate(ariaowns value: AttributeData) -> Self {
         return self.mutate(key: "aria-owns", value: value)
