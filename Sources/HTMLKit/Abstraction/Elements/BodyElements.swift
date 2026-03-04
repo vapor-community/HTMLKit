@@ -13297,7 +13297,7 @@ public struct Division: ContentNode, HtmlElement, BodyElement, FormElement, Figu
     }
 }
 
-extension Division: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, OrientationAccessibilityAttribute, RequiredAccessibilityAttribute, ReadOnlyAccessibilityAttribute, ModalAccessibilityAttribute, LevelAccessibilityAttribute, HintAccessibilityAttribute {  
+extension Division: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, OrientationAccessibilityAttribute, RequiredAccessibilityAttribute, ReadOnlyAccessibilityAttribute, ModalAccessibilityAttribute, LevelAccessibilityAttribute, HintAccessibilityAttribute, PositionAccessibilityAttribute {  
 
     public func accessKey(_ value: Character) -> Division {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -13701,6 +13701,10 @@ extension Division: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
     
     public func accessibilityHint(verbatim value: String) -> Division {
         return mutate(ariaplaceholder: .init(value, context: .tainted(.html))) 
+    }
+    
+    public func accessibilityPosition(_ index: Int, in size: Int) -> Division {
+        return mutate(ariaposinset: .init(index, context: .trusted)).mutate(ariasetsize: .init(size, context: .trusted))
     }
 }
 

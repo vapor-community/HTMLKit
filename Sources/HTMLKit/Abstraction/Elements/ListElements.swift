@@ -77,7 +77,7 @@ public struct ListItem: ContentNode, ListElement {
     }
 }
 
-extension ListItem: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, ValueAttribute, RequiredAccessibilityAttribute {    
+extension ListItem: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, ValueAttribute, RequiredAccessibilityAttribute, PositionAccessibilityAttribute {    
     
     public func accessKey(_ value: Character) -> ListItem {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -465,5 +465,9 @@ extension ListItem: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
     
     public func accessibilityRequired(_ value: Bool = true) -> ListItem {
         return mutate(ariarequired: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityPosition(_ index: Int, in size: Int) -> ListItem {
+        return mutate(ariaposinset: .init(index, context: .trusted)).mutate(ariasetsize: .init(size, context: .trusted))
     }
 }

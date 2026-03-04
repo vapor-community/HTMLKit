@@ -945,29 +945,49 @@ extension HintAccessibilityAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with accessibility handler.
+/// A type that provides the `accessibilityPosition` modifier.
 @_documentation(visibility: internal)
-public protocol AriaPositionInsetAttribute: Attribute {
+public protocol PositionAccessibilityAttribute: Attribute {
     
-    /// The function represents the html-attribute 'aria-posinset'.
-    ///
-    /// ```html
-    /// <tag aria-posinset="" />
+    /// Indicate the position of the element in a set.
+    ///  
+    /// ```swift
+    /// UnorderedList {
+    ///    ListItem {
+    ///       "Lorem ipsum"
+    ///    }
+    ///    .role(.option)
+    ///    .accessibilityPosition(5, in: 10)
+    /// }
+    /// .role(listbox)
     /// ```
-    func aria(positionInset_ value: Int) -> Self
+    /// 
+    /// - Parameter index: The position index the element is in.
+    /// - Parameter size: The total number of items in the set.
+    /// 
+    /// - Returns: The element
+    func accessibilityPosition(_ index: Int, in size: Int) -> Self
 }
 
-extension AriaPositionInsetAttribute where Self: ContentNode {
+extension PositionAccessibilityAttribute where Self: ContentNode {
     
     internal func mutate(ariaposinset value: AttributeData) -> Self {
         return self.mutate(key: "aria-posinset", value: value)
     }
+    
+    internal func mutate(ariasetsize value: AttributeData) -> Self {
+        return self.mutate(key: "aria-setsize", value: value)
+    }
 }
 
-extension AriaPositionInsetAttribute where Self: EmptyNode {
+extension PositionAccessibilityAttribute where Self: EmptyNode {
     
     internal func mutate(ariaposinset value: AttributeData) -> Self {
         return self.mutate(key: "aria-posinset", value: value)
+    }
+    
+    internal func mutate(ariasetsize value: AttributeData) -> Self {
+        return self.mutate(key: "aria-setsize", value: value)
     }
 }
 
@@ -1220,32 +1240,6 @@ extension AriaSelectedAttribute where Self: EmptyNode {
     
     internal func mutate(ariaselected value: AttributeData) -> Self {
         return self.mutate(key: "aria-selected", value: value)
-    }
-}
-
-/// The protocol provides the element with accessibility handler.
-@_documentation(visibility: internal)
-public protocol AriaSetSizeAttribute: Attribute {
-    
-    /// The function represents the html-attribute 'aria-setsize'.
-    ///
-    /// ```html
-    /// <tag aria-setsize="" />
-    /// ```
-    func aria(setSize value: Int) -> Self
-}
-
-extension AriaSetSizeAttribute where Self: ContentNode {
-    
-    internal func mutate(ariasetsize value: AttributeData) -> Self {
-        return self.mutate(key: "aria-setsize", value: value)
-    }
-}
-
-extension AriaSetSizeAttribute where Self: EmptyNode {
-    
-    internal func mutate(ariasetsize value: AttributeData) -> Self {
-        return self.mutate(key: "aria-setsize", value: value)
     }
 }
 
