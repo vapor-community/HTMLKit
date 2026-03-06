@@ -762,26 +762,32 @@ extension ModalAccessibilityAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with accessibility handler.
+/// A type that provides the `accessibilityMultiline` modifier.
 @_documentation(visibility: internal)
-public protocol AriaMultilineAttribute: Attribute {
+public protocol MultilineAccessibilityAttribute: Attribute {
     
-    /// The function represents the html-attribute 'aria-multiline'.
-    ///
-    /// ```html
-    /// <tag aria-multiline="" />
+    /// Indicate whether a text control accepts multiple lines or a single line.
+    /// 
+    /// ```swift
+    /// Division {
+    /// }
+    /// .role(.textbox)
+    /// .accessibilityMultiline(true)
     /// ```
-    func aria(multiline value: Bool) -> Self
+    /// - Parameter value: Whether the text control accepts multiple lines.
+    ///
+    /// - Returns: The element
+    func accessibilityMultiline(_ value: Bool) -> Self
 }
 
-extension AriaMultilineAttribute where Self: ContentNode {
+extension MultilineAccessibilityAttribute where Self: ContentNode {
     
     internal func mutate(ariamultiline value: AttributeData) -> Self {
         return self.mutate(key: "aria-multiline", value: value)
     }
 }
 
-extension AriaMultilineAttribute where Self: EmptyNode {
+extension MultilineAccessibilityAttribute where Self: EmptyNode {
     
     internal func mutate(ariamultiline value: AttributeData) -> Self {
         return self.mutate(key: "aria-multiline", value: value)
