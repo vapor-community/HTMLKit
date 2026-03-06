@@ -332,7 +332,12 @@ extension FigureCaption: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttr
         return mutate(ariaatomic: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityBusy(_:) modifier instead.")
     public func aria(busy value: Bool) -> FigureCaption {
+        return mutate(ariabusy: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityBusy(_ value: Bool = true) -> FigureCaption {
         return mutate(ariabusy: .init(value, context: .trusted))
     }
     

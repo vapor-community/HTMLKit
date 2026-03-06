@@ -1,5 +1,5 @@
 @_documentation(visibility: internal)
-public typealias GlobalAriaAttributes = AriaAtomicAttribute & AriaBusyAttribute & AriaControlsAttribute & AriaCurrentAttribute & AriaDescribedAttribute & AriaDetailsAttribute & DisabledAccessibilityAttribute & FlowAccessibilityAttribute & AriaPopupAttribute & HiddenAccessibilityAttribute & InvalidAccessibilityAttribute & AriaShortcutsAttribute & LabelAccessibilityAttribute & AriaLabeledAttribute & LiveAccessibilityAttribute & OwnsAccessibilityAttribute & AriaRelevantAttribute & AriaRoleDescriptionAttribute
+public typealias GlobalAriaAttributes = AriaAtomicAttribute & BusyAccessibilityAttribute & AriaControlsAttribute & AriaCurrentAttribute & AriaDescribedAttribute & AriaDetailsAttribute & DisabledAccessibilityAttribute & FlowAccessibilityAttribute & AriaPopupAttribute & HiddenAccessibilityAttribute & InvalidAccessibilityAttribute & AriaShortcutsAttribute & LabelAccessibilityAttribute & AriaLabeledAttribute & LiveAccessibilityAttribute & OwnsAccessibilityAttribute & AriaRelevantAttribute & AriaRoleDescriptionAttribute
 
 /// The protocol provides the element with accessibility handler.
 @_documentation(visibility: internal)
@@ -80,26 +80,32 @@ extension AriaAutoCompleteAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with accessibility handler.
+/// A type that provides the `accessibilityBusy` modifier.
 @_documentation(visibility: internal)
-public protocol AriaBusyAttribute: Attribute {
+public protocol BusyAccessibilityAttribute: Attribute {
     
-    /// The function represents the html-attribute 'aria-busy'.
+    /// Indicate an element is occupied and should be announced after its finished.
     ///
-    /// ```html
-    /// <tag aria-busy="" />
+    /// ```swift
+    /// Division {
+    /// }
+    /// .accessibilityBusy(false)
     /// ```
-    func aria(busy value: Bool) -> Self
+    ///
+    /// - Parameter value: Whether the element is occupied.
+    ///
+    /// - Returns: The element
+    func accessibilityBusy(_ value: Bool) -> Self
 }
 
-extension AriaBusyAttribute where Self: ContentNode {
+extension BusyAccessibilityAttribute where Self: ContentNode {
     
     internal func mutate(ariabusy value: AttributeData) -> Self {
         return self.mutate(key: "aria-busy", value: value)
     }
 }
 
-extension AriaBusyAttribute where Self: EmptyNode {
+extension BusyAccessibilityAttribute where Self: EmptyNode {
     
     internal func mutate(ariabusy value: AttributeData) -> Self {
         return self.mutate(key: "aria-busy", value: value)

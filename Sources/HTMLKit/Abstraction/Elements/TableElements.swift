@@ -357,7 +357,12 @@ extension Caption: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
         return mutate(ariaatomic: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityBusy(_:) modifier instead.")
     public func aria(busy value: Bool) -> Caption {
+        return mutate(ariabusy: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityBusy(_ value: Bool = true) -> Caption {
         return mutate(ariabusy: .init(value, context: .trusted))
     }
     
@@ -1471,7 +1476,12 @@ extension TableBody: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(ariaatomic: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityBusy(_:) modifier instead.")
     public func aria(busy value: Bool) -> TableBody {
+        return mutate(ariabusy: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityBusy(_ value: Bool = true) -> TableBody {
         return mutate(ariabusy: .init(value, context: .trusted))
     }
     
@@ -1948,7 +1958,12 @@ extension TableHead: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(ariaatomic: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityBusy(_:) modifier instead.")
     public func aria(busy value: Bool) -> TableHead {
+        return mutate(ariabusy: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityBusy(_ value: Bool = true) -> TableHead {
         return mutate(ariabusy: .init(value, context: .trusted))
     }
     
@@ -2417,7 +2432,12 @@ extension TableFoot: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(ariaatomic: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityBusy(_:) modifier instead.")
     public func aria(busy value: Bool) -> TableFoot {
+        return mutate(ariabusy: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityBusy(_ value: Bool = true) -> TableFoot {
         return mutate(ariabusy: .init(value, context: .trusted))
     }
     
@@ -2888,7 +2908,12 @@ extension TableRow: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(ariaatomic: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityBusy(_:) modifier instead.")
     public func aria(busy value: Bool) -> TableRow {
+        return mutate(ariabusy: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityBusy(_ value: Bool = true) -> TableRow {
         return mutate(ariabusy: .init(value, context: .trusted))
     }
     
@@ -3365,7 +3390,12 @@ extension DataCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(ariaatomic: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityBusy(_:) modifier instead.")
     public func aria(busy value: Bool) -> DataCell {
+        return mutate(ariabusy: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityBusy(_ value: Bool = true) -> DataCell {
         return mutate(ariabusy: .init(value, context: .trusted))
     }
     
@@ -3845,7 +3875,12 @@ extension HeaderCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
         return mutate(ariaatomic: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityBusy(_:) modifier instead.")
     public func aria(busy value: Bool) -> HeaderCell {
+        return mutate(ariabusy: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityBusy(_ value: Bool = true) -> HeaderCell {
         return mutate(ariabusy: .init(value, context: .trusted))
     }
     

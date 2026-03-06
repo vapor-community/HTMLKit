@@ -334,7 +334,12 @@ extension RubyText: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(ariaatomic: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityBusy(_:) modifier instead.")
     public func aria(busy value: Bool) -> RubyText {
+        return mutate(ariabusy: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityBusy(_ value: Bool = true) -> RubyText {
         return mutate(ariabusy: .init(value, context: .trusted))
     }
     
@@ -800,7 +805,12 @@ extension RubyPronunciation: GlobalAttributes, GlobalEventAttributes, GlobalAria
         return mutate(ariaatomic: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityBusy(_:) modifier instead.")
     public func aria(busy value: Bool) -> RubyPronunciation {
+        return mutate(ariabusy: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityBusy(_ value: Bool = true) -> RubyPronunciation {
         return mutate(ariabusy: .init(value, context: .trusted))
     }
     

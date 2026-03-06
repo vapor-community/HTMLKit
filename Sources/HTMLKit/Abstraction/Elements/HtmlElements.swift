@@ -651,7 +651,12 @@ extension Body: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, W
         return mutate(ariaatomic: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityBusy(_:) modifier instead.")
     public func aria(busy value: Bool) -> Body {
+        return mutate(ariabusy: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityBusy(_ value: Bool = true) -> Body {
         return mutate(ariabusy: .init(value, context: .trusted))
     }
     

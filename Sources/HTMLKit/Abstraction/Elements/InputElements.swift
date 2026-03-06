@@ -360,7 +360,12 @@ extension OptionGroup: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
         return mutate(ariaatomic: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityBusy(_:) modifier instead.")
     public func aria(busy value: Bool) -> OptionGroup {
+        return mutate(ariabusy: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityBusy(_ value: Bool = true) -> OptionGroup {
         return mutate(ariabusy: .init(value, context: .trusted))
     }
     
@@ -863,7 +868,12 @@ extension Option: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return mutate(ariaatomic: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityBusy(_:) modifier instead.")
     public func aria(busy value: Bool) -> Option {
+        return mutate(ariabusy: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityBusy(_ value: Bool = true) -> Option {
         return mutate(ariabusy: .init(value, context: .trusted))
     }
     
@@ -1332,7 +1342,12 @@ extension Legend: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
         return mutate(ariaatomic: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityBusy(_:) modifier instead.")
     public func aria(busy value: Bool) -> Legend {
+        return mutate(ariabusy: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityBusy(_ value: Bool = true) -> Legend {
         return mutate(ariabusy: .init(value, context: .trusted))
     }
     
@@ -1793,7 +1808,12 @@ extension Summary: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
         return mutate(ariaatomic: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityBusy(_:) modifier instead.")
     public func aria(busy value: Bool) -> Summary {
+        return mutate(ariabusy: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityBusy(_ value: Bool = true) -> Summary {
         return mutate(ariabusy: .init(value, context: .trusted))
     }
     
