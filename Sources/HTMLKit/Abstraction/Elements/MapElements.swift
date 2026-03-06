@@ -404,6 +404,7 @@ extension Area: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, A
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> Area {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
@@ -434,8 +435,22 @@ extension Area: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, A
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(invalid value: Values.Accessibility.Invalid) -> Area {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> Area {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> Area {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
     }
     
     public func aria(keyShortcuts value: String) -> Area {

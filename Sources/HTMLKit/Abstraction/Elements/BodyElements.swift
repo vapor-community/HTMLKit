@@ -501,6 +501,7 @@ extension Article: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> Article {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
@@ -531,8 +532,22 @@ extension Article: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(invalid value: Values.Accessibility.Invalid) -> Article {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> Article {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> Article {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
     }
     
     public func aria(keyShortcuts value: String) -> Article {
@@ -947,6 +962,7 @@ extension Section: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> Section {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
@@ -977,8 +993,22 @@ extension Section: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(invalid value: Values.Accessibility.Invalid) -> Section {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> Section {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> Section {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
     }
     
     public func aria(keyShortcuts value: String) -> Section {
@@ -1395,6 +1425,7 @@ extension Navigation: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> Navigation {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
@@ -1425,8 +1456,22 @@ extension Navigation: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(invalid value: Values.Accessibility.Invalid) -> Navigation {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> Navigation {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> Navigation {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
     }
     
     public func aria(keyShortcuts value: String) -> Navigation {
@@ -1839,6 +1884,7 @@ extension Aside: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> Aside {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
@@ -1869,8 +1915,22 @@ extension Aside: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(invalid value: Values.Accessibility.Invalid) -> Aside {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> Aside {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> Aside {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
     }
     
     public func aria(keyShortcuts value: String) -> Aside {
@@ -2280,6 +2340,7 @@ extension Heading1: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> Heading1 {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
@@ -2310,8 +2371,22 @@ extension Heading1: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(invalid value: Values.Accessibility.Invalid) -> Heading1 {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> Heading1 {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> Heading1 {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
     }
     
     public func aria(keyShortcuts value: String) -> Heading1 {
@@ -2730,6 +2805,7 @@ extension Heading2: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> Heading2 {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
@@ -2760,8 +2836,22 @@ extension Heading2: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(invalid value: Values.Accessibility.Invalid) -> Heading2 {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> Heading2 {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> Heading2 {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
     }
     
     public func aria(keyShortcuts value: String) -> Heading2 {
@@ -3180,6 +3270,7 @@ extension Heading3: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> Heading3 {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
@@ -3210,8 +3301,22 @@ extension Heading3: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(invalid value: Values.Accessibility.Invalid) -> Heading3 {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> Heading3 {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> Heading3 {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
     }
     
     public func aria(keyShortcuts value: String) -> Heading3 {
@@ -3630,6 +3735,7 @@ extension Heading4: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> Heading4 {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
@@ -3660,8 +3766,22 @@ extension Heading4: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(invalid value: Values.Accessibility.Invalid) -> Heading4 {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> Heading4 {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> Heading4 {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
     }
     
     public func aria(keyShortcuts value: String) -> Heading4 {
@@ -4080,6 +4200,7 @@ extension Heading5: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> Heading5 {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
@@ -4110,8 +4231,22 @@ extension Heading5: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(invalid value: Values.Accessibility.Invalid) -> Heading5 {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> Heading5 {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> Heading5 {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
     }
     
     public func aria(keyShortcuts value: String) -> Heading5 {
@@ -4530,6 +4665,7 @@ extension Heading6: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> Heading6 {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
@@ -4560,8 +4696,22 @@ extension Heading6: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(invalid value: Values.Accessibility.Invalid) -> Heading6 {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> Heading6 {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> Heading6 {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
     }
     
     public func aria(keyShortcuts value: String) -> Heading6 {
@@ -4985,6 +5135,7 @@ extension HeadingGroup: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttri
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> HeadingGroup {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
@@ -5015,8 +5166,22 @@ extension HeadingGroup: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttri
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(invalid value: Values.Accessibility.Invalid) -> HeadingGroup {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> HeadingGroup {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> HeadingGroup {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
     }
     
     public func aria(keyShortcuts value: String) -> HeadingGroup {
@@ -5427,6 +5592,7 @@ extension Header: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> Header {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
@@ -5457,8 +5623,22 @@ extension Header: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(invalid value: Values.Accessibility.Invalid) -> Header {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> Header {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> Header {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
     }
     
     public func aria(keyShortcuts value: String) -> Header {
@@ -5867,6 +6047,7 @@ extension Footer: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> Footer {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
@@ -5897,8 +6078,22 @@ extension Footer: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(invalid value: Values.Accessibility.Invalid) -> Footer {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> Footer {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> Footer {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
     }
     
     public func aria(keyShortcuts value: String) -> Footer {
@@ -6314,6 +6509,7 @@ extension Address: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> Address {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
@@ -6344,8 +6540,22 @@ extension Address: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(invalid value: Values.Accessibility.Invalid) -> Address {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> Address {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> Address {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
     }
     
     public func aria(keyShortcuts value: String) -> Address {
@@ -6755,6 +6965,7 @@ extension Paragraph: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> Paragraph {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
@@ -6785,8 +6996,22 @@ extension Paragraph: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(invalid value: Values.Accessibility.Invalid) -> Paragraph {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> Paragraph {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> Paragraph {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
     }
     
     public func aria(keyShortcuts value: String) -> Paragraph {
@@ -7200,6 +7425,7 @@ extension HorizontalRule: GlobalAttributes, GlobalEventAttributes, GlobalAriaAtt
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> HorizontalRule {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
@@ -7230,8 +7456,22 @@ extension HorizontalRule: GlobalAttributes, GlobalEventAttributes, GlobalAriaAtt
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(invalid value: Values.Accessibility.Invalid) -> HorizontalRule {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> HorizontalRule {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> HorizontalRule {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
     }
     
     public func aria(keyShortcuts value: String) -> HorizontalRule {
@@ -7647,6 +7887,7 @@ extension PreformattedText: GlobalAttributes, GlobalEventAttributes, GlobalAriaA
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> PreformattedText {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
@@ -7677,8 +7918,22 @@ extension PreformattedText: GlobalAttributes, GlobalEventAttributes, GlobalAriaA
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(invalid value: Values.Accessibility.Invalid) -> PreformattedText {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> PreformattedText {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> PreformattedText {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
     }
     
     public func aria(keyShortcuts value: String) -> PreformattedText {
@@ -8092,6 +8347,7 @@ extension Blockquote: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> Blockquote {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
@@ -8121,9 +8377,23 @@ extension Blockquote: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
     public func accessibilityHidden(_ value: Bool = true) -> Blockquote {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
-    
+
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")    
     public func aria(invalid value: Values.Accessibility.Invalid) -> Blockquote {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> Blockquote {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> Blockquote {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
     }
     
     public func aria(keyShortcuts value: String) -> Blockquote {
@@ -8559,6 +8829,7 @@ extension OrderedList: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> OrderedList {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
@@ -8589,8 +8860,22 @@ extension OrderedList: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(invalid value: Values.Accessibility.Invalid) -> OrderedList {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> OrderedList {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> OrderedList {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
     }
     
     public func aria(keyShortcuts value: String) -> OrderedList {
@@ -9009,6 +9294,7 @@ extension UnorderedList: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttr
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> UnorderedList {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
@@ -9039,8 +9325,22 @@ extension UnorderedList: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttr
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(invalid value: Values.Accessibility.Invalid) -> UnorderedList {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> UnorderedList {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> UnorderedList {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
     }
     
     public func aria(keyShortcuts value: String) -> UnorderedList {
@@ -9771,6 +10071,7 @@ extension DescriptionList: GlobalAttributes, GlobalEventAttributes, GlobalAriaAt
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> DescriptionList {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
@@ -9801,8 +10102,22 @@ extension DescriptionList: GlobalAttributes, GlobalEventAttributes, GlobalAriaAt
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(invalid value: Values.Accessibility.Invalid) -> DescriptionList {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> DescriptionList {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> DescriptionList {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
     }
     
     public func aria(keyShortcuts value: String) -> DescriptionList {
@@ -10217,6 +10532,7 @@ extension Figure: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> Figure {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
@@ -10247,8 +10563,22 @@ extension Figure: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(invalid value: Values.Accessibility.Invalid) -> Figure {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> Figure {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> Figure {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
     }
     
     public func aria(keyShortcuts value: String) -> Figure {
@@ -10704,6 +11034,7 @@ extension Anchor: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> Anchor {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
@@ -10734,8 +11065,22 @@ extension Anchor: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(invalid value: Values.Accessibility.Invalid) -> Anchor {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> Anchor {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> Anchor {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
     }
     
     public func aria(keyShortcuts value: String) -> Anchor {
@@ -11158,6 +11503,7 @@ extension Emphasize: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> Emphasize {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
@@ -11188,8 +11534,22 @@ extension Emphasize: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(invalid value: Values.Accessibility.Invalid) -> Emphasize {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> Emphasize {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> Emphasize {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
     }
     
     public func aria(keyShortcuts value: String) -> Emphasize {
@@ -11601,6 +11961,7 @@ extension Strong: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> Strong {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
@@ -11631,8 +11992,22 @@ extension Strong: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(invalid value: Values.Accessibility.Invalid) -> Strong {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> Strong {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> Strong {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
     }
     
     public func aria(keyShortcuts value: String) -> Strong {
@@ -12044,6 +12419,7 @@ extension Small: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> Small {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
@@ -12074,8 +12450,22 @@ extension Small: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(invalid value: Values.Accessibility.Invalid) -> Small {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> Small {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> Small {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
     }
     
     public func aria(keyShortcuts value: String) -> Small {
@@ -12834,6 +13224,7 @@ extension Main: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> Main {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
@@ -12864,8 +13255,22 @@ extension Main: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(invalid value: Values.Accessibility.Invalid) -> Main {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> Main {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> Main {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
     }
     
     public func aria(keyShortcuts value: String) -> Main {
@@ -13581,6 +13986,7 @@ extension Division: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> Division {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
@@ -13611,8 +14017,22 @@ extension Division: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(invalid value: Values.Accessibility.Invalid) -> Division {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> Division {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> Division {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
     }
     
     public func aria(keyShortcuts value: String) -> Division {
@@ -14064,6 +14484,7 @@ extension Definition: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> Definition {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
@@ -14094,8 +14515,22 @@ extension Definition: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(invalid value: Values.Accessibility.Invalid) -> Definition {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> Definition {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> Definition {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
     }
     
     public func aria(keyShortcuts value: String) -> Definition {
@@ -14508,6 +14943,7 @@ extension Cite: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> Cite {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
@@ -14538,8 +14974,22 @@ extension Cite: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(invalid value: Values.Accessibility.Invalid) -> Cite {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> Cite {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> Cite {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
     }
     
     public func aria(keyShortcuts value: String) -> Cite {
@@ -14955,6 +15405,7 @@ extension ShortQuote: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> ShortQuote {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
@@ -14984,9 +15435,23 @@ extension ShortQuote: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
     public func accessibilityHidden(_ value: Bool = true) -> ShortQuote {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
-    
+
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")    
     public func aria(invalid value: Values.Accessibility.Invalid) -> ShortQuote {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> ShortQuote {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> ShortQuote {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
     }
     
     public func aria(keyShortcuts value: String) -> ShortQuote {
@@ -15399,6 +15864,7 @@ extension Abbreviation: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttri
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> Abbreviation {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
@@ -15429,8 +15895,22 @@ extension Abbreviation: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttri
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(invalid value: Values.Accessibility.Invalid) -> Abbreviation {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> Abbreviation {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> Abbreviation {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
     }
     
     public func aria(keyShortcuts value: String) -> Abbreviation {
@@ -15843,6 +16323,7 @@ extension Ruby: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> Ruby {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
@@ -15873,8 +16354,22 @@ extension Ruby: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(invalid value: Values.Accessibility.Invalid) -> Ruby {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> Ruby {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> Ruby {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
     }
     
     public func aria(keyShortcuts value: String) -> Ruby {
@@ -16302,6 +16797,7 @@ extension Data: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, V
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> Data {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
@@ -16332,8 +16828,22 @@ extension Data: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, V
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(invalid value: Values.Accessibility.Invalid) -> Data {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> Data {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> Data {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
     }
     
     public func aria(keyShortcuts value: String) -> Data {
@@ -16751,6 +17261,7 @@ extension Time: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, D
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> Time {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
@@ -16781,8 +17292,22 @@ extension Time: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, D
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(invalid value: Values.Accessibility.Invalid) -> Time {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> Time {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> Time {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
     }
     
     public func aria(keyShortcuts value: String) -> Time {
@@ -17196,6 +17721,7 @@ extension Code: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> Code {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
@@ -17226,8 +17752,22 @@ extension Code: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(invalid value: Values.Accessibility.Invalid) -> Code {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> Code {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> Code {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
     }
     
     public func aria(keyShortcuts value: String) -> Code {
@@ -17641,6 +18181,7 @@ extension Variable: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> Variable {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
@@ -17671,8 +18212,22 @@ extension Variable: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(invalid value: Values.Accessibility.Invalid) -> Variable {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> Variable {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> Variable {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
     }
     
     public func aria(keyShortcuts value: String) -> Variable {
@@ -18082,6 +18637,7 @@ extension SampleOutput: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttri
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> SampleOutput {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
@@ -18112,8 +18668,22 @@ extension SampleOutput: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttri
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(invalid value: Values.Accessibility.Invalid) -> SampleOutput {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> SampleOutput {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> SampleOutput {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
     }
     
     public func aria(keyShortcuts value: String) -> SampleOutput {
@@ -18527,6 +19097,7 @@ extension KeyboardInput: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttr
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> KeyboardInput {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
@@ -18557,8 +19128,22 @@ extension KeyboardInput: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttr
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(invalid value: Values.Accessibility.Invalid) -> KeyboardInput {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> KeyboardInput {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> KeyboardInput {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
     }
     
     public func aria(keyShortcuts value: String) -> KeyboardInput {
@@ -18971,6 +19556,7 @@ extension Subscript: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> Subscript {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
@@ -19001,8 +19587,22 @@ extension Subscript: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(invalid value: Values.Accessibility.Invalid) -> Subscript {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> Subscript {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> Subscript {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
     }
     
     public func aria(keyShortcuts value: String) -> Subscript {
@@ -19416,6 +20016,7 @@ extension Superscript: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> Superscript {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
@@ -19446,8 +20047,22 @@ extension Superscript: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(invalid value: Values.Accessibility.Invalid) -> Superscript {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> Superscript {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> Superscript {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
     }
     
     public func aria(keyShortcuts value: String) -> Superscript {
@@ -19861,6 +20476,7 @@ extension Italic: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> Italic {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
@@ -19891,8 +20507,22 @@ extension Italic: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(invalid value: Values.Accessibility.Invalid) -> Italic {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> Italic {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> Italic {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
     }
     
     public func aria(keyShortcuts value: String) -> Italic {
@@ -20315,6 +20945,7 @@ extension Bold: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> Bold {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
@@ -20345,8 +20976,22 @@ extension Bold: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(invalid value: Values.Accessibility.Invalid) -> Bold {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> Bold {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> Bold {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
     }
     
     public func aria(keyShortcuts value: String) -> Bold {
@@ -20769,6 +21414,7 @@ extension Underline: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> Underline {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
@@ -20799,8 +21445,22 @@ extension Underline: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(invalid value: Values.Accessibility.Invalid) -> Underline {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> Underline {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> Underline {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
     }
     
     public func aria(keyShortcuts value: String) -> Underline {
@@ -21223,6 +21883,7 @@ extension Mark: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> Mark {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
@@ -21253,8 +21914,22 @@ extension Mark: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(invalid value: Values.Accessibility.Invalid) -> Mark {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> Mark {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> Mark {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
     }
     
     public func aria(keyShortcuts value: String) -> Mark {
@@ -21668,6 +22343,7 @@ extension Bdi: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> Bdi {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
@@ -21698,8 +22374,22 @@ extension Bdi: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(invalid value: Values.Accessibility.Invalid) -> Bdi {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> Bdi {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> Bdi {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
     }
     
     public func aria(keyShortcuts value: String) -> Bdi {
@@ -22101,6 +22791,7 @@ extension Bdo: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> Bdo {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
@@ -22131,8 +22822,22 @@ extension Bdo: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(invalid value: Values.Accessibility.Invalid) -> Bdo {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> Bdo {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> Bdo {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
     }
     
     public func aria(keyShortcuts value: String) -> Bdo {
@@ -22542,6 +23247,7 @@ extension Span: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, O
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> Span {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
@@ -22572,8 +23278,22 @@ extension Span: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, O
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(invalid value: Values.Accessibility.Invalid) -> Span {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> Span {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> Span {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
     }
     
     public func aria(keyShortcuts value: String) -> Span {
@@ -22980,6 +23700,7 @@ extension LineBreak: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> LineBreak {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
@@ -23010,8 +23731,22 @@ extension LineBreak: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(invalid value: Values.Accessibility.Invalid) -> LineBreak {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> LineBreak {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> LineBreak {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
     }
     
     public func aria(keyShortcuts value: String) -> LineBreak {
@@ -23410,6 +24145,7 @@ extension WordBreak: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> WordBreak {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
@@ -23440,8 +24176,22 @@ extension WordBreak: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(invalid value: Values.Accessibility.Invalid) -> WordBreak {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> WordBreak {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> WordBreak {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
     }
     
     public func aria(keyShortcuts value: String) -> WordBreak {
@@ -23859,6 +24609,7 @@ extension InsertedText: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttri
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> InsertedText {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
@@ -23889,8 +24640,22 @@ extension InsertedText: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttri
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(invalid value: Values.Accessibility.Invalid) -> InsertedText {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> InsertedText {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> InsertedText {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
     }
     
     public func aria(keyShortcuts value: String) -> InsertedText {
@@ -24308,6 +25073,7 @@ extension DeletedText: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> DeletedText {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
@@ -24338,8 +25104,22 @@ extension DeletedText: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(invalid value: Values.Accessibility.Invalid) -> DeletedText {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> DeletedText {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> DeletedText {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
     }
     
     public func aria(keyShortcuts value: String) -> DeletedText {
@@ -25139,6 +25919,7 @@ extension Image: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> Image {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
@@ -25169,8 +25950,22 @@ extension Image: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(invalid value: Values.Accessibility.Invalid) -> Image {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> Image {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> Image {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
     }
     
     public func aria(keyShortcuts value: String) -> Image {
@@ -25625,6 +26420,7 @@ extension InlineFrame: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> InlineFrame {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
@@ -25655,8 +26451,22 @@ extension InlineFrame: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(invalid value: Values.Accessibility.Invalid) -> InlineFrame {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> InlineFrame {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> InlineFrame {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
     }
     
     public func aria(keyShortcuts value: String) -> InlineFrame {
@@ -26073,6 +26883,7 @@ extension Embed: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> Embed {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
@@ -26103,8 +26914,22 @@ extension Embed: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(invalid value: Values.Accessibility.Invalid) -> Embed {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> Embed {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> Embed {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
     }
     
     public func aria(keyShortcuts value: String) -> Embed {
@@ -26539,6 +27364,7 @@ extension Object: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> Object {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
@@ -26569,8 +27395,22 @@ extension Object: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(invalid value: Values.Accessibility.Invalid) -> Object {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> Object {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> Object {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
     }
     
     public func aria(keyShortcuts value: String) -> Object {
@@ -27041,6 +27881,7 @@ extension Video: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> Video {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
@@ -27071,8 +27912,22 @@ extension Video: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(invalid value: Values.Accessibility.Invalid) -> Video {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> Video {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> Video {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
     }
     
     public func aria(keyShortcuts value: String) -> Video {
@@ -27526,6 +28381,7 @@ extension Audio: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> Audio {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
@@ -27556,8 +28412,22 @@ extension Audio: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(invalid value: Values.Accessibility.Invalid) -> Audio {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> Audio {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> Audio {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
     }
     
     public func aria(keyShortcuts value: String) -> Audio {
@@ -28344,6 +29214,7 @@ extension Form: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, A
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> Form {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
@@ -28374,8 +29245,22 @@ extension Form: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, A
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(invalid value: Values.Accessibility.Invalid) -> Form {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> Form {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> Form {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
     }
     
     public func aria(keyShortcuts value: String) -> Form {
@@ -28792,6 +29677,7 @@ extension DataList: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> DataList {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
@@ -28822,8 +29708,22 @@ extension DataList: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(invalid value: Values.Accessibility.Invalid) -> DataList {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> DataList {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> DataList {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
     }
     
     public func aria(keyShortcuts value: String) -> DataList {
@@ -29247,6 +30147,7 @@ extension Output: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> Output {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
@@ -29277,8 +30178,22 @@ extension Output: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(invalid value: Values.Accessibility.Invalid) -> Output {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> Output {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> Output {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
     }
     
     public func aria(keyShortcuts value: String) -> Output {
@@ -29707,6 +30622,7 @@ extension Progress: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> Progress {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
@@ -29737,8 +30653,22 @@ extension Progress: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(invalid value: Values.Accessibility.Invalid) -> Progress {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> Progress {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> Progress {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
     }
     
     public func aria(keyShortcuts value: String) -> Progress {
@@ -30185,6 +31115,7 @@ extension Meter: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> Meter {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
@@ -30215,8 +31146,22 @@ extension Meter: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(invalid value: Values.Accessibility.Invalid) -> Meter {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> Meter {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> Meter {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
     }
     
     public func aria(keyShortcuts value: String) -> Meter {
@@ -30654,6 +31599,7 @@ extension Details: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> Details {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
@@ -30684,8 +31630,22 @@ extension Details: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(invalid value: Values.Accessibility.Invalid) -> Details {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> Details {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> Details {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
     }
     
     public func aria(keyShortcuts value: String) -> Details {
@@ -31119,6 +32079,7 @@ extension Dialog: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> Dialog {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
@@ -31149,8 +32110,22 @@ extension Dialog: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(invalid value: Values.Accessibility.Invalid) -> Dialog {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> Dialog {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> Dialog {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
     }
     
     public func aria(keyShortcuts value: String) -> Dialog {
@@ -32578,6 +33553,7 @@ extension Canvas: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> Canvas {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
@@ -32608,8 +33584,22 @@ extension Canvas: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(invalid value: Values.Accessibility.Invalid) -> Canvas {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> Canvas {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> Canvas {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
     }
     
     public func aria(keyShortcuts value: String) -> Canvas {
@@ -33034,6 +34024,7 @@ extension Table: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> Table {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
@@ -33064,8 +34055,22 @@ extension Table: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(invalid value: Values.Accessibility.Invalid) -> Table {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> Table {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> Table {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
     }
     
     public func aria(keyShortcuts value: String) -> Table {

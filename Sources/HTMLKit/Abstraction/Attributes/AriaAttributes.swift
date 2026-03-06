@@ -1,5 +1,5 @@
 @_documentation(visibility: internal)
-public typealias GlobalAriaAttributes = AriaAtomicAttribute & AriaBusyAttribute & AriaControlsAttribute & AriaCurrentAttribute & AriaDescribedAttribute & AriaDetailsAttribute & DisabledAccessibilityAttribute & AriaErrorMessageAttribute & FlowAccessibilityAttribute & AriaPopupAttribute & HiddenAccessibilityAttribute & AriaInvalidAttribute & AriaShortcutsAttribute & LabelAccessibilityAttribute & AriaLabeledAttribute & LiveAccessibilityAttribute & OwnsAccessibilityAttribute & AriaRelevantAttribute & AriaRoleDescriptionAttribute
+public typealias GlobalAriaAttributes = AriaAtomicAttribute & AriaBusyAttribute & AriaControlsAttribute & AriaCurrentAttribute & AriaDescribedAttribute & AriaDetailsAttribute & DisabledAccessibilityAttribute & FlowAccessibilityAttribute & AriaPopupAttribute & HiddenAccessibilityAttribute & InvalidAccessibilityAttribute & AriaShortcutsAttribute & LabelAccessibilityAttribute & AriaLabeledAttribute & LiveAccessibilityAttribute & OwnsAccessibilityAttribute & AriaRelevantAttribute & AriaRoleDescriptionAttribute
 
 /// The protocol provides the element with accessibility handler.
 @_documentation(visibility: internal)
@@ -349,32 +349,6 @@ extension DisabledAccessibilityAttribute where Self: EmptyNode {
 
 /// The protocol provides the element with accessibility handler.
 @_documentation(visibility: internal)
-public protocol AriaErrorMessageAttribute: Attribute {
-    
-    /// The function represents the html-attribute 'aria-errormessage'.
-    ///
-    /// ```html
-    /// <tag aria-errormessage="" />
-    /// ```
-    func aria(errorMessage value: String) -> Self
-}
-
-extension AriaErrorMessageAttribute where Self: ContentNode {
-    
-    internal func mutate(ariaerrormessage value: AttributeData) -> Self {
-        return self.mutate(key: "aria-errormessage", value: value)
-    }
-}
-
-extension AriaErrorMessageAttribute where Self: EmptyNode {
-    
-    internal func mutate(ariaerrormessage value: AttributeData) -> Self {
-        return self.mutate(key: "aria-errormessage", value: value)
-    }
-}
-
-/// The protocol provides the element with accessibility handler.
-@_documentation(visibility: internal)
 public protocol AriaExpandedAttribute: Attribute {
     
     /// The function represents the html-attribute 'aria-expanded'.
@@ -515,29 +489,58 @@ extension HiddenAccessibilityAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with accessibility handler.
+/// A type that provides the `accessibilityDisabled` modifier.
 @_documentation(visibility: internal)
-public protocol AriaInvalidAttribute: Attribute {
+public protocol InvalidAccessibilityAttribute: Attribute {
     
-    /// The function represents the html-attribute 'aria-invalid'.
-    ///
-    /// ```html
-    /// <tag aria-invalid="" />
+    /// Indicate the entered value does not conform to the expected format.
+    /// 
+    /// ```swift
+    /// Division {
+    /// }
+    /// .editable()
+    /// .accessibilityInvalid(.grammar)
     /// ```
-    func aria(invalid value: Values.Accessibility.Invalid) -> Self
+    /// 
+    /// - Parameter value: The reason why the entered value is invalid.
+    /// 
+    /// - Returns: The element
+    func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> Self
+    
+    /// Indicate the entered value does not conform to the expected format.
+    ///  
+    /// ```swift
+    /// Input()
+    ///    .type(.email)
+    ///    .accessibilityInvalid(.true, message: "id")
+    /// ```
+    ///  
+    /// - Parameter value: Whether the entered value is invalid.
+    /// - Parameter id: The identifier of the element that provides the error message.
+    ///  
+    /// - Returns: The element
+    func accessibilityInvalid(_ value: Bool, message id: String?) -> Self
 }
 
-extension AriaInvalidAttribute where Self: ContentNode {
+extension InvalidAccessibilityAttribute where Self: ContentNode {
     
     internal func mutate(ariainvalid value: AttributeData) -> Self {
-        return self.mutate(key:  "aria-invalid", value: value)
+        return self.mutate(key: "aria-invalid", value: value)
+    }
+    
+    internal func mutate(ariaerrormessage value: AttributeData) -> Self {
+        return self.mutate(key: "aria-errormessage", value: value)
     }
 }
 
-extension AriaInvalidAttribute where Self: EmptyNode {
+extension InvalidAccessibilityAttribute where Self: EmptyNode {
     
     internal func mutate(ariainvalid value: AttributeData) -> Self {
-        return self.mutate(key:  "aria-invalid", value: value)
+        return self.mutate(key: "aria-invalid", value: value)
+    }
+    
+    internal func mutate(ariaerrormessage value: AttributeData) -> Self {
+        return self.mutate(key: "aria-errormessage", value: value)
     }
 }
 

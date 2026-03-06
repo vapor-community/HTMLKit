@@ -363,6 +363,7 @@ extension RubyText: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> RubyText {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
@@ -393,8 +394,22 @@ extension RubyText: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(invalid value: Values.Accessibility.Invalid) -> RubyText {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> RubyText {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> RubyText {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
     }
     
     public func aria(keyShortcuts value: String) -> RubyText {
@@ -814,6 +829,7 @@ extension RubyPronunciation: GlobalAttributes, GlobalEventAttributes, GlobalAria
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> RubyPronunciation {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
@@ -844,8 +860,22 @@ extension RubyPronunciation: GlobalAttributes, GlobalEventAttributes, GlobalAria
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(invalid value: Values.Accessibility.Invalid) -> RubyPronunciation {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> RubyPronunciation {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> RubyPronunciation {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
     }
     
     public func aria(keyShortcuts value: String) -> RubyPronunciation {

@@ -15,7 +15,7 @@ final class AttributesTests: XCTestCase {
         @ContentBuilder<Content> var body: Content
     }
     
-    typealias AllAttributes = AccessKeyAttribute & AcceptAttribute & ActionAttribute & AlternateAttribute & AsynchronouslyAttribute & AutocapitalizeAttribute & AutocompleteAttribute & AutofocusAttribute & AutoplayAttribute & CharsetAttribute & CheckedAttribute & CiteAttribute & ClassAttribute & ColumnsAttribute & ColumnSpanAttribute & ContentAttribute & EditAttribute  & ControlsAttribute & CoordinatesAttribute & DataAttribute & DateTimeAttribute & DefaultAttribute & DeferAttribute & DirectionAttribute & DisabledAttribute & DownloadAttribute & DragAttribute & EncodingAttribute & EnterKeyAttribute & ForAttribute & FormAttribute & FormActionAttribute & EquivalentAttribute & HeadersAttribute & HeightAttribute & HiddenAttribute & HighAttribute & ReferenceAttribute & ReferenceLanguageAttribute & IdentifierAttribute & IsMapAttribute & InputModeAttribute & IsAttribute & ItemAttribute & ItemPropertyAttribute & KindAttribute & LabelAttribute & LanguageAttribute & ListAttribute & LoopAttribute & LowAttribute & MaximumValueAttribute & MaximumLengthAttribute & MediaAttribute & MethodAttribute & MinimumValueAttribute & MinimumLengthAttribute & MultipleAttribute & MutedAttribute & NameAttribute & NonceAttribute & NoValidateAttribute & OpenAttribute & OptimumAttribute & PatternAttribute & PartAttribute & PingAttribute & PlaceholderAttribute & PosterAttribute & PreloadAttribute & ReadOnlyAttribute & ReferrerPolicyAttribute & RelationshipAttribute & RequiredAttribute & ReversedAttribute & RoleAttribute & RowsAttribute & RowSpanAttribute & SandboxAttribute & ScopeAttribute & ShapeAttribute & SizeAttribute & SizesAttribute & SlotAttribute & SpanAttribute & SpellCheckAttribute & SourceAttribute & StartAttribute & StepAttribute & StyleAttribute & TabulatorAttribute & TargetAttribute & TitleAttribute & TranslateAttribute & TypeAttribute & ValueAttribute & WidthAttribute & WrapAttribute & PropertyAttribute & SelectedAttribute & WindowEventAttribute & FocusEventAttribute & PointerEventAttribute & MouseEventAttribute & WheelEventAttribute & InputEventAttribute & KeyboardEventAttribute & DragEventAttribute & ClipboardEventAttribute & SelectionEventAttribute & MediaEventAttribute & FormEventAttribute & DetailEventAttribute & AriaAtomicAttribute & AriaBusyAttribute & AriaControlsAttribute & AriaCurrentAttribute & AriaDescribedAttribute & AriaDetailsAttribute & DisabledAccessibilityAttribute & AriaErrorMessageAttribute & FlowAccessibilityAttribute & AriaPopupAttribute & HiddenAccessibilityAttribute & AriaInvalidAttribute & AriaShortcutsAttribute & LabelAccessibilityAttribute & AriaLabeledAttribute & LiveAccessibilityAttribute & OwnsAccessibilityAttribute & AriaRelevantAttribute & AriaRoleDescriptionAttribute & SortAccessibilityAttribute & OrientationAccessibilityAttribute & RequiredAccessibilityAttribute & ReadOnlyAccessibilityAttribute & ModalAccessibilityAttribute & LevelAccessibilityAttribute & HintAccessibilityAttribute & PositionAccessibilityAttribute & DrawAttribute & FillAttribute & FillOpacityAttribute & StrokeAttribute & StrokeWidthAttribute & StrokeOpacityAttribute & StrokeLineCapAttribute & StrokeLineJoinAttribute & RadiusAttribute & PositionPointAttribute & RadiusPointAttribute & CenterPointAttribute & ViewBoxAttribute & NamespaceAttribute & PointsAttribute & ShadowRootModeAttribute & InertAttribute & FetchPriorityAttribute & LoadingAttribute & SourceSetAttribute & DecodingAttribute & BlockingAttribute & PopoverAttribute & PopoverTargetAttribute & PopoverActionAttribute & UseMapAttribute & PlaysInlineAttribute & IntegrityAttribute & AsAttribute & CrossOriginAttribute & SourceLanguageAttribute & SourceDocumentAttribute
+    typealias AllAttributes = AccessKeyAttribute & AcceptAttribute & ActionAttribute & AlternateAttribute & AsynchronouslyAttribute & AutocapitalizeAttribute & AutocompleteAttribute & AutofocusAttribute & AutoplayAttribute & CharsetAttribute & CheckedAttribute & CiteAttribute & ClassAttribute & ColumnsAttribute & ColumnSpanAttribute & ContentAttribute & EditAttribute  & ControlsAttribute & CoordinatesAttribute & DataAttribute & DateTimeAttribute & DefaultAttribute & DeferAttribute & DirectionAttribute & DisabledAttribute & DownloadAttribute & DragAttribute & EncodingAttribute & EnterKeyAttribute & ForAttribute & FormAttribute & FormActionAttribute & EquivalentAttribute & HeadersAttribute & HeightAttribute & HiddenAttribute & HighAttribute & ReferenceAttribute & ReferenceLanguageAttribute & IdentifierAttribute & IsMapAttribute & InputModeAttribute & IsAttribute & ItemAttribute & ItemPropertyAttribute & KindAttribute & LabelAttribute & LanguageAttribute & ListAttribute & LoopAttribute & LowAttribute & MaximumValueAttribute & MaximumLengthAttribute & MediaAttribute & MethodAttribute & MinimumValueAttribute & MinimumLengthAttribute & MultipleAttribute & MutedAttribute & NameAttribute & NonceAttribute & NoValidateAttribute & OpenAttribute & OptimumAttribute & PatternAttribute & PartAttribute & PingAttribute & PlaceholderAttribute & PosterAttribute & PreloadAttribute & ReadOnlyAttribute & ReferrerPolicyAttribute & RelationshipAttribute & RequiredAttribute & ReversedAttribute & RoleAttribute & RowsAttribute & RowSpanAttribute & SandboxAttribute & ScopeAttribute & ShapeAttribute & SizeAttribute & SizesAttribute & SlotAttribute & SpanAttribute & SpellCheckAttribute & SourceAttribute & StartAttribute & StepAttribute & StyleAttribute & TabulatorAttribute & TargetAttribute & TitleAttribute & TranslateAttribute & TypeAttribute & ValueAttribute & WidthAttribute & WrapAttribute & PropertyAttribute & SelectedAttribute & WindowEventAttribute & FocusEventAttribute & PointerEventAttribute & MouseEventAttribute & WheelEventAttribute & InputEventAttribute & KeyboardEventAttribute & DragEventAttribute & ClipboardEventAttribute & SelectionEventAttribute & MediaEventAttribute & FormEventAttribute & DetailEventAttribute & AriaAtomicAttribute & AriaBusyAttribute & AriaControlsAttribute & AriaCurrentAttribute & AriaDescribedAttribute & AriaDetailsAttribute & DisabledAccessibilityAttribute & FlowAccessibilityAttribute & AriaPopupAttribute & HiddenAccessibilityAttribute & InvalidAccessibilityAttribute & AriaShortcutsAttribute & LabelAccessibilityAttribute & AriaLabeledAttribute & LiveAccessibilityAttribute & OwnsAccessibilityAttribute & AriaRelevantAttribute & AriaRoleDescriptionAttribute & SortAccessibilityAttribute & OrientationAccessibilityAttribute & RequiredAccessibilityAttribute & ReadOnlyAccessibilityAttribute & ModalAccessibilityAttribute & LevelAccessibilityAttribute & HintAccessibilityAttribute & PositionAccessibilityAttribute & DrawAttribute & FillAttribute & FillOpacityAttribute & StrokeAttribute & StrokeWidthAttribute & StrokeOpacityAttribute & StrokeLineCapAttribute & StrokeLineJoinAttribute & RadiusAttribute & PositionPointAttribute & RadiusPointAttribute & CenterPointAttribute & ViewBoxAttribute & NamespaceAttribute & PointsAttribute & ShadowRootModeAttribute & InertAttribute & FetchPriorityAttribute & LoadingAttribute & SourceSetAttribute & DecodingAttribute & BlockingAttribute & PopoverAttribute & PopoverTargetAttribute & PopoverActionAttribute & UseMapAttribute & PlaysInlineAttribute & IntegrityAttribute & AsAttribute & CrossOriginAttribute & SourceLanguageAttribute & SourceDocumentAttribute
     
     struct Tag: ContentNode, GlobalElement, AllAttributes {
 
@@ -960,10 +960,6 @@ final class AttributesTests: XCTestCase {
             return mutate(ariadisabled: .init(value, context: .trusted))
         }
         
-        func aria(errorMessage value: String) -> Tag {
-            return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
-        }
-        
         func accessibilityFlowTo(_ ids: [String]) -> Tag {
             return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
         }
@@ -980,8 +976,17 @@ final class AttributesTests: XCTestCase {
             return mutate(ariahidden: .init(value, context: .trusted))
         }
         
-        func aria(invalid value: Values.Accessibility.Invalid) -> Tag {
+        func accessibilityInvalid(_ value: HTMLKit.Values.Accessibility.Invalid) -> Tag {
             return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+        }
+        
+        func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> Tag {
+            
+            if let id = id {
+                return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+            }
+            
+            return mutate(ariainvalid: .init(value, context: .trusted))
         }
         
         func aria(keyShortcuts value: String) -> Tag {
@@ -2914,19 +2919,6 @@ final class AttributesTests: XCTestCase {
         )
     }
     
-    func testErrorMessageAriaAttribute() throws {
-        
-        let view = TestView {
-            Tag {}.aria(errorMessage: "error")
-        }
-        
-        XCTAssertEqual(try renderer.render(view: view),
-                       """
-                       <tag aria-errormessage="error"></tag>
-                       """
-        )
-    }
-    
     func testFlowAccessibilityAttribute() throws {
         
         let view = TestView {
@@ -2974,15 +2966,23 @@ final class AttributesTests: XCTestCase {
         )
     }
     
-    func testInvalidAriaAttribute() throws {
+    func testInvalidAccessibilityAttribute() throws {
         
         let view = TestView {
-            Tag {}.aria(invalid: .grammar)
+            Tag {}.accessibilityInvalid(.grammar)
+            Tag {}.accessibilityInvalid(.spelling)
+            Tag {}.accessibilityInvalid()
+            Tag {}.accessibilityInvalid(false)
+            Tag {}.accessibilityInvalid(message: "id")
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <tag aria-invalid="grammar"></tag>
+                       <tag aria-invalid="grammar"></tag>\
+                       <tag aria-invalid="spelling"></tag>\
+                       <tag aria-invalid="true"></tag>\
+                       <tag aria-invalid="false"></tag>\
+                       <tag aria-invalid="true" aria-errormessage="id"></tag>
                        """
         )
     }

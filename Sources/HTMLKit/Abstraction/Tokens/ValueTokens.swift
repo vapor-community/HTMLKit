@@ -1631,15 +1631,18 @@ public enum Values {
         /// An indicator of an input validation.
         ///
         /// ```swift
-        /// Input()
-        ///     .aria(invalid: .true)
+        /// Division {
+        /// }
+        /// .accessibilityInvalid(.grammar)
         /// ```
         public enum Invalid: String {
             
             /// Indicates that there are no detected errors.
+            @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
             case `false`
             
             /// Indicates that errors were detected.
+            @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
             case `true`
             
             /// Indicates that a grammatical error was deteced.
