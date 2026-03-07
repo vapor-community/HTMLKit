@@ -800,26 +800,35 @@ extension MultilineAccessibilityAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with accessibility handler.
+/// A type that provides the `accessibilityMultiselect` modifier.
 @_documentation(visibility: internal)
-public protocol AriaMultiselectAttribute: Attribute {
+public protocol MultiselectAccessibilityAttribute: Attribute {
     
-    /// The function represents the html-attribute 'aria-multiselectable'.
+    /// Indicate that the user may select more than one item.
     ///
-    /// ```html
-    /// <tag aria-multiselectable="" />
+    /// ```swift
+    /// UnorderedList {
+    ///    ListItem {
+    ///       "Lorem ipsum"
+    ///    }
+    /// }
+    /// .role(.listbox)
+    /// .accessibilityMultiselect(true)
     /// ```
-    func aria(multiselectable value: Bool) -> Self
+    /// - Parameter value: Whether the element is multiselectable.
+    ///
+    /// - Returns: The element
+    func accessibilityMultiselect(_ value: Bool) -> Self
 }
 
-extension AriaMultiselectAttribute where Self: ContentNode {
+extension MultiselectAccessibilityAttribute where Self: ContentNode {
     
     internal func mutate(ariamultiselectable value: AttributeData) -> Self {
         return self.mutate(key: "aria-multiselectable", value: value)
     }
 }
 
-extension AriaMultiselectAttribute where Self: EmptyNode {
+extension MultiselectAccessibilityAttribute where Self: EmptyNode {
     
     internal func mutate(ariamultiselectable value: AttributeData) -> Self {
         return self.mutate(key: "aria-multiselectable", value: value)

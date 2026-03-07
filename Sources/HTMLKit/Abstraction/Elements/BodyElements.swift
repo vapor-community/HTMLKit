@@ -9105,7 +9105,7 @@ public struct UnorderedList: ContentNode, HtmlElement, BodyElement, FormElement,
     }
 }
 
-extension UnorderedList: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, OrientationAccessibilityAttribute {
+extension UnorderedList: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, OrientationAccessibilityAttribute, MultiselectAccessibilityAttribute {
     
     public func accessKey(_ value: Character) -> UnorderedList {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -9500,6 +9500,10 @@ extension UnorderedList: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttr
     
     public func accessibilityOrientation(_ value: Values.Accessibility.Orientation) -> UnorderedList {
         return mutate(ariaorientation: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityMultiselect(_ value: Bool = true) -> UnorderedList {
+        return mutate(ariamultiselectable: .init(value, context: .trusted))
     }
 }
 
@@ -13837,7 +13841,7 @@ public struct Division: ContentNode, HtmlElement, BodyElement, FormElement, Figu
     }
 }
 
-extension Division: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, OrientationAccessibilityAttribute, RequiredAccessibilityAttribute, ReadOnlyAccessibilityAttribute, ModalAccessibilityAttribute, LevelAccessibilityAttribute, HintAccessibilityAttribute, PositionAccessibilityAttribute, MultilineAccessibilityAttribute {    
+extension Division: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, OrientationAccessibilityAttribute, RequiredAccessibilityAttribute, ReadOnlyAccessibilityAttribute, ModalAccessibilityAttribute, LevelAccessibilityAttribute, HintAccessibilityAttribute, PositionAccessibilityAttribute, MultilineAccessibilityAttribute, MultiselectAccessibilityAttribute {    
 
     public func accessKey(_ value: Character) -> Division {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -14269,6 +14273,10 @@ extension Division: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
     
     public func accessibilityMultiline(_ value: Bool = true) -> Division {
         return mutate(ariamultiline: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityMultiselect(_ value: Bool = true) -> Division {
+        return mutate(ariamultiselectable: .init(value, context: .trusted))
     }
 }
 
