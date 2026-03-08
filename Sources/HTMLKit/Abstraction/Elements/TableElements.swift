@@ -2645,7 +2645,7 @@ public struct TableRow: ContentNode, TableElement {
     }
 }
 
-extension TableRow: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, WidthAttribute, HeightAttribute {
+extension TableRow: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, WidthAttribute, HeightAttribute, RowIndexAccessibilityAttribute {
     
     public func accessKey(_ value: Character) -> TableRow {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -3044,6 +3044,10 @@ extension TableRow: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
     
     public func aria(roleDescription value: String) -> TableRow {
         return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityRowIndex(_ value: Int) -> TableRow {
+        return mutate(ariarowindex: .init(value, context: .trusted))
     }
 }
 

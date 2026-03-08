@@ -1189,26 +1189,33 @@ extension AriaRowCountAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with accessibility handler.
+/// A type that provides the `accessibilityRowIndex` modifier.
 @_documentation(visibility: internal)
-public protocol AriaRowIndexAttribute: Attribute {
+public protocol RowIndexAccessibilityAttribute: Attribute {
     
-    /// The function represents the html-attribute 'aria-rowindex'.
+    /// Indicate an element's row index.
     ///
-    /// ```html
-    /// <tag aria-rowindex="" />
+    /// ```swift
+    /// Division {
+    /// }
+    /// .role(.row)
+    /// .accessibilityRowIndex(1)
     /// ```
-    func aria(rowIndex value: Int) -> Self
+    ///
+    /// - Parameter value: The row index the element is in.
+    ///
+    /// - Returns: The element
+    func accessibilityRowIndex(_ value: Int) -> Self
 }
 
-extension AriaRowIndexAttribute where Self: ContentNode {
+extension RowIndexAccessibilityAttribute where Self: ContentNode {
     
     internal func mutate(ariarowindex value: AttributeData) -> Self {
         return self.mutate(key: "aria-rowindex", value: value)
     }
 }
 
-extension AriaRowIndexAttribute where Self: EmptyNode {
+extension RowIndexAccessibilityAttribute where Self: EmptyNode {
     
     internal func mutate(ariarowindex value: AttributeData) -> Self {
         return self.mutate(key: "aria-rowindex", value: value)
