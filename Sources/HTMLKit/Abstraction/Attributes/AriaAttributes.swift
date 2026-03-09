@@ -138,26 +138,33 @@ extension AriaCheckedAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with accessibility handler.
+/// A type that provides the `accessibilityColumnCount` modifier.
 @_documentation(visibility: internal)
-public protocol AriaColumnCountAttribute: Attribute {
+public protocol ColumnCountAccessibilityAttribute: Attribute {
     
-    /// The function represents the html-attribute 'aria-colcount'.
+    /// Indicate the total number of columns in a element.
     ///
-    /// ```html
-    /// <tag aria-colcount="" />
+    /// ```swift
+    /// Division {
+    /// }
+    /// .role(.grid)
+    /// .accessibilityColumnCount(941)
     /// ```
-    func aria(columnCount value: Int) -> Self
+    ///
+    /// - Parameter value: The total number of columns.
+    ///
+    /// - Returns: The element
+    func accessibilityColumnCount(_ value: Int) -> Self
 }
 
-extension AriaColumnCountAttribute where Self: ContentNode {
+extension ColumnCountAccessibilityAttribute where Self: ContentNode {
     
     internal func mutate(ariacolcount value: AttributeData) -> Self {
         return self.mutate(key: "aria-colcount", value: value)
     }
 }
 
-extension AriaColumnCountAttribute where Self: EmptyNode {
+extension ColumnCountAccessibilityAttribute where Self: EmptyNode {
     
     internal func mutate(ariacolcount value: AttributeData) -> Self {
         return self.mutate(key: "aria-colcount", value: value)

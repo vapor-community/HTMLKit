@@ -13841,7 +13841,7 @@ public struct Division: ContentNode, HtmlElement, BodyElement, FormElement, Figu
     }
 }
 
-extension Division: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, OrientationAccessibilityAttribute, RequiredAccessibilityAttribute, ReadOnlyAccessibilityAttribute, ModalAccessibilityAttribute, LevelAccessibilityAttribute, HintAccessibilityAttribute, PositionAccessibilityAttribute, MultilineAccessibilityAttribute, MultiselectAccessibilityAttribute, RowIndexAccessibilityAttribute, RowCountAccessibilityAttribute, ColumnIndexAccessibilityAttribute {    
+extension Division: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, OrientationAccessibilityAttribute, RequiredAccessibilityAttribute, ReadOnlyAccessibilityAttribute, ModalAccessibilityAttribute, LevelAccessibilityAttribute, HintAccessibilityAttribute, PositionAccessibilityAttribute, MultilineAccessibilityAttribute, MultiselectAccessibilityAttribute, RowIndexAccessibilityAttribute, RowCountAccessibilityAttribute, ColumnIndexAccessibilityAttribute, ColumnCountAccessibilityAttribute {    
 
     public func accessKey(_ value: Character) -> Division {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -14289,6 +14289,10 @@ extension Division: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
     
     public func accessibilityColumnIndex(_ value: Int) -> Division {
         return mutate(ariacolindex: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityColumnCount(_ value: Int) -> Division {
+        return mutate(ariacolcount: .init(value, context: .trusted))
     }
 }
 
@@ -34086,7 +34090,7 @@ public struct Table: ContentNode, HtmlElement, BodyElement, FormElement, FigureE
     }
 }
 
-extension Table: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, WidthAttribute, HeightAttribute, RowCountAccessibilityAttribute {
+extension Table: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, WidthAttribute, HeightAttribute, RowCountAccessibilityAttribute, ColumnCountAccessibilityAttribute {
     
     public func accessKey(_ value: Character) -> Table {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -34489,6 +34493,10 @@ extension Table: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
     
     public func accessibilityRowCount(_ value: Int) -> Table {
         return mutate(ariarowcount: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityColumnCount(_ value: Int) -> Table {
+        return mutate(ariacolcount: .init(value, context: .trusted))
     }
 }
 
