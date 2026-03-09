@@ -1243,26 +1243,33 @@ extension RowIndexAccessibilityAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with accessibility handler.
+/// A type that provides the `accessibilityRowSpan` modifier.
 @_documentation(visibility: internal)
-public protocol AriaRowSpanAttribute: Attribute {
+public protocol RowSpanAccessibilityAttribute: Attribute {
     
-    /// The function represents the html-attribute 'aria-rowspan'.
+    /// Indicate the number of rows the element spans.
     ///
-    /// ```html
-    /// <tag aria-rowspan="" />
+    /// ```swift
+    /// Division {
+    /// }
+    /// .role(.columnHeader)
+    /// .accessibilityRowSpan(2)
     /// ```
-    func aria(rowSpan value: Int) -> Self
+    ///
+    /// - Parameter value: The number of rows to span.
+    ///
+    /// - Returns: The element
+    func accessibilityRowSpan(_ value: Int) -> Self
 }
 
-extension AriaRowSpanAttribute where Self: ContentNode {
+extension RowSpanAccessibilityAttribute where Self: ContentNode {
     
     internal func mutate(ariarowspan value: AttributeData) -> Self {
         return self.mutate(key: "aria-rowspan", value: value)
     }
 }
 
-extension AriaRowSpanAttribute where Self: EmptyNode {
+extension RowSpanAccessibilityAttribute where Self: EmptyNode {
     
     internal func mutate(ariarowspan value: AttributeData) -> Self {
         return self.mutate(key: "aria-rowspan", value: value)

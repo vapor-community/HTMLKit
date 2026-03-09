@@ -3126,7 +3126,7 @@ public struct DataCell: ContentNode, TableElement {
     }
 }
 
-extension DataCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, ColumnSpanAttribute, RowSpanAttribute, HeadersAttribute {
+extension DataCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, ColumnSpanAttribute, RowSpanAttribute, HeadersAttribute, RowSpanAccessibilityAttribute {
 
     public func accessKey(_ value: Character) -> DataCell {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -3534,6 +3534,10 @@ extension DataCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
     
     public func aria(roleDescription value: String) -> DataCell {
         return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityRowSpan(_ value: Int) -> DataCell {
+        return mutate(ariarowspan: .init(value, context: .trusted))
     }
 }
 
