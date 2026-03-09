@@ -2645,7 +2645,7 @@ public struct TableRow: ContentNode, TableElement {
     }
 }
 
-extension TableRow: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, WidthAttribute, HeightAttribute, RowIndexAccessibilityAttribute {
+extension TableRow: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, WidthAttribute, HeightAttribute, RowIndexAccessibilityAttribute, ColumnIndexAccessibilityAttribute {
     
     public func accessKey(_ value: Character) -> TableRow {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -3048,6 +3048,10 @@ extension TableRow: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
     
     public func accessibilityRowIndex(_ value: Int) -> TableRow {
         return mutate(ariarowindex: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityColumnIndex(_ value: Int) -> TableRow {
+        return mutate(ariacolindex: .init(value, context: .trusted))
     }
 }
 
@@ -3604,7 +3608,7 @@ public struct HeaderCell: ContentNode, TableElement {
     }
 }
 
-extension HeaderCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, ColumnSpanAttribute, RowSpanAttribute, HeadersAttribute, ScopeAttribute {
+extension HeaderCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, ColumnSpanAttribute, RowSpanAttribute, HeadersAttribute, ScopeAttribute, ColumnIndexAccessibilityAttribute {
     
     public func accessKey(_ value: Character) -> HeaderCell {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -4015,6 +4019,10 @@ extension HeaderCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
     
     public func aria(roleDescription value: String) -> HeaderCell {
         return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityColumnIndex(_ value: Int) -> HeaderCell {
+        return mutate(ariacolindex: .init(value, context: .trusted))
     }
 }
 

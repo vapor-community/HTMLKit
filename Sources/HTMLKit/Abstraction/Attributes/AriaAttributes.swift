@@ -164,26 +164,33 @@ extension AriaColumnCountAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with accessibility handler.
+/// A type that provides the `accessibilityColumnIndex` modifier.
 @_documentation(visibility: internal)
-public protocol AriaColumnIndexAttribute: Attribute {
+public protocol ColumnIndexAccessibilityAttribute: Attribute {
     
-    /// The function represents the html-attribute 'aria-colindex'.
+    /// Indicate the column index of the element.
     ///
-    /// ```html
-    /// <tag aria-colindex="" />
+    /// ```swift
+    /// Division {
+    /// }
+    /// .role(.row)
+    /// .accessibilityColumnIndex(1)
     /// ```
-    func aria(columnIndex value: Int) -> Self
+    ///
+    /// - Parameter value: The column index the element is in.
+    ///
+    /// - Returns: The element
+    func accessibilityColumnIndex(_ value: Int) -> Self
 }
 
-extension AriaColumnIndexAttribute where Self: ContentNode {
+extension ColumnIndexAccessibilityAttribute where Self: ContentNode {
     
     internal func mutate(ariacolindex value: AttributeData) -> Self {
         return self.mutate(key: "aria-colindex", value: value)
     }
 }
 
-extension AriaColumnIndexAttribute where Self: EmptyNode {
+extension ColumnIndexAccessibilityAttribute where Self: EmptyNode {
     
     internal func mutate(ariacolindex value: AttributeData) -> Self {
         return self.mutate(key: "aria-colindex", value: value)
