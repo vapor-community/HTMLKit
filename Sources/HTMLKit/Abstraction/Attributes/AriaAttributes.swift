@@ -204,26 +204,33 @@ extension ColumnIndexAccessibilityAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with accessibility handler.
+/// A type that provides the `accessibilityColumnSpan` modifier.
 @_documentation(visibility: internal)
-public protocol AriaColumnSpanAttribute: Attribute {
+public protocol ColumnSpanAccessibilityAttribute: Attribute {
     
-    /// The function represents the html-attribute 'aria-colspan'.
+    /// Indicate the number of columns the element spans.
     ///
-    /// ```html
-    /// <tag aria-colspan="" />
+    /// ```swift
+    /// Division {
+    /// }
+    /// .role(.columnHeader)
+    /// .accessibilityColumnSpan(2)
     /// ```
-    func aria(columnSpan value: Int) -> Self
+    ///
+    /// - Parameter value: The number of columns to span.
+    ///
+    /// - Returns: The element
+    func accessibilityColumnSpan(_ value: Int) -> Self
 }
 
-extension AriaColumnSpanAttribute where Self: ContentNode {
+extension ColumnSpanAccessibilityAttribute where Self: ContentNode {
     
     internal func mutate(ariacolspan value: AttributeData) -> Self {
         return self.mutate(key: "aria-colspan", value: value)
     }
 }
 
-extension AriaColumnSpanAttribute where Self: EmptyNode {
+extension ColumnSpanAccessibilityAttribute where Self: EmptyNode {
     
     internal func mutate(ariacolspan value: AttributeData) -> Self {
         return self.mutate(key: "aria-colspan", value: value)

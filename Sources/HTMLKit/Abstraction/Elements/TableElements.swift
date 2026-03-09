@@ -3126,7 +3126,7 @@ public struct DataCell: ContentNode, TableElement {
     }
 }
 
-extension DataCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, ColumnSpanAttribute, RowSpanAttribute, HeadersAttribute, RowSpanAccessibilityAttribute {
+extension DataCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, ColumnSpanAttribute, RowSpanAttribute, HeadersAttribute, RowSpanAccessibilityAttribute, ColumnSpanAccessibilityAttribute {
 
     public func accessKey(_ value: Character) -> DataCell {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -3538,6 +3538,10 @@ extension DataCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
     
     public func accessibilityRowSpan(_ value: Int) -> DataCell {
         return mutate(ariarowspan: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityColumnSpan(_ value: Int) -> DataCell {
+        return mutate(ariacolspan: .init(value, context: .trusted))
     }
 }
 
