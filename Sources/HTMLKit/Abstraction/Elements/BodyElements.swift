@@ -13841,7 +13841,7 @@ public struct Division: ContentNode, HtmlElement, BodyElement, FormElement, Figu
     }
 }
 
-extension Division: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, OrientationAccessibilityAttribute, RequiredAccessibilityAttribute, ReadOnlyAccessibilityAttribute, ModalAccessibilityAttribute, LevelAccessibilityAttribute, HintAccessibilityAttribute, PositionAccessibilityAttribute, MultilineAccessibilityAttribute, MultiselectAccessibilityAttribute, RowIndexAccessibilityAttribute {    
+extension Division: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, OrientationAccessibilityAttribute, RequiredAccessibilityAttribute, ReadOnlyAccessibilityAttribute, ModalAccessibilityAttribute, LevelAccessibilityAttribute, HintAccessibilityAttribute, PositionAccessibilityAttribute, MultilineAccessibilityAttribute, MultiselectAccessibilityAttribute, RowIndexAccessibilityAttribute, RowCountAccessibilityAttribute {    
 
     public func accessKey(_ value: Character) -> Division {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -14281,6 +14281,10 @@ extension Division: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
     
     public func accessibilityRowIndex(_ value: Int) -> Division {
         return mutate(ariarowindex: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityRowCount(_ value: Int) -> Division {
+        return mutate(ariarowcount: .init(value, context: .trusted))
     }
 }
 
@@ -34078,7 +34082,7 @@ public struct Table: ContentNode, HtmlElement, BodyElement, FormElement, FigureE
     }
 }
 
-extension Table: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, WidthAttribute, HeightAttribute {
+extension Table: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, WidthAttribute, HeightAttribute, RowCountAccessibilityAttribute {
     
     public func accessKey(_ value: Character) -> Table {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -34477,6 +34481,10 @@ extension Table: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
     
     public func aria(roleDescription value: String) -> Table {
         return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityRowCount(_ value: Int) -> Table {
+        return mutate(ariarowcount: .init(value, context: .trusted))
     }
 }
 

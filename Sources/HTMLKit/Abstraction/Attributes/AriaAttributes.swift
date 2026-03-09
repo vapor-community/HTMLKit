@@ -1163,26 +1163,33 @@ extension AriaRoleDescriptionAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with accessibility handler.
+/// A type that provides the `accessibilityRowCount` modifier.
 @_documentation(visibility: internal)
-public protocol AriaRowCountAttribute: Attribute {
+public protocol RowCountAccessibilityAttribute: Attribute {
     
-    /// The function represents the html-attribute 'aria-rowcount'.
-    ///
-    /// ```html
-    /// <tag aria-rowcount="" />
+    /// Indicate the total number of rows in a element.
+    /// 
+    /// ```swift
+    /// Division {
+    /// }
+    /// .role(.grid)
+    /// .accessibilityRowCount(941)
     /// ```
-    func aria(rowCount value: Int) -> Self
+    ///
+    /// - Parameter value: The total rows within the element.
+    ///
+    /// - Returns: The element
+    func accessibilityRowCount(_ value: Int) -> Self
 }
 
-extension AriaRowCountAttribute where Self: ContentNode {
+extension RowCountAccessibilityAttribute where Self: ContentNode {
     
     internal func mutate(ariarowcount value: AttributeData) -> Self {
         return self.mutate(key: "aria-rowcount", value: value)
     }
 }
 
-extension AriaRowCountAttribute where Self: EmptyNode {
+extension RowCountAccessibilityAttribute where Self: EmptyNode {
     
     internal func mutate(ariarowcount value: AttributeData) -> Self {
         return self.mutate(key: "aria-rowcount", value: value)
