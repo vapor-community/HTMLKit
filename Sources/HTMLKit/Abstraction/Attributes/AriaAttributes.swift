@@ -1379,26 +1379,33 @@ extension MaximumValueAccessibilityAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with accessibility handler.
+/// A type that provides the `accessibilityMinimumValue` modifier.
 @_documentation(visibility: internal)
-public protocol AriaValueMininumAttribute: Attribute {
+public protocol MinimumValueAccessibilityAttribute: Attribute {
     
-    /// The function represents the html-attribute 'aria-valuemin'.
+    /// Indicate the minimum bound for the range.
     ///
-    /// ```html
-    /// <tag aria-valuemin="" />
+    /// ```swift
+    /// Division {
+    /// }
+    /// .role(.meter)
+    /// .accessibilityMinimumValue(20.0)
     /// ```
-    func aria(valueMinimum value: Float) -> Self
+    ///
+    /// - Parameter value: The value to consider minimum.
+    ///
+    /// - Returns: The element
+    func accessibilityMinimumValue(_ value: Float) -> Self
 }
 
-extension AriaValueMininumAttribute where Self: ContentNode {
+extension MinimumValueAccessibilityAttribute where Self: ContentNode {
     
     internal func mutate(ariavaluemin value: AttributeData) -> Self {
         return self.mutate(key: "aria-valuemin", value: value)
     }
 }
 
-extension AriaValueMininumAttribute where Self: EmptyNode {
+extension MinimumValueAccessibilityAttribute where Self: EmptyNode {
     
     internal func mutate(ariavaluemin value: AttributeData) -> Self {
         return self.mutate(key: "aria-valuemin", value: value)
