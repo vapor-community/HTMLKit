@@ -1346,26 +1346,33 @@ extension SortAccessibilityAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with accessibility handler.
+/// A type that provides the `accessibilityValueMaximum` modifier.
 @_documentation(visibility: internal)
-public protocol AriaValueMaximumAttribute: Attribute {
+public protocol MaximumValueAccessibilityAttribute: Attribute {
     
-    /// The function represents the html-attribute 'aria-valuemax'.
+    /// Indicate the maximum bound for the range.
     ///
-    /// ```html
-    /// <tag aria-valuemax="" />
+    /// ```swift
+    /// Division {
+    /// }
+    /// .role(.meter)
+    /// .accessibilityMaximumValue(20.0)
     /// ```
-    func aria(valueMaximum value: Float) -> Self
+    ///
+    /// - Parameter value: The value to consider maximum.
+    ///
+    /// - Returns: The element
+    func accessibilityMaximumValue(_ value: Float) -> Self
 }
 
-extension AriaValueMaximumAttribute where Self: ContentNode {
+extension MaximumValueAccessibilityAttribute where Self: ContentNode {
     
     internal func mutate(ariavaluemax value: AttributeData) -> Self {
         return self.mutate(key: "aria-valuemax", value: value)
     }
 }
 
-extension AriaValueMaximumAttribute where Self: EmptyNode {
+extension MaximumValueAccessibilityAttribute where Self: EmptyNode {
     
     internal func mutate(ariavaluemax value: AttributeData) -> Self {
         return self.mutate(key: "aria-valuemax", value: value)
