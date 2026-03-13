@@ -13841,7 +13841,7 @@ public struct Division: ContentNode, HtmlElement, BodyElement, FormElement, Figu
     }
 }
 
-extension Division: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, OrientationAccessibilityAttribute, RequiredAccessibilityAttribute, ReadOnlyAccessibilityAttribute, ModalAccessibilityAttribute, LevelAccessibilityAttribute, HintAccessibilityAttribute, PositionAccessibilityAttribute, MultilineAccessibilityAttribute, MultiselectAccessibilityAttribute, RowIndexAccessibilityAttribute, RowCountAccessibilityAttribute, ColumnIndexAccessibilityAttribute, ColumnCountAccessibilityAttribute, RowSpanAccessibilityAttribute, ColumnSpanAccessibilityAttribute, MaximumValueAccessibilityAttribute, MinimumValueAccessibilityAttribute {    
+extension Division: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, OrientationAccessibilityAttribute, RequiredAccessibilityAttribute, ReadOnlyAccessibilityAttribute, ModalAccessibilityAttribute, LevelAccessibilityAttribute, HintAccessibilityAttribute, PositionAccessibilityAttribute, MultilineAccessibilityAttribute, MultiselectAccessibilityAttribute, RowIndexAccessibilityAttribute, RowCountAccessibilityAttribute, ColumnIndexAccessibilityAttribute, ColumnCountAccessibilityAttribute, RowSpanAccessibilityAttribute, ColumnSpanAccessibilityAttribute, MaximumValueAccessibilityAttribute, MinimumValueAccessibilityAttribute, ValueAccessibilityAttribute {    
 
     public func accessKey(_ value: Character) -> Division {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -14309,6 +14309,20 @@ extension Division: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
     
     public func accessibilityMinimumValue(_ value: Float) -> Division {
         return mutate(ariavaluemin: .init(value, context: .trusted))
+    }
+    
+    @_disfavoredOverload
+    public func accessibilityValue(_ value: Float, description text: String? = nil) -> Division {
+        
+        if let text = text {
+            return mutate(ariavaluenow: .init(value, context: .trusted)).mutate(ariavaluetext: .init(text, context: .tainted(.html)))
+        }
+        
+        return mutate(ariavaluenow: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityValue(_ value: Float, description localizedKey: LocalizedStringKey, tableName: String?) -> Division {
+        return mutate(ariavaluenow: .init(value, context: .trusted)).mutate(ariavaluetext: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
     }
 }
 

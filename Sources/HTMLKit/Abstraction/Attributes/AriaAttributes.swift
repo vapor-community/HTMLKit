@@ -1412,52 +1412,58 @@ extension MinimumValueAccessibilityAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with accessibility handler.
+/// A type that provides the `accessibilityValue` modifier.
 @_documentation(visibility: internal)
-public protocol AriaValueNowAttribute: Attribute {
+public protocol ValueAccessibilityAttribute: Attribute {
     
-    /// The function represents the html-attribute 'aria-valuenow"'.
-    ///
-    /// ```html
-    /// <tag aria-valuenow="" />
+    /// Indicate the current value of the range.
+    /// 
+    /// ```swift
+    /// Division {
+    /// }
+    /// .role(.meter)
+    /// .accessibilityValue(20.0, alternate: "Lorem ipsum")
     /// ```
-    func aria(valueNow value: Float) -> Self
+    /// 
+    /// - Parameter value: The current value within the range.
+    /// - Parameter text: The alternate text to describe the value.
+    /// 
+    /// - Returns: The element
+    func accessibilityValue(_ value: Float, description text: String?) -> Self
+    
+    /// Indicate the current value of the range.
+    /// 
+    /// ```swift
+    /// Division {
+    /// }
+    /// .role(.meter)
+    /// .accessibilityValue(20.0, alternate: "Lorem ipsum")
+    /// ```
+    /// 
+    /// - Parameter value: The current value within the range.
+    /// - Parameter localizedKey:The localized key to describe the value.
+    /// - Parameter tableName: The translation table to look in.
+    /// 
+    /// - Returns: The element
+    func accessibilityValue(_ value: Float, description localizedKey: LocalizedStringKey, tableName: String?) -> Self
 }
 
-extension AriaValueNowAttribute where Self: ContentNode {
+extension ValueAccessibilityAttribute where Self: ContentNode {
     
     internal func mutate(ariavaluenow value: AttributeData) -> Self {
         return self.mutate(key: "aria-valuenow", value: value)
     }
-}
-
-extension AriaValueNowAttribute where Self: EmptyNode {
-    
-    internal func mutate(ariavaluenow value: AttributeData) -> Self {
-        return self.mutate(key: "aria-valuenow", value: value)
-    }
-}
-
-/// The protocol provides the element with accessibility handler.
-@_documentation(visibility: internal)
-public protocol AriaValueTextAttribute: Attribute {
-    
-    /// The function represents the html-attribute 'aria-valuetext'.
-    ///
-    /// ```html
-    /// <tag aria-valuetext="" />
-    /// ```
-    func aria(valueText value: String) -> Self
-}
-
-extension AriaValueTextAttribute where Self: ContentNode {
     
     internal func mutate(ariavaluetext value: AttributeData) -> Self {
         return self.mutate(key: "aria-valuetext", value: value)
     }
 }
 
-extension AriaValueTextAttribute where Self: EmptyNode {
+extension ValueAccessibilityAttribute where Self: EmptyNode {
+    
+    internal func mutate(ariavaluenow value: AttributeData) -> Self {
+        return self.mutate(key: "aria-valuenow", value: value)
+    }
     
     internal func mutate(ariavaluetext value: AttributeData) -> Self {
         return self.mutate(key: "aria-valuetext", value: value)
