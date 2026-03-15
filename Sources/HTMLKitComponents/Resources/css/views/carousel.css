@@ -9,36 +9,65 @@
     --borderOpacity: 1.0;
     --backgroundColor: var(--systemBackgroundColor);
     --backgroundOpacity: 1.0;
-    
-    display: flex;
-    flex-direction: column;
+
     max-inline-size: 100%;
     block-size: auto;
-}
-
-.carousel-content {
-    display: grid;
-    grid-auto-flow: column;
-    grid-auto-columns: 100%;
-    block-size: 350px;
-    border-width: var(--borderWidth);
-    border-style: solid;
-    border-color: hsla(var(--borderColor), var(--borderOpacity));
-    border-radius: var(--borderRadius);
-    background-color: hsla(var(--backgroundColor), var(--backgroundOpacity));
-    overflow: hidden;
-}
-
-.carousel-content::-webkit-scrollbar{
-    display: none;
-}
-
-.carousel-indication {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    block-size: 50px;
+    flex-direction: column;
+
+    .carousel-content {
+        block-size: 350px;
+        display: grid;
+        grid-auto-flow: column;
+        grid-auto-columns: 100%;
+        border-width: var(--borderWidth);
+        border-style: solid;
+        border-color: hsla(var(--borderColor), var(--borderOpacity));
+        border-radius: var(--borderRadius);
+        background-color: hsla(var(--backgroundColor), var(--backgroundOpacity));
+        overflow: hidden;
+
+        &::-webkit-scrollbar {
+            display: none;
+        }
+    }
+
+    .carousel-indication {
+        block-size: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+
+        .indicator {
+            --borderRadius: 5px;
+            --borderColor: var(--systemBorderColor);
+            --borderOpacity: 1.0;
+            --backgroundColor: var(--systemBorderColor);
+            --backgroundOpacity: 1.0;
+
+            position: relative;
+            inline-size: 40px;
+            block-size: 6px;
+            display: inline-block;
+            border-width: 1px;
+            border-style: solid;
+            border-color: hsla(var(--borderColor), var(--borderOpacity));
+            border-radius: var(--borderRadius);
+            background-color: hsla(var(--backgroundColor), var(--backgroundOpacity));
+            cursor: pointer;
+
+            &:hover {
+                --borderColor: var(--accentColor);
+                --backgroundColor: var(--accentColor);
+            }
+
+            &.state\:active {
+                --borderColor: var(--accentColor);
+                --backgroundColor: var(--accentColor);
+            }
+        }
+    }
 }
 
 /**
@@ -50,41 +79,8 @@
     --backgroundOpacity: 1.0;
 
     position: relative;
-    display: flex;
     block-size: inherit;
+    display: flex;
+    background-color: hsla(var(--backgroundColor), var(--backgroundOpacity));
     overflow: hidden;
-    background-color: hsla(var(--backgroundColor), var(--backgroundOpacity));
-}
-
-/**
- * The rulesets for the indicator component.
- */
-
-.indicator {
-    --borderRadius: 5px;
-    --borderColor: var(--systemBorderColor);
-    --borderOpacity: 1.0;
-    --backgroundColor: var(--systemBorderColor);
-    --backgroundOpacity: 1.0;
-
-    position: relative;
-    display: inline-block;
-    inline-size: 40px;
-    block-size: 6px;
-    border-width: 1px;
-    border-style: solid;
-    border-color: hsla(var(--borderColor), var(--borderOpacity));
-    border-radius: var(--borderRadius);
-    background-color: hsla(var(--backgroundColor), var(--backgroundOpacity));
-    cursor: pointer;
-}
-
-.indicator:hover {
-    --borderColor: var(--accentColor);
-    --backgroundColor: var(--accentColor);
-}
-
-.indicator.state\:active {
-    --borderColor: var(--accentColor);
-    --backgroundColor: var(--accentColor);
 }

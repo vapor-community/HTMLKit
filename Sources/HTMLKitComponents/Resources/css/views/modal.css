@@ -15,7 +15,8 @@
     --backgroundColor: var(--systemBackgroundColor);
     --backgroundOpacity: 1.0;
     
-    margin: auto;
+    margin-inline: auto;
+    margin-block: auto;
     padding-block-start: var(--paddingBlockStart);
     padding-block-end: var(--paddingBlockEnd);
     padding-inline-start: var(--paddingInlineStart);

@@ -7,7 +7,7 @@
     --paddingBlockEnd: 0.5rem;
     --paddingInlineStart: 1.0rem;
     --paddingInlineEnd: 1.0rem;
-    --inlineSize: fit-content();
+    --inlineSize: fit-content;
     --fontSize: 1.0rem;
     --fontWeight: 400;
     --lineHeight: 1.5;
@@ -20,14 +20,14 @@
     --backgroundOpacity: 1.0;
     
     position: relative;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
     padding-block-start: var(--paddingBlockStart);
     padding-block-end: var(--paddingBlockEnd);
     padding-inline-start: var(--paddingInlineStart);
     padding-inline-end: var(--paddingInlineEnd);
     inline-size: var(--inlineSize);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     font-family: var(--fontFamily);
     font-size: var(--fontSize);
     font-weight: var(--fontWeight);
@@ -44,40 +44,40 @@
     -webkit-user-select: none;
     -moz-user-select: none;
     user-select: none;
-}
 
-.button:hover {
-    filter: brightness(90%) saturate(90%);
-}
+    &:hover {
+        filter: brightness(90%) saturate(90%);
+    }
 
-.button.style\:primary {
-    --foregroundColor: var(--whiteColor) !important;
-    --backgroundColor: var(--accentColor) !important;
-    --borderColor: var(--accentColor) !important;
-}
+    &.style\:primary {
+        --foregroundColor: var(--whiteColor) !important;
+        --borderColor: var(--accentColor) !important;
+        --backgroundColor: var(--accentColor) !important;
+    }
 
-.button.style\:outline {
-    --foregroundColor: var(--systemTextColor) !important;
-    --backgroundOpacity: 0.0 !important;
-    --borderColor: var(--systemBorderColor) !important;
-}
+    &.style\:outline {
+        --foregroundColor: var(--systemTextColor) !important;
+        --borderColor: var(--systemBorderColor) !important;
+        --backgroundOpacity: 0.0 !important;
+    }
 
-.button.size\:full {
-    --inlineSize: 100%;
-}
+    &.size\:full {
+        --inlineSize: 100%;
+    }
 
-.button.size\:large {
-    --inlineSize: 75%;
-}
+    &.size\:large {
+        --inlineSize: 75%;
+    }
 
-.button.size\:medium {
-    --inlineSize: 50%;
-}
+    &.size\:medium {
+        --inlineSize: 50%;
+    }
 
-.button.size\:small {
-    --inlineSize: 25%;
-}
+    &.size\:small {
+        --inlineSize: 25%;
+    }
 
-.button > .symbol {
-    height: 24px; /* temporary fix */
+    .symbol {
+        height: 24px; /* Temporary fix */
+    }
 }

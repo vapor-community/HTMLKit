@@ -11,92 +11,92 @@
     --backgroundOpacity: 0.0;
     
     position: relative;
-    inline-size: 100%;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
     padding-block-start: var(--paddingBlockStart);
     padding-block-end: var(--paddingBlockEnd);
     padding-inline-start: var(--paddingInlineStart);
     padding-inline-end: var(--paddingInlineEnd);
+    inline-size: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
     background-color: hsla(var(--backgroundColor), var(--backgroundOpacity));
-}
 
-.hstack.vertical-alignment\:top {
-    align-items: flex-start;
-}
+    &.vertical-alignment\:top {
+        align-items: flex-start;
+    }
 
-.hstack.vertical-alignment\:center {
-    align-items: center;
-}
+    &.vertical-alignment\:center {
+        align-items: center;
+    }
 
-.hstack.vertical-alignment\:bottom {
-    align-items: flex-end;
-}
+    &.vertical-alignment\:bottom {
+        align-items: flex-end;
+    }
 
-.hstack.vertical-alignment\:baseline {
-    align-items: baseline;
-}
+    &.vertical-alignment\:baseline {
+        align-items: baseline;
+    }
 
-.hstack.horizontal-alignment\:leading {
-    margin-inline-end: auto !important;
-}
+    &.horizontal-alignment\:leading {
+        margin-inline-end: auto !important;
+    }
 
-.hstack.horizontal-alignment\:center {
-    margin-inline-start: auto !important;
-    margin-inline-end: auto !important;
-}
+    &.horizontal-alignment\:center {
+        margin-inline-start: auto !important;
+        margin-inline-end: auto !important;
+    }
 
-.hstack.horizontal-alignment\:trailing {
-    margin-inline-start: auto !important;
-}
+    &.horizontal-alignment\:trailing {
+        margin-inline-start: auto !important;
+    }
 
-.hstack > .frame-alignment\:leading {
-    align-self: flex-start;
-}
+    &.spacing\:around {
+        justify-content: space-around;
+    }
 
-.hstack > .frame-alignment\:center {
-    align-self: center;
-}
+    &.spacing\:between {
+        justify-content: space-between;
+    }
 
-.hstack > .frame-alignment\:trailing {
-    align-self: flex-end;
-}
+    &.spacing\:large {
+        gap: 2.25rem;
+    }
 
-.hstack.spacing\:around {
-    justify-content: space-around;
-}
+    &.spacing\:medium {
+        gap: 1.5rem;
+    }
 
-.hstack.spacing\:between {
-    justify-content: space-between;
-}
+    &.spacing\:small {
+        gap: 1rem;
+    }
 
-.hstack.spacing\:evenly {
-    justify-content: space-evenly;
-}
+    &.spacing\:evenly {
+        justify-content: space-evenly;
+    }
 
-.hstack.spacing\:large {
-    gap: 2.25rem;
-}
+    &.shadow\:small {
+        box-shadow: 0 1px 1px -1px hsla(var(--shadowColor), 0.3), 0 2px 2px -2px hsla(var(--shadowColor), 0.3);
+    }
 
-.hstack.spacing\:medium {
-    gap: 1.5rem;
-}
+    &.shadow\:medium {
+        box-shadow: 0 3px 3px -3px hsla(var(--shadowColor), 0.3), 0 4px 4px -4px hsla(var(--shadowColor), 0.3);
+    }
 
-.hstack.spacing\:small {
-    gap: 1rem;
-}
+    &.shadow\:large {
+        box-shadow: 0 5px 5px -5px hsla(var(--shadowColor), 0.3), 0 6px 6px -6px hsla(var(--shadowColor), 0.3);
+    }
 
-.hstack.shadow\:small {
-    box-shadow: 0 1px 1px -1px hsla(var(--shadowColor), 0.3), 0 2px 2px -2px hsla(var(--shadowColor), 0.3);
-}
+    > .frame-alignment\:leading {
+        align-self: flex-start;
+    }
 
-.hstack.shadow\:medium {
-    box-shadow: 0 3px 3px -3px hsla(var(--shadowColor), 0.3), 0 4px 4px -4px hsla(var(--shadowColor), 0.3);
-}
+    > .frame-alignment\:center {
+        align-self: center;
+    }
 
-.hstack.shadow\:large {
-    box-shadow: 0 5px 5px -5px hsla(var(--shadowColor), 0.3), 0 6px 6px -6px hsla(var(--shadowColor), 0.3);
+    > .frame-alignment\:trailing {
+        align-self: flex-end;
+    }
 }
 
 /**
@@ -112,74 +112,74 @@
     --backgroundOpacity: 0.0;
     
     position: relative;
-    inline-size: 100%;
-    display: flex;
-    flex-direction: column;
     padding-block-start: var(--paddingBlockStart);
     padding-block-end: var(--paddingBlockEnd);
     padding-inline-start: var(--paddingInlineStart);
     padding-inline-end: var(--paddingInlineEnd);
+    inline-size: 100%;
+    display: flex;
+    flex-direction: column;
     background-color: hsla(var(--backgroundColor), var(--backgroundOpacity));
-}
 
-.vstack.horizontal-alignment\:leading {
-    align-items: flex-start;
-}
+    &.horizontal-alignment\:leading {
+        align-items: flex-start;
+    }
 
-.vstack.horizontal-alignment\:center {
-    align-items: center;
-}
+    &.horizontal-alignment\:center {
+        align-items: center;
+    }
 
-.vstack.horizontal-alignment\:trailing {
-    align-items: flex-end;
-}
+    &.horizontal-alignment\:trailing {
+        align-items: flex-end;
+    }
 
-.vstack > .frame-alignment\:leading {
-    align-self: flex-start;
-}
+    &.spacing\:around {
+        justify-content: space-around;
+    }
 
-.vstack > .frame-alignment\:center {
-    align-self: center;
-}
+    &.spacing\:between {
+        justify-content: space-between;
+    }
 
-.vstack > .frame-alignment\:trailing {
-    align-self: flex-end;
-}
+    &.spacing\:evenly {
+        justify-content: space-evenly;
+    }
 
-.vstack.spacing\:around {
-    justify-content: space-around;
-}
+    &.spacing\:large {
+        gap: 2.25rem;
+    }
 
-.vstack.spacing\:between {
-    justify-content: space-between;
-}
+    &.spacing\:medium {
+        gap: 1.5rem;
+    }
 
-.vstack.spacing\:evenly {
-    justify-content: space-evenly;
-}
+    &.spacing\:small {
+        gap: 1rem;
+    }
 
-.vstack.spacing\:large {
-    gap: 2.25rem;
-}
+    &.shadow\:small {
+        box-shadow: 0 1px 1px -1px hsla(var(--shadowColor), 0.3), 0 2px 2px -2px hsla(var(--shadowColor), 0.3);
+    }
 
-.vstack.spacing\:medium {
-    gap: 1.5rem;
-}
+    &.shadow\:medium {
+        box-shadow: 0 3px 3px -3px hsla(var(--shadowColor), 0.3), 0 4px 4px -4px hsla(var(--shadowColor), 0.3);
+    }
 
-.vstack.spacing\:small {
-    gap: 1rem;
-}
+    &.shadow\:large {
+        box-shadow: 0 5px 5px -5px hsla(var(--shadowColor), 0.3), 0 6px 6px -6px hsla(var(--shadowColor), 0.3);
+    }
 
-.vstack.shadow\:small {
-    box-shadow: 0 1px 1px -1px hsla(var(--shadowColor), 0.3), 0 2px 2px -2px hsla(var(--shadowColor), 0.3);
-}
+    > .frame-alignment\:leading {
+        align-self: flex-start;
+    }
 
-.vstack.shadow\:medium {
-    box-shadow: 0 3px 3px -3px hsla(var(--shadowColor), 0.3), 0 4px 4px -4px hsla(var(--shadowColor), 0.3);
-}
+    > .frame-alignment\:center {
+        align-self: center;
+    }
 
-.vstack.shadow\:large {
-    box-shadow: 0 5px 5px -5px hsla(var(--shadowColor), 0.3), 0 6px 6px -6px hsla(var(--shadowColor), 0.3);
+    > .frame-alignment\:trailing {
+        align-self: flex-end;
+    }
 }
 
 /**
@@ -195,50 +195,30 @@
     --backgroundOpacity: 0.0;
     
     position: relative;
+    padding-block-start: var(--paddingBlockStart);
+    padding-block-end: var(--paddingBlockEnd);
+    padding-inline-start: var(--paddingInlineStart);
+    padding-inline-end: var(--paddingInlineEnd);
     display: grid;
     grid-template-rows: minmax(0, 1fr);
     grid-template-columns: 1fr;
     place-items: center;
     place-content: center;
-    padding-block-start: var(--paddingBlockStart);
-    padding-block-end: var(--paddingBlockEnd);
-    padding-inline-start: var(--paddingInlineStart);
-    padding-inline-end: var(--paddingInlineEnd);
     background-color: hsla(var(--backgroundColor), var(--backgroundOpacity));
-}
 
-.zstack.shadow\:small {
-    box-shadow: 0 1px 1px -1px hsla(var(--shadowColor), 0.3), 0 2px 2px -2px hsla(var(--shadowColor), 0.3);
-}
+    &.shadow\:small {
+        box-shadow: 0 1px 1px -1px hsla(var(--shadowColor), 0.3), 0 2px 2px -2px hsla(var(--shadowColor), 0.3);
+    }
 
-.zstack.shadow\:medium {
-    box-shadow: 0 3px 3px -3px hsla(var(--shadowColor), 0.3), 0 4px 4px -4px hsla(var(--shadowColor), 0.3);
-}
+    &.shadow\:medium {
+        box-shadow: 0 3px 3px -3px hsla(var(--shadowColor), 0.3), 0 4px 4px -4px hsla(var(--shadowColor), 0.3);
+    }
 
-.zstack.shadow\:large {
-    box-shadow: 0 5px 5px -5px hsla(var(--shadowColor), 0.3), 0 6px 6px -6px hsla(var(--shadowColor), 0.3);
-}
+    &.shadow\:large {
+        box-shadow: 0 5px 5px -5px hsla(var(--shadowColor), 0.3), 0 6px 6px -6px hsla(var(--shadowColor), 0.3);
+    }
 
-.zstack > * {
-    grid-area: 1 / 1;
-}
-
-.zstack .zindex\:one {
-    z-index: 1;
-}
-
-.zstack .zindex\:two {
-    z-index: 2;
-}
-
-.zstack .zindex\:three {
-    z-index: 3;
-}
-
-.zstack .zindex\:four {
-    z-index: 4;
-}
-
-.zindex .zindex\:five {
-    z-index: 5;
+    > * {
+        grid-area: 1 / 1;
+    }
 }

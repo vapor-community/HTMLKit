@@ -317,6 +317,13 @@ internal class Stylesheet {
             return .code
         }
         
+        if character.isAmpersand {
+            
+            self.assign(token: SelectorToken(type: .type, value: String(character)))
+            
+            return .selector
+        }
+        
         return .code
     }
     

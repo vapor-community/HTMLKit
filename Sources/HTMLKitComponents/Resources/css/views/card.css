@@ -23,18 +23,18 @@
     border-color: hsla(var(--borderColor), var(--borderOpacity));
     border-radius: var(--borderRadius);
     background-color: hsla(var(--backgroundColor), var(--backgroundOpacity));
-}
 
-.card .card-header {
-    border-start-start-radius: var(--borderRadius);
-    border-start-end-radius: var(--borderRadius);
-}
+    .card-header {
+        border-start-start-radius: var(--borderRadius);
+        border-start-end-radius: var(--borderRadius);
+    }
 
-.card .card-body {
-    padding-block-start: var(--paddingBlockStart);
-    padding-block-end: var(--paddingBlockEnd);
-    padding-inline-start: var(--paddingInlineStart);
-    padding-inline-end: var(--paddingInlineEnd);
-    border-end-start-radius: var(--borderRadius);
-    border-end-end-radius: var(--borderRadius);
+    .card-body {
+        padding-block-start: var(--paddingBlockStart);
+        padding-block-end: var(--paddingBlockEnd);
+        padding-inline-start: var(--paddingInlineStart);
+        padding-inline-end: var(--paddingInlineEnd);
+        border-end-start-radius: var(--borderRadius);
+        border-end-end-radius: var(--borderRadius);
+    }
 }

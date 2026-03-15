@@ -33,26 +33,26 @@
     border-radius: var(--borderRadius);
     background-color: hsla(var(--backgroundColor), var(--backgroundOpacity));
     overflow-inline: auto;
-}
 
-.snippet > p {
-    display: block;
-    font-size: var(--fontSize);
-    line-height: var(--lineHeight);
-    color: hsla(var(--foregroundColor), 1.0);
-    word-wrap: normal;
-    white-space: pre;
-    counter-increment: line;
-}
+    p {
+        display: block;
+        font-size: var(--fontSize);
+        line-height: var(--lineHeight);
+        color: hsla(var(--foregroundColor), 1.0);
+        word-wrap: normal;
+        white-space: pre;
+        counter-increment: line;
 
-.snippet > p::before {
-    position: relative;
-    display: inline-block;
-    margin-inline-end: 0.938rem;
-    padding-inline: 0.938rem;
-    white-space: nowrap;
-    text-align: right;
-    content: counter(line);
-    color: hsla(var(--foregroundColor), 1.0);
-    -webkit-user-select: none;
+        &:before {
+            position: relative;
+            margin-inline-end: 0.938rem;
+            padding-inline: 0.938rem;
+            display: inline-block;
+            white-space: nowrap;
+            text-align: right;
+            content: counter(line);
+            color: hsla(var(--foregroundColor), 1.0);
+            -webkit-user-select: none;
+        }
+    }
 }

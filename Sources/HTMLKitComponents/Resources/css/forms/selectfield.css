@@ -22,62 +22,64 @@
     position: relative;
     display: block;
     inline-size: 100%;
-}
 
-.selectfield-textfield {
-    display: block;
-    inline-size: 100%;
-    padding-block-start: var(--paddingBlockStart);
-    padding-block-end: var(--paddingBlockEnd);
-    padding-inline-start: var(--paddingInlineStart);
-    padding-inline-end: var(--paddingInlineEnd);
-    font-family: system-ui;
-    font-size: var(--fontSize);
-    font-weight: var(--fontWeight);
-    line-height: var(--lineHeight);
-    color: hsla(var(--foregroundColor), 1.0);
-    border-width: var(--borderWidth);
-    border-style: solid;
-    border-color: hsla(var(--borderColor), var(--borderOpacity));
-    border-radius: var(--borderRadius);
-    background-color: hsla(var(--backgroundColor), var(--backgroundOpacity));
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-}
+    .selectfield-textfield {
+        padding-block-start: var(--paddingBlockStart);
+        padding-block-end: var(--paddingBlockEnd);
+        padding-inline-start: var(--paddingInlineStart);
+        padding-inline-end: var(--paddingInlineEnd);
+        inline-size: 100%;
+        display: block;
+        font-family: system-ui;
+        font-size: var(--fontSize);
+        font-weight: var(--fontWeight);
+        line-height: var(--lineHeight);
+        color: hsla(var(--foregroundColor), 1.0);
+        border-width: var(--borderWidth);
+        border-style: solid;
+        border-color: hsla(var(--borderColor), var(--borderOpacity));
+        border-radius: var(--borderRadius);
+        background-color: hsla(var(--backgroundColor), var(--backgroundOpacity));
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
 
-.selectfield-textfield:focus {
-    --borderColor: var(--focusColor) !important;
-    
-    outline: 0;
-    box-shadow: 0 0 0 0.125rem hsla(var(--focusColor), 0.1);
-}
+        &:focus {
+            --borderColor: var(--focusColor) !important;
 
-.selectfield-textfield:invalid {
-    --borderColor: var(--redColor);
-}
+            outline-style: none;
+            box-shadow: 0 0 0 0.125rem hsla(var(--focusColor), 0.1);
+        }
 
-.selectfield-optionlist {
-    position: absolute;
-    z-index: 1;
-    display: block;
-    width: 100%;
-    margin-block: 0.75rem;
-    color: hsla(var(--foregroundColor), 1.0);
-    border-width: var(--borderWidth);
-    border-style: solid;
-    border-color: hsla(var(--borderColor), 1.0);
-    border-radius: var(--borderRadius);
-    background-color: hsla(var(--backgroundColor), 1.0);
-    list-style-type: none;
-    visibility: hidden;
-}
+        &:invalid {
+            --borderColor: var(--redColor);
+        }
+    }
 
-.selectfield-optionlist.position\:bottom {
-    bottom: 0;
-    margin-block: 3.375rem !important;
-}
+    .selectfield-optionlist {
+        position: absolute;
+        z-index: 1;
+        margin-block: 0.75rem;
+        inline-size: 100%;
+        display: block;
+        color: hsla(var(--foregroundColor), 1.0);
+        border-width: var(--borderWidth);
+        border-style: solid;
+        border-color: hsla(var(--borderColor), 1.0);
+        border-radius: var(--borderRadius);
+        background-color: hsla(var(--backgroundColor), 1.0);
+        list-style-type: none;
+        visibility: hidden;
 
-.selectfield-optionlist > .radioselect:hover, .selectfield-optionlist > .checkfield:hover {
-    background-color: hsla(var(--borderColor), 0.5);
+        &.position\:bottom {
+            bottom: 0;
+            margin-block: 3.375rem !important;
+        }
+
+        > * {
+            &:hover {
+                background-color: hsla(var(--borderColor), 0.5);
+            }
+        }
+    }
 }

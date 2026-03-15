@@ -20,12 +20,12 @@
     --backgroundOpacity: 1.0;
     
     position: relative;
-    display: block;
-    inline-size: 100%;
     padding-block-start: var(--paddingBlockStart);
     padding-block-end: var(--paddingBlockEnd);
     padding-inline-start: var(--paddingInlineStart);
     padding-inline-end: var(--paddingInlineEnd);
+    inline-size: 100%;
+    display: block;
     font-family: system-ui;
     font-size: var(--fontSize);
     font-weight: var(--fontWeight);

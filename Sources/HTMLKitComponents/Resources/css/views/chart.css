@@ -12,45 +12,47 @@
     --backgroundOpacity: 1.0;
 
     position: relative;
+    inline-size: 100%;
+    block-size: inherit;
     display: block;
-    width: 100%;
-    height: inherit;
-}
 
-.chart > .chart-guide {
-    stroke-width: 1px;
-    stroke-dasharray: 5;
-    stroke: hsla(var(--borderColor), 1.0);
-}
+    .chart-guide {
+        stroke-width: 1px;
+        stroke-dasharray: 5;
+        stroke: hsla(var(--borderColor), 1.0);
+    }
 
-.chart > .chart-axis {
-    stroke-width: 1px;
-    stroke-dasharray: 0;
-    stroke: hsla(var(--borderColor), 1.0);
-}
+    .chart-axis {
+        stroke-width: 1px;
+        stroke-dasharray: 0;
+        stroke: hsla(var(--borderColor), 1.0);
+    }
 
-.chart-label {
-    font-size: var(--fontSize);
-    font-weight: var(--fontWeight);
-    line-height: var(--lineHeight);
-    fill: hsla(var(--foregroundColor), 1.0);
-    stroke-width: 0;
-}
+    .chart-label {
+        font-size: var(--fontSize);
+        font-weight: var(--fontWeight);
+        line-height: var(--lineHeight);
+        fill: hsla(var(--foregroundColor), 1.0);
+        stroke-width: 0;
+    }
 
-.chart > .mark.type\:bar {
-    font-size: var(--fontSize);
-    font-weight: var(--fontWeight);
-    line-height: var(--lineHeight);
-    fill: hsla(var(--foregroundColor), 1.0);
-    stroke-width: 0;
-}
+    .mark {
+        &.type\:bar {
+            font-size: var(--fontSize);
+            font-weight: var(--fontWeight);
+            line-height: var(--lineHeight);
+            fill: hsla(var(--foregroundColor), 1.0);
+            stroke-width: 0;
+        }
 
-.chart > .mark.type\:pie {
-    font-size: var(--fontSize);
-    font-weight: var(--fontWeight);
-    line-height: var(--lineHeight);
-}
+        &.type\:pie {
+            font-size: var(--fontSize);
+            font-weight: var(--fontWeight);
+            line-height: var(--lineHeight);
 
-.chart > .mark.type\:pie path {
-    fill: hsla(var(--foregroundColor), 1.0);
+            path {
+                fill: hsla(var(--foregroundColor), 1.0);
+            }
+        }
+    }
 }

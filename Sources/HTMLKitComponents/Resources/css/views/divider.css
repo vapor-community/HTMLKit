@@ -7,9 +7,9 @@
     --backgroundOpacity: 1.0;
     
     position: relative;
-    display: block;
     inline-size: 100%;
     block-size: 1px;
-    border-width: 0;
+    display: block;
+    border-style: none;
     background-color: hsla(var(--backgroundColor), var(--backgroundOpacity));
 }

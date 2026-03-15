@@ -10,11 +10,13 @@
     --focusColor: var(--systemFocusColor);
     --backgroundColor: var(--systemBackgroundColor);
     --backgroundOpacity: 1.0;
-    
-    display: block;
-    margin: 0;
-    padding: 0;
+
+    margin-inline: 0;
+    margin-block: 0;
+    padding-inline: 0;
+    padding-block: 0;
     inline-size: 100%;
+    display: block;
     border-width: var(--borderWidth);
     border-style: solid;
     border-color: hsla(var(--borderColor), var(--borderOpacity));
@@ -22,33 +24,33 @@
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-}
 
-.slider:focus {
-    --borderColor: var(--focusColor) !important;
-    
-    outline: 0;
-    box-shadow: 0 0 0 0.125rem hsla(var(--focusColor), 0.1);
-}
+    &:focus {
+        --borderColor: var(--focusColor) !important;
 
-.slider::-webkit-slider-thumb {
-    width: 1em;
-    height: 1em;
-    background-color: hsla(var(--controlColor), 1.0);
-    cursor: pointer;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-}
+        outline-style: none;
+        box-shadow: 0 0 0 0.125rem hsla(var(--focusColor), 0.1);
+    }
 
-.slider::-moz-range-thumb {
-    width: 1em;
-    height: 1em;
-    background-color: hsla(var(--controlColor), 1.0);
-    cursor: pointer;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
+    &::-webkit-slider-thumb {
+        inline-size: 1em;
+        block-size: 1em;
+        background-color: hsla(var(--controlColor), 1.0);
+        cursor: pointer;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+    }
+
+    &::-moz-range-thumb {
+        inline-size: 1em;
+        block-size: 1em;
+        background-color: hsla(var(--controlColor), 1.0);
+        cursor: pointer;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+    }
 }
 
 .scheme\:dark .slider, .slider.scheme\:dark {

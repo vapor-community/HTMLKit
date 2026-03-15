@@ -14,192 +14,192 @@
     line-height: var(--lineHeight);
     color: hsla(var(--foregroundColor), 1.0);
     text-decoration: none;
-}
 
-.link.size\:tiny {
-    --fontSize: 0.67rem;
-    --lineHeight: 1.25;
-}
+    &.size\:tiny {
+        --fontSize: 0.67rem;
+        --lineHeight: 1.25;
+    }
 
-.link.size\:small {
-    --fontSize: 0.83rem;
-    --lineHeight: 1.25;
-}
+    &.size\:small {
+        --fontSize: 0.83rem;
+        --lineHeight: 1.25;
+    }
 
-.link.size\:medium {
-    --fontSize: 1.17rem;
-    --lineHeight: 1.75;
-}
+    &.size\:medium {
+        --fontSize: 1.17rem;
+        --lineHeight: 1.75;
+    }
 
-.link.size\:large {
-    --fontSize: 1.5rem;
-    --lineHeight: 2.0;
-}
+    &.size\:large {
+        --fontSize: 1.5rem;
+        --lineHeight: 2.0;
+    }
 
-.link.size\:extralarge {
-    --fontSize: 2rem;
-    --lineHeight: 2.25;
-}
+    &.size\:extralarge {
+        --fontSize: 2rem;
+        --lineHeight: 2.25;
+    }
 
-.link.weight\:thin {
-    --fontWeight: 100;
-}
+    &.weight\:thin {
+        --fontWeight: 100;
+    }
 
-.link.weight\:ultralight {
-    --fontWeight: 200;
-}
+    &.weight\:ultralight {
+        --fontWeight: 200;
+    }
 
-.link.weight\:light {
-    --fontWeight: 300;
-}
+    &.weight\:light {
+        --fontWeight: 300;
+    }
 
-.link.weight\:semibold {
-    --fontWeight: 500;
-}
+    &.weight\:semibold {
+        --fontWeight: 500;
+    }
 
-.link.weight\:semibold {
-    --fontWeight: 600;
-}
+    &.weight\:semibold {
+        --fontWeight: 600;
+    }
 
-.link.weight\:bold {
-    --fontWeight: 700;
-}
+    &.weight\:bold {
+        --fontWeight: 700;
+    }
 
-.link.weight\:heavy {
-    --fontWeight: 900;
-}
+    &.weight\:heavy {
+        --fontWeight: 900;
+    }
 
-.link.weight\:black {
-    --fontWeight: 950;
-}
+    &.weight\:black {
+        --fontWeight: 950;
+    }
 
-.link.case\:uppercase {
-    text-transform: uppercase;
-}
+    &.case\:uppercase {
+        text-transform: uppercase;
+    }
 
-.link.case\:lowercase {
-    text-transform: lowercase;
-}
+    &.case\:lowercase {
+        text-transform: lowercase;
+    }
 
-.link.case\:capitalize {
-    text-transform: capitalize;
-}
+    &.case\:capitalize {
+        text-transform: capitalize;
+    }
 
-.link.decoration\:underline {
-    text-decoration: underline;
-}
+    &.decoration\:underline {
+        text-decoration: underline;
+    }
 
-.link.decoration\:overline {
-    text-decoration: overline;
-}
+    &.decoration\:overline {
+        text-decoration: overline;
+    }
 
-.link.decoration\:strikethrough {
-    text-decoration: line-through;
-}
+    &.decoration\:strikethrough {
+        text-decoration: line-through;
+    }
 
-.link.decoration\:none {
-    text-decoration: none;
-}
+    &.decoration\:none {
+        text-decoration: none;
+    }
 
-.link.style\:italic {
-    font-style: italic;
-}
+    &.style\:italic {
+        font-style: italic;
+    }
 
-.link.style\:oblique {
-    font-style: oblique;
-}
+    &.style\:oblique {
+        font-style: oblique;
+    }
 
-.link.style\:title {
-    --fontSize: 2.0rem;
-    --fontWeight: 400;
-    --lineHeight: 2.25;
-}
+    &.style\:title {
+        --fontSize: 2.0rem;
+        --fontWeight: 400;
+        --lineHeight: 2.25;
+    }
 
-.link.style\:headline {
-    --fontSize: 1.5rem;
-    --fontWeight: 600;
-    --lineHeight: 2.0;
-}
+    &.style\:headline {
+        --fontSize: 1.5rem;
+        --fontWeight: 600;
+        --lineHeight: 2.0;
+    }
 
-.link.style\:subheadline {
-    --fontSize: 1.25rem;
-    --fontWeight: 400;
-    --lineHeight: 1.75;
-}
+    &.style\:subheadline {
+        --fontSize: 1.25rem;
+        --fontWeight: 400;
+        --lineHeight: 1.75;
+    }
 
-.link.style\:body {
-    --fontSize: 1rem;
-    --fontWeight: 400;
-    --lineHeight: 1.5;
-}
+    &.style\:body {
+        --fontSize: 1rem;
+        --fontWeight: 400;
+        --lineHeight: 1.5;
+    }
 
-.link.style\:callout {
-    --fontSize: 1rem;
-    --fontWeight: 400;
-    --lineHeight: 1.5;
-}
+    &.style\:callout {
+        --fontSize: 1rem;
+        --fontWeight: 400;
+        --lineHeight: 1.5;
+    }
 
-.link.style\:caption {
-    --fontSize: 0.8rem;
-    --fontWeight: 400;
-    --lineHeight: 1.5;
-}
+    &.style\:caption {
+        --fontSize: 0.8rem;
+        --fontWeight: 400;
+        --lineHeight: 1.5;
+    }
 
-.link.style\:footnote {
-    --fontSize: 0.8rem;
-    --fontWeight: 400;
-    --lineHeight: 1.75;
-    --foregroundColor: var(--grayColor) !important;
-}
+    &.style\:footnote {
+        --fontSize: 0.8rem;
+        --fontWeight: 400;
+        --lineHeight: 1.75;
+        --foregroundColor: var(--grayColor) !important;
+    }
 
-.link.style\:code {
-    --fontFamily: monospace;
-    --fontSize: 1.0rem;
-    --fontWeight: 400;
-    --lineHeight: 1.5;
-}
+    &.style\:code {
+        --fontFamily: monospace;
+        --fontSize: 1.0rem;
+        --fontWeight: 400;
+        --lineHeight: 1.5;
+    }
 
-.link.height\:small {
-    --lineHeight: 1.0;
-}
+    &.height\:small {
+        --lineHeight: 1.0;
+    }
 
-.link.height\:medium {
-    --lineHeight: 1.75;
-}
+    &.height\:medium {
+        --lineHeight: 1.75;
+    }
 
-.link.height\:large {
-    --lineHeight: 2.25;
-}
+    &.height\:large {
+        --lineHeight: 2.25;
+    }
 
-.link.limit\:one {
-    display: -webkit-box;
-    -webkit-line-clamp: 1;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-}
+    &.limit\:one {
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
 
-.link.limit\:two {
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-}
+    &.limit\:two {
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
 
-.link.limit\:three {
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-}
+    &.limit\:three {
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
 
-.link.font\:arial {
-    --fontFamily: Arial;
-}
+    &.font\:arial {
+        --fontFamily: Arial;
+    }
 
-.link.font\:helvetica {
-    --fontFamily: Helvetica;
-}
+    &.font\:helvetica {
+        --fontFamily: Helvetica;
+    }
 
-.link.font\:verdana {
-    --fontFamily: Verdana;
+    &.font\:verdana {
+        --fontFamily: Verdana;
+    }
 }

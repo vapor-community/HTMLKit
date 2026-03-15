@@ -27,37 +27,128 @@
     border-color: hsla(var(--borderColor), var(--borderOpacity));
     border-radius: var(--borderRadius);
     background-color: hsla(var(--backgroundColor), var(--backgroundOpacity));
-}
 
-.textpad:focus-within {
-    --borderColor: var(--focusColor) !important;
-    
-    outline: 0;
-    box-shadow: 0 0 0 0.125rem hsla(var(--focusColor), 0.1);
-}
+    &:has(.textpad-content:invalid) {
+        --borderColor: var(--redColor);
+    }
 
-.textpad:has(.textpad-content:invalid) {
-    --borderColor: var(--redColor);
-}
+    &:has(.textpad-content:focus-within) {
+        .textpad-action {
+            .toolbar-tool {
+                color: hsla(var(--foregroundColor), 1.0);
+            }
+        }
+    }
 
-.textpad:has(.textpad-content:focus-within) .textpad-action .toolbar-tool {
-    color: hsla(var(--foregroundColor), 1.0);
-}
+    &:focus-within {
+        --borderColor: var(--focusColor) !important;
 
-.textpad-toolbar {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    padding-block-start: var(--paddingBlockStart);
-    padding-block-end: var(--paddingBlockEnd);
-    padding-inline-start: var(--paddingInlineStart);
-    padding-inline-end: var(--paddingInlineEnd);
+        outline-style: none;
+        box-shadow: 0 0 0 0.125rem hsla(var(--focusColor), 0.1);
+    }
+
+    .textpad-toolbar {
+        padding-block-start: var(--paddingBlockStart);
+        padding-block-end: var(--paddingBlockEnd);
+        padding-inline-start: var(--paddingInlineStart);
+        padding-inline-end: var(--paddingInlineEnd);
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+
+        .textpad-revision {
+            margin-inline: unset !important;
+            margin-block: unset !important;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 0.75rem;
+            list-style: none;
+
+            li {
+                position: relative;
+            }
+
+            .toolbar-tool {
+                color: hsla(var(--foregroundColor), 1.0);
+
+                &.state\:disabled {
+                    color: hsla(var(--foregroundColor), 0.5);
+                }
+            }
+        }
+    }
+
+    .textpad-content {
+        padding-block-start: var(--paddingBlockStart);
+        padding-block-end: var(--paddingBlockEnd);
+        padding-inline-start: var(--paddingInlineStart);
+        padding-inline-end: var(--paddingInlineEnd);
+        inline-size: 100%;
+        display: block;
+        font-family: system-ui;
+        font-size: var(--fontSize);
+        font-weight: var(--fontWeight);
+        line-height: var(--lineHeight);
+        color: hsla(var(--foregroundColor), 1.0);
+        border-style: none;
+        outline-style: none;
+        background-color: transparent;
+        resize: none;
+    }
 }
 
 .toolbar-context {
     position: relative;
     display: inline-block;
+
+    summary {
+        list-style: none;
+        cursor: pointer;
+
+        &::-webkit-details-marker {
+            display: none;
+        }
+
+        svg {
+            display: inline-block;
+            inline-size: 1.25em;
+            block-size: 1.0em;
+            fill: currentColor;
+            font-size: 1.0rem;
+            line-height: 1.5;
+            vertical-align: middle;
+            pointer-events: none;
+        }
+    }
+
+    ul {
+        position: absolute;
+        z-index: 1;
+        margin-block: 0.5rem;
+        padding-block: 0.5rem;
+        padding-inline: 0.5rem;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        inline-size: max-content;
+        border-width: var(--borderWidth);
+        border-style: solid;
+        border-color: hsla(var(--systemBorderColor), 1.0);
+        border-radius: var(--borderRadius);
+        background-color: hsla(var(--backgroundColor), var(--backgroundOpacity));
+        list-style: none;
+
+        li {
+            position: relative;
+
+            .toolbar-tool {
+                color: hsla(var(--foregroundColor), 1.0);
+            }
+        }
+    }
 }
 
 @media (min-width: 768px) {
@@ -66,92 +157,25 @@
     }
 }
 
-.toolbar-context summary {
-    list-style: none;
-    cursor: pointer;
-}
-
-.toolbar-context summary::-webkit-details-marker {
-    display: none;
-}
-
-.toolbar-context summary svg {
-    display: inline-block;
-    inline-size: 1.25em;
-    block-size: 1.0em;
-    fill: currentColor;
-    font-size: 1.0rem;
-    line-height: 1.5;
-    vertical-align: middle;
-    pointer-events: none;
-}
-
-.toolbar-context ul {
-    position: absolute;
-    z-index: 1;
-    margin-block: 0.5rem;
-    padding-block: 0.5rem;
-    padding-inline: 0.5rem;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    inline-size: max-content;
-    border-width: var(--borderWidth);
-    border-style: solid;
-    border-color: hsla(var(--systemBorderColor), 1.0);
-    border-radius: var(--borderRadius);
-    background-color: hsla(var(--backgroundColor), var(--backgroundOpacity));
-    list-style: none;
-}
-
-.toolbar-context ul li {
-    position: relative;
-}
-
-.toolbar-context ul li .toolbar-tool {
-    color: hsla(var(--foregroundColor), 1.0);
-}
-
 .textpad-action {
+    margin-inline: unset !important;
+    margin-block: unset !important;
     display: none;
     flex-direction: row;
     align-items: center;
     justify-content: flex-start;
     gap: 0.75rem;
     list-style: none;
-    margin: unset !important;
+
+    li {
+        position: relative;
+    }
 }
 
 @media (min-width: 768px) {
     .textpad-action {
         display: flex;
     }
-}
-
-.textpad-action > li {
-    position: relative;
-}
-
-.textpad-revision {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: flex-start;
-    gap: 0.75rem;
-    list-style: none;
-    margin: unset !important;
-}
-
-.textpad-revision > li {
-    position: relative;
-}
-
-.textpad-revision .toolbar-tool {
-    color: hsla(var(--foregroundColor), 1.0);
-}
-
-.textpad-revision .toolbar-tool.state\:disabled {
-    color: hsla(var(--foregroundColor), 0.5);
 }
 
 .tooltip {
@@ -181,45 +205,27 @@
     border: unset;
     border-radius: 0.3rem;
     background-color: unset;
-}
 
-.toolbar-tool > * {
-    pointer-events: none;
-}
+    > * {
+        pointer-events: none;
+    }
 
-.toolbar-tool:hover {
-    background-color: hsla(var(--systemBorderColor), 0.5);
+    &:hover {
+        background-color: hsla(var(--systemBorderColor), 0.5);
+    }
+
+    svg {
+        display: inline-block;
+        inline-size: 1.25em;
+        block-size: 1.0em;
+        fill: currentColor;
+        font-size: 1.0rem;
+        line-height: 1.5;
+        vertical-align: middle;
+        pointer-events: none;
+    }
 }
 
 .toolbar-tool:hover + .tooltip {
     display: block;
-}
-
-.toolbar-tool > svg {
-    display: inline-block;
-    inline-size: 1.25em;
-    block-size: 1.0em;
-    fill: currentColor;
-    font-size: 1.0rem;
-    line-height: 1.5;
-    vertical-align: middle;
-    pointer-events: none;
-}
-
-.textpad-content {
-    display: block;
-    inline-size: 100%;
-    padding-block-start: var(--paddingBlockStart);
-    padding-block-end: var(--paddingBlockEnd);
-    padding-inline-start: var(--paddingInlineStart);
-    padding-inline-end: var(--paddingInlineEnd);
-    font-family: system-ui;
-    font-size: var(--fontSize);
-    font-weight: var(--fontWeight);
-    line-height: var(--lineHeight);
-    color: hsla(var(--foregroundColor), 1.0);
-    border: 0;
-    outline: 0;
-    background-color: transparent;
-    resize: none;
 }

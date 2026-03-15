@@ -13,11 +13,11 @@
 
     position: relative;
     max-inline-size: var(--inlineSize);
-    height: auto;
+    block-size: auto;
+    font-style: italic;
     border-width: var(--borderWidth);
     border-style: solid;
     border-color: hsla(var(--borderColor), var(--borderOpacity));
     border-radius: var(--borderRadius);
     background-color: hsla(var(--backgroundColor), var(--backgroundOpacity));
-    font-style: italic;
 }

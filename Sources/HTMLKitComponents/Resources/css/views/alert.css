@@ -27,8 +27,8 @@
     padding-block-end: var(--paddingBlockEnd);
     padding-inline-start: var(--paddingInlineStart);
     padding-inline-end: var(--paddingInlineEnd);
-    width: 400px;
-    height: 200px;
+    inline-size: 400px;
+    block-size: 200px;
     display: flex;
     flex-direction: row;
     align-items: center;

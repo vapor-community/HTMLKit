@@ -20,52 +20,60 @@
     padding-inline-end: var(--paddingInlineEnd);
     list-style-type: none;
     background-color: hsla(var(--backgroundColor), var(--backgroundOpacity));
-}
 
-.list.direction\:horizontal {
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-}
+    &.direction\:horizontal {
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
 
-.list.direction\:vertical {
-    flex-direction: column;
-}
+        &.style\:listgroup {
+            .list-row {
+                &:not(:last-child) {
+                    border-right: 1px;
+                    border-right-style: solid;
+                    border-right-color: hsla(var(--borderColor), var(--borderOpacity));
+                }
+            }
+        }
+    }
 
-.list.spacing\:large {
-    gap: 2.25rem;
-}
+    &.direction\:vertical {
+        flex-direction: column;
 
-.list.spacing\:medium {
-    gap: 1.5rem;
-}
+        &.style\:listgroup {
+            .list-row {
+                &:not(:last-child) {
+                    border-bottom: 1px;
+                    border-bottom-style: solid;
+                    border-bottom-color: hsla(var(--borderColor), var(--borderOpacity));
+                }
+            }
+        }
+    }
 
-.list.spacing\:small {
-    gap: 1rem;
-}
+    &.spacing\:large {
+        gap: 2.25rem;
+    }
 
-.list-row {
-    --paddingBlockStart: 0;
-    --paddingBlockEnd: 0;
-    --paddingInlineStart: 0;
-    --paddingInlineEnd: 0;
+    &.spacing\:medium {
+        gap: 1.5rem;
+    }
 
-    display: flex;
-    flex-direction: column;
-    padding-block-start: var(--paddingBlockStart);
-    padding-block-end: var(--paddingBlockEnd);
-    padding-inline-start: var(--paddingInlineStart);
-    padding-inline-end: var(--paddingInlineEnd);
-}
+    &.spacing\:small {
+        gap: 1rem;
+    }
 
-.list.direction\:horizontal.style\:listgroup > .list-row:is(:not(:last-child)) {
-    border-right: 1px;
-    border-right-style: solid;
-    border-right-color: hsla(var(--borderColor), var(--borderOpacity));
-}
+    .list-row {
+        --paddingBlockStart: 0;
+        --paddingBlockEnd: 0;
+        --paddingInlineStart: 0;
+        --paddingInlineEnd: 0;
 
-.list.direction\:vertical.style\:listgroup > .list-row:is(:not(:last-child)) {
-    border-bottom: 1px;
-    border-bottom-style: solid;
-    border-bottom-color: hsla(var(--borderColor), var(--borderOpacity));
+        padding-block-start: var(--paddingBlockStart);
+        padding-block-end: var(--paddingBlockEnd);
+        padding-inline-start: var(--paddingInlineStart);
+        padding-inline-end: var(--paddingInlineEnd);
+        display: flex;
+        flex-direction: column;
+    }
 }
