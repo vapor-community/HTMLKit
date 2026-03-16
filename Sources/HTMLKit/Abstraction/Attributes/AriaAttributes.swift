@@ -400,7 +400,7 @@ extension AriaExpandedAttribute where Self: EmptyNode {
     }
 }
 
-/// A type that provides the `accessibilityFlowTo` modifier.
+/// A type that provides the `accessibilityFlow` modifier.
 @_documentation(visibility: internal)
 public protocol FlowAccessibilityAttribute: Attribute {
     
@@ -410,7 +410,7 @@ public protocol FlowAccessibilityAttribute: Attribute {
     /// Heading1 {
     ///    "Lorem ipsum"
     /// }
-    /// .accessibilityFlowTo(["id", "id"])
+    /// .accessibilityFlow(["id", "id"])
     /// Article {
     ///     "Lorem ipsum..."
     /// }
@@ -420,7 +420,7 @@ public protocol FlowAccessibilityAttribute: Attribute {
     /// - Parameter ids: The identifiers...
     ///
     /// - Returns: The element
-    func accessibilityFlowTo(_ ids: [String]) -> Self
+    func accessibilityFlow(_ ids: [String]) -> Self
     
     /// Suggest an alternate reading order.
     ///
@@ -428,7 +428,7 @@ public protocol FlowAccessibilityAttribute: Attribute {
     /// Heading1 {
     ///    "Lorem ipsum"
     /// }
-    /// .accessibilityFlowTo("id", "id")
+    /// .accessibilityFlow("id", "id")
     /// Article {
     ///     "Lorem ipsum..."
     /// }
@@ -438,7 +438,7 @@ public protocol FlowAccessibilityAttribute: Attribute {
     /// - Parameter ids: The identifiers...
     ///
     /// - Returns: The element
-    func accessibilityFlowTo(_ ids: String...) -> Self
+    func accessibilityFlow(_ ids: String...) -> Self
 }
 
 extension FlowAccessibilityAttribute where Self: ContentNode {

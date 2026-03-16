@@ -396,16 +396,16 @@ extension Caption: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
     
-    @available(*, deprecated, message: "Use the accessibilityFlowTo(_:) modifier instead.")
+    @available(*, deprecated, message: "Use the accessibilityFlow(_:) modifier instead.")
     public func aria(flowTo value: String) -> Caption {
         return mutate(ariaflowto: .init(value, context: .tainted(.html)))
     }
     
-    public func accessibilityFlowTo(_ ids: [String]) -> Caption {
+    public func accessibilityFlow(_ ids: [String]) -> Caption {
         return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
     }
     
-    public func accessibilityFlowTo(_ ids: String...) -> Caption {
+    public func accessibilityFlow(_ ids: String...) -> Caption {
         return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
     }
     
@@ -1524,16 +1524,16 @@ extension TableBody: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
     
-    @available(*, deprecated, message: "Use the accessibilityFlowTo(_:) modifier instead.")
+    @available(*, deprecated, message: "Use the accessibilityFlow(_:) modifier instead.")
     public func aria(flowTo value: String) -> TableBody {
         return mutate(ariaflowto: .init(value, context: .tainted(.html)))
     }
     
-    public func accessibilityFlowTo(_ ids: [String]) -> TableBody {
+    public func accessibilityFlow(_ ids: [String]) -> TableBody {
         return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
     }
     
-    public func accessibilityFlowTo(_ ids: String...) -> TableBody {
+    public func accessibilityFlow(_ ids: String...) -> TableBody {
         return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
     }
     
@@ -2015,16 +2015,16 @@ extension TableHead: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
     
-    @available(*, deprecated, message: "Use the accessibilityFlowTo(_:) modifier instead.")
+    @available(*, deprecated, message: "Use the accessibilityFlow(_:) modifier instead.")
     public func aria(flowTo value: String) -> TableHead {
         return mutate(ariaflowto: .init(value, context: .tainted(.html)))
     }
     
-    public func accessibilityFlowTo(_ ids: [String]) -> TableHead {
+    public func accessibilityFlow(_ ids: [String]) -> TableHead {
         return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
     }
     
-    public func accessibilityFlowTo(_ ids: String...) -> TableHead {
+    public func accessibilityFlow(_ ids: String...) -> TableHead {
         return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
     }
     
@@ -2498,16 +2498,16 @@ extension TableFoot: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
     
-    @available(*, deprecated, message: "Use the accessibilityFlowTo(_:) modifier instead.")
+    @available(*, deprecated, message: "Use the accessibilityFlow(_:) modifier instead.")
     public func aria(flowTo value: String) -> TableFoot {
         return mutate(ariaflowto: .init(value, context: .tainted(.html)))
     }
     
-    public func accessibilityFlowTo(_ ids: [String]) -> TableFoot {
+    public func accessibilityFlow(_ ids: [String]) -> TableFoot {
         return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
     }
     
-    public func accessibilityFlowTo(_ ids: String...) -> TableFoot {
+    public func accessibilityFlow(_ ids: String...) -> TableFoot {
         return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
     }
     
@@ -2983,16 +2983,16 @@ extension TableRow: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
     
-    @available(*, deprecated, message: "Use the accessibilityFlowTo(_:) modifier instead.")
+    @available(*, deprecated, message: "Use the accessibilityFlow(_:) modifier instead.")
     public func aria(flowTo value: String) -> TableRow {
         return mutate(ariaflowto: .init(value, context: .tainted(.html)))
     }
     
-    public func accessibilityFlowTo(_ ids: [String]) -> TableRow {
+    public func accessibilityFlow(_ ids: [String]) -> TableRow {
         return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
     }
     
-    public func accessibilityFlowTo(_ ids: String...) -> TableRow {
+    public func accessibilityFlow(_ ids: String...) -> TableRow {
         return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
     }
     
@@ -3482,16 +3482,16 @@ extension DataCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
     
-    @available(*, deprecated, message: "Use the accessibilityFlowTo(_:) modifier instead.")
+    @available(*, deprecated, message: "Use the accessibilityFlow(_:) modifier instead.")
     public func aria(flowTo value: String) -> DataCell {
         return mutate(ariaflowto: .init(value, context: .tainted(.html)))
     }
     
-    public func accessibilityFlowTo(_ ids: [String]) -> DataCell {
+    public func accessibilityFlow(_ ids: [String]) -> DataCell {
         return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
     }
     
-    public func accessibilityFlowTo(_ ids: String...) -> DataCell {
+    public func accessibilityFlow(_ ids: String...) -> DataCell {
         return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
     }
     
@@ -3984,16 +3984,16 @@ extension HeaderCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
     
-    @available(*, deprecated, message: "Use the accessibilityFlowTo(_:) modifier instead.")
+    @available(*, deprecated, message: "Use the accessibilityFlow(_:) modifier instead.")
     public func aria(flowTo value: String) -> HeaderCell {
         return mutate(ariaflowto: .init(value, context: .tainted(.html)))
     }
     
-    public func accessibilityFlowTo(_ ids: [String]) -> HeaderCell {
+    public func accessibilityFlow(_ ids: [String]) -> HeaderCell {
         return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
     }
     
-    public func accessibilityFlowTo(_ ids: String...) -> HeaderCell {
+    public func accessibilityFlow(_ ids: String...) -> HeaderCell {
         return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
     }
     

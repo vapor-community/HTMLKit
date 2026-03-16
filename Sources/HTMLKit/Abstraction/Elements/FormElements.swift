@@ -878,16 +878,16 @@ extension Label: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
     
-    @available(*, deprecated, message: "Use the accessibilityFlowTo(_:) modifier instead.")
+    @available(*, deprecated, message: "Use the accessibilityFlow(_:) modifier instead.")
     public func aria(flowTo value: String) -> Label {
         return mutate(ariaflowto: .init(value, context: .tainted(.html)))
     }
     
-    public func accessibilityFlowTo(_ ids: [String]) -> Label {
+    public func accessibilityFlow(_ ids: [String]) -> Label {
         return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
     }
     
-    public func accessibilityFlowTo(_ ids: String...) -> Label {
+    public func accessibilityFlow(_ ids: String...) -> Label {
         return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
     }
     
@@ -1827,16 +1827,16 @@ extension TextArea: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
     
-    @available(*, deprecated, message: "Use the accessibilityFlowTo(_:) modifier instead.")
+    @available(*, deprecated, message: "Use the accessibilityFlow(_:) modifier instead.")
     public func aria(flowTo value: String) -> TextArea {
         return mutate(ariaflowto: .init(value, context: .tainted(.html)))
     }
     
-    public func accessibilityFlowTo(_ ids: [String]) -> TextArea {
+    public func accessibilityFlow(_ ids: [String]) -> TextArea {
         return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
     }
     
-    public func accessibilityFlowTo(_ ids: String...) -> TextArea {
+    public func accessibilityFlow(_ ids: String...) -> TextArea {
         return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
     }
     
@@ -2354,16 +2354,16 @@ extension Button: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
     
-    @available(*, deprecated, message: "Use the accessibilityFlowTo(_:) modifier instead.")
+    @available(*, deprecated, message: "Use the accessibilityFlow(_:) modifier instead.")
     public func aria(flowTo value: String) -> Button {
         return mutate(ariaflowto: .init(value, context: .tainted(.html)))
     }
     
-    public func accessibilityFlowTo(_ ids: [String]) -> Button {
+    public func accessibilityFlow(_ ids: [String]) -> Button {
         return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
     }
     
-    public func accessibilityFlowTo(_ ids: String...) -> Button {
+    public func accessibilityFlow(_ ids: String...) -> Button {
         return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
     }
     
@@ -2860,16 +2860,16 @@ extension Fieldset: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
     
-    @available(*, deprecated, message: "Use the accessibilityFlowTo(_:) modifier instead.")
+    @available(*, deprecated, message: "Use the accessibilityFlow(_:) modifier instead.")
     public func aria(flowTo value: String) -> Fieldset {
         return mutate(ariaflowto: .init(value, context: .tainted(.html)))
     }
     
-    public func accessibilityFlowTo(_ ids: [String]) -> Fieldset {
+    public func accessibilityFlow(_ ids: [String]) -> Fieldset {
         return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
     }
     
-    public func accessibilityFlowTo(_ ids: String...) -> Fieldset {
+    public func accessibilityFlow(_ ids: String...) -> Fieldset {
         return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
     }
     

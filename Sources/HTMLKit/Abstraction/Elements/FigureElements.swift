@@ -371,16 +371,16 @@ extension FigureCaption: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttr
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
     
-    @available(*, deprecated, message: "Use the accessibilityFlowTo(_:) modifier instead.")
+    @available(*, deprecated, message: "Use the accessibilityFlow(_:) modifier instead.")
     public func aria(flowTo value: String) -> FigureCaption {
         return mutate(ariaflowto: .init(value, context: .tainted(.html)))
     }
     
-    public func accessibilityFlowTo(_ ids: [String]) -> FigureCaption {
+    public func accessibilityFlow(_ ids: [String]) -> FigureCaption {
         return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
     }
     
-    public func accessibilityFlowTo(_ ids: String...) -> FigureCaption {
+    public func accessibilityFlow(_ ids: String...) -> FigureCaption {
         return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
     }
     

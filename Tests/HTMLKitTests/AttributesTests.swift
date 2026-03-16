@@ -960,11 +960,11 @@ final class AttributesTests: XCTestCase {
             return mutate(ariadisabled: .init(value, context: .trusted))
         }
         
-        func accessibilityFlowTo(_ ids: [String]) -> Tag {
+        func accessibilityFlow(_ ids: [String]) -> Tag {
             return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
         }
         
-        func accessibilityFlowTo(_ ids: String...) -> Tag {
+        func accessibilityFlow(_ ids: String...) -> Tag {
             return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
         }
         
@@ -2984,9 +2984,9 @@ final class AttributesTests: XCTestCase {
     func testFlowAccessibilityAttribute() throws {
         
         let view = TestView {
-            Tag {}.accessibilityFlowTo("id")
-            Tag {}.accessibilityFlowTo("id", "id")
-            Tag {}.accessibilityFlowTo(["id", "id"])
+            Tag {}.accessibilityFlow("id")
+            Tag {}.accessibilityFlow("id", "id")
+            Tag {}.accessibilityFlow(["id", "id"])
         }
         
         XCTAssertEqual(try renderer.render(view: view),
