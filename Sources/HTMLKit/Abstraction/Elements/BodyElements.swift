@@ -564,6 +564,7 @@ extension Article: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
     public func accessibilityLabel(_ value: String) -> Article {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
@@ -1039,6 +1040,7 @@ extension Section: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
     public func accessibilityLabel(_ value: String) -> Section {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
@@ -1516,6 +1518,7 @@ extension Navigation: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
     public func accessibilityLabel(_ value: String) -> Navigation {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
@@ -1989,6 +1992,7 @@ extension Aside: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
     public func accessibilityLabel(_ value: String) -> Aside {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
@@ -2459,6 +2463,7 @@ extension Heading1: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
     public func accessibilityLabel(_ value: String) -> Heading1 {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
@@ -2938,6 +2943,7 @@ extension Heading2: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
     public func accessibilityLabel(_ value: String) -> Heading2 {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
@@ -3417,6 +3423,7 @@ extension Heading3: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
     public func accessibilityLabel(_ value: String) -> Heading3 {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
@@ -3896,6 +3903,7 @@ extension Heading4: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
     public func accessibilityLabel(_ value: String) -> Heading4 {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
@@ -4375,6 +4383,7 @@ extension Heading5: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
     public func accessibilityLabel(_ value: String) -> Heading5 {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
@@ -4854,6 +4863,7 @@ extension Heading6: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
     public func accessibilityLabel(_ value: String) -> Heading6 {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
@@ -5338,6 +5348,7 @@ extension HeadingGroup: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttri
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
     public func accessibilityLabel(_ value: String) -> HeadingGroup {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
@@ -5809,6 +5820,7 @@ extension Header: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
     public func accessibilityLabel(_ value: String) -> Header {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
@@ -6278,6 +6290,7 @@ extension Footer: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
     public func accessibilityLabel(_ value: String) -> Footer {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
@@ -6754,6 +6767,7 @@ extension Address: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
     public func accessibilityLabel(_ value: String) -> Address {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
@@ -7224,6 +7238,7 @@ extension Paragraph: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
     public func accessibilityLabel(_ value: String) -> Paragraph {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
@@ -7698,6 +7713,7 @@ extension HorizontalRule: GlobalAttributes, GlobalEventAttributes, GlobalAriaAtt
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
     public func accessibilityLabel(_ value: String) -> HorizontalRule {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
@@ -8174,6 +8190,7 @@ extension PreformattedText: GlobalAttributes, GlobalEventAttributes, GlobalAriaA
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
     public func accessibilityLabel(_ value: String) -> PreformattedText {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
@@ -8648,6 +8665,7 @@ extension Blockquote: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
     public func accessibilityLabel(_ value: String) -> Blockquote {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
@@ -9144,6 +9162,7 @@ extension OrderedList: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
     public func accessibilityLabel(_ value: String) -> OrderedList {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
@@ -9623,6 +9642,7 @@ extension UnorderedList: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttr
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
     public func accessibilityLabel(_ value: String) -> UnorderedList {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
@@ -10418,6 +10438,7 @@ extension DescriptionList: GlobalAttributes, GlobalEventAttributes, GlobalAriaAt
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
     public func accessibilityLabel(_ value: String) -> DescriptionList {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
@@ -10893,6 +10914,7 @@ extension Figure: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
     public func accessibilityLabel(_ value: String) -> Figure {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
@@ -11409,6 +11431,7 @@ extension Anchor: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
     public func accessibilityLabel(_ value: String) -> Anchor {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
@@ -11892,6 +11915,7 @@ extension Emphasize: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
     public func accessibilityLabel(_ value: String) -> Emphasize {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
@@ -12364,6 +12388,7 @@ extension Strong: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
     public func accessibilityLabel(_ value: String) -> Strong {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
@@ -12836,6 +12861,7 @@ extension Small: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
     public func accessibilityLabel(_ value: String) -> Small {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
@@ -13655,6 +13681,7 @@ extension Main: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
     public func accessibilityLabel(_ value: String) -> Main {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
@@ -14431,6 +14458,7 @@ extension Division: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
     public func accessibilityLabel(_ value: String) -> Division {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
@@ -14997,6 +15025,7 @@ extension Definition: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
     public func accessibilityLabel(_ value: String) -> Definition {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
@@ -15470,6 +15499,7 @@ extension Cite: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
     public func accessibilityLabel(_ value: String) -> Cite {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
@@ -15946,6 +15976,7 @@ extension ShortQuote: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
     public func accessibilityLabel(_ value: String) -> ShortQuote {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
@@ -16419,6 +16450,7 @@ extension Abbreviation: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttri
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
     public func accessibilityLabel(_ value: String) -> Abbreviation {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
@@ -16892,6 +16924,7 @@ extension Ruby: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
     public func accessibilityLabel(_ value: String) -> Ruby {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
@@ -17380,6 +17413,7 @@ extension Data: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, V
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
     public func accessibilityLabel(_ value: String) -> Data {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
@@ -17858,6 +17892,7 @@ extension Time: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, D
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
     public func accessibilityLabel(_ value: String) -> Time {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
@@ -18332,6 +18367,7 @@ extension Code: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
     public func accessibilityLabel(_ value: String) -> Code {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
@@ -18806,6 +18842,7 @@ extension Variable: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
     public func accessibilityLabel(_ value: String) -> Variable {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
@@ -19276,6 +19313,7 @@ extension SampleOutput: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttri
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
     public func accessibilityLabel(_ value: String) -> SampleOutput {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
@@ -19750,6 +19788,7 @@ extension KeyboardInput: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttr
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
     public func accessibilityLabel(_ value: String) -> KeyboardInput {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
@@ -20223,6 +20262,7 @@ extension Subscript: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
     public func accessibilityLabel(_ value: String) -> Subscript {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
@@ -20697,6 +20737,7 @@ extension Superscript: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
     public func accessibilityLabel(_ value: String) -> Superscript {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
@@ -21171,6 +21212,7 @@ extension Italic: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
     public func accessibilityLabel(_ value: String) -> Italic {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
@@ -21654,6 +21696,7 @@ extension Bold: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
     public func accessibilityLabel(_ value: String) -> Bold {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
@@ -22137,6 +22180,7 @@ extension Underline: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
     public func accessibilityLabel(_ value: String) -> Underline {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
@@ -22620,6 +22664,7 @@ extension Mark: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
     public func accessibilityLabel(_ value: String) -> Mark {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
@@ -23094,6 +23139,7 @@ extension Bdi: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
     public func accessibilityLabel(_ value: String) -> Bdi {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
@@ -23556,6 +23602,7 @@ extension Bdo: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
     public func accessibilityLabel(_ value: String) -> Bdo {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
@@ -24026,6 +24073,7 @@ extension Span: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, O
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
     public func accessibilityLabel(_ value: String) -> Span {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
@@ -24493,6 +24541,7 @@ extension LineBreak: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
     public func accessibilityLabel(_ value: String) -> LineBreak {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
@@ -24952,6 +25001,7 @@ extension WordBreak: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
     public func accessibilityLabel(_ value: String) -> WordBreak {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
@@ -25430,6 +25480,7 @@ extension InsertedText: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttri
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
     public func accessibilityLabel(_ value: String) -> InsertedText {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
@@ -25908,6 +25959,7 @@ extension DeletedText: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
     public func accessibilityLabel(_ value: String) -> DeletedText {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
@@ -26768,6 +26820,7 @@ extension Image: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
     public func accessibilityLabel(_ value: String) -> Image {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
@@ -27283,6 +27336,7 @@ extension InlineFrame: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
     public func accessibilityLabel(_ value: String) -> InlineFrame {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
@@ -27760,6 +27814,7 @@ extension Embed: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
     public func accessibilityLabel(_ value: String) -> Embed {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
@@ -28255,6 +28310,7 @@ extension Object: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
     public func accessibilityLabel(_ value: String) -> Object {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
@@ -28786,6 +28842,7 @@ extension Video: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
     public func accessibilityLabel(_ value: String) -> Video {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
@@ -29300,6 +29357,7 @@ extension Audio: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
     public func accessibilityLabel(_ value: String) -> Audio {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
@@ -30147,6 +30205,7 @@ extension Form: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, A
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
     public func accessibilityLabel(_ value: String) -> Form {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
@@ -30624,6 +30683,7 @@ extension DataList: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
     public func accessibilityLabel(_ value: String) -> DataList {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
@@ -31108,6 +31168,7 @@ extension Output: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
     public func accessibilityLabel(_ value: String) -> Output {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
@@ -31597,6 +31658,7 @@ extension Progress: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
     public func accessibilityLabel(_ value: String) -> Progress {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
@@ -32104,6 +32166,7 @@ extension Meter: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
     public func accessibilityLabel(_ value: String) -> Meter {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
@@ -32602,6 +32665,7 @@ extension Details: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
     public func accessibilityLabel(_ value: String) -> Details {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
@@ -33096,6 +33160,7 @@ extension Dialog: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
     public func accessibilityLabel(_ value: String) -> Dialog {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
@@ -34584,6 +34649,7 @@ extension Canvas: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
     public func accessibilityLabel(_ value: String) -> Canvas {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
@@ -35069,6 +35135,7 @@ extension Table: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
     public func accessibilityLabel(_ value: String) -> Table {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }

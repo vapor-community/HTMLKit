@@ -417,7 +417,7 @@ public protocol FlowAccessibilityAttribute: Attribute {
     /// .id("id")
     /// ```
     ///
-    /// - Parameter ids: The identifiers...
+    /// - Parameter ids: The identifiers of the elements to be read in order.
     ///
     /// - Returns: The element
     func accessibilityFlow(_ ids: [String]) -> Self
@@ -435,7 +435,7 @@ public protocol FlowAccessibilityAttribute: Attribute {
     /// .id("id")
     /// ```
     ///
-    /// - Parameter ids: The identifiers...
+    /// - Parameter ids: The identifiers of the elements to be read in order.
     ///
     /// - Returns: The element
     func accessibilityFlow(_ ids: String...) -> Self
@@ -682,7 +682,7 @@ public protocol LabelsAccessibilityAttribute: Attribute {
     /// }
     /// .id("id")
     /// ```
-    /// - Parameter ids: The identifiers to describe the element.
+    /// - Parameter ids: The identifiers of the elements that serve as labels.
     ///
     /// - Returns: The element
     func accessibilityLabels(_ ids: [String]) -> Self
@@ -698,7 +698,7 @@ public protocol LabelsAccessibilityAttribute: Attribute {
     /// }
     /// .id("id")
     /// ```
-    /// - Parameter ids: The identifiers to describe the element.
+    /// - Parameter ids: The identifiers of the elements that serve as labels.
     ///
     /// - Returns: The element
     func accessibilityLabels(_ ids: String...) -> Self
@@ -1163,7 +1163,7 @@ public protocol RequiredAccessibilityAttribute: Attribute {
     /// .accessibilityRequired(true)
     /// ```
     ///
-    /// - Parameter condition: TODO
+    /// - Parameter value: Whether an input is required.
     ///
     /// - Returns: The element
     func accessibilityRequired(_ value: Bool) -> Self
@@ -1371,7 +1371,7 @@ extension SortAccessibilityAttribute where Self: EmptyNode {
     }
 }
 
-/// A type that provides the `accessibilityValueMaximum` modifier.
+/// A type that provides the `accessibilityMaximumValue` modifier.
 @_documentation(visibility: internal)
 public protocol MaximumValueAccessibilityAttribute: Attribute {
     
@@ -1442,17 +1442,17 @@ extension MinimumValueAccessibilityAttribute where Self: EmptyNode {
 public protocol ValueAccessibilityAttribute: Attribute {
     
     /// Indicate the current value of the range.
-    /// 
+    ///  
     /// ```swift
     /// Division {
     /// }
     /// .role(.meter)
-    /// .accessibilityValue(20.0, alternate: "Lorem ipsum")
+    /// .accessibilityValue(20.0, description: "Lorem ipsum")
     /// ```
-    /// 
+    ///  
     /// - Parameter value: The current value within the range.
     /// - Parameter text: The alternate text to describe the value.
-    /// 
+    ///  
     /// - Returns: The element
     func accessibilityValue(_ value: Float, description text: String?) -> Self
     

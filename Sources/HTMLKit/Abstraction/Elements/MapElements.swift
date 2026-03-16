@@ -467,6 +467,7 @@ extension Area: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, A
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
 
+    @_disfavoredOverload
     public func accessibilityLabel(_ value: String) -> Area {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }

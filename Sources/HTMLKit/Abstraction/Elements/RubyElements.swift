@@ -426,6 +426,7 @@ extension RubyText: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
     public func accessibilityLabel(_ value: String) -> RubyText {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
@@ -906,6 +907,7 @@ extension RubyPronunciation: GlobalAttributes, GlobalEventAttributes, GlobalAria
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
     public func accessibilityLabel(_ value: String) -> RubyPronunciation {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }

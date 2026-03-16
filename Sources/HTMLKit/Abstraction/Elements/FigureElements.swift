@@ -424,6 +424,7 @@ extension FigureCaption: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttr
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
     public func accessibilityLabel(_ value: String) -> FigureCaption {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }

@@ -428,6 +428,7 @@ extension TermName: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
     public func accessibilityLabel(_ value: String) -> TermName {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
@@ -903,6 +904,7 @@ extension TermDefinition: GlobalAttributes, GlobalEventAttributes, GlobalAriaAtt
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
     public func accessibilityLabel(_ value: String) -> TermDefinition {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
