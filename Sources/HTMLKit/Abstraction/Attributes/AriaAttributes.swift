@@ -1,5 +1,5 @@
 @_documentation(visibility: internal)
-public typealias GlobalAriaAttributes = AriaAtomicAttribute & BusyAccessibilityAttribute & AriaControlsAttribute & AriaCurrentAttribute & AriaDescribedAttribute & AriaDetailsAttribute & DisabledAccessibilityAttribute & FlowAccessibilityAttribute & AriaPopupAttribute & HiddenAccessibilityAttribute & InvalidAccessibilityAttribute & AriaShortcutsAttribute & LabelAccessibilityAttribute & AriaLabeledAttribute & LiveAccessibilityAttribute & OwnsAccessibilityAttribute & AriaRelevantAttribute & AriaRoleDescriptionAttribute
+public typealias GlobalAriaAttributes = AriaAtomicAttribute & BusyAccessibilityAttribute & AriaControlsAttribute & AriaCurrentAttribute & AriaDescribedAttribute & AriaDetailsAttribute & DisabledAccessibilityAttribute & FlowAccessibilityAttribute & AriaPopupAttribute & HiddenAccessibilityAttribute & InvalidAccessibilityAttribute & AriaShortcutsAttribute & LabelAccessibilityAttribute & LabelsAccessibilityAttribute & LiveAccessibilityAttribute & OwnsAccessibilityAttribute & AriaRelevantAttribute & AriaRoleDescriptionAttribute
 
 /// The protocol provides the element with accessibility handler.
 @_documentation(visibility: internal)
@@ -667,29 +667,54 @@ extension LabelAccessibilityAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with accessibility handler.
+/// A type that provides the `accessibilityLabels` modifier.
 @_documentation(visibility: internal)
-public protocol AriaLabeledAttribute: Attribute {
+public protocol LabelsAccessibilityAttribute: Attribute {
     
-    /// The function represents the html-attribute 'aria-labeledby'.
+    /// Identify the elements that labels the element.
     ///
-    /// ```html
-    /// <tag aria-labeledby="" />
+    /// ```swift
+    /// Button {
+    /// }
+    /// .accessibilityLabels(["id", "id"]])
+    /// Label {
+    ///     "Lorem ipsum..."
+    /// }
+    /// .id("id")
     /// ```
-    func aria(labeledBy value: String) -> Self
+    /// - Parameter ids: The identifiers to describe the element.
+    ///
+    /// - Returns: The element
+    func accessibilityLabels(_ ids: [String]) -> Self
+    
+    /// Identify the elements that labels the current element.
+    ///
+    /// ```swift
+    /// Button {
+    /// }
+    /// .accessibilityLabels("id", "id")
+    /// Label {
+    ///     "Lorem ipsum..."
+    /// }
+    /// .id("id")
+    /// ```
+    /// - Parameter ids: The identifiers to describe the element.
+    ///
+    /// - Returns: The element
+    func accessibilityLabels(_ ids: String...) -> Self
 }
 
-extension AriaLabeledAttribute where Self: ContentNode {
+extension LabelsAccessibilityAttribute where Self: ContentNode {
     
     internal func mutate(arialabeledby value: AttributeData) -> Self {
-        return self.mutate(key: "aria-labeledby", value: value)
+        return self.mutate(key: "aria-labelledby", value: value)
     }
 }
 
-extension AriaLabeledAttribute where Self: EmptyNode {
+extension LabelsAccessibilityAttribute where Self: EmptyNode {
     
     internal func mutate(arialabeledby value: AttributeData) -> Self {
-        return self.mutate(key: "aria-labeledby", value: value)
+        return self.mutate(key: "aria-labelledby", value: value)
     }
 }
 
