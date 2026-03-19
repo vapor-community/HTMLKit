@@ -356,7 +356,12 @@ extension OptionGroup: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
         return mutate(key: event.rawValue, value: .init(value, context: .tainted(.js)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityAtomic(_:) modifier instead.")
     public func aria(atomic value: Bool) -> OptionGroup {
+        return mutate(ariaatomic: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityAtomic(_ value: Bool = true) -> OptionGroup {
         return mutate(ariaatomic: .init(value, context: .trusted))
     }
     
@@ -874,7 +879,12 @@ extension Option: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return mutate(key: event.rawValue, value: .init(value, context: .tainted(.js)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityAtomic(_:) modifier instead.")
     public func aria(atomic value: Bool) -> Option {
+        return mutate(ariaatomic: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityAtomic(_ value: Bool = true) -> Option {
         return mutate(ariaatomic: .init(value, context: .trusted))
     }
     
@@ -1358,7 +1368,12 @@ extension Legend: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
         return mutate(key: event.rawValue, value: .init(value, context: .tainted(.js)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityAtomic(_:) modifier instead.")
     public func aria(atomic value: Bool) -> Legend {
+        return mutate(ariaatomic: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityAtomic(_ value: Bool = true) -> Legend {
         return mutate(ariaatomic: .init(value, context: .trusted))
     }
     
@@ -1834,7 +1849,12 @@ extension Summary: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
         return mutate(key: event.rawValue, value: .init(value, context: .tainted(.js)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityAtomic(_:) modifier instead.")
     public func aria(atomic value: Bool) -> Summary {
+        return mutate(ariaatomic: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityAtomic(_ value: Bool = true) -> Summary {
         return mutate(ariaatomic: .init(value, context: .trusted))
     }
     

@@ -371,7 +371,12 @@ extension Area: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, A
         return mutate(key: event.rawValue, value: .init(value, context: .tainted(.js)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityAtomic(_:) modifier instead.")
     public func aria(atomic value: Bool) -> Area {
+        return mutate(ariaatomic: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityAtomic(_ value: Bool = true) -> Area {
         return mutate(ariaatomic: .init(value, context: .trusted))
     }
     

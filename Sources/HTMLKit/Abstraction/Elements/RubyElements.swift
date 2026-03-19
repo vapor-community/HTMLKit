@@ -330,7 +330,12 @@ extension RubyText: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(key: event.rawValue, value: .init(value, context: .tainted(.js)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityAtomic(_:) modifier instead.")
     public func aria(atomic value: Bool) -> RubyText {
+        return mutate(ariaatomic: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityAtomic(_ value: Bool = true) -> RubyText {
         return mutate(ariaatomic: .init(value, context: .trusted))
     }
     
@@ -811,7 +816,12 @@ extension RubyPronunciation: GlobalAttributes, GlobalEventAttributes, GlobalAria
         return mutate(key: event.rawValue, value: .init(value, context: .tainted(.js)))
     }
 
+    @available(*, deprecated, message: "Use the accessibilityAtomic(_:) modifier instead.")
     public func aria(atomic value: Bool) -> RubyPronunciation {
+        return mutate(ariaatomic: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityAtomic(_ value: Bool = true) -> RubyPronunciation {
         return mutate(ariaatomic: .init(value, context: .trusted))
     }
     

@@ -1,5 +1,5 @@
 @_documentation(visibility: internal)
-public typealias GlobalAriaAttributes = AriaAtomicAttribute & BusyAccessibilityAttribute & AriaControlsAttribute & AriaCurrentAttribute & AriaDescribedAttribute & AriaDetailsAttribute & DisabledAccessibilityAttribute & FlowAccessibilityAttribute & AriaPopupAttribute & HiddenAccessibilityAttribute & InvalidAccessibilityAttribute & AriaShortcutsAttribute & LabelAccessibilityAttribute & LabelsAccessibilityAttribute & LiveAccessibilityAttribute & OwnsAccessibilityAttribute & AriaRelevantAttribute & AriaRoleDescriptionAttribute
+public typealias GlobalAriaAttributes = AtomicAccessibilityAttribute & BusyAccessibilityAttribute & AriaControlsAttribute & AriaCurrentAttribute & AriaDescribedAttribute & AriaDetailsAttribute & DisabledAccessibilityAttribute & FlowAccessibilityAttribute & AriaPopupAttribute & HiddenAccessibilityAttribute & InvalidAccessibilityAttribute & AriaShortcutsAttribute & LabelAccessibilityAttribute & LabelsAccessibilityAttribute & LiveAccessibilityAttribute & OwnsAccessibilityAttribute & AriaRelevantAttribute & AriaRoleDescriptionAttribute
 
 /// The protocol provides the element with accessibility handler.
 @_documentation(visibility: internal)
@@ -28,26 +28,32 @@ extension AriaActiveDescendantAttribute where Self: EmptyNode {
 }
 
 
-/// The protocol provides the element with accessibility handler.
+/// A type that provides the `accessibilityAtomic` modifier.
 @_documentation(visibility: internal)
-public protocol AriaAtomicAttribute: Attribute {
+public protocol AtomicAccessibilityAttribute: Attribute {
     
-    /// The function represents the html-attribute 'aria-atomic'.
+    /// Indicate whether the entire region should be announced.
     ///
-    /// ```html
-    /// <tag aria-atomic="" />
+    /// ```swift
+    /// Division {
+    /// }
+    /// .accessibilityAtomic(true)
     /// ```
-    func aria(atomic value: Bool) -> Self
+    ///
+    /// - Parameter value: Whether to treat the region as one entity.
+    ///
+    /// - Returns: The element
+    func accessibilityAtomic(_ value: Bool) -> Self
 }
 
-extension AriaAtomicAttribute where Self: ContentNode {
+extension AtomicAccessibilityAttribute where Self: ContentNode {
     
     internal func mutate(ariaatomic value: AttributeData) -> Self {
         return self.mutate(key: "aria-atomic", value: value)
     }
 }
 
-extension AriaAtomicAttribute where Self: EmptyNode {
+extension AtomicAccessibilityAttribute where Self: EmptyNode {
     
     internal func mutate(ariaatomic value: AttributeData) -> Self {
         return self.mutate(key: "aria-atomic", value: value)
