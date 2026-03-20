@@ -502,8 +502,17 @@ extension Caption: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
         return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityRelevant(_:) modifier instead.")
     public func aria(relevant value: Values.Accessibility.Relevant) -> Caption {
         return mutate(ariarelevant: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityRelevant(_ values: [Values.Accessibility.Relevant]) -> Caption {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityRelevant(_ values: Values.Accessibility.Relevant...) -> Caption {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
     }
     
     public func aria(roleDescription value: String) -> Caption {
@@ -1636,8 +1645,17 @@ extension TableBody: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityRelevant(_:) modifier instead.")
     public func aria(relevant value: Values.Accessibility.Relevant) -> TableBody {
         return mutate(ariarelevant: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityRelevant(_ values: [Values.Accessibility.Relevant]) -> TableBody {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityRelevant(_ values: Values.Accessibility.Relevant...) -> TableBody {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
     }
     
     public func aria(roleDescription value: String) -> TableBody {
@@ -2133,8 +2151,17 @@ extension TableHead: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityRelevant(_:) modifier instead.")
     public func aria(relevant value: Values.Accessibility.Relevant) -> TableHead {
         return mutate(ariarelevant: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityRelevant(_ values: [Values.Accessibility.Relevant]) -> TableHead {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityRelevant(_ values: Values.Accessibility.Relevant...) -> TableHead {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
     }
     
     public func aria(roleDescription value: String) -> TableHead {
@@ -2622,8 +2649,17 @@ extension TableFoot: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityRelevant(_:) modifier instead.")
     public func aria(relevant value: Values.Accessibility.Relevant) -> TableFoot {
         return mutate(ariarelevant: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityRelevant(_ values: [Values.Accessibility.Relevant]) -> TableFoot {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityRelevant(_ values: Values.Accessibility.Relevant...) -> TableFoot {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
     }
     
     public func aria(roleDescription value: String) -> TableFoot {
@@ -3113,8 +3149,17 @@ extension TableRow: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityRelevant(_:) modifier instead.")
     public func aria(relevant value: Values.Accessibility.Relevant) -> TableRow {
         return mutate(ariarelevant: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityRelevant(_ values: [Values.Accessibility.Relevant]) -> TableRow {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityRelevant(_ values: Values.Accessibility.Relevant...) -> TableRow {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
     }
     
     public func aria(roleDescription value: String) -> TableRow {
@@ -3618,8 +3663,17 @@ extension DataCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityRelevant(_:) modifier instead.")
     public func aria(relevant value: Values.Accessibility.Relevant) -> DataCell {
         return mutate(ariarelevant: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityRelevant(_ values: [Values.Accessibility.Relevant]) -> DataCell {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityRelevant(_ values: Values.Accessibility.Relevant...) -> DataCell {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
     }
     
     public func aria(roleDescription value: String) -> DataCell {
@@ -4126,8 +4180,17 @@ extension HeaderCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
         return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityRelevant(_:) modifier instead.")
     public func aria(relevant value: Values.Accessibility.Relevant) -> HeaderCell {
         return mutate(ariarelevant: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityRelevant(_ values: [Values.Accessibility.Relevant]) -> HeaderCell {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityRelevant(_ values: Values.Accessibility.Relevant...) -> HeaderCell {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
     }
     
     public func aria(roleDescription value: String) -> HeaderCell {

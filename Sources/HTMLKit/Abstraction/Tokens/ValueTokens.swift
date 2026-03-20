@@ -1723,9 +1723,11 @@ public enum Values {
             case additions
             
             /// Indicates node and text additions.
+            @available(*, deprecated, message: "Use additions and text instead.")
             case additionsText
             
             /// Indicates all relevants.
+            @available(*, deprecated, message: "Use additions, removals and text instead.")
             case all
             
             /// Indicates node removals.

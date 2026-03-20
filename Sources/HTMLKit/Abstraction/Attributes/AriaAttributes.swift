@@ -1,5 +1,5 @@
 @_documentation(visibility: internal)
-public typealias GlobalAriaAttributes = AtomicAccessibilityAttribute & BusyAccessibilityAttribute & AriaControlsAttribute & AriaCurrentAttribute & AriaDescribedAttribute & AriaDetailsAttribute & DisabledAccessibilityAttribute & FlowAccessibilityAttribute & AriaPopupAttribute & HiddenAccessibilityAttribute & InvalidAccessibilityAttribute & AriaShortcutsAttribute & LabelAccessibilityAttribute & LabelsAccessibilityAttribute & LiveAccessibilityAttribute & OwnsAccessibilityAttribute & AriaRelevantAttribute & AriaRoleDescriptionAttribute
+public typealias GlobalAriaAttributes = AtomicAccessibilityAttribute & BusyAccessibilityAttribute & AriaControlsAttribute & AriaCurrentAttribute & AriaDescribedAttribute & AriaDetailsAttribute & DisabledAccessibilityAttribute & FlowAccessibilityAttribute & AriaPopupAttribute & HiddenAccessibilityAttribute & InvalidAccessibilityAttribute & AriaShortcutsAttribute & LabelAccessibilityAttribute & LabelsAccessibilityAttribute & LiveAccessibilityAttribute & OwnsAccessibilityAttribute & RelevantAccessibilityAttribute & AriaRoleDescriptionAttribute
 
 /// The protocol provides the element with accessibility handler.
 @_documentation(visibility: internal)
@@ -1126,26 +1126,45 @@ extension ReadOnlyAccessibilityAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with accessibility handler.
+/// A type that provides the `accessibilityRelevant` modifier.
 @_documentation(visibility: internal)
-public protocol AriaRelevantAttribute: Attribute {
+public protocol RelevantAccessibilityAttribute: Attribute {
     
-    /// The function represents the html-attribute 'aria-relevant'.
+    /// Decide what region changes should be relevant to announce.
     ///
-    /// ```html
-    /// <tag aria-relevant="" />
+    /// ```swift
+    /// Division {
+    /// }
+    /// .role(.alert)
+    /// .accessibilityRelevant([.additions, .text])
     /// ```
-    func aria(relevant value: Values.Accessibility.Relevant) -> Self
+    /// - Parameter values: The relevant region changes to announce.
+    ///
+    /// - Returns: The element
+    func accessibilityRelevant(_ values: [Values.Accessibility.Relevant]) -> Self
+    
+    /// Decide what region changes should be relevant to announce.
+    ///
+    /// ```swift
+    /// Division {
+    /// }
+    /// .role(.alert)
+    /// .accessibilityRelevant(.additions, .text)
+    /// ```
+    /// - Parameter values: The relevant region changes to announce.
+    ///
+    /// - Returns: The element
+    func accessibilityRelevant(_ values: Values.Accessibility.Relevant...) -> Self
 }
 
-extension AriaRelevantAttribute where Self: ContentNode {
+extension RelevantAccessibilityAttribute where Self: ContentNode {
     
     internal func mutate(ariarelevant value: AttributeData) -> Self {
         return self.mutate(key: "aria-relevant", value: value)
     }
 }
 
-extension AriaRelevantAttribute where Self: EmptyNode {
+extension RelevantAccessibilityAttribute where Self: EmptyNode {
     
     internal func mutate(ariarelevant value: AttributeData) -> Self {
         return self.mutate(key: "aria-relevant", value: value)

@@ -66,6 +66,12 @@ extension EnumeratedList {
         self.values = values.map(\.rawValue)
         self.separator = separator
     }
+    
+    internal init(values: [Values.Accessibility.Relevant], separator: String) {
+        
+        self.values = values.map(\.rawValue)
+        self.separator = separator
+    }
 }
 
 extension EnumeratedList: Equatable {

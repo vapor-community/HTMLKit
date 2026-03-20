@@ -795,8 +795,17 @@ extension Body: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, W
         return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityRelevant(_:) modifier instead.")
     public func aria(relevant value: Values.Accessibility.Relevant) -> Body {
         return mutate(ariarelevant: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityRelevant(_ values: [Values.Accessibility.Relevant]) -> Body {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityRelevant(_ values: Values.Accessibility.Relevant...) -> Body {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
     }
     
     public func aria(roleDescription value: String) -> Body {
