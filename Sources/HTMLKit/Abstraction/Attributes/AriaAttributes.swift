@@ -118,26 +118,33 @@ extension BusyAccessibilityAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with accessibility handler.
+/// A type that provides the `accessibilityChecked` modifier.
 @_documentation(visibility: internal)
-public protocol AriaCheckedAttribute: Attribute {
+public protocol CheckedAccessibilityAttribute: Attribute {
     
-    /// The function represents the html-attribute 'aria-checked'.
+    /// Indicate the current state of a selection control.
     ///
-    /// ```html
-    /// <tag aria-checked="" />
+    /// ```swift
+    /// Division {
+    /// }
+    /// .role(.checkbox)
+    /// .accessibilityChecked(false)
     /// ```
-    func aria(checked value: Values.Accessibility.Check) -> Self
+    ///
+    /// - Parameter state: Whether the element is checked.
+    ///
+    /// - Returns: The element
+    func accessibilityChecked(_ value: Bool) -> Self
 }
 
-extension AriaCheckedAttribute where Self: ContentNode {
+extension CheckedAccessibilityAttribute where Self: ContentNode {
     
     internal func mutate(ariachecked value: AttributeData) -> Self {
         return self.mutate(key: "aria-checked", value: value)
     }
 }
 
-extension AriaCheckedAttribute where Self: EmptyNode {
+extension CheckedAccessibilityAttribute where Self: EmptyNode {
     
     internal func mutate(ariachecked value: AttributeData) -> Self {
         return self.mutate(key: "aria-checked", value: value)

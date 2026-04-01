@@ -1544,28 +1544,6 @@ public enum Values {
             case both
         }
 
-        /// An indicator of checked state.
-        ///
-        /// ```swift
-        /// Division {
-        /// }
-        /// .aria(checked: .mixed)
-        /// ```
-        public enum Check: String {
-            
-            /// Indicates the element is not checked.
-            case `false`
-            
-            /// Indicates the element has three states to check.
-            case `mixed`
-            
-            /// Indicates the element is checked.
-            case `true`
-            
-            /// Indicates the element is not checkable.
-            case `undefined`
-        }
-
         /// An indicator of the current position.
         ///
         /// ```swift

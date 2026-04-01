@@ -1070,7 +1070,7 @@ internal class Parser {
                 return try ValueAttribute<Bool>(node: node, kind: .aria).build(verbatim: "busy")
                 
             case "aria-checked":
-                return try TypeAttribute<Values.Accessibility.Check>(node: node, kind: .aria).build(verbatim: "checked")
+                return try ValueAttribute<Bool>(node: node, kind: .aria).build(verbatim: "checked")
                 
             case "aria-colcount":
                 return try ValueAttribute<Int>(node: node, kind: .aria).build(verbatim: "columnCount")

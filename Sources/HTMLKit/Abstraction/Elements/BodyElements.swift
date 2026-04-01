@@ -14489,7 +14489,7 @@ public struct Division: ContentNode, HtmlElement, BodyElement, FormElement, Figu
     }
 }
 
-extension Division: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, OrientationAccessibilityAttribute, RequiredAccessibilityAttribute, ReadOnlyAccessibilityAttribute, ModalAccessibilityAttribute, LevelAccessibilityAttribute, HintAccessibilityAttribute, PositionAccessibilityAttribute, MultilineAccessibilityAttribute, MultiselectAccessibilityAttribute, RowIndexAccessibilityAttribute, RowCountAccessibilityAttribute, ColumnIndexAccessibilityAttribute, ColumnCountAccessibilityAttribute, RowSpanAccessibilityAttribute, ColumnSpanAccessibilityAttribute, MaximumValueAccessibilityAttribute, MinimumValueAccessibilityAttribute, ValueAccessibilityAttribute, PressedAccessibilityAttribute, SelectedAccessibilityAttribute {    
+extension Division: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, OrientationAccessibilityAttribute, RequiredAccessibilityAttribute, ReadOnlyAccessibilityAttribute, ModalAccessibilityAttribute, LevelAccessibilityAttribute, HintAccessibilityAttribute, PositionAccessibilityAttribute, MultilineAccessibilityAttribute, MultiselectAccessibilityAttribute, RowIndexAccessibilityAttribute, RowCountAccessibilityAttribute, ColumnIndexAccessibilityAttribute, ColumnCountAccessibilityAttribute, RowSpanAccessibilityAttribute, ColumnSpanAccessibilityAttribute, MaximumValueAccessibilityAttribute, MinimumValueAccessibilityAttribute, ValueAccessibilityAttribute, PressedAccessibilityAttribute, SelectedAccessibilityAttribute, CheckedAccessibilityAttribute {    
 
     public func accessKey(_ value: Character) -> Division {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -15003,6 +15003,10 @@ extension Division: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
     
     public func accessibilitySelected(_ value: Bool = true) -> Division {
         return mutate(ariaselected: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityChecked(_ value: Bool = true) -> Division {
+        return mutate(ariachecked: .init(value, context: .trusted))
     }
 }
 
