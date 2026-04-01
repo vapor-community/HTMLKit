@@ -1687,29 +1687,6 @@ public enum Values {
             case vertical
         }
 
-        /// An indicator of a pressed state.
-        ///
-        /// ```swift
-        /// Button {
-        ///     "Lorem"
-        /// }
-        /// .aria(pressed: .true)
-        /// ```
-        public enum Pressed: String {
-            
-            /// Indicates the element is not pressable.
-            case undefined
-            
-            /// Indicates the element is not pressed.
-            case `false`
-            
-            /// Indicates the element has three states to press.
-            case mixed
-            
-            /// Indicates the element is pressed.
-            case `true`
-        }
-
         /// An indicator of a text revision.
         ///
         /// ```swift

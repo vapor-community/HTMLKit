@@ -1067,26 +1067,31 @@ extension PositionAccessibilityAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with accessibility handler.
+/// A type that provides the `accessibilityPressed` modifier.
 @_documentation(visibility: internal)
-public protocol AriaPressedAttribute: Attribute {
+public protocol PressedAccessibilityAttribute: Attribute {
     
-    /// The function represents the html-attribute 'aria-pressed'.
+    /// Indicate the current state of a toggle element.
     ///
-    /// ```html
-    /// <tag aria-pressed="" />
+    /// ```swift
+    /// Button {
+    /// }
+    /// .accessibilityPressed(true)
     /// ```
-    func aria(presssed value: Values.Accessibility.Pressed) -> Self
+    /// - Parameter value: Whether the element is pressed.
+    ///
+    /// - Returns: The element
+    func accessibilityPressed(_ value: Bool) -> Self
 }
 
-extension AriaPressedAttribute where Self: ContentNode {
+extension PressedAccessibilityAttribute where Self: ContentNode {
     
     internal func mutate(ariapressed value: AttributeData) -> Self {
         return self.mutate(key: "aria-pressed", value: value)
     }
 }
 
-extension AriaPressedAttribute where Self: EmptyNode {
+extension PressedAccessibilityAttribute where Self: EmptyNode {
     
     internal func mutate(ariapressed value: AttributeData) -> Self {
         return self.mutate(key: "aria-pressed", value: value)

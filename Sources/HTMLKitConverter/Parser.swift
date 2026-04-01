@@ -1151,7 +1151,7 @@ internal class Parser {
                 return try ValueAttribute<Int>(node: node, kind: .aria).build(verbatim: "positionIndex")
                 
             case "aria-pressed":
-                return try TypeAttribute<Values.Accessibility.Pressed>(node: node, kind: .aria).build(verbatim: "pressed")
+                return try ValueAttribute<Bool>(node: node, kind: .aria).build(verbatim: "pressed")
                 
             case "aria-readonly":
                 return try ValueAttribute<Bool>(node: node, kind: .aria).build(verbatim: "readonly")
