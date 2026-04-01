@@ -1338,26 +1338,45 @@ extension RowSpanAccessibilityAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with accessibility handler.
+/// A type that provides the `accessibilitySelected` modifier.
 @_documentation(visibility: internal)
-public protocol AriaSelectedAttribute: Attribute {
+public protocol SelectedAccessibilityAttribute: Attribute {
     
-    /// The function represents the html-attribute 'aria-selected'.
+    /// Indicate the selected state of the element.
     ///
-    /// ```html
-    /// <tag aria-selected="" />
+    /// ```swift
+    /// Division {
+    ///     Division {
+    ///         Paragraph {
+    ///             "Lorem ipsum"
+    ///         }
+    ///     }
+    ///     .role(.tab)
+    ///     .accessibilitySelected(false)
+    ///     Division {
+    ///         Paragraph {
+    ///             "Lorem ipsum"
+    ///         }
+    ///     }
+    ///     .role(.tab)
+    /// }
+    /// .role(.tablist)
     /// ```
-    func aria(selected value: Values.Accessibility.Selected) -> Self
+    ///
+    /// - Parameter value: Whether the element got selected.
+    ///
+    /// - Returns: The element
+    func accessibilitySelected(_ value: Bool) -> Self
 }
 
-extension AriaSelectedAttribute where Self: ContentNode {
+extension SelectedAccessibilityAttribute where Self: ContentNode {
     
     internal func mutate(ariaselected value: AttributeData) -> Self {
         return self.mutate(key: "aria-selected", value: value)
     }
 }
 
-extension AriaSelectedAttribute where Self: EmptyNode {
+extension SelectedAccessibilityAttribute where Self: EmptyNode {
     
     internal func mutate(ariaselected value: AttributeData) -> Self {
         return self.mutate(key: "aria-selected", value: value)

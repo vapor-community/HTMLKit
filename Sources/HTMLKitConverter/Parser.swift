@@ -1175,7 +1175,7 @@ internal class Parser {
                 return try ValueAttribute<Int>(node: node, kind: .aria).build(verbatim: "rowSpan")
                 
             case "aria-selected":
-                return try TypeAttribute<Values.Accessibility.Selected>(node: node, kind: .aria).build(verbatim: "selected")
+                return try ValueAttribute<Bool>(node: node, kind: .aria).build(verbatim: "selected")
                 
             case "aria-setsize":
                 return try ValueAttribute<Int>(node: node, kind: .aria).build(verbatim: "setSize")

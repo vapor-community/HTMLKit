@@ -14489,7 +14489,7 @@ public struct Division: ContentNode, HtmlElement, BodyElement, FormElement, Figu
     }
 }
 
-extension Division: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, OrientationAccessibilityAttribute, RequiredAccessibilityAttribute, ReadOnlyAccessibilityAttribute, ModalAccessibilityAttribute, LevelAccessibilityAttribute, HintAccessibilityAttribute, PositionAccessibilityAttribute, MultilineAccessibilityAttribute, MultiselectAccessibilityAttribute, RowIndexAccessibilityAttribute, RowCountAccessibilityAttribute, ColumnIndexAccessibilityAttribute, ColumnCountAccessibilityAttribute, RowSpanAccessibilityAttribute, ColumnSpanAccessibilityAttribute, MaximumValueAccessibilityAttribute, MinimumValueAccessibilityAttribute, ValueAccessibilityAttribute, PressedAccessibilityAttribute {    
+extension Division: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, OrientationAccessibilityAttribute, RequiredAccessibilityAttribute, ReadOnlyAccessibilityAttribute, ModalAccessibilityAttribute, LevelAccessibilityAttribute, HintAccessibilityAttribute, PositionAccessibilityAttribute, MultilineAccessibilityAttribute, MultiselectAccessibilityAttribute, RowIndexAccessibilityAttribute, RowCountAccessibilityAttribute, ColumnIndexAccessibilityAttribute, ColumnCountAccessibilityAttribute, RowSpanAccessibilityAttribute, ColumnSpanAccessibilityAttribute, MaximumValueAccessibilityAttribute, MinimumValueAccessibilityAttribute, ValueAccessibilityAttribute, PressedAccessibilityAttribute, SelectedAccessibilityAttribute {    
 
     public func accessKey(_ value: Character) -> Division {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -14999,6 +14999,10 @@ extension Division: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
     
     public func accessibilityPressed(_ value: Bool = true) -> Division {
         return mutate(ariapressed: .init(value, context: .trusted))
+    }
+    
+    public func accessibilitySelected(_ value: Bool = true) -> Division {
+        return mutate(ariaselected: .init(value, context: .trusted))
     }
 }
 

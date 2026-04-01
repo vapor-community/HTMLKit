@@ -1714,36 +1714,6 @@ public enum Values {
             case text
         }
 
-        /// An indicator of a selected state.
-        ///
-        /// ```swift
-        /// Division {
-        ///     Division {
-        ///         Paragraph {
-        ///             "Lorem ipsum"
-        ///         }
-        ///     }
-        ///     .aria(selected: .true)
-        ///     Division {
-        ///         Paragraph {
-        ///             "Lorem ipsum"
-        ///         }
-        ///     }
-        /// }
-        /// .role(.tablist)
-        /// ```
-        public enum Selected: String {
-            
-            /// Indicates the element is not selectable.
-            case undefined
-            
-            /// Indicates the element is not selected.
-            case `false`
-            
-            /// Indicates the element is selected.
-            case `true`
-        }
-
         /// An indicator of the sort algorithm.
         ///
         /// ```swift
