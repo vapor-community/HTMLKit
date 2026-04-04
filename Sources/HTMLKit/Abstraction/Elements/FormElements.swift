@@ -2034,7 +2034,7 @@ public struct Button: ContentNode, FormElement {
     }
 }
 
-extension Button: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, DisabledAttribute, FormAttribute, FormActionAttribute, NameAttribute, TypeAttribute, ValueAttribute, PopoverTargetAttribute, PopoverActionAttribute, PressedAccessibilityAttribute, SelectedAccessibilityAttribute {
+extension Button: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, DisabledAttribute, FormAttribute, FormActionAttribute, NameAttribute, TypeAttribute, ValueAttribute, PopoverTargetAttribute, PopoverActionAttribute, PressedAccessibilityAttribute, SelectedAccessibilityAttribute, ExpandedAccessibilityAttribute {
     
     public func accessKey(_ value: Character) -> Button {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -2513,6 +2513,10 @@ extension Button: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
     
     public func accessibilitySelected(_ value: Bool = true) -> Button {
         return mutate(ariaselected: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityExpanded(_ value: Bool = true) -> Button {
+        return mutate(ariaexpanded: .init(value, context: .trusted))
     }
 }
 

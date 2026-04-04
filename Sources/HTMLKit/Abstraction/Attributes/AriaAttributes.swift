@@ -387,26 +387,35 @@ extension DisabledAccessibilityAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with accessibility handler.
+/// A type that provides the `accessibilityExpanded` modifier.
 @_documentation(visibility: internal)
-public protocol AriaExpandedAttribute: Attribute {
+public protocol ExpandedAccessibilityAttribute: Attribute {
     
-    /// The function represents the html-attribute 'aria-expanded'.
+    /// Indicate the element as expanded.
     ///
-    /// ```html
-    /// <tag aria-expanded="" />
+    /// ```swift
+    /// Navigation {
+    ///    Button {
+    ///       "Lorem ipsum"
+    ///    }
+    ///    .accessibilityExpanded(true)
+    /// }
     /// ```
-    func aria(expanded value: Bool) -> Self
+    ///
+    /// - Parameter value: Whether the element is expanded.
+    ///
+    /// - Returns: The element
+    func accessibilityExpanded(_ value: Bool) -> Self
 }
 
-extension AriaExpandedAttribute where Self: ContentNode {
+extension ExpandedAccessibilityAttribute where Self: ContentNode {
     
     internal func mutate(ariaexpanded value: AttributeData) -> Self {
         return self.mutate(key: "aria-expanded", value: value)
     }
 }
 
-extension AriaExpandedAttribute where Self: EmptyNode {
+extension ExpandedAccessibilityAttribute where Self: EmptyNode {
     
     internal func mutate(ariaexpanded value: AttributeData) -> Self {
         return self.mutate(key: "aria-expanded", value: value)
