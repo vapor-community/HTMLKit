@@ -427,13 +427,17 @@ final class RenderingTests: XCTestCase {
             MarkdownString("[Link](https://www.vapor.codes)")
             MarkdownString("\(link: "https://www.vapor.codes")")
             MarkdownString("\(email: "alone@home.com")")
+            MarkdownString("[Vapor](https://www.vapor.codes) and [Swift](https://www.swift.org)")
+            MarkdownString("\(link: "https://www.vapor.codes") and \(link: "https://www.swift.org")")
         }
         
         XCTAssertEqual(try renderer!.render(view: view),
                        """
                        <a href="https://www.vapor.codes" target="_blank">Link</a>\
                        <a href="https://www.vapor.codes" target="_blank">https://www.vapor.codes</a>\
-                       <a href="mailto:alone@home.com" target="_blank">alone@home.com</a>
+                       <a href="mailto:alone@home.com" target="_blank">alone@home.com</a>\
+                       <a href="https://www.vapor.codes" target="_blank">Vapor</a> and <a href="https://www.swift.org" target="_blank">Swift</a>\
+                       <a href="https://www.vapor.codes" target="_blank">https://www.vapor.codes</a> and <a href="https://www.swift.org" target="_blank">https://www.swift.org</a>
                        """
         )
     }

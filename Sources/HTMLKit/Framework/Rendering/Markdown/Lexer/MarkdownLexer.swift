@@ -400,11 +400,6 @@ internal final class MarkdownLexer {
             return .link
         }
         
-        if character.isRightParenthesis {
-            
-            return .initial
-        }
-        
         if let last = self.tokens.last {
             last.value += String(character)
         }
@@ -445,20 +440,49 @@ internal final class MarkdownLexer {
         
         self.verbose(#function, character)
         
-        if character.isLetter {
+        if character.isRightSquareBracket {
+            return .link
+        }
+        
+        if character.isLeftParenthesis {
+            
+            let token = MarkdownToken(kind: .textLiteral)
+            
+            self.emit(token: token)
+            
+            return .link
+        }
+        
+        if character.isRightParenthesis {
+            
+            let token = MarkdownToken(kind: .link)
+            
+            self.emit(token: token)
+            
+            return .initial
+        }
+        
+        if let last = self.tokens.last {
+
+            if last.kind == .link {
+                
+                let token = MarkdownToken(kind: .textLiteral)
+                token.value += String(character)
+                
+                self.emit(token: token)
+                
+            } else {
+                last.value += String(character)
+            }
+            
+        } else {
             
             let token = MarkdownToken(kind: .textLiteral)
             token.value += String(character)
             
             self.emit(token: token)
-            
-            return .textLiteral
         }
         
-        if character.isLeftParenthesis {
-            return .link
-        }
-        
-        return .initial
+        return .link
     }
 }
