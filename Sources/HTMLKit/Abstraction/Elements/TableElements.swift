@@ -371,8 +371,17 @@ extension Caption: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
         return mutate(ariabusy: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityControls(_:) modifier instead.")
     public func aria(controls value: String) -> Caption {
         return mutate(ariacontrols: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityControls(_ ids: [String]) -> Caption {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityControls(_ ids: String...) -> Caption {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
     }
     
     @available(*, deprecated, message: "Use the accessibilityCurrent(_:) modifier instead.")
@@ -1523,8 +1532,17 @@ extension TableBody: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(ariabusy: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityControls(_:) modifier instead.")
     public func aria(controls value: String) -> TableBody {
         return mutate(ariacontrols: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityControls(_ ids: [String]) -> TableBody {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityControls(_ ids: String...) -> TableBody {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
     }
     
     @available(*, deprecated, message: "Use the accessibilityCurrent(_:) modifier instead.")
@@ -2038,8 +2056,17 @@ extension TableHead: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(ariabusy: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityControls(_:) modifier instead.")
     public func aria(controls value: String) -> TableHead {
         return mutate(ariacontrols: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityControls(_ ids: [String]) -> TableHead {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityControls(_ ids: String...) -> TableHead {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
     }
     
     @available(*, deprecated, message: "Use the accessibilityCurrent(_:) modifier instead.")
@@ -2545,8 +2572,17 @@ extension TableFoot: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(ariabusy: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityControls(_:) modifier instead.")
     public func aria(controls value: String) -> TableFoot {
         return mutate(ariacontrols: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityControls(_ ids: [String]) -> TableFoot {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityControls(_ ids: String...) -> TableFoot {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
     }
     
     @available(*, deprecated, message: "Use the accessibilityCurrent(_:) modifier instead.")
@@ -3054,8 +3090,17 @@ extension TableRow: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(ariabusy: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityControls(_:) modifier instead.")
     public func aria(controls value: String) -> TableRow {
         return mutate(ariacontrols: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityControls(_ ids: [String]) -> TableRow {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityControls(_ ids: String...) -> TableRow {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
     }
     
     @available(*, deprecated, message: "Use the accessibilityCurrent(_:) modifier instead.")
@@ -3577,8 +3622,17 @@ extension DataCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(ariabusy: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityControls(_:) modifier instead.")
     public func aria(controls value: String) -> DataCell {
         return mutate(ariacontrols: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityControls(_ ids: [String]) -> DataCell {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityControls(_ ids: String...) -> DataCell {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
     }
   
     @available(*, deprecated, message: "Use the accessibilityCurrent(_:) modifier instead.")
@@ -4103,8 +4157,17 @@ extension HeaderCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
         return mutate(ariabusy: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityControls(_:) modifier instead.")
     public func aria(controls value: String) -> HeaderCell {
         return mutate(ariacontrols: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityControls(_ ids: [String]) -> HeaderCell {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityControls(_ ids: String...) -> HeaderCell {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
     }
     
     @available(*, deprecated, message: "Use the accessibilityCurrent(_:) modifier instead.")

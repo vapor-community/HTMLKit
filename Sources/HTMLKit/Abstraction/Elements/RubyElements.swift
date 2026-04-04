@@ -348,8 +348,17 @@ extension RubyText: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(ariabusy: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityControls(_:) modifier instead.")
     public func aria(controls value: String) -> RubyText {
         return mutate(ariacontrols: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityControls(_ ids: [String]) -> RubyText {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityControls(_ ids: String...) -> RubyText {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
     }
     
     @available(*, deprecated, message: "Use the accessibilityCurrent(_:) modifier instead.")
@@ -852,8 +861,17 @@ extension RubyPronunciation: GlobalAttributes, GlobalEventAttributes, GlobalAria
         return mutate(ariabusy: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityControls(_:) modifier instead.")
     public func aria(controls value: String) -> RubyPronunciation {
         return mutate(ariacontrols: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityControls(_ ids: [String]) -> RubyPronunciation {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityControls(_ ids: String...) -> RubyPronunciation {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
     }
     
     @available(*, deprecated, message: "Use the accessibilityCurrent(_:) modifier instead.")

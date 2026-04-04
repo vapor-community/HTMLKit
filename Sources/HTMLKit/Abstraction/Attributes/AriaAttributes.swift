@@ -1,5 +1,5 @@
 @_documentation(visibility: internal)
-public typealias GlobalAriaAttributes = AtomicAccessibilityAttribute & BusyAccessibilityAttribute & AriaControlsAttribute & CurrentAccessibilityAttribute & AriaDescribedAttribute & AriaDetailsAttribute & DisabledAccessibilityAttribute & FlowAccessibilityAttribute & AriaPopupAttribute & HiddenAccessibilityAttribute & InvalidAccessibilityAttribute & AriaShortcutsAttribute & LabelAccessibilityAttribute & LabelsAccessibilityAttribute & LiveAccessibilityAttribute & OwnsAccessibilityAttribute & RelevantAccessibilityAttribute & AriaRoleDescriptionAttribute
+public typealias GlobalAriaAttributes = AtomicAccessibilityAttribute & BusyAccessibilityAttribute & ControlsAccessibilityAttribute & CurrentAccessibilityAttribute & AriaDescribedAttribute & AriaDetailsAttribute & DisabledAccessibilityAttribute & FlowAccessibilityAttribute & AriaPopupAttribute & HiddenAccessibilityAttribute & InvalidAccessibilityAttribute & AriaShortcutsAttribute & LabelAccessibilityAttribute & LabelsAccessibilityAttribute & LiveAccessibilityAttribute & OwnsAccessibilityAttribute & RelevantAccessibilityAttribute & AriaRoleDescriptionAttribute
 
 /// The protocol provides the element with accessibility handler.
 @_documentation(visibility: internal)
@@ -250,26 +250,45 @@ extension ColumnSpanAccessibilityAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with accessibility handler.
+/// A type that provides the `accessibilityControls` modifier.
 @_documentation(visibility: internal)
-public protocol AriaControlsAttribute: Attribute {
+public protocol ControlsAccessibilityAttribute: Attribute {
     
-    /// The function represents the html-attribute 'aria-controls'.
+    /// Indicate the elements whose presence are controlled by the current element.
     ///
-    /// ```html
-    /// <tag aria-controls="" />
+    /// ```swift
+    /// Division {
+    /// }
+    /// .accessibilityControls(["id", "id"])
     /// ```
-    func aria(controls value: String) -> Self
+    ///
+    /// - Parameter ids: The identifiers of the elements to associated with.
+    ///
+    /// - Returns: The element
+    func accessibilityControls(_ ids: [String]) -> Self
+    
+    /// Indicate the elements whose presence are controlled by the current element.
+    ///
+    /// ```swift
+    /// Division {
+    /// }
+    /// .accessibilityControls("id", "id")
+    /// ```
+    ///
+    /// - Parameter ids: The identifiers of the elements to associated with.
+    ///
+    /// - Returns: The element
+    func accessibilityControls(_ ids: String...) -> Self
 }
 
-extension AriaControlsAttribute where Self: ContentNode {
+extension ControlsAccessibilityAttribute where Self: ContentNode {
     
     internal func mutate(ariacontrols value: AttributeData) -> Self {
         return self.mutate(key: "aria-controls", value: value)
     }
 }
 
-extension AriaControlsAttribute where Self: EmptyNode {
+extension ControlsAccessibilityAttribute where Self: EmptyNode {
     
     internal func mutate(ariacontrols value: AttributeData) -> Self {
         return self.mutate(key: "aria-controls", value: value)

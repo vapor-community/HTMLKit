@@ -350,8 +350,17 @@ extension TermName: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(ariabusy: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityControls(_:) modifier instead.")
     public func aria(controls value: String) -> TermName {
         return mutate(ariacontrols: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityControls(_ ids: [String]) -> TermName {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityControls(_ ids: String...) -> TermName {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
     }
     
     @available(*, deprecated, message: "Use the accessibilityCurrent(_:) modifier instead.")
@@ -849,8 +858,17 @@ extension TermDefinition: GlobalAttributes, GlobalEventAttributes, GlobalAriaAtt
         return mutate(ariabusy: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityControls(_:) modifier instead.")
     public func aria(controls value: String) -> TermDefinition {
         return mutate(ariacontrols: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityControls(_ ids: [String]) -> TermDefinition {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityControls(_ ids: String...) -> TermDefinition {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
     }
     
     @available(*, deprecated, message: "Use the accessibilityCurrent(_:) modifier instead.")
