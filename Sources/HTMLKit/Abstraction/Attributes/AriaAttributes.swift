@@ -1,32 +1,38 @@
 @_documentation(visibility: internal)
 public typealias GlobalAriaAttributes = AtomicAccessibilityAttribute & BusyAccessibilityAttribute & ControlsAccessibilityAttribute & CurrentAccessibilityAttribute & AriaDescribedAttribute & AriaDetailsAttribute & DisabledAccessibilityAttribute & FlowAccessibilityAttribute & AriaPopupAttribute & HiddenAccessibilityAttribute & InvalidAccessibilityAttribute & AriaShortcutsAttribute & LabelAccessibilityAttribute & LabelsAccessibilityAttribute & LiveAccessibilityAttribute & OwnsAccessibilityAttribute & RelevantAccessibilityAttribute & AriaRoleDescriptionAttribute
 
-/// The protocol provides the element with accessibility handler.
+/// A type that provides the `accessibilityFocused` modifier.
 @_documentation(visibility: internal)
-public protocol AriaActiveDescendantAttribute: Attribute {
+public protocol FocusedAccessibilityAttribute: Attribute {
     
-    /// The function represents the html-attribute 'aria-activedescendant'.
-    ///
-    /// ```html
-    /// <tag aria-activedescendant="" />
+    /// Indicate the focused element.
+    /// 
+    /// ```swift
+    /// Division {
+    /// }
+    /// .role(.listBox)
+    /// .accessibilityFocused("id")
     /// ```
-    func aria(activeDescendant value: String) -> Self
+    ///
+    /// - Parameter id: The identifier of the focused element.
+    ///
+    /// - Returns: The element
+    func accessibilityFocused(_ id: String) -> Self
 }
 
-extension AriaActiveDescendantAttribute where Self: ContentNode {
+extension FocusedAccessibilityAttribute where Self: ContentNode {
     
     internal func mutate(ariaactivedescendant value: AttributeData) -> Self {
         return self.mutate(key: "aria-activedescendant", value: value)
     }
 }
 
-extension AriaActiveDescendantAttribute where Self: EmptyNode {
+extension FocusedAccessibilityAttribute where Self: EmptyNode {
     
     internal func mutate(ariaactivedescendant value: AttributeData) -> Self {
         return self.mutate(key: "aria-activedescendant", value: value)
     }
 }
-
 
 /// A type that provides the `accessibilityAtomic` modifier.
 @_documentation(visibility: internal)
