@@ -1,5 +1,5 @@
 @_documentation(visibility: internal)
-public typealias GlobalAriaAttributes = AtomicAccessibilityAttribute & BusyAccessibilityAttribute & ControlsAccessibilityAttribute & CurrentAccessibilityAttribute & AriaDescribedAttribute & AriaDetailsAttribute & DisabledAccessibilityAttribute & FlowAccessibilityAttribute & AriaPopupAttribute & HiddenAccessibilityAttribute & InvalidAccessibilityAttribute & AriaShortcutsAttribute & LabelAccessibilityAttribute & LabelsAccessibilityAttribute & LiveAccessibilityAttribute & OwnsAccessibilityAttribute & RelevantAccessibilityAttribute & AriaRoleDescriptionAttribute
+public typealias GlobalAriaAttributes = AtomicAccessibilityAttribute & BusyAccessibilityAttribute & ControlsAccessibilityAttribute & CurrentAccessibilityAttribute & AriaDescribedAttribute & DetailAccessibilityAttribute & DisabledAccessibilityAttribute & FlowAccessibilityAttribute & AriaPopupAttribute & HiddenAccessibilityAttribute & InvalidAccessibilityAttribute & AriaShortcutsAttribute & LabelAccessibilityAttribute & LabelsAccessibilityAttribute & LiveAccessibilityAttribute & OwnsAccessibilityAttribute & RelevantAccessibilityAttribute & AriaRoleDescriptionAttribute
 
 /// A type that provides the `accessibilityFocused` modifier.
 @_documentation(visibility: internal)
@@ -374,26 +374,32 @@ extension AriaDescribedAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with accessibility handler.
+/// A type that provides the `accessibilityDetail` modifier.
 @_documentation(visibility: internal)
-public protocol AriaDetailsAttribute: Attribute {
+public protocol DetailAccessibilityAttribute: Attribute {
     
-    /// The function represents the html-attribute 'aria-details'.
-    ///
-    /// ```html
-    /// <tag aria-details="" />
+    /// Refer to an element that provides an extended description.
+    /// 
+    /// ```swift
+    /// Division {
+    /// }
+    /// .accessibilityDetail("id")
     /// ```
-    func aria(details value: String) -> Self
+    ///
+    /// - Parameter id: The identifier of the element to refer to.
+    ///
+    /// - Returns: The element
+    func accessibilityDetail(_ id: String) -> Self
 }
 
-extension AriaDetailsAttribute where Self: ContentNode {
+extension DetailAccessibilityAttribute where Self: ContentNode {
     
     internal func mutate(ariadetails value: AttributeData) -> Self {
         return self.mutate(key: "aria-details", value: value)
     }
 }
 
-extension AriaDetailsAttribute where Self: EmptyNode {
+extension DetailAccessibilityAttribute where Self: EmptyNode {
     
     internal func mutate(ariadetails value: AttributeData) -> Self {
         return self.mutate(key: "aria-details", value: value)

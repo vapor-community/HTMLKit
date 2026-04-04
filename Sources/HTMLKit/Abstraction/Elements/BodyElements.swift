@@ -516,8 +516,13 @@ extension Article: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
         return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityDetail(_:) modifier instead.")
     public func aria(details value: String) -> Article {
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityDetail(_ id: String) -> Article {
+        return mutate(ariadetails: .init(id, context: .tainted(.html)))
     }
     
     @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
@@ -1024,8 +1029,13 @@ extension Section: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
         return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityDetail(_:) modifier instead.")
     public func aria(details value: String) -> Section {
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityDetail(_ id: String) -> Section {
+        return mutate(ariadetails: .init(id, context: .tainted(.html)))
     }
     
     @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
@@ -1534,8 +1544,13 @@ extension Navigation: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
         return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityDetail(_:) modifier instead.")
     public func aria(details value: String) -> Navigation {
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityDetail(_ id: String) -> Navigation {
+        return mutate(ariadetails: .init(id, context: .tainted(.html)))
     }
     
     @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
@@ -2040,8 +2055,13 @@ extension Aside: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityDetail(_:) modifier instead.")
     public func aria(details value: String) -> Aside {
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityDetail(_ id: String) -> Aside {
+        return mutate(ariadetails: .init(id, context: .tainted(.html)))
     }
     
     @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
@@ -2543,8 +2563,13 @@ extension Heading1: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityDetail(_:) modifier instead.")
     public func aria(details value: String) -> Heading1 {
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityDetail(_ id: String) -> Heading1 {
+        return mutate(ariadetails: .init(id, context: .tainted(.html)))
     }
     
     @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
@@ -3055,8 +3080,13 @@ extension Heading2: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityDetail(_:) modifier instead.")
     public func aria(details value: String) -> Heading2 {
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityDetail(_ id: String) -> Heading2 {
+        return mutate(ariadetails: .init(id, context: .tainted(.html)))
     }
     
     @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
@@ -3567,8 +3597,13 @@ extension Heading3: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityDetail(_:) modifier instead.")
     public func aria(details value: String) -> Heading3 {
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityDetail(_ id: String) -> Heading3 {
+        return mutate(ariadetails: .init(id, context: .tainted(.html)))
     }
     
     @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
@@ -4079,8 +4114,13 @@ extension Heading4: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityDetail(_:) modifier instead.")
     public func aria(details value: String) -> Heading4 {
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityDetail(_ id: String) -> Heading4 {
+        return mutate(ariadetails: .init(id, context: .tainted(.html)))
     }
     
     @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
@@ -4591,8 +4631,13 @@ extension Heading5: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityDetail(_:) modifier instead.")
     public func aria(details value: String) -> Heading5 {
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityDetail(_ id: String) -> Heading5 {
+        return mutate(ariadetails: .init(id, context: .tainted(.html)))
     }
     
     @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
@@ -5103,8 +5148,13 @@ extension Heading6: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityDetail(_:) modifier instead.")
     public func aria(details value: String) -> Heading6 {
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityDetail(_ id: String) -> Heading6 {
+        return mutate(ariadetails: .init(id, context: .tainted(.html)))
     }
     
     @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
@@ -5620,8 +5670,13 @@ extension HeadingGroup: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttri
         return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityDetail(_:) modifier instead.")
     public func aria(details value: String) -> HeadingGroup {
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityDetail(_ id: String) -> HeadingGroup {
+        return mutate(ariadetails: .init(id, context: .tainted(.html)))
     }
     
     @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
@@ -6124,8 +6179,13 @@ extension Header: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
         return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityDetail(_:) modifier instead.")
     public func aria(details value: String) -> Header {
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityDetail(_ id: String) -> Header {
+        return mutate(ariadetails: .init(id, context: .tainted(.html)))
     }
     
     @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
@@ -6626,8 +6686,13 @@ extension Footer: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
         return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityDetail(_:) modifier instead.")
     public func aria(details value: String) -> Footer {
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityDetail(_ id: String) -> Footer {
+        return mutate(ariadetails: .init(id, context: .tainted(.html)))
     }
     
     @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
@@ -7135,8 +7200,13 @@ extension Address: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
         return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityDetail(_:) modifier instead.")
     public func aria(details value: String) -> Address {
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityDetail(_ id: String) -> Address {
+        return mutate(ariadetails: .init(id, context: .tainted(.html)))
     }
     
     @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
@@ -7638,8 +7708,13 @@ extension Paragraph: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityDetail(_:) modifier instead.")
     public func aria(details value: String) -> Paragraph {
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityDetail(_ id: String) -> Paragraph {
+        return mutate(ariadetails: .init(id, context: .tainted(.html)))
     }
     
     @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
@@ -8145,8 +8220,13 @@ extension HorizontalRule: GlobalAttributes, GlobalEventAttributes, GlobalAriaAtt
         return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityDetail(_:) modifier instead.")
     public func aria(details value: String) -> HorizontalRule {
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityDetail(_ id: String) -> HorizontalRule {
+        return mutate(ariadetails: .init(id, context: .tainted(.html)))
     }
     
     @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
@@ -8654,8 +8734,13 @@ extension PreformattedText: GlobalAttributes, GlobalEventAttributes, GlobalAriaA
         return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityDetail(_:) modifier instead.")
     public func aria(details value: String) -> PreformattedText {
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityDetail(_ id: String) -> PreformattedText {
+        return mutate(ariadetails: .init(id, context: .tainted(.html)))
     }
     
     @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
@@ -9161,8 +9246,13 @@ extension Blockquote: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
         return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityDetail(_:) modifier instead.")
     public func aria(details value: String) -> Blockquote {
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityDetail(_ id: String) -> Blockquote {
+        return mutate(ariadetails: .init(id, context: .tainted(.html)))
     }
     
     @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
@@ -9690,8 +9780,13 @@ extension OrderedList: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
         return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityDetail(_:) modifier instead.")
     public func aria(details value: String) -> OrderedList {
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityDetail(_ id: String) -> OrderedList {
+        return mutate(ariadetails: .init(id, context: .tainted(.html)))
     }
     
     @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
@@ -10202,8 +10297,13 @@ extension UnorderedList: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttr
         return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityDetail(_:) modifier instead.")
     public func aria(details value: String) -> UnorderedList {
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityDetail(_ id: String) -> UnorderedList {
+        return mutate(ariadetails: .init(id, context: .tainted(.html)))
     }
     
     @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
@@ -11030,8 +11130,13 @@ extension DescriptionList: GlobalAttributes, GlobalEventAttributes, GlobalAriaAt
         return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityDetail(_:) modifier instead.")
     public func aria(details value: String) -> DescriptionList {
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityDetail(_ id: String) -> DescriptionList {
+        return mutate(ariadetails: .init(id, context: .tainted(.html)))
     }
     
     @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
@@ -11538,8 +11643,13 @@ extension Figure: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
         return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityDetail(_:) modifier instead.")
     public func aria(details value: String) -> Figure {
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityDetail(_ id: String) -> Figure {
+        return mutate(ariadetails: .init(id, context: .tainted(.html)))
     }
     
     @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
@@ -12087,8 +12197,13 @@ extension Anchor: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityDetail(_:) modifier instead.")
     public func aria(details value: String) -> Anchor {
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityDetail(_ id: String) -> Anchor {
+        return mutate(ariadetails: .init(id, context: .tainted(.html)))
     }
     
     @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
@@ -12603,8 +12718,13 @@ extension Emphasize: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityDetail(_:) modifier instead.")
     public func aria(details value: String) -> Emphasize {
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityDetail(_ id: String) -> Emphasize {
+        return mutate(ariadetails: .init(id, context: .tainted(.html)))
     }
     
     @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
@@ -13108,8 +13228,13 @@ extension Strong: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
         return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityDetail(_:) modifier instead.")
     public func aria(details value: String) -> Strong {
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityDetail(_ id: String) -> Strong {
+        return mutate(ariadetails: .init(id, context: .tainted(.html)))
     }
     
     @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
@@ -13613,8 +13738,13 @@ extension Small: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityDetail(_:) modifier instead.")
     public func aria(details value: String) -> Small {
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityDetail(_ id: String) -> Small {
+        return mutate(ariadetails: .init(id, context: .tainted(.html)))
     }
     
     @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
@@ -14465,8 +14595,13 @@ extension Main: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityDetail(_:) modifier instead.")
     public func aria(details value: String) -> Main {
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityDetail(_ id: String) -> Main {
+        return mutate(ariadetails: .init(id, context: .tainted(.html)))
     }
     
     @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
@@ -15274,8 +15409,13 @@ extension Division: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityDetail(_:) modifier instead.")
     public func aria(details value: String) -> Division {
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityDetail(_ id: String) -> Division {
+        return mutate(ariadetails: .init(id, context: .tainted(.html)))
     }
     
     @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
@@ -15893,8 +16033,13 @@ extension Definition: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
         return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityDetail(_:) modifier instead.")
     public func aria(details value: String) -> Definition {
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityDetail(_ id: String) -> Definition {
+        return mutate(ariadetails: .init(id, context: .tainted(.html)))
     }
     
     @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
@@ -16399,8 +16544,13 @@ extension Cite: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityDetail(_:) modifier instead.")
     public func aria(details value: String) -> Cite {
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityDetail(_ id: String) -> Cite {
+        return mutate(ariadetails: .init(id, context: .tainted(.html)))
     }
     
     @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
@@ -16908,8 +17058,13 @@ extension ShortQuote: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
         return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityDetail(_:) modifier instead.")
     public func aria(details value: String) -> ShortQuote {
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityDetail(_ id: String) -> ShortQuote {
+        return mutate(ariadetails: .init(id, context: .tainted(.html)))
     }
     
     @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
@@ -17414,8 +17569,13 @@ extension Abbreviation: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttri
         return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityDetail(_:) modifier instead.")
     public func aria(details value: String) -> Abbreviation {
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityDetail(_ id: String) -> Abbreviation {
+        return mutate(ariadetails: .init(id, context: .tainted(.html)))
     }
     
     @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
@@ -17920,8 +18080,13 @@ extension Ruby: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityDetail(_:) modifier instead.")
     public func aria(details value: String) -> Ruby {
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityDetail(_ id: String) -> Ruby {
+        return mutate(ariadetails: .init(id, context: .tainted(.html)))
     }
     
     @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
@@ -18441,8 +18606,13 @@ extension Data: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, V
         return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityDetail(_:) modifier instead.")
     public func aria(details value: String) -> Data {
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityDetail(_ id: String) -> Data {
+        return mutate(ariadetails: .init(id, context: .tainted(.html)))
     }
     
     @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
@@ -18952,8 +19122,13 @@ extension Time: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, D
         return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityDetail(_:) modifier instead.")
     public func aria(details value: String) -> Time {
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityDetail(_ id: String) -> Time {
+        return mutate(ariadetails: .init(id, context: .tainted(.html)))
     }
     
     @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
@@ -19459,8 +19634,13 @@ extension Code: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityDetail(_:) modifier instead.")
     public func aria(details value: String) -> Code {
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityDetail(_ id: String) -> Code {
+        return mutate(ariadetails: .init(id, context: .tainted(.html)))
     }
     
     @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
@@ -19966,8 +20146,13 @@ extension Variable: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityDetail(_:) modifier instead.")
     public func aria(details value: String) -> Variable {
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityDetail(_ id: String) -> Variable {
+        return mutate(ariadetails: .init(id, context: .tainted(.html)))
     }
     
     @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
@@ -20469,8 +20654,13 @@ extension SampleOutput: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttri
         return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityDetail(_:) modifier instead.")
     public func aria(details value: String) -> SampleOutput {
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityDetail(_ id: String) -> SampleOutput {
+        return mutate(ariadetails: .init(id, context: .tainted(.html)))
     }
     
     @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
@@ -20976,8 +21166,13 @@ extension KeyboardInput: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttr
         return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityDetail(_:) modifier instead.")
     public func aria(details value: String) -> KeyboardInput {
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityDetail(_ id: String) -> KeyboardInput {
+        return mutate(ariadetails: .init(id, context: .tainted(.html)))
     }
     
     @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
@@ -21482,8 +21677,13 @@ extension Subscript: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityDetail(_:) modifier instead.")
     public func aria(details value: String) -> Subscript {
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityDetail(_ id: String) -> Subscript {
+        return mutate(ariadetails: .init(id, context: .tainted(.html)))
     }
     
     @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
@@ -21989,8 +22189,13 @@ extension Superscript: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
         return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityDetail(_:) modifier instead.")
     public func aria(details value: String) -> Superscript {
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityDetail(_ id: String) -> Superscript {
+        return mutate(ariadetails: .init(id, context: .tainted(.html)))
     }
     
     @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
@@ -22496,8 +22701,13 @@ extension Italic: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
         return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityDetail(_:) modifier instead.")
     public func aria(details value: String) -> Italic {
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityDetail(_ id: String) -> Italic {
+        return mutate(ariadetails: .init(id, context: .tainted(.html)))
     }
     
     @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
@@ -23012,8 +23222,13 @@ extension Bold: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityDetail(_:) modifier instead.")
     public func aria(details value: String) -> Bold {
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityDetail(_ id: String) -> Bold {
+        return mutate(ariadetails: .init(id, context: .tainted(.html)))
     }
     
     @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
@@ -23528,8 +23743,13 @@ extension Underline: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityDetail(_:) modifier instead.")
     public func aria(details value: String) -> Underline {
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityDetail(_ id: String) -> Underline {
+        return mutate(ariadetails: .init(id, context: .tainted(.html)))
     }
     
     @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
@@ -24044,8 +24264,13 @@ extension Mark: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityDetail(_:) modifier instead.")
     public func aria(details value: String) -> Mark {
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityDetail(_ id: String) -> Mark {
+        return mutate(ariadetails: .init(id, context: .tainted(.html)))
     }
     
     @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
@@ -24551,8 +24776,13 @@ extension Bdi: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityDetail(_:) modifier instead.")
     public func aria(details value: String) -> Bdi {
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityDetail(_ id: String) -> Bdi {
+        return mutate(ariadetails: .init(id, context: .tainted(.html)))
     }
     
     @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
@@ -25046,8 +25276,13 @@ extension Bdo: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityDetail(_:) modifier instead.")
     public func aria(details value: String) -> Bdo {
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityDetail(_ id: String) -> Bdo {
+        return mutate(ariadetails: .init(id, context: .tainted(.html)))
     }
     
     @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
@@ -25549,8 +25784,13 @@ extension Span: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, O
         return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityDetail(_:) modifier instead.")
     public func aria(details value: String) -> Span {
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityDetail(_ id: String) -> Span {
+        return mutate(ariadetails: .init(id, context: .tainted(.html)))
     }
     
     @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
@@ -26049,8 +26289,13 @@ extension LineBreak: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityDetail(_:) modifier instead.")
     public func aria(details value: String) -> LineBreak {
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityDetail(_ id: String) -> LineBreak {
+        return mutate(ariadetails: .init(id, context: .tainted(.html)))
     }
     
     @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
@@ -26541,8 +26786,13 @@ extension WordBreak: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityDetail(_:) modifier instead.")
     public func aria(details value: String) -> WordBreak {
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityDetail(_ id: String) -> WordBreak {
+        return mutate(ariadetails: .init(id, context: .tainted(.html)))
     }
     
     @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
@@ -27052,8 +27302,13 @@ extension InsertedText: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttri
         return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityDetail(_:) modifier instead.")
     public func aria(details value: String) -> InsertedText {
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityDetail(_ id: String) -> InsertedText {
+        return mutate(ariadetails: .init(id, context: .tainted(.html)))
     }
     
     @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
@@ -27563,8 +27818,13 @@ extension DeletedText: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
         return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityDetail(_:) modifier instead.")
     public func aria(details value: String) -> DeletedText {
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityDetail(_ id: String) -> DeletedText {
+        return mutate(ariadetails: .init(id, context: .tainted(.html)))
     }
     
     @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
@@ -28456,8 +28716,13 @@ extension Image: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityDetail(_:) modifier instead.")
     public func aria(details value: String) -> Image {
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityDetail(_ id: String) -> Image {
+        return mutate(ariadetails: .init(id, context: .tainted(.html)))
     }
     
     @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
@@ -29004,8 +29269,13 @@ extension InlineFrame: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
         return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityDetail(_:) modifier instead.")
     public func aria(details value: String) -> InlineFrame {
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityDetail(_ id: String) -> InlineFrame {
+        return mutate(ariadetails: .init(id, context: .tainted(.html)))
     }
     
     @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
@@ -29514,8 +29784,13 @@ extension Embed: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityDetail(_:) modifier instead.")
     public func aria(details value: String) -> Embed {
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityDetail(_ id: String) -> Embed {
+        return mutate(ariadetails: .init(id, context: .tainted(.html)))
     }
     
     @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
@@ -30042,8 +30317,13 @@ extension Object: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityDetail(_:) modifier instead.")
     public func aria(details value: String) -> Object {
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityDetail(_ id: String) -> Object {
+        return mutate(ariadetails: .init(id, context: .tainted(.html)))
     }
     
     @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
@@ -30606,8 +30886,13 @@ extension Video: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityDetail(_:) modifier instead.")
     public func aria(details value: String) -> Video {
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityDetail(_ id: String) -> Video {
+        return mutate(ariadetails: .init(id, context: .tainted(.html)))
     }
     
     @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
@@ -31153,8 +31438,13 @@ extension Audio: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityDetail(_:) modifier instead.")
     public func aria(details value: String) -> Audio {
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityDetail(_ id: String) -> Audio {
+        return mutate(ariadetails: .init(id, context: .tainted(.html)))
     }
     
     @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
@@ -32033,8 +32323,13 @@ extension Form: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, A
         return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityDetail(_:) modifier instead.")
     public func aria(details value: String) -> Form {
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityDetail(_ id: String) -> Form {
+        return mutate(ariadetails: .init(id, context: .tainted(.html)))
     }
     
     @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
@@ -32543,8 +32838,13 @@ extension DataList: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityDetail(_:) modifier instead.")
     public func aria(details value: String) -> DataList {
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityDetail(_ id: String) -> DataList {
+        return mutate(ariadetails: .init(id, context: .tainted(.html)))
     }
     
     @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
@@ -33060,8 +33360,13 @@ extension Output: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityDetail(_:) modifier instead.")
     public func aria(details value: String) -> Output {
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityDetail(_ id: String) -> Output {
+        return mutate(ariadetails: .init(id, context: .tainted(.html)))
     }
     
     @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
@@ -33582,8 +33887,13 @@ extension Progress: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityDetail(_:) modifier instead.")
     public func aria(details value: String) -> Progress {
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityDetail(_ id: String) -> Progress {
+        return mutate(ariadetails: .init(id, context: .tainted(.html)))
     }
     
     @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
@@ -34122,8 +34432,13 @@ extension Meter: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return mutate(ariabusy: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityDetail(_:) modifier instead.")
     public func aria(details value: String) -> Meter {
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityDetail(_ id: String) -> Meter {
+        return mutate(ariadetails: .init(id, context: .tainted(.html)))
     }
     
     @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
@@ -34653,8 +34968,13 @@ extension Details: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
         return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityDetail(_:) modifier instead.")
     public func aria(details value: String) -> Details {
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityDetail(_ id: String) -> Details {
+        return mutate(ariadetails: .init(id, context: .tainted(.html)))
     }
     
     @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
@@ -35180,8 +35500,13 @@ extension Dialog: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityDetail(_:) modifier instead.")
     public func aria(details value: String) -> Dialog {
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityDetail(_ id: String) -> Dialog {
+        return mutate(ariadetails: .init(id, context: .tainted(.html)))
     }
     
     @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
@@ -36701,8 +37026,13 @@ extension Canvas: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityDetail(_:) modifier instead.")
     public func aria(details value: String) -> Canvas {
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityDetail(_ id: String) -> Canvas {
+        return mutate(ariadetails: .init(id, context: .tainted(.html)))
     }
     
     @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
@@ -37219,8 +37549,13 @@ extension Table: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityDetail(_:) modifier instead.")
     public func aria(details value: String) -> Table {
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityDetail(_ id: String) -> Table {
+        return mutate(ariadetails: .init(id, context: .tainted(.html)))
     }
     
     @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
