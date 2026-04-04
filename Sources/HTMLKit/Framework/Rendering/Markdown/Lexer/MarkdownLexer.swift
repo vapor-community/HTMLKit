@@ -417,17 +417,38 @@ internal final class MarkdownLexer {
         
         self.verbose(#function, character)
         
-        if character.isLetter || character.isWhitespace {
+        if character.isBackTick {
+            
+            let token = MarkdownToken(kind: .code)
+            token.value += String(character)
+            
+            self.emit(token: token)
+            
+            return .initial
+        }
+        
+        if let last = self.tokens.last {
+
+            if last.kind == .code {
+                
+                let token = MarkdownToken(kind: .textLiteral)
+                token.value += String(character)
+                
+                self.emit(token: token)
+                
+            } else {
+                last.value += String(character)
+            }
+            
+        } else {
             
             let token = MarkdownToken(kind: .textLiteral)
             token.value += String(character)
             
             self.emit(token: token)
-            
-            return .textLiteral
         }
         
-        return .initial
+        return .code
     }
     
     /// Consumes a character for a link emphisis

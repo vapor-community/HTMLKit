@@ -386,14 +386,14 @@ final class RenderingTests: XCTestCase {
     func testRenderingMonospaceMarkdown() throws {
         
         let view = TestView {
-            MarkdownString("`code`")
-            MarkdownString("\(code: "code")")
+            MarkdownString("`<div>test</div>`")
+            MarkdownString("\(code: "**test**")")
         }
         
         XCTAssertEqual(try renderer!.render(view: view),
                        """
-                       <code>code</code>\
-                       <code>code</code>
+                       <code>&lt;div&gt;test&lt;/div&gt;</code>\
+                       <code>**test**</code>
                        """
         )
     }
