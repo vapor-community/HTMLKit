@@ -668,8 +668,17 @@ extension Body: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, W
         return mutate(ariacontrols: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityCurrent(_:) modifier instead.")
     public func aria(current value: Values.Accessibility.Current) -> Body {
         return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityCurrent(_ value: Values.Accessibility.Current) -> Body {
+        return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityCurrent(_ value: Bool = true) -> Body {
+        return mutate(ariacurrent: .init(value, context: .trusted))
     }
     
     public func aria(describedBy value: String) -> Body {

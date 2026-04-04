@@ -352,8 +352,17 @@ extension RubyText: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(ariacontrols: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityCurrent(_:) modifier instead.")
     public func aria(current value: Values.Accessibility.Current) -> RubyText {
         return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityCurrent(_ value: Values.Accessibility.Current) -> RubyText {
+        return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityCurrent(_ value: Bool = true) -> RubyText {
+        return mutate(ariacurrent: .init(value, context: .trusted))
     }
     
     public func aria(describedBy value: String) -> RubyText {
@@ -847,8 +856,17 @@ extension RubyPronunciation: GlobalAttributes, GlobalEventAttributes, GlobalAria
         return mutate(ariacontrols: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityCurrent(_:) modifier instead.")
     public func aria(current value: Values.Accessibility.Current) -> RubyPronunciation {
         return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityCurrent(_ value: Values.Accessibility.Current) -> RubyPronunciation {
+        return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityCurrent(_ value: Bool = true) -> RubyPronunciation {
+        return mutate(ariacurrent: .init(value, context: .trusted))
     }
     
     public func aria(describedBy value: String) -> RubyPronunciation {

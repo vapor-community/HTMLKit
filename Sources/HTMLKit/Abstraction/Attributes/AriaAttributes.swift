@@ -1,5 +1,5 @@
 @_documentation(visibility: internal)
-public typealias GlobalAriaAttributes = AtomicAccessibilityAttribute & BusyAccessibilityAttribute & AriaControlsAttribute & AriaCurrentAttribute & AriaDescribedAttribute & AriaDetailsAttribute & DisabledAccessibilityAttribute & FlowAccessibilityAttribute & AriaPopupAttribute & HiddenAccessibilityAttribute & InvalidAccessibilityAttribute & AriaShortcutsAttribute & LabelAccessibilityAttribute & LabelsAccessibilityAttribute & LiveAccessibilityAttribute & OwnsAccessibilityAttribute & RelevantAccessibilityAttribute & AriaRoleDescriptionAttribute
+public typealias GlobalAriaAttributes = AtomicAccessibilityAttribute & BusyAccessibilityAttribute & AriaControlsAttribute & CurrentAccessibilityAttribute & AriaDescribedAttribute & AriaDetailsAttribute & DisabledAccessibilityAttribute & FlowAccessibilityAttribute & AriaPopupAttribute & HiddenAccessibilityAttribute & InvalidAccessibilityAttribute & AriaShortcutsAttribute & LabelAccessibilityAttribute & LabelsAccessibilityAttribute & LiveAccessibilityAttribute & OwnsAccessibilityAttribute & RelevantAccessibilityAttribute & AriaRoleDescriptionAttribute
 
 /// The protocol provides the element with accessibility handler.
 @_documentation(visibility: internal)
@@ -276,26 +276,47 @@ extension AriaControlsAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with accessibility handler.
+/// A type that provides the `accessibilityCurrent` modifier.
 @_documentation(visibility: internal)
-public protocol AriaCurrentAttribute: Attribute {
+public protocol CurrentAccessibilityAttribute: Attribute {
     
-    /// The function represents the html-attribute 'aria-current'.
+    /// Indicate the element that represents the current item within a set.
     ///
-    /// ```html
-    /// <tag aria-current="" />
+    /// ```swift
+    /// Anchor {
+    ///     "Lorem ipsum"
+    /// }
+    /// .reference("/")
+    /// .accessibilityCurrent(.page)
     /// ```
-    func aria(current value: Values.Accessibility.Current) -> Self
+    ///
+    /// - Parameter value: Whether it is the current element in a specific set.
+    ///
+    /// - Returns: The element
+    func accessibilityCurrent(_ value: Values.Accessibility.Current) -> Self
+    
+    /// Indicate the element that represents the current item within a set.
+    ///
+    /// ```swift
+    /// Division {
+    /// }
+    /// .accessibilityCurrent(false)
+    /// ```
+    ///
+    /// - Parameter value: Whether it is the current element in a set.
+    ///
+    /// - Returns: The element
+    func accessibilityCurrent(_ value: Bool) -> Self
 }
 
-extension AriaCurrentAttribute where Self: ContentNode {
+extension CurrentAccessibilityAttribute where Self: ContentNode {
     
     internal func mutate(ariacurrent value: AttributeData) -> Self {
         return self.mutate(key: "aria-current", value: value)
     }
 }
 
-extension AriaCurrentAttribute where Self: EmptyNode {
+extension CurrentAccessibilityAttribute where Self: EmptyNode {
     
     internal func mutate(ariacurrent value: AttributeData) -> Self {
         return self.mutate(key: "aria-current", value: value)

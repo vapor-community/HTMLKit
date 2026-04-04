@@ -1554,9 +1554,11 @@ public enum Values {
         public enum Current: String {
             
             /// Does not represent the current item within a set.
+            @available(*, deprecated, message: "Use the accessibilityCurrent(_:) modifier instead.")
             case `false`
             
             /// Represents the current item within a set.
+            @available(*, deprecated, message: "Use the accessibilityCurrent(_:) modifier instead.")
             case `true`
             
             /// Represents the current page within a set of pages.

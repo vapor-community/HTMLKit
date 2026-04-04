@@ -15,7 +15,7 @@ final class AttributesTests: XCTestCase {
         @ContentBuilder<Content> var body: Content
     }
     
-    typealias AllAttributes = AccessKeyAttribute & AcceptAttribute & ActionAttribute & AlternateAttribute & AsynchronouslyAttribute & AutocapitalizeAttribute & AutocompleteAttribute & AutofocusAttribute & AutoplayAttribute & CharsetAttribute & CheckedAttribute & CiteAttribute & ClassAttribute & ColumnsAttribute & ColumnSpanAttribute & ContentAttribute & EditAttribute  & ControlsAttribute & CoordinatesAttribute & DataAttribute & DateTimeAttribute & DefaultAttribute & DeferAttribute & DirectionAttribute & DisabledAttribute & DownloadAttribute & DragAttribute & EncodingAttribute & EnterKeyAttribute & ForAttribute & FormAttribute & FormActionAttribute & EquivalentAttribute & HeadersAttribute & HeightAttribute & HiddenAttribute & HighAttribute & ReferenceAttribute & ReferenceLanguageAttribute & IdentifierAttribute & IsMapAttribute & InputModeAttribute & IsAttribute & ItemAttribute & ItemPropertyAttribute & KindAttribute & LabelAttribute & LanguageAttribute & ListAttribute & LoopAttribute & LowAttribute & MaximumValueAttribute & MaximumLengthAttribute & MediaAttribute & MethodAttribute & MinimumValueAttribute & MinimumLengthAttribute & MultipleAttribute & MutedAttribute & NameAttribute & NonceAttribute & NoValidateAttribute & OpenAttribute & OptimumAttribute & PatternAttribute & PartAttribute & PingAttribute & PlaceholderAttribute & PosterAttribute & PreloadAttribute & ReadOnlyAttribute & ReferrerPolicyAttribute & RelationshipAttribute & RequiredAttribute & ReversedAttribute & RoleAttribute & RowsAttribute & RowSpanAttribute & SandboxAttribute & ScopeAttribute & ShapeAttribute & SizeAttribute & SizesAttribute & SlotAttribute & SpanAttribute & SpellCheckAttribute & SourceAttribute & StartAttribute & StepAttribute & StyleAttribute & TabulatorAttribute & TargetAttribute & TitleAttribute & TranslateAttribute & TypeAttribute & ValueAttribute & WidthAttribute & WrapAttribute & PropertyAttribute & SelectedAttribute & WindowEventAttribute & FocusEventAttribute & PointerEventAttribute & MouseEventAttribute & WheelEventAttribute & InputEventAttribute & KeyboardEventAttribute & DragEventAttribute & ClipboardEventAttribute & SelectionEventAttribute & MediaEventAttribute & FormEventAttribute & DetailEventAttribute & AtomicAccessibilityAttribute & BusyAccessibilityAttribute & AriaControlsAttribute & AriaCurrentAttribute & AriaDescribedAttribute & AriaDetailsAttribute & DisabledAccessibilityAttribute & FlowAccessibilityAttribute & AriaPopupAttribute & HiddenAccessibilityAttribute & InvalidAccessibilityAttribute & AriaShortcutsAttribute & LabelAccessibilityAttribute & LabelsAccessibilityAttribute & LiveAccessibilityAttribute & OwnsAccessibilityAttribute & MultilineAccessibilityAttribute & RowIndexAccessibilityAttribute & RelevantAccessibilityAttribute & AriaRoleDescriptionAttribute & SortAccessibilityAttribute & OrientationAccessibilityAttribute & RequiredAccessibilityAttribute & ReadOnlyAccessibilityAttribute & ModalAccessibilityAttribute & LevelAccessibilityAttribute & HintAccessibilityAttribute & PositionAccessibilityAttribute & MultiselectAccessibilityAttribute & RowCountAccessibilityAttribute & ColumnIndexAccessibilityAttribute & ColumnCountAccessibilityAttribute & RowSpanAccessibilityAttribute & ColumnSpanAccessibilityAttribute & MaximumValueAccessibilityAttribute & MinimumValueAccessibilityAttribute & ValueAccessibilityAttribute & PressedAccessibilityAttribute & SelectedAccessibilityAttribute & CheckedAccessibilityAttribute & ExpandedAccessibilityAttribute & DrawAttribute & FillAttribute & FillOpacityAttribute & StrokeAttribute & StrokeWidthAttribute & StrokeOpacityAttribute & StrokeLineCapAttribute & StrokeLineJoinAttribute & RadiusAttribute & PositionPointAttribute & RadiusPointAttribute & CenterPointAttribute & ViewBoxAttribute & NamespaceAttribute & PointsAttribute & ShadowRootModeAttribute & InertAttribute & FetchPriorityAttribute & LoadingAttribute & SourceSetAttribute & DecodingAttribute & BlockingAttribute & PopoverAttribute & PopoverTargetAttribute & PopoverActionAttribute & UseMapAttribute & PlaysInlineAttribute & IntegrityAttribute & AsAttribute & CrossOriginAttribute & SourceLanguageAttribute & SourceDocumentAttribute
+    typealias AllAttributes = AccessKeyAttribute & AcceptAttribute & ActionAttribute & AlternateAttribute & AsynchronouslyAttribute & AutocapitalizeAttribute & AutocompleteAttribute & AutofocusAttribute & AutoplayAttribute & CharsetAttribute & CheckedAttribute & CiteAttribute & ClassAttribute & ColumnsAttribute & ColumnSpanAttribute & ContentAttribute & EditAttribute  & ControlsAttribute & CoordinatesAttribute & DataAttribute & DateTimeAttribute & DefaultAttribute & DeferAttribute & DirectionAttribute & DisabledAttribute & DownloadAttribute & DragAttribute & EncodingAttribute & EnterKeyAttribute & ForAttribute & FormAttribute & FormActionAttribute & EquivalentAttribute & HeadersAttribute & HeightAttribute & HiddenAttribute & HighAttribute & ReferenceAttribute & ReferenceLanguageAttribute & IdentifierAttribute & IsMapAttribute & InputModeAttribute & IsAttribute & ItemAttribute & ItemPropertyAttribute & KindAttribute & LabelAttribute & LanguageAttribute & ListAttribute & LoopAttribute & LowAttribute & MaximumValueAttribute & MaximumLengthAttribute & MediaAttribute & MethodAttribute & MinimumValueAttribute & MinimumLengthAttribute & MultipleAttribute & MutedAttribute & NameAttribute & NonceAttribute & NoValidateAttribute & OpenAttribute & OptimumAttribute & PatternAttribute & PartAttribute & PingAttribute & PlaceholderAttribute & PosterAttribute & PreloadAttribute & ReadOnlyAttribute & ReferrerPolicyAttribute & RelationshipAttribute & RequiredAttribute & ReversedAttribute & RoleAttribute & RowsAttribute & RowSpanAttribute & SandboxAttribute & ScopeAttribute & ShapeAttribute & SizeAttribute & SizesAttribute & SlotAttribute & SpanAttribute & SpellCheckAttribute & SourceAttribute & StartAttribute & StepAttribute & StyleAttribute & TabulatorAttribute & TargetAttribute & TitleAttribute & TranslateAttribute & TypeAttribute & ValueAttribute & WidthAttribute & WrapAttribute & PropertyAttribute & SelectedAttribute & WindowEventAttribute & FocusEventAttribute & PointerEventAttribute & MouseEventAttribute & WheelEventAttribute & InputEventAttribute & KeyboardEventAttribute & DragEventAttribute & ClipboardEventAttribute & SelectionEventAttribute & MediaEventAttribute & FormEventAttribute & DetailEventAttribute & AtomicAccessibilityAttribute & BusyAccessibilityAttribute & AriaControlsAttribute & CurrentAccessibilityAttribute & AriaDescribedAttribute & AriaDetailsAttribute & DisabledAccessibilityAttribute & FlowAccessibilityAttribute & AriaPopupAttribute & HiddenAccessibilityAttribute & InvalidAccessibilityAttribute & AriaShortcutsAttribute & LabelAccessibilityAttribute & LabelsAccessibilityAttribute & LiveAccessibilityAttribute & OwnsAccessibilityAttribute & MultilineAccessibilityAttribute & RowIndexAccessibilityAttribute & RelevantAccessibilityAttribute & AriaRoleDescriptionAttribute & SortAccessibilityAttribute & OrientationAccessibilityAttribute & RequiredAccessibilityAttribute & ReadOnlyAccessibilityAttribute & ModalAccessibilityAttribute & LevelAccessibilityAttribute & HintAccessibilityAttribute & PositionAccessibilityAttribute & MultiselectAccessibilityAttribute & RowCountAccessibilityAttribute & ColumnIndexAccessibilityAttribute & ColumnCountAccessibilityAttribute & RowSpanAccessibilityAttribute & ColumnSpanAccessibilityAttribute & MaximumValueAccessibilityAttribute & MinimumValueAccessibilityAttribute & ValueAccessibilityAttribute & PressedAccessibilityAttribute & SelectedAccessibilityAttribute & CheckedAccessibilityAttribute & ExpandedAccessibilityAttribute & DrawAttribute & FillAttribute & FillOpacityAttribute & StrokeAttribute & StrokeWidthAttribute & StrokeOpacityAttribute & StrokeLineCapAttribute & StrokeLineJoinAttribute & RadiusAttribute & PositionPointAttribute & RadiusPointAttribute & CenterPointAttribute & ViewBoxAttribute & NamespaceAttribute & PointsAttribute & ShadowRootModeAttribute & InertAttribute & FetchPriorityAttribute & LoadingAttribute & SourceSetAttribute & DecodingAttribute & BlockingAttribute & PopoverAttribute & PopoverTargetAttribute & PopoverActionAttribute & UseMapAttribute & PlaysInlineAttribute & IntegrityAttribute & AsAttribute & CrossOriginAttribute & SourceLanguageAttribute & SourceDocumentAttribute
     
     struct Tag: ContentNode, GlobalElement, AllAttributes {
 
@@ -944,7 +944,11 @@ final class AttributesTests: XCTestCase {
             return mutate(ariacontrols: .init(value, context: .tainted(.html)))
         }
         
-        func aria(current value: Values.Accessibility.Current) -> Tag {
+        func accessibilityCurrent(_ value: Bool = true) -> Tag {
+            return mutate(ariacurrent: .init(value, context: .trusted))
+        }
+        
+        func accessibilityCurrent(_ value: Values.Accessibility.Current) -> Tag {
             return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
         }
         
@@ -2945,15 +2949,29 @@ final class AttributesTests: XCTestCase {
         )
     }
     
-    func testCurrentAriaAttribute() throws {
+    func testCurrentAccessibilityAttribute() throws {
         
         let view = TestView {
-            Tag {}.aria(current: .page)
+            Tag {}.accessibilityCurrent()
+            Tag {}.accessibilityCurrent(false)
+            Tag {}.accessibilityCurrent(true)
+            Tag {}.accessibilityCurrent(.page)
+            Tag {}.accessibilityCurrent(.step)
+            Tag {}.accessibilityCurrent(.time)
+            Tag {}.accessibilityCurrent(.date)
+            Tag {}.accessibilityCurrent(.location)
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <tag aria-current="page"></tag>
+                       <tag aria-current="true"></tag>\
+                       <tag aria-current="false"></tag>\
+                       <tag aria-current="true"></tag>\
+                       <tag aria-current="page"></tag>\
+                       <tag aria-current="step"></tag>\
+                       <tag aria-current="time"></tag>\
+                       <tag aria-current="date"></tag>\
+                       <tag aria-current="location"></tag>
                        """
         )
     }
