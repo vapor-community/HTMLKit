@@ -1,29 +1,29 @@
-/// A type that represents a markdown token
+/// A type that represents a markdown token.
 internal final class MarkdownToken {
     
-    /// A enumeration of different tokens
+    /// An enumeration of different kind of tokens.
     internal enum TokenKind {
         
-        /// Indicates a emphasis token
+        /// Indicates an emphasis token.
         case emphasis
 
-        /// Indicates a text literal
+        /// Indicates a text literal.
         case textLiteral
         
-        /// Indicates a code token
+        /// Indicates a code token.
         case code
         
-        /// Indicates a link token
+        /// Indicates a link token.
         case link
     }
     
-    /// The raw value of the token
+    /// The raw value of the token.
     internal var value: String
     
-    /// The kind of the token
+    /// The kind of the token.
     internal var kind: TokenKind
     
-    /// Initiates a markdown token
+    /// Create a markdown token.
     internal init(kind: TokenKind) {
         
         self.kind = kind

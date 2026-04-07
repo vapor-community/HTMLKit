@@ -383,7 +383,7 @@ final class RenderingTests: XCTestCase {
     /// Tests the Markdown rendering for inline code emphasis
     ///
     /// The renderer is expected to convert the Markdown syntax into the HTML equivalent
-    func testRenderingMonospaceMarkdown() throws {
+    func testRenderingCodeMarkdown() throws {
         
         let view = TestView {
             MarkdownString("`<div>test</div>`")
