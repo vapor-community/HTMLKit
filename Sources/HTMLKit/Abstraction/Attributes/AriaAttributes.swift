@@ -1,5 +1,5 @@
 @_documentation(visibility: internal)
-public typealias GlobalAriaAttributes = AtomicAccessibilityAttribute & BusyAccessibilityAttribute & ControlsAccessibilityAttribute & CurrentAccessibilityAttribute & AriaDescribedAttribute & DetailAccessibilityAttribute & DisabledAccessibilityAttribute & FlowAccessibilityAttribute & AriaPopupAttribute & HiddenAccessibilityAttribute & InvalidAccessibilityAttribute & AriaShortcutsAttribute & LabelAccessibilityAttribute & LabelsAccessibilityAttribute & LiveAccessibilityAttribute & OwnsAccessibilityAttribute & RelevantAccessibilityAttribute & AriaRoleDescriptionAttribute
+public typealias GlobalAriaAttributes = AtomicAccessibilityAttribute & BusyAccessibilityAttribute & ControlsAccessibilityAttribute & CurrentAccessibilityAttribute & AriaDescribedAttribute & DetailAccessibilityAttribute & DisabledAccessibilityAttribute & FlowAccessibilityAttribute & AriaPopupAttribute & HiddenAccessibilityAttribute & InvalidAccessibilityAttribute & ShortcutsAccessibilityAttribute & LabelAccessibilityAttribute & LabelsAccessibilityAttribute & LiveAccessibilityAttribute & OwnsAccessibilityAttribute & RelevantAccessibilityAttribute & AriaRoleDescriptionAttribute
 
 /// A type that provides the `accessibilityFocused` modifier.
 @_documentation(visibility: internal)
@@ -645,26 +645,49 @@ extension InvalidAccessibilityAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with accessibility handler.
+/// A type that provides the `accessibilityShortcuts` modifier.
 @_documentation(visibility: internal)
-public protocol AriaShortcutsAttribute: Attribute {
+public protocol ShortcutsAccessibilityAttribute: Attribute {
     
-    /// The function represents the html-attribute 'aria-keyshortcuts'.
+    /// Indicate the keyboard shortcuts to give focus to an element.
     ///
-    /// ```html
-    /// <tag aria-keyshortcuts="" />
+    /// ```swift
+    /// Anchor {
+    ///     "Lorem ipsum"
+    /// }
+    /// .reference("#lorem")
+    /// .accessibilityShortcuts([KeyboardShortcut(.shift, modifiers: .space), KeyboardShortcut("A", modifiers: .alt)]])
     /// ```
-    func aria(keyShortcuts value: String) -> Self
+    ///
+    /// - Parameter values: The shortcuts used to focus the element.
+    ///
+    /// - Returns: The element
+    func accessibilityShortcuts(_ values: [KeyboardShortcut]) -> Self
+    
+    /// Indicate the keyboard shortcut to give focus to an element.
+    ///
+    /// ```swift
+    /// Anchor {
+    ///     "Lorem ipsum"
+    /// }
+    /// .reference("#lorem")
+    /// .accessibilityShortcuts(KeyboardShortcut(.shift, modifiers: .space), KeyboardShortcut("A", modifiers: .alt))
+    /// ```
+    ///
+    /// - Parameter values: The shortcuts used to focus the element.
+    ///
+    /// - Returns: The element
+    func accessibilityShortcuts(_ values: KeyboardShortcut...) -> Self
 }
 
-extension AriaShortcutsAttribute where Self: ContentNode {
+extension ShortcutsAccessibilityAttribute where Self: ContentNode {
     
     internal func mutate(ariakeyshortcuts value: AttributeData) -> Self {
         return self.mutate(key: "aria-keyshortcuts", value: value)
     }
 }
 
-extension AriaShortcutsAttribute where Self: EmptyNode {
+extension ShortcutsAccessibilityAttribute where Self: EmptyNode {
     
     internal func mutate(ariakeyshortcuts value: AttributeData) -> Self {
         return self.mutate(key: "aria-keyshortcuts", value: value)

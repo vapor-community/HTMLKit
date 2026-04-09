@@ -954,8 +954,17 @@ extension Label: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return mutate(ariainvalid: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityShortcuts(_:) modifier instead.")
     public func aria(keyShortcuts value: String) -> Label {
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityShortcuts(_ values: [KeyboardShortcut]) -> Label {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityShortcuts(_ values: KeyboardShortcut...) -> Label {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
     }
     
     @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
@@ -1941,8 +1950,17 @@ extension TextArea: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(ariainvalid: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityShortcuts(_:) modifier instead.")
     public func aria(keyShortcuts value: String) -> TextArea {
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityShortcuts(_ values: [KeyboardShortcut]) -> TextArea {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityShortcuts(_ values: KeyboardShortcut...) -> TextArea {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
     }
     
     @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
@@ -2506,8 +2524,17 @@ extension Button: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return mutate(ariainvalid: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityShortcuts(_:) modifier instead.")
     public func aria(keyShortcuts value: String) -> Button {
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityShortcuts(_ values: [KeyboardShortcut]) -> Button {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityShortcuts(_ values: KeyboardShortcut...) -> Button {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
     }
     
     @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
@@ -3062,8 +3089,17 @@ extension Fieldset: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(ariainvalid: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityShortcuts(_:) modifier instead.")
     public func aria(keyShortcuts value: String) -> Fieldset {
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityShortcuts(_ values: [KeyboardShortcut]) -> Fieldset {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityShortcuts(_ values: KeyboardShortcut...) -> Fieldset {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
     }
     
     @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")

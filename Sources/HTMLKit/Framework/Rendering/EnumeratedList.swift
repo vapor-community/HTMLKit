@@ -72,6 +72,12 @@ extension EnumeratedList {
         self.values = values.map(\.rawValue)
         self.separator = separator
     }
+    
+    internal init(values: [KeyboardShortcut], separator: String) {
+        
+        self.values = values.map(\.rawValue)
+        self.separator = separator
+    }
 }
 
 extension EnumeratedList: Equatable {

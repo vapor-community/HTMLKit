@@ -486,8 +486,17 @@ extension Area: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, A
         return mutate(ariainvalid: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityShortcuts(_:) modifier instead.")
     public func aria(keyShortcuts value: String) -> Area {
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityShortcuts(_ values: [KeyboardShortcut]) -> Area {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityShortcuts(_ values: KeyboardShortcut...) -> Area {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
     }
     
     @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
