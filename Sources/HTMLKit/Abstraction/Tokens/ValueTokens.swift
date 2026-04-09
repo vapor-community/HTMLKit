@@ -1541,6 +1541,7 @@ public enum Values {
             case list
             
             /// Indicates inline and list suggestions.
+            @available(*, deprecated, message: "Use inline and list instead.")
             case both
         }
 

@@ -66,26 +66,55 @@ extension AtomicAccessibilityAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with accessibility handler.
+/// A type that provides the `accessibilityCompletion` modifier.
 @_documentation(visibility: internal)
-public protocol AriaAutoCompleteAttribute: Attribute {
+public protocol CompletionAccessibilityAttribute: Attribute {
     
-    /// The function represents the html-attribute 'aria-autocomplete'.
+    /// Indicate the predictive behavior for the element.
     ///
-    /// ```html
-    /// <tag aria-autocomplete="" />
+    /// ```swift
+    /// Input()
+    ///    .accessibilityCompletion([.list, .inline])
+    /// UnorderedList {
+    ///    ListItem {
+    ///       "Lorem ipsum"
+    ///    }
+    /// }
+    /// .id("id")
     /// ```
-    func aria(autoComplete value: Values.Accessibility.Complete) -> Self
+    ///
+    /// - Parameter values: The behaviours used to predict.
+    ///
+    /// - Returns: The element
+    func accessibilityCompletion(_ values: [Values.Accessibility.Complete]) -> Self
+    
+    /// Indicate the predictive behavior for the element.
+    ///
+    /// ```swift
+    /// Input()
+    ///    .accessibilityCompletion(.list, .inline)
+    /// UnorderedList {
+    ///    ListItem {
+    ///       "Lorem ipsum"
+    ///    }
+    /// }
+    /// .id("id")
+    /// ```
+    ///
+    /// - Parameter values: The behaviours used to predict.
+    ///
+    /// - Returns: The element
+    func accessibilityCompletion(_ values: Values.Accessibility.Complete...) -> Self
 }
 
-extension AriaAutoCompleteAttribute where Self: ContentNode {
+extension CompletionAccessibilityAttribute where Self: ContentNode {
     
     internal func mutate(ariaautocomplete value: AttributeData) -> Self {
         return self.mutate(key: "aria-autocomplete", value: value)
     }
 }
 
-extension AriaAutoCompleteAttribute where Self: EmptyNode {
+extension CompletionAccessibilityAttribute where Self: EmptyNode {
     
     internal func mutate(ariaautocomplete value: AttributeData) -> Self {
         return self.mutate(key: "aria-autocomplete", value: value)

@@ -59,7 +59,7 @@ public struct Input: EmptyNode, FormElement {
     }
 }
 
-extension Input: GlobalAttributes, GlobalEventAttributes, AcceptAttribute, AlternateAttribute, AutocompleteAttribute, CheckedAttribute, DisabledAttribute, FormAttribute, FormActionAttribute, HeightAttribute, ListAttribute, MaximumValueAttribute, MaximumLengthAttribute, MinimumValueAttribute, MinimumLengthAttribute, MultipleAttribute, NameAttribute, PatternAttribute, PlaceholderAttribute, ReadOnlyAttribute, RequiredAttribute, SizeAttribute, SourceAttribute, StepAttribute, TypeAttribute, ValueAttribute, WidthAttribute, PopoverTargetAttribute, PopoverActionAttribute, FocusedAccessibilityAttribute {
+extension Input: GlobalAttributes, GlobalEventAttributes, AcceptAttribute, AlternateAttribute, AutocompleteAttribute, CheckedAttribute, DisabledAttribute, FormAttribute, FormActionAttribute, HeightAttribute, ListAttribute, MaximumValueAttribute, MaximumLengthAttribute, MinimumValueAttribute, MinimumLengthAttribute, MultipleAttribute, NameAttribute, PatternAttribute, PlaceholderAttribute, ReadOnlyAttribute, RequiredAttribute, SizeAttribute, SourceAttribute, StepAttribute, TypeAttribute, ValueAttribute, WidthAttribute, PopoverTargetAttribute, PopoverActionAttribute, FocusedAccessibilityAttribute, CompletionAccessibilityAttribute {    
     
     public func accessKey(_ value: Character) -> Input {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -510,6 +510,24 @@ extension Input: GlobalAttributes, GlobalEventAttributes, AcceptAttribute, Alter
     
     public func accessibilityFocused(_ id: String) -> Input {
         return mutate(ariaactivedescendant: .init(id, context: .tainted(.html)))
+    }
+    
+    public func accessibilityCompletion(_ values: [Values.Accessibility.Complete]) -> Input {
+        
+        if values == [.list, .inline] || values == [.inline, .list] {
+            return mutate(ariaautocomplete: .init("both", context: .trusted))
+        }
+        
+        return mutate(ariaautocomplete: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityCompletion(_ values: Values.Accessibility.Complete...) -> Input {
+        
+        if values == [.list, .inline] || values == [.inline, .list] {
+            return mutate(ariaautocomplete: .init("both", context: .trusted))
+        }
+        
+        return mutate(ariaautocomplete: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
     }
 }
 
