@@ -1,5 +1,5 @@
 @_documentation(visibility: internal)
-public typealias GlobalAriaAttributes = AtomicAccessibilityAttribute & BusyAccessibilityAttribute & ControlsAccessibilityAttribute & CurrentAccessibilityAttribute & AriaDescribedAttribute & DetailAccessibilityAttribute & DisabledAccessibilityAttribute & FlowAccessibilityAttribute & AriaPopupAttribute & HiddenAccessibilityAttribute & InvalidAccessibilityAttribute & ShortcutsAccessibilityAttribute & LabelAccessibilityAttribute & LabelsAccessibilityAttribute & LiveAccessibilityAttribute & OwnsAccessibilityAttribute & RelevantAccessibilityAttribute & AriaRoleDescriptionAttribute
+public typealias GlobalAriaAttributes = AtomicAccessibilityAttribute & BusyAccessibilityAttribute & ControlsAccessibilityAttribute & CurrentAccessibilityAttribute & DescriptionsAccessibilityAttribute & DetailAccessibilityAttribute & DisabledAccessibilityAttribute & FlowAccessibilityAttribute & AriaPopupAttribute & HiddenAccessibilityAttribute & InvalidAccessibilityAttribute & ShortcutsAccessibilityAttribute & LabelAccessibilityAttribute & LabelsAccessibilityAttribute & LiveAccessibilityAttribute & OwnsAccessibilityAttribute & RelevantAccessibilityAttribute & AriaRoleDescriptionAttribute
 
 /// A type that provides the `accessibilityFocused` modifier.
 @_documentation(visibility: internal)
@@ -377,26 +377,45 @@ extension CurrentAccessibilityAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with accessibility handler.
+/// A type that provides the `accessibilityDescriptions` modifier.
 @_documentation(visibility: internal)
-public protocol AriaDescribedAttribute: Attribute {
+public protocol DescriptionsAccessibilityAttribute: Attribute {
     
-    /// The function represents the html-attribute 'aria-describedby'.
+    /// Identify the elements that describes the element.
     ///
-    /// ```html
-    /// <tag aria-describedby="" />
+    /// ```swift
+    /// Division {
+    /// }
+    /// .accessibilityDescriptions(["id", "id"])
     /// ```
-    func aria(describedBy value: String) -> Self
+    ///
+    /// - Parameter ids: The identifiers of the elements that serve as descriptions.
+    ///
+    /// - Returns: The element
+    func accessibilityDescriptions(_ ids: [String]) -> Self
+    
+    /// Identify the elements that describes the element.
+    ///
+    /// ```swift
+    /// Division {
+    /// }
+    /// .accessibilityDescriptions("id", "id")
+    /// ```
+    ///
+    /// - Parameter ids: The identifiers of the elements that serve as descriptions.
+    ///
+    /// - Returns: The element
+    func accessibilityDescriptions(_ ids: String...) -> Self
 }
 
-extension AriaDescribedAttribute where Self: ContentNode {
+extension DescriptionsAccessibilityAttribute where Self: ContentNode {
     
     internal func mutate(ariadescribedby value: AttributeData) -> Self {
         return self.mutate(key: "aria-describedby", value: value)
     }
 }
 
-extension AriaDescribedAttribute where Self: EmptyNode {
+extension DescriptionsAccessibilityAttribute where Self: EmptyNode {
     
     internal func mutate(ariadescribedby value: AttributeData) -> Self {
         return self.mutate(key: "aria-describedby", value: value)
