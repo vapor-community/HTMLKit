@@ -449,7 +449,12 @@ extension OptionGroup: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
         return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityPopup(_:) modifier instead.")
     public func aria(hasPopup value: Values.Accessibility.Popup) -> OptionGroup {
+        return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityPopup(_ value: Values.Accessibility.Popup) -> OptionGroup {
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
@@ -1022,7 +1027,12 @@ extension Option: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityPopup(_:) modifier instead.")
     public func aria(hasPopup value: Values.Accessibility.Popup) -> Option {
+        return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityPopup(_ value: Values.Accessibility.Popup) -> Option {
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
@@ -1561,7 +1571,12 @@ extension Legend: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
         return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityPopup(_:) modifier instead.")
     public func aria(hasPopup value: Values.Accessibility.Popup) -> Legend {
+        return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityPopup(_ value: Values.Accessibility.Popup) -> Legend {
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
@@ -2092,7 +2107,12 @@ extension Summary: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
         return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityPopup(_:) modifier instead.")
     public func aria(hasPopup value: Values.Accessibility.Popup) -> Summary {
+        return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityPopup(_ value: Values.Accessibility.Popup) -> Summary {
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     

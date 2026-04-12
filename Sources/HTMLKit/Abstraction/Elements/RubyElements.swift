@@ -423,7 +423,12 @@ extension RubyText: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityPopup(_:) modifier instead.")
     public func aria(hasPopup value: Values.Accessibility.Popup) -> RubyText {
+        return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityPopup(_ value: Values.Accessibility.Popup) -> RubyText {
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
@@ -959,7 +964,12 @@ extension RubyPronunciation: GlobalAttributes, GlobalEventAttributes, GlobalAria
         return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityPopup(_:) modifier instead.")
     public func aria(hasPopup value: Values.Accessibility.Popup) -> RubyPronunciation {
+        return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityPopup(_ value: Values.Accessibility.Popup) -> RubyPronunciation {
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     

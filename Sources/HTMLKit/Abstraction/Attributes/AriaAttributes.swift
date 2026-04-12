@@ -1,5 +1,5 @@
 @_documentation(visibility: internal)
-public typealias GlobalAriaAttributes = AtomicAccessibilityAttribute & BusyAccessibilityAttribute & ControlsAccessibilityAttribute & CurrentAccessibilityAttribute & DescriptionsAccessibilityAttribute & DetailAccessibilityAttribute & DisabledAccessibilityAttribute & FlowAccessibilityAttribute & AriaPopupAttribute & HiddenAccessibilityAttribute & InvalidAccessibilityAttribute & ShortcutsAccessibilityAttribute & LabelAccessibilityAttribute & LabelsAccessibilityAttribute & LiveAccessibilityAttribute & OwnsAccessibilityAttribute & RelevantAccessibilityAttribute & AriaRoleDescriptionAttribute
+public typealias GlobalAriaAttributes = AtomicAccessibilityAttribute & BusyAccessibilityAttribute & ControlsAccessibilityAttribute & CurrentAccessibilityAttribute & DescriptionsAccessibilityAttribute & DetailAccessibilityAttribute & DisabledAccessibilityAttribute & FlowAccessibilityAttribute & PopupAccessibilityAttribute & HiddenAccessibilityAttribute & InvalidAccessibilityAttribute & ShortcutsAccessibilityAttribute & LabelAccessibilityAttribute & LabelsAccessibilityAttribute & LiveAccessibilityAttribute & OwnsAccessibilityAttribute & RelevantAccessibilityAttribute & AriaRoleDescriptionAttribute
 
 /// A type that provides the `accessibilityFocused` modifier.
 @_documentation(visibility: internal)
@@ -577,26 +577,32 @@ extension FlowAccessibilityAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with accessibility handler.
+/// A type that provides the `accessibilityPopup` modifier.
 @_documentation(visibility: internal)
-public protocol AriaPopupAttribute: Attribute {
+public protocol PopupAccessibilityAttribute: Attribute {
     
-    /// The function represents the html-attribute 'aria-haspopup'.
+    /// Indicate the availability and type of a popup element.
     ///
-    /// ```html
-    /// <tag aria-haspopup="" />
+    /// ```swift
+    /// Division {
+    /// }
+    /// .accessibilityPopup(.menu)
     /// ```
-    func aria(hasPopup value: Values.Accessibility.Popup) -> Self
+    ///
+    /// - Parameter value: The type of popup that gets triggered.
+    ///
+    /// - Returns: The element
+    func accessibilityPopup(_ value: Values.Accessibility.Popup) -> Self
 }
 
-extension AriaPopupAttribute where Self: ContentNode {
+extension PopupAccessibilityAttribute where Self: ContentNode {
     
     internal func mutate(ariahaspopup value: AttributeData) -> Self {
         return self.mutate(key: "aria-haspopup", value: value)
     }
 }
 
-extension AriaPopupAttribute where Self: EmptyNode {
+extension PopupAccessibilityAttribute where Self: EmptyNode {
     
     internal func mutate(ariahaspopup value: AttributeData) -> Self {
         return self.mutate(key: "aria-haspopup", value: value)

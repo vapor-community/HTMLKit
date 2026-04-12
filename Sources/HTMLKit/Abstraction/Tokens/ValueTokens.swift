@@ -1588,9 +1588,11 @@ public enum Values {
         public enum Popup: String {
             
             /// Indicates no popup.
+            @available(*, deprecated, message: "Use the accessibilityPopup(_:) modifier instead.")
             case `false`
             
             /// Indicates the popup is a menu.
+            @available(*, deprecated, message: "Use the accessibilityPopup(_:) modifier instead.")
             case `true`
             
             /// Indicates the popup is a menu.
