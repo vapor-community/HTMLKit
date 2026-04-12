@@ -549,7 +549,21 @@ extension ListItem: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityRoleDescription(_:) modifier instead.")
     public func aria(roleDescription value: String) -> ListItem {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    @_disfavoredOverload
+    public func accessibilityRoleDescription(_ value: String) -> ListItem {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> ListItem {
+        return mutate(ariaroledescription: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(verbatim value: String) -> ListItem {
         return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
     }
     

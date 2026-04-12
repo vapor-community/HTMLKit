@@ -1,5 +1,5 @@
 @_documentation(visibility: internal)
-public typealias GlobalAriaAttributes = AtomicAccessibilityAttribute & BusyAccessibilityAttribute & ControlsAccessibilityAttribute & CurrentAccessibilityAttribute & DescriptionsAccessibilityAttribute & DetailAccessibilityAttribute & DisabledAccessibilityAttribute & FlowAccessibilityAttribute & PopupAccessibilityAttribute & HiddenAccessibilityAttribute & InvalidAccessibilityAttribute & ShortcutsAccessibilityAttribute & LabelAccessibilityAttribute & LabelsAccessibilityAttribute & LiveAccessibilityAttribute & OwnsAccessibilityAttribute & RelevantAccessibilityAttribute & AriaRoleDescriptionAttribute
+public typealias GlobalAriaAttributes = AtomicAccessibilityAttribute & BusyAccessibilityAttribute & ControlsAccessibilityAttribute & CurrentAccessibilityAttribute & DescriptionsAccessibilityAttribute & DetailAccessibilityAttribute & DisabledAccessibilityAttribute & FlowAccessibilityAttribute & PopupAccessibilityAttribute & HiddenAccessibilityAttribute & InvalidAccessibilityAttribute & ShortcutsAccessibilityAttribute & LabelAccessibilityAttribute & LabelsAccessibilityAttribute & LiveAccessibilityAttribute & OwnsAccessibilityAttribute & RelevantAccessibilityAttribute & RoleDescriptionAccessibilityAttribute
 
 /// A type that provides the `accessibilityFocused` modifier.
 @_documentation(visibility: internal)
@@ -1360,24 +1360,59 @@ extension RequiredAccessibilityAttribute where Self: EmptyNode {
 
 /// The protocol provides the element with accessibility handler.
 @_documentation(visibility: internal)
-public protocol AriaRoleDescriptionAttribute: Attribute {
+public protocol RoleDescriptionAccessibilityAttribute: Attribute {
     
-    /// The function represents the html-attribute 'aria-roledescription'.
+    /// Indicate a text description for the role of an element.
     ///
-    /// ```html
-    /// <tag aria-roledescription="" />
+    /// ```swift
+    /// Division {
+    /// }
+    /// .role(.combobox)
+    /// .accessibilityRoleDescription("Lorem ipsum")
     /// ```
-    func aria(roleDescription value: String) -> Self
+    ///
+    /// - Parameter value: The text to describe the role.
+    ///
+    /// - Returns: The element
+    func accessibilityRoleDescription(_ value: String) -> Self
+    
+    /// Indicate a localized text description for the role of an element.
+    ///
+    /// ```swift
+    /// Division {
+    /// }
+    /// .role(.combobox)
+    /// .accessibilityRoleDescription("Lorem ipsum")
+    /// ```
+    ///
+    /// - Parameter value: The text to describe the role.
+    ///
+    /// - Returns: The element
+    func accessibilityRoleDescription(_ localizedKey: LocalizedStringKey, tableName: String?) -> Self
+    
+    /// Indicate a text description for the role of an element.
+    ///
+    /// ```swift
+    /// Division {
+    /// }
+    /// .role(.combobox)
+    /// .accessibilityRoleDescription(verbatim: "Lorem ipsum")
+    /// ```
+    ///
+    /// - Parameter value: The text to describe the role.
+    ///
+    /// - Returns: The element
+    func accessibilityRoleDescription(verbatim: String) -> Self
 }
 
-extension AriaRoleDescriptionAttribute where Self: ContentNode {
+extension RoleDescriptionAccessibilityAttribute where Self: ContentNode {
     
     internal func mutate(ariaroledescription value: AttributeData) -> Self {
         return self.mutate(key: "aria-roledescription", value: value)
     }
 }
 
-extension AriaRoleDescriptionAttribute where Self: EmptyNode {
+extension RoleDescriptionAccessibilityAttribute where Self: EmptyNode {
     
     internal func mutate(ariaroledescription value: AttributeData) -> Self {
         return self.mutate(key: "aria-roledescription", value: value)

@@ -564,7 +564,21 @@ extension OptionGroup: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
         return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityRoleDescription(_:) modifier instead.")
     public func aria(roleDescription value: String) -> OptionGroup {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    @_disfavoredOverload
+    public func accessibilityRoleDescription(_ value: String) -> OptionGroup {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> OptionGroup {
+        return mutate(ariaroledescription: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(verbatim value: String) -> OptionGroup {
         return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
     }
 }
@@ -1142,7 +1156,21 @@ extension Option: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityRoleDescription(_:) modifier instead.")
     public func aria(roleDescription value: String) -> Option {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    @_disfavoredOverload
+    public func accessibilityRoleDescription(_ value: String) -> Option {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Option {
+        return mutate(ariaroledescription: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(verbatim value: String) -> Option {
         return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
     }
 }
@@ -1686,7 +1714,21 @@ extension Legend: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
         return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityRoleDescription(_:) modifier instead.")
     public func aria(roleDescription value: String) -> Legend {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    @_disfavoredOverload
+    public func accessibilityRoleDescription(_ value: String) -> Legend {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Legend {
+        return mutate(ariaroledescription: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(verbatim value: String) -> Legend {
         return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
     }
 }
@@ -2222,7 +2264,21 @@ extension Summary: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
         return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityRoleDescription(_:) modifier instead.")
     public func aria(roleDescription value: String) -> Summary {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    @_disfavoredOverload
+    public func accessibilityRoleDescription(_ value: String) -> Summary {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Summary {
+        return mutate(ariaroledescription: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(verbatim value: String) -> Summary {
         return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
     }
 }
