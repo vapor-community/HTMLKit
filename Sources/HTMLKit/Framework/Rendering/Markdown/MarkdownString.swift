@@ -52,7 +52,7 @@ extension String.StringInterpolation {
     /// \(link: "https://www.example.com")
     /// ```
     public mutating func appendInterpolation(link url: String) {
-        appendLiteral("[\(url)](\(url)")
+        appendLiteral("[\(url)](\(url))")
     }
     
     /// Enables interpolation of a email link in Markdown format
@@ -61,7 +61,7 @@ extension String.StringInterpolation {
     /// \(email: "example@example.com")
     /// ```
     public mutating func appendInterpolation(email address: String) {
-        appendLiteral("[\(address)](mailto:\(address)")
+        appendLiteral("[\(address)](mailto:\(address))")
     }
     
     /// Enables interpolation of a phone number link in Markdown format
@@ -70,7 +70,7 @@ extension String.StringInterpolation {
     /// \(phone: "123-456-7890")
     /// ```
     public mutating func appendInterpolation(phone number: String) {
-        appendLiteral("[\(number)](tel:\(number)")
+        appendLiteral("[\(number)](tel:\(number))")
     }
     
     /// Enables interpolation of italicized text in Markdown format

@@ -1527,7 +1527,13 @@ public enum Values {
         ///
         /// ```swift
         /// Input()
-        ///     .aria(autoComplete: .inline)
+        ///    .accessibilityCompletion(.list, .inline)
+        /// UnorderedList {
+        ///    ListItem {
+        ///       "Lorem ipsum"
+        ///    }
+        /// }
+        /// .id("id")
         /// ```
         public enum Complete: String {
             
@@ -1541,44 +1547,25 @@ public enum Values {
             case list
             
             /// Indicates inline and list suggestions.
+            @available(*, deprecated, message: "Use inline and list instead.")
             case both
-        }
-
-        /// An indicator of checked state.
-        ///
-        /// ```swift
-        /// Division {
-        /// }
-        /// .aria(checked: .mixed)
-        /// ```
-        public enum Check: String {
-            
-            /// Indicates the element is not checked.
-            case `false`
-            
-            /// Indicates the element has three states to check.
-            case `mixed`
-            
-            /// Indicates the element is checked.
-            case `true`
-            
-            /// Indicates the element is not checkable.
-            case `undefined`
         }
 
         /// An indicator of the current position.
         ///
         /// ```swift
-        /// ListItem {
+        /// Division {
         /// }
-        /// .aria(current: .true)
+        /// .accessibilityControls("id", "id")
         /// ```
         public enum Current: String {
             
             /// Does not represent the current item within a set.
+            @available(*, deprecated, message: "Use the accessibilityCurrent(_:) modifier instead.")
             case `false`
             
             /// Represents the current item within a set.
+            @available(*, deprecated, message: "Use the accessibilityCurrent(_:) modifier instead.")
             case `true`
             
             /// Represents the current page within a set of pages.
@@ -1600,16 +1587,18 @@ public enum Values {
         /// An indicator of a popup type.
         ///
         /// ```swift
-        /// Button {
+        /// Division {
         /// }
-        /// .aria(hasPopup: .dialog)
+        /// .accessibilityPopup(.menu)
         /// ```
         public enum Popup: String {
             
             /// Indicates no popup.
+            @available(*, deprecated, message: "Use the accessibilityPopup(_:) modifier instead.")
             case `false`
             
             /// Indicates the popup is a menu.
+            @available(*, deprecated, message: "Use the accessibilityPopup(_:) modifier instead.")
             case `true`
             
             /// Indicates the popup is a menu.
@@ -1631,15 +1620,19 @@ public enum Values {
         /// An indicator of an input validation.
         ///
         /// ```swift
-        /// Input()
-        ///     .aria(invalid: .true)
+        /// Division {
+        /// }
+        /// .editable()
+        /// .accessibilityInvalid(.grammar)
         /// ```
         public enum Invalid: String {
             
             /// Indicates that there are no detected errors.
+            @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
             case `false`
             
             /// Indicates that errors were detected.
+            @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
             case `true`
             
             /// Indicates that a grammatical error was deteced.
@@ -1654,7 +1647,7 @@ public enum Values {
         /// ```swift
         /// Division {
         /// }
-        /// .aria(live: .polite)
+        /// .accessibilityLive(.polite)
         /// ```
         public enum Live: String {
             
@@ -1671,10 +1664,15 @@ public enum Values {
         /// An indicator of the element orientation.
         ///
         /// ```swift
+        /// Division {
+        /// }
+        /// .role(.scrollbar)
+        /// .accessibilityOrientation(.horizontal)
         /// ```
         public enum Orientation: String {
             
             /// Indicates that the element's orientation is unknown.
+            @available(*, deprecated)
             case undefined
             
             /// Indicates that the element is oriented horizontally.
@@ -1684,35 +1682,13 @@ public enum Values {
             case vertical
         }
 
-        /// An indicator of a pressed state.
-        ///
-        /// ```swift
-        /// Button {
-        ///     "Lorem"
-        /// }
-        /// .aria(pressed: .true)
-        /// ```
-        public enum Pressed: String {
-            
-            /// Indicates the element is not pressable.
-            case undefined
-            
-            /// Indicates the element is not pressed.
-            case `false`
-            
-            /// Indicates the element has three states to press.
-            case mixed
-            
-            /// Indicates the element is pressed.
-            case `true`
-        }
-
         /// An indicator of a text revision.
         ///
         /// ```swift
         /// Division {
         /// }
-        /// .aria(relevant: .all)
+        /// .role(.alert)
+        /// .accessibilityRelevant(.additions, .text)
         /// ```
         public enum Relevant: String {
             
@@ -1720,9 +1696,11 @@ public enum Values {
             case additions
             
             /// Indicates node and text additions.
+            @available(*, deprecated, message: "Use additions and text instead.")
             case additionsText
             
             /// Indicates all relevants.
+            @available(*, deprecated, message: "Use additions, removals and text instead.")
             case all
             
             /// Indicates node removals.
@@ -1732,42 +1710,17 @@ public enum Values {
             case text
         }
 
-        /// An indicator of a selected state.
-        ///
-        /// ```swift
-        /// Division {
-        ///     Division {
-        ///         Paragraph {
-        ///             "Lorem ipsum"
-        ///         }
-        ///     }
-        ///     .aria(selected: .true)
-        ///     Division {
-        ///         Paragraph {
-        ///             "Lorem ipsum"
-        ///         }
-        ///     }
-        /// }
-        /// .role(.tablist)
-        /// ```
-        public enum Selected: String {
-            
-            /// Indicates the element is not selectable.
-            case undefined
-            
-            /// Indicates the element is not selected.
-            case `false`
-            
-            /// Indicates the element is selected.
-            case `true`
-        }
-
         /// An indicator of the sort algorithm.
         ///
         /// ```swift
-        /// HeaderCell {
+        /// Table {
+        ///    TableRow {
+        ///       HeaderCell {
+        ///          "Lorem ipsum"
+        ///       }
+        ///       .accessibilitySort(.ascending)
+        ///    }
         /// }
-        /// .aria(sort: .ascending)
         /// ```
         public enum Sort: String {
             

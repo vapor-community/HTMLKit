@@ -1070,7 +1070,7 @@ internal class Parser {
                 return try ValueAttribute<Bool>(node: node, kind: .aria).build(verbatim: "busy")
                 
             case "aria-checked":
-                return try TypeAttribute<Values.Accessibility.Check>(node: node, kind: .aria).build(verbatim: "checked")
+                return try ValueAttribute<Bool>(node: node, kind: .aria).build(verbatim: "checked")
                 
             case "aria-colcount":
                 return try ValueAttribute<Int>(node: node, kind: .aria).build(verbatim: "columnCount")
@@ -1151,7 +1151,7 @@ internal class Parser {
                 return try ValueAttribute<Int>(node: node, kind: .aria).build(verbatim: "positionIndex")
                 
             case "aria-pressed":
-                return try TypeAttribute<Values.Accessibility.Pressed>(node: node, kind: .aria).build(verbatim: "pressed")
+                return try ValueAttribute<Bool>(node: node, kind: .aria).build(verbatim: "pressed")
                 
             case "aria-readonly":
                 return try ValueAttribute<Bool>(node: node, kind: .aria).build(verbatim: "readonly")
@@ -1175,7 +1175,7 @@ internal class Parser {
                 return try ValueAttribute<Int>(node: node, kind: .aria).build(verbatim: "rowSpan")
                 
             case "aria-selected":
-                return try TypeAttribute<Values.Accessibility.Selected>(node: node, kind: .aria).build(verbatim: "selected")
+                return try ValueAttribute<Bool>(node: node, kind: .aria).build(verbatim: "selected")
                 
             case "aria-setsize":
                 return try ValueAttribute<Int>(node: node, kind: .aria).build(verbatim: "setSize")

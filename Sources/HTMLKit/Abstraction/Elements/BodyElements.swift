@@ -217,7 +217,7 @@ public struct Article: ContentNode, HtmlElement, BodyElement, FormElement, Figur
     }
 }
 
-extension Article: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
+extension Article: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
     
     public func accessKey(_ value: Character) -> Article {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -468,79 +468,233 @@ extension Article: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
         return mutate(key: event.rawValue, value: .init(value, context: .tainted(.js)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityAtomic(_:) modifier instead.")
     public func aria(atomic value: Bool) -> Article {
         return mutate(ariaatomic: .init(value, context: .trusted))
     }
     
+    public func accessibilityAtomic(_ value: Bool = true) -> Article {
+        return mutate(ariaatomic: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityBusy(_:) modifier instead.")
     public func aria(busy value: Bool) -> Article {
         return mutate(ariabusy: .init(value, context: .trusted))
     }
     
+    public func accessibilityBusy(_ value: Bool = true) -> Article {
+        return mutate(ariabusy: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityControls(_:) modifier instead.")
     public func aria(controls value: String) -> Article {
         return mutate(ariacontrols: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityControls(_ ids: [String]) -> Article {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityControls(_ ids: String...) -> Article {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityCurrent(_:) modifier instead.")
     public func aria(current value: Values.Accessibility.Current) -> Article {
         return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityCurrent(_ value: Values.Accessibility.Current) -> Article {
+        return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityCurrent(_ value: Bool = true) -> Article {
+        return mutate(ariacurrent: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDescriptions(_:) modifier instead.")
     public func aria(describedBy value: String) -> Article {
         return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityDescriptions(_ ids: [String]) -> Article {
+        return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityDescriptions(_ ids: String...) -> Article {
+        return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDetail(_:) modifier instead.")
     public func aria(details value: String) -> Article {
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityDetail(_ id: String) -> Article {
+        return mutate(ariadetails: .init(id, context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
     public func aria(disabled value: Bool) -> Article {
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityDisabled(_ value: Bool = true) -> Article {
+        return mutate(ariadisabled: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> Article {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityFlow(_:) modifier instead.")
     public func aria(flowTo value: String) -> Article {
         return mutate(ariaflowto: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityFlow(_ ids: [String]) -> Article {
+        return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityFlow(_ ids: String...) -> Article {
+        return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityPopup(_:) modifier instead.")
     public func aria(hasPopup value: Values.Accessibility.Popup) -> Article {
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityPopup(_ value: Values.Accessibility.Popup) -> Article {
+        return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> Article {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
+    public func accessibilityHidden(_ value: Bool = true) -> Article {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(invalid value: Values.Accessibility.Invalid) -> Article {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> Article {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated)
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> Article {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityShortcuts(_:) modifier instead.")
     public func aria(keyShortcuts value: String) -> Article {
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityShortcuts(_ values: [KeyboardShortcut]) -> Article {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityShortcuts(_ values: KeyboardShortcut...) -> Article {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> Article {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
+    public func accessibilityLabel(_ value: String) -> Article {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Article {
+        return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(verbatim value: String) -> Article {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLabels(_:) modifier instead.")
     public func aria(labeledBy value: String) -> Article {
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityLabels(_ ids: [String]) -> Article {
+        return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabels(_ ids: String...) -> Article {
+        return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> Article {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> Article {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityOwns(_:) modifier instead.")
     public func aria(owns value: String) -> Article {
         return mutate(ariaowns: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityOwns(_ ids: [String]) -> Article {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityOwns(_ ids: String...) -> Article {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityRelevant(_:) modifier instead.")
     public func aria(relevant value: Values.Accessibility.Relevant) -> Article {
         return mutate(ariarelevant: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityRelevant(_ values: [Values.Accessibility.Relevant]) -> Article {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityRelevant(_ values: Values.Accessibility.Relevant...) -> Article {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityRoleDescription(_:) modifier instead.")
     public func aria(roleDescription value: String) -> Article {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    @_disfavoredOverload
+    public func accessibilityRoleDescription(_ value: String) -> Article {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Article {
+        return mutate(ariaroledescription: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(verbatim value: String) -> Article {
         return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
     }
 }
@@ -617,7 +771,7 @@ public struct Section: ContentNode, HtmlElement, BodyElement, FigureElement, For
     }
 }
 
-extension Section: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
+extension Section: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
     
     public func accessKey(_ value: Character) -> Section {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -868,79 +1022,233 @@ extension Section: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
         return mutate(key: event.rawValue, value: .init(value, context: .tainted(.js)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityAtomic(_:) modifier instead.")
     public func aria(atomic value: Bool) -> Section {
         return mutate(ariaatomic: .init(value, context: .trusted))
     }
     
+    public func accessibilityAtomic(_ value: Bool = true) -> Section {
+        return mutate(ariaatomic: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityBusy(_:) modifier instead.")
     public func aria(busy value: Bool) -> Section {
         return mutate(ariabusy: .init(value, context: .trusted))
     }
     
+    public func accessibilityBusy(_ value: Bool = true) -> Section {
+        return mutate(ariabusy: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityControls(_:) modifier instead.")
     public func aria(controls value: String) -> Section {
         return mutate(ariacontrols: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityControls(_ ids: [String]) -> Section {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityControls(_ ids: String...) -> Section {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityCurrent(_:) modifier instead.")
     public func aria(current value: Values.Accessibility.Current) -> Section {
         return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityCurrent(_ value: Values.Accessibility.Current) -> Section {
+        return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityCurrent(_ value: Bool = true) -> Section {
+        return mutate(ariacurrent: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDescriptions(_:) modifier instead.")
     public func aria(describedBy value: String) -> Section {
         return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityDescriptions(_ ids: [String]) -> Section {
+        return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityDescriptions(_ ids: String...) -> Section {
+        return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDetail(_:) modifier instead.")
     public func aria(details value: String) -> Section {
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityDetail(_ id: String) -> Section {
+        return mutate(ariadetails: .init(id, context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
     public func aria(disabled value: Bool) -> Section {
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityDisabled(_ value: Bool = true) -> Section {
+        return mutate(ariadisabled: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> Section {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityFlow(_:) modifier instead.")
     public func aria(flowTo value: String) -> Section {
         return mutate(ariaflowto: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityFlow(_ ids: [String]) -> Section {
+        return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityFlow(_ ids: String...) -> Section {
+        return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityPopup(_:) modifier instead.")
     public func aria(hasPopup value: Values.Accessibility.Popup) -> Section {
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityPopup(_ value: Values.Accessibility.Popup) -> Section {
+        return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> Section {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
+    public func accessibilityHidden(_ value: Bool = true) -> Section {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(invalid value: Values.Accessibility.Invalid) -> Section {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> Section {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated)
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> Section {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityShortcuts(_:) modifier instead.")
     public func aria(keyShortcuts value: String) -> Section {
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityShortcuts(_ values: [KeyboardShortcut]) -> Section {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityShortcuts(_ values: KeyboardShortcut...) -> Section {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> Section {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
+    public func accessibilityLabel(_ value: String) -> Section {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Section {
+        return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(verbatim value: String) -> Section {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLabels(_:) modifier instead.")
     public func aria(labeledBy value: String) -> Section {
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityLabels(_ ids: [String]) -> Section {
+        return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabels(_ ids: String...) -> Section {
+        return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> Section {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> Section {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityOwns(_:) modifier instead.")
     public func aria(owns value: String) -> Section {
         return mutate(ariaowns: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityOwns(_ ids: [String]) -> Section {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityOwns(_ ids: String...) -> Section {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityRelevant(_:) modifier instead.")
     public func aria(relevant value: Values.Accessibility.Relevant) -> Section {
         return mutate(ariarelevant: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityRelevant(_ values: [Values.Accessibility.Relevant]) -> Section {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityRelevant(_ values: Values.Accessibility.Relevant...) -> Section {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityRoleDescription(_:) modifier instead.")
     public func aria(roleDescription value: String) -> Section {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    @_disfavoredOverload
+    public func accessibilityRoleDescription(_ value: String) -> Section {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Section {
+        return mutate(ariaroledescription: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(verbatim value: String) -> Section {
         return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
     }
 }
@@ -1019,7 +1327,7 @@ public struct Navigation: ContentNode, HtmlElement, BodyElement, FormElement, Fi
     }
 }
 
-extension Navigation: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
+extension Navigation: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
     
     public func accessKey(_ value: Character) -> Navigation {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -1270,79 +1578,233 @@ extension Navigation: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
         return mutate(key: event.rawValue, value: .init(value, context: .tainted(.js)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityAtomic(_:) modifier instead.")
     public func aria(atomic value: Bool) -> Navigation {
         return mutate(ariaatomic: .init(value, context: .trusted))
     }
     
+    public func accessibilityAtomic(_ value: Bool = true) -> Navigation {
+        return mutate(ariaatomic: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityBusy(_:) modifier instead.")
     public func aria(busy value: Bool) -> Navigation {
         return mutate(ariabusy: .init(value, context: .trusted))
     }
     
+    public func accessibilityBusy(_ value: Bool = true) -> Navigation {
+        return mutate(ariabusy: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityControls(_:) modifier instead.")
     public func aria(controls value: String) -> Navigation {
         return mutate(ariacontrols: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityControls(_ ids: [String]) -> Navigation {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityControls(_ ids: String...) -> Navigation {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityCurrent(_:) modifier instead.")
     public func aria(current value: Values.Accessibility.Current) -> Navigation {
         return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityCurrent(_ value: Values.Accessibility.Current) -> Navigation {
+        return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityCurrent(_ value: Bool = true) -> Navigation {
+        return mutate(ariacurrent: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDescriptions(_:) modifier instead.")
     public func aria(describedBy value: String) -> Navigation {
         return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityDescriptions(_ ids: [String]) -> Navigation {
+        return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityDescriptions(_ ids: String...) -> Navigation {
+        return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDetail(_:) modifier instead.")
     public func aria(details value: String) -> Navigation {
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityDetail(_ id: String) -> Navigation {
+        return mutate(ariadetails: .init(id, context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
     public func aria(disabled value: Bool) -> Navigation {
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityDisabled(_ value: Bool = true) -> Navigation {
+        return mutate(ariadisabled: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> Navigation {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityFlow(_:) modifier instead.")
     public func aria(flowTo value: String) -> Navigation {
         return mutate(ariaflowto: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityFlow(_ ids: [String]) -> Navigation {
+        return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityFlow(_ ids: String...) -> Navigation {
+        return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityPopup(_:) modifier instead.")
     public func aria(hasPopup value: Values.Accessibility.Popup) -> Navigation {
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityPopup(_ value: Values.Accessibility.Popup) -> Navigation {
+        return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> Navigation {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
+    public func accessibilityHidden(_ value: Bool = true) -> Navigation {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(invalid value: Values.Accessibility.Invalid) -> Navigation {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> Navigation {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated)
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> Navigation {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityShortcuts(_:) modifier instead.")
     public func aria(keyShortcuts value: String) -> Navigation {
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityShortcuts(_ values: [KeyboardShortcut]) -> Navigation {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityShortcuts(_ values: KeyboardShortcut...) -> Navigation {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> Navigation {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
+    public func accessibilityLabel(_ value: String) -> Navigation {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Navigation {
+        return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(verbatim value: String) -> Navigation {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLabels(_:) modifier instead.")
     public func aria(labeledBy value: String) -> Navigation {
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityLabels(_ ids: [String]) -> Navigation {
+        return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabels(_ ids: String...) -> Navigation {
+        return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> Navigation {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> Navigation {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityOwns(_:) modifier instead.")
     public func aria(owns value: String) -> Navigation {
         return mutate(ariaowns: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityOwns(_ ids: [String]) -> Navigation {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityOwns(_ ids: String...) -> Navigation {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityRelevant(_:) modifier instead.")
     public func aria(relevant value: Values.Accessibility.Relevant) -> Navigation {
         return mutate(ariarelevant: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityRelevant(_ values: [Values.Accessibility.Relevant]) -> Navigation {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityRelevant(_ values: Values.Accessibility.Relevant...) -> Navigation {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityRoleDescription(_:) modifier instead.")
     public func aria(roleDescription value: String) -> Navigation {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    @_disfavoredOverload
+    public func accessibilityRoleDescription(_ value: String) -> Navigation {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Navigation {
+        return mutate(ariaroledescription: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(verbatim value: String) -> Navigation {
         return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
     }
 }
@@ -1417,7 +1879,7 @@ public struct Aside: ContentNode, HtmlElement, BodyElement, FormElement, FigureE
     }
 }
 
-extension Aside: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
+extension Aside: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
     
     public func accessKey(_ value: Character) -> Aside {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -1668,79 +2130,233 @@ extension Aside: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(key: event.rawValue, value: .init(value, context: .tainted(.js)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityAtomic(_:) modifier instead.")
     public func aria(atomic value: Bool) -> Aside {
         return mutate(ariaatomic: .init(value, context: .trusted))
     }
     
+    public func accessibilityAtomic(_ value: Bool = true) -> Aside {
+        return mutate(ariaatomic: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityBusy(_:) modifier instead.")
     public func aria(busy value: Bool) -> Aside {
         return mutate(ariabusy: .init(value, context: .trusted))
     }
     
+    public func accessibilityBusy(_ value: Bool = true) -> Aside {
+        return mutate(ariabusy: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityControls(_:) modifier instead.")
     public func aria(controls value: String) -> Aside {
         return mutate(ariacontrols: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityControls(_ ids: [String]) -> Aside {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityControls(_ ids: String...) -> Aside {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityCurrent(_:) modifier instead.")
     public func aria(current value: Values.Accessibility.Current) -> Aside {
         return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityCurrent(_ value: Values.Accessibility.Current) -> Aside {
+        return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityCurrent(_ value: Bool = true) -> Aside {
+        return mutate(ariacurrent: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDescriptions(_:) modifier instead.")
     public func aria(describedBy value: String) -> Aside {
         return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityDescriptions(_ ids: [String]) -> Aside {
+        return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityDescriptions(_ ids: String...) -> Aside {
+        return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDetail(_:) modifier instead.")
     public func aria(details value: String) -> Aside {
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityDetail(_ id: String) -> Aside {
+        return mutate(ariadetails: .init(id, context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
     public func aria(disabled value: Bool) -> Aside {
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityDisabled(_ value: Bool = true) -> Aside {
+        return mutate(ariadisabled: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> Aside {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityFlow(_:) modifier instead.")
     public func aria(flowTo value: String) -> Aside {
         return mutate(ariaflowto: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityFlow(_ ids: [String]) -> Aside {
+        return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityFlow(_ ids: String...) -> Aside {
+        return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityPopup(_:) modifier instead.")
     public func aria(hasPopup value: Values.Accessibility.Popup) -> Aside {
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityPopup(_ value: Values.Accessibility.Popup) -> Aside {
+        return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> Aside {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
+    public func accessibilityHidden(_ value: Bool = true) -> Aside {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(invalid value: Values.Accessibility.Invalid) -> Aside {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> Aside {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated)
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> Aside {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityShortcuts(_:) modifier instead.")
     public func aria(keyShortcuts value: String) -> Aside {
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityShortcuts(_ values: [KeyboardShortcut]) -> Aside {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityShortcuts(_ values: KeyboardShortcut...) -> Aside {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> Aside {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
+    public func accessibilityLabel(_ value: String) -> Aside {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Aside {
+        return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(verbatim value: String) -> Aside {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLabels(_:) modifier instead.")
     public func aria(labeledBy value: String) -> Aside {
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityLabels(_ ids: [String]) -> Aside {
+        return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabels(_ ids: String...) -> Aside {
+        return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> Aside {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> Aside {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityOwns(_:) modifier instead.")
     public func aria(owns value: String) -> Aside {
         return mutate(ariaowns: .init(value, context: .tainted(.html)))
     }
+
+    public func accessibilityOwns(_ ids: [String]) -> Aside {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
     
+    public func accessibilityOwns(_ ids: String...) -> Aside {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityRelevant(_:) modifier instead.")
     public func aria(relevant value: Values.Accessibility.Relevant) -> Aside {
         return mutate(ariarelevant: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityRelevant(_ values: [Values.Accessibility.Relevant]) -> Aside {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityRelevant(_ values: Values.Accessibility.Relevant...) -> Aside {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityRoleDescription(_:) modifier instead.")
     public func aria(roleDescription value: String) -> Aside {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    @_disfavoredOverload
+    public func accessibilityRoleDescription(_ value: String) -> Aside {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Aside {
+        return mutate(ariaroledescription: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(verbatim value: String) -> Aside {
         return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
     }
 }
@@ -1812,7 +2428,7 @@ public struct Heading1: ContentNode, HtmlElement, BodyElement, FormElement, Figu
     }
 }
 
-extension Heading1: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
+extension Heading1: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
     
     public func accessKey(_ value: Character) -> Heading1 {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -2063,79 +2679,232 @@ extension Heading1: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(key: event.rawValue, value: .init(value, context: .tainted(.js)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityAtomic(_:) modifier instead.")
     public func aria(atomic value: Bool) -> Heading1 {
         return mutate(ariaatomic: .init(value, context: .trusted))
     }
     
+    public func accessibilityAtomic(_ value: Bool = true) -> Heading1 {
+        return mutate(ariaatomic: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityBusy(_:) modifier instead.")
     public func aria(busy value: Bool) -> Heading1 {
         return mutate(ariabusy: .init(value, context: .trusted))
     }
     
+    public func accessibilityBusy(_ value: Bool = true) -> Heading1 {
+        return mutate(ariabusy: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityControls(_:) modifier instead.")
     public func aria(controls value: String) -> Heading1 {
         return mutate(ariacontrols: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityControls(_ ids: [String]) -> Heading1 {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityControls(_ ids: String...) -> Heading1 {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityCurrent(_:) modifier instead.")
     public func aria(current value: Values.Accessibility.Current) -> Heading1 {
         return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityCurrent(_ value: Values.Accessibility.Current) -> Heading1 {
+        return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityCurrent(_ value: Bool = true) -> Heading1 {
+        return mutate(ariacurrent: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDescriptions(_:) modifier instead.")
     public func aria(describedBy value: String) -> Heading1 {
         return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityDescriptions(_ ids: [String]) -> Heading1 {
+        return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityDescriptions(_ ids: String...) -> Heading1 {
+        return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDetail(_:) modifier instead.")
     public func aria(details value: String) -> Heading1 {
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityDetail(_ id: String) -> Heading1 {
+        return mutate(ariadetails: .init(id, context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
     public func aria(disabled value: Bool) -> Heading1 {
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityDisabled(_ value: Bool = true) -> Heading1 {
+        return mutate(ariadisabled: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> Heading1 {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityFlow(_:) modifier instead.")
     public func aria(flowTo value: String) -> Heading1 {
         return mutate(ariaflowto: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityFlow(_ ids: [String]) -> Heading1 {
+        return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityFlow(_ ids: String...) -> Heading1 {
+        return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityPopup(_:) modifier instead.")
     public func aria(hasPopup value: Values.Accessibility.Popup) -> Heading1 {
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityPopup(_ value: Values.Accessibility.Popup) -> Heading1 {
+        return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> Heading1 {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
+    public func accessibilityHidden(_ value: Bool = true) -> Heading1 {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(invalid value: Values.Accessibility.Invalid) -> Heading1 {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> Heading1 {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated)
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> Heading1 {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityShortcuts(_:) modifier instead.")
     public func aria(keyShortcuts value: String) -> Heading1 {
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityShortcuts(_ values: [KeyboardShortcut]) -> Heading1 {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityShortcuts(_ values: KeyboardShortcut...) -> Heading1 {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> Heading1 {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
+    public func accessibilityLabel(_ value: String) -> Heading1 {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Heading1 {
+        return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(verbatim value: String) -> Heading1 {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLabels(_:) modifier instead.")
     public func aria(labeledBy value: String) -> Heading1 {
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityLabels(_ ids: [String]) -> Heading1 {
+        return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabels(_ ids: String...) -> Heading1 {
+        return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> Heading1 {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> Heading1 {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityOwns(_:) modifier instead.")
     public func aria(owns value: String) -> Heading1 {
         return mutate(ariaowns: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityOwns(_ ids: [String]) -> Heading1 {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityOwns(_ ids: String...) -> Heading1 {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityRelevant(_:) modifier instead.")
     public func aria(relevant value: Values.Accessibility.Relevant) -> Heading1 {
         return mutate(ariarelevant: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityRelevant(_ values: [Values.Accessibility.Relevant]) -> Heading1 {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityRelevant(_ values: Values.Accessibility.Relevant...) -> Heading1 {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityRoleDescription(_:) modifier instead.")
     public func aria(roleDescription value: String) -> Heading1 {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    @_disfavoredOverload
+    public func accessibilityRoleDescription(_ value: String) -> Heading1 {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Heading1 {
+        return mutate(ariaroledescription: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(verbatim value: String) -> Heading1 {
         return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
     }
 }
@@ -2216,7 +2985,7 @@ public struct Heading2: ContentNode, HtmlElement, BodyElement, FormElement, Figu
     }
 }
 
-extension Heading2: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
+extension Heading2: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
     
     public func accessKey(_ value: Character) -> Heading2 {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -2467,79 +3236,233 @@ extension Heading2: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(key: event.rawValue, value: .init(value, context: .tainted(.js)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityAtomic(_:) modifier instead.")
     public func aria(atomic value: Bool) -> Heading2 {
         return mutate(ariaatomic: .init(value, context: .trusted))
     }
     
+    public func accessibilityAtomic(_ value: Bool = true) -> Heading2 {
+        return mutate(ariaatomic: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityBusy(_:) modifier instead.")
     public func aria(busy value: Bool) -> Heading2 {
         return mutate(ariabusy: .init(value, context: .trusted))
     }
     
+    public func accessibilityBusy(_ value: Bool = true) -> Heading2 {
+        return mutate(ariabusy: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityControls(_:) modifier instead.")
     public func aria(controls value: String) -> Heading2 {
         return mutate(ariacontrols: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityControls(_ ids: [String]) -> Heading2 {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityControls(_ ids: String...) -> Heading2 {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityCurrent(_:) modifier instead.")
     public func aria(current value: Values.Accessibility.Current) -> Heading2 {
         return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityCurrent(_ value: Values.Accessibility.Current) -> Heading2 {
+        return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityCurrent(_ value: Bool = true) -> Heading2 {
+        return mutate(ariacurrent: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDescriptions(_:) modifier instead.")
     public func aria(describedBy value: String) -> Heading2 {
         return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityDescriptions(_ ids: [String]) -> Heading2 {
+        return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityDescriptions(_ ids: String...) -> Heading2 {
+        return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDetail(_:) modifier instead.")
     public func aria(details value: String) -> Heading2 {
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityDetail(_ id: String) -> Heading2 {
+        return mutate(ariadetails: .init(id, context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
     public func aria(disabled value: Bool) -> Heading2 {
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityDisabled(_ value: Bool = true) -> Heading2 {
+        return mutate(ariadisabled: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> Heading2 {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityFlow(_:) modifier instead.")
     public func aria(flowTo value: String) -> Heading2 {
         return mutate(ariaflowto: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityFlow(_ ids: [String]) -> Heading2 {
+        return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityFlow(_ ids: String...) -> Heading2 {
+        return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityPopup(_:) modifier instead.")
     public func aria(hasPopup value: Values.Accessibility.Popup) -> Heading2 {
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityPopup(_ value: Values.Accessibility.Popup) -> Heading2 {
+        return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> Heading2 {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
+    public func accessibilityHidden(_ value: Bool = true) -> Heading2 {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(invalid value: Values.Accessibility.Invalid) -> Heading2 {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> Heading2 {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated)
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> Heading2 {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityShortcuts(_:) modifier instead.")
     public func aria(keyShortcuts value: String) -> Heading2 {
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityShortcuts(_ values: [KeyboardShortcut]) -> Heading2 {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityShortcuts(_ values: KeyboardShortcut...) -> Heading2 {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> Heading2 {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
+    public func accessibilityLabel(_ value: String) -> Heading2 {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Heading2 {
+        return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(verbatim value: String) -> Heading2 {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLabels(_:) modifier instead.")
     public func aria(labeledBy value: String) -> Heading2 {
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityLabels(_ ids: [String]) -> Heading2 {
+        return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabels(_ ids: String...) -> Heading2 {
+        return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> Heading2 {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> Heading2 {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityOwns(_:) modifier instead.")
     public func aria(owns value: String) -> Heading2 {
         return mutate(ariaowns: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityOwns(_ ids: [String]) -> Heading2 {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityOwns(_ ids: String...) -> Heading2 {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityRelevant(_:) modifier instead.")
     public func aria(relevant value: Values.Accessibility.Relevant) -> Heading2 {
         return mutate(ariarelevant: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityRelevant(_ values: [Values.Accessibility.Relevant]) -> Heading2 {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityRelevant(_ values: Values.Accessibility.Relevant...) -> Heading2 {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityRoleDescription(_:) modifier instead.")
     public func aria(roleDescription value: String) -> Heading2 {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    @_disfavoredOverload
+    public func accessibilityRoleDescription(_ value: String) -> Heading2 {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Heading2 {
+        return mutate(ariaroledescription: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(verbatim value: String) -> Heading2 {
         return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
     }
 }
@@ -2620,7 +3543,7 @@ public struct Heading3: ContentNode, HtmlElement, BodyElement, FormElement, Figu
     }
 }
 
-extension Heading3: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
+extension Heading3: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
     
     public func accessKey(_ value: Character) -> Heading3 {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -2871,79 +3794,233 @@ extension Heading3: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(key: event.rawValue, value: .init(value, context: .tainted(.js)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityAtomic(_:) modifier instead.")
     public func aria(atomic value: Bool) -> Heading3 {
         return mutate(ariaatomic: .init(value, context: .trusted))
     }
     
+    public func accessibilityAtomic(_ value: Bool = true) -> Heading3 {
+        return mutate(ariaatomic: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityBusy(_:) modifier instead.")
     public func aria(busy value: Bool) -> Heading3 {
         return mutate(ariabusy: .init(value, context: .trusted))
     }
     
+    public func accessibilityBusy(_ value: Bool = true) -> Heading3 {
+        return mutate(ariabusy: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityControls(_:) modifier instead.")
     public func aria(controls value: String) -> Heading3 {
         return mutate(ariacontrols: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityControls(_ ids: [String]) -> Heading3 {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityControls(_ ids: String...) -> Heading3 {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityCurrent(_:) modifier instead.")
     public func aria(current value: Values.Accessibility.Current) -> Heading3 {
         return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityCurrent(_ value: Values.Accessibility.Current) -> Heading3 {
+        return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityCurrent(_ value: Bool = true) -> Heading3 {
+        return mutate(ariacurrent: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDescriptions(_:) modifier instead.")
     public func aria(describedBy value: String) -> Heading3 {
         return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityDescriptions(_ ids: [String]) -> Heading3 {
+        return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityDescriptions(_ ids: String...) -> Heading3 {
+        return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDetail(_:) modifier instead.")
     public func aria(details value: String) -> Heading3 {
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityDetail(_ id: String) -> Heading3 {
+        return mutate(ariadetails: .init(id, context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
     public func aria(disabled value: Bool) -> Heading3 {
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityDisabled(_ value: Bool = true) -> Heading3 {
+        return mutate(ariadisabled: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> Heading3 {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityFlow(_:) modifier instead.")
     public func aria(flowTo value: String) -> Heading3 {
         return mutate(ariaflowto: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityFlow(_ ids: [String]) -> Heading3 {
+        return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityFlow(_ ids: String...) -> Heading3 {
+        return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityPopup(_:) modifier instead.")
     public func aria(hasPopup value: Values.Accessibility.Popup) -> Heading3 {
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityPopup(_ value: Values.Accessibility.Popup) -> Heading3 {
+        return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> Heading3 {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
+    public func accessibilityHidden(_ value: Bool = true) -> Heading3 {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(invalid value: Values.Accessibility.Invalid) -> Heading3 {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> Heading3 {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated)
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> Heading3 {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityShortcuts(_:) modifier instead.")
     public func aria(keyShortcuts value: String) -> Heading3 {
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityShortcuts(_ values: [KeyboardShortcut]) -> Heading3 {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityShortcuts(_ values: KeyboardShortcut...) -> Heading3 {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> Heading3 {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
+    public func accessibilityLabel(_ value: String) -> Heading3 {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Heading3 {
+        return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(verbatim value: String) -> Heading3 {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLabels(_:) modifier instead.")
     public func aria(labeledBy value: String) -> Heading3 {
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityLabels(_ ids: [String]) -> Heading3 {
+        return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabels(_ ids: String...) -> Heading3 {
+        return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> Heading3 {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> Heading3 {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityOwns(_:) modifier instead.")
     public func aria(owns value: String) -> Heading3 {
         return mutate(ariaowns: .init(value, context: .tainted(.html)))
     }
+
+    public func accessibilityOwns(_ ids: [String]) -> Heading3 {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
     
+    public func accessibilityOwns(_ ids: String...) -> Heading3 {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityRelevant(_:) modifier instead.")
     public func aria(relevant value: Values.Accessibility.Relevant) -> Heading3 {
         return mutate(ariarelevant: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityRelevant(_ values: [Values.Accessibility.Relevant]) -> Heading3 {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityRelevant(_ values: Values.Accessibility.Relevant...) -> Heading3 {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityRoleDescription(_:) modifier instead.")
     public func aria(roleDescription value: String) -> Heading3 {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    @_disfavoredOverload
+    public func accessibilityRoleDescription(_ value: String) -> Heading3 {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Heading3 {
+        return mutate(ariaroledescription: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(verbatim value: String) -> Heading3 {
         return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
     }
 }
@@ -3024,7 +4101,7 @@ public struct Heading4: ContentNode, HtmlElement, BodyElement, FormElement, Figu
     }
 }
 
-extension Heading4: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
+extension Heading4: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
     
     public func accessKey(_ value: Character) -> Heading4 {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -3275,79 +4352,233 @@ extension Heading4: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(key: event.rawValue, value: .init(value, context: .tainted(.js)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityAtomic(_:) modifier instead.")
     public func aria(atomic value: Bool) -> Heading4 {
         return mutate(ariaatomic: .init(value, context: .trusted))
     }
     
+    public func accessibilityAtomic(_ value: Bool = true) -> Heading4 {
+        return mutate(ariaatomic: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityBusy(_:) modifier instead.")
     public func aria(busy value: Bool) -> Heading4 {
         return mutate(ariabusy: .init(value, context: .trusted))
     }
     
+    public func accessibilityBusy(_ value: Bool = true) -> Heading4 {
+        return mutate(ariabusy: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityControls(_:) modifier instead.")
     public func aria(controls value: String) -> Heading4 {
         return mutate(ariacontrols: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityControls(_ ids: [String]) -> Heading4 {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityControls(_ ids: String...) -> Heading4 {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityCurrent(_:) modifier instead.")
     public func aria(current value: Values.Accessibility.Current) -> Heading4 {
         return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityCurrent(_ value: Values.Accessibility.Current) -> Heading4 {
+        return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityCurrent(_ value: Bool = true) -> Heading4 {
+        return mutate(ariacurrent: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDescriptions(_:) modifier instead.")
     public func aria(describedBy value: String) -> Heading4 {
         return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityDescriptions(_ ids: [String]) -> Heading4 {
+        return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityDescriptions(_ ids: String...) -> Heading4 {
+        return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDetail(_:) modifier instead.")
     public func aria(details value: String) -> Heading4 {
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityDetail(_ id: String) -> Heading4 {
+        return mutate(ariadetails: .init(id, context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
     public func aria(disabled value: Bool) -> Heading4 {
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityDisabled(_ value: Bool = true) -> Heading4 {
+        return mutate(ariadisabled: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> Heading4 {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityFlow(_:) modifier instead.")
     public func aria(flowTo value: String) -> Heading4 {
         return mutate(ariaflowto: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityFlow(_ ids: [String]) -> Heading4 {
+        return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityFlow(_ ids: String...) -> Heading4 {
+        return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityPopup(_:) modifier instead.")
     public func aria(hasPopup value: Values.Accessibility.Popup) -> Heading4 {
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityPopup(_ value: Values.Accessibility.Popup) -> Heading4 {
+        return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> Heading4 {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
+    public func accessibilityHidden(_ value: Bool = true) -> Heading4 {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(invalid value: Values.Accessibility.Invalid) -> Heading4 {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> Heading4 {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated)
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> Heading4 {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityShortcuts(_:) modifier instead.")
     public func aria(keyShortcuts value: String) -> Heading4 {
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityShortcuts(_ values: [KeyboardShortcut]) -> Heading4 {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityShortcuts(_ values: KeyboardShortcut...) -> Heading4 {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> Heading4 {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
+    public func accessibilityLabel(_ value: String) -> Heading4 {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Heading4 {
+        return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(verbatim value: String) -> Heading4 {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLabels(_:) modifier instead.")
     public func aria(labeledBy value: String) -> Heading4 {
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityLabels(_ ids: [String]) -> Heading4 {
+        return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabels(_ ids: String...) -> Heading4 {
+        return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> Heading4 {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> Heading4 {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityOwns(_:) modifier instead.")
     public func aria(owns value: String) -> Heading4 {
         return mutate(ariaowns: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityOwns(_ ids: [String]) -> Heading4 {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityOwns(_ ids: String...) -> Heading4 {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityRelevant(_:) modifier instead.")
     public func aria(relevant value: Values.Accessibility.Relevant) -> Heading4 {
         return mutate(ariarelevant: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityRelevant(_ values: [Values.Accessibility.Relevant]) -> Heading4 {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityRelevant(_ values: Values.Accessibility.Relevant...) -> Heading4 {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityRoleDescription(_:) modifier instead.")
     public func aria(roleDescription value: String) -> Heading4 {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    @_disfavoredOverload
+    public func accessibilityRoleDescription(_ value: String) -> Heading4 {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Heading4 {
+        return mutate(ariaroledescription: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(verbatim value: String) -> Heading4 {
         return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
     }
 }
@@ -3428,7 +4659,7 @@ public struct Heading5: ContentNode, HtmlElement, BodyElement, FormElement, Figu
     }
 }
 
-extension Heading5: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
+extension Heading5: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
     
     public func accessKey(_ value: Character) -> Heading5 {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -3679,79 +4910,233 @@ extension Heading5: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(key: event.rawValue, value: .init(value, context: .tainted(.js)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityAtomic(_:) modifier instead.")
     public func aria(atomic value: Bool) -> Heading5 {
         return mutate(ariaatomic: .init(value, context: .trusted))
     }
     
+    public func accessibilityAtomic(_ value: Bool = true) -> Heading5 {
+        return mutate(ariaatomic: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityBusy(_:) modifier instead.")
     public func aria(busy value: Bool) -> Heading5 {
         return mutate(ariabusy: .init(value, context: .trusted))
     }
     
+    public func accessibilityBusy(_ value: Bool = true) -> Heading5 {
+        return mutate(ariabusy: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityControls(_:) modifier instead.")
     public func aria(controls value: String) -> Heading5 {
         return mutate(ariacontrols: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityControls(_ ids: [String]) -> Heading5 {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityControls(_ ids: String...) -> Heading5 {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityCurrent(_:) modifier instead.")
     public func aria(current value: Values.Accessibility.Current) -> Heading5 {
         return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityCurrent(_ value: Values.Accessibility.Current) -> Heading5 {
+        return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityCurrent(_ value: Bool = true) -> Heading5 {
+        return mutate(ariacurrent: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDescriptions(_:) modifier instead.")
     public func aria(describedBy value: String) -> Heading5 {
         return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityDescriptions(_ ids: [String]) -> Heading5 {
+        return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityDescriptions(_ ids: String...) -> Heading5 {
+        return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDetail(_:) modifier instead.")
     public func aria(details value: String) -> Heading5 {
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityDetail(_ id: String) -> Heading5 {
+        return mutate(ariadetails: .init(id, context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
     public func aria(disabled value: Bool) -> Heading5 {
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityDisabled(_ value: Bool = true) -> Heading5 {
+        return mutate(ariadisabled: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> Heading5 {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityFlow(_:) modifier instead.")
     public func aria(flowTo value: String) -> Heading5 {
         return mutate(ariaflowto: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityFlow(_ ids: [String]) -> Heading5 {
+        return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityFlow(_ ids: String...) -> Heading5 {
+        return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityPopup(_:) modifier instead.")
     public func aria(hasPopup value: Values.Accessibility.Popup) -> Heading5 {
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityPopup(_ value: Values.Accessibility.Popup) -> Heading5 {
+        return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> Heading5 {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
+    public func accessibilityHidden(_ value: Bool = true) -> Heading5 {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(invalid value: Values.Accessibility.Invalid) -> Heading5 {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> Heading5 {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated)
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> Heading5 {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityShortcuts(_:) modifier instead.")
     public func aria(keyShortcuts value: String) -> Heading5 {
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityShortcuts(_ values: [KeyboardShortcut]) -> Heading5 {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityShortcuts(_ values: KeyboardShortcut...) -> Heading5 {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> Heading5 {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
+    public func accessibilityLabel(_ value: String) -> Heading5 {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Heading5 {
+        return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(verbatim value: String) -> Heading5 {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLabels(_:) modifier instead.")
     public func aria(labeledBy value: String) -> Heading5 {
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityLabels(_ ids: [String]) -> Heading5 {
+        return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabels(_ ids: String...) -> Heading5 {
+        return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> Heading5 {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> Heading5 {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityOwns(_:) modifier instead.")
     public func aria(owns value: String) -> Heading5 {
         return mutate(ariaowns: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityOwns(_ ids: [String]) -> Heading5 {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityOwns(_ ids: String...) -> Heading5 {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityRelevant(_:) modifier instead.")
     public func aria(relevant value: Values.Accessibility.Relevant) -> Heading5 {
         return mutate(ariarelevant: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityRelevant(_ values: [Values.Accessibility.Relevant]) -> Heading5 {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityRelevant(_ values: Values.Accessibility.Relevant...) -> Heading5 {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityRoleDescription(_:) modifier instead.")
     public func aria(roleDescription value: String) -> Heading5 {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    @_disfavoredOverload
+    public func accessibilityRoleDescription(_ value: String) -> Heading5 {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Heading5 {
+        return mutate(ariaroledescription: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(verbatim value: String) -> Heading5 {
         return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
     }
 }
@@ -3832,7 +5217,7 @@ public struct Heading6: ContentNode, HtmlElement, BodyElement, FormElement, Figu
     }
 }
 
-extension Heading6: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
+extension Heading6: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
     
     public func accessKey(_ value: Character) -> Heading6 {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -4083,79 +5468,233 @@ extension Heading6: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(key: event.rawValue, value: .init(value, context: .tainted(.js)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityAtomic(_:) modifier instead.")
     public func aria(atomic value: Bool) -> Heading6 {
         return mutate(ariaatomic: .init(value, context: .trusted))
     }
     
+    public func accessibilityAtomic(_ value: Bool = true) -> Heading6 {
+        return mutate(ariaatomic: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityBusy(_:) modifier instead.")
     public func aria(busy value: Bool) -> Heading6 {
         return mutate(ariabusy: .init(value, context: .trusted))
     }
     
+    public func accessibilityBusy(_ value: Bool = true) -> Heading6 {
+        return mutate(ariabusy: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityControls(_:) modifier instead.")
     public func aria(controls value: String) -> Heading6 {
         return mutate(ariacontrols: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityControls(_ ids: [String]) -> Heading6 {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityControls(_ ids: String...) -> Heading6 {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityCurrent(_:) modifier instead.")
     public func aria(current value: Values.Accessibility.Current) -> Heading6 {
         return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityCurrent(_ value: Values.Accessibility.Current) -> Heading6 {
+        return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityCurrent(_ value: Bool = true) -> Heading6 {
+        return mutate(ariacurrent: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDescriptions(_:) modifier instead.")
     public func aria(describedBy value: String) -> Heading6 {
         return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityDescriptions(_ ids: [String]) -> Heading6 {
+        return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityDescriptions(_ ids: String...) -> Heading6 {
+        return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDetail(_:) modifier instead.")
     public func aria(details value: String) -> Heading6 {
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityDetail(_ id: String) -> Heading6 {
+        return mutate(ariadetails: .init(id, context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
     public func aria(disabled value: Bool) -> Heading6 {
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityDisabled(_ value: Bool = true) -> Heading6 {
+        return mutate(ariadisabled: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> Heading6 {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityFlow(_:) modifier instead.")
     public func aria(flowTo value: String) -> Heading6 {
         return mutate(ariaflowto: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityFlow(_ ids: [String]) -> Heading6 {
+        return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityFlow(_ ids: String...) -> Heading6 {
+        return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityPopup(_:) modifier instead.")
     public func aria(hasPopup value: Values.Accessibility.Popup) -> Heading6 {
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityPopup(_ value: Values.Accessibility.Popup) -> Heading6 {
+        return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> Heading6 {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
+    public func accessibilityHidden(_ value: Bool = true) -> Heading6 {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(invalid value: Values.Accessibility.Invalid) -> Heading6 {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> Heading6 {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated)
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> Heading6 {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityShortcuts(_:) modifier instead.")
     public func aria(keyShortcuts value: String) -> Heading6 {
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityShortcuts(_ values: [KeyboardShortcut]) -> Heading6 {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityShortcuts(_ values: KeyboardShortcut...) -> Heading6 {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> Heading6 {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
+    public func accessibilityLabel(_ value: String) -> Heading6 {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Heading6 {
+        return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(verbatim value: String) -> Heading6 {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLabels(_:) modifier instead.")
     public func aria(labeledBy value: String) -> Heading6 {
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityLabels(_ ids: [String]) -> Heading6 {
+        return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabels(_ ids: String...) -> Heading6 {
+        return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> Heading6 {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> Heading6 {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityOwns(_:) modifier instead.")
     public func aria(owns value: String) -> Heading6 {
         return mutate(ariaowns: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityOwns(_ ids: [String]) -> Heading6 {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityOwns(_ ids: String...) -> Heading6 {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityRelevant(_:) modifier instead.")
     public func aria(relevant value: Values.Accessibility.Relevant) -> Heading6 {
         return mutate(ariarelevant: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityRelevant(_ values: [Values.Accessibility.Relevant]) -> Heading6 {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityRelevant(_ values: Values.Accessibility.Relevant...) -> Heading6 {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityRoleDescription(_:) modifier instead.")
     public func aria(roleDescription value: String) -> Heading6 {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    @_disfavoredOverload
+    public func accessibilityRoleDescription(_ value: String) -> Heading6 {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Heading6 {
+        return mutate(ariaroledescription: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(verbatim value: String) -> Heading6 {
         return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
     }
 }
@@ -4241,7 +5780,7 @@ public struct HeadingGroup: ContentNode, HtmlElement, BodyElement, FormElement, 
     }
 }
 
-extension HeadingGroup: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
+extension HeadingGroup: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
     
     public func accessKey(_ value: Character) -> HeadingGroup {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -4492,79 +6031,233 @@ extension HeadingGroup: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttri
         return mutate(key: event.rawValue, value: .init(value, context: .tainted(.js)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityAtomic(_:) modifier instead.")
     public func aria(atomic value: Bool) -> HeadingGroup {
         return mutate(ariaatomic: .init(value, context: .trusted))
     }
     
+    public func accessibilityAtomic(_ value: Bool = true) -> HeadingGroup {
+        return mutate(ariaatomic: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityBusy(_:) modifier instead.")
     public func aria(busy value: Bool) -> HeadingGroup {
         return mutate(ariabusy: .init(value, context: .trusted))
     }
     
+    public func accessibilityBusy(_ value: Bool = true) -> HeadingGroup {
+        return mutate(ariabusy: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityControls(_:) modifier instead.")
     public func aria(controls value: String) -> HeadingGroup {
         return mutate(ariacontrols: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityControls(_ ids: [String]) -> HeadingGroup {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityControls(_ ids: String...) -> HeadingGroup {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityCurrent(_:) modifier instead.")
     public func aria(current value: Values.Accessibility.Current) -> HeadingGroup {
         return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityCurrent(_ value: Values.Accessibility.Current) -> HeadingGroup {
+        return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityCurrent(_ value: Bool = true) -> HeadingGroup {
+        return mutate(ariacurrent: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDescriptions(_:) modifier instead.")
     public func aria(describedBy value: String) -> HeadingGroup {
         return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityDescriptions(_ ids: [String]) -> HeadingGroup {
+        return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityDescriptions(_ ids: String...) -> HeadingGroup {
+        return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDetail(_:) modifier instead.")
     public func aria(details value: String) -> HeadingGroup {
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityDetail(_ id: String) -> HeadingGroup {
+        return mutate(ariadetails: .init(id, context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
     public func aria(disabled value: Bool) -> HeadingGroup {
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityDisabled(_ value: Bool = true) -> HeadingGroup {
+        return mutate(ariadisabled: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> HeadingGroup {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityFlow(_:) modifier instead.")
     public func aria(flowTo value: String) -> HeadingGroup {
         return mutate(ariaflowto: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityFlow(_ ids: [String]) -> HeadingGroup {
+        return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityFlow(_ ids: String...) -> HeadingGroup {
+        return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityPopup(_:) modifier instead.")
     public func aria(hasPopup value: Values.Accessibility.Popup) -> HeadingGroup {
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityPopup(_ value: Values.Accessibility.Popup) -> HeadingGroup {
+        return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> HeadingGroup {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
+    public func accessibilityHidden(_ value: Bool = true) -> HeadingGroup {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(invalid value: Values.Accessibility.Invalid) -> HeadingGroup {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> HeadingGroup {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated)
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> HeadingGroup {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityShortcuts(_:) modifier instead.")
     public func aria(keyShortcuts value: String) -> HeadingGroup {
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityShortcuts(_ values: [KeyboardShortcut]) -> HeadingGroup {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityShortcuts(_ values: KeyboardShortcut...) -> HeadingGroup {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> HeadingGroup {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
+    public func accessibilityLabel(_ value: String) -> HeadingGroup {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> HeadingGroup {
+        return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(verbatim value: String) -> HeadingGroup {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLabels(_:) modifier instead.")
     public func aria(labeledBy value: String) -> HeadingGroup {
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityLabels(_ ids: [String]) -> HeadingGroup {
+        return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabels(_ ids: String...) -> HeadingGroup {
+        return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> HeadingGroup {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> HeadingGroup {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityOwns(_:) modifier instead.")
     public func aria(owns value: String) -> HeadingGroup {
         return mutate(ariaowns: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityOwns(_ ids: [String]) -> HeadingGroup {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityOwns(_ ids: String...) -> HeadingGroup {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityRelevant(_:) modifier instead.")
     public func aria(relevant value: Values.Accessibility.Relevant) -> HeadingGroup {
         return mutate(ariarelevant: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityRelevant(_ values: [Values.Accessibility.Relevant]) -> HeadingGroup {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityRelevant(_ values: Values.Accessibility.Relevant...) -> HeadingGroup {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityRoleDescription(_:) modifier instead.")
     public func aria(roleDescription value: String) -> HeadingGroup {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    @_disfavoredOverload
+    public func accessibilityRoleDescription(_ value: String) -> HeadingGroup {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> HeadingGroup {
+        return mutate(ariaroledescription: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(verbatim value: String) -> HeadingGroup {
         return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
     }
 }
@@ -4637,7 +6330,7 @@ public struct Header: ContentNode, HtmlElement, BodyElement, FormElement, Figure
     }
 }
 
-extension Header: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
+extension Header: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
     
     public func accessKey(_ value: Character) -> Header {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -4888,79 +6581,233 @@ extension Header: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
         return mutate(key: event.rawValue, value: .init(value, context: .tainted(.js)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityAtomic(_:) modifier instead.")
     public func aria(atomic value: Bool) -> Header {
         return mutate(ariaatomic: .init(value, context: .trusted))
     }
     
+    public func accessibilityAtomic(_ value: Bool = true) -> Header {
+        return mutate(ariaatomic: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityBusy(_:) modifier instead.")
     public func aria(busy value: Bool) -> Header {
         return mutate(ariabusy: .init(value, context: .trusted))
     }
     
+    public func accessibilityBusy(_ value: Bool = true) -> Header {
+        return mutate(ariabusy: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityControls(_:) modifier instead.")
     public func aria(controls value: String) -> Header {
         return mutate(ariacontrols: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityControls(_ ids: [String]) -> Header {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityControls(_ ids: String...) -> Header {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityCurrent(_:) modifier instead.")
     public func aria(current value: Values.Accessibility.Current) -> Header {
         return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityCurrent(_ value: Values.Accessibility.Current) -> Header {
+        return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityCurrent(_ value: Bool = true) -> Header {
+        return mutate(ariacurrent: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDescriptions(_:) modifier instead.")
     public func aria(describedBy value: String) -> Header {
         return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityDescriptions(_ ids: [String]) -> Header {
+        return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityDescriptions(_ ids: String...) -> Header {
+        return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDetail(_:) modifier instead.")
     public func aria(details value: String) -> Header {
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityDetail(_ id: String) -> Header {
+        return mutate(ariadetails: .init(id, context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
     public func aria(disabled value: Bool) -> Header {
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityDisabled(_ value: Bool = true) -> Header {
+        return mutate(ariadisabled: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> Header {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityFlow(_:) modifier instead.")
     public func aria(flowTo value: String) -> Header {
         return mutate(ariaflowto: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityFlow(_ ids: [String]) -> Header {
+        return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityFlow(_ ids: String...) -> Header {
+        return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityPopup(_:) modifier instead.")
     public func aria(hasPopup value: Values.Accessibility.Popup) -> Header {
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityPopup(_ value: Values.Accessibility.Popup) -> Header {
+        return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> Header {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
+    public func accessibilityHidden(_ value: Bool = true) -> Header {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(invalid value: Values.Accessibility.Invalid) -> Header {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> Header {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated)
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> Header {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityShortcuts(_:) modifier instead.")
     public func aria(keyShortcuts value: String) -> Header {
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityShortcuts(_ values: [KeyboardShortcut]) -> Header {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityShortcuts(_ values: KeyboardShortcut...) -> Header {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> Header {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
+    public func accessibilityLabel(_ value: String) -> Header {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Header {
+        return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(verbatim value: String) -> Header {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLabels(_:) modifier instead.")
     public func aria(labeledBy value: String) -> Header {
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityLabels(_ ids: [String]) -> Header {
+        return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabels(_ ids: String...) -> Header {
+        return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> Header {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> Header {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityOwns(_:) modifier instead.")
     public func aria(owns value: String) -> Header {
         return mutate(ariaowns: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityOwns(_ ids: [String]) -> Header {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityOwns(_ ids: String...) -> Header {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityRelevant(_:) modifier instead.")
     public func aria(relevant value: Values.Accessibility.Relevant) -> Header {
         return mutate(ariarelevant: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityRelevant(_ values: [Values.Accessibility.Relevant]) -> Header {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityRelevant(_ values: Values.Accessibility.Relevant...) -> Header {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityRoleDescription(_:) modifier instead.")
     public func aria(roleDescription value: String) -> Header {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    @_disfavoredOverload
+    public func accessibilityRoleDescription(_ value: String) -> Header {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Header {
+        return mutate(ariaroledescription: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(verbatim value: String) -> Header {
         return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
     }
 }
@@ -5031,7 +6878,7 @@ public struct Footer: ContentNode, HtmlElement, BodyElement, FormElement, Figure
     }
 }
 
-extension Footer: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
+extension Footer: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
     
     public func accessKey(_ value: Character) -> Footer {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -5282,79 +7129,233 @@ extension Footer: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
         return mutate(key: event.rawValue, value: .init(value, context: .tainted(.js)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityAtomic(_:) modifier instead.")
     public func aria(atomic value: Bool) -> Footer {
         return mutate(ariaatomic: .init(value, context: .trusted))
     }
     
+    public func accessibilityAtomic(_ value: Bool = true) -> Footer {
+        return mutate(ariaatomic: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityBusy(_:) modifier instead.")
     public func aria(busy value: Bool) -> Footer {
         return mutate(ariabusy: .init(value, context: .trusted))
     }
     
+    public func accessibilityBusy(_ value: Bool = true) -> Footer {
+        return mutate(ariabusy: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityControls(_:) modifier instead.")
     public func aria(controls value: String) -> Footer {
         return mutate(ariacontrols: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityControls(_ ids: [String]) -> Footer {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityControls(_ ids: String...) -> Footer {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityCurrent(_:) modifier instead.")
     public func aria(current value: Values.Accessibility.Current) -> Footer {
         return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityCurrent(_ value: Values.Accessibility.Current) -> Footer {
+        return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityCurrent(_ value: Bool = true) -> Footer {
+        return mutate(ariacurrent: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDescriptions(_:) modifier instead.")
     public func aria(describedBy value: String) -> Footer {
         return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityDescriptions(_ ids: [String]) -> Footer {
+        return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityDescriptions(_ ids: String...) -> Footer {
+        return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDetail(_:) modifier instead.")
     public func aria(details value: String) -> Footer {
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityDetail(_ id: String) -> Footer {
+        return mutate(ariadetails: .init(id, context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
     public func aria(disabled value: Bool) -> Footer {
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityDisabled(_ value: Bool = true) -> Footer {
+        return mutate(ariadisabled: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> Footer {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityFlow(_:) modifier instead.")
     public func aria(flowTo value: String) -> Footer {
         return mutate(ariaflowto: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityFlow(_ ids: [String]) -> Footer {
+        return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityFlow(_ ids: String...) -> Footer {
+        return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityPopup(_:) modifier instead.")
     public func aria(hasPopup value: Values.Accessibility.Popup) -> Footer {
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityPopup(_ value: Values.Accessibility.Popup) -> Footer {
+        return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> Footer {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
+    public func accessibilityHidden(_ value: Bool = true) -> Footer {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(invalid value: Values.Accessibility.Invalid) -> Footer {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> Footer {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated)
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> Footer {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityShortcuts(_:) modifier instead.")
     public func aria(keyShortcuts value: String) -> Footer {
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityShortcuts(_ values: [KeyboardShortcut]) -> Footer {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityShortcuts(_ values: KeyboardShortcut...) -> Footer {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> Footer {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
+    public func accessibilityLabel(_ value: String) -> Footer {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Footer {
+        return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(verbatim value: String) -> Footer {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLabels(_:) modifier instead.")
     public func aria(labeledBy value: String) -> Footer {
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityLabels(_ ids: [String]) -> Footer {
+        return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabels(_ ids: String...) -> Footer {
+        return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> Footer {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> Footer {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityOwns(_:) modifier instead.")
     public func aria(owns value: String) -> Footer {
         return mutate(ariaowns: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityOwns(_ ids: [String]) -> Footer {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityOwns(_ ids: String...) -> Footer {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityRelevant(_:) modifier instead.")
     public func aria(relevant value: Values.Accessibility.Relevant) -> Footer {
         return mutate(ariarelevant: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityRelevant(_ values: [Values.Accessibility.Relevant]) -> Footer {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityRelevant(_ values: Values.Accessibility.Relevant...) -> Footer {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityRoleDescription(_:) modifier instead.")
     public func aria(roleDescription value: String) -> Footer {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    @_disfavoredOverload
+    public func accessibilityRoleDescription(_ value: String) -> Footer {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Footer {
+        return mutate(ariaroledescription: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(verbatim value: String) -> Footer {
         return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
     }
 }
@@ -5432,7 +7433,7 @@ public struct Address: ContentNode, HtmlElement, BodyElement, FormElement, Figur
     }
 }
 
-extension Address: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
+extension Address: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
     
     public func accessKey(_ value: Character) -> Address {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -5683,79 +7684,233 @@ extension Address: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
         return mutate(key: event.rawValue, value: .init(value, context: .tainted(.js)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityAtomic(_:) modifier instead.")
     public func aria(atomic value: Bool) -> Address {
         return mutate(ariaatomic: .init(value, context: .trusted))
     }
     
+    public func accessibilityAtomic(_ value: Bool = true) -> Address {
+        return mutate(ariaatomic: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityBusy(_:) modifier instead.")
     public func aria(busy value: Bool) -> Address {
         return mutate(ariabusy: .init(value, context: .trusted))
     }
     
+    public func accessibilityBusy(_ value: Bool = true) -> Address {
+        return mutate(ariabusy: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityControls(_:) modifier instead.")
     public func aria(controls value: String) -> Address {
         return mutate(ariacontrols: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityControls(_ ids: [String]) -> Address {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityControls(_ ids: String...) -> Address {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityCurrent(_:) modifier instead.")
     public func aria(current value: Values.Accessibility.Current) -> Address {
         return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityCurrent(_ value: Values.Accessibility.Current) -> Address {
+        return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityCurrent(_ value: Bool = true) -> Address {
+        return mutate(ariacurrent: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDescriptions(_:) modifier instead.")
     public func aria(describedBy value: String) -> Address {
         return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityDescriptions(_ ids: [String]) -> Address {
+        return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityDescriptions(_ ids: String...) -> Address {
+        return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDetail(_:) modifier instead.")
     public func aria(details value: String) -> Address {
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityDetail(_ id: String) -> Address {
+        return mutate(ariadetails: .init(id, context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
     public func aria(disabled value: Bool) -> Address {
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityDisabled(_ value: Bool = true) -> Address {
+        return mutate(ariadisabled: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> Address {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityFlow(_:) modifier instead.")
     public func aria(flowTo value: String) -> Address {
         return mutate(ariaflowto: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityFlow(_ ids: [String]) -> Address {
+        return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityFlow(_ ids: String...) -> Address {
+        return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityPopup(_:) modifier instead.")
     public func aria(hasPopup value: Values.Accessibility.Popup) -> Address {
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityPopup(_ value: Values.Accessibility.Popup) -> Address {
+        return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> Address {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
+    public func accessibilityHidden(_ value: Bool = true) -> Address {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(invalid value: Values.Accessibility.Invalid) -> Address {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> Address {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated)
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> Address {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityShortcuts(_:) modifier instead.")
     public func aria(keyShortcuts value: String) -> Address {
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityShortcuts(_ values: [KeyboardShortcut]) -> Address {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityShortcuts(_ values: KeyboardShortcut...) -> Address {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> Address {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
+    public func accessibilityLabel(_ value: String) -> Address {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Address {
+        return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(verbatim value: String) -> Address {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLabels(_:) modifier instead.")
     public func aria(labeledBy value: String) -> Address {
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityLabels(_ ids: [String]) -> Address {
+        return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabels(_ ids: String...) -> Address {
+        return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> Address {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> Address {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityOwns(_:) modifier instead.")
     public func aria(owns value: String) -> Address {
         return mutate(ariaowns: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityOwns(_ ids: [String]) -> Address {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityOwns(_ ids: String...) -> Address {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityRelevant(_:) modifier instead.")
     public func aria(relevant value: Values.Accessibility.Relevant) -> Address {
         return mutate(ariarelevant: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityRelevant(_ values: [Values.Accessibility.Relevant]) -> Address {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityRelevant(_ values: Values.Accessibility.Relevant...) -> Address {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityRoleDescription(_:) modifier instead.")
     public func aria(roleDescription value: String) -> Address {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    @_disfavoredOverload
+    public func accessibilityRoleDescription(_ value: String) -> Address {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Address {
+        return mutate(ariaroledescription: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(verbatim value: String) -> Address {
         return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
     }
 }
@@ -5827,8 +7982,8 @@ public struct Paragraph: ContentNode, HtmlElement, BodyElement, FormElement, Fig
     }
 }
 
-extension Paragraph: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
-    
+extension Paragraph: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes, RequiredAccessibilityAttribute {
+
     public func accessKey(_ value: Character) -> Paragraph {
         return mutate(accesskey: .init("\(value)", context: .trusted))
     }
@@ -6078,80 +8233,238 @@ extension Paragraph: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(key: event.rawValue, value: .init(value, context: .tainted(.js)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityAtomic(_:) modifier instead.")
     public func aria(atomic value: Bool) -> Paragraph {
         return mutate(ariaatomic: .init(value, context: .trusted))
     }
     
+    public func accessibilityAtomic(_ value: Bool = true) -> Paragraph {
+        return mutate(ariaatomic: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityBusy(_:) modifier instead.")
     public func aria(busy value: Bool) -> Paragraph {
         return mutate(ariabusy: .init(value, context: .trusted))
     }
     
+    public func accessibilityBusy(_ value: Bool = true) -> Paragraph {
+        return mutate(ariabusy: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityControls(_:) modifier instead.")
     public func aria(controls value: String) -> Paragraph {
         return mutate(ariacontrols: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityControls(_ ids: [String]) -> Paragraph {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityControls(_ ids: String...) -> Paragraph {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityCurrent(_:) modifier instead.")
     public func aria(current value: Values.Accessibility.Current) -> Paragraph {
         return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityCurrent(_ value: Values.Accessibility.Current) -> Paragraph {
+        return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityCurrent(_ value: Bool = true) -> Paragraph {
+        return mutate(ariacurrent: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDescriptions(_:) modifier instead.")
     public func aria(describedBy value: String) -> Paragraph {
         return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityDescriptions(_ ids: [String]) -> Paragraph {
+        return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityDescriptions(_ ids: String...) -> Paragraph {
+        return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDetail(_:) modifier instead.")
     public func aria(details value: String) -> Paragraph {
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityDetail(_ id: String) -> Paragraph {
+        return mutate(ariadetails: .init(id, context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
     public func aria(disabled value: Bool) -> Paragraph {
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityDisabled(_ value: Bool = true) -> Paragraph {
+        return mutate(ariadisabled: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> Paragraph {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityFlow(_:) modifier instead.")
     public func aria(flowTo value: String) -> Paragraph {
         return mutate(ariaflowto: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityFlow(_ ids: [String]) -> Paragraph {
+        return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityFlow(_ ids: String...) -> Paragraph {
+        return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityPopup(_:) modifier instead.")
     public func aria(hasPopup value: Values.Accessibility.Popup) -> Paragraph {
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityPopup(_ value: Values.Accessibility.Popup) -> Paragraph {
+        return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> Paragraph {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
+    public func accessibilityHidden(_ value: Bool = true) -> Paragraph {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(invalid value: Values.Accessibility.Invalid) -> Paragraph {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> Paragraph {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated)
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> Paragraph {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityShortcuts(_:) modifier instead.")
     public func aria(keyShortcuts value: String) -> Paragraph {
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityShortcuts(_ values: [KeyboardShortcut]) -> Paragraph {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityShortcuts(_ values: KeyboardShortcut...) -> Paragraph {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> Paragraph {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
+    public func accessibilityLabel(_ value: String) -> Paragraph {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Paragraph {
+        return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(verbatim value: String) -> Paragraph {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLabels(_:) modifier instead.")
     public func aria(labeledBy value: String) -> Paragraph {
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityLabels(_ ids: [String]) -> Paragraph {
+        return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabels(_ ids: String...) -> Paragraph {
+        return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> Paragraph {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> Paragraph {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityOwns(_:) modifier instead.")
     public func aria(owns value: String) -> Paragraph {
         return mutate(ariaowns: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityOwns(_ ids: [String]) -> Paragraph {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityOwns(_ ids: String...) -> Paragraph {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityRelevant(_:) modifier instead.")
     public func aria(relevant value: Values.Accessibility.Relevant) -> Paragraph {
         return mutate(ariarelevant: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityRelevant(_ values: [Values.Accessibility.Relevant]) -> Paragraph {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityRelevant(_ values: Values.Accessibility.Relevant...) -> Paragraph {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityRoleDescription(_:) modifier instead.")
     public func aria(roleDescription value: String) -> Paragraph {
         return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    @_disfavoredOverload
+    public func accessibilityRoleDescription(_ value: String) -> Paragraph {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Paragraph {
+        return mutate(ariaroledescription: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(verbatim value: String) -> Paragraph {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityRequired(_ value: Bool = true) -> Paragraph {
+        return mutate(ariarequired: .init(value, context: .trusted))
     }
 }
 
@@ -6222,7 +8535,7 @@ public struct HorizontalRule: EmptyNode, HtmlElement, BodyElement, FormElement, 
     }
 }
 
-extension HorizontalRule: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
+extension HorizontalRule: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
     
     public func accessKey(_ value: Character) -> HorizontalRule {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -6473,79 +8786,233 @@ extension HorizontalRule: GlobalAttributes, GlobalEventAttributes, GlobalAriaAtt
         return mutate(key: event.rawValue, value: .init(value, context: .tainted(.js)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityAtomic(_:) modifier instead.")
     public func aria(atomic value: Bool) -> HorizontalRule {
         return mutate(ariaatomic: .init(value, context: .trusted))
     }
     
+    public func accessibilityAtomic(_ value: Bool = true) -> HorizontalRule {
+        return mutate(ariaatomic: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityBusy(_:) modifier instead.")
     public func aria(busy value: Bool) -> HorizontalRule {
         return mutate(ariabusy: .init(value, context: .trusted))
     }
     
+    public func accessibilityBusy(_ value: Bool = true) -> HorizontalRule {
+        return mutate(ariabusy: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityControls(_:) modifier instead.")
     public func aria(controls value: String) -> HorizontalRule {
         return mutate(ariacontrols: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityControls(_ ids: [String]) -> HorizontalRule {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityControls(_ ids: String...) -> HorizontalRule {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityCurrent(_:) modifier instead.")
     public func aria(current value: Values.Accessibility.Current) -> HorizontalRule {
         return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityCurrent(_ value: Values.Accessibility.Current) -> HorizontalRule {
+        return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityCurrent(_ value: Bool = true) -> HorizontalRule {
+        return mutate(ariacurrent: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDescriptions(_:) modifier instead.")
     public func aria(describedBy value: String) -> HorizontalRule {
         return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityDescriptions(_ ids: [String]) -> HorizontalRule {
+        return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityDescriptions(_ ids: String...) -> HorizontalRule {
+        return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDetail(_:) modifier instead.")
     public func aria(details value: String) -> HorizontalRule {
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityDetail(_ id: String) -> HorizontalRule {
+        return mutate(ariadetails: .init(id, context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
     public func aria(disabled value: Bool) -> HorizontalRule {
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityDisabled(_ value: Bool = true) -> HorizontalRule {
+        return mutate(ariadisabled: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> HorizontalRule {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityFlow(_:) modifier instead.")
     public func aria(flowTo value: String) -> HorizontalRule {
         return mutate(ariaflowto: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityFlow(_ ids: [String]) -> HorizontalRule {
+        return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityFlow(_ ids: String...) -> HorizontalRule {
+        return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityPopup(_:) modifier instead.")
     public func aria(hasPopup value: Values.Accessibility.Popup) -> HorizontalRule {
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityPopup(_ value: Values.Accessibility.Popup) -> HorizontalRule {
+        return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> HorizontalRule {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
+    public func accessibilityHidden(_ value: Bool = true) -> HorizontalRule {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(invalid value: Values.Accessibility.Invalid) -> HorizontalRule {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> HorizontalRule {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated)
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> HorizontalRule {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityShortcuts(_:) modifier instead.")
     public func aria(keyShortcuts value: String) -> HorizontalRule {
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityShortcuts(_ values: [KeyboardShortcut]) -> HorizontalRule {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityShortcuts(_ values: KeyboardShortcut...) -> HorizontalRule {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> HorizontalRule {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
+    public func accessibilityLabel(_ value: String) -> HorizontalRule {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> HorizontalRule {
+        return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(verbatim value: String) -> HorizontalRule {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLabels(_:) modifier instead.")
     public func aria(labeledBy value: String) -> HorizontalRule {
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityLabels(_ ids: [String]) -> HorizontalRule {
+        return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabels(_ ids: String...) -> HorizontalRule {
+        return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> HorizontalRule {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> HorizontalRule {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityOwns(_:) modifier instead.")
     public func aria(owns value: String) -> HorizontalRule {
         return mutate(ariaowns: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityOwns(_ ids: [String]) -> HorizontalRule {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityOwns(_ ids: String...) -> HorizontalRule {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityRelevant(_:) modifier instead.")
     public func aria(relevant value: Values.Accessibility.Relevant) -> HorizontalRule {
         return mutate(ariarelevant: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityRelevant(_ values: [Values.Accessibility.Relevant]) -> HorizontalRule {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityRelevant(_ values: Values.Accessibility.Relevant...) -> HorizontalRule {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityRoleDescription(_:) modifier instead.")
     public func aria(roleDescription value: String) -> HorizontalRule {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    @_disfavoredOverload
+    public func accessibilityRoleDescription(_ value: String) -> HorizontalRule {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> HorizontalRule {
+        return mutate(ariaroledescription: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(verbatim value: String) -> HorizontalRule {
         return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
     }
 }
@@ -6623,7 +9090,7 @@ public struct PreformattedText: ContentNode, HtmlElement, BodyElement, FormEleme
     }
 }
 
-extension PreformattedText: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
+extension PreformattedText: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
     
     public func accessKey(_ value: Character) -> PreformattedText {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -6874,79 +9341,233 @@ extension PreformattedText: GlobalAttributes, GlobalEventAttributes, GlobalAriaA
         return mutate(key: event.rawValue, value: .init(value, context: .tainted(.js)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityAtomic(_:) modifier instead.")
     public func aria(atomic value: Bool) -> PreformattedText {
         return mutate(ariaatomic: .init(value, context: .trusted))
     }
     
+    public func accessibilityAtomic(_ value: Bool = true) -> PreformattedText {
+        return mutate(ariaatomic: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityBusy(_:) modifier instead.")
     public func aria(busy value: Bool) -> PreformattedText {
         return mutate(ariabusy: .init(value, context: .trusted))
     }
     
+    public func accessibilityBusy(_ value: Bool = true) -> PreformattedText {
+        return mutate(ariabusy: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityControls(_:) modifier instead.")
     public func aria(controls value: String) -> PreformattedText {
         return mutate(ariacontrols: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityControls(_ ids: [String]) -> PreformattedText {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityControls(_ ids: String...) -> PreformattedText {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityCurrent(_:) modifier instead.")
     public func aria(current value: Values.Accessibility.Current) -> PreformattedText {
         return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityCurrent(_ value: Values.Accessibility.Current) -> PreformattedText {
+        return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityCurrent(_ value: Bool = true) -> PreformattedText {
+        return mutate(ariacurrent: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDescriptions(_:) modifier instead.")
     public func aria(describedBy value: String) -> PreformattedText {
         return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityDescriptions(_ ids: [String]) -> PreformattedText {
+        return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityDescriptions(_ ids: String...) -> PreformattedText {
+        return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDetail(_:) modifier instead.")
     public func aria(details value: String) -> PreformattedText {
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityDetail(_ id: String) -> PreformattedText {
+        return mutate(ariadetails: .init(id, context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
     public func aria(disabled value: Bool) -> PreformattedText {
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityDisabled(_ value: Bool = true) -> PreformattedText {
+        return mutate(ariadisabled: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> PreformattedText {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityFlow(_:) modifier instead.")
     public func aria(flowTo value: String) -> PreformattedText {
         return mutate(ariaflowto: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityFlow(_ ids: [String]) -> PreformattedText {
+        return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityFlow(_ ids: String...) -> PreformattedText {
+        return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityPopup(_:) modifier instead.")
     public func aria(hasPopup value: Values.Accessibility.Popup) -> PreformattedText {
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityPopup(_ value: Values.Accessibility.Popup) -> PreformattedText {
+        return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> PreformattedText {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
+    public func accessibilityHidden(_ value: Bool = true) -> PreformattedText {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(invalid value: Values.Accessibility.Invalid) -> PreformattedText {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> PreformattedText {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated)
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> PreformattedText {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityShortcuts(_:) modifier instead.")
     public func aria(keyShortcuts value: String) -> PreformattedText {
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityShortcuts(_ values: [KeyboardShortcut]) -> PreformattedText {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityShortcuts(_ values: KeyboardShortcut...) -> PreformattedText {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> PreformattedText {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
+    public func accessibilityLabel(_ value: String) -> PreformattedText {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> PreformattedText {
+        return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(verbatim value: String) -> PreformattedText {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLabels(_:) modifier instead.")
     public func aria(labeledBy value: String) -> PreformattedText {
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityLabels(_ ids: [String]) -> PreformattedText {
+        return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabels(_ ids: String...) -> PreformattedText {
+        return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> PreformattedText {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> PreformattedText {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityOwns(_:) modifier instead.")
     public func aria(owns value: String) -> PreformattedText {
         return mutate(ariaowns: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityOwns(_ ids: [String]) -> PreformattedText {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityOwns(_ ids: String...) -> PreformattedText {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityRelevant(_:) modifier instead.")
     public func aria(relevant value: Values.Accessibility.Relevant) -> PreformattedText {
         return mutate(ariarelevant: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityRelevant(_ values: [Values.Accessibility.Relevant]) -> PreformattedText {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityRelevant(_ values: Values.Accessibility.Relevant...) -> PreformattedText {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityRoleDescription(_:) modifier instead.")
     public func aria(roleDescription value: String) -> PreformattedText {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    @_disfavoredOverload
+    public func accessibilityRoleDescription(_ value: String) -> PreformattedText {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> PreformattedText {
+        return mutate(ariaroledescription: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(verbatim value: String) -> PreformattedText {
         return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
     }
 }
@@ -7018,7 +9639,7 @@ public struct Blockquote: ContentNode, HtmlElement, BodyElement, FormElement, Fi
     }
 }
 
-extension Blockquote: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, CiteAttribute {
+extension Blockquote: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes, CiteAttribute {
     
     public func accessKey(_ value: Character) -> Blockquote {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -7273,79 +9894,233 @@ extension Blockquote: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
         return mutate(key: event.rawValue, value: .init(value, context: .tainted(.js)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityAtomic(_:) modifier instead.")
     public func aria(atomic value: Bool) -> Blockquote {
         return mutate(ariaatomic: .init(value, context: .trusted))
     }
     
+    public func accessibilityAtomic(_ value: Bool = true) -> Blockquote {
+        return mutate(ariaatomic: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityBusy(_:) modifier instead.")
     public func aria(busy value: Bool) -> Blockquote {
         return mutate(ariabusy: .init(value, context: .trusted))
     }
     
+    public func accessibilityBusy(_ value: Bool = true) -> Blockquote {
+        return mutate(ariabusy: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityControls(_:) modifier instead.")
     public func aria(controls value: String) -> Blockquote {
         return mutate(ariacontrols: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityControls(_ ids: [String]) -> Blockquote {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityControls(_ ids: String...) -> Blockquote {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityCurrent(_:) modifier instead.")
     public func aria(current value: Values.Accessibility.Current) -> Blockquote {
         return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityCurrent(_ value: Values.Accessibility.Current) -> Blockquote {
+        return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityCurrent(_ value: Bool = true) -> Blockquote {
+        return mutate(ariacurrent: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDescriptions(_:) modifier instead.")
     public func aria(describedBy value: String) -> Blockquote {
         return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityDescriptions(_ ids: [String]) -> Blockquote {
+        return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityDescriptions(_ ids: String...) -> Blockquote {
+        return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDetail(_:) modifier instead.")
     public func aria(details value: String) -> Blockquote {
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityDetail(_ id: String) -> Blockquote {
+        return mutate(ariadetails: .init(id, context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
     public func aria(disabled value: Bool) -> Blockquote {
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityDisabled(_ value: Bool = true) -> Blockquote {
+        return mutate(ariadisabled: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> Blockquote {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityFlow(_:) modifier instead.")
     public func aria(flowTo value: String) -> Blockquote {
         return mutate(ariaflowto: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityFlow(_ ids: [String]) -> Blockquote {
+        return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityFlow(_ ids: String...) -> Blockquote {
+        return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityPopup(_:) modifier instead.")
     public func aria(hasPopup value: Values.Accessibility.Popup) -> Blockquote {
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityPopup(_ value: Values.Accessibility.Popup) -> Blockquote {
+        return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> Blockquote {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
+    public func accessibilityHidden(_ value: Bool = true) -> Blockquote {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")    
     public func aria(invalid value: Values.Accessibility.Invalid) -> Blockquote {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> Blockquote {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated)
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> Blockquote {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityShortcuts(_:) modifier instead.")
     public func aria(keyShortcuts value: String) -> Blockquote {
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityShortcuts(_ values: [KeyboardShortcut]) -> Blockquote {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityShortcuts(_ values: KeyboardShortcut...) -> Blockquote {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> Blockquote {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
+    public func accessibilityLabel(_ value: String) -> Blockquote {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Blockquote {
+        return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(verbatim value: String) -> Blockquote {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLabels(_:) modifier instead.")
     public func aria(labeledBy value: String) -> Blockquote {
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityLabels(_ ids: [String]) -> Blockquote {
+        return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabels(_ ids: String...) -> Blockquote {
+        return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> Blockquote {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> Blockquote {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityOwns(_:) modifier instead.")
     public func aria(owns value: String) -> Blockquote {
         return mutate(ariaowns: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityOwns(_ ids: [String]) -> Blockquote {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityOwns(_ ids: String...) -> Blockquote {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityRelevant(_:) modifier instead.")
     public func aria(relevant value: Values.Accessibility.Relevant) -> Blockquote {
         return mutate(ariarelevant: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityRelevant(_ values: [Values.Accessibility.Relevant]) -> Blockquote {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityRelevant(_ values: Values.Accessibility.Relevant...) -> Blockquote {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityRoleDescription(_:) modifier instead.")
     public func aria(roleDescription value: String) -> Blockquote {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    @_disfavoredOverload
+    public func accessibilityRoleDescription(_ value: String) -> Blockquote {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Blockquote {
+        return mutate(ariaroledescription: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(verbatim value: String) -> Blockquote {
         return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
     }
 }
@@ -7431,7 +10206,7 @@ public struct OrderedList: ContentNode, HtmlElement, BodyElement, FormElement, F
     }
 }
 
-extension OrderedList: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, ReversedAttribute, StartAttribute, TypeAttribute {
+extension OrderedList: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes, ReversedAttribute, StartAttribute, TypeAttribute, OrientationAccessibilityAttribute {
     
     public func accessKey(_ value: Character) -> OrderedList {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -7694,80 +10469,237 @@ extension OrderedList: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
         return mutate(key: event.rawValue, value: .init(value, context: .tainted(.js)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityAtomic(_:) modifier instead.")
     public func aria(atomic value: Bool) -> OrderedList {
         return mutate(ariaatomic: .init(value, context: .trusted))
     }
     
+    public func accessibilityAtomic(_ value: Bool = true) -> OrderedList {
+        return mutate(ariaatomic: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityBusy(_:) modifier instead.")
     public func aria(busy value: Bool) -> OrderedList {
         return mutate(ariabusy: .init(value, context: .trusted))
     }
     
+    public func accessibilityBusy(_ value: Bool = true) -> OrderedList {
+        return mutate(ariabusy: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityControls(_:) modifier instead.")
     public func aria(controls value: String) -> OrderedList {
         return mutate(ariacontrols: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityControls(_ ids: [String]) -> OrderedList {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityControls(_ ids: String...) -> OrderedList {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityCurrent(_:) modifier instead.")
     public func aria(current value: Values.Accessibility.Current) -> OrderedList {
         return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityCurrent(_ value: Values.Accessibility.Current) -> OrderedList {
+        return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityCurrent(_ value: Bool = true) -> OrderedList {
+        return mutate(ariacurrent: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDescriptions(_:) modifier instead.")
     public func aria(describedBy value: String) -> OrderedList {
         return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityDescriptions(_ ids: [String]) -> OrderedList {
+        return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityDescriptions(_ ids: String...) -> OrderedList {
+        return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDetail(_:) modifier instead.")
     public func aria(details value: String) -> OrderedList {
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityDetail(_ id: String) -> OrderedList {
+        return mutate(ariadetails: .init(id, context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
     public func aria(disabled value: Bool) -> OrderedList {
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    public func accessibilityDisabled(_ value: Bool = true) -> OrderedList {
+        return mutate(ariadisabled: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> OrderedList {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityFlow(_:) modifier instead.")
     public func aria(flowTo value: String) -> OrderedList {
         return mutate(ariaflowto: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityFlow(_ ids: [String]) -> OrderedList {
+        return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityFlow(_ ids: String...) -> OrderedList {
+        return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityPopup(_:) modifier instead.")
     public func aria(hasPopup value: Values.Accessibility.Popup) -> OrderedList {
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityPopup(_ value: Values.Accessibility.Popup) -> OrderedList {
+        return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> OrderedList {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
+    public func accessibilityHidden(_ value: Bool = true) -> OrderedList {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(invalid value: Values.Accessibility.Invalid) -> OrderedList {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> OrderedList {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated)
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> OrderedList {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityShortcuts(_:) modifier instead.")
     public func aria(keyShortcuts value: String) -> OrderedList {
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityShortcuts(_ values: [KeyboardShortcut]) -> OrderedList {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityShortcuts(_ values: KeyboardShortcut...) -> OrderedList {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> OrderedList {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
+    public func accessibilityLabel(_ value: String) -> OrderedList {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> OrderedList {
+        return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(verbatim value: String) -> OrderedList {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLabels(_:) modifier instead.")
     public func aria(labeledBy value: String) -> OrderedList {
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityLabels(_ ids: [String]) -> OrderedList {
+        return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabels(_ ids: String...) -> OrderedList {
+        return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> OrderedList {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> OrderedList {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityOwns(_:) modifier instead.")
     public func aria(owns value: String) -> OrderedList {
         return mutate(ariaowns: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityOwns(_ ids: [String]) -> OrderedList {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityOwns(_ ids: String...) -> OrderedList {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityRelevant(_:) modifier instead.")
     public func aria(relevant value: Values.Accessibility.Relevant) -> OrderedList {
         return mutate(ariarelevant: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityRelevant(_ values: [Values.Accessibility.Relevant]) -> OrderedList {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityRelevant(_ values: Values.Accessibility.Relevant...) -> OrderedList {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityRoleDescription(_:) modifier instead.")
     public func aria(roleDescription value: String) -> OrderedList {
         return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    @_disfavoredOverload
+    public func accessibilityRoleDescription(_ value: String) -> OrderedList {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> OrderedList {
+        return mutate(ariaroledescription: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(verbatim value: String) -> OrderedList {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityOrientation(_ value: Values.Accessibility.Orientation) -> OrderedList {
+        return mutate(ariaorientation: .init(value.rawValue, context: .trusted))
     }
 }
 
@@ -7843,7 +10775,7 @@ public struct UnorderedList: ContentNode, HtmlElement, BodyElement, FormElement,
     }
 }
 
-extension UnorderedList: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
+extension UnorderedList: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes, OrientationAccessibilityAttribute, MultiselectAccessibilityAttribute {
     
     public func accessKey(_ value: Character) -> UnorderedList {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -8094,80 +11026,241 @@ extension UnorderedList: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttr
         return mutate(key: event.rawValue, value: .init(value, context: .tainted(.js)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityAtomic(_:) modifier instead.")
     public func aria(atomic value: Bool) -> UnorderedList {
         return mutate(ariaatomic: .init(value, context: .trusted))
     }
     
+    public func accessibilityAtomic(_ value: Bool = true) -> UnorderedList {
+        return mutate(ariaatomic: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityBusy(_:) modifier instead.")
     public func aria(busy value: Bool) -> UnorderedList {
         return mutate(ariabusy: .init(value, context: .trusted))
     }
     
+    public func accessibilityBusy(_ value: Bool = true) -> UnorderedList {
+        return mutate(ariabusy: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityControls(_:) modifier instead.")
     public func aria(controls value: String) -> UnorderedList {
         return mutate(ariacontrols: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityControls(_ ids: [String]) -> UnorderedList {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityControls(_ ids: String...) -> UnorderedList {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityCurrent(_:) modifier instead.")
     public func aria(current value: Values.Accessibility.Current) -> UnorderedList {
         return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityCurrent(_ value: Values.Accessibility.Current) -> UnorderedList {
+        return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityCurrent(_ value: Bool = true) -> UnorderedList {
+        return mutate(ariacurrent: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDescriptions(_:) modifier instead.")
     public func aria(describedBy value: String) -> UnorderedList {
         return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityDescriptions(_ ids: [String]) -> UnorderedList {
+        return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityDescriptions(_ ids: String...) -> UnorderedList {
+        return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDetail(_:) modifier instead.")
     public func aria(details value: String) -> UnorderedList {
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityDetail(_ id: String) -> UnorderedList {
+        return mutate(ariadetails: .init(id, context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
     public func aria(disabled value: Bool) -> UnorderedList {
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    public func accessibilityDisabled(_ value: Bool = true) -> UnorderedList {
+        return mutate(ariadisabled: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> UnorderedList {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityFlow(_:) modifier instead.")
     public func aria(flowTo value: String) -> UnorderedList {
         return mutate(ariaflowto: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityFlow(_ ids: [String]) -> UnorderedList {
+        return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityFlow(_ ids: String...) -> UnorderedList {
+        return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityPopup(_:) modifier instead.")
     public func aria(hasPopup value: Values.Accessibility.Popup) -> UnorderedList {
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityPopup(_ value: Values.Accessibility.Popup) -> UnorderedList {
+        return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> UnorderedList {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
+    public func accessibilityHidden(_ value: Bool = true) -> UnorderedList {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(invalid value: Values.Accessibility.Invalid) -> UnorderedList {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> UnorderedList {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated)
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> UnorderedList {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityShortcuts(_:) modifier instead.")
     public func aria(keyShortcuts value: String) -> UnorderedList {
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityShortcuts(_ values: [KeyboardShortcut]) -> UnorderedList {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityShortcuts(_ values: KeyboardShortcut...) -> UnorderedList {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> UnorderedList {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
+    public func accessibilityLabel(_ value: String) -> UnorderedList {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> UnorderedList {
+        return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(verbatim value: String) -> UnorderedList {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLabels(_:) modifier instead.")
     public func aria(labeledBy value: String) -> UnorderedList {
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityLabels(_ ids: [String]) -> UnorderedList {
+        return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabels(_ ids: String...) -> UnorderedList {
+        return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> UnorderedList {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> UnorderedList {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityOwns(_:) modifier instead.")
     public func aria(owns value: String) -> UnorderedList {
         return mutate(ariaowns: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityOwns(_ ids: [String]) -> UnorderedList {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityOwns(_ ids: String...) -> UnorderedList {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityRelevant(_:) modifier instead.")
     public func aria(relevant value: Values.Accessibility.Relevant) -> UnorderedList {
         return mutate(ariarelevant: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityRelevant(_ values: [Values.Accessibility.Relevant]) -> UnorderedList {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityRelevant(_ values: Values.Accessibility.Relevant...) -> UnorderedList {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityRoleDescription(_:) modifier instead.")
     public func aria(roleDescription value: String) -> UnorderedList {
         return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    @_disfavoredOverload
+    public func accessibilityRoleDescription(_ value: String) -> UnorderedList {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> UnorderedList {
+        return mutate(ariaroledescription: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(verbatim value: String) -> UnorderedList {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityOrientation(_ value: Values.Accessibility.Orientation) -> UnorderedList {
+        return mutate(ariaorientation: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityMultiselect(_ value: Bool = true) -> UnorderedList {
+        return mutate(ariamultiselectable: .init(value, context: .trusted))
     }
 }
 
@@ -8555,7 +11648,7 @@ public struct DescriptionList: ContentNode, HtmlElement, BodyElement, FormElemen
     }
 }
 
-extension DescriptionList: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
+extension DescriptionList: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
     
     public func accessKey(_ value: Character) -> DescriptionList {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -8806,79 +11899,233 @@ extension DescriptionList: GlobalAttributes, GlobalEventAttributes, GlobalAriaAt
         return mutate(key: event.rawValue, value: .init(value, context: .tainted(.js)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityAtomic(_:) modifier instead.")
     public func aria(atomic value: Bool) -> DescriptionList {
         return mutate(ariaatomic: .init(value, context: .trusted))
     }
     
+    public func accessibilityAtomic(_ value: Bool = true) -> DescriptionList {
+        return mutate(ariaatomic: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityBusy(_:) modifier instead.")
     public func aria(busy value: Bool) -> DescriptionList {
         return mutate(ariabusy: .init(value, context: .trusted))
     }
     
+    public func accessibilityBusy(_ value: Bool = true) -> DescriptionList {
+        return mutate(ariabusy: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityControls(_:) modifier instead.")
     public func aria(controls value: String) -> DescriptionList {
         return mutate(ariacontrols: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityControls(_ ids: [String]) -> DescriptionList {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityControls(_ ids: String...) -> DescriptionList {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityCurrent(_:) modifier instead.")
     public func aria(current value: Values.Accessibility.Current) -> DescriptionList {
         return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityCurrent(_ value: Values.Accessibility.Current) -> DescriptionList {
+        return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityCurrent(_ value: Bool = true) -> DescriptionList {
+        return mutate(ariacurrent: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDescriptions(_:) modifier instead.")
     public func aria(describedBy value: String) -> DescriptionList {
         return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityDescriptions(_ ids: [String]) -> DescriptionList {
+        return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityDescriptions(_ ids: String...) -> DescriptionList {
+        return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDetail(_:) modifier instead.")
     public func aria(details value: String) -> DescriptionList {
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityDetail(_ id: String) -> DescriptionList {
+        return mutate(ariadetails: .init(id, context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
     public func aria(disabled value: Bool) -> DescriptionList {
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityDisabled(_ value: Bool = true) -> DescriptionList {
+        return mutate(ariadisabled: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> DescriptionList {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityFlow(_:) modifier instead.")
     public func aria(flowTo value: String) -> DescriptionList {
         return mutate(ariaflowto: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityFlow(_ ids: [String]) -> DescriptionList {
+        return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityFlow(_ ids: String...) -> DescriptionList {
+        return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityPopup(_:) modifier instead.")
     public func aria(hasPopup value: Values.Accessibility.Popup) -> DescriptionList {
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityPopup(_ value: Values.Accessibility.Popup) -> DescriptionList {
+        return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> DescriptionList {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
+    public func accessibilityHidden(_ value: Bool = true) -> DescriptionList {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(invalid value: Values.Accessibility.Invalid) -> DescriptionList {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> DescriptionList {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated)
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> DescriptionList {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityShortcuts(_:) modifier instead.")
     public func aria(keyShortcuts value: String) -> DescriptionList {
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityShortcuts(_ values: [KeyboardShortcut]) -> DescriptionList {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityShortcuts(_ values: KeyboardShortcut...) -> DescriptionList {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> DescriptionList {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
+    public func accessibilityLabel(_ value: String) -> DescriptionList {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> DescriptionList {
+        return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(verbatim value: String) -> DescriptionList {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLabels(_:) modifier instead.")
     public func aria(labeledBy value: String) -> DescriptionList {
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityLabels(_ ids: [String]) -> DescriptionList {
+        return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabels(_ ids: String...) -> DescriptionList {
+        return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> DescriptionList {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> DescriptionList {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityOwns(_:) modifier instead.")
     public func aria(owns value: String) -> DescriptionList {
         return mutate(ariaowns: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityOwns(_ ids: [String]) -> DescriptionList {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityOwns(_ ids: String...) -> DescriptionList {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityRelevant(_:) modifier instead.")
     public func aria(relevant value: Values.Accessibility.Relevant) -> DescriptionList {
         return mutate(ariarelevant: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityRelevant(_ values: [Values.Accessibility.Relevant]) -> DescriptionList {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityRelevant(_ values: Values.Accessibility.Relevant...) -> DescriptionList {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityRoleDescription(_:) modifier instead.")
     public func aria(roleDescription value: String) -> DescriptionList {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    @_disfavoredOverload
+    public func accessibilityRoleDescription(_ value: String) -> DescriptionList {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> DescriptionList {
+        return mutate(ariaroledescription: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(verbatim value: String) -> DescriptionList {
         return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
     }
 }
@@ -8955,7 +12202,7 @@ public struct Figure: ContentNode, HtmlElement, BodyElement, FormElement, Figure
     }
 }
 
-extension Figure: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
+extension Figure: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
     
     public func accessKey(_ value: Character) -> Figure {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -9206,79 +12453,233 @@ extension Figure: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
         return mutate(key: event.rawValue, value: .init(value, context: .tainted(.js)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityAtomic(_:) modifier instead.")
     public func aria(atomic value: Bool) -> Figure {
         return mutate(ariaatomic: .init(value, context: .trusted))
     }
     
+    public func accessibilityAtomic(_ value: Bool = true) -> Figure {
+        return mutate(ariaatomic: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityBusy(_:) modifier instead.")
     public func aria(busy value: Bool) -> Figure {
         return mutate(ariabusy: .init(value, context: .trusted))
     }
     
+    public func accessibilityBusy(_ value: Bool = true) -> Figure {
+        return mutate(ariabusy: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityControls(_:) modifier instead.")
     public func aria(controls value: String) -> Figure {
         return mutate(ariacontrols: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityControls(_ ids: [String]) -> Figure {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityControls(_ ids: String...) -> Figure {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityCurrent(_:) modifier instead.")
     public func aria(current value: Values.Accessibility.Current) -> Figure {
         return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityCurrent(_ value: Values.Accessibility.Current) -> Figure {
+        return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityCurrent(_ value: Bool = true) -> Figure {
+        return mutate(ariacurrent: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDescriptions(_:) modifier instead.")
     public func aria(describedBy value: String) -> Figure {
         return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityDescriptions(_ ids: [String]) -> Figure {
+        return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityDescriptions(_ ids: String...) -> Figure {
+        return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDetail(_:) modifier instead.")
     public func aria(details value: String) -> Figure {
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityDetail(_ id: String) -> Figure {
+        return mutate(ariadetails: .init(id, context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
     public func aria(disabled value: Bool) -> Figure {
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityDisabled(_ value: Bool = true) -> Figure {
+        return mutate(ariadisabled: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> Figure {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityFlow(_:) modifier instead.")
     public func aria(flowTo value: String) -> Figure {
         return mutate(ariaflowto: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityFlow(_ ids: [String]) -> Figure {
+        return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityFlow(_ ids: String...) -> Figure {
+        return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityPopup(_:) modifier instead.")
     public func aria(hasPopup value: Values.Accessibility.Popup) -> Figure {
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityPopup(_ value: Values.Accessibility.Popup) -> Figure {
+        return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> Figure {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
+    public func accessibilityHidden(_ value: Bool = true) -> Figure {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(invalid value: Values.Accessibility.Invalid) -> Figure {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> Figure {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated)
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> Figure {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityShortcuts(_:) modifier instead.")
     public func aria(keyShortcuts value: String) -> Figure {
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityShortcuts(_ values: [KeyboardShortcut]) -> Figure {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityShortcuts(_ values: KeyboardShortcut...) -> Figure {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> Figure {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
+    public func accessibilityLabel(_ value: String) -> Figure {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Figure {
+        return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(verbatim value: String) -> Figure {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLabels(_:) modifier instead.")
     public func aria(labeledBy value: String) -> Figure {
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityLabels(_ ids: [String]) -> Figure {
+        return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabels(_ ids: String...) -> Figure {
+        return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> Figure {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> Figure {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityOwns(_:) modifier instead.")
     public func aria(owns value: String) -> Figure {
         return mutate(ariaowns: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityOwns(_ ids: [String]) -> Figure {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityOwns(_ ids: String...) -> Figure {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityRelevant(_:) modifier instead.")
     public func aria(relevant value: Values.Accessibility.Relevant) -> Figure {
         return mutate(ariarelevant: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityRelevant(_ values: [Values.Accessibility.Relevant]) -> Figure {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityRelevant(_ values: Values.Accessibility.Relevant...) -> Figure {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityRoleDescription(_:) modifier instead.")
     public func aria(roleDescription value: String) -> Figure {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    @_disfavoredOverload
+    public func accessibilityRoleDescription(_ value: String) -> Figure {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Figure {
+        return mutate(ariaroledescription: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(verbatim value: String) -> Figure {
         return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
     }
 }
@@ -9352,7 +12753,7 @@ public struct Anchor: ContentNode, HtmlElement, BodyElement, FormElement, Figure
     }
 }
 
-extension Anchor: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, DownloadAttribute, ReferenceAttribute, ReferenceLanguageAttribute, MediaAttribute, PingAttribute, ReferrerPolicyAttribute, RelationshipAttribute, TargetAttribute, TypeAttribute {
+extension Anchor: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes, DownloadAttribute, ReferenceAttribute, ReferenceLanguageAttribute, MediaAttribute, PingAttribute, ReferrerPolicyAttribute, RelationshipAttribute, TargetAttribute, TypeAttribute {
     
     public func accessKey(_ value: Character) -> Anchor {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -9647,79 +13048,231 @@ extension Anchor: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return mutate(key: event.rawValue, value: .init(value, context: .tainted(.js)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityAtomic(_:) modifier instead.")
     public func aria(atomic value: Bool) -> Anchor {
         return mutate(ariaatomic: .init(value, context: .trusted))
     }
     
+    public func accessibilityAtomic(_ value: Bool = true) -> Anchor {
+        return mutate(ariaatomic: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityBusy(_:) modifier instead.")
     public func aria(busy value: Bool) -> Anchor {
         return mutate(ariabusy: .init(value, context: .trusted))
     }
     
+    public func accessibilityBusy(_ value: Bool = true) -> Anchor {
+        return mutate(ariabusy: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityControls(_:) modifier instead.")
     public func aria(controls value: String) -> Anchor {
         return mutate(ariacontrols: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityControls(_ ids: [String]) -> Anchor {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityControls(_ ids: String...) -> Anchor {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityCurrent(_:) modifier instead.")
     public func aria(current value: Values.Accessibility.Current) -> Anchor {
         return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityCurrent(_ value: Values.Accessibility.Current) -> Anchor {
+        return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityCurrent(_ value: Bool = true) -> Anchor {
+        return mutate(ariacurrent: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDescriptions(_:) modifier instead.")
     public func aria(describedBy value: String) -> Anchor {
         return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityDescriptions(_ ids: [String]) -> Anchor {
+        return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityDescriptions(_ ids: String...) -> Anchor {
+        return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDetail(_:) modifier instead.")
     public func aria(details value: String) -> Anchor {
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityDetail(_ id: String) -> Anchor {
+        return mutate(ariadetails: .init(id, context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
     public func aria(disabled value: Bool) -> Anchor {
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    public func accessibilityDisabled(_ value: Bool = true) -> Anchor {
+        return mutate(ariadisabled: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> Anchor {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityFlow(_:) modifier instead.")
     public func aria(flowTo value: String) -> Anchor {
         return mutate(ariaflowto: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityFlow(_ ids: [String]) -> Anchor {
+        return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityFlow(_ ids: String...) -> Anchor {
+        return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityPopup(_:) modifier instead.")
     public func aria(hasPopup value: Values.Accessibility.Popup) -> Anchor {
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityPopup(_ value: Values.Accessibility.Popup) -> Anchor {
+        return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> Anchor {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
+    public func accessibilityHidden(_ value: Bool = true) -> Anchor {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(invalid value: Values.Accessibility.Invalid) -> Anchor {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> Anchor {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated)
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> Anchor {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityShortcuts(_:) modifier instead.")
     public func aria(keyShortcuts value: String) -> Anchor {
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityShortcuts(_ values: [KeyboardShortcut]) -> Anchor {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityShortcuts(_ values: KeyboardShortcut...) -> Anchor {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> Anchor {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
+    public func accessibilityLabel(_ value: String) -> Anchor {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Anchor {
+        return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(verbatim value: String) -> Anchor {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLabels(_:) modifier instead.")
     public func aria(labeledBy value: String) -> Anchor {
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityLabels(_ ids: [String]) -> Anchor {
+        return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabels(_ ids: String...) -> Anchor {
+        return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> Anchor {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> Anchor {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityOwns(_:) modifier instead.")
     public func aria(owns value: String) -> Anchor {
         return mutate(ariaowns: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityOwns(_ ids: [String]) -> Anchor {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityOwns(_ ids: String...) -> Anchor {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityRelevant(_:) modifier instead.")
     public func aria(relevant value: Values.Accessibility.Relevant) -> Anchor {
         return mutate(ariarelevant: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityRelevant(_ values: [Values.Accessibility.Relevant]) -> Anchor {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityRelevant(_ values: Values.Accessibility.Relevant...) -> Anchor {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityRoleDescription(_:) modifier instead.")
     public func aria(roleDescription value: String) -> Anchor {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    @_disfavoredOverload
+    public func accessibilityRoleDescription(_ value: String) -> Anchor {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Anchor {
+        return mutate(ariaroledescription: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(verbatim value: String) -> Anchor {
         return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
     }
 }
@@ -9804,7 +13357,7 @@ public struct Emphasize: ContentNode, HtmlElement, BodyElement, FormElement, Fig
     }
 }
 
-extension Emphasize: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
+extension Emphasize: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
     
     public func accessKey(_ value: Character) -> Emphasize {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -10055,79 +13608,233 @@ extension Emphasize: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(key: event.rawValue, value: .init(value, context: .tainted(.js)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityAtomic(_:) modifier instead.")
     public func aria(atomic value: Bool) -> Emphasize {
         return mutate(ariaatomic: .init(value, context: .trusted))
     }
     
+    public func accessibilityAtomic(_ value: Bool = true) -> Emphasize {
+        return mutate(ariaatomic: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityBusy(_:) modifier instead.")
     public func aria(busy value: Bool) -> Emphasize {
         return mutate(ariabusy: .init(value, context: .trusted))
     }
     
+    public func accessibilityBusy(_ value: Bool = true) -> Emphasize {
+        return mutate(ariabusy: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityControls(_:) modifier instead.")
     public func aria(controls value: String) -> Emphasize {
         return mutate(ariacontrols: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityControls(_ ids: [String]) -> Emphasize {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityControls(_ ids: String...) -> Emphasize {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityCurrent(_:) modifier instead.")
     public func aria(current value: Values.Accessibility.Current) -> Emphasize {
         return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityCurrent(_ value: Values.Accessibility.Current) -> Emphasize {
+        return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityCurrent(_ value: Bool = true) -> Emphasize {
+        return mutate(ariacurrent: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDescriptions(_:) modifier instead.")
     public func aria(describedBy value: String) -> Emphasize {
         return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityDescriptions(_ ids: [String]) -> Emphasize {
+        return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityDescriptions(_ ids: String...) -> Emphasize {
+        return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDetail(_:) modifier instead.")
     public func aria(details value: String) -> Emphasize {
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityDetail(_ id: String) -> Emphasize {
+        return mutate(ariadetails: .init(id, context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
     public func aria(disabled value: Bool) -> Emphasize {
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityDisabled(_ value: Bool = true) -> Emphasize {
+        return mutate(ariadisabled: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> Emphasize {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityFlow(_:) modifier instead.")
     public func aria(flowTo value: String) -> Emphasize {
         return mutate(ariaflowto: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityFlow(_ ids: [String]) -> Emphasize {
+        return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityFlow(_ ids: String...) -> Emphasize {
+        return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityPopup(_:) modifier instead.")
     public func aria(hasPopup value: Values.Accessibility.Popup) -> Emphasize {
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityPopup(_ value: Values.Accessibility.Popup) -> Emphasize {
+        return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> Emphasize {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
+    public func accessibilityHidden(_ value: Bool = true) -> Emphasize {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(invalid value: Values.Accessibility.Invalid) -> Emphasize {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> Emphasize {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated)
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> Emphasize {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityShortcuts(_:) modifier instead.")
     public func aria(keyShortcuts value: String) -> Emphasize {
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityShortcuts(_ values: [KeyboardShortcut]) -> Emphasize {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityShortcuts(_ values: KeyboardShortcut...) -> Emphasize {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> Emphasize {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
+    public func accessibilityLabel(_ value: String) -> Emphasize {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Emphasize {
+        return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(verbatim value: String) -> Emphasize {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLabels(_:) modifier instead.")
     public func aria(labeledBy value: String) -> Emphasize {
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityLabels(_ ids: [String]) -> Emphasize {
+        return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabels(_ ids: String...) -> Emphasize {
+        return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> Emphasize {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> Emphasize {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityOwns(_:) modifier instead.")
     public func aria(owns value: String) -> Emphasize {
         return mutate(ariaowns: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityOwns(_ ids: [String]) -> Emphasize {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityOwns(_ ids: String...) -> Emphasize {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityRelevant(_:) modifier instead.")
     public func aria(relevant value: Values.Accessibility.Relevant) -> Emphasize {
         return mutate(ariarelevant: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityRelevant(_ values: [Values.Accessibility.Relevant]) -> Emphasize {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityRelevant(_ values: Values.Accessibility.Relevant...) -> Emphasize {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityRoleDescription(_:) modifier instead.")
     public func aria(roleDescription value: String) -> Emphasize {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    @_disfavoredOverload
+    public func accessibilityRoleDescription(_ value: String) -> Emphasize {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Emphasize {
+        return mutate(ariaroledescription: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(verbatim value: String) -> Emphasize {
         return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
     }
 }
@@ -10201,7 +13908,7 @@ public struct Strong: ContentNode, HtmlElement, BodyElement, FormElement, Figure
     }
 }
 
-extension Strong: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
+extension Strong: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
     
     public func accessKey(_ value: Character) -> Strong {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -10452,79 +14159,233 @@ extension Strong: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
         return mutate(key: event.rawValue, value: .init(value, context: .tainted(.js)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityAtomic(_:) modifier instead.")
     public func aria(atomic value: Bool) -> Strong {
         return mutate(ariaatomic: .init(value, context: .trusted))
     }
     
+    public func accessibilityAtomic(_ value: Bool = true) -> Strong {
+        return mutate(ariaatomic: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityBusy(_:) modifier instead.")
     public func aria(busy value: Bool) -> Strong {
         return mutate(ariabusy: .init(value, context: .trusted))
     }
     
+    public func accessibilityBusy(_ value: Bool = true) -> Strong {
+        return mutate(ariabusy: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityControls(_:) modifier instead.")
     public func aria(controls value: String) -> Strong {
         return mutate(ariacontrols: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityControls(_ ids: [String]) -> Strong {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityControls(_ ids: String...) -> Strong {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityCurrent(_:) modifier instead.")
     public func aria(current value: Values.Accessibility.Current) -> Strong {
         return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityCurrent(_ value: Values.Accessibility.Current) -> Strong {
+        return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityCurrent(_ value: Bool = true) -> Strong {
+        return mutate(ariacurrent: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDescriptions(_:) modifier instead.")
     public func aria(describedBy value: String) -> Strong {
         return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityDescriptions(_ ids: [String]) -> Strong {
+        return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityDescriptions(_ ids: String...) -> Strong {
+        return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDetail(_:) modifier instead.")
     public func aria(details value: String) -> Strong {
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityDetail(_ id: String) -> Strong {
+        return mutate(ariadetails: .init(id, context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
     public func aria(disabled value: Bool) -> Strong {
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityDisabled(_ value: Bool = true) -> Strong {
+        return mutate(ariadisabled: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> Strong {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityFlow(_:) modifier instead.")
     public func aria(flowTo value: String) -> Strong {
         return mutate(ariaflowto: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityFlow(_ ids: [String]) -> Strong {
+        return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityFlow(_ ids: String...) -> Strong {
+        return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityPopup(_:) modifier instead.")
     public func aria(hasPopup value: Values.Accessibility.Popup) -> Strong {
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityPopup(_ value: Values.Accessibility.Popup) -> Strong {
+        return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> Strong {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
+    public func accessibilityHidden(_ value: Bool = true) -> Strong {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(invalid value: Values.Accessibility.Invalid) -> Strong {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> Strong {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated)
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> Strong {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityShortcuts(_:) modifier instead.")
     public func aria(keyShortcuts value: String) -> Strong {
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityShortcuts(_ values: [KeyboardShortcut]) -> Strong {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityShortcuts(_ values: KeyboardShortcut...) -> Strong {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> Strong {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
+    public func accessibilityLabel(_ value: String) -> Strong {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Strong {
+        return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(verbatim value: String) -> Strong {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLabels(_:) modifier instead.")
     public func aria(labeledBy value: String) -> Strong {
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityLabels(_ ids: [String]) -> Strong {
+        return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabels(_ ids: String...) -> Strong {
+        return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> Strong {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> Strong {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityOwns(_:) modifier instead.")
     public func aria(owns value: String) -> Strong {
         return mutate(ariaowns: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityOwns(_ ids: [String]) -> Strong {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityOwns(_ ids: String...) -> Strong {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityRelevant(_:) modifier instead.")
     public func aria(relevant value: Values.Accessibility.Relevant) -> Strong {
         return mutate(ariarelevant: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityRelevant(_ values: [Values.Accessibility.Relevant]) -> Strong {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityRelevant(_ values: Values.Accessibility.Relevant...) -> Strong {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityRoleDescription(_:) modifier instead.")
     public func aria(roleDescription value: String) -> Strong {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    @_disfavoredOverload
+    public func accessibilityRoleDescription(_ value: String) -> Strong {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Strong {
+        return mutate(ariaroledescription: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(verbatim value: String) -> Strong {
         return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
     }
 }
@@ -10598,7 +14459,7 @@ public struct Small: ContentNode, HtmlElement, BodyElement, FormElement, FigureE
     }
 }
 
-extension Small: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
+extension Small: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
     
     public func accessKey(_ value: Character) -> Small {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -10849,79 +14710,233 @@ extension Small: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(key: event.rawValue, value: .init(value, context: .tainted(.js)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityAtomic(_:) modifier instead.")
     public func aria(atomic value: Bool) -> Small {
         return mutate(ariaatomic: .init(value, context: .trusted))
     }
     
+    public func accessibilityAtomic(_ value: Bool = true) -> Small {
+        return mutate(ariaatomic: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityBusy(_:) modifier instead.")
     public func aria(busy value: Bool) -> Small {
         return mutate(ariabusy: .init(value, context: .trusted))
     }
     
+    public func accessibilityBusy(_ value: Bool = true) -> Small {
+        return mutate(ariabusy: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityControls(_:) modifier instead.")
     public func aria(controls value: String) -> Small {
         return mutate(ariacontrols: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityControls(_ ids: [String]) -> Small {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityControls(_ ids: String...) -> Small {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityCurrent(_:) modifier instead.")
     public func aria(current value: Values.Accessibility.Current) -> Small {
         return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityCurrent(_ value: Values.Accessibility.Current) -> Small {
+        return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityCurrent(_ value: Bool = true) -> Small {
+        return mutate(ariacurrent: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDescriptions(_:) modifier instead.")
     public func aria(describedBy value: String) -> Small {
         return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityDescriptions(_ ids: [String]) -> Small {
+        return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityDescriptions(_ ids: String...) -> Small {
+        return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDetail(_:) modifier instead.")
     public func aria(details value: String) -> Small {
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityDetail(_ id: String) -> Small {
+        return mutate(ariadetails: .init(id, context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
     public func aria(disabled value: Bool) -> Small {
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityDisabled(_ value: Bool = true) -> Small {
+        return mutate(ariadisabled: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> Small {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityFlow(_:) modifier instead.")
     public func aria(flowTo value: String) -> Small {
         return mutate(ariaflowto: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityFlow(_ ids: [String]) -> Small {
+        return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityFlow(_ ids: String...) -> Small {
+        return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityPopup(_:) modifier instead.")
     public func aria(hasPopup value: Values.Accessibility.Popup) -> Small {
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityPopup(_ value: Values.Accessibility.Popup) -> Small {
+        return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> Small {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
+    public func accessibilityHidden(_ value: Bool = true) -> Small {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(invalid value: Values.Accessibility.Invalid) -> Small {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> Small {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated)
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> Small {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityShortcuts(_:) modifier instead.")
     public func aria(keyShortcuts value: String) -> Small {
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityShortcuts(_ values: [KeyboardShortcut]) -> Small {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityShortcuts(_ values: KeyboardShortcut...) -> Small {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> Small {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
+    public func accessibilityLabel(_ value: String) -> Small {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Small {
+        return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(verbatim value: String) -> Small {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLabels(_:) modifier instead.")
     public func aria(labeledBy value: String) -> Small {
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityLabels(_ ids: [String]) -> Small {
+        return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabels(_ ids: String...) -> Small {
+        return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> Small {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> Small {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityOwns(_:) modifier instead.")
     public func aria(owns value: String) -> Small {
         return mutate(ariaowns: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityOwns(_ ids: [String]) -> Small {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityOwns(_ ids: String...) -> Small {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityRelevant(_:) modifier instead.")
     public func aria(relevant value: Values.Accessibility.Relevant) -> Small {
         return mutate(ariarelevant: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityRelevant(_ values: [Values.Accessibility.Relevant]) -> Small {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityRelevant(_ values: Values.Accessibility.Relevant...) -> Small {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityRoleDescription(_:) modifier instead.")
     public func aria(roleDescription value: String) -> Small {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    @_disfavoredOverload
+    public func accessibilityRoleDescription(_ value: String) -> Small {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Small {
+        return mutate(ariaroledescription: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(verbatim value: String) -> Small {
         return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
     }
 }
@@ -11342,7 +15357,7 @@ public struct Main: ContentNode, HtmlElement, BodyElement, FormElement {
     }
 }
 
-extension Main: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
+extension Main: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
     
     public func accessKey(_ value: Character) -> Main {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -11593,79 +15608,233 @@ extension Main: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(key: event.rawValue, value: .init(value, context: .tainted(.js)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityAtomic(_:) modifier instead.")
     public func aria(atomic value: Bool) -> Main {
         return mutate(ariaatomic: .init(value, context: .trusted))
     }
     
+    public func accessibilityAtomic(_ value: Bool = true) -> Main {
+        return mutate(ariaatomic: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityBusy(_:) modifier instead.")
     public func aria(busy value: Bool) -> Main {
         return mutate(ariabusy: .init(value, context: .trusted))
     }
     
+    public func accessibilityBusy(_ value: Bool = true) -> Main {
+        return mutate(ariabusy: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityControls(_:) modifier instead.")
     public func aria(controls value: String) -> Main {
         return mutate(ariacontrols: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityControls(_ ids: [String]) -> Main {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityControls(_ ids: String...) -> Main {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityCurrent(_:) modifier instead.")
     public func aria(current value: Values.Accessibility.Current) -> Main {
         return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityCurrent(_ value: Values.Accessibility.Current) -> Main {
+        return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityCurrent(_ value: Bool = true) -> Main {
+        return mutate(ariacurrent: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDescriptions(_:) modifier instead.")
     public func aria(describedBy value: String) -> Main {
         return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityDescriptions(_ ids: [String]) -> Main {
+        return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityDescriptions(_ ids: String...) -> Main {
+        return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDetail(_:) modifier instead.")
     public func aria(details value: String) -> Main {
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityDetail(_ id: String) -> Main {
+        return mutate(ariadetails: .init(id, context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
     public func aria(disabled value: Bool) -> Main {
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityDisabled(_ value: Bool = true) -> Main {
+        return mutate(ariadisabled: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> Main {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityFlow(_:) modifier instead.")
     public func aria(flowTo value: String) -> Main {
         return mutate(ariaflowto: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityFlow(_ ids: [String]) -> Main {
+        return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityFlow(_ ids: String...) -> Main {
+        return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityPopup(_:) modifier instead.")
     public func aria(hasPopup value: Values.Accessibility.Popup) -> Main {
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityPopup(_ value: Values.Accessibility.Popup) -> Main {
+        return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> Main {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
+    public func accessibilityHidden(_ value: Bool = true) -> Main {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(invalid value: Values.Accessibility.Invalid) -> Main {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> Main {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated)
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> Main {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityShortcuts(_:) modifier instead.")
     public func aria(keyShortcuts value: String) -> Main {
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityShortcuts(_ values: [KeyboardShortcut]) -> Main {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityShortcuts(_ values: KeyboardShortcut...) -> Main {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> Main {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
+    public func accessibilityLabel(_ value: String) -> Main {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Main {
+        return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(verbatim value: String) -> Main {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLabels(_:) modifier instead.")
     public func aria(labeledBy value: String) -> Main {
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityLabels(_ ids: [String]) -> Main {
+        return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabels(_ ids: String...) -> Main {
+        return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> Main {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> Main {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityOwns(_:) modifier instead.")
     public func aria(owns value: String) -> Main {
         return mutate(ariaowns: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityOwns(_ ids: [String]) -> Main {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityOwns(_ ids: String...) -> Main {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityRelevant(_:) modifier instead.")
     public func aria(relevant value: Values.Accessibility.Relevant) -> Main {
         return mutate(ariarelevant: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityRelevant(_ values: [Values.Accessibility.Relevant]) -> Main {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityRelevant(_ values: Values.Accessibility.Relevant...) -> Main {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityRoleDescription(_:) modifier instead.")
     public func aria(roleDescription value: String) -> Main {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    @_disfavoredOverload
+    public func accessibilityRoleDescription(_ value: String) -> Main {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Main {
+        return mutate(ariaroledescription: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(verbatim value: String) -> Main {
         return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
     }
 }
@@ -12043,8 +16212,8 @@ public struct Division: ContentNode, HtmlElement, BodyElement, FormElement, Figu
     }
 }
 
-extension Division: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
-    
+extension Division: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes, OrientationAccessibilityAttribute, RequiredAccessibilityAttribute, ReadOnlyAccessibilityAttribute, ModalAccessibilityAttribute, LevelAccessibilityAttribute, HintAccessibilityAttribute, PositionAccessibilityAttribute, MultilineAccessibilityAttribute, MultiselectAccessibilityAttribute, RowIndexAccessibilityAttribute, RowCountAccessibilityAttribute, ColumnIndexAccessibilityAttribute, ColumnCountAccessibilityAttribute, RowSpanAccessibilityAttribute, ColumnSpanAccessibilityAttribute, MaximumValueAccessibilityAttribute, MinimumValueAccessibilityAttribute, ValueAccessibilityAttribute, PressedAccessibilityAttribute, SelectedAccessibilityAttribute, CheckedAccessibilityAttribute, ExpandedAccessibilityAttribute, FocusedAccessibilityAttribute, CompletionAccessibilityAttribute {
+
     public func accessKey(_ value: Character) -> Division {
         return mutate(accesskey: .init("\(value)", context: .trusted))
     }
@@ -12294,80 +16463,359 @@ extension Division: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(key: event.rawValue, value: .init(value, context: .tainted(.js)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityAtomic(_:) modifier instead.")
     public func aria(atomic value: Bool) -> Division {
         return mutate(ariaatomic: .init(value, context: .trusted))
     }
     
+    public func accessibilityAtomic(_ value: Bool = true) -> Division {
+        return mutate(ariaatomic: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityBusy(_:) modifier instead.")
     public func aria(busy value: Bool) -> Division {
         return mutate(ariabusy: .init(value, context: .trusted))
     }
     
+    public func accessibilityBusy(_ value: Bool = true) -> Division {
+        return mutate(ariabusy: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityControls(_:) modifier instead.")
     public func aria(controls value: String) -> Division {
         return mutate(ariacontrols: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityControls(_ ids: [String]) -> Division {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityControls(_ ids: String...) -> Division {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityCurrent(_:) modifier instead.")
     public func aria(current value: Values.Accessibility.Current) -> Division {
         return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityCurrent(_ value: Values.Accessibility.Current) -> Division {
+        return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityCurrent(_ value: Bool = true) -> Division {
+        return mutate(ariacurrent: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDescriptions(_:) modifier instead.")
     public func aria(describedBy value: String) -> Division {
         return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityDescriptions(_ ids: [String]) -> Division {
+        return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityDescriptions(_ ids: String...) -> Division {
+        return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDetail(_:) modifier instead.")
     public func aria(details value: String) -> Division {
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityDetail(_ id: String) -> Division {
+        return mutate(ariadetails: .init(id, context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
     public func aria(disabled value: Bool) -> Division {
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    public func accessibilityDisabled(_ value: Bool = true) -> Division {
+        return mutate(ariadisabled: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> Division {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityFlow(_:) modifier instead.")
     public func aria(flowTo value: String) -> Division {
         return mutate(ariaflowto: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityFlow(_ ids: [String]) -> Division {
+        return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityFlow(_ ids: String...) -> Division {
+        return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityPopup(_:) modifier instead.")
     public func aria(hasPopup value: Values.Accessibility.Popup) -> Division {
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityPopup(_ value: Values.Accessibility.Popup) -> Division {
+        return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> Division {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
+    public func accessibilityHidden(_ value: Bool = true) -> Division {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(invalid value: Values.Accessibility.Invalid) -> Division {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> Division {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> Division {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityShortcuts(_:) modifier instead.")
     public func aria(keyShortcuts value: String) -> Division {
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityShortcuts(_ values: [KeyboardShortcut]) -> Division {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityShortcuts(_ values: KeyboardShortcut...) -> Division {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> Division {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
+    public func accessibilityLabel(_ value: String) -> Division {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Division {
+        return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(verbatim value: String) -> Division {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLabels(_:) modifier instead.")
     public func aria(labeledBy value: String) -> Division {
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityLabels(_ ids: [String]) -> Division {
+        return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabels(_ ids: String...) -> Division {
+        return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> Division {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> Division {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityOwns(_:) modifier instead.")
     public func aria(owns value: String) -> Division {
         return mutate(ariaowns: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityOwns(_ ids: [String]) -> Division {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityOwns(_ ids: String...) -> Division {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityRelevant(_:) modifier instead.")
     public func aria(relevant value: Values.Accessibility.Relevant) -> Division {
         return mutate(ariarelevant: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityRelevant(_ values: [Values.Accessibility.Relevant]) -> Division {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityRelevant(_ values: Values.Accessibility.Relevant...) -> Division {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityRoleDescription(_:) modifier instead.")
     public func aria(roleDescription value: String) -> Division {
         return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    @_disfavoredOverload
+    public func accessibilityRoleDescription(_ value: String) -> Division {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Division {
+        return mutate(ariaroledescription: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(verbatim value: String) -> Division {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityOrientation(_ value: Values.Accessibility.Orientation) -> Division {
+        return mutate(ariaorientation: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityRequired(_ value: Bool = true) -> Division {
+        return mutate(ariarequired: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityReadonly(_ value: Bool = true) -> Division {
+        return mutate(ariareadonly: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityModal(_ value: Bool = true) -> Division {
+        return mutate(ariamodal: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityLevel(_ value: Int) -> Division {
+        return mutate(arialevel: .init(value, context: .trusted))
+    }
+    
+    @_disfavoredOverload
+    public func accessibilityHint(_ value: String) -> Division {
+        return mutate(ariaplaceholder: .init(value, context: .tainted(.html))) 
+    }
+    
+    public func accessibilityHint(_ localized: LocalizedStringKey, tableName: String? = nil) -> Division {
+        return mutate(ariaplaceholder: .init(LocalizedString(key: localized, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityHint(verbatim value: String) -> Division {
+        return mutate(ariaplaceholder: .init(value, context: .tainted(.html))) 
+    }
+    
+    public func accessibilityPosition(_ index: Int, in size: Int) -> Division {
+        return mutate(ariaposinset: .init(index, context: .trusted)).mutate(ariasetsize: .init(size, context: .trusted))
+    }
+    
+    public func accessibilityMultiline(_ value: Bool = true) -> Division {
+        return mutate(ariamultiline: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityMultiselect(_ value: Bool = true) -> Division {
+        return mutate(ariamultiselectable: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityRowIndex(_ value: Int) -> Division {
+        return mutate(ariarowindex: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityRowCount(_ value: Int) -> Division {
+        return mutate(ariarowcount: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityColumnIndex(_ value: Int) -> Division {
+        return mutate(ariacolindex: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityColumnCount(_ value: Int) -> Division {
+        return mutate(ariacolcount: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityRowSpan(_ value: Int) -> Division {
+        return mutate(ariarowspan: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityColumnSpan(_ value: Int) -> Division {
+        return mutate(ariacolspan: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityMaximumValue(_ value: Float) -> Division {
+        return mutate(ariavaluemax: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityMinimumValue(_ value: Float) -> Division {
+        return mutate(ariavaluemin: .init(value, context: .trusted))
+    }
+    
+    @_disfavoredOverload
+    public func accessibilityValue(_ value: Float, description text: String? = nil) -> Division {
+        
+        if let text = text {
+            return mutate(ariavaluenow: .init(value, context: .trusted)).mutate(ariavaluetext: .init(text, context: .tainted(.html)))
+        }
+        
+        return mutate(ariavaluenow: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityValue(_ value: Float, description localizedKey: LocalizedStringKey, tableName: String?) -> Division {
+        return mutate(ariavaluenow: .init(value, context: .trusted)).mutate(ariavaluetext: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityPressed(_ value: Bool = true) -> Division {
+        return mutate(ariapressed: .init(value, context: .trusted))
+    }
+    
+    public func accessibilitySelected(_ value: Bool = true) -> Division {
+        return mutate(ariaselected: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityChecked(_ value: Bool = true) -> Division {
+        return mutate(ariachecked: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityExpanded(_ value: Bool = true) -> Division {
+        return mutate(ariaexpanded: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityFocused(_ id: String) -> Division {
+        return mutate(ariaactivedescendant: .init(id, context: .tainted(.html)))
+    }
+    
+    public func accessibilityCompletion(_ values: [Values.Accessibility.Complete]) -> Division {
+
+        if values == [.list, .inline] || values == [.inline, .list] {
+            return mutate(ariaautocomplete: .init("both", context: .trusted))
+        }
+        
+        return mutate(ariaautocomplete: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityCompletion(_ values: Values.Accessibility.Complete...) -> Division {
+        
+        if values == [.list, .inline] || values == [.inline, .list] {
+            return mutate(ariaautocomplete: .init("both", context: .trusted))
+        }
+        
+        return mutate(ariaautocomplete: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
     }
 }
 
@@ -12443,7 +16891,7 @@ public struct Definition: ContentNode, HtmlElement, BodyElement, FormElement, Fi
     }
 }
 
-extension Definition: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
+extension Definition: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
     
     public func accessKey(_ value: Character) -> Definition {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -12694,79 +17142,233 @@ extension Definition: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
         return mutate(key: event.rawValue, value: .init(value, context: .tainted(.js)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityAtomic(_:) modifier instead.")
     public func aria(atomic value: Bool) -> Definition {
         return mutate(ariaatomic: .init(value, context: .trusted))
     }
     
+    public func accessibilityAtomic(_ value: Bool = true) -> Definition {
+        return mutate(ariaatomic: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityBusy(_:) modifier instead.")
     public func aria(busy value: Bool) -> Definition {
         return mutate(ariabusy: .init(value, context: .trusted))
     }
     
+    public func accessibilityBusy(_ value: Bool = true) -> Definition {
+        return mutate(ariabusy: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityControls(_:) modifier instead.")
     public func aria(controls value: String) -> Definition {
         return mutate(ariacontrols: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityControls(_ ids: [String]) -> Definition {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityControls(_ ids: String...) -> Definition {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityCurrent(_:) modifier instead.")
     public func aria(current value: Values.Accessibility.Current) -> Definition {
         return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityCurrent(_ value: Values.Accessibility.Current) -> Definition {
+        return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityCurrent(_ value: Bool = true) -> Definition {
+        return mutate(ariacurrent: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDescriptions(_:) modifier instead.")
     public func aria(describedBy value: String) -> Definition {
         return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityDescriptions(_ ids: [String]) -> Definition {
+        return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityDescriptions(_ ids: String...) -> Definition {
+        return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDetail(_:) modifier instead.")
     public func aria(details value: String) -> Definition {
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityDetail(_ id: String) -> Definition {
+        return mutate(ariadetails: .init(id, context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
     public func aria(disabled value: Bool) -> Definition {
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityDisabled(_ value: Bool = true) -> Definition {
+        return mutate(ariadisabled: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> Definition {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityFlow(_:) modifier instead.")
     public func aria(flowTo value: String) -> Definition {
         return mutate(ariaflowto: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityFlow(_ ids: [String]) -> Definition {
+        return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityFlow(_ ids: String...) -> Definition {
+        return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityPopup(_:) modifier instead.")
     public func aria(hasPopup value: Values.Accessibility.Popup) -> Definition {
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityPopup(_ value: Values.Accessibility.Popup) -> Definition {
+        return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> Definition {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
+    public func accessibilityHidden(_ value: Bool = true) -> Definition {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(invalid value: Values.Accessibility.Invalid) -> Definition {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> Definition {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated)
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> Definition {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityShortcuts(_:) modifier instead.")
     public func aria(keyShortcuts value: String) -> Definition {
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityShortcuts(_ values: [KeyboardShortcut]) -> Definition {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityShortcuts(_ values: KeyboardShortcut...) -> Definition {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> Definition {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
+    public func accessibilityLabel(_ value: String) -> Definition {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Definition {
+        return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(verbatim value: String) -> Definition {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLabels(_:) modifier instead.")
     public func aria(labeledBy value: String) -> Definition {
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityLabels(_ ids: [String]) -> Definition {
+        return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabels(_ ids: String...) -> Definition {
+        return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> Definition {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> Definition {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityOwns(_:) modifier instead.")
     public func aria(owns value: String) -> Definition {
         return mutate(ariaowns: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityOwns(_ ids: [String]) -> Definition {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityOwns(_ ids: String...) -> Definition {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityRelevant(_:) modifier instead.")
     public func aria(relevant value: Values.Accessibility.Relevant) -> Definition {
         return mutate(ariarelevant: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityRelevant(_ values: [Values.Accessibility.Relevant]) -> Definition {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityRelevant(_ values: Values.Accessibility.Relevant...) -> Definition {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityRoleDescription(_:) modifier instead.")
     public func aria(roleDescription value: String) -> Definition {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    @_disfavoredOverload
+    public func accessibilityRoleDescription(_ value: String) -> Definition {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Definition {
+        return mutate(ariaroledescription: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(verbatim value: String) -> Definition {
         return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
     }
 }
@@ -12841,7 +17443,7 @@ public struct Cite: ContentNode, HtmlElement, BodyElement, FormElement, FigureEl
     }
 }
 
-extension Cite: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
+extension Cite: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
     
     public func accessKey(_ value: Character) -> Cite {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -13092,79 +17694,233 @@ extension Cite: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(key: event.rawValue, value: .init(value, context: .tainted(.js)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityAtomic(_:) modifier instead.")
     public func aria(atomic value: Bool) -> Cite {
         return mutate(ariaatomic: .init(value, context: .trusted))
     }
     
+    public func accessibilityAtomic(_ value: Bool = true) -> Cite {
+        return mutate(ariaatomic: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityBusy(_:) modifier instead.")
     public func aria(busy value: Bool) -> Cite {
         return mutate(ariabusy: .init(value, context: .trusted))
     }
     
+    public func accessibilityBusy(_ value: Bool = true) -> Cite {
+        return mutate(ariabusy: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityControls(_:) modifier instead.")
     public func aria(controls value: String) -> Cite {
         return mutate(ariacontrols: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityControls(_ ids: [String]) -> Cite {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityControls(_ ids: String...) -> Cite {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityCurrent(_:) modifier instead.")
     public func aria(current value: Values.Accessibility.Current) -> Cite {
         return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityCurrent(_ value: Values.Accessibility.Current) -> Cite {
+        return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityCurrent(_ value: Bool = true) -> Cite {
+        return mutate(ariacurrent: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDescriptions(_:) modifier instead.")
     public func aria(describedBy value: String) -> Cite {
         return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityDescriptions(_ ids: [String]) -> Cite {
+        return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityDescriptions(_ ids: String...) -> Cite {
+        return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDetail(_:) modifier instead.")
     public func aria(details value: String) -> Cite {
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityDetail(_ id: String) -> Cite {
+        return mutate(ariadetails: .init(id, context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
     public func aria(disabled value: Bool) -> Cite {
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityDisabled(_ value: Bool = true) -> Cite {
+        return mutate(ariadisabled: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> Cite {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityFlow(_:) modifier instead.")
     public func aria(flowTo value: String) -> Cite {
         return mutate(ariaflowto: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityFlow(_ ids: [String]) -> Cite {
+        return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityFlow(_ ids: String...) -> Cite {
+        return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityPopup(_:) modifier instead.")
     public func aria(hasPopup value: Values.Accessibility.Popup) -> Cite {
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityPopup(_ value: Values.Accessibility.Popup) -> Cite {
+        return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> Cite {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
+    public func accessibilityHidden(_ value: Bool = true) -> Cite {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(invalid value: Values.Accessibility.Invalid) -> Cite {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> Cite {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated)
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> Cite {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityShortcuts(_:) modifier instead.")
     public func aria(keyShortcuts value: String) -> Cite {
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityShortcuts(_ values: [KeyboardShortcut]) -> Cite {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityShortcuts(_ values: KeyboardShortcut...) -> Cite {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> Cite {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
+    public func accessibilityLabel(_ value: String) -> Cite {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Cite {
+        return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(verbatim value: String) -> Cite {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLabels(_:) modifier instead.")
     public func aria(labeledBy value: String) -> Cite {
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityLabels(_ ids: [String]) -> Cite {
+        return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabels(_ ids: String...) -> Cite {
+        return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> Cite {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> Cite {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityOwns(_:) modifier instead.")
     public func aria(owns value: String) -> Cite {
         return mutate(ariaowns: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityOwns(_ ids: [String]) -> Cite {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityOwns(_ ids: String...) -> Cite {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityRelevant(_:) modifier instead.")
     public func aria(relevant value: Values.Accessibility.Relevant) -> Cite {
         return mutate(ariarelevant: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityRelevant(_ values: [Values.Accessibility.Relevant]) -> Cite {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityRelevant(_ values: Values.Accessibility.Relevant...) -> Cite {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityRoleDescription(_:) modifier instead.")
     public func aria(roleDescription value: String) -> Cite {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    @_disfavoredOverload
+    public func accessibilityRoleDescription(_ value: String) -> Cite {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Cite {
+        return mutate(ariaroledescription: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(verbatim value: String) -> Cite {
         return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
     }
 }
@@ -13238,7 +17994,7 @@ public struct ShortQuote: ContentNode, HtmlElement, BodyElement, FormElement, Fi
     }
 }
 
-extension ShortQuote: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, CiteAttribute {
+extension ShortQuote: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes, CiteAttribute {
     
     public func accessKey(_ value: Character) -> ShortQuote {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -13493,79 +18249,233 @@ extension ShortQuote: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
         return mutate(key: event.rawValue, value: .init(value, context: .tainted(.js)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityAtomic(_:) modifier instead.")
     public func aria(atomic value: Bool) -> ShortQuote {
         return mutate(ariaatomic: .init(value, context: .trusted))
     }
     
+    public func accessibilityAtomic(_ value: Bool = true) -> ShortQuote {
+        return mutate(ariaatomic: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityBusy(_:) modifier instead.")
     public func aria(busy value: Bool) -> ShortQuote {
         return mutate(ariabusy: .init(value, context: .trusted))
     }
     
+    public func accessibilityBusy(_ value: Bool = true) -> ShortQuote {
+        return mutate(ariabusy: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityControls(_:) modifier instead.")
     public func aria(controls value: String) -> ShortQuote {
         return mutate(ariacontrols: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityControls(_ ids: [String]) -> ShortQuote {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityControls(_ ids: String...) -> ShortQuote {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityCurrent(_:) modifier instead.")
     public func aria(current value: Values.Accessibility.Current) -> ShortQuote {
         return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityCurrent(_ value: Values.Accessibility.Current) -> ShortQuote {
+        return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityCurrent(_ value: Bool = true) -> ShortQuote {
+        return mutate(ariacurrent: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDescriptions(_:) modifier instead.")
     public func aria(describedBy value: String) -> ShortQuote {
         return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityDescriptions(_ ids: [String]) -> ShortQuote {
+        return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityDescriptions(_ ids: String...) -> ShortQuote {
+        return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDetail(_:) modifier instead.")
     public func aria(details value: String) -> ShortQuote {
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityDetail(_ id: String) -> ShortQuote {
+        return mutate(ariadetails: .init(id, context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
     public func aria(disabled value: Bool) -> ShortQuote {
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityDisabled(_ value: Bool = true) -> ShortQuote {
+        return mutate(ariadisabled: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> ShortQuote {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityFlow(_:) modifier instead.")
     public func aria(flowTo value: String) -> ShortQuote {
         return mutate(ariaflowto: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityFlow(_ ids: [String]) -> ShortQuote {
+        return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityFlow(_ ids: String...) -> ShortQuote {
+        return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityPopup(_:) modifier instead.")
     public func aria(hasPopup value: Values.Accessibility.Popup) -> ShortQuote {
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityPopup(_ value: Values.Accessibility.Popup) -> ShortQuote {
+        return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> ShortQuote {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
+    public func accessibilityHidden(_ value: Bool = true) -> ShortQuote {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")    
     public func aria(invalid value: Values.Accessibility.Invalid) -> ShortQuote {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> ShortQuote {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated)
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> ShortQuote {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityShortcuts(_:) modifier instead.")
     public func aria(keyShortcuts value: String) -> ShortQuote {
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityShortcuts(_ values: [KeyboardShortcut]) -> ShortQuote {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityShortcuts(_ values: KeyboardShortcut...) -> ShortQuote {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> ShortQuote {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
+    public func accessibilityLabel(_ value: String) -> ShortQuote {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> ShortQuote {
+        return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(verbatim value: String) -> ShortQuote {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLabels(_:) modifier instead.")
     public func aria(labeledBy value: String) -> ShortQuote {
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityLabels(_ ids: [String]) -> ShortQuote {
+        return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabels(_ ids: String...) -> ShortQuote {
+        return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> ShortQuote {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> ShortQuote {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityOwns(_:) modifier instead.")
     public func aria(owns value: String) -> ShortQuote {
         return mutate(ariaowns: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityOwns(_ ids: [String]) -> ShortQuote {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityOwns(_ ids: String...) -> ShortQuote {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityRelevant(_:) modifier instead.")
     public func aria(relevant value: Values.Accessibility.Relevant) -> ShortQuote {
         return mutate(ariarelevant: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityRelevant(_ values: [Values.Accessibility.Relevant]) -> ShortQuote {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityRelevant(_ values: Values.Accessibility.Relevant...) -> ShortQuote {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityRoleDescription(_:) modifier instead.")
     public func aria(roleDescription value: String) -> ShortQuote {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    @_disfavoredOverload
+    public func accessibilityRoleDescription(_ value: String) -> ShortQuote {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> ShortQuote {
+        return mutate(ariaroledescription: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(verbatim value: String) -> ShortQuote {
         return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
     }
 }
@@ -13640,7 +18550,7 @@ public struct Abbreviation: ContentNode, HtmlElement, BodyElement, FormElement, 
     }
 }
 
-extension Abbreviation: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
+extension Abbreviation: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
     
     public func accessKey(_ value: Character) -> Abbreviation {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -13891,79 +18801,233 @@ extension Abbreviation: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttri
         return mutate(key: event.rawValue, value: .init(value, context: .tainted(.js)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityAtomic(_:) modifier instead.")
     public func aria(atomic value: Bool) -> Abbreviation {
         return mutate(ariaatomic: .init(value, context: .trusted))
     }
     
+    public func accessibilityAtomic(_ value: Bool = true) -> Abbreviation {
+        return mutate(ariaatomic: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityBusy(_:) modifier instead.")
     public func aria(busy value: Bool) -> Abbreviation {
         return mutate(ariabusy: .init(value, context: .trusted))
     }
     
+    public func accessibilityBusy(_ value: Bool = true) -> Abbreviation {
+        return mutate(ariabusy: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityControls(_:) modifier instead.")
     public func aria(controls value: String) -> Abbreviation {
         return mutate(ariacontrols: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityControls(_ ids: [String]) -> Abbreviation {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityControls(_ ids: String...) -> Abbreviation {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityCurrent(_:) modifier instead.")
     public func aria(current value: Values.Accessibility.Current) -> Abbreviation {
         return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityCurrent(_ value: Values.Accessibility.Current) -> Abbreviation {
+        return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityCurrent(_ value: Bool = true) -> Abbreviation {
+        return mutate(ariacurrent: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDescriptions(_:) modifier instead.")
     public func aria(describedBy value: String) -> Abbreviation {
         return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityDescriptions(_ ids: [String]) -> Abbreviation {
+        return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityDescriptions(_ ids: String...) -> Abbreviation {
+        return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDetail(_:) modifier instead.")
     public func aria(details value: String) -> Abbreviation {
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityDetail(_ id: String) -> Abbreviation {
+        return mutate(ariadetails: .init(id, context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
     public func aria(disabled value: Bool) -> Abbreviation {
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityDisabled(_ value: Bool = true) -> Abbreviation {
+        return mutate(ariadisabled: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> Abbreviation {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityFlow(_:) modifier instead.")
     public func aria(flowTo value: String) -> Abbreviation {
         return mutate(ariaflowto: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityFlow(_ ids: [String]) -> Abbreviation {
+        return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityFlow(_ ids: String...) -> Abbreviation {
+        return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityPopup(_:) modifier instead.")
     public func aria(hasPopup value: Values.Accessibility.Popup) -> Abbreviation {
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityPopup(_ value: Values.Accessibility.Popup) -> Abbreviation {
+        return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> Abbreviation {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
+    public func accessibilityHidden(_ value: Bool = true) -> Abbreviation {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(invalid value: Values.Accessibility.Invalid) -> Abbreviation {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> Abbreviation {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated)
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> Abbreviation {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityShortcuts(_:) modifier instead.")
     public func aria(keyShortcuts value: String) -> Abbreviation {
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityShortcuts(_ values: [KeyboardShortcut]) -> Abbreviation {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityShortcuts(_ values: KeyboardShortcut...) -> Abbreviation {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> Abbreviation {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
+    public func accessibilityLabel(_ value: String) -> Abbreviation {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Abbreviation {
+        return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(verbatim value: String) -> Abbreviation {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLabels(_:) modifier instead.")
     public func aria(labeledBy value: String) -> Abbreviation {
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityLabels(_ ids: [String]) -> Abbreviation {
+        return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabels(_ ids: String...) -> Abbreviation {
+        return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> Abbreviation {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> Abbreviation {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityOwns(_:) modifier instead.")
     public func aria(owns value: String) -> Abbreviation {
         return mutate(ariaowns: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityOwns(_ ids: [String]) -> Abbreviation {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityOwns(_ ids: String...) -> Abbreviation {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityRelevant(_:) modifier instead.")
     public func aria(relevant value: Values.Accessibility.Relevant) -> Abbreviation {
         return mutate(ariarelevant: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityRelevant(_ values: [Values.Accessibility.Relevant]) -> Abbreviation {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityRelevant(_ values: Values.Accessibility.Relevant...) -> Abbreviation {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityRoleDescription(_:) modifier instead.")
     public func aria(roleDescription value: String) -> Abbreviation {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    @_disfavoredOverload
+    public func accessibilityRoleDescription(_ value: String) -> Abbreviation {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Abbreviation {
+        return mutate(ariaroledescription: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(verbatim value: String) -> Abbreviation {
         return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
     }
 }
@@ -14038,7 +19102,7 @@ public struct Ruby: ContentNode, HtmlElement, BodyElement, FormElement, FigureEl
     }
 }
 
-extension Ruby: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
+extension Ruby: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
     
     public func accessKey(_ value: Character) -> Ruby {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -14289,79 +19353,233 @@ extension Ruby: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(key: event.rawValue, value: .init(value, context: .tainted(.js)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityAtomic(_:) modifier instead.")
     public func aria(atomic value: Bool) -> Ruby {
         return mutate(ariaatomic: .init(value, context: .trusted))
     }
     
+    public func accessibilityAtomic(_ value: Bool = true) -> Ruby {
+        return mutate(ariaatomic: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityBusy(_:) modifier instead.")
     public func aria(busy value: Bool) -> Ruby {
         return mutate(ariabusy: .init(value, context: .trusted))
     }
     
+    public func accessibilityBusy(_ value: Bool = true) -> Ruby {
+        return mutate(ariabusy: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityControls(_:) modifier instead.")
     public func aria(controls value: String) -> Ruby {
         return mutate(ariacontrols: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityControls(_ ids: [String]) -> Ruby {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityControls(_ ids: String...) -> Ruby {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityCurrent(_:) modifier instead.")
     public func aria(current value: Values.Accessibility.Current) -> Ruby {
         return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityCurrent(_ value: Values.Accessibility.Current) -> Ruby {
+        return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityCurrent(_ value: Bool = true) -> Ruby {
+        return mutate(ariacurrent: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDescriptions(_:) modifier instead.")
     public func aria(describedBy value: String) -> Ruby {
         return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityDescriptions(_ ids: [String]) -> Ruby {
+        return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityDescriptions(_ ids: String...) -> Ruby {
+        return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDetail(_:) modifier instead.")
     public func aria(details value: String) -> Ruby {
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityDetail(_ id: String) -> Ruby {
+        return mutate(ariadetails: .init(id, context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
     public func aria(disabled value: Bool) -> Ruby {
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityDisabled(_ value: Bool = true) -> Ruby {
+        return mutate(ariadisabled: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> Ruby {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityFlow(_:) modifier instead.")
     public func aria(flowTo value: String) -> Ruby {
         return mutate(ariaflowto: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityFlow(_ ids: [String]) -> Ruby {
+        return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityFlow(_ ids: String...) -> Ruby {
+        return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityPopup(_:) modifier instead.")
     public func aria(hasPopup value: Values.Accessibility.Popup) -> Ruby {
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityPopup(_ value: Values.Accessibility.Popup) -> Ruby {
+        return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> Ruby {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
+    public func accessibilityHidden(_ value: Bool = true) -> Ruby {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(invalid value: Values.Accessibility.Invalid) -> Ruby {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> Ruby {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated)
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> Ruby {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityShortcuts(_:) modifier instead.")
     public func aria(keyShortcuts value: String) -> Ruby {
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityShortcuts(_ values: [KeyboardShortcut]) -> Ruby {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityShortcuts(_ values: KeyboardShortcut...) -> Ruby {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> Ruby {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
+    public func accessibilityLabel(_ value: String) -> Ruby {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Ruby {
+        return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(verbatim value: String) -> Ruby {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLabels(_:) modifier instead.")
     public func aria(labeledBy value: String) -> Ruby {
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityLabels(_ ids: [String]) -> Ruby {
+        return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabels(_ ids: String...) -> Ruby {
+        return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> Ruby {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> Ruby {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityOwns(_:) modifier instead.")
     public func aria(owns value: String) -> Ruby {
         return mutate(ariaowns: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityOwns(_ ids: [String]) -> Ruby {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityOwns(_ ids: String...) -> Ruby {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityRelevant(_:) modifier instead.")
     public func aria(relevant value: Values.Accessibility.Relevant) -> Ruby {
         return mutate(ariarelevant: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityRelevant(_ values: [Values.Accessibility.Relevant]) -> Ruby {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityRelevant(_ values: Values.Accessibility.Relevant...) -> Ruby {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityRoleDescription(_:) modifier instead.")
     public func aria(roleDescription value: String) -> Ruby {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    @_disfavoredOverload
+    public func accessibilityRoleDescription(_ value: String) -> Ruby {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Ruby {
+        return mutate(ariaroledescription: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(verbatim value: String) -> Ruby {
         return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
     }
 }
@@ -14438,7 +19656,7 @@ public struct Data: ContentNode, HtmlElement, BodyElement, FormElement, FigureEl
     }
 }
 
-extension Data: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, ValueAttribute {
+extension Data: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes, ValueAttribute {
     
     public func accessKey(_ value: Character) -> Data {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -14702,79 +19920,233 @@ extension Data: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, V
         return mutate(key: event.rawValue, value: .init(value, context: .tainted(.js)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityAtomic(_:) modifier instead.")
     public func aria(atomic value: Bool) -> Data {
         return mutate(ariaatomic: .init(value, context: .trusted))
     }
     
+    public func accessibilityAtomic(_ value: Bool = true) -> Data {
+        return mutate(ariaatomic: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityBusy(_:) modifier instead.")
     public func aria(busy value: Bool) -> Data {
         return mutate(ariabusy: .init(value, context: .trusted))
     }
     
+    public func accessibilityBusy(_ value: Bool = true) -> Data {
+        return mutate(ariabusy: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityControls(_:) modifier instead.")
     public func aria(controls value: String) -> Data {
         return mutate(ariacontrols: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityControls(_ ids: [String]) -> Data {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityControls(_ ids: String...) -> Data {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityCurrent(_:) modifier instead.")
     public func aria(current value: Values.Accessibility.Current) -> Data {
         return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityCurrent(_ value: Values.Accessibility.Current) -> Data {
+        return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityCurrent(_ value: Bool = true) -> Data {
+        return mutate(ariacurrent: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDescriptions(_:) modifier instead.")
     public func aria(describedBy value: String) -> Data {
         return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityDescriptions(_ ids: [String]) -> Data {
+        return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityDescriptions(_ ids: String...) -> Data {
+        return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDetail(_:) modifier instead.")
     public func aria(details value: String) -> Data {
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityDetail(_ id: String) -> Data {
+        return mutate(ariadetails: .init(id, context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
     public func aria(disabled value: Bool) -> Data {
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityDisabled(_ value: Bool = true) -> Data {
+        return mutate(ariadisabled: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> Data {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityFlow(_:) modifier instead.")
     public func aria(flowTo value: String) -> Data {
         return mutate(ariaflowto: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityFlow(_ ids: [String]) -> Data {
+        return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityFlow(_ ids: String...) -> Data {
+        return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityPopup(_:) modifier instead.")
     public func aria(hasPopup value: Values.Accessibility.Popup) -> Data {
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityPopup(_ value: Values.Accessibility.Popup) -> Data {
+        return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> Data {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
+    public func accessibilityHidden(_ value: Bool = true) -> Data {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(invalid value: Values.Accessibility.Invalid) -> Data {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> Data {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated)
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> Data {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityShortcuts(_:) modifier instead.")
     public func aria(keyShortcuts value: String) -> Data {
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityShortcuts(_ values: [KeyboardShortcut]) -> Data {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityShortcuts(_ values: KeyboardShortcut...) -> Data {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> Data {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
+    public func accessibilityLabel(_ value: String) -> Data {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Data {
+        return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(verbatim value: String) -> Data {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLabels(_:) modifier instead.")
     public func aria(labeledBy value: String) -> Data {
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityLabels(_ ids: [String]) -> Data {
+        return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabels(_ ids: String...) -> Data {
+        return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> Data {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> Data {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityOwns(_:) modifier instead.")
     public func aria(owns value: String) -> Data {
         return mutate(ariaowns: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityOwns(_ ids: [String]) -> Data {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityOwns(_ ids: String...) -> Data {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityRelevant(_:) modifier instead.")
     public func aria(relevant value: Values.Accessibility.Relevant) -> Data {
         return mutate(ariarelevant: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityRelevant(_ values: [Values.Accessibility.Relevant]) -> Data {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityRelevant(_ values: Values.Accessibility.Relevant...) -> Data {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityRoleDescription(_:) modifier instead.")
     public func aria(roleDescription value: String) -> Data {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    @_disfavoredOverload
+    public func accessibilityRoleDescription(_ value: String) -> Data {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Data {
+        return mutate(ariaroledescription: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(verbatim value: String) -> Data {
         return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
     }
 }
@@ -14850,7 +20222,7 @@ public struct Time: ContentNode, HtmlElement, BodyElement, FormElement, FigureEl
     }
 }
 
-extension Time: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, DateTimeAttribute {
+extension Time: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes, DateTimeAttribute {
 
     public func accessKey(_ value: Character) -> Time {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -15105,79 +20477,233 @@ extension Time: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, D
         return mutate(key: event.rawValue, value: .init(value, context: .tainted(.js)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityAtomic(_:) modifier instead.")
     public func aria(atomic value: Bool) -> Time {
         return mutate(ariaatomic: .init(value, context: .trusted))
     }
     
+    public func accessibilityAtomic(_ value: Bool = true) -> Time {
+        return mutate(ariaatomic: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityBusy(_:) modifier instead.")
     public func aria(busy value: Bool) -> Time {
         return mutate(ariabusy: .init(value, context: .trusted))
     }
     
+    public func accessibilityBusy(_ value: Bool = true) -> Time {
+        return mutate(ariabusy: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityControls(_:) modifier instead.")
     public func aria(controls value: String) -> Time {
         return mutate(ariacontrols: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityControls(_ ids: [String]) -> Time {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityControls(_ ids: String...) -> Time {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityCurrent(_:) modifier instead.")
     public func aria(current value: Values.Accessibility.Current) -> Time {
         return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityCurrent(_ value: Values.Accessibility.Current) -> Time {
+        return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityCurrent(_ value: Bool = true) -> Time {
+        return mutate(ariacurrent: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDescriptions(_:) modifier instead.")
     public func aria(describedBy value: String) -> Time {
         return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityDescriptions(_ ids: [String]) -> Time {
+        return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityDescriptions(_ ids: String...) -> Time {
+        return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDetail(_:) modifier instead.")
     public func aria(details value: String) -> Time {
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityDetail(_ id: String) -> Time {
+        return mutate(ariadetails: .init(id, context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
     public func aria(disabled value: Bool) -> Time {
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityDisabled(_ value: Bool = true) -> Time {
+        return mutate(ariadisabled: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> Time {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityFlow(_:) modifier instead.")
     public func aria(flowTo value: String) -> Time {
         return mutate(ariaflowto: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityFlow(_ ids: [String]) -> Time {
+        return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityFlow(_ ids: String...) -> Time {
+        return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityPopup(_:) modifier instead.")
     public func aria(hasPopup value: Values.Accessibility.Popup) -> Time {
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityPopup(_ value: Values.Accessibility.Popup) -> Time {
+        return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> Time {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
+    public func accessibilityHidden(_ value: Bool = true) -> Time {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(invalid value: Values.Accessibility.Invalid) -> Time {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> Time {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated)
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> Time {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityShortcuts(_:) modifier instead.")
     public func aria(keyShortcuts value: String) -> Time {
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityShortcuts(_ values: [KeyboardShortcut]) -> Time {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityShortcuts(_ values: KeyboardShortcut...) -> Time {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> Time {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
+    public func accessibilityLabel(_ value: String) -> Time {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Time {
+        return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(verbatim value: String) -> Time {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLabels(_:) modifier instead.")
     public func aria(labeledBy value: String) -> Time {
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityLabels(_ ids: [String]) -> Time {
+        return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabels(_ ids: String...) -> Time {
+        return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> Time {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> Time {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityOwns(_:) modifier instead.")
     public func aria(owns value: String) -> Time {
         return mutate(ariaowns: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityOwns(_ ids: [String]) -> Time {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityOwns(_ ids: String...) -> Time {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityRelevant(_:) modifier instead.")
     public func aria(relevant value: Values.Accessibility.Relevant) -> Time {
         return mutate(ariarelevant: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityRelevant(_ values: [Values.Accessibility.Relevant]) -> Time {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityRelevant(_ values: Values.Accessibility.Relevant...) -> Time {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityRoleDescription(_:) modifier instead.")
     public func aria(roleDescription value: String) -> Time {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    @_disfavoredOverload
+    public func accessibilityRoleDescription(_ value: String) -> Time {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Time {
+        return mutate(ariaroledescription: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(verbatim value: String) -> Time {
         return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
     }
 }
@@ -15253,7 +20779,7 @@ public struct Code: ContentNode, HtmlElement, BodyElement, FormElement, FigureEl
     }
 }
 
-extension Code: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
+extension Code: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
     
     public func accessKey(_ value: Character) -> Code {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -15504,79 +21030,233 @@ extension Code: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(key: event.rawValue, value: .init(value, context: .tainted(.js)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityAtomic(_:) modifier instead.")
     public func aria(atomic value: Bool) -> Code {
         return mutate(ariaatomic: .init(value, context: .trusted))
     }
     
+    public func accessibilityAtomic(_ value: Bool = true) -> Code {
+        return mutate(ariaatomic: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityBusy(_:) modifier instead.")
     public func aria(busy value: Bool) -> Code {
         return mutate(ariabusy: .init(value, context: .trusted))
     }
     
+    public func accessibilityBusy(_ value: Bool = true) -> Code {
+        return mutate(ariabusy: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityControls(_:) modifier instead.")
     public func aria(controls value: String) -> Code {
         return mutate(ariacontrols: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityControls(_ ids: [String]) -> Code {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityControls(_ ids: String...) -> Code {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityCurrent(_:) modifier instead.")
     public func aria(current value: Values.Accessibility.Current) -> Code {
         return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityCurrent(_ value: Values.Accessibility.Current) -> Code {
+        return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityCurrent(_ value: Bool = true) -> Code {
+        return mutate(ariacurrent: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDescriptions(_:) modifier instead.")
     public func aria(describedBy value: String) -> Code {
         return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityDescriptions(_ ids: [String]) -> Code {
+        return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityDescriptions(_ ids: String...) -> Code {
+        return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDetail(_:) modifier instead.")
     public func aria(details value: String) -> Code {
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityDetail(_ id: String) -> Code {
+        return mutate(ariadetails: .init(id, context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
     public func aria(disabled value: Bool) -> Code {
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityDisabled(_ value: Bool = true) -> Code {
+        return mutate(ariadisabled: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> Code {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityFlow(_:) modifier instead.")
     public func aria(flowTo value: String) -> Code {
         return mutate(ariaflowto: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityFlow(_ ids: [String]) -> Code {
+        return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityFlow(_ ids: String...) -> Code {
+        return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityPopup(_:) modifier instead.")
     public func aria(hasPopup value: Values.Accessibility.Popup) -> Code {
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityPopup(_ value: Values.Accessibility.Popup) -> Code {
+        return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> Code {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
+    public func accessibilityHidden(_ value: Bool = true) -> Code {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(invalid value: Values.Accessibility.Invalid) -> Code {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> Code {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated)
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> Code {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityShortcuts(_:) modifier instead.")
     public func aria(keyShortcuts value: String) -> Code {
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityShortcuts(_ values: [KeyboardShortcut]) -> Code {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityShortcuts(_ values: KeyboardShortcut...) -> Code {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> Code {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
+    public func accessibilityLabel(_ value: String) -> Code {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Code {
+        return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(verbatim value: String) -> Code {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLabels(_:) modifier instead.")
     public func aria(labeledBy value: String) -> Code {
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityLabels(_ ids: [String]) -> Code {
+        return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabels(_ ids: String...) -> Code {
+        return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> Code {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> Code {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityOwns(_:) modifier instead.")
     public func aria(owns value: String) -> Code {
         return mutate(ariaowns: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityOwns(_ ids: [String]) -> Code {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityOwns(_ ids: String...) -> Code {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityRelevant(_:) modifier instead.")
     public func aria(relevant value: Values.Accessibility.Relevant) -> Code {
         return mutate(ariarelevant: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityRelevant(_ values: [Values.Accessibility.Relevant]) -> Code {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityRelevant(_ values: Values.Accessibility.Relevant...) -> Code {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityRoleDescription(_:) modifier instead.")
     public func aria(roleDescription value: String) -> Code {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    @_disfavoredOverload
+    public func accessibilityRoleDescription(_ value: String) -> Code {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Code {
+        return mutate(ariaroledescription: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(verbatim value: String) -> Code {
         return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
     }
 }
@@ -15652,7 +21332,7 @@ public struct Variable: ContentNode, HtmlElement, BodyElement, FormElement, Figu
     }
 }
 
-extension Variable: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
+extension Variable: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
     
     public func accessKey(_ value: Character) -> Variable {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -15903,79 +21583,233 @@ extension Variable: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(key: event.rawValue, value: .init(value, context: .tainted(.js)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityAtomic(_:) modifier instead.")
     public func aria(atomic value: Bool) -> Variable {
         return mutate(ariaatomic: .init(value, context: .trusted))
     }
     
+    public func accessibilityAtomic(_ value: Bool = true) -> Variable {
+        return mutate(ariaatomic: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityBusy(_:) modifier instead.")
     public func aria(busy value: Bool) -> Variable {
         return mutate(ariabusy: .init(value, context: .trusted))
     }
     
+    public func accessibilityBusy(_ value: Bool = true) -> Variable {
+        return mutate(ariabusy: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityControls(_:) modifier instead.")
     public func aria(controls value: String) -> Variable {
         return mutate(ariacontrols: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityControls(_ ids: [String]) -> Variable {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityControls(_ ids: String...) -> Variable {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityCurrent(_:) modifier instead.")
     public func aria(current value: Values.Accessibility.Current) -> Variable {
         return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityCurrent(_ value: Values.Accessibility.Current) -> Variable {
+        return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityCurrent(_ value: Bool = true) -> Variable {
+        return mutate(ariacurrent: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDescriptions(_:) modifier instead.")
     public func aria(describedBy value: String) -> Variable {
         return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityDescriptions(_ ids: [String]) -> Variable {
+        return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityDescriptions(_ ids: String...) -> Variable {
+        return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDetail(_:) modifier instead.")
     public func aria(details value: String) -> Variable {
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityDetail(_ id: String) -> Variable {
+        return mutate(ariadetails: .init(id, context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
     public func aria(disabled value: Bool) -> Variable {
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityDisabled(_ value: Bool = true) -> Variable {
+        return mutate(ariadisabled: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> Variable {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityFlow(_:) modifier instead.")
     public func aria(flowTo value: String) -> Variable {
         return mutate(ariaflowto: .init(value, context: .tainted(.html)))
+    }    
+    
+    public func accessibilityFlow(_ ids: [String]) -> Variable {
+        return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
     }
     
+    public func accessibilityFlow(_ ids: String...) -> Variable {
+        return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityPopup(_:) modifier instead.")
     public func aria(hasPopup value: Values.Accessibility.Popup) -> Variable {
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityPopup(_ value: Values.Accessibility.Popup) -> Variable {
+        return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> Variable {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
+    public func accessibilityHidden(_ value: Bool = true) -> Variable {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(invalid value: Values.Accessibility.Invalid) -> Variable {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> Variable {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated)
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> Variable {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityShortcuts(_:) modifier instead.")
     public func aria(keyShortcuts value: String) -> Variable {
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityShortcuts(_ values: [KeyboardShortcut]) -> Variable {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityShortcuts(_ values: KeyboardShortcut...) -> Variable {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> Variable {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
+    public func accessibilityLabel(_ value: String) -> Variable {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Variable {
+        return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(verbatim value: String) -> Variable {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLabels(_:) modifier instead.")
     public func aria(labeledBy value: String) -> Variable {
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityLabels(_ ids: [String]) -> Variable {
+        return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabels(_ ids: String...) -> Variable {
+        return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> Variable {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> Variable {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityOwns(_:) modifier instead.")
     public func aria(owns value: String) -> Variable {
         return mutate(ariaowns: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityOwns(_ ids: [String]) -> Variable {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityOwns(_ ids: String...) -> Variable {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityRelevant(_:) modifier instead.")
     public func aria(relevant value: Values.Accessibility.Relevant) -> Variable {
         return mutate(ariarelevant: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityRelevant(_ values: [Values.Accessibility.Relevant]) -> Variable {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityRelevant(_ values: Values.Accessibility.Relevant...) -> Variable {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityRoleDescription(_:) modifier instead.")
     public func aria(roleDescription value: String) -> Variable {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    @_disfavoredOverload
+    public func accessibilityRoleDescription(_ value: String) -> Variable {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Variable {
+        return mutate(ariaroledescription: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(verbatim value: String) -> Variable {
         return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
     }
 }
@@ -16047,7 +21881,7 @@ public struct SampleOutput: ContentNode, HtmlElement, BodyElement, FormElement, 
     }
 }
 
-extension SampleOutput: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
+extension SampleOutput: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
     
     public func accessKey(_ value: Character) -> SampleOutput {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -16298,79 +22132,233 @@ extension SampleOutput: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttri
         return mutate(key: event.rawValue, value: .init(value, context: .tainted(.js)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityAtomic(_:) modifier instead.")
     public func aria(atomic value: Bool) -> SampleOutput {
         return mutate(ariaatomic: .init(value, context: .trusted))
     }
     
+    public func accessibilityAtomic(_ value: Bool = true) -> SampleOutput {
+        return mutate(ariaatomic: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityBusy(_:) modifier instead.")
     public func aria(busy value: Bool) -> SampleOutput {
         return mutate(ariabusy: .init(value, context: .trusted))
     }
     
+    public func accessibilityBusy(_ value: Bool = true) -> SampleOutput {
+        return mutate(ariabusy: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityControls(_:) modifier instead.")
     public func aria(controls value: String) -> SampleOutput {
         return mutate(ariacontrols: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityControls(_ ids: [String]) -> SampleOutput {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityControls(_ ids: String...) -> SampleOutput {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityCurrent(_:) modifier instead.")
     public func aria(current value: Values.Accessibility.Current) -> SampleOutput {
         return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityCurrent(_ value: Values.Accessibility.Current) -> SampleOutput {
+        return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityCurrent(_ value: Bool = true) -> SampleOutput {
+        return mutate(ariacurrent: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDescriptions(_:) modifier instead.")
     public func aria(describedBy value: String) -> SampleOutput {
         return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityDescriptions(_ ids: [String]) -> SampleOutput {
+        return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityDescriptions(_ ids: String...) -> SampleOutput {
+        return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDetail(_:) modifier instead.")
     public func aria(details value: String) -> SampleOutput {
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityDetail(_ id: String) -> SampleOutput {
+        return mutate(ariadetails: .init(id, context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
     public func aria(disabled value: Bool) -> SampleOutput {
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityDisabled(_ value: Bool = true) -> SampleOutput {
+        return mutate(ariadisabled: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> SampleOutput {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityFlow(_:) modifier instead.")
     public func aria(flowTo value: String) -> SampleOutput {
         return mutate(ariaflowto: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityFlow(_ ids: [String]) -> SampleOutput {
+        return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityFlow(_ ids: String...) -> SampleOutput {
+        return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityPopup(_:) modifier instead.")
     public func aria(hasPopup value: Values.Accessibility.Popup) -> SampleOutput {
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityPopup(_ value: Values.Accessibility.Popup) -> SampleOutput {
+        return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> SampleOutput {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
+    public func accessibilityHidden(_ value: Bool = true) -> SampleOutput {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(invalid value: Values.Accessibility.Invalid) -> SampleOutput {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> SampleOutput {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated)
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> SampleOutput {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityShortcuts(_:) modifier instead.")
     public func aria(keyShortcuts value: String) -> SampleOutput {
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityShortcuts(_ values: [KeyboardShortcut]) -> SampleOutput {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityShortcuts(_ values: KeyboardShortcut...) -> SampleOutput {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> SampleOutput {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
+    public func accessibilityLabel(_ value: String) -> SampleOutput {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> SampleOutput {
+        return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(verbatim value: String) -> SampleOutput {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLabels(_:) modifier instead.")
     public func aria(labeledBy value: String) -> SampleOutput {
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityLabels(_ ids: [String]) -> SampleOutput {
+        return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabels(_ ids: String...) -> SampleOutput {
+        return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> SampleOutput {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> SampleOutput {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityOwns(_:) modifier instead.")
     public func aria(owns value: String) -> SampleOutput {
         return mutate(ariaowns: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityOwns(_ ids: [String]) -> SampleOutput {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityOwns(_ ids: String...) -> SampleOutput {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityRelevant(_:) modifier instead.")
     public func aria(relevant value: Values.Accessibility.Relevant) -> SampleOutput {
         return mutate(ariarelevant: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityRelevant(_ values: [Values.Accessibility.Relevant]) -> SampleOutput {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityRelevant(_ values: Values.Accessibility.Relevant...) -> SampleOutput {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityRoleDescription(_:) modifier instead.")
     public func aria(roleDescription value: String) -> SampleOutput {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    @_disfavoredOverload
+    public func accessibilityRoleDescription(_ value: String) -> SampleOutput {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> SampleOutput {
+        return mutate(ariaroledescription: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(verbatim value: String) -> SampleOutput {
         return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
     }
 }
@@ -16446,7 +22434,7 @@ public struct KeyboardInput: ContentNode, HtmlElement, BodyElement, FormElement,
     }
 }
 
-extension KeyboardInput: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
+extension KeyboardInput: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
     
     public func accessKey(_ value: Character) -> KeyboardInput {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -16697,79 +22685,233 @@ extension KeyboardInput: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttr
         return mutate(key: event.rawValue, value: .init(value, context: .tainted(.js)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityAtomic(_:) modifier instead.")
     public func aria(atomic value: Bool) -> KeyboardInput {
         return mutate(ariaatomic: .init(value, context: .trusted))
     }
     
+    public func accessibilityAtomic(_ value: Bool = true) -> KeyboardInput {
+        return mutate(ariaatomic: .init(value, context: .trusted))
+    }
+
+    @available(*, deprecated, message: "Use the accessibilityBusy(_:) modifier instead.")    
     public func aria(busy value: Bool) -> KeyboardInput {
         return mutate(ariabusy: .init(value, context: .trusted))
     }
     
+    public func accessibilityBusy(_ value: Bool = true) -> KeyboardInput {
+        return mutate(ariabusy: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityControls(_:) modifier instead.")
     public func aria(controls value: String) -> KeyboardInput {
         return mutate(ariacontrols: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityControls(_ ids: [String]) -> KeyboardInput {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityControls(_ ids: String...) -> KeyboardInput {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityCurrent(_:) modifier instead.")
     public func aria(current value: Values.Accessibility.Current) -> KeyboardInput {
         return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityCurrent(_ value: Values.Accessibility.Current) -> KeyboardInput {
+        return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityCurrent(_ value: Bool = true) -> KeyboardInput {
+        return mutate(ariacurrent: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDescriptions(_:) modifier instead.")
     public func aria(describedBy value: String) -> KeyboardInput {
         return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityDescriptions(_ ids: [String]) -> KeyboardInput {
+        return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityDescriptions(_ ids: String...) -> KeyboardInput {
+        return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDetail(_:) modifier instead.")
     public func aria(details value: String) -> KeyboardInput {
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityDetail(_ id: String) -> KeyboardInput {
+        return mutate(ariadetails: .init(id, context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
     public func aria(disabled value: Bool) -> KeyboardInput {
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityDisabled(_ value: Bool = true) -> KeyboardInput {
+        return mutate(ariadisabled: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> KeyboardInput {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityFlow(_:) modifier instead.")
     public func aria(flowTo value: String) -> KeyboardInput {
         return mutate(ariaflowto: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityFlow(_ ids: [String]) -> KeyboardInput {
+        return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityFlow(_ ids: String...) -> KeyboardInput {
+        return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityPopup(_:) modifier instead.")
     public func aria(hasPopup value: Values.Accessibility.Popup) -> KeyboardInput {
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityPopup(_ value: Values.Accessibility.Popup) -> KeyboardInput {
+        return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> KeyboardInput {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
+    public func accessibilityHidden(_ value: Bool = true) -> KeyboardInput {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(invalid value: Values.Accessibility.Invalid) -> KeyboardInput {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> KeyboardInput {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated)
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> KeyboardInput {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityShortcuts(_:) modifier instead.")
     public func aria(keyShortcuts value: String) -> KeyboardInput {
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityShortcuts(_ values: [KeyboardShortcut]) -> KeyboardInput {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityShortcuts(_ values: KeyboardShortcut...) -> KeyboardInput {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> KeyboardInput {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
+    public func accessibilityLabel(_ value: String) -> KeyboardInput {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> KeyboardInput {
+        return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(verbatim value: String) -> KeyboardInput {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLabels(_:) modifier instead.")
     public func aria(labeledBy value: String) -> KeyboardInput {
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityLabels(_ ids: [String]) -> KeyboardInput {
+        return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabels(_ ids: String...) -> KeyboardInput {
+        return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> KeyboardInput {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> KeyboardInput {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityOwns(_:) modifier instead.")
     public func aria(owns value: String) -> KeyboardInput {
         return mutate(ariaowns: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityOwns(_ ids: [String]) -> KeyboardInput {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityOwns(_ ids: String...) -> KeyboardInput {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityRelevant(_:) modifier instead.")
     public func aria(relevant value: Values.Accessibility.Relevant) -> KeyboardInput {
         return mutate(ariarelevant: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityRelevant(_ values: [Values.Accessibility.Relevant]) -> KeyboardInput {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityRelevant(_ values: Values.Accessibility.Relevant...) -> KeyboardInput {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityRoleDescription(_:) modifier instead.")
     public func aria(roleDescription value: String) -> KeyboardInput {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    @_disfavoredOverload
+    public func accessibilityRoleDescription(_ value: String) -> KeyboardInput {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> KeyboardInput {
+        return mutate(ariaroledescription: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(verbatim value: String) -> KeyboardInput {
         return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
     }
 }
@@ -16845,7 +22987,7 @@ public struct Subscript: ContentNode, HtmlElement, BodyElement, FormElement, Fig
     }
 }
 
-extension Subscript: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
+extension Subscript: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
     
     public func accessKey(_ value: Character) -> Subscript {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -17095,79 +23237,233 @@ extension Subscript: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(key: event.rawValue, value: .init(value, context: .tainted(.js)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityAtomic(_:) modifier instead.")
     public func aria(atomic value: Bool) -> Subscript {
         return mutate(ariaatomic: .init(value, context: .trusted))
     }
     
+    public func accessibilityAtomic(_ value: Bool = true) -> Subscript {
+        return mutate(ariaatomic: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityBusy(_:) modifier instead.")
     public func aria(busy value: Bool) -> Subscript {
         return mutate(ariabusy: .init(value, context: .trusted))
     }
     
+    public func accessibilityBusy(_ value: Bool = true) -> Subscript {
+        return mutate(ariabusy: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityControls(_:) modifier instead.")
     public func aria(controls value: String) -> Subscript {
         return mutate(ariacontrols: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityControls(_ ids: [String]) -> Subscript {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityControls(_ ids: String...) -> Subscript {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityCurrent(_:) modifier instead.")
     public func aria(current value: Values.Accessibility.Current) -> Subscript {
         return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityCurrent(_ value: Values.Accessibility.Current) -> Subscript {
+        return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityCurrent(_ value: Bool = true) -> Subscript {
+        return mutate(ariacurrent: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDescriptions(_:) modifier instead.")
     public func aria(describedBy value: String) -> Subscript {
         return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityDescriptions(_ ids: [String]) -> Subscript {
+        return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityDescriptions(_ ids: String...) -> Subscript {
+        return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDetail(_:) modifier instead.")
     public func aria(details value: String) -> Subscript {
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityDetail(_ id: String) -> Subscript {
+        return mutate(ariadetails: .init(id, context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
     public func aria(disabled value: Bool) -> Subscript {
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityDisabled(_ value: Bool = true) -> Subscript {
+        return mutate(ariadisabled: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> Subscript {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityFlow(_:) modifier instead.")
     public func aria(flowTo value: String) -> Subscript {
         return mutate(ariaflowto: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityFlow(_ ids: [String]) -> Subscript {
+        return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityFlow(_ ids: String...) -> Subscript {
+        return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityPopup(_:) modifier instead.")
     public func aria(hasPopup value: Values.Accessibility.Popup) -> Subscript {
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityPopup(_ value: Values.Accessibility.Popup) -> Subscript {
+        return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> Subscript {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
+    public func accessibilityHidden(_ value: Bool = true) -> Subscript {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(invalid value: Values.Accessibility.Invalid) -> Subscript {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> Subscript {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated)
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> Subscript {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityShortcuts(_:) modifier instead.")
     public func aria(keyShortcuts value: String) -> Subscript {
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityShortcuts(_ values: [KeyboardShortcut]) -> Subscript {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityShortcuts(_ values: KeyboardShortcut...) -> Subscript {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> Subscript {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
+    public func accessibilityLabel(_ value: String) -> Subscript {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Subscript {
+        return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(verbatim value: String) -> Subscript {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLabels(_:) modifier instead.")
     public func aria(labeledBy value: String) -> Subscript {
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityLabels(_ ids: [String]) -> Subscript {
+        return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabels(_ ids: String...) -> Subscript {
+        return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> Subscript {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> Subscript {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityOwns(_:) modifier instead.")
     public func aria(owns value: String) -> Subscript {
         return mutate(ariaowns: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityOwns(_ ids: [String]) -> Subscript {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityOwns(_ ids: String...) -> Subscript {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityRelevant(_:) modifier instead.")
     public func aria(relevant value: Values.Accessibility.Relevant) -> Subscript {
         return mutate(ariarelevant: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityRelevant(_ values: [Values.Accessibility.Relevant]) -> Subscript {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityRelevant(_ values: Values.Accessibility.Relevant...) -> Subscript {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityRoleDescription(_:) modifier instead.")
     public func aria(roleDescription value: String) -> Subscript {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    @_disfavoredOverload
+    public func accessibilityRoleDescription(_ value: String) -> Subscript {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Subscript {
+        return mutate(ariaroledescription: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(verbatim value: String) -> Subscript {
         return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
     }
 }
@@ -17243,7 +23539,7 @@ public struct Superscript: ContentNode, HtmlElement, BodyElement, FormElement, F
     }
 }
 
-extension Superscript: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
+extension Superscript: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
     
     public func accessKey(_ value: Character) -> Superscript {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -17494,79 +23790,233 @@ extension Superscript: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
         return mutate(key: event.rawValue, value: .init(value, context: .tainted(.js)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityAtomic(_:) modifier instead.")
     public func aria(atomic value: Bool) -> Superscript {
         return mutate(ariaatomic: .init(value, context: .trusted))
     }
     
+    public func accessibilityAtomic(_ value: Bool = true) -> Superscript {
+        return mutate(ariaatomic: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityBusy(_:) modifier instead.")
     public func aria(busy value: Bool) -> Superscript {
         return mutate(ariabusy: .init(value, context: .trusted))
     }
     
+    public func accessibilityBusy(_ value: Bool = true) -> Superscript {
+        return mutate(ariabusy: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityControls(_:) modifier instead.")
     public func aria(controls value: String) -> Superscript {
         return mutate(ariacontrols: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityControls(_ ids: [String]) -> Superscript {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityControls(_ ids: String...) -> Superscript {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityCurrent(_:) modifier instead.")
     public func aria(current value: Values.Accessibility.Current) -> Superscript {
         return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityCurrent(_ value: Values.Accessibility.Current) -> Superscript {
+        return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityCurrent(_ value: Bool = true) -> Superscript {
+        return mutate(ariacurrent: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDescriptions(_:) modifier instead.")
     public func aria(describedBy value: String) -> Superscript {
         return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityDescriptions(_ ids: [String]) -> Superscript {
+        return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityDescriptions(_ ids: String...) -> Superscript {
+        return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDetail(_:) modifier instead.")
     public func aria(details value: String) -> Superscript {
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityDetail(_ id: String) -> Superscript {
+        return mutate(ariadetails: .init(id, context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
     public func aria(disabled value: Bool) -> Superscript {
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityDisabled(_ value: Bool = true) -> Superscript {
+        return mutate(ariadisabled: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> Superscript {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityFlow(_:) modifier instead.")
     public func aria(flowTo value: String) -> Superscript {
         return mutate(ariaflowto: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityFlow(_ ids: [String]) -> Superscript {
+        return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityFlow(_ ids: String...) -> Superscript {
+        return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityPopup(_:) modifier instead.")
     public func aria(hasPopup value: Values.Accessibility.Popup) -> Superscript {
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityPopup(_ value: Values.Accessibility.Popup) -> Superscript {
+        return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> Superscript {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
+    public func accessibilityHidden(_ value: Bool = true) -> Superscript {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(invalid value: Values.Accessibility.Invalid) -> Superscript {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> Superscript {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated)
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> Superscript {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityShortcuts(_:) modifier instead.")
     public func aria(keyShortcuts value: String) -> Superscript {
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityShortcuts(_ values: [KeyboardShortcut]) -> Superscript {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityShortcuts(_ values: KeyboardShortcut...) -> Superscript {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> Superscript {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
+    public func accessibilityLabel(_ value: String) -> Superscript {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Superscript {
+        return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(verbatim value: String) -> Superscript {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLabels(_:) modifier instead.")
     public func aria(labeledBy value: String) -> Superscript {
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityLabels(_ ids: [String]) -> Superscript {
+        return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabels(_ ids: String...) -> Superscript {
+        return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> Superscript {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> Superscript {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityOwns(_:) modifier instead.")
     public func aria(owns value: String) -> Superscript {
         return mutate(ariaowns: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityOwns(_ ids: [String]) -> Superscript {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityOwns(_ ids: String...) -> Superscript {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityRelevant(_:) modifier instead.")
     public func aria(relevant value: Values.Accessibility.Relevant) -> Superscript {
         return mutate(ariarelevant: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityRelevant(_ values: [Values.Accessibility.Relevant]) -> Superscript {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityRelevant(_ values: Values.Accessibility.Relevant...) -> Superscript {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityRoleDescription(_:) modifier instead.")
     public func aria(roleDescription value: String) -> Superscript {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    @_disfavoredOverload
+    public func accessibilityRoleDescription(_ value: String) -> Superscript {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Superscript {
+        return mutate(ariaroledescription: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(verbatim value: String) -> Superscript {
         return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
     }
 }
@@ -17642,7 +24092,7 @@ public struct Italic: ContentNode, HtmlElement, BodyElement, FormElement, Figure
     }
 }
 
-extension Italic: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
+extension Italic: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
     
     public func accessKey(_ value: Character) -> Italic {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -17893,79 +24343,233 @@ extension Italic: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes 
         return mutate(key: event.rawValue, value: .init(value, context: .tainted(.js)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityAtomic(_:) modifier instead.")
     public func aria(atomic value: Bool) -> Italic {
         return mutate(ariaatomic: .init(value, context: .trusted))
     }
     
+    public func accessibilityAtomic(_ value: Bool = true) -> Italic {
+        return mutate(ariaatomic: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityBusy(_:) modifier instead.")
     public func aria(busy value: Bool) -> Italic {
         return mutate(ariabusy: .init(value, context: .trusted))
     }
     
+    public func accessibilityBusy(_ value: Bool = true) -> Italic {
+        return mutate(ariabusy: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityControls(_:) modifier instead.")
     public func aria(controls value: String) -> Italic {
         return mutate(ariacontrols: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityControls(_ ids: [String]) -> Italic {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityControls(_ ids: String...) -> Italic {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityCurrent(_:) modifier instead.")
     public func aria(current value: Values.Accessibility.Current) -> Italic {
         return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityCurrent(_ value: Values.Accessibility.Current) -> Italic {
+        return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityCurrent(_ value: Bool = true) -> Italic {
+        return mutate(ariacurrent: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDescriptions(_:) modifier instead.")
     public func aria(describedBy value: String) -> Italic {
         return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityDescriptions(_ ids: [String]) -> Italic {
+        return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityDescriptions(_ ids: String...) -> Italic {
+        return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDetail(_:) modifier instead.")
     public func aria(details value: String) -> Italic {
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityDetail(_ id: String) -> Italic {
+        return mutate(ariadetails: .init(id, context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
     public func aria(disabled value: Bool) -> Italic {
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityDisabled(_ value: Bool = true) -> Italic {
+        return mutate(ariadisabled: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> Italic {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityFlow(_:) modifier instead.")
     public func aria(flowTo value: String) -> Italic {
         return mutate(ariaflowto: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityFlow(_ ids: [String]) -> Italic {
+        return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityFlow(_ ids: String...) -> Italic {
+        return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityPopup(_:) modifier instead.")
     public func aria(hasPopup value: Values.Accessibility.Popup) -> Italic {
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityPopup(_ value: Values.Accessibility.Popup) -> Italic {
+        return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> Italic {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
+    public func accessibilityHidden(_ value: Bool = true) -> Italic {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(invalid value: Values.Accessibility.Invalid) -> Italic {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> Italic {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated)
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> Italic {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityShortcuts(_:) modifier instead.")
     public func aria(keyShortcuts value: String) -> Italic {
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityShortcuts(_ values: [KeyboardShortcut]) -> Italic {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityShortcuts(_ values: KeyboardShortcut...) -> Italic {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> Italic {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
+    public func accessibilityLabel(_ value: String) -> Italic {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Italic {
+        return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(verbatim value: String) -> Italic {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLabels(_:) modifier instead.")
     public func aria(labeledBy value: String) -> Italic {
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityLabels(_ ids: [String]) -> Italic {
+        return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabels(_ ids: String...) -> Italic {
+        return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> Italic {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> Italic {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityOwns(_:) modifier instead.")
     public func aria(owns value: String) -> Italic {
         return mutate(ariaowns: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityOwns(_ ids: [String]) -> Italic {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityOwns(_ ids: String...) -> Italic {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityRelevant(_:) modifier instead.")
     public func aria(relevant value: Values.Accessibility.Relevant) -> Italic {
         return mutate(ariarelevant: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityRelevant(_ values: [Values.Accessibility.Relevant]) -> Italic {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityRelevant(_ values: Values.Accessibility.Relevant...) -> Italic {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityRoleDescription(_:) modifier instead.")
     public func aria(roleDescription value: String) -> Italic {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    @_disfavoredOverload
+    public func accessibilityRoleDescription(_ value: String) -> Italic {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Italic {
+        return mutate(ariaroledescription: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(verbatim value: String) -> Italic {
         return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
     }
 }
@@ -18050,7 +24654,7 @@ public struct Bold: ContentNode, HtmlElement, BodyElement, FormElement, FigureEl
     }
 }
 
-extension Bold: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
+extension Bold: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
     
     public func accessKey(_ value: Character) -> Bold {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -18301,79 +24905,233 @@ extension Bold: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(key: event.rawValue, value: .init(value, context: .tainted(.js)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityAtomic(_:) modifier instead.")
     public func aria(atomic value: Bool) -> Bold {
         return mutate(ariaatomic: .init(value, context: .trusted))
     }
     
+    public func accessibilityAtomic(_ value: Bool = true) -> Bold {
+        return mutate(ariaatomic: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityBusy(_:) modifier instead.")
     public func aria(busy value: Bool) -> Bold {
         return mutate(ariabusy: .init(value, context: .trusted))
     }
     
+    public func accessibilityBusy(_ value: Bool = true) -> Bold {
+        return mutate(ariabusy: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityControls(_:) modifier instead.")
     public func aria(controls value: String) -> Bold {
         return mutate(ariacontrols: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityControls(_ ids: [String]) -> Bold {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityControls(_ ids: String...) -> Bold {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityCurrent(_:) modifier instead.")
     public func aria(current value: Values.Accessibility.Current) -> Bold {
         return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityCurrent(_ value: Values.Accessibility.Current) -> Bold {
+        return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityCurrent(_ value: Bool = true) -> Bold {
+        return mutate(ariacurrent: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDescriptions(_:) modifier instead.")
     public func aria(describedBy value: String) -> Bold {
         return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityDescriptions(_ ids: [String]) -> Bold {
+        return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityDescriptions(_ ids: String...) -> Bold {
+        return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDetail(_:) modifier instead.")
     public func aria(details value: String) -> Bold {
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityDetail(_ id: String) -> Bold {
+        return mutate(ariadetails: .init(id, context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
     public func aria(disabled value: Bool) -> Bold {
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityDisabled(_ value: Bool = true) -> Bold {
+        return mutate(ariadisabled: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> Bold {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityFlow(_:) modifier instead.")
     public func aria(flowTo value: String) -> Bold {
         return mutate(ariaflowto: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityFlow(_ ids: [String]) -> Bold {
+        return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityFlow(_ ids: String...) -> Bold {
+        return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityPopup(_:) modifier instead.")
     public func aria(hasPopup value: Values.Accessibility.Popup) -> Bold {
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityPopup(_ value: Values.Accessibility.Popup) -> Bold {
+        return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> Bold {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
+    public func accessibilityHidden(_ value: Bool = true) -> Bold {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(invalid value: Values.Accessibility.Invalid) -> Bold {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> Bold {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated)
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> Bold {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityShortcuts(_:) modifier instead.")
     public func aria(keyShortcuts value: String) -> Bold {
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityShortcuts(_ values: [KeyboardShortcut]) -> Bold {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityShortcuts(_ values: KeyboardShortcut...) -> Bold {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> Bold {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
+    public func accessibilityLabel(_ value: String) -> Bold {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Bold {
+        return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(verbatim value: String) -> Bold {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLabels(_:) modifier instead.")
     public func aria(labeledBy value: String) -> Bold {
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityLabels(_ ids: [String]) -> Bold {
+        return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabels(_ ids: String...) -> Bold {
+        return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> Bold {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> Bold {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityOwns(_:) modifier instead.")
     public func aria(owns value: String) -> Bold {
         return mutate(ariaowns: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityOwns(_ ids: [String]) -> Bold {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityOwns(_ ids: String...) -> Bold {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityRelevant(_:) modifier instead.")
     public func aria(relevant value: Values.Accessibility.Relevant) -> Bold {
         return mutate(ariarelevant: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityRelevant(_ values: [Values.Accessibility.Relevant]) -> Bold {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityRelevant(_ values: Values.Accessibility.Relevant...) -> Bold {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityRoleDescription(_:) modifier instead.")
     public func aria(roleDescription value: String) -> Bold {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    @_disfavoredOverload
+    public func accessibilityRoleDescription(_ value: String) -> Bold {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Bold {
+        return mutate(ariaroledescription: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(verbatim value: String) -> Bold {
         return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
     }
 }
@@ -18458,7 +25216,7 @@ public struct Underline: ContentNode, HtmlElement, BodyElement, FormElement, Fig
     }
 }
 
-extension Underline: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
+extension Underline: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
     
     public func accessKey(_ value: Character) -> Underline {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -18709,79 +25467,233 @@ extension Underline: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(key: event.rawValue, value: .init(value, context: .tainted(.js)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityAtomic(_:) modifier instead.")
     public func aria(atomic value: Bool) -> Underline {
         return mutate(ariaatomic: .init(value, context: .trusted))
     }
     
+    public func accessibilityAtomic(_ value: Bool = true) -> Underline {
+        return mutate(ariaatomic: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityBusy(_:) modifier instead.")
     public func aria(busy value: Bool) -> Underline {
         return mutate(ariabusy: .init(value, context: .trusted))
     }
     
+    public func accessibilityBusy(_ value: Bool = true) -> Underline {
+        return mutate(ariabusy: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityControls(_:) modifier instead.")
     public func aria(controls value: String) -> Underline {
         return mutate(ariacontrols: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityControls(_ ids: [String]) -> Underline {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityControls(_ ids: String...) -> Underline {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityCurrent(_:) modifier instead.")
     public func aria(current value: Values.Accessibility.Current) -> Underline {
         return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityCurrent(_ value: Values.Accessibility.Current) -> Underline {
+        return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityCurrent(_ value: Bool = true) -> Underline {
+        return mutate(ariacurrent: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDescriptions(_:) modifier instead.")
     public func aria(describedBy value: String) -> Underline {
         return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityDescriptions(_ ids: [String]) -> Underline {
+        return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityDescriptions(_ ids: String...) -> Underline {
+        return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDetail(_:) modifier instead.")
     public func aria(details value: String) -> Underline {
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityDetail(_ id: String) -> Underline {
+        return mutate(ariadetails: .init(id, context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
     public func aria(disabled value: Bool) -> Underline {
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityDisabled(_ value: Bool = true) -> Underline {
+        return mutate(ariadisabled: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> Underline {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityFlow(_:) modifier instead.")
     public func aria(flowTo value: String) -> Underline {
         return mutate(ariaflowto: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityFlow(_ ids: [String]) -> Underline {
+        return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityFlow(_ ids: String...) -> Underline {
+        return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityPopup(_:) modifier instead.")
     public func aria(hasPopup value: Values.Accessibility.Popup) -> Underline {
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityPopup(_ value: Values.Accessibility.Popup) -> Underline {
+        return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> Underline {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
+    public func accessibilityHidden(_ value: Bool = true) -> Underline {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(invalid value: Values.Accessibility.Invalid) -> Underline {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> Underline {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated)
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> Underline {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityShortcuts(_:) modifier instead.")
     public func aria(keyShortcuts value: String) -> Underline {
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityShortcuts(_ values: [KeyboardShortcut]) -> Underline {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityShortcuts(_ values: KeyboardShortcut...) -> Underline {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> Underline {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
+    public func accessibilityLabel(_ value: String) -> Underline {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Underline {
+        return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(verbatim value: String) -> Underline {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLabels(_:) modifier instead.")
     public func aria(labeledBy value: String) -> Underline {
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityLabels(_ ids: [String]) -> Underline {
+        return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabels(_ ids: String...) -> Underline {
+        return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> Underline {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> Underline {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityOwns(_:) modifier instead.")
     public func aria(owns value: String) -> Underline {
         return mutate(ariaowns: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityOwns(_ ids: [String]) -> Underline {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityOwns(_ ids: String...) -> Underline {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityRelevant(_:) modifier instead.")
     public func aria(relevant value: Values.Accessibility.Relevant) -> Underline {
         return mutate(ariarelevant: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityRelevant(_ values: [Values.Accessibility.Relevant]) -> Underline {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityRelevant(_ values: Values.Accessibility.Relevant...) -> Underline {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityRoleDescription(_:) modifier instead.")
     public func aria(roleDescription value: String) -> Underline {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    @_disfavoredOverload
+    public func accessibilityRoleDescription(_ value: String) -> Underline {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Underline {
+        return mutate(ariaroledescription: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(verbatim value: String) -> Underline {
         return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
     }
 }
@@ -18866,7 +25778,7 @@ public struct Mark: ContentNode, HtmlElement, BodyElement, FormElement, FigureEl
     }
 }
 
-extension Mark: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
+extension Mark: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
     
     public func accessKey(_ value: Character) -> Mark {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -19117,79 +26029,233 @@ extension Mark: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(key: event.rawValue, value: .init(value, context: .tainted(.js)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityAtomic(_:) modifier instead.")
     public func aria(atomic value: Bool) -> Mark {
         return mutate(ariaatomic: .init(value, context: .trusted))
     }
     
+    public func accessibilityAtomic(_ value: Bool = true) -> Mark {
+        return mutate(ariaatomic: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityBusy(_:) modifier instead.")
     public func aria(busy value: Bool) -> Mark {
         return mutate(ariabusy: .init(value, context: .trusted))
     }
     
+    public func accessibilityBusy(_ value: Bool = true) -> Mark {
+        return mutate(ariabusy: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityControls(_:) modifier instead.")
     public func aria(controls value: String) -> Mark {
         return mutate(ariacontrols: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityControls(_ ids: [String]) -> Mark {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityControls(_ ids: String...) -> Mark {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityCurrent(_:) modifier instead.")
     public func aria(current value: Values.Accessibility.Current) -> Mark {
         return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityCurrent(_ value: Values.Accessibility.Current) -> Mark {
+        return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityCurrent(_ value: Bool = true) -> Mark {
+        return mutate(ariacurrent: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDescriptions(_:) modifier instead.")
     public func aria(describedBy value: String) -> Mark {
         return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityDescriptions(_ ids: [String]) -> Mark {
+        return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityDescriptions(_ ids: String...) -> Mark {
+        return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDetail(_:) modifier instead.")
     public func aria(details value: String) -> Mark {
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityDetail(_ id: String) -> Mark {
+        return mutate(ariadetails: .init(id, context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
     public func aria(disabled value: Bool) -> Mark {
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityDisabled(_ value: Bool = true) -> Mark {
+        return mutate(ariadisabled: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> Mark {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityFlow(_:) modifier instead.")
     public func aria(flowTo value: String) -> Mark {
         return mutate(ariaflowto: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityFlow(_ ids: [String]) -> Mark {
+        return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityFlow(_ ids: String...) -> Mark {
+        return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityPopup(_:) modifier instead.")
     public func aria(hasPopup value: Values.Accessibility.Popup) -> Mark {
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityPopup(_ value: Values.Accessibility.Popup) -> Mark {
+        return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> Mark {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
+    public func accessibilityHidden(_ value: Bool = true) -> Mark {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(invalid value: Values.Accessibility.Invalid) -> Mark {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> Mark {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated)
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> Mark {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityShortcuts(_:) modifier instead.")
     public func aria(keyShortcuts value: String) -> Mark {
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityShortcuts(_ values: [KeyboardShortcut]) -> Mark {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityShortcuts(_ values: KeyboardShortcut...) -> Mark {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> Mark {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
+    public func accessibilityLabel(_ value: String) -> Mark {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Mark {
+        return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(verbatim value: String) -> Mark {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLabels(_:) modifier instead.")
     public func aria(labeledBy value: String) -> Mark {
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityLabels(_ ids: [String]) -> Mark {
+        return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabels(_ ids: String...) -> Mark {
+        return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> Mark {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> Mark {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityOwns(_:) modifier instead.")
     public func aria(owns value: String) -> Mark {
         return mutate(ariaowns: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityOwns(_ ids: [String]) -> Mark {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityOwns(_ ids: String...) -> Mark {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityRelevant(_:) modifier instead.")
     public func aria(relevant value: Values.Accessibility.Relevant) -> Mark {
         return mutate(ariarelevant: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityRelevant(_ values: [Values.Accessibility.Relevant]) -> Mark {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityRelevant(_ values: Values.Accessibility.Relevant...) -> Mark {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityRoleDescription(_:) modifier instead.")
     public func aria(roleDescription value: String) -> Mark {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    @_disfavoredOverload
+    public func accessibilityRoleDescription(_ value: String) -> Mark {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Mark {
+        return mutate(ariaroledescription: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(verbatim value: String) -> Mark {
         return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
     }
 }
@@ -19265,7 +26331,7 @@ public struct Bdi: ContentNode, HtmlElement, BodyElement, FormElement, FigureEle
     }
 }
 
-extension Bdi: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
+extension Bdi: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
     
     public func accessKey(_ value: Character) -> Bdi {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -19516,79 +26582,233 @@ extension Bdi: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(key: event.rawValue, value: .init(value, context: .tainted(.js)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityAtomic(_:) modifier instead.")
     public func aria(atomic value: Bool) -> Bdi {
         return mutate(ariaatomic: .init(value, context: .trusted))
     }
     
+    public func accessibilityAtomic(_ value: Bool = true) -> Bdi {
+        return mutate(ariaatomic: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityBusy(_:) modifier instead.")
     public func aria(busy value: Bool) -> Bdi {
         return mutate(ariabusy: .init(value, context: .trusted))
     }
     
+    public func accessibilityBusy(_ value: Bool = true) -> Bdi {
+        return mutate(ariabusy: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityControls(_:) modifier instead.")
     public func aria(controls value: String) -> Bdi {
         return mutate(ariacontrols: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityControls(_ ids: [String]) -> Bdi {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityControls(_ ids: String...) -> Bdi {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityCurrent(_:) modifier instead.")
     public func aria(current value: Values.Accessibility.Current) -> Bdi {
         return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityCurrent(_ value: Values.Accessibility.Current) -> Bdi {
+        return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityCurrent(_ value: Bool = true) -> Bdi {
+        return mutate(ariacurrent: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDescriptions(_:) modifier instead.")
     public func aria(describedBy value: String) -> Bdi {
         return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityDescriptions(_ ids: [String]) -> Bdi {
+        return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityDescriptions(_ ids: String...) -> Bdi {
+        return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDetail(_:) modifier instead.")
     public func aria(details value: String) -> Bdi {
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityDetail(_ id: String) -> Bdi {
+        return mutate(ariadetails: .init(id, context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
     public func aria(disabled value: Bool) -> Bdi {
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityDisabled(_ value: Bool = true) -> Bdi {
+        return mutate(ariadisabled: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> Bdi {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityFlow(_:) modifier instead.")
     public func aria(flowTo value: String) -> Bdi {
         return mutate(ariaflowto: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityFlow(_ ids: [String]) -> Bdi {
+        return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityFlow(_ ids: String...) -> Bdi {
+        return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityPopup(_:) modifier instead.")
     public func aria(hasPopup value: Values.Accessibility.Popup) -> Bdi {
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityPopup(_ value: Values.Accessibility.Popup) -> Bdi {
+        return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> Bdi {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
+    public func accessibilityHidden(_ value: Bool = true) -> Bdi {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(invalid value: Values.Accessibility.Invalid) -> Bdi {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> Bdi {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated)
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> Bdi {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityShortcuts(_:) modifier instead.")
     public func aria(keyShortcuts value: String) -> Bdi {
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityShortcuts(_ values: [KeyboardShortcut]) -> Bdi {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityShortcuts(_ values: KeyboardShortcut...) -> Bdi {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> Bdi {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
+    public func accessibilityLabel(_ value: String) -> Bdi {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Bdi {
+        return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(verbatim value: String) -> Bdi {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLabels(_:) modifier instead.")
     public func aria(labeledBy value: String) -> Bdi {
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityLabels(_ ids: [String]) -> Bdi {
+        return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabels(_ ids: String...) -> Bdi {
+        return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> Bdi {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> Bdi {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityOwns(_:) modifier instead.")
     public func aria(owns value: String) -> Bdi {
         return mutate(ariaowns: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityOwns(_ ids: [String]) -> Bdi {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityOwns(_ ids: String...) -> Bdi {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityRelevant(_:) modifier instead.")
     public func aria(relevant value: Values.Accessibility.Relevant) -> Bdi {
         return mutate(ariarelevant: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityRelevant(_ values: [Values.Accessibility.Relevant]) -> Bdi {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityRelevant(_ values: Values.Accessibility.Relevant...) -> Bdi {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityRoleDescription(_:) modifier instead.")
     public func aria(roleDescription value: String) -> Bdi {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    @_disfavoredOverload
+    public func accessibilityRoleDescription(_ value: String) -> Bdi {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Bdi {
+        return mutate(ariaroledescription: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(verbatim value: String) -> Bdi {
         return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
     }
 }
@@ -19652,7 +26872,7 @@ public struct Bdo: EmptyNode, HtmlElement, BodyElement, FormElement, FigureEleme
     }
 }
 
-extension Bdo: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
+extension Bdo: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
     
     public func accessKey(_ value: Character) -> Bdo {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -19903,79 +27123,233 @@ extension Bdo: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(key: event.rawValue, value: .init(value, context: .tainted(.js)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityAtomic(_:) modifier instead.")
     public func aria(atomic value: Bool) -> Bdo {
         return mutate(ariaatomic: .init(value, context: .trusted))
     }
     
+    public func accessibilityAtomic(_ value: Bool = true) -> Bdo {
+        return mutate(ariaatomic: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityBusy(_:) modifier instead.")
     public func aria(busy value: Bool) -> Bdo {
         return mutate(ariabusy: .init(value, context: .trusted))
     }
     
+    public func accessibilityBusy(_ value: Bool = true) -> Bdo {
+        return mutate(ariabusy: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityControls(_:) modifier instead.")
     public func aria(controls value: String) -> Bdo {
         return mutate(ariacontrols: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityControls(_ ids: [String]) -> Bdo {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityControls(_ ids: String...) -> Bdo {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityCurrent(_:) modifier instead.")
     public func aria(current value: Values.Accessibility.Current) -> Bdo {
         return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityCurrent(_ value: Values.Accessibility.Current) -> Bdo {
+        return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityCurrent(_ value: Bool = true) -> Bdo {
+        return mutate(ariacurrent: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDescriptions(_:) modifier instead.")
     public func aria(describedBy value: String) -> Bdo {
         return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityDescriptions(_ ids: [String]) -> Bdo {
+        return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityDescriptions(_ ids: String...) -> Bdo {
+        return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDetail(_:) modifier instead.")
     public func aria(details value: String) -> Bdo {
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityDetail(_ id: String) -> Bdo {
+        return mutate(ariadetails: .init(id, context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
     public func aria(disabled value: Bool) -> Bdo {
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityDisabled(_ value: Bool = true) -> Bdo {
+        return mutate(ariadisabled: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> Bdo {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityFlow(_:) modifier instead.")
     public func aria(flowTo value: String) -> Bdo {
         return mutate(ariaflowto: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityFlow(_ ids: [String]) -> Bdo {
+        return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityFlow(_ ids: String...) -> Bdo {
+        return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityPopup(_:) modifier instead.")
     public func aria(hasPopup value: Values.Accessibility.Popup) -> Bdo {
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityPopup(_ value: Values.Accessibility.Popup) -> Bdo {
+        return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> Bdo {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
+    public func accessibilityHidden(_ value: Bool = true) -> Bdo {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(invalid value: Values.Accessibility.Invalid) -> Bdo {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> Bdo {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated)
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> Bdo {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityShortcuts(_:) modifier instead.")
     public func aria(keyShortcuts value: String) -> Bdo {
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityShortcuts(_ values: [KeyboardShortcut]) -> Bdo {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityShortcuts(_ values: KeyboardShortcut...) -> Bdo {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> Bdo {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
+    public func accessibilityLabel(_ value: String) -> Bdo {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Bdo {
+        return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(verbatim value: String) -> Bdo {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLabels(_:) modifier instead.")
     public func aria(labeledBy value: String) -> Bdo {
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityLabels(_ ids: [String]) -> Bdo {
+        return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabels(_ ids: String...) -> Bdo {
+        return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> Bdo {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> Bdo {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityOwns(_:) modifier instead.")
     public func aria(owns value: String) -> Bdo {
         return mutate(ariaowns: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityOwns(_ ids: [String]) -> Bdo {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityOwns(_ ids: String...) -> Bdo {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityRelevant(_:) modifier instead.")
     public func aria(relevant value: Values.Accessibility.Relevant) -> Bdo {
         return mutate(ariarelevant: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityRelevant(_ values: [Values.Accessibility.Relevant]) -> Bdo {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityRelevant(_ values: Values.Accessibility.Relevant...) -> Bdo {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityRoleDescription(_:) modifier instead.")
     public func aria(roleDescription value: String) -> Bdo {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    @_disfavoredOverload
+    public func accessibilityRoleDescription(_ value: String) -> Bdo {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Bdo {
+        return mutate(ariaroledescription: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(verbatim value: String) -> Bdo {
         return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
     }
 }
@@ -20047,7 +27421,7 @@ public struct Span: ContentNode, HtmlElement, BodyElement, FormElement, FigureEl
     }
 }
 
-extension Span: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
+extension Span: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes, OrientationAccessibilityAttribute, RequiredAccessibilityAttribute, ReadOnlyAccessibilityAttribute {
     
     public func accessKey(_ value: Character) -> Span {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -20298,80 +27672,246 @@ extension Span: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
         return mutate(key: event.rawValue, value: .init(value, context: .tainted(.js)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityAtomic(_:) modifier instead.")
     public func aria(atomic value: Bool) -> Span {
         return mutate(ariaatomic: .init(value, context: .trusted))
     }
     
+    public func accessibilityAtomic(_ value: Bool = true) -> Span {
+        return mutate(ariaatomic: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityBusy(_:) modifier instead.")
     public func aria(busy value: Bool) -> Span {
         return mutate(ariabusy: .init(value, context: .trusted))
     }
     
+    public func accessibilityBusy(_ value: Bool = true) -> Span {
+        return mutate(ariabusy: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityControls(_:) modifier instead.")
     public func aria(controls value: String) -> Span {
         return mutate(ariacontrols: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityControls(_ ids: [String]) -> Span {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityControls(_ ids: String...) -> Span {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityCurrent(_:) modifier instead.")
     public func aria(current value: Values.Accessibility.Current) -> Span {
         return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityCurrent(_ value: Values.Accessibility.Current) -> Span {
+        return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityCurrent(_ value: Bool = true) -> Span {
+        return mutate(ariacurrent: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDescriptions(_:) modifier instead.")
     public func aria(describedBy value: String) -> Span {
         return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityDescriptions(_ ids: [String]) -> Span {
+        return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityDescriptions(_ ids: String...) -> Span {
+        return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDetail(_:) modifier instead.")
     public func aria(details value: String) -> Span {
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityDetail(_ id: String) -> Span {
+        return mutate(ariadetails: .init(id, context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
     public func aria(disabled value: Bool) -> Span {
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityDisabled(_ value: Bool = true) -> Span {
+        return mutate(ariadisabled: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> Span {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityFlow(_:) modifier instead.")
     public func aria(flowTo value: String) -> Span {
         return mutate(ariaflowto: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityFlow(_ ids: [String]) -> Span {
+        return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityFlow(_ ids: String...) -> Span {
+        return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityPopup(_:) modifier instead.")
     public func aria(hasPopup value: Values.Accessibility.Popup) -> Span {
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityPopup(_ value: Values.Accessibility.Popup) -> Span {
+        return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> Span {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
+    public func accessibilityHidden(_ value: Bool = true) -> Span {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(invalid value: Values.Accessibility.Invalid) -> Span {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> Span {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated)
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> Span {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityShortcuts(_:) modifier instead.")
     public func aria(keyShortcuts value: String) -> Span {
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityShortcuts(_ values: [KeyboardShortcut]) -> Span {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityShortcuts(_ values: KeyboardShortcut...) -> Span {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> Span {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
+    public func accessibilityLabel(_ value: String) -> Span {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Span {
+        return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(verbatim value: String) -> Span {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLabels(_:) modifier instead.")
     public func aria(labeledBy value: String) -> Span {
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityLabels(_ ids: [String]) -> Span {
+        return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabels(_ ids: String...) -> Span {
+        return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> Span {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> Span {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityOwns(_:) modifier instead.")
     public func aria(owns value: String) -> Span {
         return mutate(ariaowns: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityOwns(_ ids: [String]) -> Span {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityOwns(_ ids: String...) -> Span {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityRelevant(_:) modifier instead.")
     public func aria(relevant value: Values.Accessibility.Relevant) -> Span {
         return mutate(ariarelevant: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityRelevant(_ values: [Values.Accessibility.Relevant]) -> Span {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityRelevant(_ values: Values.Accessibility.Relevant...) -> Span {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityRoleDescription(_:) modifier instead.")
     public func aria(roleDescription value: String) -> Span {
         return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    @_disfavoredOverload
+    public func accessibilityRoleDescription(_ value: String) -> Span {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Span {
+        return mutate(ariaroledescription: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(verbatim value: String) -> Span {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityOrientation(_ value: Values.Accessibility.Orientation) -> Span {
+        return mutate(ariaorientation: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityRequired(_ value: Bool = true) -> Span {
+        return mutate(ariarequired: .init(value, context: .trusted))
+    }
+
+    public func accessibilityReadonly(_ value: Bool = true) -> Span {
+        return mutate(ariareadonly: .init(value, context: .trusted))
     }
 }
 
@@ -20427,7 +27967,7 @@ public struct LineBreak: EmptyNode, HtmlElement, BodyElement, FormElement, Figur
     }
 }
 
-extension LineBreak: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
+extension LineBreak: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
     
     public func accessKey(_ value: Character) -> LineBreak {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -20678,79 +28218,233 @@ extension LineBreak: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(key: event.rawValue, value: .init(value, context: .tainted(.js)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityAtomic(_:) modifier instead.")
     public func aria(atomic value: Bool) -> LineBreak {
         return mutate(ariaatomic: .init(value, context: .trusted))
     }
     
+    public func accessibilityAtomic(_ value: Bool = true) -> LineBreak {
+        return mutate(ariaatomic: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityBusy(_:) modifier instead.")
     public func aria(busy value: Bool) -> LineBreak {
         return mutate(ariabusy: .init(value, context: .trusted))
     }
     
+    public func accessibilityBusy(_ value: Bool = true) -> LineBreak {
+        return mutate(ariabusy: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityControls(_:) modifier instead.")
     public func aria(controls value: String) -> LineBreak {
         return mutate(ariacontrols: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityControls(_ ids: [String]) -> LineBreak {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityControls(_ ids: String...) -> LineBreak {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityCurrent(_:) modifier instead.")
     public func aria(current value: Values.Accessibility.Current) -> LineBreak {
         return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityCurrent(_ value: Values.Accessibility.Current) -> LineBreak {
+        return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityCurrent(_ value: Bool = true) -> LineBreak {
+        return mutate(ariacurrent: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDescriptions(_:) modifier instead.")
     public func aria(describedBy value: String) -> LineBreak {
         return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityDescriptions(_ ids: [String]) -> LineBreak {
+        return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityDescriptions(_ ids: String...) -> LineBreak {
+        return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDetail(_:) modifier instead.")
     public func aria(details value: String) -> LineBreak {
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityDetail(_ id: String) -> LineBreak {
+        return mutate(ariadetails: .init(id, context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
     public func aria(disabled value: Bool) -> LineBreak {
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityDisabled(_ value: Bool = true) -> LineBreak {
+        return mutate(ariadisabled: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> LineBreak {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityFlow(_:) modifier instead.")
     public func aria(flowTo value: String) -> LineBreak {
         return mutate(ariaflowto: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityFlow(_ ids: [String]) -> LineBreak {
+        return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityFlow(_ ids: String...) -> LineBreak {
+        return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityPopup(_:) modifier instead.")
     public func aria(hasPopup value: Values.Accessibility.Popup) -> LineBreak {
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityPopup(_ value: Values.Accessibility.Popup) -> LineBreak {
+        return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> LineBreak {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
+    public func accessibilityHidden(_ value: Bool = true) -> LineBreak {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(invalid value: Values.Accessibility.Invalid) -> LineBreak {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> LineBreak {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated)
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> LineBreak {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityShortcuts(_:) modifier instead.")
     public func aria(keyShortcuts value: String) -> LineBreak {
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityShortcuts(_ values: [KeyboardShortcut]) -> LineBreak {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityShortcuts(_ values: KeyboardShortcut...) -> LineBreak {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> LineBreak {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
+    public func accessibilityLabel(_ value: String) -> LineBreak {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> LineBreak {
+        return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(verbatim value: String) -> LineBreak {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLabels(_:) modifier instead.")
     public func aria(labeledBy value: String) -> LineBreak {
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityLabels(_ ids: [String]) -> LineBreak {
+        return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabels(_ ids: String...) -> LineBreak {
+        return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> LineBreak {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> LineBreak {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityOwns(_:) modifier instead.")
     public func aria(owns value: String) -> LineBreak {
         return mutate(ariaowns: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityOwns(_ ids: [String]) -> LineBreak {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityOwns(_ ids: String...) -> LineBreak {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityRelevant(_:) modifier instead.")
     public func aria(relevant value: Values.Accessibility.Relevant) -> LineBreak {
         return mutate(ariarelevant: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityRelevant(_ values: [Values.Accessibility.Relevant]) -> LineBreak {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityRelevant(_ values: Values.Accessibility.Relevant...) -> LineBreak {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityRoleDescription(_:) modifier instead.")
     public func aria(roleDescription value: String) -> LineBreak {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    @_disfavoredOverload
+    public func accessibilityRoleDescription(_ value: String) -> LineBreak {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> LineBreak {
+        return mutate(ariaroledescription: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(verbatim value: String) -> LineBreak {
         return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
     }
 }
@@ -20811,7 +28505,7 @@ public struct WordBreak: EmptyNode, HtmlElement, BodyElement, FormElement, Figur
     }
 }
 
-extension WordBreak: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
+extension WordBreak: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
     
     public func accessKey(_ value: Character) -> WordBreak {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -21062,79 +28756,233 @@ extension WordBreak: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(key: event.rawValue, value: .init(value, context: .tainted(.js)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityAtomic(_:) modifier instead.")
     public func aria(atomic value: Bool) -> WordBreak {
         return mutate(ariaatomic: .init(value, context: .trusted))
     }
     
+    public func accessibilityAtomic(_ value: Bool = true) -> WordBreak {
+        return mutate(ariaatomic: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityBusy(_:) modifier instead.")
     public func aria(busy value: Bool) -> WordBreak {
         return mutate(ariabusy: .init(value, context: .trusted))
     }
     
+    public func accessibilityBusy(_ value: Bool = true) -> WordBreak {
+        return mutate(ariabusy: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityControls(_:) modifier instead.")
     public func aria(controls value: String) -> WordBreak {
         return mutate(ariacontrols: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityControls(_ ids: [String]) -> WordBreak {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityControls(_ ids: String...) -> WordBreak {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityCurrent(_:) modifier instead.")
     public func aria(current value: Values.Accessibility.Current) -> WordBreak {
         return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityCurrent(_ value: Values.Accessibility.Current) -> WordBreak {
+        return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityCurrent(_ value: Bool = true) -> WordBreak {
+        return mutate(ariacurrent: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDescriptions(_:) modifier instead.")
     public func aria(describedBy value: String) -> WordBreak {
         return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityDescriptions(_ ids: [String]) -> WordBreak {
+        return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityDescriptions(_ ids: String...) -> WordBreak {
+        return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDetail(_:) modifier instead.")
     public func aria(details value: String) -> WordBreak {
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityDetail(_ id: String) -> WordBreak {
+        return mutate(ariadetails: .init(id, context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
     public func aria(disabled value: Bool) -> WordBreak {
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityDisabled(_ value: Bool = true) -> WordBreak {
+        return mutate(ariadisabled: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> WordBreak {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityFlow(_:) modifier instead.")
     public func aria(flowTo value: String) -> WordBreak {
         return mutate(ariaflowto: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityFlow(_ ids: [String]) -> WordBreak {
+        return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityFlow(_ ids: String...) -> WordBreak {
+        return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityPopup(_:) modifier instead.")
     public func aria(hasPopup value: Values.Accessibility.Popup) -> WordBreak {
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityPopup(_ value: Values.Accessibility.Popup) -> WordBreak {
+        return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> WordBreak {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
+    public func accessibilityHidden(_ value: Bool = true) -> WordBreak {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(invalid value: Values.Accessibility.Invalid) -> WordBreak {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> WordBreak {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated)
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> WordBreak {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityShortcuts(_:) modifier instead.")
     public func aria(keyShortcuts value: String) -> WordBreak {
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityShortcuts(_ values: [KeyboardShortcut]) -> WordBreak {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityShortcuts(_ values: KeyboardShortcut...) -> WordBreak {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> WordBreak {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
+    public func accessibilityLabel(_ value: String) -> WordBreak {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> WordBreak {
+        return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(verbatim value: String) -> WordBreak {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLabels(_:) modifier instead.")
     public func aria(labeledBy value: String) -> WordBreak {
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityLabels(_ ids: [String]) -> WordBreak {
+        return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabels(_ ids: String...) -> WordBreak {
+        return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> WordBreak {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> WordBreak {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityOwns(_:) modifier instead.")
     public func aria(owns value: String) -> WordBreak {
         return mutate(ariaowns: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityOwns(_ ids: [String]) -> WordBreak {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityOwns(_ ids: String...) -> WordBreak {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityRelevant(_:) modifier instead.")
     public func aria(relevant value: Values.Accessibility.Relevant) -> WordBreak {
         return mutate(ariarelevant: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityRelevant(_ values: [Values.Accessibility.Relevant]) -> WordBreak {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityRelevant(_ values: Values.Accessibility.Relevant...) -> WordBreak {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityRoleDescription(_:) modifier instead.")
     public func aria(roleDescription value: String) -> WordBreak {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    @_disfavoredOverload
+    public func accessibilityRoleDescription(_ value: String) -> WordBreak {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> WordBreak {
+        return mutate(ariaroledescription: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(verbatim value: String) -> WordBreak {
         return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
     }
 }
@@ -21206,7 +29054,7 @@ public struct InsertedText: ContentNode, HtmlElement, BodyElement, FormElement, 
     }
 }
 
-extension InsertedText: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, CiteAttribute, DateTimeAttribute {
+extension InsertedText: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes, CiteAttribute, DateTimeAttribute {
     
     public func accessKey(_ value: Character) -> InsertedText {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -21465,79 +29313,233 @@ extension InsertedText: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttri
         return mutate(key: event.rawValue, value: .init(value, context: .tainted(.js)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityAtomic(_:) modifier instead.")
     public func aria(atomic value: Bool) -> InsertedText {
         return mutate(ariaatomic: .init(value, context: .trusted))
     }
     
+    public func accessibilityAtomic(_ value: Bool = true) -> InsertedText {
+        return mutate(ariaatomic: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityBusy(_:) modifier instead.")
     public func aria(busy value: Bool) -> InsertedText {
         return mutate(ariabusy: .init(value, context: .trusted))
     }
     
+    public func accessibilityBusy(_ value: Bool = true) -> InsertedText {
+        return mutate(ariabusy: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityControls(_:) modifier instead.")
     public func aria(controls value: String) -> InsertedText {
         return mutate(ariacontrols: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityControls(_ ids: [String]) -> InsertedText {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityControls(_ ids: String...) -> InsertedText {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityCurrent(_:) modifier instead.")
     public func aria(current value: Values.Accessibility.Current) -> InsertedText {
         return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityCurrent(_ value: Values.Accessibility.Current) -> InsertedText {
+        return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityCurrent(_ value: Bool = true) -> InsertedText {
+        return mutate(ariacurrent: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDescriptions(_:) modifier instead.")
     public func aria(describedBy value: String) -> InsertedText {
         return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityDescriptions(_ ids: [String]) -> InsertedText {
+        return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityDescriptions(_ ids: String...) -> InsertedText {
+        return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDetail(_:) modifier instead.")
     public func aria(details value: String) -> InsertedText {
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityDetail(_ id: String) -> InsertedText {
+        return mutate(ariadetails: .init(id, context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
     public func aria(disabled value: Bool) -> InsertedText {
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityDisabled(_ value: Bool = true) -> InsertedText {
+        return mutate(ariadisabled: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> InsertedText {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityFlow(_:) modifier instead.")
     public func aria(flowTo value: String) -> InsertedText {
         return mutate(ariaflowto: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityFlow(_ ids: [String]) -> InsertedText {
+        return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityFlow(_ ids: String...) -> InsertedText {
+        return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityPopup(_:) modifier instead.")
     public func aria(hasPopup value: Values.Accessibility.Popup) -> InsertedText {
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityPopup(_ value: Values.Accessibility.Popup) -> InsertedText {
+        return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> InsertedText {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
+    public func accessibilityHidden(_ value: Bool = true) -> InsertedText {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(invalid value: Values.Accessibility.Invalid) -> InsertedText {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> InsertedText {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated)
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> InsertedText {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityShortcuts(_:) modifier instead.")
     public func aria(keyShortcuts value: String) -> InsertedText {
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityShortcuts(_ values: [KeyboardShortcut]) -> InsertedText {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityShortcuts(_ values: KeyboardShortcut...) -> InsertedText {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> InsertedText {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
+    public func accessibilityLabel(_ value: String) -> InsertedText {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> InsertedText {
+        return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(verbatim value: String) -> InsertedText {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLabels(_:) modifier instead.")
     public func aria(labeledBy value: String) -> InsertedText {
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityLabels(_ ids: [String]) -> InsertedText {
+        return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabels(_ ids: String...) -> InsertedText {
+        return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> InsertedText {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> InsertedText {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityOwns(_:) modifier instead.")
     public func aria(owns value: String) -> InsertedText {
         return mutate(ariaowns: .init(value, context: .tainted(.html)))
     }
+
+    public func accessibilityOwns(_ ids: [String]) -> InsertedText {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
     
+    public func accessibilityOwns(_ ids: String...) -> InsertedText {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityRelevant(_:) modifier instead.")
     public func aria(relevant value: Values.Accessibility.Relevant) -> InsertedText {
         return mutate(ariarelevant: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityRelevant(_ values: [Values.Accessibility.Relevant]) -> InsertedText {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityRelevant(_ values: Values.Accessibility.Relevant...) -> InsertedText {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityRoleDescription(_:) modifier instead.")
     public func aria(roleDescription value: String) -> InsertedText {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    @_disfavoredOverload
+    public func accessibilityRoleDescription(_ value: String) -> InsertedText {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> InsertedText {
+        return mutate(ariaroledescription: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(verbatim value: String) -> InsertedText {
         return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
     }
 }
@@ -21609,7 +29611,7 @@ public struct DeletedText: ContentNode, HtmlElement, BodyElement, FormElement, F
     }
 }
 
-extension DeletedText: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, CiteAttribute, DateTimeAttribute {
+extension DeletedText: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes, CiteAttribute, DateTimeAttribute {
     
     public func accessKey(_ value: Character) -> DeletedText {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -21868,79 +29870,233 @@ extension DeletedText: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
         return mutate(key: event.rawValue, value: .init(value, context: .tainted(.js)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityAtomic(_:) modifier instead.")
     public func aria(atomic value: Bool) -> DeletedText {
         return mutate(ariaatomic: .init(value, context: .trusted))
     }
     
+    public func accessibilityAtomic(_ value: Bool = true) -> DeletedText {
+        return mutate(ariaatomic: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityBusy(_:) modifier instead.")
     public func aria(busy value: Bool) -> DeletedText {
         return mutate(ariabusy: .init(value, context: .trusted))
     }
     
+    public func accessibilityBusy(_ value: Bool = true) -> DeletedText {
+        return mutate(ariabusy: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityControls(_:) modifier instead.")
     public func aria(controls value: String) -> DeletedText {
         return mutate(ariacontrols: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityControls(_ ids: [String]) -> DeletedText {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityControls(_ ids: String...) -> DeletedText {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityCurrent(_:) modifier instead.")
     public func aria(current value: Values.Accessibility.Current) -> DeletedText {
         return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityCurrent(_ value: Values.Accessibility.Current) -> DeletedText {
+        return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityCurrent(_ value: Bool = true) -> DeletedText {
+        return mutate(ariacurrent: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDescriptions(_:) modifier instead.")
     public func aria(describedBy value: String) -> DeletedText {
         return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityDescriptions(_ ids: [String]) -> DeletedText {
+        return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityDescriptions(_ ids: String...) -> DeletedText {
+        return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDetail(_:) modifier instead.")
     public func aria(details value: String) -> DeletedText {
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityDetail(_ id: String) -> DeletedText {
+        return mutate(ariadetails: .init(id, context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
     public func aria(disabled value: Bool) -> DeletedText {
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityDisabled(_ value: Bool = true) -> DeletedText {
+        return mutate(ariadisabled: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> DeletedText {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityFlow(_:) modifier instead.")
     public func aria(flowTo value: String) -> DeletedText {
         return mutate(ariaflowto: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityFlow(_ ids: [String]) -> DeletedText {
+        return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityFlow(_ ids: String...) -> DeletedText {
+        return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityPopup(_:) modifier instead.")
     public func aria(hasPopup value: Values.Accessibility.Popup) -> DeletedText {
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityPopup(_ value: Values.Accessibility.Popup) -> DeletedText {
+        return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> DeletedText {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
+    public func accessibilityHidden(_ value: Bool = true) -> DeletedText {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(invalid value: Values.Accessibility.Invalid) -> DeletedText {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> DeletedText {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated)
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> DeletedText {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityShortcuts(_:) modifier instead.")
     public func aria(keyShortcuts value: String) -> DeletedText {
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityShortcuts(_ values: [KeyboardShortcut]) -> DeletedText {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityShortcuts(_ values: KeyboardShortcut...) -> DeletedText {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> DeletedText {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
+    public func accessibilityLabel(_ value: String) -> DeletedText {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> DeletedText {
+        return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(verbatim value: String) -> DeletedText {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLabels(_:) modifier instead.")
     public func aria(labeledBy value: String) -> DeletedText {
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityLabels(_ ids: [String]) -> DeletedText {
+        return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabels(_ ids: String...) -> DeletedText {
+        return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> DeletedText {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> DeletedText {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityOwns(_:) modifier instead.")
     public func aria(owns value: String) -> DeletedText {
         return mutate(ariaowns: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityOwns(_ ids: [String]) -> DeletedText {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityOwns(_ ids: String...) -> DeletedText {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityRelevant(_:) modifier instead.")
     public func aria(relevant value: Values.Accessibility.Relevant) -> DeletedText {
         return mutate(ariarelevant: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityRelevant(_ values: [Values.Accessibility.Relevant]) -> DeletedText {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityRelevant(_ values: Values.Accessibility.Relevant...) -> DeletedText {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityRoleDescription(_:) modifier instead.")
     public func aria(roleDescription value: String) -> DeletedText {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    @_disfavoredOverload
+    public func accessibilityRoleDescription(_ value: String) -> DeletedText {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> DeletedText {
+        return mutate(ariaroledescription: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(verbatim value: String) -> DeletedText {
         return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
     }
 }
@@ -22324,7 +30480,7 @@ public struct Image: EmptyNode, HtmlElement, BodyElement, FormElement, FigureEle
     }
 }
 
-extension Image: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, AlternateAttribute, SourceAttribute, SizesAttribute, WidthAttribute, HeightAttribute, ReferrerPolicyAttribute, FetchPriorityAttribute, LoadingAttribute, SourceSetAttribute, DecodingAttribute, IsMapAttribute, UseMapAttribute, CrossOriginAttribute {
+extension Image: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes, AlternateAttribute, SourceAttribute, SizesAttribute, WidthAttribute, HeightAttribute, ReferrerPolicyAttribute, FetchPriorityAttribute, LoadingAttribute, SourceSetAttribute, DecodingAttribute, IsMapAttribute, UseMapAttribute, CrossOriginAttribute {
     
     public func accessKey(_ value: Character) -> Image {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -22653,79 +30809,233 @@ extension Image: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return mutate(key: event.rawValue, value: .init(value, context: .tainted(.js)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityAtomic(_:) modifier instead.")
     public func aria(atomic value: Bool) -> Image {
         return mutate(ariaatomic: .init(value, context: .trusted))
     }
     
+    public func accessibilityAtomic(_ value: Bool = true) -> Image {
+        return mutate(ariaatomic: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityBusy(_:) modifier instead.")
     public func aria(busy value: Bool) -> Image {
         return mutate(ariabusy: .init(value, context: .trusted))
     }
     
+    public func accessibilityBusy(_ value: Bool = true) -> Image {
+        return mutate(ariabusy: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityControls(_:) modifier instead.")
     public func aria(controls value: String) -> Image {
         return mutate(ariacontrols: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityControls(_ ids: [String]) -> Image {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityControls(_ ids: String...) -> Image {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityCurrent(_:) modifier instead.")
     public func aria(current value: Values.Accessibility.Current) -> Image {
         return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityCurrent(_ value: Values.Accessibility.Current) -> Image {
+        return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityCurrent(_ value: Bool = true) -> Image {
+        return mutate(ariacurrent: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDescriptions(_:) modifier instead.")
     public func aria(describedBy value: String) -> Image {
         return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityDescriptions(_ ids: [String]) -> Image {
+        return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityDescriptions(_ ids: String...) -> Image {
+        return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDetail(_:) modifier instead.")
     public func aria(details value: String) -> Image {
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityDetail(_ id: String) -> Image {
+        return mutate(ariadetails: .init(id, context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
     public func aria(disabled value: Bool) -> Image {
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityDisabled(_ value: Bool = true) -> Image {
+        return mutate(ariadisabled: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> Image {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityFlow(_:) modifier instead.")
     public func aria(flowTo value: String) -> Image {
         return mutate(ariaflowto: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityFlow(_ ids: [String]) -> Image {
+        return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityFlow(_ ids: String...) -> Image {
+        return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityPopup(_:) modifier instead.")
     public func aria(hasPopup value: Values.Accessibility.Popup) -> Image {
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityPopup(_ value: Values.Accessibility.Popup) -> Image {
+        return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> Image {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
+    public func accessibilityHidden(_ value: Bool = true) -> Image {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(invalid value: Values.Accessibility.Invalid) -> Image {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> Image {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated)
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> Image {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityShortcuts(_:) modifier instead.")
     public func aria(keyShortcuts value: String) -> Image {
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityShortcuts(_ values: [KeyboardShortcut]) -> Image {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityShortcuts(_ values: KeyboardShortcut...) -> Image {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> Image {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
+    public func accessibilityLabel(_ value: String) -> Image {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Image {
+        return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(verbatim value: String) -> Image {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLabels(_:) modifier instead.")
     public func aria(labeledBy value: String) -> Image {
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityLabels(_ ids: [String]) -> Image {
+        return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabels(_ ids: String...) -> Image {
+        return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> Image {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> Image {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityOwns(_:) modifier instead.")
     public func aria(owns value: String) -> Image {
         return mutate(ariaowns: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityOwns(_ ids: [String]) -> Image {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityOwns(_ ids: String...) -> Image {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityRelevant(_:) modifier instead.")
     public func aria(relevant value: Values.Accessibility.Relevant) -> Image {
         return mutate(ariarelevant: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityRelevant(_ values: [Values.Accessibility.Relevant]) -> Image {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityRelevant(_ values: Values.Accessibility.Relevant...) -> Image {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityRoleDescription(_:) modifier instead.")
     public func aria(roleDescription value: String) -> Image {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    @_disfavoredOverload
+    public func accessibilityRoleDescription(_ value: String) -> Image {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Image {
+        return mutate(ariaroledescription: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(verbatim value: String) -> Image {
         return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
     }
 }
@@ -22798,7 +31108,7 @@ public struct InlineFrame: ContentNode, HtmlElement, BodyElement, FormElement, F
     }
 }
 
-extension InlineFrame: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, SourceAttribute, NameAttribute, WidthAttribute, HeightAttribute, ReferrerPolicyAttribute, LoadingAttribute, SandboxAttribute, SourceDocumentAttribute {
+extension InlineFrame: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes, SourceAttribute, NameAttribute, WidthAttribute, HeightAttribute, ReferrerPolicyAttribute, LoadingAttribute, SandboxAttribute, SourceDocumentAttribute {
     
     public func accessKey(_ value: Character) -> InlineFrame {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -23093,79 +31403,233 @@ extension InlineFrame: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttrib
         return mutate(key: event.rawValue, value: .init(value, context: .tainted(.js)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityAtomic(_:) modifier instead.")
     public func aria(atomic value: Bool) -> InlineFrame {
         return mutate(ariaatomic: .init(value, context: .trusted))
     }
     
+    public func accessibilityAtomic(_ value: Bool = true) -> InlineFrame {
+        return mutate(ariaatomic: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityBusy(_:) modifier instead.")
     public func aria(busy value: Bool) -> InlineFrame {
         return mutate(ariabusy: .init(value, context: .trusted))
     }
     
+    public func accessibilityBusy(_ value: Bool = true) -> InlineFrame {
+        return mutate(ariabusy: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityControls(_:) modifier instead.")
     public func aria(controls value: String) -> InlineFrame {
         return mutate(ariacontrols: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityControls(_ ids: [String]) -> InlineFrame {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityControls(_ ids: String...) -> InlineFrame {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityCurrent(_:) modifier instead.")
     public func aria(current value: Values.Accessibility.Current) -> InlineFrame {
         return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityCurrent(_ value: Values.Accessibility.Current) -> InlineFrame {
+        return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityCurrent(_ value: Bool = true) -> InlineFrame {
+        return mutate(ariacurrent: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDescriptions(_:) modifier instead.")
     public func aria(describedBy value: String) -> InlineFrame {
         return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityDescriptions(_ ids: [String]) -> InlineFrame {
+        return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityDescriptions(_ ids: String...) -> InlineFrame {
+        return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDetail(_:) modifier instead.")
     public func aria(details value: String) -> InlineFrame {
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityDetail(_ id: String) -> InlineFrame {
+        return mutate(ariadetails: .init(id, context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
     public func aria(disabled value: Bool) -> InlineFrame {
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityDisabled(_ value: Bool = true) -> InlineFrame {
+        return mutate(ariadisabled: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> InlineFrame {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityFlow(_:) modifier instead.")
     public func aria(flowTo value: String) -> InlineFrame {
         return mutate(ariaflowto: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityFlow(_ ids: [String]) -> InlineFrame {
+        return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityFlow(_ ids: String...) -> InlineFrame {
+        return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityPopup(_:) modifier instead.")
     public func aria(hasPopup value: Values.Accessibility.Popup) -> InlineFrame {
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityPopup(_ value: Values.Accessibility.Popup) -> InlineFrame {
+        return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
+    }
+
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> InlineFrame {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
+    public func accessibilityHidden(_ value: Bool = true) -> InlineFrame {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(invalid value: Values.Accessibility.Invalid) -> InlineFrame {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> InlineFrame {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated)
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> InlineFrame {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityShortcuts(_:) modifier instead.")
     public func aria(keyShortcuts value: String) -> InlineFrame {
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityShortcuts(_ values: [KeyboardShortcut]) -> InlineFrame {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityShortcuts(_ values: KeyboardShortcut...) -> InlineFrame {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> InlineFrame {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
+    public func accessibilityLabel(_ value: String) -> InlineFrame {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> InlineFrame {
+        return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(verbatim value: String) -> InlineFrame {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLabels(_:) modifier instead.")
     public func aria(labeledBy value: String) -> InlineFrame {
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityLabels(_ ids: [String]) -> InlineFrame {
+        return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabels(_ ids: String...) -> InlineFrame {
+        return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> InlineFrame {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> InlineFrame {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityOwns(_:) modifier instead.")
     public func aria(owns value: String) -> InlineFrame {
         return mutate(ariaowns: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityOwns(_ ids: [String]) -> InlineFrame {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityOwns(_ ids: String...) -> InlineFrame {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityRelevant(_:) modifier instead.")
     public func aria(relevant value: Values.Accessibility.Relevant) -> InlineFrame {
         return mutate(ariarelevant: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityRelevant(_ values: [Values.Accessibility.Relevant]) -> InlineFrame {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityRelevant(_ values: Values.Accessibility.Relevant...) -> InlineFrame {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityRoleDescription(_:) modifier instead.")
     public func aria(roleDescription value: String) -> InlineFrame {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    @_disfavoredOverload
+    public func accessibilityRoleDescription(_ value: String) -> InlineFrame {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> InlineFrame {
+        return mutate(ariaroledescription: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(verbatim value: String) -> InlineFrame {
         return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
     }
 }
@@ -23224,7 +31688,7 @@ public struct Embed: EmptyNode, HtmlElement, BodyElement, FormElement, FigureEle
     }
 }
 
-extension Embed: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, SourceAttribute, TypeAttribute, WidthAttribute, HeightAttribute {
+extension Embed: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes, SourceAttribute, TypeAttribute, WidthAttribute, HeightAttribute {
     
     public func accessKey(_ value: Character) -> Embed {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -23495,79 +31959,233 @@ extension Embed: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return mutate(key: event.rawValue, value: .init(value, context: .tainted(.js)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityAtomic(_:) modifier instead.")
     public func aria(atomic value: Bool) -> Embed {
         return mutate(ariaatomic: .init(value, context: .trusted))
     }
     
+    public func accessibilityAtomic(_ value: Bool = true) -> Embed {
+        return mutate(ariaatomic: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityBusy(_:) modifier instead.")
     public func aria(busy value: Bool) -> Embed {
         return mutate(ariabusy: .init(value, context: .trusted))
     }
     
+    public func accessibilityBusy(_ value: Bool = true) -> Embed {
+        return mutate(ariabusy: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityControls(_:) modifier instead.")
     public func aria(controls value: String) -> Embed {
         return mutate(ariacontrols: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityControls(_ ids: [String]) -> Embed {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityControls(_ ids: String...) -> Embed {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityCurrent(_:) modifier instead.")
     public func aria(current value: Values.Accessibility.Current) -> Embed {
         return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityCurrent(_ value: Values.Accessibility.Current) -> Embed {
+        return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityCurrent(_ value: Bool = true) -> Embed {
+        return mutate(ariacurrent: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDescriptions(_:) modifier instead.")
     public func aria(describedBy value: String) -> Embed {
         return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityDescriptions(_ ids: [String]) -> Embed {
+        return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityDescriptions(_ ids: String...) -> Embed {
+        return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDetail(_:) modifier instead.")
     public func aria(details value: String) -> Embed {
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityDetail(_ id: String) -> Embed {
+        return mutate(ariadetails: .init(id, context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
     public func aria(disabled value: Bool) -> Embed {
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityDisabled(_ value: Bool = true) -> Embed {
+        return mutate(ariadisabled: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> Embed {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityFlow(_:) modifier instead.")
     public func aria(flowTo value: String) -> Embed {
         return mutate(ariaflowto: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityFlow(_ ids: [String]) -> Embed {
+        return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityFlow(_ ids: String...) -> Embed {
+        return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityPopup(_:) modifier instead.")
     public func aria(hasPopup value: Values.Accessibility.Popup) -> Embed {
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityPopup(_ value: Values.Accessibility.Popup) -> Embed {
+        return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> Embed {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
+    public func accessibilityHidden(_ value: Bool = true) -> Embed {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(invalid value: Values.Accessibility.Invalid) -> Embed {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> Embed {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated)
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> Embed {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityShortcuts(_:) modifier instead.")
     public func aria(keyShortcuts value: String) -> Embed {
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityShortcuts(_ values: [KeyboardShortcut]) -> Embed {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityShortcuts(_ values: KeyboardShortcut...) -> Embed {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> Embed {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
+    public func accessibilityLabel(_ value: String) -> Embed {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Embed {
+        return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(verbatim value: String) -> Embed {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLabels(_:) modifier instead.")
     public func aria(labeledBy value: String) -> Embed {
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityLabels(_ ids: [String]) -> Embed {
+        return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabels(_ ids: String...) -> Embed {
+        return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> Embed {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> Embed {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityOwns(_:) modifier instead.")
     public func aria(owns value: String) -> Embed {
         return mutate(ariaowns: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityOwns(_ ids: [String]) -> Embed {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityOwns(_ ids: String...) -> Embed {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityRelevant(_:) modifier instead.")
     public func aria(relevant value: Values.Accessibility.Relevant) -> Embed {
         return mutate(ariarelevant: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityRelevant(_ values: [Values.Accessibility.Relevant]) -> Embed {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityRelevant(_ values: Values.Accessibility.Relevant...) -> Embed {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityRoleDescription(_:) modifier instead.")
     public func aria(roleDescription value: String) -> Embed {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    @_disfavoredOverload
+    public func accessibilityRoleDescription(_ value: String) -> Embed {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Embed {
+        return mutate(ariaroledescription: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(verbatim value: String) -> Embed {
         return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
     }
 }
@@ -23640,7 +32258,7 @@ public struct Object: ContentNode, HtmlElement, BodyElement, FormElement, Figure
     }
 }
 
-extension Object: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, DataAttribute, TypeAttribute, NameAttribute, FormAttribute, WidthAttribute, HeightAttribute {
+extension Object: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes, DataAttribute, TypeAttribute, NameAttribute, FormAttribute, WidthAttribute, HeightAttribute {
     
     public func accessKey(_ value: Character) -> Object {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -23915,79 +32533,233 @@ extension Object: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return mutate(key: event.rawValue, value: .init(value, context: .tainted(.js)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityAtomic(_:) modifier instead.")
     public func aria(atomic value: Bool) -> Object {
         return mutate(ariaatomic: .init(value, context: .trusted))
     }
     
+    public func accessibilityAtomic(_ value: Bool = true) -> Object {
+        return mutate(ariaatomic: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityBusy(_:) modifier instead.")
     public func aria(busy value: Bool) -> Object {
         return mutate(ariabusy: .init(value, context: .trusted))
     }
     
+    public func accessibilityBusy(_ value: Bool = true) -> Object {
+        return mutate(ariabusy: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityControls(_:) modifier instead.")
     public func aria(controls value: String) -> Object {
         return mutate(ariacontrols: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityControls(_ ids: [String]) -> Object {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityControls(_ ids: String...) -> Object {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityCurrent(_:) modifier instead.")
     public func aria(current value: Values.Accessibility.Current) -> Object {
         return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityCurrent(_ value: Values.Accessibility.Current) -> Object {
+        return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityCurrent(_ value: Bool = true) -> Object {
+        return mutate(ariacurrent: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDescriptions(_:) modifier instead.")
     public func aria(describedBy value: String) -> Object {
         return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityDescriptions(_ ids: [String]) -> Object {
+        return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityDescriptions(_ ids: String...) -> Object {
+        return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDetail(_:) modifier instead.")
     public func aria(details value: String) -> Object {
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityDetail(_ id: String) -> Object {
+        return mutate(ariadetails: .init(id, context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
     public func aria(disabled value: Bool) -> Object {
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityDisabled(_ value: Bool = true) -> Object {
+        return mutate(ariadisabled: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> Object {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityFlow(_:) modifier instead.")
     public func aria(flowTo value: String) -> Object {
         return mutate(ariaflowto: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityFlow(_ ids: [String]) -> Object {
+        return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityFlow(_ ids: String...) -> Object {
+        return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityPopup(_:) modifier instead.")
     public func aria(hasPopup value: Values.Accessibility.Popup) -> Object {
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityPopup(_ value: Values.Accessibility.Popup) -> Object {
+        return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> Object {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
+    public func accessibilityHidden(_ value: Bool = true) -> Object {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(invalid value: Values.Accessibility.Invalid) -> Object {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> Object {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated)
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> Object {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityShortcuts(_:) modifier instead.")
     public func aria(keyShortcuts value: String) -> Object {
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityShortcuts(_ values: [KeyboardShortcut]) -> Object {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityShortcuts(_ values: KeyboardShortcut...) -> Object {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> Object {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
+    public func accessibilityLabel(_ value: String) -> Object {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Object {
+        return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(verbatim value: String) -> Object {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLabels(_:) modifier instead.")
     public func aria(labeledBy value: String) -> Object {
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityLabels(_ ids: [String]) -> Object {
+        return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabels(_ ids: String...) -> Object {
+        return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> Object {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> Object {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityOwns(_:) modifier instead.")
     public func aria(owns value: String) -> Object {
         return mutate(ariaowns: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityOwns(_ ids: [String]) -> Object {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityOwns(_ ids: String...) -> Object {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityRelevant(_:) modifier instead.")
     public func aria(relevant value: Values.Accessibility.Relevant) -> Object {
         return mutate(ariarelevant: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityRelevant(_ values: [Values.Accessibility.Relevant]) -> Object {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityRelevant(_ values: Values.Accessibility.Relevant...) -> Object {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityRoleDescription(_:) modifier instead.")
     public func aria(roleDescription value: String) -> Object {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    @_disfavoredOverload
+    public func accessibilityRoleDescription(_ value: String) -> Object {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Object {
+        return mutate(ariaroledescription: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(verbatim value: String) -> Object {
         return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
     }
 }
@@ -24061,7 +32833,7 @@ public struct Video: ContentNode, HtmlElement, BodyElement, FormElement, FigureE
     }
 }
 
-extension Video: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, SourceAttribute, AutoplayAttribute, LoopAttribute, MutedAttribute, ControlsAttribute, WidthAttribute, HeightAttribute, PreloadAttribute, PlaysInlineAttribute, CrossOriginAttribute {
+extension Video: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes, SourceAttribute, AutoplayAttribute, LoopAttribute, MutedAttribute, ControlsAttribute, WidthAttribute, HeightAttribute, PreloadAttribute, PlaysInlineAttribute, CrossOriginAttribute {
     
     public func accessKey(_ value: Character) -> Video {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -24371,79 +33143,233 @@ extension Video: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return mutate(key: event.rawValue, value: .init(value, context: .tainted(.js)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityAtomic(_:) modifier instead.")
     public func aria(atomic value: Bool) -> Video {
         return mutate(ariaatomic: .init(value, context: .trusted))
     }
     
+    public func accessibilityAtomic(_ value: Bool = true) -> Video {
+        return mutate(ariaatomic: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityBusy(_:) modifier instead.")
     public func aria(busy value: Bool) -> Video {
         return mutate(ariabusy: .init(value, context: .trusted))
     }
     
+    public func accessibilityBusy(_ value: Bool = true) -> Video {
+        return mutate(ariabusy: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityControls(_:) modifier instead.")
     public func aria(controls value: String) -> Video {
         return mutate(ariacontrols: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityControls(_ ids: [String]) -> Video {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityControls(_ ids: String...) -> Video {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityCurrent(_:) modifier instead.")
     public func aria(current value: Values.Accessibility.Current) -> Video {
         return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityCurrent(_ value: Values.Accessibility.Current) -> Video {
+        return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityCurrent(_ value: Bool = true) -> Video {
+        return mutate(ariacurrent: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDescriptions(_:) modifier instead.")
     public func aria(describedBy value: String) -> Video {
         return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityDescriptions(_ ids: [String]) -> Video {
+        return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityDescriptions(_ ids: String...) -> Video {
+        return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDetail(_:) modifier instead.")
     public func aria(details value: String) -> Video {
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityDetail(_ id: String) -> Video {
+        return mutate(ariadetails: .init(id, context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
     public func aria(disabled value: Bool) -> Video {
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityDisabled(_ value: Bool = true) -> Video {
+        return mutate(ariadisabled: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> Video {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityFlow(_:) modifier instead.")
     public func aria(flowTo value: String) -> Video {
         return mutate(ariaflowto: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityFlow(_ ids: [String]) -> Video {
+        return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityFlow(_ ids: String...) -> Video {
+        return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityPopup(_:) modifier instead.")
     public func aria(hasPopup value: Values.Accessibility.Popup) -> Video {
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityPopup(_ value: Values.Accessibility.Popup) -> Video {
+        return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> Video {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
+    public func accessibilityHidden(_ value: Bool = true) -> Video {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(invalid value: Values.Accessibility.Invalid) -> Video {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> Video {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated)
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> Video {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityShortcuts(_:) modifier instead.")
     public func aria(keyShortcuts value: String) -> Video {
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityShortcuts(_ values: [KeyboardShortcut]) -> Video {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityShortcuts(_ values: KeyboardShortcut...) -> Video {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> Video {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
+    public func accessibilityLabel(_ value: String) -> Video {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Video {
+        return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(verbatim value: String) -> Video {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLabels(_:) modifier instead.")
     public func aria(labeledBy value: String) -> Video {
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityLabels(_ ids: [String]) -> Video {
+        return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabels(_ ids: String...) -> Video {
+        return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> Video {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> Video {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityOwns(_:) modifier instead.")
     public func aria(owns value: String) -> Video {
         return mutate(ariaowns: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityOwns(_ ids: [String]) -> Video {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityOwns(_ ids: String...) -> Video {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityRelevant(_:) modifier instead.")
     public func aria(relevant value: Values.Accessibility.Relevant) -> Video {
         return mutate(ariarelevant: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityRelevant(_ values: [Values.Accessibility.Relevant]) -> Video {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityRelevant(_ values: Values.Accessibility.Relevant...) -> Video {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityRoleDescription(_:) modifier instead.")
     public func aria(roleDescription value: String) -> Video {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    @_disfavoredOverload
+    public func accessibilityRoleDescription(_ value: String) -> Video {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Video {
+        return mutate(ariaroledescription: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(verbatim value: String) -> Video {
         return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
     }
 }
@@ -24517,7 +33443,7 @@ public struct Audio: ContentNode, HtmlElement, BodyElement, FormElement, FigureE
     }
 }
 
-extension Audio: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, SourceAttribute, AutoplayAttribute, LoopAttribute, MutedAttribute, ControlsAttribute, PreloadAttribute, CrossOriginAttribute {
+extension Audio: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes, SourceAttribute, AutoplayAttribute, LoopAttribute, MutedAttribute, ControlsAttribute, PreloadAttribute, CrossOriginAttribute {
     
     public func accessKey(_ value: Character) -> Audio {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -24810,79 +33736,233 @@ extension Audio: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return mutate(key: event.rawValue, value: .init(value, context: .tainted(.js)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityAtomic(_:) modifier instead.")
     public func aria(atomic value: Bool) -> Audio {
         return mutate(ariaatomic: .init(value, context: .trusted))
     }
     
+    public func accessibilityAtomic(_ value: Bool = true) -> Audio {
+        return mutate(ariaatomic: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityBusy(_:) modifier instead.")
     public func aria(busy value: Bool) -> Audio {
         return mutate(ariabusy: .init(value, context: .trusted))
     }
     
+    public func accessibilityBusy(_ value: Bool = true) -> Audio {
+        return mutate(ariabusy: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityControls(_:) modifier instead.")
     public func aria(controls value: String) -> Audio {
         return mutate(ariacontrols: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityControls(_ ids: [String]) -> Audio {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityControls(_ ids: String...) -> Audio {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityCurrent(_:) modifier instead.")
     public func aria(current value: Values.Accessibility.Current) -> Audio {
         return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityCurrent(_ value: Values.Accessibility.Current) -> Audio {
+        return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityCurrent(_ value: Bool = true) -> Audio {
+        return mutate(ariacurrent: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDescriptions(_:) modifier instead.")
     public func aria(describedBy value: String) -> Audio {
         return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityDescriptions(_ ids: [String]) -> Audio {
+        return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityDescriptions(_ ids: String...) -> Audio {
+        return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDetail(_:) modifier instead.")
     public func aria(details value: String) -> Audio {
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityDetail(_ id: String) -> Audio {
+        return mutate(ariadetails: .init(id, context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
     public func aria(disabled value: Bool) -> Audio {
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityDisabled(_ value: Bool = true) -> Audio {
+        return mutate(ariadisabled: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> Audio {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityFlow(_:) modifier instead.")
     public func aria(flowTo value: String) -> Audio {
         return mutate(ariaflowto: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityFlow(_ ids: [String]) -> Audio {
+        return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityFlow(_ ids: String...) -> Audio {
+        return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityPopup(_:) modifier instead.")
     public func aria(hasPopup value: Values.Accessibility.Popup) -> Audio {
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityPopup(_ value: Values.Accessibility.Popup) -> Audio {
+        return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> Audio {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
+    public func accessibilityHidden(_ value: Bool = true) -> Audio {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(invalid value: Values.Accessibility.Invalid) -> Audio {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> Audio {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated)
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> Audio {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityShortcuts(_:) modifier instead.")
     public func aria(keyShortcuts value: String) -> Audio {
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityShortcuts(_ values: [KeyboardShortcut]) -> Audio {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityShortcuts(_ values: KeyboardShortcut...) -> Audio {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> Audio {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
+    public func accessibilityLabel(_ value: String) -> Audio {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Audio {
+        return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(verbatim value: String) -> Audio {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLabels(_:) modifier instead.")
     public func aria(labeledBy value: String) -> Audio {
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityLabels(_ ids: [String]) -> Audio {
+        return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabels(_ ids: String...) -> Audio {
+        return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> Audio {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> Audio {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityOwns(_:) modifier instead.")
     public func aria(owns value: String) -> Audio {
         return mutate(ariaowns: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityOwns(_ ids: [String]) -> Audio {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityOwns(_ ids: String...) -> Audio {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityRelevant(_:) modifier instead.")
     public func aria(relevant value: Values.Accessibility.Relevant) -> Audio {
         return mutate(ariarelevant: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityRelevant(_ values: [Values.Accessibility.Relevant]) -> Audio {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityRelevant(_ values: Values.Accessibility.Relevant...) -> Audio {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityRoleDescription(_:) modifier instead.")
     public func aria(roleDescription value: String) -> Audio {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    @_disfavoredOverload
+    public func accessibilityRoleDescription(_ value: String) -> Audio {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Audio {
+        return mutate(ariaroledescription: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(verbatim value: String) -> Audio {
         return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
     }
 }
@@ -25290,7 +34370,7 @@ public struct Form: ContentNode, HtmlElement, BodyElement, FigureElement, Object
     }
 }
 
-extension Form: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, ActionAttribute, AutocompleteAttribute, EncodingAttribute, MethodAttribute, NameAttribute, TargetAttribute, RelationshipAttribute {
+extension Form: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes, ActionAttribute, AutocompleteAttribute, EncodingAttribute, MethodAttribute, NameAttribute, TargetAttribute, RelationshipAttribute {
     
     public func accessKey(_ value: Character) -> Form {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -25582,79 +34662,233 @@ extension Form: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, A
         return mutate(key: event.rawValue, value: .init(value, context: .tainted(.js)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityAtomic(_:) modifier instead.")
     public func aria(atomic value: Bool) -> Form {
         return mutate(ariaatomic: .init(value, context: .trusted))
     }
     
+    public func accessibilityAtomic(_ value: Bool = true) -> Form {
+        return mutate(ariaatomic: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityBusy(_:) modifier instead.")
     public func aria(busy value: Bool) -> Form {
         return mutate(ariabusy: .init(value, context: .trusted))
     }
     
+    public func accessibilityBusy(_ value: Bool = true) -> Form {
+        return mutate(ariabusy: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityControls(_:) modifier instead.")
     public func aria(controls value: String) -> Form {
         return mutate(ariacontrols: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityControls(_ ids: [String]) -> Form {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityControls(_ ids: String...) -> Form {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityCurrent(_:) modifier instead.")
     public func aria(current value: Values.Accessibility.Current) -> Form {
         return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityCurrent(_ value: Values.Accessibility.Current) -> Form {
+        return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityCurrent(_ value: Bool = true) -> Form {
+        return mutate(ariacurrent: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDescriptions(_:) modifier instead.")
     public func aria(describedBy value: String) -> Form {
         return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityDescriptions(_ ids: [String]) -> Form {
+        return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityDescriptions(_ ids: String...) -> Form {
+        return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDetail(_:) modifier instead.")
     public func aria(details value: String) -> Form {
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityDetail(_ id: String) -> Form {
+        return mutate(ariadetails: .init(id, context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
     public func aria(disabled value: Bool) -> Form {
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityDisabled(_ value: Bool = true) -> Form {
+        return mutate(ariadisabled: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> Form {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityFlow(_:) modifier instead.")
     public func aria(flowTo value: String) -> Form {
         return mutate(ariaflowto: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityFlow(_ ids: [String]) -> Form {
+        return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityFlow(_ ids: String...) -> Form {
+        return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityPopup(_:) modifier instead.")
     public func aria(hasPopup value: Values.Accessibility.Popup) -> Form {
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityPopup(_ value: Values.Accessibility.Popup) -> Form {
+        return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> Form {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
+    public func accessibilityHidden(_ value: Bool = true) -> Form {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(invalid value: Values.Accessibility.Invalid) -> Form {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> Form {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated)
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> Form {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityShortcuts(_:) modifier instead.")
     public func aria(keyShortcuts value: String) -> Form {
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityShortcuts(_ values: [KeyboardShortcut]) -> Form {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityShortcuts(_ values: KeyboardShortcut...) -> Form {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> Form {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
+    public func accessibilityLabel(_ value: String) -> Form {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Form {
+        return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(verbatim value: String) -> Form {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLabels(_:) modifier instead.")
     public func aria(labeledBy value: String) -> Form {
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityLabels(_ ids: [String]) -> Form {
+        return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabels(_ ids: String...) -> Form {
+        return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> Form {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> Form {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityOwns(_:) modifier instead.")
     public func aria(owns value: String) -> Form {
         return mutate(ariaowns: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityOwns(_ ids: [String]) -> Form {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityOwns(_ ids: String...) -> Form {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityRelevant(_:) modifier instead.")
     public func aria(relevant value: Values.Accessibility.Relevant) -> Form {
         return mutate(ariarelevant: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityRelevant(_ values: [Values.Accessibility.Relevant]) -> Form {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityRelevant(_ values: Values.Accessibility.Relevant...) -> Form {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityRoleDescription(_:) modifier instead.")
     public func aria(roleDescription value: String) -> Form {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    @_disfavoredOverload
+    public func accessibilityRoleDescription(_ value: String) -> Form {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Form {
+        return mutate(ariaroledescription: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(verbatim value: String) -> Form {
         return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
     }
 }
@@ -25733,7 +34967,7 @@ public struct DataList: ContentNode, HtmlElement, BodyElement, FormElement, Figu
     }
 }
 
-extension DataList: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
+extension DataList: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
     
     public func accessKey(_ value: Character) -> DataList {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -25984,79 +35218,233 @@ extension DataList: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(key: event.rawValue, value: .init(value, context: .tainted(.js)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityAtomic(_:) modifier instead.")
     public func aria(atomic value: Bool) -> DataList {
         return mutate(ariaatomic: .init(value, context: .trusted))
     }
     
+    public func accessibilityAtomic(_ value: Bool = true) -> DataList {
+        return mutate(ariaatomic: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityBusy(_:) modifier instead.")
     public func aria(busy value: Bool) -> DataList {
         return mutate(ariabusy: .init(value, context: .trusted))
     }
     
+    public func accessibilityBusy(_ value: Bool = true) -> DataList {
+        return mutate(ariabusy: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityControls(_:) modifier instead.")
     public func aria(controls value: String) -> DataList {
         return mutate(ariacontrols: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityControls(_ ids: [String]) -> DataList {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityControls(_ ids: String...) -> DataList {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityCurrent(_:) modifier instead.")
     public func aria(current value: Values.Accessibility.Current) -> DataList {
         return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityCurrent(_ value: Values.Accessibility.Current) -> DataList {
+        return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityCurrent(_ value: Bool = true) -> DataList {
+        return mutate(ariacurrent: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDescriptions(_:) modifier instead.")
     public func aria(describedBy value: String) -> DataList {
         return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityDescriptions(_ ids: [String]) -> DataList {
+        return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityDescriptions(_ ids: String...) -> DataList {
+        return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDetail(_:) modifier instead.")
     public func aria(details value: String) -> DataList {
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityDetail(_ id: String) -> DataList {
+        return mutate(ariadetails: .init(id, context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
     public func aria(disabled value: Bool) -> DataList {
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityDisabled(_ value: Bool = true) -> DataList {
+        return mutate(ariadisabled: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> DataList {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityFlow(_:) modifier instead.")
     public func aria(flowTo value: String) -> DataList {
         return mutate(ariaflowto: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityFlow(_ ids: [String]) -> DataList {
+        return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityFlow(_ ids: String...) -> DataList {
+        return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityPopup(_:) modifier instead.")
     public func aria(hasPopup value: Values.Accessibility.Popup) -> DataList {
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityPopup(_ value: Values.Accessibility.Popup) -> DataList {
+        return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> DataList {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
+    public func accessibilityHidden(_ value: Bool = true) -> DataList {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(invalid value: Values.Accessibility.Invalid) -> DataList {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> DataList {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated)
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> DataList {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityShortcuts(_:) modifier instead.")
     public func aria(keyShortcuts value: String) -> DataList {
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityShortcuts(_ values: [KeyboardShortcut]) -> DataList {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityShortcuts(_ values: KeyboardShortcut...) -> DataList {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> DataList {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
+    public func accessibilityLabel(_ value: String) -> DataList {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> DataList {
+        return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(verbatim value: String) -> DataList {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLabels(_:) modifier instead.")
     public func aria(labeledBy value: String) -> DataList {
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityLabels(_ ids: [String]) -> DataList {
+        return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabels(_ ids: String...) -> DataList {
+        return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> DataList {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> DataList {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityOwns(_:) modifier instead.")
     public func aria(owns value: String) -> DataList {
         return mutate(ariaowns: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityOwns(_ ids: [String]) -> DataList {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityOwns(_ ids: String...) -> DataList {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityRelevant(_:) modifier instead.")
     public func aria(relevant value: Values.Accessibility.Relevant) -> DataList {
         return mutate(ariarelevant: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityRelevant(_ values: [Values.Accessibility.Relevant]) -> DataList {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityRelevant(_ values: Values.Accessibility.Relevant...) -> DataList {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityRoleDescription(_:) modifier instead.")
     public func aria(roleDescription value: String) -> DataList {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    @_disfavoredOverload
+    public func accessibilityRoleDescription(_ value: String) -> DataList {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> DataList {
+        return mutate(ariaroledescription: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(verbatim value: String) -> DataList {
         return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
     }
 }
@@ -26130,7 +35518,7 @@ public struct Output: ContentNode, HtmlElement, BodyElement, FormElement, Figure
     }
 }
 
-extension Output: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, ForAttribute, FormAttribute, NameAttribute {
+extension Output: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes, ForAttribute, FormAttribute, NameAttribute {
     
     public func accessKey(_ value: Character) -> Output {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -26393,79 +35781,233 @@ extension Output: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return mutate(key: event.rawValue, value: .init(value, context: .tainted(.js)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityAtomic(_:) modifier instead.")
     public func aria(atomic value: Bool) -> Output {
         return mutate(ariaatomic: .init(value, context: .trusted))
     }
     
+    public func accessibilityAtomic(_ value: Bool = true) -> Output {
+        return mutate(ariaatomic: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityBusy(_:) modifier instead.")
     public func aria(busy value: Bool) -> Output {
         return mutate(ariabusy: .init(value, context: .trusted))
     }
     
+    public func accessibilityBusy(_ value: Bool = true) -> Output {
+        return mutate(ariabusy: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityControls(_:) modifier instead.")
     public func aria(controls value: String) -> Output {
         return mutate(ariacontrols: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityControls(_ ids: [String]) -> Output {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityControls(_ ids: String...) -> Output {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityCurrent(_:) modifier instead.")
     public func aria(current value: Values.Accessibility.Current) -> Output {
         return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityCurrent(_ value: Values.Accessibility.Current) -> Output {
+        return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityCurrent(_ value: Bool = true) -> Output {
+        return mutate(ariacurrent: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDescriptions(_:) modifier instead.")
     public func aria(describedBy value: String) -> Output {
         return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityDescriptions(_ ids: [String]) -> Output {
+        return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityDescriptions(_ ids: String...) -> Output {
+        return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDetail(_:) modifier instead.")
     public func aria(details value: String) -> Output {
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityDetail(_ id: String) -> Output {
+        return mutate(ariadetails: .init(id, context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
     public func aria(disabled value: Bool) -> Output {
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityDisabled(_ value: Bool = true) -> Output {
+        return mutate(ariadisabled: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> Output {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityFlow(_:) modifier instead.")
     public func aria(flowTo value: String) -> Output {
         return mutate(ariaflowto: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityFlow(_ ids: [String]) -> Output {
+        return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityFlow(_ ids: String...) -> Output {
+        return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityPopup(_:) modifier instead.")
     public func aria(hasPopup value: Values.Accessibility.Popup) -> Output {
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityPopup(_ value: Values.Accessibility.Popup) -> Output {
+        return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> Output {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
+    public func accessibilityHidden(_ value: Bool = true) -> Output {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(invalid value: Values.Accessibility.Invalid) -> Output {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> Output {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated)
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> Output {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityShortcuts(_:) modifier instead.")
     public func aria(keyShortcuts value: String) -> Output {
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityShortcuts(_ values: [KeyboardShortcut]) -> Output {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityShortcuts(_ values: KeyboardShortcut...) -> Output {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> Output {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
+    public func accessibilityLabel(_ value: String) -> Output {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Output {
+        return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(verbatim value: String) -> Output {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLabels(_:) modifier instead.")
     public func aria(labeledBy value: String) -> Output {
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityLabels(_ ids: [String]) -> Output {
+        return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabels(_ ids: String...) -> Output {
+        return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> Output {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> Output {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityOwns(_:) modifier instead.")
     public func aria(owns value: String) -> Output {
         return mutate(ariaowns: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityOwns(_ ids: [String]) -> Output {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityOwns(_ ids: String...) -> Output {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityRelevant(_:) modifier instead.")
     public func aria(relevant value: Values.Accessibility.Relevant) -> Output {
         return mutate(ariarelevant: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityRelevant(_ values: [Values.Accessibility.Relevant]) -> Output {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityRelevant(_ values: Values.Accessibility.Relevant...) -> Output {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityRoleDescription(_:) modifier instead.")
     public func aria(roleDescription value: String) -> Output {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    @_disfavoredOverload
+    public func accessibilityRoleDescription(_ value: String) -> Output {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Output {
+        return mutate(ariaroledescription: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(verbatim value: String) -> Output {
         return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
     }
 }
@@ -26539,7 +36081,7 @@ public struct Progress: ContentNode, HtmlElement, BodyElement, FormElement, Figu
     }
 }
 
-extension Progress: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, ValueAttribute, MaximumValueAttribute {
+extension Progress: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes, ValueAttribute, MaximumValueAttribute {
     
     public func accessKey(_ value: Character) -> Progress {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -26807,79 +36349,233 @@ extension Progress: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(key: event.rawValue, value: .init(value, context: .tainted(.js)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityAtomic(_:) modifier instead.")
     public func aria(atomic value: Bool) -> Progress {
         return mutate(ariaatomic: .init(value, context: .trusted))
     }
     
+    public func accessibilityAtomic(_ value: Bool = true) -> Progress {
+        return mutate(ariaatomic: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityBusy(_:) modifier instead.")
     public func aria(busy value: Bool) -> Progress {
         return mutate(ariabusy: .init(value, context: .trusted))
     }
     
+    public func accessibilityBusy(_ value: Bool = true) -> Progress {
+        return mutate(ariabusy: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityControls(_:) modifier instead.")
     public func aria(controls value: String) -> Progress {
         return mutate(ariacontrols: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityControls(_ ids: [String]) -> Progress {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityControls(_ ids: String...) -> Progress {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityCurrent(_:) modifier instead.")
     public func aria(current value: Values.Accessibility.Current) -> Progress {
         return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityCurrent(_ value: Values.Accessibility.Current) -> Progress {
+        return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityCurrent(_ value: Bool = true) -> Progress {
+        return mutate(ariacurrent: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDescriptions(_:) modifier instead.")
     public func aria(describedBy value: String) -> Progress {
         return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityDescriptions(_ ids: [String]) -> Progress {
+        return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityDescriptions(_ ids: String...) -> Progress {
+        return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDetail(_:) modifier instead.")
     public func aria(details value: String) -> Progress {
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityDetail(_ id: String) -> Progress {
+        return mutate(ariadetails: .init(id, context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
     public func aria(disabled value: Bool) -> Progress {
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityDisabled(_ value: Bool = true) -> Progress {
+        return mutate(ariadisabled: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> Progress {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityFlow(_:) modifier instead.")
     public func aria(flowTo value: String) -> Progress {
         return mutate(ariaflowto: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityFlow(_ ids: [String]) -> Progress {
+        return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityFlow(_ ids: String...) -> Progress {
+        return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityPopup(_:) modifier instead.")
     public func aria(hasPopup value: Values.Accessibility.Popup) -> Progress {
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityPopup(_ value: Values.Accessibility.Popup) -> Progress {
+        return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> Progress {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
+    public func accessibilityHidden(_ value: Bool = true) -> Progress {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(invalid value: Values.Accessibility.Invalid) -> Progress {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> Progress {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated)
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> Progress {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityShortcuts(_:) modifier instead.")
     public func aria(keyShortcuts value: String) -> Progress {
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityShortcuts(_ values: [KeyboardShortcut]) -> Progress {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityShortcuts(_ values: KeyboardShortcut...) -> Progress {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> Progress {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
+    public func accessibilityLabel(_ value: String) -> Progress {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Progress {
+        return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(verbatim value: String) -> Progress {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLabels(_:) modifier instead.")
     public func aria(labeledBy value: String) -> Progress {
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityLabels(_ ids: [String]) -> Progress {
+        return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabels(_ ids: String...) -> Progress {
+        return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> Progress {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> Progress {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityOwns(_:) modifier instead.")
     public func aria(owns value: String) -> Progress {
         return mutate(ariaowns: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityOwns(_ ids: [String]) -> Progress {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityOwns(_ ids: String...) -> Progress {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityRelevant(_:) modifier instead.")
     public func aria(relevant value: Values.Accessibility.Relevant) -> Progress {
         return mutate(ariarelevant: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityRelevant(_ values: [Values.Accessibility.Relevant]) -> Progress {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityRelevant(_ values: Values.Accessibility.Relevant...) -> Progress {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityRoleDescription(_:) modifier instead.")
     public func aria(roleDescription value: String) -> Progress {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    @_disfavoredOverload
+    public func accessibilityRoleDescription(_ value: String) -> Progress {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Progress {
+        return mutate(ariaroledescription: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(verbatim value: String) -> Progress {
         return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
     }
 }
@@ -26955,7 +36651,7 @@ public struct Meter: ContentNode, HtmlElement, BodyElement, FormElement, FigureE
     }
 }
 
-extension Meter: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, ValueAttribute, MinimumValueAttribute, MaximumValueAttribute, LowAttribute, HighAttribute, OptimumAttribute {
+extension Meter: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes, ValueAttribute, MinimumValueAttribute, MaximumValueAttribute, LowAttribute, HighAttribute, OptimumAttribute {
 
     public func accessKey(_ value: Character) -> Meter {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -27239,79 +36935,233 @@ extension Meter: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return mutate(key: event.rawValue, value: .init(value, context: .tainted(.js)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityAtomic(_:) modifier instead.")
     public func aria(atomic value: Bool) -> Meter {
         return mutate(ariaatomic: .init(value, context: .trusted))
     }
     
+    public func accessibilityAtomic(_ value: Bool = true) -> Meter {
+        return mutate(ariaatomic: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityBusy(_:) modifier instead.")
     public func aria(busy value: Bool) -> Meter {
         return mutate(ariabusy: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityControls(_:) modifier instead.")
     public func aria(controls value: String) -> Meter {
         return mutate(ariacontrols: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityControls(_ ids: [String]) -> Meter {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityControls(_ ids: String...) -> Meter {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityCurrent(_:) modifier instead.")
     public func aria(current value: Values.Accessibility.Current) -> Meter {
         return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityCurrent(_ value: Values.Accessibility.Current) -> Meter {
+        return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityCurrent(_ value: Bool = true) -> Meter {
+        return mutate(ariacurrent: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDescriptions(_:) modifier instead.")
     public func aria(describedBy value: String) -> Meter {
         return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityDescriptions(_ ids: [String]) -> Meter {
+        return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityDescriptions(_ ids: String...) -> Meter {
+        return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityBusy(_ value: Bool = true) -> Meter {
+        return mutate(ariabusy: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDetail(_:) modifier instead.")
     public func aria(details value: String) -> Meter {
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityDetail(_ id: String) -> Meter {
+        return mutate(ariadetails: .init(id, context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
     public func aria(disabled value: Bool) -> Meter {
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityDisabled(_ value: Bool = true) -> Meter {
+        return mutate(ariadisabled: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> Meter {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityFlow(_:) modifier instead.")
     public func aria(flowTo value: String) -> Meter {
         return mutate(ariaflowto: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityFlow(_ ids: [String]) -> Meter {
+        return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityFlow(_ ids: String...) -> Meter {
+        return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityPopup(_:) modifier instead.")
     public func aria(hasPopup value: Values.Accessibility.Popup) -> Meter {
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityPopup(_ value: Values.Accessibility.Popup) -> Meter {
+        return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> Meter {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
+    public func accessibilityHidden(_ value: Bool = true) -> Meter {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(invalid value: Values.Accessibility.Invalid) -> Meter {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> Meter {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated)
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> Meter {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityShortcuts(_:) modifier instead.")
     public func aria(keyShortcuts value: String) -> Meter {
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityShortcuts(_ values: [KeyboardShortcut]) -> Meter {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityShortcuts(_ values: KeyboardShortcut...) -> Meter {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> Meter {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
+    public func accessibilityLabel(_ value: String) -> Meter {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Meter {
+        return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(verbatim value: String) -> Meter {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLabels(_:) modifier instead.")
     public func aria(labeledBy value: String) -> Meter {
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityLabels(_ ids: [String]) -> Meter {
+        return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabels(_ ids: String...) -> Meter {
+        return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> Meter {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> Meter {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityOwns(_:) modifier instead.")
     public func aria(owns value: String) -> Meter {
         return mutate(ariaowns: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityOwns(_ ids: [String]) -> Meter {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityOwns(_ ids: String...) -> Meter {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityRelevant(_:) modifier instead.")
     public func aria(relevant value: Values.Accessibility.Relevant) -> Meter {
         return mutate(ariarelevant: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityRelevant(_ values: [Values.Accessibility.Relevant]) -> Meter {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityRelevant(_ values: Values.Accessibility.Relevant...) -> Meter {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityRoleDescription(_:) modifier instead.")
     public func aria(roleDescription value: String) -> Meter {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    @_disfavoredOverload
+    public func accessibilityRoleDescription(_ value: String) -> Meter {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Meter {
+        return mutate(ariaroledescription: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(verbatim value: String) -> Meter {
         return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
     }
 }
@@ -27388,7 +37238,7 @@ public struct Details: ContentNode, HtmlElement, BodyElement, FormElement, Figur
     }
 }
 
-extension Details: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, OpenAttribute, DetailEventAttribute {
+extension Details: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes, OpenAttribute, DetailEventAttribute {
     
     public func accessKey(_ value: Character) -> Details {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -27662,79 +37512,233 @@ extension Details: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
         return mutate(key: event.rawValue, value: .init(value, context: .tainted(.js)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityAtomic(_:) modifier instead.")
     public func aria(atomic value: Bool) -> Details {
         return mutate(ariaatomic: .init(value, context: .trusted))
     }
     
+    public func accessibilityAtomic(_ value: Bool = true) -> Details {
+        return mutate(ariaatomic: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityBusy(_:) modifier instead.")
     public func aria(busy value: Bool) -> Details {
         return mutate(ariabusy: .init(value, context: .trusted))
     }
     
+    public func accessibilityBusy(_ value: Bool = true) -> Details {
+        return mutate(ariabusy: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityControls(_:) modifier instead.")
     public func aria(controls value: String) -> Details {
         return mutate(ariacontrols: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityControls(_ ids: [String]) -> Details {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityControls(_ ids: String...) -> Details {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityCurrent(_:) modifier instead.")
     public func aria(current value: Values.Accessibility.Current) -> Details {
         return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityCurrent(_ value: Values.Accessibility.Current) -> Details {
+        return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityCurrent(_ value: Bool = true) -> Details {
+        return mutate(ariacurrent: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDescriptions(_:) modifier instead.")
     public func aria(describedBy value: String) -> Details {
         return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityDescriptions(_ ids: [String]) -> Details {
+        return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityDescriptions(_ ids: String...) -> Details {
+        return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDetail(_:) modifier instead.")
     public func aria(details value: String) -> Details {
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityDetail(_ id: String) -> Details {
+        return mutate(ariadetails: .init(id, context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
     public func aria(disabled value: Bool) -> Details {
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityDisabled(_ value: Bool = true) -> Details {
+        return mutate(ariadisabled: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> Details {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityFlow(_:) modifier instead.")
     public func aria(flowTo value: String) -> Details {
         return mutate(ariaflowto: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityFlow(_ ids: [String]) -> Details {
+        return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityFlow(_ ids: String...) -> Details {
+        return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityPopup(_:) modifier instead.")
     public func aria(hasPopup value: Values.Accessibility.Popup) -> Details {
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityPopup(_ value: Values.Accessibility.Popup) -> Details {
+        return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> Details {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
+    public func accessibilityHidden(_ value: Bool = true) -> Details {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(invalid value: Values.Accessibility.Invalid) -> Details {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> Details {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated)
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> Details {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityShortcuts(_:) modifier instead.")
     public func aria(keyShortcuts value: String) -> Details {
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityShortcuts(_ values: [KeyboardShortcut]) -> Details {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityShortcuts(_ values: KeyboardShortcut...) -> Details {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> Details {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
+    public func accessibilityLabel(_ value: String) -> Details {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Details {
+        return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(verbatim value: String) -> Details {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLabels(_:) modifier instead.")
     public func aria(labeledBy value: String) -> Details {
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityLabels(_ ids: [String]) -> Details {
+        return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabels(_ ids: String...) -> Details {
+        return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> Details {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> Details {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityOwns(_:) modifier instead.")
     public func aria(owns value: String) -> Details {
         return mutate(ariaowns: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityOwns(_ ids: [String]) -> Details {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityOwns(_ ids: String...) -> Details {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityRelevant(_:) modifier instead.")
     public func aria(relevant value: Values.Accessibility.Relevant) -> Details {
         return mutate(ariarelevant: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityRelevant(_ values: [Values.Accessibility.Relevant]) -> Details {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityRelevant(_ values: Values.Accessibility.Relevant...) -> Details {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityRoleDescription(_:) modifier instead.")
     public func aria(roleDescription value: String) -> Details {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    @_disfavoredOverload
+    public func accessibilityRoleDescription(_ value: String) -> Details {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Details {
+        return mutate(ariaroledescription: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(verbatim value: String) -> Details {
         return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
     }
 }
@@ -27811,7 +37815,7 @@ public struct Dialog: ContentNode, BodyElement {
     }
 }
 
-extension Dialog: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, OpenAttribute {
+extension Dialog: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes, OpenAttribute {
     
     public func accessKey(_ value: Character) -> Dialog {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -28081,79 +38085,233 @@ extension Dialog: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return mutate(key: event.rawValue, value: .init(value, context: .tainted(.js)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityAtomic(_:) modifier instead.")
     public func aria(atomic value: Bool) -> Dialog {
         return mutate(ariaatomic: .init(value, context: .trusted))
     }
     
+    public func accessibilityAtomic(_ value: Bool = true) -> Dialog {
+        return mutate(ariaatomic: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityBusy(_:) modifier instead.")
     public func aria(busy value: Bool) -> Dialog {
         return mutate(ariabusy: .init(value, context: .trusted))
     }
     
+    public func accessibilityBusy(_ value: Bool = true) -> Dialog {
+        return mutate(ariabusy: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityControls(_:) modifier instead.")
     public func aria(controls value: String) -> Dialog {
         return mutate(ariacontrols: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityControls(_ ids: [String]) -> Dialog {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityControls(_ ids: String...) -> Dialog {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityCurrent(_:) modifier instead.")
     public func aria(current value: Values.Accessibility.Current) -> Dialog {
         return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityCurrent(_ value: Values.Accessibility.Current) -> Dialog {
+        return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityCurrent(_ value: Bool = true) -> Dialog {
+        return mutate(ariacurrent: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDescriptions(_:) modifier instead.")
     public func aria(describedBy value: String) -> Dialog {
         return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityDescriptions(_ ids: [String]) -> Dialog {
+        return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityDescriptions(_ ids: String...) -> Dialog {
+        return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDetail(_:) modifier instead.")
     public func aria(details value: String) -> Dialog {
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityDetail(_ id: String) -> Dialog {
+        return mutate(ariadetails: .init(id, context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
     public func aria(disabled value: Bool) -> Dialog {
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityDisabled(_ value: Bool = true) -> Dialog {
+        return mutate(ariadisabled: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> Dialog {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityFlow(_:) modifier instead.")
     public func aria(flowTo value: String) -> Dialog {
         return mutate(ariaflowto: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityFlow(_ ids: [String]) -> Dialog {
+        return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityFlow(_ ids: String...) -> Dialog {
+        return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityPopup(_:) modifier instead.")
     public func aria(hasPopup value: Values.Accessibility.Popup) -> Dialog {
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityPopup(_ value: Values.Accessibility.Popup) -> Dialog {
+        return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> Dialog {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
+    public func accessibilityHidden(_ value: Bool = true) -> Dialog {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(invalid value: Values.Accessibility.Invalid) -> Dialog {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> Dialog {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated)
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> Dialog {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityShortcuts(_:) modifier instead.")
     public func aria(keyShortcuts value: String) -> Dialog {
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityShortcuts(_ values: [KeyboardShortcut]) -> Dialog {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityShortcuts(_ values: KeyboardShortcut...) -> Dialog {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> Dialog {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
+    public func accessibilityLabel(_ value: String) -> Dialog {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Dialog {
+        return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(verbatim value: String) -> Dialog {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLabels(_:) modifier instead.")
     public func aria(labeledBy value: String) -> Dialog {
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityLabels(_ ids: [String]) -> Dialog {
+        return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabels(_ ids: String...) -> Dialog {
+        return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> Dialog {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> Dialog {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityOwns(_:) modifier instead.")
     public func aria(owns value: String) -> Dialog {
         return mutate(ariaowns: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityOwns(_ ids: [String]) -> Dialog {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityOwns(_ ids: String...) -> Dialog {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityRelevant(_:) modifier instead.")
     public func aria(relevant value: Values.Accessibility.Relevant) -> Dialog {
         return mutate(ariarelevant: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityRelevant(_ values: [Values.Accessibility.Relevant]) -> Dialog {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityRelevant(_ values: Values.Accessibility.Relevant...) -> Dialog {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityRoleDescription(_:) modifier instead.")
     public func aria(roleDescription value: String) -> Dialog {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    @_disfavoredOverload
+    public func accessibilityRoleDescription(_ value: String) -> Dialog {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Dialog {
+        return mutate(ariaroledescription: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(verbatim value: String) -> Dialog {
         return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
     }
 }
@@ -29235,7 +39393,7 @@ public struct Canvas: ContentNode, HtmlElement, BodyElement, FormElement, Figure
     }
 }
 
-extension Canvas: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, WidthAttribute, HeightAttribute {
+extension Canvas: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes, WidthAttribute, HeightAttribute {
     
     public func accessKey(_ value: Character) -> Canvas {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -29494,79 +39652,233 @@ extension Canvas: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes,
         return mutate(key: event.rawValue, value: .init(value, context: .tainted(.js)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityAtomic(_:) modifier instead.")
     public func aria(atomic value: Bool) -> Canvas {
         return mutate(ariaatomic: .init(value, context: .trusted))
     }
     
+    public func accessibilityAtomic(_ value: Bool = true) -> Canvas {
+        return mutate(ariaatomic: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityBusy(_:) modifier instead.")
     public func aria(busy value: Bool) -> Canvas {
         return mutate(ariabusy: .init(value, context: .trusted))
     }
     
+    public func accessibilityBusy(_ value: Bool = true) -> Canvas {
+        return mutate(ariabusy: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityControls(_:) modifier instead.")
     public func aria(controls value: String) -> Canvas {
         return mutate(ariacontrols: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityControls(_ ids: [String]) -> Canvas {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityControls(_ ids: String...) -> Canvas {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityCurrent(_:) modifier instead.")
     public func aria(current value: Values.Accessibility.Current) -> Canvas {
         return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityCurrent(_ value: Values.Accessibility.Current) -> Canvas {
+        return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityCurrent(_ value: Bool = true) -> Canvas {
+        return mutate(ariacurrent: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDescriptions(_:) modifier instead.")
     public func aria(describedBy value: String) -> Canvas {
         return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityDescriptions(_ ids: [String]) -> Canvas {
+        return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityDescriptions(_ ids: String...) -> Canvas {
+        return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDetail(_:) modifier instead.")
     public func aria(details value: String) -> Canvas {
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityDetail(_ id: String) -> Canvas {
+        return mutate(ariadetails: .init(id, context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
     public func aria(disabled value: Bool) -> Canvas {
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityDisabled(_ value: Bool = true) -> Canvas {
+        return mutate(ariadisabled: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> Canvas {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityFlow(_:) modifier instead.")
     public func aria(flowTo value: String) -> Canvas {
         return mutate(ariaflowto: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityFlow(_ ids: [String]) -> Canvas {
+        return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityFlow(_ ids: String...) -> Canvas {
+        return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityPopup(_:) modifier instead.")
     public func aria(hasPopup value: Values.Accessibility.Popup) -> Canvas {
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityPopup(_ value: Values.Accessibility.Popup) -> Canvas {
+        return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> Canvas {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
+    public func accessibilityHidden(_ value: Bool = true) -> Canvas {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(invalid value: Values.Accessibility.Invalid) -> Canvas {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> Canvas {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated)
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> Canvas {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityShortcuts(_:) modifier instead.")
     public func aria(keyShortcuts value: String) -> Canvas {
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityShortcuts(_ values: [KeyboardShortcut]) -> Canvas {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityShortcuts(_ values: KeyboardShortcut...) -> Canvas {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> Canvas {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
+    public func accessibilityLabel(_ value: String) -> Canvas {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Canvas {
+        return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(verbatim value: String) -> Canvas {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLabels(_:) modifier instead.")
     public func aria(labeledBy value: String) -> Canvas {
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityLabels(_ ids: [String]) -> Canvas {
+        return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabels(_ ids: String...) -> Canvas {
+        return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> Canvas {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> Canvas {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityOwns(_:) modifier instead.")
     public func aria(owns value: String) -> Canvas {
         return mutate(ariaowns: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityOwns(_ ids: [String]) -> Canvas {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityOwns(_ ids: String...) -> Canvas {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityRelevant(_:) modifier instead.")
     public func aria(relevant value: Values.Accessibility.Relevant) -> Canvas {
         return mutate(ariarelevant: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityRelevant(_ values: [Values.Accessibility.Relevant]) -> Canvas {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityRelevant(_ values: Values.Accessibility.Relevant...) -> Canvas {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityRoleDescription(_:) modifier instead.")
     public func aria(roleDescription value: String) -> Canvas {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    @_disfavoredOverload
+    public func accessibilityRoleDescription(_ value: String) -> Canvas {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Canvas {
+        return mutate(ariaroledescription: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(verbatim value: String) -> Canvas {
         return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
     }
 }
@@ -29645,7 +39957,7 @@ public struct Table: ContentNode, HtmlElement, BodyElement, FormElement, FigureE
     }
 }
 
-extension Table: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, WidthAttribute, HeightAttribute {
+extension Table: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes, WidthAttribute, HeightAttribute, RowCountAccessibilityAttribute, ColumnCountAccessibilityAttribute {
     
     public func accessKey(_ value: Character) -> Table {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -29904,80 +40216,242 @@ extension Table: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, 
         return mutate(key: event.rawValue, value: .init(value, context: .tainted(.js)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityAtomic(_:) modifier instead.")
     public func aria(atomic value: Bool) -> Table {
         return mutate(ariaatomic: .init(value, context: .trusted))
     }
     
+    public func accessibilityAtomic(_ value: Bool = true) -> Table {
+        return mutate(ariaatomic: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityBusy(_:) modifier instead.")
     public func aria(busy value: Bool) -> Table {
         return mutate(ariabusy: .init(value, context: .trusted))
     }
     
+    public func accessibilityBusy(_ value: Bool = true) -> Table {
+        return mutate(ariabusy: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityControls(_:) modifier instead.")
     public func aria(controls value: String) -> Table {
         return mutate(ariacontrols: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityControls(_ ids: [String]) -> Table {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityControls(_ ids: String...) -> Table {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityCurrent(_:) modifier instead.")
     public func aria(current value: Values.Accessibility.Current) -> Table {
         return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityCurrent(_ value: Values.Accessibility.Current) -> Table {
+        return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityCurrent(_ value: Bool = true) -> Table {
+        return mutate(ariacurrent: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDescriptions(_:) modifier instead.")
     public func aria(describedBy value: String) -> Table {
         return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityDescriptions(_ ids: [String]) -> Table {
+        return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityDescriptions(_ ids: String...) -> Table {
+        return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDetail(_:) modifier instead.")
     public func aria(details value: String) -> Table {
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityDetail(_ id: String) -> Table {
+        return mutate(ariadetails: .init(id, context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
     public func aria(disabled value: Bool) -> Table {
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityDisabled(_ value: Bool = true) -> Table {
+        return mutate(ariadisabled: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> Table {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, deprecated, message: "Use the accessibilityFlow(_:) modifier instead.")
     public func aria(flowTo value: String) -> Table {
         return mutate(ariaflowto: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityFlow(_ ids: [String]) -> Table {
+        return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityFlow(_ ids: String...) -> Table {
+        return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityPopup(_:) modifier instead.")
     public func aria(hasPopup value: Values.Accessibility.Popup) -> Table {
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityPopup(_ value: Values.Accessibility.Popup) -> Table {
+        return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> Table {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
+    public func accessibilityHidden(_ value: Bool = true) -> Table {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(invalid value: Values.Accessibility.Invalid) -> Table {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> Table {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated)
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> Table {
+
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
+    }
+
+    @available(*, deprecated, message: "Use the accessibilityShortcuts(_:) modifier instead.")    
     public func aria(keyShortcuts value: String) -> Table {
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityShortcuts(_ values: [KeyboardShortcut]) -> Table {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityShortcuts(_ values: KeyboardShortcut...) -> Table {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> Table {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
+    @_disfavoredOverload
+    public func accessibilityLabel(_ value: String) -> Table {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Table {
+        return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(verbatim value: String) -> Table {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLabels(_:) modifier instead.")
     public func aria(labeledBy value: String) -> Table {
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityLabels(_ ids: [String]) -> Table {
+        return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabels(_ ids: String...) -> Table {
+        return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> Table {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> Table {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityOwns(_:) modifier instead.")
     public func aria(owns value: String) -> Table {
         return mutate(ariaowns: .init(value, context: .tainted(.html)))
     }
     
+    public func accessibilityOwns(_ ids: [String]) -> Table {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityOwns(_ ids: String...) -> Table {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityRelevant(_:) modifier instead.")
     public func aria(relevant value: Values.Accessibility.Relevant) -> Table {
         return mutate(ariarelevant: .init(value.rawValue, context: .trusted))
     }
     
+    public func accessibilityRelevant(_ values: [Values.Accessibility.Relevant]) -> Table {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityRelevant(_ values: Values.Accessibility.Relevant...) -> Table {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    @available(*, deprecated, message: "Use the accessibilityRoleDescription(_:) modifier instead.")
     public func aria(roleDescription value: String) -> Table {
         return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    @_disfavoredOverload
+    public func accessibilityRoleDescription(_ value: String) -> Table {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Table {
+        return mutate(ariaroledescription: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(verbatim value: String) -> Table {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityRowCount(_ value: Int) -> Table {
+        return mutate(ariarowcount: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityColumnCount(_ value: Int) -> Table {
+        return mutate(ariacolcount: .init(value, context: .trusted))
     }
 }
 
