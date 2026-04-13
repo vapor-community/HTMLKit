@@ -1013,12 +1013,13 @@ final class AttributesTests: XCTestCase {
             return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
         }
 
+        @_disfavoredOverload
         func accessibilityLabel(_ value: String) -> Tag {
             return mutate(arialabel: .init(value, context: .tainted(.html)))
         }
         
-        func accessibilityLabel(_ localized: LocalizedStringKey, tableName: String? = nil) -> Tag {
-            return mutate(arialabel: .init(LocalizedString(key: localized, table: tableName), context: .tainted(.html)))
+        func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Tag {
+            return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
         }
         
         func accessibilityLabel(verbatim value: String) -> Tag {
@@ -1053,6 +1054,7 @@ final class AttributesTests: XCTestCase {
             return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
         }
         
+        @_disfavoredOverload
         func accessibilityRoleDescription(_ value: String) -> Tag {
             return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
         }
@@ -1094,8 +1096,8 @@ final class AttributesTests: XCTestCase {
             return mutate(ariaplaceholder: .init(value, context: .tainted(.html)))
         }
         
-        func accessibilityHint(_ localized: LocalizedStringKey, tableName: String? = nil) -> Tag {
-            return mutate(ariaplaceholder: .init(LocalizedString(key: localized, table: tableName), context: .tainted(.html)))
+        func accessibilityHint(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Tag {
+            return mutate(ariaplaceholder: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
         }
         
         func accessibilityHint(verbatim value: String) -> Tag {

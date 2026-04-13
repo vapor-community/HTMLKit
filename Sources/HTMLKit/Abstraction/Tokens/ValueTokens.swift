@@ -1527,7 +1527,13 @@ public enum Values {
         ///
         /// ```swift
         /// Input()
-        ///     .aria(autoComplete: .inline)
+        ///    .accessibilityCompletion(.list, .inline)
+        /// UnorderedList {
+        ///    ListItem {
+        ///       "Lorem ipsum"
+        ///    }
+        /// }
+        /// .id("id")
         /// ```
         public enum Complete: String {
             
@@ -1548,9 +1554,9 @@ public enum Values {
         /// An indicator of the current position.
         ///
         /// ```swift
-        /// ListItem {
+        /// Division {
         /// }
-        /// .aria(current: .true)
+        /// .accessibilityControls("id", "id")
         /// ```
         public enum Current: String {
             
@@ -1581,9 +1587,9 @@ public enum Values {
         /// An indicator of a popup type.
         ///
         /// ```swift
-        /// Button {
+        /// Division {
         /// }
-        /// .aria(hasPopup: .dialog)
+        /// .accessibilityPopup(.menu)
         /// ```
         public enum Popup: String {
             
@@ -1616,6 +1622,7 @@ public enum Values {
         /// ```swift
         /// Division {
         /// }
+        /// .editable()
         /// .accessibilityInvalid(.grammar)
         /// ```
         public enum Invalid: String {
@@ -1640,7 +1647,7 @@ public enum Values {
         /// ```swift
         /// Division {
         /// }
-        /// .aria(live: .polite)
+        /// .accessibilityLive(.polite)
         /// ```
         public enum Live: String {
             
@@ -1657,10 +1664,15 @@ public enum Values {
         /// An indicator of the element orientation.
         ///
         /// ```swift
+        /// Division {
+        /// }
+        /// .role(.scrollbar)
+        /// .accessibilityOrientation(.horizontal)
         /// ```
         public enum Orientation: String {
             
             /// Indicates that the element's orientation is unknown.
+            @available(*, deprecated)
             case undefined
             
             /// Indicates that the element is oriented horizontally.
@@ -1675,7 +1687,8 @@ public enum Values {
         /// ```swift
         /// Division {
         /// }
-        /// .aria(relevant: .all)
+        /// .role(.alert)
+        /// .accessibilityRelevant(.additions, .text)
         /// ```
         public enum Relevant: String {
             
@@ -1700,9 +1713,14 @@ public enum Values {
         /// An indicator of the sort algorithm.
         ///
         /// ```swift
-        /// HeaderCell {
+        /// Table {
+        ///    TableRow {
+        ///       HeaderCell {
+        ///          "Lorem ipsum"
+        ///       }
+        ///       .accessibilitySort(.ascending)
+        ///    }
         /// }
-        /// .aria(sort: .ascending)
         /// ```
         public enum Sort: String {
             

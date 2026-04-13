@@ -392,7 +392,7 @@ public struct Body: ContentNode, HtmlElement {
     }
 }
 
-extension Body: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, WindowEventAttribute {
+extension Body: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes, WindowEventAttribute {
 
     public func accessKey(_ value: Character) -> Body {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -717,6 +717,7 @@ extension Body: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, W
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated)
     public func accessibilityDisabled(_ value: Bool = true) -> Body {
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
@@ -744,6 +745,7 @@ extension Body: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, W
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
     public func accessibilityPopup(_ value: Values.Accessibility.Popup) -> Body {
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
@@ -762,10 +764,12 @@ extension Body: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, W
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
     public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> Body {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
     public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> Body {
 
         if let id = id {

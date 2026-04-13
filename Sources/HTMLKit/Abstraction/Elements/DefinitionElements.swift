@@ -81,7 +81,7 @@ public struct TermName: ContentNode, DescriptionElement {
     }
 }
 
-extension TermName: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
+extension TermName: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
     
     public func accessKey(_ value: Character) -> TermName {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -403,6 +403,7 @@ extension TermName: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated)
     public func accessibilityDisabled(_ value: Bool = true) -> TermName {
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
@@ -430,6 +431,7 @@ extension TermName: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
     public func accessibilityPopup(_ value: Values.Accessibility.Popup) -> TermName {
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
@@ -448,10 +450,12 @@ extension TermName: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
     public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> TermName {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
     public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> TermName {
 
         if let id = id {
@@ -631,7 +635,7 @@ public struct TermDefinition: ContentNode, DescriptionElement {
     }
 }
 
-extension TermDefinition: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
+extension TermDefinition: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
     
     public func accessKey(_ value: Character) -> TermDefinition {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -953,6 +957,7 @@ extension TermDefinition: GlobalAttributes, GlobalEventAttributes, GlobalAriaAtt
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated)
     public func accessibilityDisabled(_ value: Bool = true) -> TermDefinition {
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
@@ -980,6 +985,7 @@ extension TermDefinition: GlobalAttributes, GlobalEventAttributes, GlobalAriaAtt
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
     public func accessibilityPopup(_ value: Values.Accessibility.Popup) -> TermDefinition {
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
@@ -998,10 +1004,12 @@ extension TermDefinition: GlobalAttributes, GlobalEventAttributes, GlobalAriaAtt
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
     public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> TermDefinition {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
     public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> TermDefinition {
 
         if let id = id {

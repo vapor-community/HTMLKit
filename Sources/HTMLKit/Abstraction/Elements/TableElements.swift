@@ -102,7 +102,7 @@ public struct Caption: ContentNode, TableElement {
     }
 }
 
-extension Caption: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
+extension Caption: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
     
     public func accessKey(_ value: Character) -> Caption {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -424,6 +424,7 @@ extension Caption: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated)
     public func accessibilityDisabled(_ value: Bool = true) -> Caption {
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
@@ -451,6 +452,7 @@ extension Caption: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
     public func accessibilityPopup(_ value: Values.Accessibility.Popup) -> Caption {
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
@@ -469,10 +471,12 @@ extension Caption: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
     public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> Caption {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
     public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> Caption {
 
         if let id = id {
@@ -1297,7 +1301,7 @@ public struct TableBody: ContentNode, TableElement {
     }
 }
 
-extension TableBody: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, WidthAttribute, HeightAttribute {
+extension TableBody: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes, WidthAttribute, HeightAttribute {
     
     public func accessKey(_ value: Character) -> TableBody {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -1627,6 +1631,7 @@ extension TableBody: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated)
     public func accessibilityDisabled(_ value: Bool = true) -> TableBody {
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
@@ -1654,6 +1659,7 @@ extension TableBody: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
     public func accessibilityPopup(_ value: Values.Accessibility.Popup) -> TableBody {
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
@@ -1672,10 +1678,12 @@ extension TableBody: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
     public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> TableBody {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
     public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> TableBody {
 
         if let id = id {
@@ -1863,7 +1871,7 @@ public struct TableHead: ContentNode, TableElement {
     }
 }
 
-extension TableHead: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, WidthAttribute, HeightAttribute {
+extension TableHead: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes, WidthAttribute, HeightAttribute {
     
     public func accessKey(_ value: Character) -> TableHead {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -2193,6 +2201,7 @@ extension TableHead: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated)
     public func accessibilityDisabled(_ value: Bool = true) -> TableHead {
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
@@ -2220,6 +2229,7 @@ extension TableHead: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
     public func accessibilityPopup(_ value: Values.Accessibility.Popup) -> TableHead {
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
@@ -2238,10 +2248,12 @@ extension TableHead: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
     public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> TableHead {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
     public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> TableHead {
 
         if let id = id {
@@ -2429,7 +2441,7 @@ public struct TableFoot: ContentNode, TableElement {
     }
 }
 
-extension TableFoot: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
+extension TableFoot: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
     
     public func accessKey(_ value: Character) -> TableFoot {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -2751,6 +2763,7 @@ extension TableFoot: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated)
     public func accessibilityDisabled(_ value: Bool = true) -> TableFoot {
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
@@ -2778,6 +2791,7 @@ extension TableFoot: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
     public func accessibilityPopup(_ value: Values.Accessibility.Popup) -> TableFoot {
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
@@ -2796,10 +2810,12 @@ extension TableFoot: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribut
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
     public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> TableFoot {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
     public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> TableFoot {
 
         if let id = id {
@@ -2981,7 +2997,7 @@ public struct TableRow: ContentNode, TableElement {
     }
 }
 
-extension TableRow: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, WidthAttribute, HeightAttribute, RowIndexAccessibilityAttribute, ColumnIndexAccessibilityAttribute {
+extension TableRow: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes, WidthAttribute, HeightAttribute, RowIndexAccessibilityAttribute, ColumnIndexAccessibilityAttribute {
     
     public func accessKey(_ value: Character) -> TableRow {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -3311,6 +3327,7 @@ extension TableRow: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated)
     public func accessibilityDisabled(_ value: Bool = true) -> TableRow {
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
@@ -3338,6 +3355,7 @@ extension TableRow: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
     public func accessibilityPopup(_ value: Values.Accessibility.Popup) -> TableRow {
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
@@ -3356,10 +3374,12 @@ extension TableRow: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
     public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> TableRow {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
     public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> TableRow {
 
         if let id = id {
@@ -3546,7 +3566,7 @@ public struct DataCell: ContentNode, TableElement {
     }
 }
 
-extension DataCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, ColumnSpanAttribute, RowSpanAttribute, HeadersAttribute, RowSpanAccessibilityAttribute, ColumnSpanAccessibilityAttribute {
+extension DataCell: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes, ColumnSpanAttribute, RowSpanAttribute, HeadersAttribute, RowSpanAccessibilityAttribute, ColumnSpanAccessibilityAttribute {
 
     public func accessKey(_ value: Character) -> DataCell {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -3885,6 +3905,7 @@ extension DataCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated)
     public func accessibilityDisabled(_ value: Bool = true) -> DataCell {
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
@@ -3912,6 +3933,7 @@ extension DataCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
     public func accessibilityPopup(_ value: Values.Accessibility.Popup) -> DataCell {
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
@@ -3930,10 +3952,12 @@ extension DataCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
     public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> DataCell {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
     public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> DataCell {
 
         if let id = id {
@@ -4120,7 +4144,7 @@ public struct HeaderCell: ContentNode, TableElement {
     }
 }
 
-extension HeaderCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, ColumnSpanAttribute, RowSpanAttribute, HeadersAttribute, ScopeAttribute, ColumnIndexAccessibilityAttribute {
+extension HeaderCell: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes, ColumnSpanAttribute, RowSpanAttribute, HeadersAttribute, ScopeAttribute, ColumnIndexAccessibilityAttribute {
     
     public func accessKey(_ value: Character) -> HeaderCell {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -4462,6 +4486,7 @@ extension HeaderCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated)
     public func accessibilityDisabled(_ value: Bool = true) -> HeaderCell {
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
@@ -4489,6 +4514,7 @@ extension HeaderCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
     public func accessibilityPopup(_ value: Values.Accessibility.Popup) -> HeaderCell {
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
@@ -4507,10 +4533,12 @@ extension HeaderCell: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribu
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
     public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> HeaderCell {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
     public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> HeaderCell {
 
         if let id = id {

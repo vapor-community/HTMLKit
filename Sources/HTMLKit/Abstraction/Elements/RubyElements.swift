@@ -79,7 +79,7 @@ public struct RubyText: ContentNode, RubyElement {
     }
 }
 
-extension RubyText: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
+extension RubyText: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
     
     public func accessKey(_ value: Character) -> RubyText {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -401,6 +401,7 @@ extension RubyText: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated)
     public func accessibilityDisabled(_ value: Bool = true) -> RubyText {
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
@@ -428,6 +429,7 @@ extension RubyText: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
     public func accessibilityPopup(_ value: Values.Accessibility.Popup) -> RubyText {
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
@@ -446,10 +448,12 @@ extension RubyText: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttribute
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
     public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> RubyText {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
     public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> RubyText {
 
         if let id = id {
@@ -633,7 +637,7 @@ public struct RubyPronunciation: ContentNode, RubyElement {
     }
 }
 
-extension RubyPronunciation: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
+extension RubyPronunciation: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
     
     public func accessKey(_ value: Character) -> RubyPronunciation {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -956,6 +960,7 @@ extension RubyPronunciation: GlobalAttributes, GlobalEventAttributes, GlobalAria
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated)
     public func accessibilityDisabled(_ value: Bool = true) -> RubyPronunciation {
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
@@ -983,6 +988,7 @@ extension RubyPronunciation: GlobalAttributes, GlobalEventAttributes, GlobalAria
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
     public func accessibilityPopup(_ value: Values.Accessibility.Popup) -> RubyPronunciation {
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
@@ -1001,10 +1007,12 @@ extension RubyPronunciation: GlobalAttributes, GlobalEventAttributes, GlobalAria
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
     public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> RubyPronunciation {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
     public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> RubyPronunciation {
 
         if let id = id {

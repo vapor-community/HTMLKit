@@ -65,7 +65,7 @@ public struct Area: EmptyNode, MapElement {
     }
 }
 
-extension Area: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, AlternateAttribute, CoordinatesAttribute, ShapeAttribute, ReferenceAttribute, TargetAttribute, DownloadAttribute, PingAttribute, RelationshipAttribute, ReferrerPolicyAttribute {
+extension Area: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes, AlternateAttribute, CoordinatesAttribute, ShapeAttribute, ReferenceAttribute, TargetAttribute, DownloadAttribute, PingAttribute, RelationshipAttribute, ReferrerPolicyAttribute {
         
     public func accessKey(_ value: Character) -> Area {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -442,6 +442,7 @@ extension Area: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, A
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated)
     public func accessibilityDisabled(_ value: Bool = true) -> Area {
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
@@ -469,6 +470,7 @@ extension Area: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, A
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
     public func accessibilityPopup(_ value: Values.Accessibility.Popup) -> Area {
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
@@ -487,10 +489,12 @@ extension Area: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes, A
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
     public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> Area {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
     public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> Area {
 
         if let id = id {

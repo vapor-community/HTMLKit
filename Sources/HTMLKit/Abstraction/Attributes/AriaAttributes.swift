@@ -1,5 +1,5 @@
 @_documentation(visibility: internal)
-public typealias GlobalAriaAttributes = AtomicAccessibilityAttribute & BusyAccessibilityAttribute & ControlsAccessibilityAttribute & CurrentAccessibilityAttribute & DescriptionsAccessibilityAttribute & DetailAccessibilityAttribute & DisabledAccessibilityAttribute & FlowAccessibilityAttribute & PopupAccessibilityAttribute & HiddenAccessibilityAttribute & InvalidAccessibilityAttribute & ShortcutsAccessibilityAttribute & LabelAccessibilityAttribute & LabelsAccessibilityAttribute & LiveAccessibilityAttribute & OwnsAccessibilityAttribute & RelevantAccessibilityAttribute & RoleDescriptionAccessibilityAttribute
+public typealias GlobalAccessibilityAttributes = AtomicAccessibilityAttribute & BusyAccessibilityAttribute & ControlsAccessibilityAttribute & CurrentAccessibilityAttribute & DescriptionsAccessibilityAttribute & DetailAccessibilityAttribute & DisabledAccessibilityAttribute & FlowAccessibilityAttribute & PopupAccessibilityAttribute & HiddenAccessibilityAttribute & InvalidAccessibilityAttribute & ShortcutsAccessibilityAttribute & LabelAccessibilityAttribute & LabelsAccessibilityAttribute & LiveAccessibilityAttribute & OwnsAccessibilityAttribute & RelevantAccessibilityAttribute & RoleDescriptionAccessibilityAttribute
 
 /// A type that provides the `accessibilityFocused` modifier.
 @_documentation(visibility: internal)
@@ -43,7 +43,7 @@ public protocol AtomicAccessibilityAttribute: Attribute {
     /// ```swift
     /// Division {
     /// }
-    /// .accessibilityAtomic(true)
+    /// .accessibilityAtomic(false)
     /// ```
     ///
     /// - Parameter value: Whether to treat the region as one entity.
@@ -161,6 +161,7 @@ public protocol CheckedAccessibilityAttribute: Attribute {
     ///
     /// ```swift
     /// Division {
+    ///     "Lorem ipsum"
     /// }
     /// .role(.checkbox)
     /// .accessibilityChecked(false)
@@ -260,6 +261,7 @@ public protocol ColumnSpanAccessibilityAttribute: Attribute {
     ///
     /// ```swift
     /// Division {
+    ///     "Lorem ipsum"
     /// }
     /// .role(.columnHeader)
     /// .accessibilityColumnSpan(2)
@@ -292,7 +294,8 @@ public protocol ControlsAccessibilityAttribute: Attribute {
     /// Indicate the elements whose presence are controlled by the current element.
     ///
     /// ```swift
-    /// Division {
+    /// Button {
+    ///     "Lorem ipsum"
     /// }
     /// .accessibilityControls(["id", "id"])
     /// ```
@@ -305,7 +308,8 @@ public protocol ControlsAccessibilityAttribute: Attribute {
     /// Indicate the elements whose presence are controlled by the current element.
     ///
     /// ```swift
-    /// Division {
+    /// Button {
+    ///     "Lorem ipsum"
     /// }
     /// .accessibilityControls("id", "id")
     /// ```
@@ -462,9 +466,10 @@ public protocol DisabledAccessibilityAttribute: Attribute {
     ///
     /// ```swift
     /// Division {
+    ///     "Lorem ipsum"
     /// }
     /// .role(.button)
-    /// .accessibilityDisabled()
+    /// .accessibilityDisabled(true)
     /// ```
     ///
     /// - Parameter value: Whether the element is disabled.
@@ -584,7 +589,8 @@ public protocol PopupAccessibilityAttribute: Attribute {
     /// Indicate the availability and type of a popup element.
     ///
     /// ```swift
-    /// Division {
+    /// Button {
+    ///     "Lorem ipsum"
     /// }
     /// .accessibilityPopup(.menu)
     /// ```
@@ -609,7 +615,7 @@ extension PopupAccessibilityAttribute where Self: EmptyNode {
     }
 }
 
-/// The protocol provides the element with accessibility handler.
+/// A type that provides the `accessibilityHidden` modifier.
 @_documentation(visibility: internal)
 public protocol HiddenAccessibilityAttribute: Attribute {
     
@@ -621,7 +627,7 @@ public protocol HiddenAccessibilityAttribute: Attribute {
     ///    }
     ///    .draw("M...")
     /// }
-    /// .accessibilityHidden()
+    /// .accessibilityHidden(true)
     /// ```
     ///
     /// - Parameter value: Whether the element should be announced.
@@ -644,7 +650,7 @@ extension HiddenAccessibilityAttribute where Self: EmptyNode {
     }
 }
 
-/// A type that provides the `accessibilityDisabled` modifier.
+/// A type that provides the `accessibilityInvalid` modifier.
 @_documentation(visibility: internal)
 public protocol InvalidAccessibilityAttribute: Attribute {
     
@@ -770,7 +776,7 @@ public protocol LabelAccessibilityAttribute: Attribute {
     func accessibilityLabel(_ value: String) -> Self
     
     /// Indicate a localized label for the current element.
-    ///
+    /// 
     /// ```swift
     /// Button {
     ///     Vector {
@@ -781,10 +787,11 @@ public protocol LabelAccessibilityAttribute: Attribute {
     /// }
     /// .accessibilityLabel("Lorem ipsum")
     /// ```
-    /// - Parameter value: The label to describe the element.
-    ///
+    /// - Parameter localizedKey: The localized key to label the element.
+    /// - Parameter tableName: The translation table to look in.
+    /// 
     /// - Returns: The element
-    func accessibilityLabel(_ localized: LocalizedStringKey, tableName: String?) -> Self
+    func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String?) -> Self
     
     /// Indicate a label for the current element.
     ///
@@ -910,6 +917,9 @@ public protocol LiveAccessibilityAttribute: Attribute {
     ///
     /// ```swift
     /// Division {
+    ///     Paragraph {
+    ///         "Lorem ipsum..."
+    ///     }
     /// }
     /// .accessibilityLive(.polite)
     /// ```
@@ -1009,7 +1019,7 @@ public protocol MultiselectAccessibilityAttribute: Attribute {
     ///       "Lorem ipsum"
     ///    }
     /// }
-    /// .role(.listbox)
+    /// .role(.listBox)
     /// .accessibilityMultiselect(true)
     /// ```
     /// - Parameter value: Whether the element is multiselectable.
@@ -1132,11 +1142,11 @@ public protocol HintAccessibilityAttribute: Attribute {
     /// .role(.textbox)
     /// .accessibilityHint("Lorem ipsum")
     /// ```
-    /// - Parameter localizedKey: The string key to be translated.
+    /// - Parameter localizedKey: The localized key to give more context.
     /// - Parameter tableName: The translation table to look in.
     ///
     /// - Returns: The element
-    func accessibilityHint(_ localized: LocalizedStringKey, tableName: String?) -> Self
+    func accessibilityHint(_ localizedKey: LocalizedStringKey, tableName: String?) -> Self
     
     /// Provide a short hint without localization.
     /// 
@@ -1180,7 +1190,7 @@ public protocol PositionAccessibilityAttribute: Attribute {
     ///    .role(.option)
     ///    .accessibilityPosition(5, in: 10)
     /// }
-    /// .role(listbox)
+    /// .role(listBox)
     /// ```
     /// 
     /// - Parameter index: The position index the element is in.
@@ -1220,6 +1230,7 @@ public protocol PressedAccessibilityAttribute: Attribute {
     ///
     /// ```swift
     /// Button {
+    ///     "Lorem ipsum"
     /// }
     /// .accessibilityPressed(true)
     /// ```
@@ -1251,6 +1262,7 @@ public protocol ReadOnlyAccessibilityAttribute: Attribute {
     ///
     /// ```swift
     /// Division {
+    ///     "Lorem ipsum"
     /// }
     /// .role(.checkbox)
     /// .accessibilityReadonly(true)
@@ -1368,7 +1380,7 @@ public protocol RoleDescriptionAccessibilityAttribute: Attribute {
     /// Division {
     /// }
     /// .role(.combobox)
-    /// .accessibilityRoleDescription("Lorem ipsum")
+    /// .accessibilityRoleDescription("Lorem ipsum...")
     /// ```
     ///
     /// - Parameter value: The text to describe the role.
@@ -1377,16 +1389,17 @@ public protocol RoleDescriptionAccessibilityAttribute: Attribute {
     func accessibilityRoleDescription(_ value: String) -> Self
     
     /// Indicate a localized text description for the role of an element.
-    ///
+    /// 
     /// ```swift
     /// Division {
     /// }
     /// .role(.combobox)
-    /// .accessibilityRoleDescription("Lorem ipsum")
+    /// .accessibilityRoleDescription("Lorem ipsum...")
     /// ```
-    ///
-    /// - Parameter value: The text to describe the role.
-    ///
+    /// 
+    /// - Parameter localizedKey: The text to describe the role.
+    /// - Parameter tableName: The translation table to look in.
+    /// 
     /// - Returns: The element
     func accessibilityRoleDescription(_ localizedKey: LocalizedStringKey, tableName: String?) -> Self
     
@@ -1396,7 +1409,7 @@ public protocol RoleDescriptionAccessibilityAttribute: Attribute {
     /// Division {
     /// }
     /// .role(.combobox)
-    /// .accessibilityRoleDescription(verbatim: "Lorem ipsum")
+    /// .accessibilityRoleDescription(verbatim: "Lorem ipsum...")
     /// ```
     ///
     /// - Parameter value: The text to describe the role.
@@ -1676,7 +1689,7 @@ public protocol ValueAccessibilityAttribute: Attribute {
     /// Division {
     /// }
     /// .role(.meter)
-    /// .accessibilityValue(20.0, description: "Lorem ipsum")
+    /// .accessibilityValue(20.0, description: "Lorem ipsum...")
     /// ```
     ///  
     /// - Parameter value: The current value within the range.
@@ -1691,7 +1704,7 @@ public protocol ValueAccessibilityAttribute: Attribute {
     /// Division {
     /// }
     /// .role(.meter)
-    /// .accessibilityValue(20.0, alternate: "Lorem ipsum")
+    /// .accessibilityValue(20.0, alternate: "Lorem ipsum...")
     /// ```
     /// 
     /// - Parameter value: The current value within the range.

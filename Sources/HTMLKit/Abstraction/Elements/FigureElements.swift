@@ -77,7 +77,7 @@ public struct FigureCaption: ContentNode, FigureElement {
     }
 }
 
-extension FigureCaption: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttributes {
+extension FigureCaption: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
     
     public func accessKey(_ value: Character) -> FigureCaption {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -399,6 +399,7 @@ extension FigureCaption: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttr
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
+    @available(*, deprecated)
     public func accessibilityDisabled(_ value: Bool = true) -> FigureCaption {
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
@@ -426,6 +427,7 @@ extension FigureCaption: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttr
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
     public func accessibilityPopup(_ value: Values.Accessibility.Popup) -> FigureCaption {
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
@@ -444,10 +446,12 @@ extension FigureCaption: GlobalAttributes, GlobalEventAttributes, GlobalAriaAttr
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
     public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> FigureCaption {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
     }
     
+    @available(*, deprecated)
     public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> Figcaption {
 
         if let id = id {
