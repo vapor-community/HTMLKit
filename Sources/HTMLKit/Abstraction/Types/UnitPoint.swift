@@ -9,10 +9,10 @@
 ///     .center(UnitPoint(x: 50, y: 50))
 /// }
 /// ```
-public struct UnitPoint {
+public struct UnitPoint: Sendable {
     
     /// An enumeration of potential point formats.
-    public enum PointFormat {
+    public enum PointFormat: Sendable {
         
         /// Indicates an absolute value.
         case absolute
