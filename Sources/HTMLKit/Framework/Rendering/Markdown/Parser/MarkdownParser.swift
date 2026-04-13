@@ -1,6 +1,6 @@
 internal final class MarkdownParser {
     
-    /// A enumeration of different level of logging
+    /// An enumeration of different level of logging.
     ///
     /// None is the initial state.
     internal enum LogLevel {
@@ -10,16 +10,16 @@ internal final class MarkdownParser {
         case debug
     }
     
-    /// The tree with nodes
+    /// The tree of nodes.
     private var tree: [MarkdownNode]
     
-    /// The collection of nodes
+    /// A temporary collection of nodes.
     private var nodes: [MarkdownNode]
     
-    /// The level of logging
+    /// The level of logging.
     private var level: LogLevel
     
-    /// Creates a the parser
+    /// Create a markdown parser.
     internal init(log level: LogLevel = .none) {
          
         self.tree = []
@@ -27,7 +27,7 @@ internal final class MarkdownParser {
         self.level = level
     }
     
-    /// Logs the steps of the tokenizer depending on the log level
+    /// Logs the steps of the tokenizer depending on the log level.
     private func verbose(_ message: Any...) {
         
         switch self.level {
@@ -39,7 +39,7 @@ internal final class MarkdownParser {
         }
     }
     
-    /// Inserts the node into the syntax tree
+    /// Inserts the node into the syntax tree.
     private func insert(node: MarkdownNode) {
         
         self.verbose(#function, node.value)
@@ -47,7 +47,7 @@ internal final class MarkdownParser {
         self.tree.append(node)
     }
     
-    /// Emits the node into the node collection
+    /// Emits the node into the node collection.
     private func emit(node: MarkdownNode) {
         
         self.verbose(#function, node.value)
@@ -73,7 +73,7 @@ internal final class MarkdownParser {
         }
     }
     
-    /// Processes the tokens and emits it to the syntax tree or node collection
+    /// Processes the tokens and emits it to the syntax tree or node collection.
     internal func process(tokens: [MarkdownToken]) -> [MarkdownNode] {
         
         for (index, token) in tokens.enumerated() {
