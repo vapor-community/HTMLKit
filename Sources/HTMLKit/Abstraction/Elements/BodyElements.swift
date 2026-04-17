@@ -32833,7 +32833,7 @@ public struct Video: ContentNode, HtmlElement, BodyElement, FormElement, FigureE
     }
 }
 
-extension Video: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes, SourceAttribute, AutoplayAttribute, LoopAttribute, MutedAttribute, ControlsAttribute, WidthAttribute, HeightAttribute, PreloadAttribute, PlaysInlineAttribute, CrossOriginAttribute {
+extension Video: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes, SourceAttribute, AutoplayAttribute, LoopAttribute, MutedAttribute, ControlsAttribute, WidthAttribute, HeightAttribute, PreloadAttribute, PlaysInlineAttribute, CrossOriginAttribute, LoadingAttribute {
     
     public func accessKey(_ value: Character) -> Video {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -33097,6 +33097,10 @@ extension Video: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAtt
     
     public func crossOrigin(_ value: Credential.Mode) -> Video {
         return mutate(crossorigin: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func loading(_ value: Values.Loading) -> Video {
+        return mutate(loading: .init(value.rawValue, context: .trusted))
     }
     
     public func custom(key: String, value: String, context: EscapeContext = .tainted(.html)) -> Video {
@@ -33443,7 +33447,7 @@ public struct Audio: ContentNode, HtmlElement, BodyElement, FormElement, FigureE
     }
 }
 
-extension Audio: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes, SourceAttribute, AutoplayAttribute, LoopAttribute, MutedAttribute, ControlsAttribute, PreloadAttribute, CrossOriginAttribute {
+extension Audio: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes, SourceAttribute, AutoplayAttribute, LoopAttribute, MutedAttribute, ControlsAttribute, PreloadAttribute, CrossOriginAttribute, LoadingAttribute {
     
     public func accessKey(_ value: Character) -> Audio {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -33690,6 +33694,10 @@ extension Audio: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAtt
     
     public func popover(_ value: Values.Popover.State) -> Audio {
         return mutate(popover: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func loading(_ value: Values.Loading) -> Audio {
+        return mutate(loading: .init(value.rawValue, context: .trusted))
     }
     
     public func custom(key: String, value: String, context: EscapeContext = .tainted(.html)) -> Audio {
