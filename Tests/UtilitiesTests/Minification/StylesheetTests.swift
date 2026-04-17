@@ -82,6 +82,13 @@ final class StylesheetTests: XCTestCase {
         
         // ...general sibling combinator
         XCTAssertEqual(minifier.minify(css: ".selector ~ .selector {}"), ".selector~.selector{}")
+        
+        // ...parent combinator
+        XCTAssertEqual(minifier.minify(css: "& .selector {}"), "& .selector{}")
+        
+        XCTAssertEqual(minifier.minify(css: "&.selector {}"), "&.selector{}")
+        
+        XCTAssertEqual(minifier.minify(css: ".selector & {}"), ".selector &{}")
     }
     
     // Tests minifing a

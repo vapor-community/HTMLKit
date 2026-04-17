@@ -1,8 +1,8 @@
 import HTMLKit
 
-/// A view that represents a option picker.
+/// A view that represents an option picker.
 ///
-/// Use `Picker` to
+/// Use `Picker` to pick an option.
 ///
 /// ```swift
 /// Picker(name: "lorem", selection: "ipsum") {
@@ -64,7 +64,7 @@ public struct Picker: View, Modifiable, Identifiable {
                     .tag(name)
             }
         }
-        .class(classes.joined(separator: " "))
+        .class(classes)
         .modify(unwrap: id) {
             $0.id($1)
         }

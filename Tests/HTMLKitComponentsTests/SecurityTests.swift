@@ -64,7 +64,7 @@ final class SecurityTests: XCTestCase {
             Text {
                 "Text"
             }
-            .backgroundColor(.custom(attack))
+            .background(.custom(attack))
         }
         
         XCTAssertEqual(try renderer.render(view: view),

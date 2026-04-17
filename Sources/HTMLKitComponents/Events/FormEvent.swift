@@ -22,7 +22,7 @@ extension FormEvent where Self: Actionable {
         }
         
         guard let identifier = self.id else {
-            fatalError("Initiative identifier unkown.")
+            fatalError("Initiative identifier unknown.")
         }
         
         let event = """
@@ -32,6 +32,6 @@ extension FormEvent where Self: Actionable {
                 },\(validation));
                 """
         
-        return self.mutate(event: event)
+        return self.mutate(events: event)
     }
 }

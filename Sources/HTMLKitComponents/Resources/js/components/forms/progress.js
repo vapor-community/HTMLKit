@@ -4,6 +4,10 @@
 
     /**
      * Initiates the progress object.
+     *
+     * @constructor
+     *
+     * @param element
      */
     const Progress = function (element) {
 

@@ -10,7 +10,7 @@ import HTMLKit
 public struct Divider: View {
     
     /// The class names for the divider.
-    internal  var classes: [String]
+    internal var classes: [String]
     
     /// Create a divider.
     public init() {
@@ -19,6 +19,6 @@ public struct Divider: View {
     
     public var body: Content {
         HorizontalRule()
-            .class(classes.joined(separator: " "))
+            .class(classes)
     }
 }

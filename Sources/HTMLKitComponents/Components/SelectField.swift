@@ -27,7 +27,7 @@ public struct SelectField: View, Modifiable, Identifiable {
     internal let selection: String?
     
     /// The body content of the field.
-    internal var content: [Selectable]
+    internal let content: [Selectable]
     
     /// The class names for the field.
     internal var classes: [String]
@@ -117,7 +117,7 @@ public struct SelectField: View, Modifiable, Identifiable {
             }
             .class("selectfield-optionlist")
         }
-        .class(classes.joined(separator: " "))
+        .class(classes)
         .modify(unwrap: id) {
             $0.id($1)
         }
@@ -172,15 +172,21 @@ extension SelectField: ViewModifier {
         return self.mutate(padding: length.value, insets: insets)
     }
     
-    public func border(_ color: Tokens.BorderColor, width: Tokens.BorderWidth = .small) -> SelectField {
-        return self.mutate(border: color.value, width: width.value)
+    public func border(_ color: Tokens.BorderColor, width: Tokens.BorderWidth = .small, shape: Tokens.BorderShape? = nil) -> SelectField {
+        return self.mutate(border: color.value, width: width.value, shape: shape?.value)
     }
     
+    @available(*, deprecated, message: "Use the border(_:width:shape:) modifier instead.")
     public func borderShape(_ shape: Tokens.BorderShape) -> SelectField {
         return self.mutate(bordershape: shape.value)
     }
     
+    @available(*, deprecated, message: "Use the background(_:) modifier instead.")
     public func backgroundColor(_ color: Tokens.BackgroundColor) -> SelectField {
+        return self.mutate(backgroundcolor: color.value)
+    }
+    
+    public func background(_ color: Tokens.BackgroundColor) -> SelectField {
         return self.mutate(backgroundcolor: color.value)
     }
     
@@ -189,7 +195,7 @@ extension SelectField: ViewModifier {
     }
     
     public func frame(width: Tokens.ViewWidth, height: Tokens.ViewHeight? = nil, alignment: Tokens.FrameAlignment? = nil) -> SelectField {
-        return mutate(frame: width.value, height: height?.value, alignment: alignment?.value)
+        return self.mutate(frame: width.value, height: height?.value, alignment: alignment?.value)
     }
     
     public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> SelectField {

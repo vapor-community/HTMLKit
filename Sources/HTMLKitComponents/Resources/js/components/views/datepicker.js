@@ -2,6 +2,13 @@
 
     'use strict';
 
+    /**
+     * Initiates the date picker object.
+     *
+     * @constructor
+     *
+     * @param element
+     */
     const Datepicker = function (element) {
         
         this.element = element;
@@ -19,10 +26,10 @@
         
         this.initiateListener();
     };
-    
-    /*
-      Initiates the listeners.
-    */
+
+    /**
+     * Initiates the listeners.
+     */
     Datepicker.prototype.initiateListener = function () {
         
         const self = this;
@@ -78,10 +85,10 @@
             }
         });
     };
-    
-    /*
-    Recreates the calendar by the selection.
-    */
+
+    /**
+     * Recreates the calendar by the selection.
+     */
     Datepicker.prototype.createCalendar = function () {
         
         let calendar = '';
@@ -98,26 +105,26 @@
         
         this.calendar.innerHTML = calendar;
     };
-    
-    /*
-    Updates the calendar details.
-    */
+
+    /**
+     * Updates the calendar details.
+     */
     Datepicker.prototype.setCalendarDetail = function (year, month) {
         
         const months= ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
         
         this.detail.innerHTML = months[month] + ' ' + year;
     };
-    
-    /*
-     Sets the input value.
+
+    /**
+     * Sets the value for the datefield.
      */
     Datepicker.prototype.setInputValue = function (value) {
         this.datefield.value = value;
     };
-    
-    /*
-        Shows the picker.
+
+    /**
+     * Shows the picker.
      */
     Datepicker.prototype.showPicker = function () {
         
@@ -130,16 +137,16 @@
         
         this.picker.classList.add('state:visible');
     };
-    
-    /*
-        Hides the picker.
+
+    /**
+     * Hides the picker.
      */
     Datepicker.prototype.hidePicker = function () {
         this.picker.classList.remove('state:visible');
     };
-    
-    /*
-        Browses onto the previous month.
+
+    /**
+     * Browses onto the previous month.
      */
     Datepicker.prototype.browsePrevious = function() {
         
@@ -154,9 +161,9 @@
         
         this.createCalendar();
     };
-    
-    /*
-        Browses onto the next month.
+
+    /**
+     * Browses onto the next month.
      */
     Datepicker.prototype.browseNext = function() {
         
@@ -171,13 +178,17 @@
         
         this.createCalendar();
     };
-    
-    /// Calculates the weekday for the first of the month.
+
+    /**
+     * Calculates the weekday for the first of the month.
+     */
     function getFirstOfMonth(year, month) {
         return new Date(year, month, 1).getDay();
     }
-    
-    /// Calculates the total days of the month.
+
+    /**
+     * Calculates the total days of the month.
+     */
     function getLastOfMonth(year, month) {
         return new Date(year, month, 0).getDate();
     }

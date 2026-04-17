@@ -1,5 +1,5 @@
-/*
- The rulsets for the horizontal stack component.
+/**
+ * The rulesets for the horizontal stack component.
  */
 
 .hstack {
@@ -11,96 +11,96 @@
     --backgroundOpacity: 0.0;
     
     position: relative;
-    inline-size: 100%;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
     padding-block-start: var(--paddingBlockStart);
     padding-block-end: var(--paddingBlockEnd);
     padding-inline-start: var(--paddingInlineStart);
     padding-inline-end: var(--paddingInlineEnd);
+    inline-size: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
     background-color: hsla(var(--backgroundColor), var(--backgroundOpacity));
+
+    &.vertical-alignment\:top {
+        align-items: flex-start;
+    }
+
+    &.vertical-alignment\:center {
+        align-items: center;
+    }
+
+    &.vertical-alignment\:bottom {
+        align-items: flex-end;
+    }
+
+    &.vertical-alignment\:baseline {
+        align-items: baseline;
+    }
+
+    &.horizontal-alignment\:leading {
+        margin-inline-end: auto !important;
+    }
+
+    &.horizontal-alignment\:center {
+        margin-inline-start: auto !important;
+        margin-inline-end: auto !important;
+    }
+
+    &.horizontal-alignment\:trailing {
+        margin-inline-start: auto !important;
+    }
+
+    &.spacing\:around {
+        justify-content: space-around;
+    }
+
+    &.spacing\:between {
+        justify-content: space-between;
+    }
+
+    &.spacing\:large {
+        gap: 2.25rem;
+    }
+
+    &.spacing\:medium {
+        gap: 1.5rem;
+    }
+
+    &.spacing\:small {
+        gap: 1rem;
+    }
+
+    &.spacing\:evenly {
+        justify-content: space-evenly;
+    }
+
+    &.shadow\:small {
+        box-shadow: 0 1px 1px -1px hsla(var(--shadowColor), 0.3), 0 2px 2px -2px hsla(var(--shadowColor), 0.3);
+    }
+
+    &.shadow\:medium {
+        box-shadow: 0 3px 3px -3px hsla(var(--shadowColor), 0.3), 0 4px 4px -4px hsla(var(--shadowColor), 0.3);
+    }
+
+    &.shadow\:large {
+        box-shadow: 0 5px 5px -5px hsla(var(--shadowColor), 0.3), 0 6px 6px -6px hsla(var(--shadowColor), 0.3);
+    }
+
+    > .frame-alignment\:leading {
+        align-self: flex-start;
+    }
+
+    > .frame-alignment\:center {
+        align-self: center;
+    }
+
+    > .frame-alignment\:trailing {
+        align-self: flex-end;
+    }
 }
 
-.hstack.vertical-alignment\:top {
-    align-items: flex-start;
-}
-
-.hstack.vertical-alignment\:center {
-    align-items: center;
-}
-
-.hstack.vertical-alignment\:bottom {
-    align-items: flex-end;
-}
-
-.hstack.vertical-alignment\:baseline {
-    align-items: baseline;
-}
-
-.hstack.horizontal-alignment\:leading {
-    margin-inline-end: auto !important;
-}
-
-.hstack.horizontal-alignment\:center {
-    margin-inline-start: auto !important;
-    margin-inline-end: auto !important;
-}
-
-.hstack.horizontal-alignment\:trailing {
-    margin-inline-start: auto !important;
-}
-
-.hstack > .frame-alignment\:leading {
-    align-self: flex-start;
-}
-
-.hstack > .frame-alignment\:center {
-    align-self: center;
-}
-
-.hstack > .frame-alignment\:trailing {
-    align-self: flex-end;
-}
-
-.hstack.spacing\:around {
-    justify-content: space-around;
-}
-
-.hstack.spacing\:between {
-    justify-content: space-between;
-}
-
-.hstack.spacing\:evenly {
-    justify-content: space-evenly;
-}
-
-.hstack.spacing\:large {
-    gap: 2.25rem;
-}
-
-.hstack.spacing\:medium {
-    gap: 1.5rem;
-}
-
-.hstack.spacing\:small {
-    gap: 1rem;
-}
-
-.hstack.shadow\:small {
-    box-shadow: 0 1px 1px -1px hsla(var(--shadowColor), 0.3), 0 2px 2px -2px hsla(var(--shadowColor), 0.3);
-}
-
-.hstack.shadow\:medium {
-    box-shadow: 0 3px 3px -3px hsla(var(--shadowColor), 0.3), 0 4px 4px -4px hsla(var(--shadowColor), 0.3);
-}
-
-.hstack.shadow\:large {
-    box-shadow: 0 5px 5px -5px hsla(var(--shadowColor), 0.3), 0 6px 6px -6px hsla(var(--shadowColor), 0.3);
-}
-
-/*
- The rulesets for the vertical stack component.
+/**
+ * The rulesets for the vertical stack component.
  */
 
 .vstack {
@@ -112,78 +112,78 @@
     --backgroundOpacity: 0.0;
     
     position: relative;
-    inline-size: 100%;
-    display: flex;
-    flex-direction: column;
     padding-block-start: var(--paddingBlockStart);
     padding-block-end: var(--paddingBlockEnd);
     padding-inline-start: var(--paddingInlineStart);
     padding-inline-end: var(--paddingInlineEnd);
+    inline-size: 100%;
+    display: flex;
+    flex-direction: column;
     background-color: hsla(var(--backgroundColor), var(--backgroundOpacity));
+
+    &.horizontal-alignment\:leading {
+        align-items: flex-start;
+    }
+
+    &.horizontal-alignment\:center {
+        align-items: center;
+    }
+
+    &.horizontal-alignment\:trailing {
+        align-items: flex-end;
+    }
+
+    &.spacing\:around {
+        justify-content: space-around;
+    }
+
+    &.spacing\:between {
+        justify-content: space-between;
+    }
+
+    &.spacing\:evenly {
+        justify-content: space-evenly;
+    }
+
+    &.spacing\:large {
+        gap: 2.25rem;
+    }
+
+    &.spacing\:medium {
+        gap: 1.5rem;
+    }
+
+    &.spacing\:small {
+        gap: 1rem;
+    }
+
+    &.shadow\:small {
+        box-shadow: 0 1px 1px -1px hsla(var(--shadowColor), 0.3), 0 2px 2px -2px hsla(var(--shadowColor), 0.3);
+    }
+
+    &.shadow\:medium {
+        box-shadow: 0 3px 3px -3px hsla(var(--shadowColor), 0.3), 0 4px 4px -4px hsla(var(--shadowColor), 0.3);
+    }
+
+    &.shadow\:large {
+        box-shadow: 0 5px 5px -5px hsla(var(--shadowColor), 0.3), 0 6px 6px -6px hsla(var(--shadowColor), 0.3);
+    }
+
+    > .frame-alignment\:leading {
+        align-self: flex-start;
+    }
+
+    > .frame-alignment\:center {
+        align-self: center;
+    }
+
+    > .frame-alignment\:trailing {
+        align-self: flex-end;
+    }
 }
 
-.vstack.horizontal-alignment\:leading {
-    align-items: flex-start;
-}
-
-.vstack.horizontal-alignment\:center {
-    align-items: center;
-}
-
-.vstack.horizontal-alignment\:trailing {
-    align-items: flex-end;
-}
-
-.vstack > .frame-alignment\:leading {
-    align-self: flex-start;
-}
-
-.vstack > .frame-alignment\:center {
-    align-self: center;
-}
-
-.vstack > .frame-alignment\:trailing {
-    align-self: flex-end;
-}
-
-.vstack.spacing\:around {
-    justify-content: space-around;
-}
-
-.vstack.spacing\:between {
-    justify-content: space-between;
-}
-
-.vstack.spacing\:evenly {
-    justify-content: space-evenly;
-}
-
-.vstack.spacing\:large {
-    gap: 2.25rem;
-}
-
-.vstack.spacing\:medium {
-    gap: 1.5rem;
-}
-
-.vstack.spacing\:small {
-    gap: 1rem;
-}
-
-.vstack.shadow\:small {
-    box-shadow: 0 1px 1px -1px hsla(var(--shadowColor), 0.3), 0 2px 2px -2px hsla(var(--shadowColor), 0.3);
-}
-
-.vstack.shadow\:medium {
-    box-shadow: 0 3px 3px -3px hsla(var(--shadowColor), 0.3), 0 4px 4px -4px hsla(var(--shadowColor), 0.3);
-}
-
-.vstack.shadow\:large {
-    box-shadow: 0 5px 5px -5px hsla(var(--shadowColor), 0.3), 0 6px 6px -6px hsla(var(--shadowColor), 0.3);
-}
-
-/*
- The rulesets for the z-axis stack component.
+/**
+ * The rulesets for the overlay stack component.
  */
 
 .zstack {
@@ -195,50 +195,30 @@
     --backgroundOpacity: 0.0;
     
     position: relative;
+    padding-block-start: var(--paddingBlockStart);
+    padding-block-end: var(--paddingBlockEnd);
+    padding-inline-start: var(--paddingInlineStart);
+    padding-inline-end: var(--paddingInlineEnd);
     display: grid;
     grid-template-rows: minmax(0, 1fr);
     grid-template-columns: 1fr;
     place-items: center;
     place-content: center;
-    padding-block-start: var(--paddingBlockStart);
-    padding-block-end: var(--paddingBlockEnd);
-    padding-inline-start: var(--paddingInlineStart);
-    padding-inline-end: var(--paddingInlineEnd);
     background-color: hsla(var(--backgroundColor), var(--backgroundOpacity));
-}
 
-.zstack.shadow\:small {
-    box-shadow: 0 1px 1px -1px hsla(var(--shadowColor), 0.3), 0 2px 2px -2px hsla(var(--shadowColor), 0.3);
-}
+    &.shadow\:small {
+        box-shadow: 0 1px 1px -1px hsla(var(--shadowColor), 0.3), 0 2px 2px -2px hsla(var(--shadowColor), 0.3);
+    }
 
-.zstack.shadow\:medium {
-    box-shadow: 0 3px 3px -3px hsla(var(--shadowColor), 0.3), 0 4px 4px -4px hsla(var(--shadowColor), 0.3);
-}
+    &.shadow\:medium {
+        box-shadow: 0 3px 3px -3px hsla(var(--shadowColor), 0.3), 0 4px 4px -4px hsla(var(--shadowColor), 0.3);
+    }
 
-.zstack.shadow\:large {
-    box-shadow: 0 5px 5px -5px hsla(var(--shadowColor), 0.3), 0 6px 6px -6px hsla(var(--shadowColor), 0.3);
-}
+    &.shadow\:large {
+        box-shadow: 0 5px 5px -5px hsla(var(--shadowColor), 0.3), 0 6px 6px -6px hsla(var(--shadowColor), 0.3);
+    }
 
-.zstack > * {
-    grid-area: 1 / 1;
-}
-
-.zstack .zindex\:one {
-    z-index: 1;
-}
-
-.zstack .zindex\:two {
-    z-index: 2;
-}
-
-.zstack .zindex\:three {
-    z-index: 3;
-}
-
-.zstack .zindex\:four {
-    z-index: 4;
-}
-
-.zindex .zindex\:five {
-    z-index: 5;
+    > * {
+        grid-area: 1 / 1;
+    }
 }

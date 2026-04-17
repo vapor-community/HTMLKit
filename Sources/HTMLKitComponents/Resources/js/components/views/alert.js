@@ -4,8 +4,12 @@
 
     /**
      * Initiates the alert object.
+     *
+     * @constructor
+     *
+     * @param element
      */
-    const Alert = function (element, position) {
+    const Alert = function (element) {
 
         this.element = element;
 

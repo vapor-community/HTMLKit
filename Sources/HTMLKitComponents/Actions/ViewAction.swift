@@ -9,10 +9,10 @@ public struct ViewAction: Action {
     /// - Returns: The action
     public func show(_ target: String) -> ViewAction {
         
-        var newSelf = self
-        newSelf.actions.append("$('#\(target.escape())').show();")
+        var copy = self
+        copy.actions.append("$('#\(target.escape())').show();")
         
-        return newSelf
+        return copy
     }
 
     /// Hide a target based on a event.
@@ -22,10 +22,10 @@ public struct ViewAction: Action {
     /// - Returns: The action
     public func hide(_ target: String) -> ViewAction {
         
-        var newSelf = self
-        newSelf.actions.append("$('#\(target.escape())').hide();")
+        var copy = self
+        copy.actions.append("$('#\(target.escape())').hide();")
         
-        return newSelf
+        return copy
     }
 
     /// Play an animation based on a event.
@@ -35,10 +35,10 @@ public struct ViewAction: Action {
     /// - Returns: The action
     public func animate(_ target: String) -> ViewAction {
         
-        var newSelf = self
-        newSelf.actions.append("$('#\(target.escape())').animate();")
+        var copy = self
+        copy.actions.append("$('#\(target.escape())').animate();")
         
-        return newSelf
+        return copy
     }
 
     /// Open a target based on a event.
@@ -48,10 +48,10 @@ public struct ViewAction: Action {
     /// - Returns: The action
     public func open(_ target: String) -> ViewAction {
         
-        var newSelf = self
-        newSelf.actions.append("$('#\(target.escape())').open();")
+        var copy = self
+        copy.actions.append("$('#\(target.escape())').open();")
         
-        return newSelf
+        return copy
     }
 
     /// Close a target based on a event.
@@ -61,9 +61,9 @@ public struct ViewAction: Action {
     /// - Returns: The action
     public func close(_ target: String) -> ViewAction {
         
-        var newSelf = self
-        newSelf.actions.append("$('#\(target.escape())').close();")
+        var copy = self
+        copy.actions.append("$('#\(target.escape())').close();")
         
-        return newSelf
+        return copy
     }
 }

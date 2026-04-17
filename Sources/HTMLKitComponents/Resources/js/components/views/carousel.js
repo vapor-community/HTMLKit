@@ -4,6 +4,10 @@
 
     /**
      * Initiates the carousel object.
+     *
+     * @constructor
+     *
+     * @param element
      */
     const Carousel = function (element) {
         

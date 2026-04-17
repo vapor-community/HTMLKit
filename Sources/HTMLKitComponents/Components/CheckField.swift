@@ -27,7 +27,7 @@ public struct CheckField: View, Modifiable, Selectable, Identifiable {
     internal var isSelected: Bool
 
     /// The body content of the field.
-    internal var content: Content
+    internal let content: Content
     
     /// The class names for the field.
     internal var classes: [String]
@@ -78,7 +78,7 @@ public struct CheckField: View, Modifiable, Selectable, Identifiable {
                 $0.for($1)
             }
         }
-        .class(classes.joined(separator: " "))
+        .class(classes)
     }
     
     /// Set the identifier for the field.
@@ -130,15 +130,21 @@ extension CheckField: ViewModifier {
         return self.mutate(padding: length.value, insets: insets)
     }
     
-    public func border(_ color: Tokens.BorderColor, width: Tokens.BorderWidth = .small) -> CheckField {
-        return self.mutate(border: color.value, width: width.value)
+    public func border(_ color: Tokens.BorderColor, width: Tokens.BorderWidth = .small, shape: Tokens.BorderShape? = nil) -> CheckField {
+        return self.mutate(border: color.value, width: width.value, shape: shape?.value)
     }
     
+    @available(*, deprecated, message: "Use the border(_:width:shape:) modifier instead.")
     public func borderShape(_ shape: Tokens.BorderShape) -> CheckField {
         return self.mutate(bordershape: shape.value)
     }
     
+    @available(*, deprecated, message: "Use the background(_:) modifier instead.")
     public func backgroundColor(_ color: Tokens.BackgroundColor) -> CheckField {
+        return self.mutate(backgroundcolor: color.value)
+    }
+    
+    public func background(_ color: Tokens.BackgroundColor) -> CheckField {
         return self.mutate(backgroundcolor: color.value)
     }
     
@@ -147,7 +153,7 @@ extension CheckField: ViewModifier {
     }
     
     public func frame(width: Tokens.ViewWidth, height: Tokens.ViewHeight? = nil, alignment: Tokens.FrameAlignment? = nil) -> CheckField {
-        return mutate(frame: width.value, height: height?.value, alignment: alignment?.value)
+        return self.mutate(frame: width.value, height: height?.value, alignment: alignment?.value)
     }
     
     public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> CheckField {

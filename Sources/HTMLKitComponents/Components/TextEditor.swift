@@ -23,7 +23,7 @@ public struct TextEditor: View, Modifiable, Identifiable {
     internal var rows: Int = 3
     
     /// The body content of the editor.
-    internal var content: [String]
+    internal let content: [String]
     
     /// The class names for the editor.
     internal var classes: [String]
@@ -68,7 +68,7 @@ public struct TextEditor: View, Modifiable, Identifiable {
         .modify(unwrap: id) {
             $0.id($1)
         }
-        .class(classes.joined(separator: " "))
+        .class(classes)
         .rows(rows)
         .modify(unwrap: prompt) {
             $0.placeholder($1)
@@ -82,10 +82,10 @@ public struct TextEditor: View, Modifiable, Identifiable {
     /// - Returns: The editor
     public func lineLimit(_ value: Int) -> TextEditor {
 
-        var newSelf = self
-        newSelf.rows = value
+        var copy = self
+        copy.rows = value
         
-        return newSelf
+        return copy
     }
     
     /// Set the identifier for the editor.
@@ -137,15 +137,21 @@ extension TextEditor: ViewModifier {
         return self.mutate(padding: length.value, insets: insets)
     }
     
-    public func border(_ color: Tokens.BorderColor, width: Tokens.BorderWidth = .small) -> TextEditor {
-        return self.mutate(border: color.value, width: width.value)
+    public func border(_ color: Tokens.BorderColor, width: Tokens.BorderWidth = .small, shape: Tokens.BorderShape? = nil) -> TextEditor {
+        return self.mutate(border: color.value, width: width.value, shape: shape?.value)
     }
     
+    @available(*, deprecated, message: "Use the border(_:width:shape:) modifier instead.")
     public func borderShape(_ shape: Tokens.BorderShape) -> TextEditor {
         return self.mutate(bordershape: shape.value)
     }
     
+    @available(*, deprecated, message: "Use the background(_:) modifier instead.")
     public func backgroundColor(_ color: Tokens.BackgroundColor) -> TextEditor {
+        return self.mutate(backgroundcolor: color.value)
+    }
+    
+    public func background(_ color: Tokens.BackgroundColor) -> TextEditor {
         return self.mutate(backgroundcolor: color.value)
     }
     
@@ -154,7 +160,7 @@ extension TextEditor: ViewModifier {
     }
     
     public func frame(width: Tokens.ViewWidth, height: Tokens.ViewHeight? = nil, alignment: Tokens.FrameAlignment? = nil) -> TextEditor {
-        return mutate(frame: width.value, height: height?.value, alignment: alignment?.value)
+        return self.mutate(frame: width.value, height: height?.value, alignment: alignment?.value)
     }
     
     public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> TextEditor {

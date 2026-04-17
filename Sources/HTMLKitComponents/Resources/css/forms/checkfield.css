@@ -1,14 +1,5 @@
-/*
- The rulesets for the checkfield component.
- 
- defaults:
- border width: 1px;
- border color: #DFE3E7
- background color: #FFFFFF
- 
- darkmode:
- border color: #484F56
- background color: #FFFFFF
+/**
+ * The rulesets for the checkfield component.
  */
 
 .checkfield {
@@ -33,52 +24,54 @@
     padding-block-end: var(--paddingBlockEnd);
     padding-inline-start: var(--paddingInlineStart);
     padding-inline-end: var(--paddingInlineEnd);
-}
 
-.checkinput {
-    position: relative;
-    display: inline-grid;
-    place-content: center;
-    margin: 0;
-    padding: 0;
-    block-size: 1.5rem;
-    inline-size: 1.5rem;
-    border-width: var(--borderWidth);
-    border-style: solid;
-    border-color: hsla(var(--borderColor), var(--borderOpacity));
-    border-radius: var(--borderRadius);
-    background-color: hsla(var(--backgroundColor), var(--backgroundOpacity));
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-}
+    .checkinput {
+        position: relative;
+        margin-inline: 0;
+        margin-block: 0;
+        padding-inline: 0;
+        padding-block: 0;
+        block-size: 1.5rem;
+        inline-size: 1.5rem;
+        display: inline-grid;
+        place-content: center;
+        border-width: var(--borderWidth);
+        border-style: solid;
+        border-color: hsla(var(--borderColor), var(--borderOpacity));
+        border-radius: var(--borderRadius);
+        background-color: hsla(var(--backgroundColor), var(--backgroundOpacity));
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
 
-.checkinput:checked {
-    --backgroundColor: var(--accentColor) !important;
-}
+        &:checked {
+            --backgroundColor: var(--accentColor) !important;
 
-.checkinput:focus {
-    --borderColor: var(--focusColor) !important;
-    
-    outline: 0;
-    box-shadow: 0 0 0 0.125rem hsla(var(--focusColor), 0.1);
-}
+            &:before {
+                transform: scale(1);
+            }
+        }
 
-.checkinput:before {
-    content: "";
-    block-size: 0.625rem;
-    inline-size: 0.625rem;
-    border-radius: 1px;
-    background-color: hsla(var(--whiteColor), 1.0);
-    transform: scale(0);
-}
+        &:focus {
+            --borderColor: var(--focusColor) !important;
 
-.checkinput:checked:before {
-    transform: scale(1);
-}
+            outline-style: none;
+            box-shadow: 0 0 0 0.125rem hsla(var(--focusColor), 0.1);
+        }
 
-.checkinput + label {
-    font-family: system-ui;
-    color: hsla(var(--foregroundColor), 1.0);
-    margin-inline-start: 1.25rem;
+        &:before {
+            content: "";
+            block-size: 0.625rem;
+            inline-size: 0.625rem;
+            border-radius: 1px;
+            background-color: hsla(var(--whiteColor), 1.0);
+            transform: scale(0);
+        }
+    }
+
+    label {
+        margin-inline-start: 1.25rem;
+        font-family: system-ui;
+        color: hsla(var(--foregroundColor), 1.0);
+    }
 }

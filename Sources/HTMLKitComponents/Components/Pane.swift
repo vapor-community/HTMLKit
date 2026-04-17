@@ -24,13 +24,13 @@ public struct Pane: View, Modifiable {
     internal var id: String?
     
     /// The body content of the pane.
-    internal var content: [Content]
+    internal let content: [Content]
     
     /// The class names for the pane.
     internal var classes: [String]
     
     /// The label content of the pane.
-    internal var label: [Content]
+    internal let label: [Content]
     
     /// A badge indicator for the pane.
     internal var badge: Int?
@@ -51,7 +51,7 @@ public struct Pane: View, Modifiable {
         Division {
             content
         }
-        .class(classes.joined(separator: " "))
+        .class(classes)
         .modify(unwrap: id) {
             $0.id($1)
         }
@@ -64,10 +64,10 @@ public struct Pane: View, Modifiable {
     /// - Returns: The pane
     public func tag(_ value: String) -> Pane {
         
-        var newSelf = self
-        newSelf.id = value
+        var copy = self
+        copy.id = value
         
-        return newSelf
+        return copy
     }
     
     /// Show a badge within the pane's tab.
@@ -77,9 +77,9 @@ public struct Pane: View, Modifiable {
     /// - Returns: The pane
     public func badge(_ value: Int) -> Pane {
         
-        var newSelf = self
-        newSelf.badge = value
+        var copy = self
+        copy.badge = value
         
-        return newSelf
+        return copy
     }
 }

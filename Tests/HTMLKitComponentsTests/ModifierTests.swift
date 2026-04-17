@@ -15,11 +15,15 @@ final class ModifierTests: XCTestCase {
         
         let view = TestView {
             HStack {}.border(.black)
+            HStack {}.border(.black, width: .medium)
+            HStack {}.border(.black, width: .large, shape: .fullrounded)
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <div class="hstack vertical-alignment:center border:black border:small"></div>
+                       <div class="hstack vertical-alignment:center border:black border:small"></div>\
+                       <div class="hstack vertical-alignment:center border:black border:medium"></div>\
+                       <div class="hstack vertical-alignment:center border:black border:large shape:fullrounded"></div>
                        """
         )
     }
@@ -27,25 +31,12 @@ final class ModifierTests: XCTestCase {
     func testBackgroundColor() throws {
         
         let view = TestView {
-            HStack {}.backgroundColor(.black)
+            HStack {}.background(.black)
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
                        <div class="hstack vertical-alignment:center background:black"></div>
-                       """
-        )
-    }
-    
-    func testBorderShape() throws {
-        
-        let view = TestView {
-            HStack {}.borderShape(.fullrounded)
-        }
-        
-        XCTAssertEqual(try renderer.render(view: view),
-                       """
-                       <div class="hstack vertical-alignment:center shape:fullrounded"></div>
                        """
         )
     }

@@ -20,7 +20,7 @@ public struct Progress: View, Modifiable, Identifiable {
     internal let value: String
     
     /// The body content of the progress.
-    internal var content: [Content]
+    internal let content: [Content]
     
     /// The class names for the progress.
     internal var classes: [String]
@@ -54,7 +54,7 @@ public struct Progress: View, Modifiable, Identifiable {
             .class("mark")
         }
         .namespace("http://www.w3.org/2000/svg")
-        .class(classes.joined(separator: " "))
+        .class(classes)
         .modify(unwrap: id) {
             $0.id($1)
         }
@@ -75,7 +75,7 @@ public struct Progress: View, Modifiable, Identifiable {
     ///
     /// - Returns: The progress
     public func progressStyle(_ style: Tokens.ProgressStyle) -> Progress {
-        return self.mutate(class: "style:\(style.value)")
+        return self.mutate(classes: "style:\(style.value)")
     }
     
     /// Set a tint color for the progress.
@@ -84,6 +84,6 @@ public struct Progress: View, Modifiable, Identifiable {
     ///
     /// - Returns: The progress
     public func tint(_ color: Tokens.TintColor) -> Progress {
-        return self.mutate(class: "tint:\(color.value)")
+        return self.mutate(classes: "tint:\(color.value)")
     }
 }

@@ -150,7 +150,7 @@ final class ComponentTests: XCTestCase {
                        <ul class="calendar-navigation">\
                        <li>\
                        <button type="button" value="previous">\
-                       <svg viewbox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">\
+                       <svg viewbox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">\
                        <polyline points="10 2 4 8 10 14"></polyline>\
                        </svg>\
                        </button>\
@@ -160,7 +160,7 @@ final class ComponentTests: XCTestCase {
                        </li>\
                        <li>\
                        <button type="button" value="next">\
-                       <svg viewbox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">\
+                       <svg viewbox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">\
                        <polyline points="6 2 12 8 6 14"></polyline>\
                        </svg>\
                        </button>\
@@ -486,12 +486,12 @@ final class ComponentTests: XCTestCase {
     func testScrollView() throws {
         
         let view = TestView {
-            Scroll(showIndicators: false) {}
+            Scroll() {}
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <div class="scroll indicators:false"></div>
+                       <div class="scroll indicators:true"></div>
                        """
         )
     }
@@ -510,7 +510,6 @@ final class ComponentTests: XCTestCase {
                        """
         )
     }
-    
     
     func testNavigation() throws {
         
