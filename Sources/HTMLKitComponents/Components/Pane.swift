@@ -18,7 +18,7 @@ import HTMLKit
 ///     .tag("lorem")
 /// }
 /// ```
-public struct Pane: View, Modifiable {
+public struct Pane: View, Modifiable, Identifiable {
     
     /// The unique identifier of the pane.
     internal var id: String?
@@ -64,11 +64,7 @@ public struct Pane: View, Modifiable {
     ///
     /// - Returns: The pane
     public func tag(_ value: String) -> Pane {
-        
-        var copy = self
-        copy.id = value
-        
-        return copy
+        return self.mutate(id: value)
     }
     
     /// Show a badge within the pane's tab.
