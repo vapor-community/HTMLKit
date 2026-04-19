@@ -243,6 +243,7 @@ public struct Symbol: View, Modifiable {
         }
         .viewBox(x: 0, y: 0, width: 20, height: 16)
         .class(classes)
+        .custom(key: "role", value: "img")
     }
     
     /// Set the size for the symbol.

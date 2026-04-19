@@ -62,7 +62,7 @@ final class ComponentTests: XCTestCase {
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <div class="grid ratio:fit"></div>
+                       <div class="grid ratio:fit" role="grid"></div>
                        """
         )
     }
@@ -146,11 +146,11 @@ final class ComponentTests: XCTestCase {
                        """
                        <div class="datepicker">\
                        <input type="text" class="datepicker-datefield" name="name">\
-                       <div class="datepicker-calendar">\
+                       <div class="datepicker-calendar" role="grid">\
                        <ul class="calendar-navigation">\
                        <li>\
-                       <button type="button" value="previous">\
-                       <svg viewbox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">\
+                       <button type="button" value="previous" aria-label="Browse previous">\
+                       <svg viewbox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">\
                        <polyline points="10 2 4 8 10 14"></polyline>\
                        </svg>\
                        </button>\
@@ -159,8 +159,8 @@ final class ComponentTests: XCTestCase {
                        <b class="calendar-detail"></b>\
                        </li>\
                        <li>\
-                       <button type="button" value="next">\
-                       <svg viewbox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">\
+                       <button type="button" value="next" aria-label="Browse next">\
+                       <svg viewbox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">\
                        <polyline points="6 2 12 8 6 14"></polyline>\
                        </svg>\
                        </button>\
@@ -208,7 +208,7 @@ final class ComponentTests: XCTestCase {
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <div class="picker">\
+                       <div class="picker" role="group">\
                        <div class="checkfield">\
                        <input type="checkbox" value="value" checked="checked" class="checkinput" name="name" id="name">\
                        <label for="name">Label</label>\
@@ -231,7 +231,7 @@ final class ComponentTests: XCTestCase {
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <div class="picker">\
+                       <div class="picker" role="group">\
                        <div class="radioselect">\
                        <input type="radio" value="value" checked="checked" class="radioinput" name="name" id="name">\
                        <label for="name">Label</label>\
@@ -255,9 +255,9 @@ final class ComponentTests: XCTestCase {
         XCTAssertEqual(try renderer.render(view: view),
                        """
                        <div class="selectfield">\
-                       <input type="text" class="selectfield-textfield">\
-                       <div class="selectfield-optionlist">\
-                       <div class="radioselect">\
+                       <input type="text" class="selectfield-textfield" role="combobox">\
+                       <div class="selectfield-optionlist" role="listbox">\
+                       <div class="radioselect" role="option">\
                        <input type="radio" value="value" checked="checked" class="radioinput" name="name" id="name">\
                        <label for="name">Label</label>\
                        </div>\
@@ -288,7 +288,7 @@ final class ComponentTests: XCTestCase {
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <img src="source" role="img" class="image">
+                       <img src="source" class="image">
                        """
         )
     }
@@ -383,7 +383,7 @@ final class ComponentTests: XCTestCase {
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <svg xmlns="http://www.w3.org/2000/svg" class="progress">\
+                       <svg xmlns="http://www.w3.org/2000/svg" class="progress" role="progressbar" aria-valuenow="50.0" aria-valuemax="100.0">\
                        <path class="mark">100.0</path>\
                        <path class="mark">50.0</path>\
                        </svg>
@@ -443,10 +443,10 @@ final class ComponentTests: XCTestCase {
                        """
                        <div class="carousel">\
                        <div class="carousel-content">\
-                       <div class="slide" id="slide"></div>\
+                       <div class="slide" role="tabpanel" id="slide"></div>\
                        </div>\
-                       <div class="carousel-indication">\
-                       <a class="indicator" href="#slide"></a>\
+                       <div class="carousel-indication" role="tablist">\
+                       <a class="indicator" href="#slide" role="tab"></a>\
                        </div>\
                        </div>
                        """
@@ -464,7 +464,7 @@ final class ComponentTests: XCTestCase {
                        """
                        <div class="dropdown">\
                        <div class="dropdown-label"></div>\
-                       <div class="dropdown-content"></div>\
+                       <div class="dropdown-content" role="menu"></div>\
                        </div>
                        """
         )
@@ -504,7 +504,7 @@ final class ComponentTests: XCTestCase {
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <svg viewbox="0 0 20 16" class="symbol">\
+                       <svg viewbox="0 0 20 16" class="symbol" role="img">\
                        <path d="M2,12L2,4C2,2.896 2.896,2 4,2L6.923,2C6.966,2 7.009,2.006 7.05,2.017C7.062,2.021 7.074,2.025 7.086,2.031C7.255,2.117 9,3 9,3L16,3C17.104,3 18,3.896 18,5L18,12C18,13.104 17.104,14 16,14L4,14C2.896,14 2,13.104 2,12ZM16.5,6L16.5,5C16.5,4.724 16.276,4.5 16,4.5L9.084,4.5C9.039,4.5 8.75,4.512 8.616,4.506C8.566,4.495 8.518,4.478 8.473,4.454C8.106,4.267 6.644,3.505 6.644,3.505L4,3.5C3.724,3.5 3.5,3.724 3.5,4L3.5,6L16.5,6ZM3.5,7.5L3.5,12C3.5,12.276 3.724,12.5 4,12.5L16,12.5C16.276,12.5 16.5,12.276 16.5,12L16.5,7.5L3.5,7.5Z"></path>\
                        </svg>
                        """
@@ -536,9 +536,9 @@ final class ComponentTests: XCTestCase {
                        <div class="disclosure">\
                        <div class="disclosure-head">\
                        <p class="disclosure-label">Label</p>\
-                       <svg viewbox="0 0 20 16" xmlns="http://www.w3.org/2000/svg" class="state-indicator">\
+                       <svg viewbox="0 0 20 16" xmlns="http://www.w3.org/2000/svg" class="state-indicator" aria-hidden="true">\
+                       <title>State Indicator</title>\
                        <path d="M7.28,2.241C6.987,1.957 6.987,1.497 7.28,1.213C7.573,0.929 8.048,0.929 8.341,1.213L14.811,7.486C15.103,7.77 15.103,8.23 14.811,8.514L8.28,14.787C7.987,15.071 7.512,15.071 7.22,14.787C6.927,14.503 6.927,14.043 7.22,13.759L13.22,8L7.28,2.241Z">\
-                       <title>state indicator</title>\
                        </path>\
                        </svg>\
                        </div>\

@@ -65,6 +65,7 @@ public struct Picker: View, Modifiable, Identifiable {
             }
         }
         .class(classes)
+        .role(.group)
         .modify(unwrap: id) {
             $0.id($1)
         }

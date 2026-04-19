@@ -37,6 +37,7 @@ public struct Slide: View, Identifiable, Modifiable {
             content
         }
         .class(classes)
+        .role(.tabPanel)
         .modify(unwrap: id) {
             $0.id($1)
         }

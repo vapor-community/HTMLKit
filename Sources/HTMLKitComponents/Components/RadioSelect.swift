@@ -32,6 +32,9 @@ public struct RadioSelect: View, Modifiable, Selectable, Identifiable {
     /// The class names for the select.
     internal var classes: [String]
     
+    /// The role of the select.
+    internal var role: HTMLKit.Values.Role?
+    
     /// Create a radio select.
     ///
     /// - Parameters:
@@ -79,6 +82,9 @@ public struct RadioSelect: View, Modifiable, Selectable, Identifiable {
             }
         }
         .class(classes)
+        .modify(unwrap: role) {
+            $0.role($1)
+        }
     }
     
     /// Set the identifier for the select.

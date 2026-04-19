@@ -54,6 +54,7 @@ public struct Dropdown: View, Modifiable, Identifiable {
                 content
             }
             .class("dropdown-content")
+            .role(.menu)
         }
         .class(classes)
         .modify(unwrap: id) {

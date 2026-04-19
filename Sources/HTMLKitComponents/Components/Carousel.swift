@@ -46,9 +46,11 @@ public struct Carousel: View, Identifiable, Modifiable {
                     .modify(unwrap: item.id) {
                         $0.reference("#" + $1)
                     }
+                    .role(.tab)
                 }
             }
             .class("carousel-indication")
+            .role(.tabList)
         }
         .class(classes)
         .modify(unwrap: id) {

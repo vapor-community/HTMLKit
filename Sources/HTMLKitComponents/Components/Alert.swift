@@ -33,6 +33,7 @@ public struct Alert: View, Identifiable, Modifiable {
         Division {
             content
         }
+        .role(.alert)
         .class(classes)
         .modify(unwrap: id) {
             $0.id($1)

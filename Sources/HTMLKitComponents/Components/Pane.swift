@@ -52,6 +52,7 @@ public struct Pane: View, Modifiable {
             content
         }
         .class(classes)
+        .role(.tabPanel)
         .modify(unwrap: id) {
             $0.id($1)
         }

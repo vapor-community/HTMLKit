@@ -32,6 +32,9 @@ public struct CheckField: View, Modifiable, Selectable, Identifiable {
     /// The class names for the field.
     internal var classes: [String]
     
+    /// The role of the field.
+    internal var role: HTMLKit.Values.Role?
+    
     /// Create a check field.
     ///
     /// - Parameters:
@@ -79,6 +82,9 @@ public struct CheckField: View, Modifiable, Selectable, Identifiable {
             }
         }
         .class(classes)
+        .modify(unwrap: role) {
+            $0.role($1)
+        }
     }
     
     /// Set the identifier for the field.

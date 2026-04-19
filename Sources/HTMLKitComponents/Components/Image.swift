@@ -39,7 +39,6 @@ public struct Image: View, Modifiable, Identifiable {
     public var body: Content {
         HTMLKit.Image()
             .source(source)
-            .role(.img)
             .class(classes)
             .modify(unwrap: id) {
                 $0.id($1)

@@ -58,6 +58,9 @@ public struct Progress: View, Modifiable, Identifiable {
         .modify(unwrap: id) {
             $0.id($1)
         }
+        .custom(key: "role", value: "progressbar")
+        .custom(key: "aria-valuenow", value: value)
+        .custom(key: "aria-valuemax", value: total)
     }
     
     /// Set the identifier for the progress.

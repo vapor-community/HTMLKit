@@ -90,9 +90,11 @@ public struct DatePicker: View, Modifiable, Identifiable {
                         .namespace("http://www.w3.org/2000/svg")
                         .fill("currentColor")
                         .stroke("currentColor", width: 2, cap: .round, join: .round)
+                        .custom(key: "aria-hidden", value: true)
                     }
                     .type(.button)
                     .value(verbatim: "previous")
+                    .accessibilityLabel(verbatim: "Browse previous")
                 }
                 ListItem {
                     Bold {
@@ -110,9 +112,11 @@ public struct DatePicker: View, Modifiable, Identifiable {
                         .namespace("http://www.w3.org/2000/svg")
                         .fill("currentColor")
                         .stroke("currentColor", width: 2, cap: .round, join: .round)
+                        .custom(key: "aria-hidden", value: true)
                     }
                     .type(.button)
                     .value(verbatim: "next")
+                    .accessibilityLabel(verbatim: "Browse next")
                 }
             }
             .class("calendar-navigation")
@@ -145,6 +149,7 @@ public struct DatePicker: View, Modifiable, Identifiable {
             .class("calendar-days")
         }
         .class("datepicker-calendar")
+        .role(.grid)
     }
 }
 

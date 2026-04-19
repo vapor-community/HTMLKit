@@ -11,6 +11,9 @@ internal protocol Selectable: Content {
     
     /// The selection value
     var value: String { get set }
+    
+    /// The selection value
+    var role: HTMLKit.Values.Role? { get set }
 }
 
 extension Selectable {
@@ -27,6 +30,14 @@ extension Selectable {
         
         var copy = self
         copy.name = name
+        
+        return copy
+    }
+    
+    internal func role(_ value: HTMLKit.Values.Role) -> Self {
+        
+        var copy = self
+        copy.role = value
         
         return copy
     }

@@ -70,9 +70,11 @@ public struct Tabs: View, Identifiable, Modifiable {
                         }
                     }
                     .class("tabs-tab")
+                    .role(.tab)
                 }
             }
             .class("tabs-tabs")
+            .role(.tabList)
             Division {
                 content
             }

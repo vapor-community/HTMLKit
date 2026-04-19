@@ -106,6 +106,7 @@ public struct SelectField: View, Modifiable, Identifiable {
             Input()
                 .type(.text)
                 .class("selectfield-textfield")
+                .role(.combobox)
                 .modify(unwrap: prompt) {
                     $0.placeholder($1)
                 }
@@ -113,9 +114,11 @@ public struct SelectField: View, Modifiable, Identifiable {
                 for item in content {
                     item.selected(item.value == selection)
                         .tag(name)
+                        .role(.option)
                 }
             }
             .class("selectfield-optionlist")
+            .role(.listBox)
         }
         .class(classes)
         .modify(unwrap: id) {

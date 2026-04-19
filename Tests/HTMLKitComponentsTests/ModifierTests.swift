@@ -270,7 +270,7 @@ final class ModifierTests: XCTestCase {
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <img src="source" role="img" class="image aspect:equal fit:cover">
+                       <img src="source" class="image aspect:equal fit:cover">
                        """
         )
     }
@@ -283,7 +283,7 @@ final class ModifierTests: XCTestCase {
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <img src="source" role="img" class="image shape:circle">
+                       <img src="source" class="image shape:circle">
                        """
         )
     }
@@ -296,7 +296,7 @@ final class ModifierTests: XCTestCase {
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <img src="source" role="img" class="image shape:rectangle">
+                       <img src="source" class="image shape:rectangle">
                        """
         )
     }

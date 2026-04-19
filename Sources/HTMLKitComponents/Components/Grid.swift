@@ -76,6 +76,7 @@ public struct Grid: View, Modifiable, Actionable {
             content
         }
         .class(classes)
+        .role(.grid)
         .modify(unwrap: id) {
             $0.id($1)
         }
