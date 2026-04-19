@@ -10,12 +10,12 @@ public struct SubmitAction: Action {
             
             let result = validators.map { "{\"field\":\"\($0.field)\",\"rule\":\"\($0.rule)\"}" }
             
-            copy.actions.append("$('#\(target.escape())').validate('[\(result.joined(separator: ","))]');")
+            copy.actions.append("$('#\(target)').validate('[\(result.joined(separator: ","))]');")
             
             return copy
         }
         
-        copy.actions.append("$('#\(target.escape())').validate('[]');")
+        copy.actions.append("$('#\(target))').validate('[]');")
         
         return copy
     }

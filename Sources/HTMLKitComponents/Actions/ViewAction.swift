@@ -10,7 +10,7 @@ public struct ViewAction: Action {
     public func show(_ target: String) -> ViewAction {
         
         var copy = self
-        copy.actions.append("$('#\(target.escape())').show();")
+        copy.actions.append("$('#\(target)').show();")
         
         return copy
     }
@@ -23,7 +23,7 @@ public struct ViewAction: Action {
     public func hide(_ target: String) -> ViewAction {
         
         var copy = self
-        copy.actions.append("$('#\(target.escape())').hide();")
+        copy.actions.append("$('#\(target)').hide();")
         
         return copy
     }
@@ -36,7 +36,7 @@ public struct ViewAction: Action {
     public func animate(_ target: String) -> ViewAction {
         
         var copy = self
-        copy.actions.append("$('#\(target.escape())').animate();")
+        copy.actions.append("$('#\(target)').animate();")
         
         return copy
     }
@@ -49,7 +49,7 @@ public struct ViewAction: Action {
     public func open(_ target: String) -> ViewAction {
         
         var copy = self
-        copy.actions.append("$('#\(target.escape())').open();")
+        copy.actions.append("$('#\(target)').open();")
         
         return copy
     }
@@ -62,7 +62,7 @@ public struct ViewAction: Action {
     public func close(_ target: String) -> ViewAction {
         
         var copy = self
-        copy.actions.append("$('#\(target.escape())').close();")
+        copy.actions.append("$('#\(target)').close();")
         
         return copy
     }
