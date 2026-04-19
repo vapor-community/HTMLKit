@@ -16,7 +16,7 @@ public struct SearchField: View, Modifiable, Identifiable {
     internal let name: String
     
     /// The content hint for the field.
-    internal let prompt: PromptType?
+    internal let prompt: DynamicString?
     
     /// The content of the field.
     internal let value: String?
@@ -38,7 +38,7 @@ public struct SearchField: View, Modifiable, Identifiable {
         
         self.name = name
         self.value = value
-        self.prompt = prompt.map(PromptType.string(_:))
+        self.prompt = prompt.map(DynamicString.literal(_:))
         self.classes = ["searchfield"]
     }
     
@@ -52,7 +52,7 @@ public struct SearchField: View, Modifiable, Identifiable {
         
         self.name = name
         self.value = value
-        self.prompt = prompt.map(PromptType.value(_:))
+        self.prompt = prompt.map { DynamicString.localized($0, nil) }
         self.classes = ["searchfield"]
     }
     
@@ -63,7 +63,7 @@ public struct SearchField: View, Modifiable, Identifiable {
             .modify(unwrap: id) {
                 $0.id($1)
             }
-            .class(classes.joined(separator: " "))
+            .class(classes)
             .modify(unwrap: value) {
                 $0.value($1)
             }
@@ -121,15 +121,21 @@ extension SearchField: ViewModifier {
         return self.mutate(padding: length.value, insets: insets)
     }
     
-    public func border(_ color: Tokens.BorderColor, width: Tokens.BorderWidth = .small) -> SearchField {
-        return self.mutate(border: color.value, width: width.value)
+    public func border(_ color: Tokens.BorderColor, width: Tokens.BorderWidth = .small, shape: Tokens.BorderShape? = nil) -> SearchField {
+        return self.mutate(border: color.value, width: width.value, shape: shape?.value)
     }
     
+    @available(*, deprecated, message: "Use the border(_:width:shape:) modifier instead.")
     public func borderShape(_ shape: Tokens.BorderShape) -> SearchField {
         return self.mutate(bordershape: shape.value)
     }
     
+    @available(*, deprecated, message: "Use the background(_:) modifier instead.")
     public func backgroundColor(_ color: Tokens.BackgroundColor) -> SearchField {
+        return self.mutate(backgroundcolor: color.value)
+    }
+    
+    public func background(_ color: Tokens.BackgroundColor) -> SearchField {
         return self.mutate(backgroundcolor: color.value)
     }
     
@@ -138,7 +144,7 @@ extension SearchField: ViewModifier {
     }
     
     public func frame(width: Tokens.ViewWidth, height: Tokens.ViewHeight? = nil, alignment: Tokens.FrameAlignment? = nil) -> SearchField {
-        return mutate(frame: width.value, height: height?.value, alignment: alignment?.value)
+        return self.mutate(frame: width.value, height: height?.value, alignment: alignment?.value)
     }
     
     public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> SearchField {

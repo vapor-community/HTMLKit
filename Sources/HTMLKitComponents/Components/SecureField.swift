@@ -16,7 +16,7 @@ public struct SecureField: View, Modifiable, Identifiable {
     internal let name: String
     
     /// The content hint for the field.
-    internal let prompt: PromptType?
+    internal let prompt: DynamicString?
     
     /// The content of the field.
     internal let value: String?
@@ -37,7 +37,7 @@ public struct SecureField: View, Modifiable, Identifiable {
     public init(name: String, prompt: String? = nil, value: String? = nil) {
         
         self.name = name
-        self.prompt = prompt.map(PromptType.string(_:))
+        self.prompt = prompt.map(DynamicString.literal(_:))
         self.value = value
         self.classes = ["securefield"]
     }
@@ -51,7 +51,7 @@ public struct SecureField: View, Modifiable, Identifiable {
     public init(name: String, prompt: LocalizedStringKey? = nil, value: String? = nil) {
         
         self.name = name
-        self.prompt = prompt.map(PromptType.value(_:))
+        self.prompt = prompt.map { DynamicString.localized($0, nil) }
         self.value = value
         self.classes = ["securefield"]
     }
@@ -63,7 +63,7 @@ public struct SecureField: View, Modifiable, Identifiable {
             .modify(unwrap: id) {
                 $0.id($1)
             }
-            .class(classes.joined(separator: " "))
+            .class(classes)
             .modify(unwrap: value) {
                 $0.value($1)
             }
@@ -121,15 +121,20 @@ extension SecureField: ViewModifier {
         return self.mutate(padding: length.value, insets: insets)
     }
     
-    public func border(_ color: Tokens.BorderColor, width: Tokens.BorderWidth = .small) -> SecureField {
-        return self.mutate(border: color.value, width: width.value)
+    public func border(_ color: Tokens.BorderColor, width: Tokens.BorderWidth = .small, shape: Tokens.BorderShape? = nil) -> SecureField {
+        return self.mutate(border: color.value, width: width.value, shape: shape?.value)
     }
     
     public func borderShape(_ shape: Tokens.BorderShape) -> SecureField {
         return self.mutate(bordershape: shape.value)
     }
     
+    @available(*, deprecated, message: "Use the background(_:) modifier instead.")
     public func backgroundColor(_ color: Tokens.BackgroundColor) -> SecureField {
+        return self.mutate(backgroundcolor: color.value)
+    }
+    
+    public func background(_ color: Tokens.BackgroundColor) -> SecureField {
         return self.mutate(backgroundcolor: color.value)
     }
     
@@ -138,7 +143,7 @@ extension SecureField: ViewModifier {
     }
     
     public func frame(width: Tokens.ViewWidth, height: Tokens.ViewHeight? = nil, alignment: Tokens.FrameAlignment? = nil) -> SecureField {
-        return mutate(frame: width.value, height: height?.value, alignment: alignment?.value)
+        return self.mutate(frame: width.value, height: height?.value, alignment: alignment?.value)
     }
     
     public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> SecureField {

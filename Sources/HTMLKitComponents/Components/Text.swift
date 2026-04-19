@@ -15,7 +15,7 @@ public struct Text: View, Actionable, Modifiable {
     internal var id: String?
     
     /// The body content of the text.
-    internal var content: [Content]
+    internal let content: [Content]
     
     /// The class names for the text.
     internal var classes: [String]
@@ -49,7 +49,7 @@ public struct Text: View, Actionable, Modifiable {
         Paragraph {
             content
         }
-        .class(classes.joined(separator: " "))
+        .class(classes)
         .modify(unwrap: id) {
             $0.id($1)
         }
@@ -99,7 +99,7 @@ extension Text: PressEvent {
 extension Text: TextModifier {
    
     public func font(_ family: Tokens.FontFamily) -> Text {
-        return mutate(fontfamily: family.value)
+        return self.mutate(fontfamily: family.value)
     }
     
     public func textStyle(_ style: Tokens.TextStyle) -> Text {
@@ -179,13 +179,18 @@ extension Text: TextModifier {
     }
     
     public func shadow(_ radius: Tokens.BlurRadius, color: Tokens.ShadowColor = .black) -> Text {
-        return mutate(shadow: radius.value, color: color.value)
+        return self.mutate(shadow: radius.value, color: color.value)
     }
 }
 
 extension Text: ViewModifier {
     
+    @available(*, deprecated, message: "Use the background(_:) modifier instead.")
     public func backgroundColor(_ color: Tokens.BackgroundColor) -> Text {
+        return self.mutate(backgroundcolor: color.value)
+    }
+    
+    public func background(_ color: Tokens.BackgroundColor) -> Text {
         return self.mutate(backgroundcolor: color.value)
     }
     
@@ -214,16 +219,17 @@ extension Text: ViewModifier {
         return self.mutate(padding: length.value, insets: insets)
     }
     
+    @available(*, deprecated, message: "Use the border(_:width:shape:) modifier instead.")
     public func borderShape(_ shape: Tokens.BorderShape) -> Text {
         return self.mutate(bordershape: shape.value)
     }
     
-    public func border(_ color: Tokens.BorderColor, width: Tokens.BorderWidth = .small) -> Text {
-        return self.mutate(border: color.value, width: width.value)
+    public func border(_ color: Tokens.BorderColor, width: Tokens.BorderWidth = .small, shape: Tokens.BorderShape? = nil) -> Text {
+        return self.mutate(border: color.value, width: width.value, shape: shape?.value)
     }
     
     public func frame(width: Tokens.ViewWidth, height: Tokens.ViewHeight? = nil, alignment: Tokens.FrameAlignment? = nil) -> Text {
-        return mutate(frame: width.value, height: height?.value, alignment: alignment?.value)
+        return self.mutate(frame: width.value, height: height?.value, alignment: alignment?.value)
     }
     
     public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> Text {

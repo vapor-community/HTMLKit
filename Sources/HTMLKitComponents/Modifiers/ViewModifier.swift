@@ -20,7 +20,7 @@ public protocol ViewModifier {
     /// - Parameter color: The color to use for the background.
     ///
     /// - Returns: The view
-    func backgroundColor(_ color: Tokens.BackgroundColor) -> Self
+    func background(_ color: Tokens.BackgroundColor) -> Self
     
     /// Hide the view.
     ///
@@ -45,21 +45,15 @@ public protocol ViewModifier {
     /// - Returns: The view
     func padding(insets: EdgeSet, length: Tokens.PaddingLength) -> Self
     
-    /// Set the shape for the view.
-    ///
-    /// - Parameter shape: The border shape to use for the view.
-    ///
-    /// - Returns: The view
-    func borderShape(_ shape: Tokens.BorderShape) -> Self
-    
     /// Set the border for the view.
     ///
     /// - Parameters:
     ///   - color: The color to fill the border with.
     ///   - width: The thickness to apply to the border.
+    ///   - shape: The border shape to use for the view.
     ///
     /// - Returns: The view
-    func border(_ color: Tokens.BorderColor, width: Tokens.BorderWidth) -> Self
+    func border(_ color: Tokens.BorderColor, width: Tokens.BorderWidth, shape: Tokens.BorderShape?) -> Self
     
     /// Set the frame for the view.
     ///
@@ -84,27 +78,27 @@ public protocol ViewModifier {
 extension ViewModifier where Self: Modifiable {
     
     internal func mutate(opacity value: String) -> Self {
-        return self.mutate(class: "opacity:\(value)")
+        return self.mutate(classes: "opacity:\(value)")
     }
     
     internal func mutate(zindex value: String) -> Self {
-        return self.mutate(class: "zindex:\(value)")
+        return self.mutate(classes: "zindex:\(value)")
     }
     
     internal func mutate(backgroundcolor value: String) -> Self {
-        return self.mutate(class: "background:\(value)")
+        return self.mutate(classes: "background:\(value)")
     }
     
     internal func mutate(viewstate value: String) -> Self {
-        return self.mutate(class: "state:\(value)")
+        return self.mutate(classes: "state:\(value)")
     }
     
     internal func mutate(scheme value: String) -> Self {
-        return self.mutate(class: "scheme:\(value)")
+        return self.mutate(classes: "scheme:\(value)")
     }
     
     internal func mutate(padding value: String) -> Self {
-        return self.mutate(class: "padding:\(value)")
+        return self.mutate(classes: "padding:\(value)")
     }
     
     internal func mutate(padding value: String, insets: EdgeSet) -> Self {
@@ -145,11 +139,16 @@ extension ViewModifier where Self: Modifiable {
     }
     
     internal func mutate(bordershape value: String) -> Self {
-        return self.mutate(class: "shape:\(value)")
+        return self.mutate(classes: "shape:\(value)")
     }
     
-    internal func mutate(border color: String, width: String) -> Self {
-        return self.mutate(classes: ["border:\(color)", "border:\(width)"])
+    internal func mutate(border color: String, width: String, shape: String? = nil) -> Self {
+        
+        if let shape = shape {
+            return self.mutate(classes: "border:\(color)", "border:\(width)", "shape:\(shape)")
+        }
+        
+        return self.mutate(classes: "border:\(color)", "border:\(width)")
     }
     
     internal func mutate(frame width: String, height: String? = nil, alignment: String? = nil) -> Self {

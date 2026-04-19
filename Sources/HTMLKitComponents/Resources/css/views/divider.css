@@ -1,11 +1,5 @@
-/*
- The stylesheet for the divider component.
- 
- default:
- background color: #000000
- 
- darkmode:
- background color: #FFFFFF
+/**
+ * The rulesets for the divider component.
  */
 
 .divider {
@@ -13,9 +7,9 @@
     --backgroundOpacity: 1.0;
     
     position: relative;
-    display: block;
     inline-size: 100%;
     block-size: 1px;
-    border-width: 0;
+    display: block;
+    border-style: none;
     background-color: hsla(var(--backgroundColor), var(--backgroundOpacity));
 }

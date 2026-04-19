@@ -11,23 +11,34 @@ internal protocol Selectable: Content {
     
     /// The selection value
     var value: String { get set }
+    
+    /// The selection value
+    var role: HTMLKit.Values.Role? { get set }
 }
 
 extension Selectable {
     
     internal func selected(_ condition: Bool) -> Self {
         
-        var newSelf = self
-        newSelf.isSelected = condition
+        var copy = self
+        copy.isSelected = condition
         
-        return newSelf
+        return copy
     }
     
     internal func tag(_ name: String) -> Self {
         
-        var newSelf = self
-        newSelf.name = name
+        var copy = self
+        copy.name = name
         
-        return newSelf
+        return copy
+    }
+    
+    internal func role(_ value: HTMLKit.Values.Role) -> Self {
+        
+        var copy = self
+        copy.role = value
+        
+        return copy
     }
 }

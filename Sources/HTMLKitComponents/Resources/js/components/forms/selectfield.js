@@ -1,7 +1,14 @@
 (function() {
 
     'use strict';
-    
+
+    /**
+     * Initiates the selectfield object.
+     *
+     * @constructor
+     *
+     * @param element
+     */
     const Selectfield = function (element) {
         
         this.element = element;
@@ -11,9 +18,9 @@
         
         this.initiateListener();
     };
-    
-    /*
-        Initiates the listeners
+
+    /**
+     * Initiates the listener.
      */
     Selectfield.prototype.initiateListener = function () {
         
@@ -71,9 +78,9 @@
             }
         }
     };
-    
-    /*
-        Clears the checked state of the checkfield other as the target
+
+    /**
+     * Clears the checked state of the checkfield other as the target.
      */
     Selectfield.prototype.clearInputs = function (target) {
         
@@ -84,16 +91,16 @@
             }
         }
     };
-    
-    /*
-        Sets the value for the textfield
+
+    /**
+     * Sets the value for the textfield.
      */
     Selectfield.prototype.setInputValue = function (value) {
         this.textfield.value = value;
     };
-    
-    /*
-        Shows the option list
+
+    /**
+     * Shows the option list.
      */
     Selectfield.prototype.showOptionList = function () {
         
@@ -106,9 +113,9 @@
         
         this.optionlist.classList.add('state:visible');
     };
-    
-    /*
-     Hides the option list
+
+    /**
+     * Hides the option list.
      */
     Selectfield.prototype.hideOptionList = function () {
         

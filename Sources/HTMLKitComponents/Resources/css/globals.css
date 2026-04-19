@@ -1,35 +1,9 @@
+/**
+ * The rulesets for the globals.
+ */
+
 :root {
-    
-    /*
-     The variables for the typography.
-     
-     font family: system-ui...; (font-stack)
-     */
-    
     --fontFamily: system-ui, sans-serif;
-    
-    /*
-     The variables for the colors.
-     
-     black color: #000000
-     white color: #FFFFFF
-     blue color: #4098D7
-     brown color: #BF7140
-     cyan color: #38BEC9
-     green color: #57AE5B
-     indigo color: #647ACB
-     mint color: #91E697
-     pink color: #DA4A91
-     purple color: #724BB7
-     red color: #D64545
-     teal color: #3EBD93
-     orange color: #E67635
-     yellow color: #F7D070
-     gray color: #9E9E9E
-     silver color: #F7F7F7
-     accent color: #007FFF
-     */
-    
     --redColor: 0, 64%, 55%;
     --orangeColor: 22, 78%, 55%;
     --yellowColor: 43, 89%, 70%;
@@ -53,36 +27,7 @@
     --systemFocusColor: 210, 100%, 50%;
 }
 
-/*
- dark version
- */
-
 .scheme\:dark {
-    
-    color-scheme: dark;
-    
-    /*
-     The variables for the colors.
-     
-     black color: #000000
-     white color: #FFFFFF
-     blue color: #4098D7
-     brown color: #BF7140
-     cyan color: #38BEC9
-     green color: #57AE5B
-     indigo color: #647ACB
-     mint color: #91E697
-     pink color: #DA4A91
-     purple color: #724BB7
-     red color: #D64545
-     teal color: #3EBD93
-     orange color: #E67635
-     yellow color: #F7D070
-     gray color: #9E9E9E
-     silver color: #F7F7F7
-     accent color: #007FFF
-     */
-    
     --redColor: 0, 74%, 45%;
     --orangeColor: 22, 88%, 45%;
     --yellowColor: 43, 99%, 60%;
@@ -104,6 +49,8 @@
     --systemBorderColor: 210, 9%, 31%;
     --systemTextColor: 0, 0%, 100%;
     --systemFocusColor: 210, 100%, 50%;
+
+    color-scheme: dark;
 }
 
 *,
@@ -126,13 +73,16 @@ figure,
 p,
 pre,
 body {
-    margin: 0;
+    margin-inline: 0;
+    margin-block: 0;
 }
 
 ol,
 ul {
-    margin: 0;
-    padding: 0;
+    margin-inline: 0;
+    margin-block: 0;
+    padding-inline: 0;
+    padding-block: 0;
 }
 
 img,
@@ -149,11 +99,10 @@ object {
 img,
 video {
     max-width: 100%;
-    height: auto;
+    block-size: auto;
 }
 
 @media (prefers-reduced-motion: no-preference) {
-    
     html:focus-within {
         scroll-behavior: smooth;
     }
@@ -1001,11 +950,11 @@ video {
 }
 
 .contrast\:medium {
-    ---contrastLevel: 1.5;
+    --contrastLevel: 1.5;
 }
 
 .contrast\:high {
-    ---contrastLevel: 2.0;
+    --contrastLevel: 2.0;
 }
 
 /*
@@ -1078,4 +1027,96 @@ video {
 
 .overflow\:clip {
     overflow: hidden;
+}
+
+/*
+ tint
+ */
+
+.tint\:black {
+    --tintColor: var(--blackColor) !important;
+}
+
+.tint\:blue {
+    --tintColor: var(--blueColor) !important;
+}
+
+.tint\:brown {
+    --tintColor: var(--brownColor) !important;
+}
+
+.tint\:cyan {
+    --tintColor: var(--cyanColor) !important;
+}
+
+.tint\:gray {
+    --tintColor: var(--grayColor) !important;
+}
+
+.tint\:green {
+    --tintColor: var(--greenColor) !important;
+}
+
+.tint\:indigo {
+    --tintColor: var(--indigoColor) !important;
+}
+
+.tint\:mint {
+    --tintColor: var(--mintColor) !important;
+}
+
+.tint\:orange {
+    --tintColor: var(--orangeColor) !important;
+}
+
+.tint\:pink {
+    --tintColor: var(--pinkColor) !important;
+}
+
+.tint\:purple {
+    --tintColor: var(--purpleColor) !important;
+}
+
+.tint\:red {
+    --tintColor: var(--redColor) !important;
+}
+
+.tint\:teal {
+    --tintColor: var(--tealColor) !important;
+}
+
+.tint\:white {
+    --tintColor: var(--whiteColor) !important;
+}
+
+.tint\:yellow {
+    --tintColor: var(--yellowColor) !important;
+}
+
+.tint\:silver {
+    --tintColor: var(--silverColor) !important;
+}
+
+.tint\:accent {
+    --tintColor: var(--accentColor) !important;
+}
+
+.zindex\:one {
+    z-index: 1;
+}
+
+.zindex\:two {
+    z-index: 2;
+}
+
+.zindex\:three {
+    z-index: 3;
+}
+
+.zindex\:four {
+    z-index: 4;
+}
+
+.zindex\:five {
+    z-index: 5;
 }

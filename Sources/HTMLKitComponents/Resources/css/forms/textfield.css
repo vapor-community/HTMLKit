@@ -1,24 +1,5 @@
-/*
- The rulesets for the textfield component.
- 
- default:
- block padding: 8px
- inline padding: 16px
- font size:
- font weigth: normal
- line height: 1.5
- foreground color: #000000
- border width: 1px
- border color: #DFE3E7
- border radius: 0
- focus color: #0080FF
- background color: #FFFFFF
- 
- darkmode:
- foreground color: #FFFFFF
- border color: #484F56
- focus color: #0080FF
- background color: #22262A
+/**
+ * The rulesets for the textfield component.
  */
 
 .textfield {
@@ -37,13 +18,14 @@
     --focusColor: var(--systemFocusColor);
     --backgroundColor: var(--systemBackgroundColor);
     --backgroundOpacity: 1.0;
-    
-    display: block;
-    inline-size: 100%;
+
     padding-block-start: var(--paddingBlockStart);
     padding-block-end: var(--paddingBlockEnd);
     padding-inline-start: var(--paddingInlineStart);
     padding-inline-end: var(--paddingInlineEnd);
+    inline-size: 100%;
+    display: block;
+    font-family: system-ui;
     font-size: var(--fontSize);
     font-weight: var(--fontWeight);
     line-height: var(--lineHeight);
@@ -56,15 +38,15 @@
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-}
 
-.textfield:focus {
-    --borderColor: var(--focusColor) !important;
-    
-    outline: 0;
-    box-shadow: 0 0 0 0.125rem hsla(var(--focusColor), 0.1);
-}
+    &:focus {
+        --borderColor: var(--focusColor) !important;
 
-.textfield:invalid {
-    --borderColor: var(--redColor);
+        outline-style: none;
+        box-shadow: 0 0 0 0.125rem hsla(var(--focusColor), 0.1);
+    }
+
+    &:invalid {
+        --borderColor: var(--redColor) !important;
+    }
 }

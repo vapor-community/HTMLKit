@@ -4,6 +4,10 @@
 
     /**
      * Initiates the chart object.
+     *
+     * @constructor
+     *
+     * @param element
      */
     const Chart = function (element) {
 

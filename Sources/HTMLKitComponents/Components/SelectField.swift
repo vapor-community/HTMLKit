@@ -21,13 +21,13 @@ public struct SelectField: View, Modifiable, Identifiable {
     internal let name: String
     
     /// The content hint for the field.
-    internal let prompt: PromptType?
+    internal let prompt: DynamicString?
     
     /// The selected value of the available options.
     internal let selection: String?
     
     /// The body content of the field.
-    internal var content: [Selectable]
+    internal let content: [Selectable]
     
     /// The class names for the field.
     internal var classes: [String]
@@ -46,7 +46,7 @@ public struct SelectField: View, Modifiable, Identifiable {
     public init(name: String, prompt: String? = nil, selection: String? = nil, @ContentBuilder<RadioSelect> content: () -> [RadioSelect]) {
         
         self.name = name
-        self.prompt = prompt.map(PromptType.string(_:))
+        self.prompt = prompt.map(DynamicString.literal(_:))
         self.selection = selection
         self.content = content()
         self.classes = ["selectfield"]
@@ -62,7 +62,7 @@ public struct SelectField: View, Modifiable, Identifiable {
     public init(name: String, prompt: LocalizedStringKey? = nil, selection: String? = nil, @ContentBuilder<RadioSelect> content: () -> [RadioSelect]) {
         
         self.name = name
-        self.prompt = prompt.map(PromptType.value(_:))
+        self.prompt = prompt.map { DynamicString.localized($0, nil) }
         self.selection = selection
         self.content = content()
         self.classes = ["selectfield"]
@@ -79,7 +79,7 @@ public struct SelectField: View, Modifiable, Identifiable {
     public init(name: String, prompt: String? = nil, selection: String? = nil, @ContentBuilder<CheckField> content: () -> [CheckField]) {
         
         self.name = name
-        self.prompt = prompt.map(PromptType.string(_:))
+        self.prompt = prompt.map(DynamicString.literal(_:))
         self.selection = selection
         self.content = content()
         self.classes = ["selectfield"]
@@ -95,7 +95,7 @@ public struct SelectField: View, Modifiable, Identifiable {
     public init(name: String, prompt: LocalizedStringKey? = nil, selection: String? = nil, @ContentBuilder<CheckField> content: () -> [CheckField]) {
         
         self.name = name
-        self.prompt = prompt.map(PromptType.value(_:))
+        self.prompt = prompt.map { DynamicString.localized($0, nil) }
         self.selection = selection
         self.content = content()
         self.classes = ["selectfield"]
@@ -106,6 +106,7 @@ public struct SelectField: View, Modifiable, Identifiable {
             Input()
                 .type(.text)
                 .class("selectfield-textfield")
+                .role(.combobox)
                 .modify(unwrap: prompt) {
                     $0.placeholder($1)
                 }
@@ -113,11 +114,13 @@ public struct SelectField: View, Modifiable, Identifiable {
                 for item in content {
                     item.selected(item.value == selection)
                         .tag(name)
+                        .role(.option)
                 }
             }
             .class("selectfield-optionlist")
+            .role(.listBox)
         }
-        .class(classes.joined(separator: " "))
+        .class(classes)
         .modify(unwrap: id) {
             $0.id($1)
         }
@@ -172,15 +175,21 @@ extension SelectField: ViewModifier {
         return self.mutate(padding: length.value, insets: insets)
     }
     
-    public func border(_ color: Tokens.BorderColor, width: Tokens.BorderWidth = .small) -> SelectField {
-        return self.mutate(border: color.value, width: width.value)
+    public func border(_ color: Tokens.BorderColor, width: Tokens.BorderWidth = .small, shape: Tokens.BorderShape? = nil) -> SelectField {
+        return self.mutate(border: color.value, width: width.value, shape: shape?.value)
     }
     
+    @available(*, deprecated, message: "Use the border(_:width:shape:) modifier instead.")
     public func borderShape(_ shape: Tokens.BorderShape) -> SelectField {
         return self.mutate(bordershape: shape.value)
     }
     
+    @available(*, deprecated, message: "Use the background(_:) modifier instead.")
     public func backgroundColor(_ color: Tokens.BackgroundColor) -> SelectField {
+        return self.mutate(backgroundcolor: color.value)
+    }
+    
+    public func background(_ color: Tokens.BackgroundColor) -> SelectField {
         return self.mutate(backgroundcolor: color.value)
     }
     
@@ -189,7 +198,7 @@ extension SelectField: ViewModifier {
     }
     
     public func frame(width: Tokens.ViewWidth, height: Tokens.ViewHeight? = nil, alignment: Tokens.FrameAlignment? = nil) -> SelectField {
-        return mutate(frame: width.value, height: height?.value, alignment: alignment?.value)
+        return self.mutate(frame: width.value, height: height?.value, alignment: alignment?.value)
     }
     
     public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> SelectField {

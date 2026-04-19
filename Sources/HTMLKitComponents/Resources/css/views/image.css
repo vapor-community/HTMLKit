@@ -1,12 +1,5 @@
-/*
- The rulesets for the image component.
- 
- default:
- inline size: 100%
- border width: 0
- border-radius: 0
- 
- darkmode:
+/**
+ * The rulesets for the image component.
  */
 
 .image {
@@ -25,76 +18,76 @@
     
     position: relative;
     max-inline-size: var(--inlineSize);
-    height: auto;
+    block-size: auto;
+    font-style: italic;
     border-width: var(--borderWidth);
     border-style: solid;
     border-color: hsla(var(--borderColor), var(--borderOpacity));
     border-radius: var(--borderRadius);
     background-color: hsla(var(--backgroundColor), var(--backgroundOpacity));
-    font-style: italic;
     filter: blur(var(--blurLevel)) contrast(var(--contrastLevel)) brightness(var(--brightnessLevel)) grayscale(var(--grayscaleDepth)) saturate(var(--saturationLevel));
-}
 
-.image.aspect\:equal {
-    aspect-ratio: 1/1;
-}
+    &.aspect\:equal {
+        aspect-ratio: 1/1;
+    }
 
-.image.aspect\:unequal {
-    aspect-ratio: 2/1;
-}
+    &.aspect\:unequal {
+        aspect-ratio: 2/1;
+    }
 
-.image.fit\:contain {
-    object-fit:contain;
-}
+    &.fit\:contain {
+        object-fit:contain;
+    }
 
-.image.fit\:cover {
-    object-fit:cover;
-}
+    &.fit\:cover {
+        object-fit:cover;
+    }
 
-.image.fit\:fill {
-    object-fit:fill;
-}
+    &.fit\:fill {
+        object-fit:fill;
+    }
 
-.image.fit\:scaledown {
-    object-fit:scale-down;
-}
+    &.fit\:scaledown {
+        object-fit:scale-down;
+    }
 
-.image.fit\:none {
-    object-fit:none;
-}
+    &.fit\:none {
+        object-fit:none;
+    }
 
-.image.opacity\:transparent {
-    opacity: 0;
-}
+    &.opacity\:transparent {
+        opacity: 0;
+    }
 
-.image.opacity\:intransparent {
-    opacity: 1;
-}
+    &.opacity\:intransparent {
+        opacity: 1;
+    }
 
-.image.scale\:small {
-    --inlineSize: 3.125rem;
-}
+    &.scale\:small {
+        --inlineSize: 3.125rem;
+    }
 
-.image.scale\:medium {
-    --inlineSize: 12.5rem;
-}
+    &.scale\:medium {
+        --inlineSize: 12.5rem;
+    }
 
-.image.scale\:large {
-    --inlineSize: 25rem;
-}
+    &.scale\:large {
+        --inlineSize: 25rem;
+    }
 
-.image.shape\:circle {
-    --borderRadius: 50%;
-}
+    &.shape\:circle {
+        --borderRadius: 50%;
+    }
 
-.image.shadow\:small {
-    box-shadow: 0 1px 3px hsla(var(--shadowColor), 0.12), 0 1px 2px hsla(var(--shadowColor), 0.24);
-}
+    &.shadow\:small {
+        box-shadow: 0 1px 3px hsla(var(--shadowColor), 0.12), 0 1px 2px hsla(var(--shadowColor), 0.24);
+    }
 
-.image.shadow\:medium {
-    box-shadow: 0 3px 3px -3px hsla(var(--shadowColor), 0.3), 0 4px 4px -4px hsla(var(--shadowColor), 0.3);
-}
+    &.shadow\:medium {
+        box-shadow: 0 3px 3px -3px hsla(var(--shadowColor), 0.3), 0 4px 4px -4px hsla(var(--shadowColor), 0.3);
+    }
 
-.image.shadow\:large {
-    box-shadow: 0 5px 5px -5px hsla(var(--shadowColor), 0.3), 0 6px 6px -6px hsla(var(--shadowColor), 0.3);
+    &.shadow\:large {
+        box-shadow: 0 5px 5px -5px hsla(var(--shadowColor), 0.3), 0 6px 6px -6px hsla(var(--shadowColor), 0.3);
+    }
 }

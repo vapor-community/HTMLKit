@@ -19,10 +19,10 @@ public protocol InputModifier {
 extension InputModifier where Self: Modifiable {
     
     internal func mutate(inputstate value: String) -> Self {
-        return self.mutate(class: "state:\(value)")
+        return self.mutate(classes: "state:\(value)")
     }
     
     internal func mutate(focuscolor value: String) -> Self {
-        return self.mutate(class: "focus:\(value)")
+        return self.mutate(classes: "focus:\(value)")
     }
 }

@@ -1,31 +1,36 @@
-/*
- The stylesheet for the scrollview component.
+/**
+ * The stylesheet for the scroll component.
  */
 
 .scroll {
     position: relative;
     padding-inline: 1px; /* temporary fix */
     padding-block: 1px; /* temporary fix */
-}
-
-.scroll:has(> .hstack) {
-    max-inline-size: 100%;
-    overflow-x: auto;
-    overflow-y: hidden;
-    overscroll-behavior-inline: contain;
-}
-
-.scroll:has(> .vstack) {
-    max-block-size: 100%;
-    overflow-x: hidden;
-    overflow-y: auto;
-    overscroll-behavior-block: contain;
-}
-
-.scroll.indicators\:false {
     scrollbar-width: none;
-}
 
-.scroll.indicators\:false::-webkit-scrollbar {
-    display: none;
+    &:has(> .hstack) {
+        max-inline-size: 100%;
+        overflow-x: auto;
+        overflow-y: hidden;
+        overscroll-behavior-inline: contain;
+    }
+
+    &:has(> .vstack) {
+        max-block-size: 100%;
+        overflow-x: hidden;
+        overflow-y: auto;
+        overscroll-behavior-block: contain;
+    }
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+
+    &.indicators\:true {
+        scrollbar-width: auto;
+
+        &::-webkit-scrollbar {
+            display: unset;
+        }
+    }
 }

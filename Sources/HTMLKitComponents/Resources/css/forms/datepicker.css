@@ -1,24 +1,5 @@
-/*
- The rulesets for the datepicker component.
- 
- default:
- block padding: 8px
- inline padding: 16px
- font size:
- font weigth: normal
- line height: 1.5
- foreground color: #000000
- border width: 1px
- border color: #DFE3E7
- border radius: 0
- focus color: #0080FF
- background color: #FFFFFF
- 
- darkmode:
- foreground color: #FFFFFF
- border color: #484F56
- focus color: #0080FF
- background color: #22262A
+/**
+ * The rulesets for the datepicker component.
  */
 
 .datepicker {
@@ -41,134 +22,148 @@
     position: relative;
     display: block;
     inline-size: 100%;
-}
 
-.datepicker-datefield {
-    display: block;
-    inline-size: 100%;
-    padding-block-start: var(--paddingBlockStart);
-    padding-block-end: var(--paddingBlockEnd);
-    padding-inline-start: var(--paddingInlineStart);
-    padding-inline-end: var(--paddingInlineEnd);
-    font-size: var(--fontSize);
-    font-weight: var(--fontWeight);
-    line-height: var(--lineHeight);
-    color: hsla(var(--foregroundColor), 1.0);
-    border-width: var(--borderWidth);
-    border-style: solid;
-    border-color: hsla(var(--borderColor), var(--borderOpacity));
-    border-radius: var(--borderRadius);
-    background-color: hsla(var(--backgroundColor), var(--backgroundOpacity));
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-}
+    .datepicker-datefield {
+        display: block;
+        inline-size: 100%;
+        padding-block-start: var(--paddingBlockStart);
+        padding-block-end: var(--paddingBlockEnd);
+        padding-inline-start: var(--paddingInlineStart);
+        padding-inline-end: var(--paddingInlineEnd);
+        font-family: system-ui;
+        font-size: var(--fontSize);
+        font-weight: var(--fontWeight);
+        line-height: var(--lineHeight);
+        color: hsla(var(--foregroundColor), 1.0);
+        border-width: var(--borderWidth);
+        border-style: solid;
+        border-color: hsla(var(--borderColor), var(--borderOpacity));
+        border-radius: var(--borderRadius);
+        background-color: hsla(var(--backgroundColor), var(--backgroundOpacity));
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
 
-.datepicker-datefield:focus {
-    --borderColor: var(--focusColor) !important;
-    
-    outline: 0;
-    box-shadow: 0 0 0 0.125rem hsla(var(--focusColor), 0.1);
-}
+        &:focus {
+            --borderColor: var(--focusColor) !important;
 
-.datepicker-datefield:focus .datepicker-picker {
-    display: inline-block;
-}
+            outline-style: none;
+            box-shadow: 0 0 0 0.125rem hsla(var(--focusColor), 0.1);
 
-.datepicker-datefield:invalid {
-    --borderColor: var(--redColor);
-}
+            .datepicker-picker {
+                display: inline-block;
+            }
+        }
 
-.datepicker-calendar {
-    position: absolute;
-    z-index: 1;
-    display: block;
-    width: 100%;
-    margin-block: 0.75rem;
-    padding: 0.5rem;
-    font-family: system-ui;
-    font-size: var(--fontSize);
-    font-weight: var(--fontWeight);
-    line-height: var(--lineHeight);
-    color: hsla(var(--foregroundColor), 1.0);
-    border-width: var(--borderWidth);
-    border-style: solid;
-    border-color: hsla(var(--borderColor), 1.0);
-    border-radius: var(--borderRadius);
-    background-color: hsla(var(--backgroundColor), 1.0);
-    visibility: hidden;
-    overflow: hidden;
-}
+        &:invalid {
+            --borderColor: var(--redColor);
+        }
+    }
 
-.datepicker-calendar.position\:bottom {
-    bottom: 0;
-    margin-block: 3.375rem !important;
-}
+    .datepicker-calendar {
+        position: absolute;
+        z-index: 1;
+        padding-inline: 0.5rem;
+        padding-block: 0.5rem;
+        margin-block: 0.75rem;
+        inline-size: 100%;
+        display: block;
+        font-family: system-ui;
+        font-size: var(--fontSize);
+        font-weight: var(--fontWeight);
+        line-height: var(--lineHeight);
+        color: hsla(var(--foregroundColor), 1.0);
+        border-width: var(--borderWidth);
+        border-style: solid;
+        border-color: hsla(var(--borderColor), 1.0);
+        border-radius: var(--borderRadius);
+        background-color: hsla(var(--backgroundColor), 1.0);
+        visibility: hidden;
+        overflow: hidden;
 
-.calendar-navigation {
-    display: flex;
-    align-items : center;
-    justify-content: space-between;
-    padding-block-start: var(--paddingBlockStart);
-    padding-block-end: var(--paddingBlockEnd);
-    padding-inline-start: var(--paddingInlineStart);
-    padding-inline-end: var(--paddingInlineEnd);
-    list-style-type: none;
-}
+        &.position\:bottom {
+            bottom: 0;
+            margin-block: 3.375rem !important;
+        }
 
-.calendar-navigation button {
-    display: inline-block;
-    padding: 0.5rem;
-    font-family: system-ui;
-    font-size: var(--fontSize);
-    font-weight: var(--fontWeight);
-    line-height: var(--lineHeight);
-    color: hsla(var(--foregroundColor), 1.0);
-    border: none;
-    background-color: transparent;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    cursor: pointer;
-}
+        .calendar-navigation {
+            padding-block-start: var(--paddingBlockStart);
+            padding-block-end: var(--paddingBlockEnd);
+            padding-inline-start: var(--paddingInlineStart);
+            padding-inline-end: var(--paddingInlineEnd);
+            display: flex;
+            align-items : center;
+            justify-content: space-between;
+            list-style-type: none;
 
-.calendar-navigation button > svg {
-    width: 1rem;
-    height: 1rem;
-    pointer-events: none;
-}
+            button {
+                padding-inline: 0.5rem;
+                padding-block: 0.5rem;
+                display: inline-block;
+                font-family: system-ui;
+                font-size: var(--fontSize);
+                font-weight: var(--fontWeight);
+                line-height: var(--lineHeight);
+                color: hsla(var(--foregroundColor), 1.0);
+                border-style: none;
+                background-color: transparent;
+                -webkit-appearance: none;
+                -moz-appearance: none;
+                appearance: none;
+                cursor: pointer;
 
-.calendar-week {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    list-style-type: none;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    user-select: none;
-}
+                svg {
+                    inline-size: 1rem;
+                    block-size: 1rem;
+                    pointer-events: none;
+                }
+            }
+        }
 
-.calendar-week > li {
-    padding: 0.5rem;
-    font-weight: bold;
-    text-align: center;
-}
+        .calendar-week {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            grid-auto-rows: 1fr;
+            list-style-type: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
 
-.calendar-days {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    list-style-type: none;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    user-select: none;
-}
+            li {
+                padding-inline: 0.5rem;
+                padding-block: 0.5rem;
+                font-weight: bold;
+                text-align: center;
+            }
+        }
 
-.calendar-days > li:has(time) {
-    padding: 0.5rem;
-    text-align: center;
-    cursor: pointer;
-}
+        .calendar-days {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            grid-auto-rows: 1fr;
+            list-style-type: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
 
-.calendar-days > li:hover:has(time) {
-    border-radius: var(--borderRadius);
-    background-color: hsla(var(--borderColor), 0.5);
+            li {
+                padding-inline: 0.5rem;
+                padding-block: 0.5rem;
+                font-weight: bold;
+                text-align: center;
+
+                &:has(time) {
+                    padding-inline: 0.5rem;
+                    padding-block: 0.5rem;
+                    text-align: center;
+                    cursor: pointer;
+
+                    &:hover {
+                        border-radius: var(--borderRadius);
+                        background-color: hsla(var(--borderColor), 0.5);
+                    }
+                }
+            }
+        }
+    }
 }

@@ -39,7 +39,7 @@ public struct Navigation: View, Modifiable, Identifiable {
         HTMLKit.Navigation {
             content
         }
-        .class(classes.joined(separator: " "))
+        .class(classes)
         .modify(unwrap: id) {
             $0.id($1)
         }
@@ -51,11 +51,7 @@ public struct Navigation: View, Modifiable, Identifiable {
     ///
     /// - Returns: The navigation
     public func navigationStyle(_ style: Tokens.NavigationStyle) -> Navigation {
-        
-        var newSelf = self
-        newSelf.classes.append("style:\(style.value)")
-        
-        return newSelf
+        return self.mutate(classes: "style:\(style.value)")
     }
     
     /// Set the style for the navigation.
@@ -79,7 +75,12 @@ public struct Navigation: View, Modifiable, Identifiable {
 
 extension Navigation: ViewModifier {
     
+    @available(*, deprecated, message: "Use the background(_:) modifier instead.")
     public func backgroundColor(_ color: Tokens.BackgroundColor) -> Navigation {
+        return self.mutate(backgroundcolor: color.value)
+    }
+    
+    public func background(_ color: Tokens.BackgroundColor) -> Navigation {
         return self.mutate(backgroundcolor: color.value)
     }
     
@@ -108,16 +109,17 @@ extension Navigation: ViewModifier {
         return self.mutate(padding: length.value, insets: insets)
     }
     
+    @available(*, deprecated, message: "Use the border(_:width:shape:) modifier instead.")
     public func borderShape(_ shape: Tokens.BorderShape) -> Navigation {
         return self.mutate(bordershape: shape.value)
     }
     
-    public func border(_ color: Tokens.BorderColor, width: Tokens.BorderWidth = .small) -> Navigation {
-        return self.mutate(border: color.value, width: width.value)
+    public func border(_ color: Tokens.BorderColor, width: Tokens.BorderWidth = .small, shape: Tokens.BorderShape? = nil) -> Navigation {
+        return self.mutate(border: color.value, width: width.value, shape: shape?.value)
     }
     
     public func frame(width: Tokens.ViewWidth, height: Tokens.ViewHeight? = nil, alignment: Tokens.FrameAlignment? = nil) -> Navigation {
-        return mutate(frame: width.value, height: height?.value, alignment: alignment?.value)
+        return self.mutate(frame: width.value, height: height?.value, alignment: alignment?.value)
     }
     
     public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> Navigation {

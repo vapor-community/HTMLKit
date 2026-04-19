@@ -1,13 +1,5 @@
-/*
- The stylesheet for the symbol component.
- 
- default:
- font size: 16px
- line height: 1.5
- foreground color: #000000
- 
- darkmode:
- foreground color: #FFFFFF
+/**
+ * The rulesets for the symbol component.
  */
 
 .symbol {
@@ -21,49 +13,49 @@
     font-size: var(--fontSize);
     line-height: var(--lineHeight);
     vertical-align: middle;
-}
 
-.symbol.size\:tiny {
-    --fontSize: 0.67rem;
-    --lineHeight: 1.25;
-}
+    &.size\:tiny {
+        --fontSize: 0.67rem;
+        --lineHeight: 1.25;
+    }
 
-.symbol.size\:small {
-    --fontSize: 0.83rem;
-    --lineHeight: 1.25;
-}
+    &.size\:small {
+        --fontSize: 0.83rem;
+        --lineHeight: 1.25;
+    }
 
-.symbol.size\:medium {
-    --fontSize: 1.17rem;
-    --lineHeight: 1.75;
-}
+    &.size\:medium {
+        --fontSize: 1.17rem;
+        --lineHeight: 1.75;
+    }
 
-.symbol.size\:large {
-    --fontSize: 1.5rem;
-    --lineHeight: 2.0;
-}
+    &.size\:large {
+        --fontSize: 1.5rem;
+        --lineHeight: 2.0;
+    }
 
-.symbol.size\:extralarge {
-    --fontSize: 2rem;
-    --lineHeight: 2.25;
-}
+    &.size\:extralarge {
+        --fontSize: 2rem;
+        --lineHeight: 2.25;
+    }
 
-.symbol + .text {
-    margin-inline-start: 0.75rem;
-}
+    &.shadow\:small {
+        filter: drop-shadow(0 1px 1px hsla(var(--shadowColor), 0.3)) drop-shadow(0 2px 2px hsla(var(--shadowColor), 0.3));
+    }
 
-.text + .symbol {
-    margin-inline-start: 0.75rem;
-}
+    &.shadow\:medium {
+        filter: drop-shadow(0 3px 3px hsla(var(--shadowColor), 0.3)) drop-shadow(0 4px 4px hsla(var(--shadowColor), 0.3));
+    }
 
-.symbol.shadow\:small {
-    filter: drop-shadow(0 1px 1px hsla(var(--shadowColor), 0.3)) drop-shadow(0 2px 2px hsla(var(--shadowColor), 0.3));
-}
+    &.shadow\:large {
+        filter: drop-shadow(0 5px 5px hsla(var(--shadowColor), 0.3)) drop-shadow(0 6px 6px hsla(var(--shadowColor), 0.3));
+    }
 
-.symbol.shadow\:medium {
-    filter: drop-shadow(0 3px 3px hsla(var(--shadowColor), 0.3)) drop-shadow(0 4px 4px hsla(var(--shadowColor), 0.3));
-}
+    + .text {
+        margin-inline-start: 0.75rem;
+    }
 
-.symbol.shadow\:large {
-    filter: drop-shadow(0 5px 5px hsla(var(--shadowColor), 0.3)) drop-shadow(0 6px 6px hsla(var(--shadowColor), 0.3));
+    + .symbol {
+        margin-inline-start: 0.75rem;
+    }
 }

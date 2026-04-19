@@ -22,13 +22,16 @@ public struct LinkButton: View, Modifiable, Identifiable {
     internal let destination: String
     
     /// The body content of the button.
-    internal var content: [Content]
+    internal let content: [Content]
     
     /// The class names for the button.
     internal var classes: [String]
     
     /// The event handlers on the button.
     internal var events: [String]?
+    
+    /// The accessibility label of the button.
+    internal var label: DynamicString?
     
     /// Create a link button.
     ///
@@ -88,19 +91,64 @@ public struct LinkButton: View, Modifiable, Identifiable {
     
     public var body: Content {
         Anchor {
-            self.content
+            content
         }
-        .reference(self.destination)
+        .reference(destination)
         .target(target)
-        .class(self.classes.joined(separator: " "))
+        .class(classes)
         .role(.button)
         .modify(unwrap: id) {
             $0.id($1)
+        }
+        .modify(unwrap: label) {
+            $0.accessibilityLabel($1)
         }
     }
     
     public func tag(_ value: String) -> LinkButton {
         return self.mutate(id: value)
+    }
+    
+    /// Add a label to the button.
+    /// 
+    /// - Parameter value: The label to apply.
+    /// 
+    /// - Returns: The button
+    @_disfavoredOverload
+    public func accessibilityLabel(_ value: String) -> LinkButton {
+        
+        var copy = self
+        copy.label = .literal(value)
+        
+        return copy
+    }
+    
+    /// Add a localized label to the button.
+    ///  
+    /// - Parameters:
+    ///   - localizedKey: The label to apply.
+    ///   - tableName: The translation table to look in.
+    ///   
+    /// - Returns: The button
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> LinkButton {
+        
+        var copy = self
+        copy.label = .localized(localizedKey, tableName)
+        
+        return copy
+    }
+    
+    /// Add a verbatim label to the button.
+    ///  
+    /// - Parameter value: The label to apply.
+    ///  
+    /// - Returns: The button
+    public func accessibilityLabel(verbatim value: String) -> LinkButton {
+        
+        var copy = self
+        copy.label = .literal(value)
+        
+        return copy
     }
 }
 
@@ -130,7 +178,12 @@ extension LinkButton: ButtonModifier {
 
 extension LinkButton: ViewModifier {
     
+    @available(*, deprecated, message: "Use the background(_:) modifier instead.")
     public func backgroundColor(_ color: Tokens.BackgroundColor) -> LinkButton {
+        return self.mutate(backgroundcolor: color.value)
+    }
+    
+    public func background(_ color: Tokens.BackgroundColor) -> LinkButton {
         return self.mutate(backgroundcolor: color.value)
     }
     
@@ -159,16 +212,17 @@ extension LinkButton: ViewModifier {
         return self.mutate(padding: length.value, insets: insets)
     }
     
+    @available(*, deprecated, message: "Use the border(_:width:shape:) modifier instead.")
     public func borderShape(_ shape: Tokens.BorderShape) -> LinkButton {
         return self.mutate(bordershape: shape.value)
     }
     
-    public func border(_ color: Tokens.BorderColor, width: Tokens.BorderWidth = .small) -> LinkButton {
-        return self.mutate(border: color.value, width: width.value)
+    public func border(_ color: Tokens.BorderColor, width: Tokens.BorderWidth = .small, shape: Tokens.BorderShape? = nil) -> LinkButton {
+        return self.mutate(border: color.value, width: width.value, shape: shape?.value)
     }
     
     public func frame(width: Tokens.ViewWidth, height: Tokens.ViewHeight? = nil, alignment: Tokens.FrameAlignment? = nil) -> LinkButton {
-        return mutate(frame: width.value, height: height?.value, alignment: alignment?.value)
+        return self.mutate(frame: width.value, height: height?.value, alignment: alignment?.value)
     }
     
     public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> LinkButton {

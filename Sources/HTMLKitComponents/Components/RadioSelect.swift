@@ -32,6 +32,9 @@ public struct RadioSelect: View, Modifiable, Selectable, Identifiable {
     /// The class names for the select.
     internal var classes: [String]
     
+    /// The role of the select.
+    internal var role: HTMLKit.Values.Role?
+    
     /// Create a radio select.
     ///
     /// - Parameters:
@@ -78,7 +81,10 @@ public struct RadioSelect: View, Modifiable, Selectable, Identifiable {
                 $0.for($1)
             }
         }
-        .class(classes.joined(separator: " "))
+        .class(classes)
+        .modify(unwrap: role) {
+            $0.role($1)
+        }
     }
     
     /// Set the identifier for the select.
@@ -130,15 +136,21 @@ extension RadioSelect: ViewModifier {
         return self.mutate(padding: length.value, insets: insets)
     }
     
-    public func border(_ color: Tokens.BorderColor, width: Tokens.BorderWidth = .small) -> RadioSelect {
-        return self.mutate(border: color.value, width: width.value)
+    public func border(_ color: Tokens.BorderColor, width: Tokens.BorderWidth = .small, shape: Tokens.BorderShape? = nil) -> RadioSelect {
+        return self.mutate(border: color.value, width: width.value, shape: shape?.value)
     }
     
+    @available(*, deprecated, message: "Use the border(_:width:shape:) modifier instead.")
     public func borderShape(_ shape: Tokens.BorderShape) -> RadioSelect {
         return self.mutate(bordershape: shape.value)
     }
     
+    @available(*, deprecated, message: "Use the background(_:) modifier instead.")
     public func backgroundColor(_ color: Tokens.BackgroundColor) -> RadioSelect {
+        return self.mutate(backgroundcolor: color.value)
+    }
+    
+    public func background(_ color: Tokens.BackgroundColor) -> RadioSelect {
         return self.mutate(backgroundcolor: color.value)
     }
     
@@ -147,7 +159,7 @@ extension RadioSelect: ViewModifier {
     }
     
     public func frame(width: Tokens.ViewWidth, height: Tokens.ViewHeight? = nil, alignment: Tokens.FrameAlignment? = nil) -> RadioSelect {
-        return mutate(frame: width.value, height: height?.value, alignment: alignment?.value)
+        return self.mutate(frame: width.value, height: height?.value, alignment: alignment?.value)
     }
     
     public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> RadioSelect {
