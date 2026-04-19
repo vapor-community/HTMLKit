@@ -21,7 +21,7 @@ public struct SelectField: View, Modifiable, Identifiable {
     internal let name: String
     
     /// The content hint for the field.
-    internal let prompt: PromptType?
+    internal let prompt: DynamicString?
     
     /// The selected value of the available options.
     internal let selection: String?
@@ -46,7 +46,7 @@ public struct SelectField: View, Modifiable, Identifiable {
     public init(name: String, prompt: String? = nil, selection: String? = nil, @ContentBuilder<RadioSelect> content: () -> [RadioSelect]) {
         
         self.name = name
-        self.prompt = prompt.map(PromptType.string(_:))
+        self.prompt = prompt.map(DynamicString.literal(_:))
         self.selection = selection
         self.content = content()
         self.classes = ["selectfield"]
@@ -62,7 +62,7 @@ public struct SelectField: View, Modifiable, Identifiable {
     public init(name: String, prompt: LocalizedStringKey? = nil, selection: String? = nil, @ContentBuilder<RadioSelect> content: () -> [RadioSelect]) {
         
         self.name = name
-        self.prompt = prompt.map(PromptType.value(_:))
+        self.prompt = prompt.map { DynamicString.localized($0, nil) }
         self.selection = selection
         self.content = content()
         self.classes = ["selectfield"]
@@ -79,7 +79,7 @@ public struct SelectField: View, Modifiable, Identifiable {
     public init(name: String, prompt: String? = nil, selection: String? = nil, @ContentBuilder<CheckField> content: () -> [CheckField]) {
         
         self.name = name
-        self.prompt = prompt.map(PromptType.string(_:))
+        self.prompt = prompt.map(DynamicString.literal(_:))
         self.selection = selection
         self.content = content()
         self.classes = ["selectfield"]
@@ -95,7 +95,7 @@ public struct SelectField: View, Modifiable, Identifiable {
     public init(name: String, prompt: LocalizedStringKey? = nil, selection: String? = nil, @ContentBuilder<CheckField> content: () -> [CheckField]) {
         
         self.name = name
-        self.prompt = prompt.map(PromptType.value(_:))
+        self.prompt = prompt.map { DynamicString.localized($0, nil) }
         self.selection = selection
         self.content = content()
         self.classes = ["selectfield"]

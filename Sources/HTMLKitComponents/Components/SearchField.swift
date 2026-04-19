@@ -16,7 +16,7 @@ public struct SearchField: View, Modifiable, Identifiable {
     internal let name: String
     
     /// The content hint for the field.
-    internal let prompt: PromptType?
+    internal let prompt: DynamicString?
     
     /// The content of the field.
     internal let value: String?
@@ -38,7 +38,7 @@ public struct SearchField: View, Modifiable, Identifiable {
         
         self.name = name
         self.value = value
-        self.prompt = prompt.map(PromptType.string(_:))
+        self.prompt = prompt.map(DynamicString.literal(_:))
         self.classes = ["searchfield"]
     }
     
@@ -52,7 +52,7 @@ public struct SearchField: View, Modifiable, Identifiable {
         
         self.name = name
         self.value = value
-        self.prompt = prompt.map(PromptType.value(_:))
+        self.prompt = prompt.map { DynamicString.localized($0, nil) }
         self.classes = ["searchfield"]
     }
     

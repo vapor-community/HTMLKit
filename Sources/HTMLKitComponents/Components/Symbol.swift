@@ -216,6 +216,9 @@ public struct Symbol: View, Modifiable {
     /// The class names of the symbol.
     internal var classes: [String]
     
+    /// The accessibility label of the link.
+    internal var label: DynamicString?
+    
     /// Retrieves a symbol.
     ///
     /// - Parameter name: The name of the symbol to use.
@@ -239,6 +242,14 @@ public struct Symbol: View, Modifiable {
     
     public var body: Content {
         Vector {
+            if case .localized(let value, let tableName) = label {
+                Title(value, tableName: tableName)
+            }
+            if case .literal(let value) = label {
+                Title {
+                    value
+                }
+            }
             content
         }
         .viewBox(x: 0, y: 0, width: 20, height: 16)
@@ -274,7 +285,49 @@ public struct Symbol: View, Modifiable {
     public func shadow(_ radius: Tokens.BlurRadius, color: Tokens.ShadowColor = .black) -> Symbol {
         return self.mutate(classes: "shadow:\(radius.value)", "shadow:\(color.value)")
     }
-}
+    
+    /// Add a label to the image.
+    /// 
+    /// - Parameter value: The label to apply.
+    /// 
+    /// - Returns: The image
+    @_disfavoredOverload
+    public func accessibilityLabel(_ value: String) -> Symbol {
+        
+        var copy = self
+        copy.label = .literal(value)
+        
+        return copy
+    }
+    
+    /// Add a localized label to the image.
+    ///  
+    /// - Parameters:
+    ///   - localizedKey: The label to apply.
+    ///   - tableName: The translation table to look in.
+    ///   
+    /// - Returns: The image
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Symbol {
+        
+        var copy = self
+        copy.label = .localized(localizedKey, tableName)
+        
+        return copy
+    }
+    
+    /// Add a verbatim label to the image.
+    ///  
+    /// - Parameter value: The label to apply.
+    ///  
+    /// - Returns: The image
+    public func accessibilityLabel(verbatim value: String) -> Symbol {
+        
+        var copy = self
+        copy.label = .literal(value)
+        
+        return copy
+    }
+ }
 
 extension Symbol {
     

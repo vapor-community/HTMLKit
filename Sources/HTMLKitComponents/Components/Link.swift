@@ -32,6 +32,9 @@ public struct Link: View, Modifiable, Identifiable {
     /// The event handlers on the link.
     internal var events: [String]?
     
+    /// The accessibility label of the link.
+    internal var label: DynamicString?
+    
     /// Create a link.
     ///
     /// - Parameters:
@@ -70,6 +73,9 @@ public struct Link: View, Modifiable, Identifiable {
         .modify(unwrap: id) {
             $0.id($1)
         }
+        .modify(unwrap: label) {
+            $0.accessibilityLabel($1)
+        }
     }
     
     /// Set the identifier for the link.
@@ -79,6 +85,48 @@ public struct Link: View, Modifiable, Identifiable {
     /// - Returns: The link
     public func tag(_ value: String) -> Link {
         return self.mutate(id: value)
+    }
+    
+    /// Add a label to the link.
+    /// 
+    /// - Parameter value: The label to apply.
+    /// 
+    /// - Returns: The link
+    @_disfavoredOverload
+    public func accessibilityLabel(_ value: String) -> Link {
+        
+        var copy = self
+        copy.label = .literal(value)
+        
+        return copy
+    }
+    
+    /// Add a localized label to the link.
+    ///  
+    /// - Parameters:
+    ///   - localizedKey: The label to apply.
+    ///   - tableName: The translation table to look in.
+    ///   
+    /// - Returns: The link
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Link {
+        
+        var copy = self
+        copy.label = .localized(localizedKey, tableName)
+        
+        return copy
+    }
+    
+    /// Add a verbatim label to the link.
+    ///  
+    /// - Parameter value: The label to apply.
+    ///  
+    /// - Returns: The link
+    public func accessibilityLabel(verbatim value: String) -> Link {
+        
+        var copy = self
+        copy.label = .literal(value)
+        
+        return copy
     }
 }
 

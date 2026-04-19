@@ -13,17 +13,20 @@ public struct Video: View, Modifiable, Identifiable {
     internal var id: String?
     
     /// The source path of the video.
-    internal let source: DynamicType
+    internal let source: DynamicSource
     
     /// The class names for the video.
     internal var classes: [String]
+    
+    /// The accessibility label of the image.
+    internal var label: DynamicString?
     
     /// Create a video.
     ///
     /// - Parameter source: The souce path to load from.
     public init(source: String) {
         
-        self.source = .string(source)
+        self.source = .literal(source)
         self.classes = ["video"]
     }
     
@@ -32,7 +35,7 @@ public struct Video: View, Modifiable, Identifiable {
     /// - Parameter source: The souce path to load from.
     public init(source: EnvironmentValue) {
         
-        self.source = .value(source)
+        self.source = .deferred(source)
         self.classes = ["video"]
      }
     
@@ -45,6 +48,9 @@ public struct Video: View, Modifiable, Identifiable {
         .modify(unwrap: id) {
             $0.id($1)
         }
+        .modify(unwrap: label) {
+            $0.accessibilityLabel($1)
+        }
     }
     
     /// Set the identifier for the video.
@@ -54,6 +60,48 @@ public struct Video: View, Modifiable, Identifiable {
     /// - Returns: The video
     public func tag(_ value: String) -> Video {
         return self.mutate(id: value)
+    }
+    
+    /// Add a label to the image.
+    /// 
+    /// - Parameter value: The label to apply.
+    /// 
+    /// - Returns: The image
+    @_disfavoredOverload
+    public func accessibilityLabel(_ value: String) -> Video {
+        
+        var copy = self
+        copy.label = .literal(value)
+        
+        return copy
+    }
+    
+    /// Add a localized label to the image.
+    ///  
+    /// - Parameters:
+    ///   - localizedKey: The label to apply.
+    ///   - tableName: The translation table to look in.
+    ///   
+    /// - Returns: The image
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Video {
+        
+        var copy = self
+        copy.label = .localized(localizedKey, tableName)
+        
+        return copy
+    }
+    
+    /// Add a verbatim label to the image.
+    ///  
+    /// - Parameter value: The label to apply.
+    ///  
+    /// - Returns: The image
+    public func accessibilityLabel(verbatim value: String) -> Video {
+        
+        var copy = self
+        copy.label = .literal(value)
+        
+        return copy
     }
 }
 

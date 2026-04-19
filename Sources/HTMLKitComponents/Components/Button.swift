@@ -27,6 +27,9 @@ public struct Button: View, Modifiable, Actionable {
     /// The event handlers on the button.
     internal var events: [String]?
     
+    /// The accessibility label of the button.
+    internal var label: DynamicString?
+    
     /// Create a button.
     ///
     /// - Parameters:
@@ -60,6 +63,9 @@ public struct Button: View, Modifiable, Actionable {
         .modify(unwrap: id) {
             $0.id($1)
         }
+        .modify(unwrap: label) {
+            $0.accessibilityLabel($1)
+        }
         if let events = self.events {
             Script {
                 events
@@ -74,6 +80,48 @@ public struct Button: View, Modifiable, Actionable {
     /// - Returns: The button
     public func tag(_ value: String) -> Button {
         return self.mutate(id: value)
+    }
+    
+    /// Add a label to the button.
+    /// 
+    /// - Parameter value: The label to apply.
+    /// 
+    /// - Returns: The button
+    @_disfavoredOverload
+    public func accessibilityLabel(_ value: String) -> Button {
+        
+        var copy = self
+        copy.label = .literal(value)
+        
+        return copy
+    }
+    
+    /// Add a localized label to the button.
+    ///  
+    /// - Parameters:
+    ///   - localizedKey: The label to apply.
+    ///   - tableName: The translation table to look in.
+    ///   
+    /// - Returns: The image
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Button {
+        
+        var copy = self
+        copy.label = .localized(localizedKey, tableName)
+        
+        return copy
+    }
+    
+    /// Add a verbatim label to the button.
+    ///  
+    /// - Parameter value: The label to apply.
+    ///  
+    /// - Returns: The button
+    public func accessibilityLabel(verbatim value: String) -> Button {
+        
+        var copy = self
+        copy.label = .literal(value)
+        
+        return copy
     }
 }
 

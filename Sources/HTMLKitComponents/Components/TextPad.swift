@@ -18,7 +18,7 @@ public struct TextPad: View, Modifiable, Identifiable {
     internal let name: String
     
     /// The content hint for the pad.
-    internal let prompt: PromptType?
+    internal let prompt: DynamicString?
     
     /// The number of visible text lines.
     internal var rows: Int = 3
@@ -39,7 +39,7 @@ public struct TextPad: View, Modifiable, Identifiable {
     public init(name: String, prompt: String? = nil, @ContentBuilder<String> content: () -> [String]) {
         
         self.name = name
-        self.prompt = prompt.map(PromptType.string(_:))
+        self.prompt = prompt.map(DynamicString.literal(_:))
         self.content = content()
         self.classes = ["textpad"]
     }
@@ -53,7 +53,7 @@ public struct TextPad: View, Modifiable, Identifiable {
     public init(name: String, prompt: LocalizedStringKey? = nil, @ContentBuilder<String> content: () -> [String]) {
         
         self.name = name
-        self.prompt = prompt.map(PromptType.value(_:))
+        self.prompt = prompt.map { DynamicString.localized($0, nil) }
         self.content = content()
         self.classes = ["textpad"]
     }

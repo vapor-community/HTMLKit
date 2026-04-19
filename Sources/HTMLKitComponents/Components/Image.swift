@@ -13,17 +13,20 @@ public struct Image: View, Modifiable, Identifiable {
     internal var id: String?
     
     /// The source path of the image.
-    internal let source: DynamicType
+    internal let source: DynamicSource
     
     /// The class names of the image.
     internal var classes: [String]
+    
+    /// The accessibility label of the image.
+    internal var label: DynamicString?
     
     /// Create an image.
     ///
     /// - Parameter source: The souce path to load from.
     public init(source: String) {
         
-        self.source = .string(source)
+        self.source = .literal(source)
         self.classes = ["image"]
     }
     
@@ -32,7 +35,7 @@ public struct Image: View, Modifiable, Identifiable {
     /// - Parameter source: The souce path to load from.
     public init(source: EnvironmentValue) {
 
-         self.source = .value(source)
+         self.source = .deferred(source)
          self.classes = ["image"]
      }
     
@@ -42,6 +45,9 @@ public struct Image: View, Modifiable, Identifiable {
             .class(classes)
             .modify(unwrap: id) {
                 $0.id($1)
+            }
+            .modify(unwrap: label) {
+                $0.alternate($1)
             }
     }
     
@@ -61,6 +67,48 @@ public struct Image: View, Modifiable, Identifiable {
     /// - Returns: The image
     public func imageStyle(_ style: ImageConfiguration) -> Image {
         return self.mutate(classes: style.configuration)
+    }
+    
+    /// Add a label to the image.
+    /// 
+    /// - Parameter value: The label to apply.
+    /// 
+    /// - Returns: The image
+    @_disfavoredOverload
+    public func accessibilityLabel(_ value: String) -> Image {
+        
+        var copy = self
+        copy.label = .literal(value)
+        
+        return copy
+    }
+    
+    /// Add a localized label to the image.
+    ///  
+    /// - Parameters:
+    ///   - localizedKey: The label to apply.
+    ///   - tableName: The translation table to look in.
+    ///   
+    /// - Returns: The image
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Image {
+        
+        var copy = self
+        copy.label = .localized(localizedKey, tableName)
+        
+        return copy
+    }
+    
+    /// Add a verbatim label to the image.
+    ///  
+    /// - Parameter value: The label to apply.
+    ///  
+    /// - Returns: The image
+    public func accessibilityLabel(verbatim value: String) -> Image {
+        
+        var copy = self
+        copy.label = .literal(value)
+        
+        return copy
     }
 }
 

@@ -16,7 +16,7 @@ public struct TextField: View, Modifiable, Identifiable {
     internal let name: String
     
     /// The content hint for the field.
-    internal let prompt: PromptType?
+    internal let prompt: DynamicString?
     
     /// The content of the field.
     internal let value: String?
@@ -37,7 +37,7 @@ public struct TextField: View, Modifiable, Identifiable {
     public init(name: String, prompt: String? = nil, value: String? = nil) {
         
         self.name = name
-        self.prompt = prompt.map(PromptType.string(_:))
+        self.prompt = prompt.map(DynamicString.literal(_:))
         self.value = value
         self.classes = ["textfield"]
     }
@@ -51,7 +51,7 @@ public struct TextField: View, Modifiable, Identifiable {
     public init(name: String, prompt: LocalizedStringKey? = nil, value: String? = nil) {
         
         self.name = name
-        self.prompt = prompt.map(PromptType.value(_:))
+        self.prompt = prompt.map { DynamicString.localized($0, nil) }
         self.value = value
         self.classes = ["textfield"]
     }
