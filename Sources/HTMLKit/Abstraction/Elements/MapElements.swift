@@ -65,7 +65,7 @@ public struct Area: EmptyNode, MapElement {
     }
 }
 
-extension Area: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes, AlternateAttribute, CoordinatesAttribute, ShapeAttribute, ReferenceAttribute, TargetAttribute, DownloadAttribute, PingAttribute, RelationshipAttribute, ReferrerPolicyAttribute {
+extension Area: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes, AlternateAttribute, ShapeAttribute, ReferenceAttribute, TargetAttribute, DownloadAttribute, PingAttribute, RelationshipAttribute, ReferrerPolicyAttribute {
         
     public func accessKey(_ value: Character) -> Area {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -87,7 +87,7 @@ extension Area: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttr
         return mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
     }
 
-    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> Area {
         return mutate(contenteditable: .init(value, context: .trusted))
     }
@@ -100,7 +100,7 @@ extension Area: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttr
         return mutate(dir: .init(value.rawValue, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Area {
         return mutate(draggable: .init(value, context: .trusted))
     }
@@ -109,7 +109,7 @@ extension Area: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttr
         return mutate(draggable: .init(value, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> Area {
         return mutate(enterkeyhint: .init(value.rawValue, context: .trusted))
     }
@@ -175,28 +175,8 @@ extension Area: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttr
         return copy
     }
 
-    @available(*, unavailable, message: "Use the item(id:as:for:) modifier instead.")
-    public func itemId(_ value: String) -> Area {
-        return mutate(itemid: .init(value, context: .tainted(.html)))
-    }
-
     public func itemProperty(_ value: String) -> Area {
         return mutate(itemprop: .init(value, context: .tainted(.html)))
-    }
-
-    @available(*, unavailable, message: "Use the item(id:as:for:) modifier instead.")
-    public func itemReference(_ value: String) -> Area {
-        return mutate(itemref: .init(value, context: .tainted(.html)))
-    }
-
-    @available(*, unavailable, message: "Use the item(id:as:for:) modifier instead.")
-    public func itemScope(_ value: String) -> Area {
-        return mutate(itemscope: .init(value, context: .tainted(.html)))
-    }
-    
-    @available(*, unavailable, message: "Use the item(id:as:for:) modifier instead.")
-    public func itemType(_ value: String) -> Area {
-        return mutate(itemtype: .init(value, context: .tainted(.html)))
     }
 
     public func id(_ value: String) -> Area {
@@ -215,7 +195,7 @@ extension Area: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttr
         return mutate(role: .init(value.rawValue, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> Area {
         return mutate(spellcheck: .init(value, context: .trusted))
     }
@@ -245,7 +225,7 @@ extension Area: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttr
         return mutate(title: .init(value, context: .tainted(.html)))
     }
     
-    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Area {
         return mutate(translate: .init(value.rawValue, context: .trusted))
     }
@@ -281,12 +261,12 @@ extension Area: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttr
         return mutate(alternate: .init(value, context: .tainted(.html)))
     }
     
-    @available(*, deprecated, message: "Use the shape(_:coordinates:) modifier instead.")
+    @available(*, unavailable, message: "Use the shape(_:coordinates:) modifier instead.")
     public func coordinates(_ value: String) -> Area {
         return mutate(coords: .init(value, context: .tainted(.html)))
     }
     
-    @available(*, deprecated, message: "Use the shape(_:coordinates:) modifier instead.")
+    @available(*, unavailable, message: "Use the shape(_:coordinates:) modifier instead.")
     public func shape(_ value: Values.Shape) -> Area {
         return mutate(shape: .init(value.rawValue, context: .trusted))
     }

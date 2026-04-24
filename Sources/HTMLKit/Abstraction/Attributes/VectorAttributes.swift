@@ -2,7 +2,7 @@ import OrderedCollections
 
 /// The alias combines the global attributes of the vector attributes.
 @_documentation(visibility: internal)
-public typealias GlobalVectorAttributes = IdentifierAttribute & TabulatorAttribute & ClassAttribute & StyleAttribute & FillAttribute & FillOpacityAttribute & StrokeAttribute & StrokeWidthAttribute & StrokeOpacityAttribute & StrokeLineCapAttribute & StrokeLineJoinAttribute
+public typealias GlobalVectorAttributes = IdentifierAttribute & TabulatorAttribute & ClassAttribute & StyleAttribute & FillAttribute & StrokeAttribute
 
 /// A type that provides the `draw` modifier.
 @_documentation(visibility: internal)
@@ -56,29 +56,6 @@ extension FillAttribute where Self: ContentNode {
     internal func mutate(fill value: AttributeData) -> Self {
         return self.mutate(key: "fill", value: value)
     }
-}
-
-/// A type that provides the `fillOpacity` modifier.
-@_documentation(visibility: internal)
-public protocol FillOpacityAttribute: Attribute {
-    
-    /// Define the opacity of the filling.
-    ///
-    /// ```swift
-    /// Vector {
-    ///     Circle {
-    ///     }
-    ///     .fillOpacity(0.5)
-    /// }
-    /// ```
-    ///
-    /// - Parameter value: The opacity to apply.
-    ///
-    /// - Returns: The element
-    func fillOpacity(_ value: Double) -> Self
-}
-
-extension FillOpacityAttribute where Self: ContentNode {
     
     internal func mutate(fillopacity value: AttributeData) -> Self {
         return self.mutate(key: "fill-opacity", value: value)
@@ -131,87 +108,6 @@ extension StrokeAttribute where Self: ContentNode {
         return self.mutate(key: "stroke-linejoin", value: value)
     }
 }
-
-/// A type that provides the `strokeWidth` modifier.
-@_documentation(visibility: internal)
-public protocol StrokeWidthAttribute: Attribute {
-    
-    /// Set the thickness of the stroke.
-    ///
-    /// ```swift
-    /// Vector {
-    ///     Circle {
-    ///     }
-    ///     .strokeWidth(3)
-    /// }
-    /// ```
-    ///
-    /// - Parameter size: The thickness to apply to the stroke.
-    ///
-    /// - Returns: The element
-    func strokeWidth(_ size: Int) -> Self
-}
-
-/// A type that provides the `strokeOpacity` modifier.
-@_documentation(visibility: internal)
-public protocol StrokeOpacityAttribute: Attribute {
-    
-    /// Set the opacity for the stroke.
-    ///
-    /// ```swift
-    /// Vector {
-    ///     Line {
-    ///     }
-    ///     .strokeOpacity(0.8)
-    /// }
-    /// ```
-    ///
-    /// - Parameter value: The level to apply to the stroke.
-    ///
-    /// - Returns: The element
-    func strokeOpacity(_ value: Double) -> Self
-}
-
-/// A type that provides the `strokeLineCap` modifier.
-@_documentation(visibility: internal)
-public protocol StrokeLineCapAttribute: Attribute {
-    
-    /// Set the shape of the stroke end.
-    ///
-    /// ```swift
-    /// Vector {
-    ///     Line {
-    ///     }
-    ///     .strokeLineCap(.butt)
-    /// }
-    /// ```
-    ///
-    /// - Parameter value: The shape to end the stroke.
-    ///
-    /// - Returns: The element
-    func strokeLineCap(_ value: Values.Linecap) -> Self
-}
-
-/// A type that provides the `strokeLineJoin` modifier.
-@_documentation(visibility: internal)
-public protocol StrokeLineJoinAttribute: Attribute {
-    
-    /// Set the shape of the stroke join.
-    ///
-    /// ```swift
-    /// Vector {
-    ///     Line {
-    ///     }
-    ///     .strokeLineJoin(.miter)
-    /// }
-    /// ```
-    ///
-    /// - Parameter value: The shape when two lines meet.
-    ///
-    /// - Returns: The element
-    func strokeLineJoin(_ value: Values.Linejoin) -> Self
-}
-
 
 /// A type that provides the `radius` modifier.
 @_documentation(visibility: internal)

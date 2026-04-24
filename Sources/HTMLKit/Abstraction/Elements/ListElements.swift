@@ -99,7 +99,7 @@ extension ListItem: GlobalAttributes, GlobalEventAttributes, GlobalAccessibility
         return mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
     }
 
-    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> ListItem {
         return mutate(contenteditable: .init(value, context: .trusted))
     }
@@ -112,7 +112,7 @@ extension ListItem: GlobalAttributes, GlobalEventAttributes, GlobalAccessibility
         return mutate(dir: .init(value.rawValue, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> ListItem {
         return mutate(draggable: .init(value, context: .trusted))
     }
@@ -121,7 +121,7 @@ extension ListItem: GlobalAttributes, GlobalEventAttributes, GlobalAccessibility
         return mutate(draggable: .init(value, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> ListItem {
         return mutate(enterkeyhint: .init(value.rawValue, context: .trusted))
     }
@@ -187,28 +187,8 @@ extension ListItem: GlobalAttributes, GlobalEventAttributes, GlobalAccessibility
         return copy
     }
 
-    @available(*, unavailable, message: "Use the item(id:as:for:) modifier instead.")
-    public func itemId(_ value: String) -> ListItem {
-        return mutate(itemid: .init(value, context: .tainted(.html)))
-    }
-
     public func itemProperty(_ value: String) -> ListItem {
         return mutate(itemprop: .init(value, context: .tainted(.html)))
-    }
-
-    @available(*, unavailable, message: "Use the item(id:as:for:) modifier instead.")
-    public func itemReference(_ value: String) -> ListItem {
-        return mutate(itemref: .init(value, context: .tainted(.html)))
-    }
-
-    @available(*, unavailable, message: "Use the item(id:as:for:) modifier instead.")
-    public func itemScope(_ value: String) -> ListItem {
-        return mutate(itemscope: .init(value, context: .tainted(.html)))
-    }
-    
-    @available(*, unavailable, message: "Use the item(id:as:for:) modifier instead.")
-    public func itemType(_ value: String) -> ListItem {
-        return mutate(itemtype: .init(value, context: .tainted(.html)))
     }
 
     public func id(_ value: String) -> ListItem {
@@ -227,7 +207,7 @@ extension ListItem: GlobalAttributes, GlobalEventAttributes, GlobalAccessibility
         return mutate(role: .init(value.rawValue, context: .trusted))
     }
     
-    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> ListItem {
         return mutate(spellcheck: .init(value, context: .trusted))
     }
@@ -257,7 +237,7 @@ extension ListItem: GlobalAttributes, GlobalEventAttributes, GlobalAccessibility
         return mutate(title: .init(value, context: .tainted(.html)))
     }
     
-    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> ListItem {
         return mutate(translate: .init(value.rawValue, context: .trusted))
     }

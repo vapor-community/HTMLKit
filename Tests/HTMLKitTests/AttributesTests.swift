@@ -15,7 +15,7 @@ final class AttributesTests: XCTestCase {
         @ContentBuilder<Content> var body: Content
     }
     
-    typealias AllAttributes = AccessKeyAttribute & AcceptAttribute & ActionAttribute & AlternateAttribute & AsynchronouslyAttribute & AutocapitalizeAttribute & AutocompleteAttribute & AutofocusAttribute & AutoplayAttribute & CharsetAttribute & CheckedAttribute & CiteAttribute & ClassAttribute & ColumnsAttribute & ColumnSpanAttribute & ContentAttribute & EditAttribute  & ControlsAttribute & CoordinatesAttribute & DataAttribute & DateTimeAttribute & DefaultAttribute & DeferAttribute & DirectionAttribute & DisabledAttribute & DownloadAttribute & DragAttribute & EncodingAttribute & EnterKeyAttribute & ForAttribute & FormAttribute & FormActionAttribute & EquivalentAttribute & HeadersAttribute & HeightAttribute & HiddenAttribute & HighAttribute & ReferenceAttribute & ReferenceLanguageAttribute & IdentifierAttribute & IsMapAttribute & InputModeAttribute & IsAttribute & ItemAttribute & ItemPropertyAttribute & KindAttribute & LabelAttribute & LanguageAttribute & ListAttribute & LoopAttribute & LowAttribute & MaximumValueAttribute & MaximumLengthAttribute & MediaAttribute & MethodAttribute & MinimumValueAttribute & MinimumLengthAttribute & MultipleAttribute & MutedAttribute & NameAttribute & NonceAttribute & NoValidateAttribute & OpenAttribute & OptimumAttribute & PatternAttribute & PartAttribute & PingAttribute & PlaceholderAttribute & PosterAttribute & PreloadAttribute & ReadOnlyAttribute & ReferrerPolicyAttribute & RelationshipAttribute & RequiredAttribute & ReversedAttribute & RoleAttribute & RowsAttribute & RowSpanAttribute & SandboxAttribute & ScopeAttribute & ShapeAttribute & SizeAttribute & SizesAttribute & SlotAttribute & SpanAttribute & SpellCheckAttribute & SourceAttribute & StartAttribute & StepAttribute & StyleAttribute & TabulatorAttribute & TargetAttribute & TitleAttribute & TranslateAttribute & TypeAttribute & ValueAttribute & WidthAttribute & WrapAttribute & PropertyAttribute & SelectedAttribute & WindowEventAttribute & FocusEventAttribute & PointerEventAttribute & MouseEventAttribute & WheelEventAttribute & InputEventAttribute & KeyboardEventAttribute & DragEventAttribute & ClipboardEventAttribute & SelectionEventAttribute & MediaEventAttribute & FormEventAttribute & DetailEventAttribute & AtomicAccessibilityAttribute & BusyAccessibilityAttribute & ControlsAccessibilityAttribute & CurrentAccessibilityAttribute & DescriptionsAccessibilityAttribute & DetailAccessibilityAttribute & DisabledAccessibilityAttribute & FlowAccessibilityAttribute & PopupAccessibilityAttribute & HiddenAccessibilityAttribute & InvalidAccessibilityAttribute & ShortcutsAccessibilityAttribute & LabelAccessibilityAttribute & LabelsAccessibilityAttribute & LiveAccessibilityAttribute & OwnsAccessibilityAttribute & MultilineAccessibilityAttribute & RowIndexAccessibilityAttribute & RelevantAccessibilityAttribute & RoleDescriptionAccessibilityAttribute & SortAccessibilityAttribute & OrientationAccessibilityAttribute & RequiredAccessibilityAttribute & ReadOnlyAccessibilityAttribute & ModalAccessibilityAttribute & LevelAccessibilityAttribute & HintAccessibilityAttribute & PositionAccessibilityAttribute & MultiselectAccessibilityAttribute & RowCountAccessibilityAttribute & ColumnIndexAccessibilityAttribute & ColumnCountAccessibilityAttribute & RowSpanAccessibilityAttribute & ColumnSpanAccessibilityAttribute & MaximumValueAccessibilityAttribute & MinimumValueAccessibilityAttribute & ValueAccessibilityAttribute & PressedAccessibilityAttribute & SelectedAccessibilityAttribute & CheckedAccessibilityAttribute & ExpandedAccessibilityAttribute & FocusedAccessibilityAttribute & CompletionAccessibilityAttribute & DrawAttribute & FillAttribute & FillOpacityAttribute & StrokeAttribute & StrokeWidthAttribute & StrokeOpacityAttribute & StrokeLineCapAttribute & StrokeLineJoinAttribute & RadiusAttribute & PositionPointAttribute & RadiusPointAttribute & CenterPointAttribute & ViewBoxAttribute & NamespaceAttribute & PointsAttribute & ShadowRootModeAttribute & InertAttribute & FetchPriorityAttribute & LoadingAttribute & SourceSetAttribute & DecodingAttribute & BlockingAttribute & PopoverAttribute & PopoverTargetAttribute & PopoverActionAttribute & UseMapAttribute & PlaysInlineAttribute & IntegrityAttribute & AsAttribute & CrossOriginAttribute & SourceLanguageAttribute & SourceDocumentAttribute
+    typealias AllAttributes = AccessKeyAttribute & AcceptAttribute & ActionAttribute & AlternateAttribute & AsynchronouslyAttribute & AutocapitalizeAttribute & AutocompleteAttribute & AutofocusAttribute & AutoplayAttribute & CharsetAttribute & CheckedAttribute & CiteAttribute & ClassAttribute & ColumnsAttribute & ColumnSpanAttribute & ContentAttribute & EditAttribute  & ControlsAttribute & DataAttribute & DateTimeAttribute & DefaultAttribute & DeferAttribute & DirectionAttribute & DisabledAttribute & DownloadAttribute & DragAttribute & EncodingAttribute & EnterKeyAttribute & ForAttribute & FormAttribute & FormActionAttribute & EquivalentAttribute & HeadersAttribute & HeightAttribute & HiddenAttribute & HighAttribute & ReferenceAttribute & ReferenceLanguageAttribute & IdentifierAttribute & IsMapAttribute & InputModeAttribute & IsAttribute & ItemAttribute & ItemPropertyAttribute & KindAttribute & LabelAttribute & LanguageAttribute & ListAttribute & LoopAttribute & LowAttribute & MaximumValueAttribute & MaximumLengthAttribute & MediaAttribute & MethodAttribute & MinimumValueAttribute & MinimumLengthAttribute & MultipleAttribute & MutedAttribute & NameAttribute & NonceAttribute & NoValidateAttribute & OpenAttribute & OptimumAttribute & PatternAttribute & PartAttribute & PingAttribute & PlaceholderAttribute & PosterAttribute & PreloadAttribute & ReadOnlyAttribute & ReferrerPolicyAttribute & RelationshipAttribute & RequiredAttribute & ReversedAttribute & RoleAttribute & RowsAttribute & RowSpanAttribute & SandboxAttribute & ScopeAttribute & ShapeAttribute & SizeAttribute & SizesAttribute & SlotAttribute & SpanAttribute & SpellCheckAttribute & SourceAttribute & StartAttribute & StepAttribute & StyleAttribute & TabulatorAttribute & TargetAttribute & TitleAttribute & TranslateAttribute & TypeAttribute & ValueAttribute & WidthAttribute & WrapAttribute & PropertyAttribute & SelectedAttribute & WindowEventAttribute & FocusEventAttribute & PointerEventAttribute & MouseEventAttribute & WheelEventAttribute & InputEventAttribute & KeyboardEventAttribute & DragEventAttribute & ClipboardEventAttribute & SelectionEventAttribute & MediaEventAttribute & FormEventAttribute & DetailEventAttribute & AtomicAccessibilityAttribute & BusyAccessibilityAttribute & ControlsAccessibilityAttribute & CurrentAccessibilityAttribute & DescriptionsAccessibilityAttribute & DetailAccessibilityAttribute & DisabledAccessibilityAttribute & FlowAccessibilityAttribute & PopupAccessibilityAttribute & HiddenAccessibilityAttribute & InvalidAccessibilityAttribute & ShortcutsAccessibilityAttribute & LabelAccessibilityAttribute & LabelsAccessibilityAttribute & LiveAccessibilityAttribute & OwnsAccessibilityAttribute & MultilineAccessibilityAttribute & RowIndexAccessibilityAttribute & RelevantAccessibilityAttribute & RoleDescriptionAccessibilityAttribute & SortAccessibilityAttribute & OrientationAccessibilityAttribute & RequiredAccessibilityAttribute & ReadOnlyAccessibilityAttribute & ModalAccessibilityAttribute & LevelAccessibilityAttribute & HintAccessibilityAttribute & PositionAccessibilityAttribute & MultiselectAccessibilityAttribute & RowCountAccessibilityAttribute & ColumnIndexAccessibilityAttribute & ColumnCountAccessibilityAttribute & RowSpanAccessibilityAttribute & ColumnSpanAccessibilityAttribute & MaximumValueAccessibilityAttribute & MinimumValueAccessibilityAttribute & ValueAccessibilityAttribute & PressedAccessibilityAttribute & SelectedAccessibilityAttribute & CheckedAccessibilityAttribute & ExpandedAccessibilityAttribute & FocusedAccessibilityAttribute & CompletionAccessibilityAttribute & DrawAttribute & FillAttribute & StrokeAttribute & RadiusAttribute & PositionPointAttribute & RadiusPointAttribute & CenterPointAttribute & ViewBoxAttribute & NamespaceAttribute & PointsAttribute & ShadowRootModeAttribute & InertAttribute & FetchPriorityAttribute & LoadingAttribute & SourceSetAttribute & DecodingAttribute & BlockingAttribute & PopoverAttribute & PopoverTargetAttribute & UseMapAttribute & PlaysInlineAttribute & IntegrityAttribute & AsAttribute & CrossOriginAttribute & SourceLanguageAttribute & SourceDocumentAttribute
     
     struct Tag: ContentNode, GlobalElement, AllAttributes {
 
@@ -293,10 +293,6 @@ final class AttributesTests: XCTestCase {
         
         func controls() -> Tag {
             return self.mutate(controls: .init("controls", context: .trusted))
-        }
-        
-        func coordinates(_ value: String) -> Tag {
-            return self.mutate(coords: .init(value, context: .tainted(.html)))
         }
         
         func data(_ value: String) -> Tag {
@@ -686,10 +682,6 @@ final class AttributesTests: XCTestCase {
             return copy
         }
         
-        func fillOpacity(_ value: Double) -> Tag {
-            return self.mutate(fillopacity: .init(value, context: .trusted))
-        }
-        
         public func stroke(_ color: String, width: Int? = nil, opacity: Double? = nil, cap: Values.Linecap? = nil, join: Values.Linejoin? = nil) -> Tag {
 
             var copy = self
@@ -715,28 +707,8 @@ final class AttributesTests: XCTestCase {
             return copy
         }
         
-        func strokeWidth(_ size: Int) -> Tag {
-            return self.mutate(strokewidth: .init(size, context: .trusted))
-        }
-        
-        func strokeOpacity(_ value: Double) -> Tag {
-            return self.mutate(strokeopacity: .init(value, context: .trusted))
-        }
-        
-        func strokeLineCap(_ value: HTMLKit.Values.Linecap) -> Tag {
-            return self.mutate(strokelinecap: .init(value.rawValue, context: .trusted))
-        }
-        
-        func strokeLineJoin(_ value: HTMLKit.Values.Linejoin) -> Tag {
-            return self.mutate(strokelinejoin: .init(value.rawValue, context: .trusted))
-        }
-        
         func radius(_ size: Int) -> Tag {
             return self.mutate(radius: .init(size, context: .trusted))
-        }
-        
-        func positionPoint(_ point: (Int, Int)) -> Tag {
-            return self.mutate(x:  .init(point.0, context: .trusted)).mutate(y: .init(point.1, context: .trusted))
         }
         
         func position(x: Int, y: Int) -> Tag {
@@ -751,10 +723,6 @@ final class AttributesTests: XCTestCase {
             return self.mutate(x: .init(point.x, context: .trusted)).mutate(y: .init(point.y, context: .trusted))
         }
         
-        func radiusPoint(_ point: (Int, Int)) -> Tag {
-            return self.mutate(rx: .init(point.0, context: .trusted)).mutate(ry: .init(point.1, context: .trusted))
-        }
-        
         func radius(x: Int, y: Int) -> Tag {
             return self.mutate(rx: .init(x, context: .trusted)).mutate(ry: .init(y, context: .trusted))
         }
@@ -765,10 +733,6 @@ final class AttributesTests: XCTestCase {
         
         func radius(_ point: HTMLKit.UnitPoint) -> Tag {
             return self.mutate(rx: .init(point.x, context: .trusted)).mutate(ry: .init(point.y, context: .trusted))
-        }
-        
-        func centerPoint(_ point: (Int, Int)) -> Tag {
-            return self.mutate(cx: .init(point.0, context: .trusted)).mutate(cy: .init(point.1, context: .trusted))
         }
         
         func center(x: Int, y: Int) -> Tag {
@@ -830,10 +794,6 @@ final class AttributesTests: XCTestCase {
             }
             
             return copy
-        }
-        
-        func popoverAction(_ value: Values.Popover.Action) -> Tag {
-            return self.mutate(popoveraction: .init(value.rawValue, context: .trusted))
         }
         
         func useMap(_ id: String) -> Tag {
@@ -3279,14 +3239,12 @@ final class AttributesTests: XCTestCase {
         let view = TestView {
             Tag {}.accessibilityOrientation(.horizontal)
             Tag {}.accessibilityOrientation(.vertical)
-            Tag {}.accessibilityOrientation(.undefined)
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
                        <tag aria-orientation="horizontal"></tag>\
-                       <tag aria-orientation="vertical"></tag>\
-                       <tag aria-orientation="undefined"></tag>
+                       <tag aria-orientation="vertical"></tag>
                        """
         )
     }

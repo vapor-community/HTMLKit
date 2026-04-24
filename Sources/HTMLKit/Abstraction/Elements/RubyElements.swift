@@ -101,7 +101,7 @@ extension RubyText: GlobalAttributes, GlobalEventAttributes, GlobalAccessibility
         return mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
     }
 
-    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> RubyText {
         return mutate(contenteditable: .init(value, context: .trusted))
     }
@@ -114,7 +114,7 @@ extension RubyText: GlobalAttributes, GlobalEventAttributes, GlobalAccessibility
         return mutate(dir: .init(value.rawValue, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> RubyText {
         return mutate(draggable: .init(value, context: .trusted))
     }
@@ -123,7 +123,7 @@ extension RubyText: GlobalAttributes, GlobalEventAttributes, GlobalAccessibility
         return mutate(draggable: .init(value, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> RubyText {
         return mutate(enterkeyhint: .init(value.rawValue, context: .trusted))
     }
@@ -189,28 +189,8 @@ extension RubyText: GlobalAttributes, GlobalEventAttributes, GlobalAccessibility
         return copy
     }
 
-    @available(*, unavailable, message: "Use the item(id:as:for:) modifier instead.")
-    public func itemId(_ value: String) -> RubyText {
-        return mutate(itemid: .init(value, context: .tainted(.html)))
-    }
-
     public func itemProperty(_ value: String) -> RubyText {
         return mutate(itemprop: .init(value, context: .tainted(.html)))
-    }
-
-    @available(*, unavailable, message: "Use the item(id:as:for:) modifier instead.")
-    public func itemReference(_ value: String) -> RubyText {
-        return mutate(itemref: .init(value, context: .tainted(.html)))
-    }
-
-    @available(*, unavailable, message: "Use the item(id:as:for:) modifier instead.")
-    public func itemScope(_ value: String) -> RubyText {
-        return mutate(itemscope: .init(value, context: .tainted(.html)))
-    }
-    
-    @available(*, unavailable, message: "Use the item(id:as:for:) modifier instead.")
-    public func itemType(_ value: String) -> RubyText {
-        return mutate(itemtype: .init(value, context: .tainted(.html)))
     }
 
     public func id(_ value: String) -> RubyText {
@@ -229,7 +209,7 @@ extension RubyText: GlobalAttributes, GlobalEventAttributes, GlobalAccessibility
         return mutate(role: .init(value.rawValue, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> RubyText {
         return mutate(spellcheck: .init(value, context: .trusted))
     }
@@ -259,7 +239,7 @@ extension RubyText: GlobalAttributes, GlobalEventAttributes, GlobalAccessibility
         return mutate(title: .init(value, context: .tainted(.html)))
     }
     
-    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> RubyText {
         return mutate(translate: .init(value.rawValue, context: .trusted))
     }
@@ -659,7 +639,7 @@ extension RubyPronunciation: GlobalAttributes, GlobalEventAttributes, GlobalAcce
         return mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
     }
 
-    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> RubyPronunciation {
         return mutate(contenteditable: .init(value, context: .trusted))
     }
@@ -672,7 +652,7 @@ extension RubyPronunciation: GlobalAttributes, GlobalEventAttributes, GlobalAcce
         return mutate(dir: .init(value.rawValue, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> RubyPronunciation {
         return mutate(draggable: .init(value, context: .trusted))
     }
@@ -681,7 +661,7 @@ extension RubyPronunciation: GlobalAttributes, GlobalEventAttributes, GlobalAcce
         return mutate(draggable: .init(value, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> RubyPronunciation {
         return mutate(enterkeyhint: .init(value.rawValue, context: .trusted))
     }
@@ -747,28 +727,8 @@ extension RubyPronunciation: GlobalAttributes, GlobalEventAttributes, GlobalAcce
         return copy
     }
 
-    @available(*, unavailable, message: "Use the item(id:as:for:) modifier instead.")
-    public func itemId(_ value: String) -> RubyPronunciation {
-        return mutate(itemid: .init(value, context: .tainted(.html)))
-    }
-
     public func itemProperty(_ value: String) -> RubyPronunciation {
         return mutate(itemprop: .init(value, context: .tainted(.html)))
-    }
-
-    @available(*, unavailable, message: "Use the item(id:as:for:) modifier instead.")
-    public func itemReference(_ value: String) -> RubyPronunciation {
-        return mutate(itemref: .init(value, context: .tainted(.html)))
-    }
-
-    @available(*, unavailable, message: "Use the item(id:as:for:) modifier instead.")
-    public func itemScope(_ value: String) -> RubyPronunciation {
-        return mutate(itemscope: .init(value, context: .tainted(.html)))
-    }
-    
-    @available(*, unavailable, message: "Use the item(id:as:for:) modifier instead.")
-    public func itemType(_ value: String) -> RubyPronunciation {
-        return mutate(itemtype: .init(value, context: .tainted(.html)))
     }
 
     public func id(_ value: String) -> RubyPronunciation {
@@ -787,12 +747,11 @@ extension RubyPronunciation: GlobalAttributes, GlobalEventAttributes, GlobalAcce
         return mutate(role: .init(value.rawValue, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> RubyPronunciation {
         return mutate(spellcheck: .init(value, context: .trusted))
     }
     
-    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
     public func spellcheck(_ value: Bool = true) -> RubyPronunciation {
         return mutate(spellcheck: .init(value, context: .trusted))
     }
@@ -818,7 +777,7 @@ extension RubyPronunciation: GlobalAttributes, GlobalEventAttributes, GlobalAcce
         return mutate(title: .init(value, context: .tainted(.html)))
     }
     
-    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> RubyPronunciation {
         return mutate(translate: .init(value.rawValue, context: .trusted))
     }
