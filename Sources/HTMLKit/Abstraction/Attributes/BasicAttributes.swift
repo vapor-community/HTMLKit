@@ -4159,3 +4159,66 @@ extension PopoverTargetAttribute where Self: EmptyNode {
         return self.mutate(key: "popovertargetaction", value: value)
     }
 }
+
+/// A type that provides the `abbreviated` modifier.
+@_documentation(visibility: internal)
+public protocol AbbreviatedAttribute: Attribute {
+    
+    /// Announce a brief alternate label.
+    /// 
+    /// ```
+    /// HeaderCell {
+    ///     "Lorem ipsum..."
+    /// }
+    /// .abbreviated("Lorem Ipsum")
+    /// ```
+    /// 
+    /// - Parameter value: The alternate label to describe the content.
+    /// 
+    /// - Returns: The element
+    func abbreviated(_ value: String) -> Self
+    
+    /// Announce a brief localized alternate label.
+    /// 
+    /// ```
+    /// HeaderCell {
+    ///     "Lorem ipsum..."
+    /// }
+    /// .abbreviated("Lorem Ipsum")
+    /// ```
+    /// 
+    /// - Parameters:
+    ///   - localizedKey: The string key to be translated.
+    ///   - tableName: The translation table to look in.
+    ///  
+    /// - Returns: The element
+    func abbreviated(_ localizedKey: LocalizedStringKey, tableName: String?) -> Self
+    
+    /// Announce a brief alternate label without localization.
+    /// 
+    /// ```
+    /// HeaderCell {
+    ///     "Lorem ipsum..."
+    /// }
+    /// .abbreviated(verbatim: "Lorem Ipsum")
+    /// ```
+    /// 
+    /// - Parameter value: The alternate label to describe the content.
+    /// 
+    /// - Returns: The element
+    func abbreviated(verbatim value: String) -> Self
+}
+
+extension AbbreviatedAttribute where Self: ContentNode {
+    
+    internal func mutate(abbr value: AttributeData) -> Self {
+        return self.mutate(key: "abbr", value: value)
+    }
+}
+
+extension AbbreviatedAttribute where Self: EmptyNode {
+    
+    internal func mutate(abbr value: AttributeData) -> Self {
+        return self.mutate(key: "abbr", value: value)
+    }
+}

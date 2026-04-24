@@ -3984,7 +3984,7 @@ public struct HeaderCell: ContentNode, TableElement {
     }
 }
 
-extension HeaderCell: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes, ColumnSpanAttribute, RowSpanAttribute, HeadersAttribute, ScopeAttribute, ColumnIndexAccessibilityAttribute {
+extension HeaderCell: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes, ColumnSpanAttribute, RowSpanAttribute, HeadersAttribute, ScopeAttribute, ColumnIndexAccessibilityAttribute, AbbreviatedAttribute {
     
     public func accessKey(_ value: Character) -> HeaderCell {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -4189,6 +4189,19 @@ extension HeaderCell: GlobalAttributes, GlobalEventAttributes, GlobalAccessibili
     
     public func popover(_ value: Values.Popover.State) -> HeaderCell {
         return mutate(popover: .init(value.rawValue, context: .trusted))
+    }
+    
+    @_disfavoredOverload
+    public func abbreviated(_ value: String) -> HeaderCell {
+        return mutate(abbr: .init(value, context: .tainted(.html)))
+    }
+    
+    public func abbreviated(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> HeaderCell {
+        return mutate(abbr: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func abbreviated(verbatim value: String) -> HeaderCell {
+        return mutate(abbr: .init(value, context: .tainted(.html)))
     }
     
     public func custom(key: String, value: String, context: EscapeContext = .tainted(.html)) -> HeaderCell {
