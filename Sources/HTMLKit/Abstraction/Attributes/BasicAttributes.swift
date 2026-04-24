@@ -4166,12 +4166,26 @@ public protocol AbbreviatedAttribute: Attribute {
     
     /// Announce a brief alternate label.
     /// 
+    /// ```
+    /// HeaderCell {
+    ///     "Lorem ipsum..."
+    /// }
+    /// .abbreviated("Lorem Ipsum")
+    /// ```
+    /// 
     /// - Parameter value: The alternate label to describe the content.
     /// 
     /// - Returns: The element
     func abbreviated(_ value: String) -> Self
     
     /// Announce a brief localized alternate label.
+    /// 
+    /// ```
+    /// HeaderCell {
+    ///     "Lorem ipsum..."
+    /// }
+    /// .abbreviated("Lorem Ipsum")
+    /// ```
     /// 
     /// - Parameters:
     ///   - localizedKey: The string key to be translated.
@@ -4181,6 +4195,13 @@ public protocol AbbreviatedAttribute: Attribute {
     func abbreviated(_ localizedKey: LocalizedStringKey, tableName: String?) -> Self
     
     /// Announce a brief alternate label without localization.
+    /// 
+    /// ```
+    /// HeaderCell {
+    ///     "Lorem ipsum..."
+    /// }
+    /// .abbreviated(verbatim: "Lorem Ipsum")
+    /// ```
     /// 
     /// - Parameter value: The alternate label to describe the content.
     /// 
