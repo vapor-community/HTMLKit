@@ -754,38 +754,6 @@ extension ControlsAttribute where Self: EmptyNode {
     }
 }
 
-/// A type that provides the `coordinates` modifier.
-@_documentation(visibility: internal)
-public protocol CoordinatesAttribute: Attribute {
-    
-    /// Use coordinates to define the area.
-    ///
-    /// ```swift
-    /// Area()
-    ///     .shape(.rect)
-    ///     .coordinates("0, 0, 200, 100")
-    /// ```
-    ///
-    /// - Parameter value: The coordinates on which to base the shape.
-    ///
-    /// - Returns: The element
-    func coordinates(_ value: String) -> Self
-}
-
-extension CoordinatesAttribute where Self: ContentNode {
-    
-    internal func mutate(coords value: AttributeData) -> Self {
-        return self.mutate(key: "coords", value: value)
-    }
-}
-
-extension CoordinatesAttribute where Self: EmptyNode {
-    
-    internal func mutate(coords value: AttributeData) -> Self {
-        return self.mutate(key: "coords", value: value)
-    }
-}
-
 /// A type that provides the `crossOrigin` modifier
 @_documentation(visibility: internal)
 public protocol CrossOriginAttribute: Attribute {
@@ -3061,12 +3029,20 @@ extension ShapeAttribute where Self: ContentNode {
     internal func mutate(shape value: AttributeData) -> Self {
         return self.mutate(key: "shape", value: value)
     }
+    
+    internal func mutate(coords value: AttributeData) -> Self {
+        return self.mutate(key: "coords", value: value)
+    }
 }
 
 extension ShapeAttribute where Self: EmptyNode {
     
     internal func mutate(shape value: AttributeData) -> Self {
         return self.mutate(key: "shape", value: value)
+    }
+    
+    internal func mutate(coords value: AttributeData) -> Self {
+        return self.mutate(key: "coords", value: value)
     }
 }
 
@@ -4167,6 +4143,10 @@ extension PopoverTargetAttribute where Self: ContentNode {
     internal func mutate(popovertarget value: AttributeData) -> Self {
         return self.mutate(key: "popovertarget", value: value)
     }
+    
+    internal func mutate(popoveraction value: AttributeData) -> Self {
+        return self.mutate(key: "popovertargetaction", value: value)
+    }
 }
 
 extension PopoverTargetAttribute where Self: EmptyNode {
@@ -4174,36 +4154,6 @@ extension PopoverTargetAttribute where Self: EmptyNode {
     internal func mutate(popovertarget value: AttributeData) -> Self {
         return self.mutate(key: "popovertarget", value: value)
     }
-}
-
-/// A type that provides the `popoverAction` modifier
-@_documentation(visibility: internal)
-public protocol PopoverActionAttribute: Attribute {
-    
-    /// Specify the action for the popover.
-    ///
-    /// ```swift
-    /// Button {
-    ///     "Lorem ipsum"
-    /// }
-    /// .popoverTarget("id")
-    /// .popoverAction(.hide)
-    /// ```
-    ///
-    /// - Parameter action: The action to perform when triggered.
-    ///
-    /// - Returns: The element
-    func popoverAction(_ action: Values.Popover.Action) -> Self
-}
-
-extension PopoverActionAttribute where Self: ContentNode {
-    
-    internal func mutate(popoveraction value: AttributeData) -> Self {
-        return self.mutate(key: "popovertargetaction", value: value)
-    }
-}
-
-extension PopoverActionAttribute where Self: EmptyNode {
     
     internal func mutate(popoveraction value: AttributeData) -> Self {
         return self.mutate(key: "popovertargetaction", value: value)

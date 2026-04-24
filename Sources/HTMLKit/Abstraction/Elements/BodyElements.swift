@@ -239,7 +239,7 @@ extension Article: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityA
         return mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
     }
 
-    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> Article {
         return mutate(contenteditable: .init(value, context: .trusted))
     }
@@ -252,7 +252,7 @@ extension Article: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityA
         return mutate(dir: .init(value.rawValue, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Article {
         return mutate(draggable: .init(value, context: .trusted))
     }
@@ -261,7 +261,7 @@ extension Article: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityA
         return mutate(draggable: .init(value, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> Article {
         return mutate(enterkeyhint: .init(value.rawValue, context: .trusted))
     }
@@ -347,7 +347,7 @@ extension Article: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityA
         return mutate(role: .init(value.rawValue, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> Article {
         return mutate(spellcheck: .init(value, context: .trusted))
     }
@@ -377,7 +377,7 @@ extension Article: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityA
         return mutate(title: .init(value, context: .tainted(.html)))
     }
 
-    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Article {
         return mutate(translate: .init(value.rawValue, context: .trusted))
     }
@@ -773,7 +773,7 @@ extension Section: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityA
         return mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
     }
 
-    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> Section {
         return mutate(contenteditable: .init(value, context: .trusted))
     }
@@ -786,7 +786,7 @@ extension Section: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityA
         return mutate(dir: .init(value.rawValue, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Section {
         return mutate(draggable: .init(value, context: .trusted))
     }
@@ -795,7 +795,7 @@ extension Section: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityA
         return mutate(draggable: .init(value, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> Section {
         return mutate(enterkeyhint: .init(value.rawValue, context: .trusted))
     }
@@ -881,7 +881,7 @@ extension Section: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityA
         return mutate(role: .init(value.rawValue, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> Section {
         return mutate(spellcheck: .init(value, context: .trusted))
     }
@@ -911,7 +911,7 @@ extension Section: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityA
         return mutate(title: .init(value, context: .tainted(.html)))
     }
 
-    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Section {
         return mutate(translate: .init(value.rawValue, context: .trusted))
     }
@@ -1309,7 +1309,7 @@ extension Navigation: GlobalAttributes, GlobalEventAttributes, GlobalAccessibili
         return mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
     }
 
-    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> Navigation {
         return mutate(contenteditable: .init(value, context: .trusted))
     }
@@ -1322,7 +1322,7 @@ extension Navigation: GlobalAttributes, GlobalEventAttributes, GlobalAccessibili
         return mutate(dir: .init(value.rawValue, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Navigation {
         return mutate(draggable: .init(value, context: .trusted))
     }
@@ -1331,7 +1331,7 @@ extension Navigation: GlobalAttributes, GlobalEventAttributes, GlobalAccessibili
         return mutate(draggable: .init(value, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> Navigation {
         return mutate(enterkeyhint: .init(value.rawValue, context: .trusted))
     }
@@ -1417,7 +1417,7 @@ extension Navigation: GlobalAttributes, GlobalEventAttributes, GlobalAccessibili
         return mutate(role: .init(value.rawValue, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> Navigation {
         return mutate(spellcheck: .init(value, context: .trusted))
     }
@@ -1447,7 +1447,7 @@ extension Navigation: GlobalAttributes, GlobalEventAttributes, GlobalAccessibili
         return mutate(title: .init(value, context: .tainted(.html)))
     }
     
-    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Navigation {
         return mutate(translate: .init(value.rawValue, context: .trusted))
     }
@@ -1841,7 +1841,7 @@ extension Aside: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAtt
         return mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
     }
 
-    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> Aside {
         return mutate(contenteditable: .init(value, context: .trusted))
     }
@@ -1854,7 +1854,7 @@ extension Aside: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAtt
         return mutate(dir: .init(value.rawValue, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Aside {
         return mutate(draggable: .init(value, context: .trusted))
     }
@@ -1863,7 +1863,7 @@ extension Aside: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAtt
         return mutate(draggable: .init(value, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> Aside {
         return mutate(enterkeyhint: .init(value.rawValue, context: .trusted))
     }
@@ -1949,7 +1949,7 @@ extension Aside: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAtt
         return mutate(role: .init(value.rawValue, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> Aside {
         return mutate(spellcheck: .init(value, context: .trusted))
     }
@@ -1979,7 +1979,7 @@ extension Aside: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAtt
         return mutate(title: .init(value, context: .tainted(.html)))
     }
     
-    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Aside {
         return mutate(translate: .init(value.rawValue, context: .trusted))
     }
@@ -2370,7 +2370,7 @@ extension Heading1: GlobalAttributes, GlobalEventAttributes, GlobalAccessibility
         return mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
     }
     
-    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> Heading1 {
         return mutate(contenteditable: .init(value, context: .trusted))
     }
@@ -2383,7 +2383,7 @@ extension Heading1: GlobalAttributes, GlobalEventAttributes, GlobalAccessibility
         return mutate(dir: .init(value.rawValue, context: .trusted))
     }
     
-    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Heading1 {
         return mutate(draggable: .init(value, context: .trusted))
     }
@@ -2392,7 +2392,7 @@ extension Heading1: GlobalAttributes, GlobalEventAttributes, GlobalAccessibility
         return mutate(draggable: .init(value, context: .trusted))
     }
     
-    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> Heading1 {
         return mutate(enterkeyhint: .init(value.rawValue, context: .trusted))
     }
@@ -2478,7 +2478,7 @@ extension Heading1: GlobalAttributes, GlobalEventAttributes, GlobalAccessibility
         return mutate(role: .init(value.rawValue, context: .trusted))
     }
     
-    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> Heading1 {
         return mutate(spellcheck: .init(value, context: .trusted))
     }
@@ -2508,7 +2508,7 @@ extension Heading1: GlobalAttributes, GlobalEventAttributes, GlobalAccessibility
         return mutate(title: .init(value, context: .tainted(.html)))
     }
     
-    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Heading1 {
         return mutate(translate: .init(value.rawValue, context: .trusted))
     }
@@ -2907,7 +2907,7 @@ extension Heading2: GlobalAttributes, GlobalEventAttributes, GlobalAccessibility
         return mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
     }
     
-    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> Heading2 {
         return mutate(contenteditable: .init(value, context: .trusted))
     }
@@ -2920,7 +2920,7 @@ extension Heading2: GlobalAttributes, GlobalEventAttributes, GlobalAccessibility
         return mutate(dir: .init(value.rawValue, context: .trusted))
     }
     
-    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Heading2 {
         return mutate(draggable: .init(value, context: .trusted))
     }
@@ -2929,7 +2929,7 @@ extension Heading2: GlobalAttributes, GlobalEventAttributes, GlobalAccessibility
         return mutate(draggable: .init(value, context: .trusted))
     }
     
-    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> Heading2 {
         return mutate(enterkeyhint: .init(value.rawValue, context: .trusted))
     }
@@ -3015,7 +3015,7 @@ extension Heading2: GlobalAttributes, GlobalEventAttributes, GlobalAccessibility
         return mutate(role: .init(value.rawValue, context: .trusted))
     }
     
-    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> Heading2 {
         return mutate(spellcheck: .init(value, context: .trusted))
     }
@@ -3045,7 +3045,7 @@ extension Heading2: GlobalAttributes, GlobalEventAttributes, GlobalAccessibility
         return mutate(title: .init(value, context: .tainted(.html)))
     }
     
-    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Heading2 {
         return mutate(translate: .init(value.rawValue, context: .trusted))
     }
@@ -3445,7 +3445,7 @@ extension Heading3: GlobalAttributes, GlobalEventAttributes, GlobalAccessibility
         return mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
     }
 
-    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> Heading3 {
         return mutate(contenteditable: .init(value, context: .trusted))
     }
@@ -3458,7 +3458,7 @@ extension Heading3: GlobalAttributes, GlobalEventAttributes, GlobalAccessibility
         return mutate(dir: .init(value.rawValue, context: .trusted))
     }
     
-    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Heading3 {
         return mutate(draggable: .init(value, context: .trusted))
     }
@@ -3467,7 +3467,7 @@ extension Heading3: GlobalAttributes, GlobalEventAttributes, GlobalAccessibility
         return mutate(draggable: .init(value, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> Heading3 {
         return mutate(enterkeyhint: .init(value.rawValue, context: .trusted))
     }
@@ -3553,7 +3553,7 @@ extension Heading3: GlobalAttributes, GlobalEventAttributes, GlobalAccessibility
         return mutate(role: .init(value.rawValue, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> Heading3 {
         return mutate(spellcheck: .init(value, context: .trusted))
     }
@@ -3583,7 +3583,7 @@ extension Heading3: GlobalAttributes, GlobalEventAttributes, GlobalAccessibility
         return mutate(title: .init(value, context: .tainted(.html)))
     }
     
-    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Heading3 {
         return mutate(translate: .init(value.rawValue, context: .trusted))
     }
@@ -3983,7 +3983,7 @@ extension Heading4: GlobalAttributes, GlobalEventAttributes, GlobalAccessibility
         return mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
     }
 
-    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> Heading4 {
         return mutate(contenteditable: .init(value, context: .trusted))
     }
@@ -3996,7 +3996,7 @@ extension Heading4: GlobalAttributes, GlobalEventAttributes, GlobalAccessibility
         return mutate(dir: .init(value.rawValue, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Heading4 {
         return mutate(draggable: .init(value, context: .trusted))
     }
@@ -4005,7 +4005,7 @@ extension Heading4: GlobalAttributes, GlobalEventAttributes, GlobalAccessibility
         return mutate(draggable: .init(value, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> Heading4 {
         return mutate(enterkeyhint: .init(value.rawValue, context: .trusted))
     }
@@ -4091,7 +4091,7 @@ extension Heading4: GlobalAttributes, GlobalEventAttributes, GlobalAccessibility
         return mutate(role: .init(value.rawValue, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> Heading4 {
         return mutate(spellcheck: .init(value, context: .trusted))
     }
@@ -4121,7 +4121,7 @@ extension Heading4: GlobalAttributes, GlobalEventAttributes, GlobalAccessibility
         return mutate(title: .init(value, context: .tainted(.html)))
     }
     
-    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Heading4 {
         return mutate(translate: .init(value.rawValue, context: .trusted))
     }
@@ -4521,7 +4521,7 @@ extension Heading5: GlobalAttributes, GlobalEventAttributes, GlobalAccessibility
         return mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
     }
 
-    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> Heading5 {
         return mutate(contenteditable: .init(value, context: .trusted))
     }
@@ -4534,7 +4534,7 @@ extension Heading5: GlobalAttributes, GlobalEventAttributes, GlobalAccessibility
         return mutate(dir: .init(value.rawValue, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Heading5 {
         return mutate(draggable: .init(value, context: .trusted))
     }
@@ -4543,7 +4543,7 @@ extension Heading5: GlobalAttributes, GlobalEventAttributes, GlobalAccessibility
         return mutate(draggable: .init(value, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> Heading5 {
         return mutate(enterkeyhint: .init(value.rawValue, context: .trusted))
     }
@@ -4629,7 +4629,7 @@ extension Heading5: GlobalAttributes, GlobalEventAttributes, GlobalAccessibility
         return mutate(role: .init(value.rawValue, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> Heading5 {
         return mutate(spellcheck: .init(value, context: .trusted))
     }
@@ -4659,7 +4659,7 @@ extension Heading5: GlobalAttributes, GlobalEventAttributes, GlobalAccessibility
         return mutate(title: .init(value, context: .tainted(.html)))
     }
     
-    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Heading5 {
         return mutate(translate: .init(value.rawValue, context: .trusted))
     }
@@ -5059,7 +5059,7 @@ extension Heading6: GlobalAttributes, GlobalEventAttributes, GlobalAccessibility
         return mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
     }
 
-    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> Heading6 {
         return mutate(contenteditable: .init(value, context: .trusted))
     }
@@ -5072,7 +5072,7 @@ extension Heading6: GlobalAttributes, GlobalEventAttributes, GlobalAccessibility
         return mutate(dir: .init(value.rawValue, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Heading6 {
         return mutate(draggable: .init(value, context: .trusted))
     }
@@ -5081,7 +5081,7 @@ extension Heading6: GlobalAttributes, GlobalEventAttributes, GlobalAccessibility
         return mutate(draggable: .init(value, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> Heading6 {
         return mutate(enterkeyhint: .init(value.rawValue, context: .trusted))
     }
@@ -5167,7 +5167,7 @@ extension Heading6: GlobalAttributes, GlobalEventAttributes, GlobalAccessibility
         return mutate(role: .init(value.rawValue, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> Heading6 {
         return mutate(spellcheck: .init(value, context: .trusted))
     }
@@ -5197,7 +5197,7 @@ extension Heading6: GlobalAttributes, GlobalEventAttributes, GlobalAccessibility
         return mutate(title: .init(value, context: .tainted(.html)))
     }
     
-    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Heading6 {
         return mutate(translate: .init(value.rawValue, context: .trusted))
     }
@@ -5602,7 +5602,7 @@ extension HeadingGroup: GlobalAttributes, GlobalEventAttributes, GlobalAccessibi
         return mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
     }
 
-    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> HeadingGroup {
         return mutate(contenteditable: .init(value, context: .trusted))
     }
@@ -5615,7 +5615,7 @@ extension HeadingGroup: GlobalAttributes, GlobalEventAttributes, GlobalAccessibi
         return mutate(dir: .init(value.rawValue, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> HeadingGroup {
         return mutate(draggable: .init(value, context: .trusted))
     }
@@ -5624,7 +5624,7 @@ extension HeadingGroup: GlobalAttributes, GlobalEventAttributes, GlobalAccessibi
         return mutate(draggable: .init(value, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> HeadingGroup {
         return mutate(enterkeyhint: .init(value.rawValue, context: .trusted))
     }
@@ -5710,7 +5710,7 @@ extension HeadingGroup: GlobalAttributes, GlobalEventAttributes, GlobalAccessibi
         return mutate(role: .init(value.rawValue, context: .trusted))
     }
     
-    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> HeadingGroup {
         return mutate(spellcheck: .init(value, context: .trusted))
     }
@@ -5740,7 +5740,7 @@ extension HeadingGroup: GlobalAttributes, GlobalEventAttributes, GlobalAccessibi
         return mutate(title: .init(value, context: .tainted(.html)))
     }
     
-    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> HeadingGroup {
         return mutate(translate: .init(value.rawValue, context: .trusted))
     }
@@ -6132,7 +6132,7 @@ extension Header: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAt
         return mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
     }
 
-    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> Header {
         return mutate(contenteditable: .init(value, context: .trusted))
     }
@@ -6145,7 +6145,7 @@ extension Header: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAt
         return mutate(dir: .init(value.rawValue, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Header {
         return mutate(draggable: .init(value, context: .trusted))
     }
@@ -6154,7 +6154,7 @@ extension Header: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAt
         return mutate(draggable: .init(value, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> Header {
         return mutate(enterkeyhint: .init(value.rawValue, context: .trusted))
     }
@@ -6240,7 +6240,7 @@ extension Header: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAt
         return mutate(role: .init(value.rawValue, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> Header {
         return mutate(spellcheck: .init(value, context: .trusted))
     }
@@ -6270,7 +6270,7 @@ extension Header: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAt
         return mutate(title: .init(value, context: .tainted(.html)))
     }
     
-    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Header {
         return mutate(translate: .init(value.rawValue, context: .trusted))
     }
@@ -6660,7 +6660,7 @@ extension Footer: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAt
         return mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
     }
 
-    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> Footer {
         return mutate(contenteditable: .init(value, context: .trusted))
     }
@@ -6673,7 +6673,7 @@ extension Footer: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAt
         return mutate(dir: .init(value.rawValue, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Footer {
         return mutate(draggable: .init(value, context: .trusted))
     }
@@ -6682,7 +6682,7 @@ extension Footer: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAt
         return mutate(draggable: .init(value, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> Footer {
         return mutate(enterkeyhint: .init(value.rawValue, context: .trusted))
     }
@@ -6768,7 +6768,7 @@ extension Footer: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAt
         return mutate(role: .init(value.rawValue, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> Footer {
         return mutate(spellcheck: .init(value, context: .trusted))
     }
@@ -6798,7 +6798,7 @@ extension Footer: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAt
         return mutate(title: .init(value, context: .tainted(.html)))
     }
     
-    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Footer {
         return mutate(translate: .init(value.rawValue, context: .trusted))
     }
@@ -7195,7 +7195,7 @@ extension Address: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityA
         return mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
     }
 
-    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> Address {
         return mutate(contenteditable: .init(value, context: .trusted))
     }
@@ -7208,7 +7208,7 @@ extension Address: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityA
         return mutate(dir: .init(value.rawValue, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Address {
         return mutate(draggable: .init(value, context: .trusted))
     }
@@ -7217,7 +7217,7 @@ extension Address: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityA
         return mutate(draggable: .init(value, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> Address {
         return mutate(enterkeyhint: .init(value.rawValue, context: .trusted))
     }
@@ -7303,7 +7303,7 @@ extension Address: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityA
         return mutate(role: .init(value.rawValue, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> Address {
         return mutate(spellcheck: .init(value, context: .trusted))
     }
@@ -7333,7 +7333,7 @@ extension Address: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityA
         return mutate(title: .init(value, context: .tainted(.html)))
     }
     
-    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Address {
         return mutate(translate: .init(value.rawValue, context: .trusted))
     }
@@ -7724,7 +7724,7 @@ extension Paragraph: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilit
         return mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
     }
 
-    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> Paragraph {
         return mutate(contenteditable: .init(value, context: .trusted))
     }
@@ -7737,7 +7737,7 @@ extension Paragraph: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilit
         return mutate(dir: .init(value.rawValue, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Paragraph {
         return mutate(draggable: .init(value, context: .trusted))
     }
@@ -7746,7 +7746,7 @@ extension Paragraph: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilit
         return mutate(draggable: .init(value, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> Paragraph {
         return mutate(enterkeyhint: .init(value.rawValue, context: .trusted))
     }
@@ -7832,7 +7832,7 @@ extension Paragraph: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilit
         return mutate(role: .init(value.rawValue, context: .trusted))
     }
     
-    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> Paragraph {
         return mutate(spellcheck: .init(value, context: .trusted))
     }
@@ -7862,7 +7862,7 @@ extension Paragraph: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilit
         return mutate(title: .init(value, context: .tainted(.html)))
     }
     
-    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Paragraph {
         return mutate(translate: .init(value.rawValue, context: .trusted))
     }
@@ -8257,7 +8257,7 @@ extension HorizontalRule: GlobalAttributes, GlobalEventAttributes, GlobalAccessi
         return mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
     }
 
-    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> HorizontalRule {
         return mutate(contenteditable: .init(value, context: .trusted))
     }
@@ -8270,7 +8270,7 @@ extension HorizontalRule: GlobalAttributes, GlobalEventAttributes, GlobalAccessi
         return mutate(dir: .init(value.rawValue, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> HorizontalRule {
         return mutate(draggable: .init(value, context: .trusted))
     }
@@ -8279,7 +8279,7 @@ extension HorizontalRule: GlobalAttributes, GlobalEventAttributes, GlobalAccessi
         return mutate(draggable: .init(value, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> HorizontalRule {
         return mutate(enterkeyhint: .init(value.rawValue, context: .trusted))
     }
@@ -8365,7 +8365,7 @@ extension HorizontalRule: GlobalAttributes, GlobalEventAttributes, GlobalAccessi
         return mutate(role: .init(value.rawValue, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> HorizontalRule {
         return mutate(spellcheck: .init(value, context: .trusted))
     }
@@ -8395,7 +8395,7 @@ extension HorizontalRule: GlobalAttributes, GlobalEventAttributes, GlobalAccessi
         return mutate(title: .init(value, context: .tainted(.html)))
     }
     
-    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> HorizontalRule {
         return mutate(translate: .init(value.rawValue, context: .trusted))
     }
@@ -8792,7 +8792,7 @@ extension PreformattedText: GlobalAttributes, GlobalEventAttributes, GlobalAcces
         return mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
     }
 
-    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> PreformattedText {
         return mutate(contenteditable: .init(value, context: .trusted))
     }
@@ -8805,7 +8805,7 @@ extension PreformattedText: GlobalAttributes, GlobalEventAttributes, GlobalAcces
         return mutate(dir: .init(value.rawValue, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> PreformattedText {
         return mutate(draggable: .init(value, context: .trusted))
     }
@@ -8814,7 +8814,7 @@ extension PreformattedText: GlobalAttributes, GlobalEventAttributes, GlobalAcces
         return mutate(draggable: .init(value, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> PreformattedText {
         return mutate(enterkeyhint: .init(value.rawValue, context: .trusted))
     }
@@ -8900,7 +8900,7 @@ extension PreformattedText: GlobalAttributes, GlobalEventAttributes, GlobalAcces
         return mutate(role: .init(value.rawValue, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> PreformattedText {
         return mutate(spellcheck: .init(value, context: .trusted))
     }
@@ -8930,7 +8930,7 @@ extension PreformattedText: GlobalAttributes, GlobalEventAttributes, GlobalAcces
         return mutate(title: .init(value, context: .tainted(.html)))
     }
     
-    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> PreformattedText {
         return mutate(translate: .init(value.rawValue, context: .trusted))
     }
@@ -9321,7 +9321,7 @@ extension Blockquote: GlobalAttributes, GlobalEventAttributes, GlobalAccessibili
         return mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
     }
 
-    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> Blockquote {
         return mutate(contenteditable: .init(value, context: .trusted))
     }
@@ -9334,7 +9334,7 @@ extension Blockquote: GlobalAttributes, GlobalEventAttributes, GlobalAccessibili
         return mutate(dir: .init(value.rawValue, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Blockquote {
         return mutate(draggable: .init(value, context: .trusted))
     }
@@ -9343,7 +9343,7 @@ extension Blockquote: GlobalAttributes, GlobalEventAttributes, GlobalAccessibili
         return mutate(draggable: .init(value, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> Blockquote {
         return mutate(enterkeyhint: .init(value.rawValue, context: .trusted))
     }
@@ -9429,7 +9429,7 @@ extension Blockquote: GlobalAttributes, GlobalEventAttributes, GlobalAccessibili
         return mutate(role: .init(value.rawValue, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> Blockquote {
         return mutate(spellcheck: .init(value, context: .trusted))
     }
@@ -9459,7 +9459,7 @@ extension Blockquote: GlobalAttributes, GlobalEventAttributes, GlobalAccessibili
         return mutate(title: .init(value, context: .tainted(.html)))
     }
     
-    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Blockquote {
         return mutate(translate: .init(value.rawValue, context: .trusted))
     }
@@ -9868,7 +9868,7 @@ extension OrderedList: GlobalAttributes, GlobalEventAttributes, GlobalAccessibil
         return mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
     }
 
-    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> OrderedList {
         return mutate(contenteditable: .init(value, context: .trusted))
     }
@@ -9881,7 +9881,7 @@ extension OrderedList: GlobalAttributes, GlobalEventAttributes, GlobalAccessibil
         return mutate(dir: .init(value.rawValue, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> OrderedList {
         return mutate(draggable: .init(value, context: .trusted))
     }
@@ -9890,7 +9890,7 @@ extension OrderedList: GlobalAttributes, GlobalEventAttributes, GlobalAccessibil
         return mutate(draggable: .init(value, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> OrderedList {
         return mutate(enterkeyhint: .init(value.rawValue, context: .trusted))
     }
@@ -9976,7 +9976,7 @@ extension OrderedList: GlobalAttributes, GlobalEventAttributes, GlobalAccessibil
         return mutate(role: .init(value.rawValue, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> OrderedList {
         return mutate(spellcheck: .init(value, context: .trusted))
     }
@@ -10006,7 +10006,7 @@ extension OrderedList: GlobalAttributes, GlobalEventAttributes, GlobalAccessibil
         return mutate(title: .init(value, context: .tainted(.html)))
     }
     
-    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> OrderedList {
         return mutate(translate: .init(value.rawValue, context: .trusted))
     }
@@ -10417,7 +10417,7 @@ extension UnorderedList: GlobalAttributes, GlobalEventAttributes, GlobalAccessib
         return mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
     }
 
-    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> UnorderedList {
         return mutate(contenteditable: .init(value, context: .trusted))
     }
@@ -10430,7 +10430,7 @@ extension UnorderedList: GlobalAttributes, GlobalEventAttributes, GlobalAccessib
         return mutate(dir: .init(value.rawValue, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> UnorderedList {
         return mutate(draggable: .init(value, context: .trusted))
     }
@@ -10439,7 +10439,7 @@ extension UnorderedList: GlobalAttributes, GlobalEventAttributes, GlobalAccessib
         return mutate(draggable: .init(value, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> UnorderedList {
         return mutate(enterkeyhint: .init(value.rawValue, context: .trusted))
     }
@@ -10525,7 +10525,7 @@ extension UnorderedList: GlobalAttributes, GlobalEventAttributes, GlobalAccessib
         return mutate(role: .init(value.rawValue, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> UnorderedList {
         return mutate(spellcheck: .init(value, context: .trusted))
     }
@@ -10555,7 +10555,7 @@ extension UnorderedList: GlobalAttributes, GlobalEventAttributes, GlobalAccessib
         return mutate(title: .init(value, context: .tainted(.html)))
     }
     
-    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> UnorderedList {
         return mutate(translate: .init(value.rawValue, context: .trusted))
     }
@@ -10964,7 +10964,7 @@ extension Menu: GlobalAttributes {
         return mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
     }
     
-    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> Menu {
         return mutate(contenteditable: .init(value, context: .trusted))
     }
@@ -10977,7 +10977,7 @@ extension Menu: GlobalAttributes {
         return mutate(dir: .init(value.rawValue, context: .trusted))
     }
     
-    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Menu {
         return mutate(draggable: .init(value, context: .trusted))
     }
@@ -10986,7 +10986,7 @@ extension Menu: GlobalAttributes {
         return mutate(draggable: .init(value, context: .trusted))
     }
     
-    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> Menu {
         return mutate(enterkeyhint: .init(value.rawValue, context: .trusted))
     }
@@ -11072,7 +11072,7 @@ extension Menu: GlobalAttributes {
         return mutate(role: .init(value.rawValue, context: .trusted))
     }
     
-    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> Menu {
         return mutate(spellcheck: .init(value, context: .trusted))
     }
@@ -11102,7 +11102,7 @@ extension Menu: GlobalAttributes {
         return mutate(title: .init(value, context: .tainted(.html)))
     }
     
-    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Menu {
         return mutate(translate: .init(value.rawValue, context: .trusted))
     }
@@ -11250,7 +11250,7 @@ extension DescriptionList: GlobalAttributes, GlobalEventAttributes, GlobalAccess
         return mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
     }
     
-    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> DescriptionList {
         return mutate(contenteditable: .init(value, context: .trusted))
     }
@@ -11263,7 +11263,7 @@ extension DescriptionList: GlobalAttributes, GlobalEventAttributes, GlobalAccess
         return mutate(dir: .init(value.rawValue, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> DescriptionList {
         return mutate(draggable: .init(value, context: .trusted))
     }
@@ -11272,7 +11272,7 @@ extension DescriptionList: GlobalAttributes, GlobalEventAttributes, GlobalAccess
         return mutate(draggable: .init(value, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> DescriptionList {
         return mutate(enterkeyhint: .init(value.rawValue, context: .trusted))
     }
@@ -11358,7 +11358,7 @@ extension DescriptionList: GlobalAttributes, GlobalEventAttributes, GlobalAccess
         return mutate(role: .init(value.rawValue, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> DescriptionList {
         return mutate(spellcheck: .init(value, context: .trusted))
     }
@@ -11388,7 +11388,7 @@ extension DescriptionList: GlobalAttributes, GlobalEventAttributes, GlobalAccess
         return mutate(title: .init(value, context: .tainted(.html)))
     }
     
-    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> DescriptionList {
         return mutate(translate: .init(value.rawValue, context: .trusted))
     }
@@ -11784,7 +11784,7 @@ extension Figure: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAt
         return mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
     }
 
-    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> Figure {
         return mutate(contenteditable: .init(value, context: .trusted))
     }
@@ -11797,7 +11797,7 @@ extension Figure: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAt
         return mutate(dir: .init(value.rawValue, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Figure {
         return mutate(draggable: .init(value, context: .trusted))
     }
@@ -11806,7 +11806,7 @@ extension Figure: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAt
         return mutate(draggable: .init(value, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> Figure {
         return mutate(enterkeyhint: .init(value.rawValue, context: .trusted))
     }
@@ -11892,7 +11892,7 @@ extension Figure: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAt
         return mutate(role: .init(value.rawValue, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> Figure {
         return mutate(spellcheck: .init(value, context: .trusted))
     }
@@ -11922,7 +11922,7 @@ extension Figure: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAt
         return mutate(title: .init(value, context: .tainted(.html)))
     }
     
-    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Figure {
         return mutate(translate: .init(value.rawValue, context: .trusted))
     }
@@ -12315,7 +12315,7 @@ extension Anchor: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAt
         return mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
     }
 
-    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> Anchor {
         return mutate(contenteditable: .init(value, context: .trusted))
     }
@@ -12328,7 +12328,7 @@ extension Anchor: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAt
         return mutate(dir: .init(value.rawValue, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Anchor {
         return mutate(draggable: .init(value, context: .trusted))
     }
@@ -12337,7 +12337,7 @@ extension Anchor: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAt
         return mutate(draggable: .init(value, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> Anchor {
         return mutate(enterkeyhint: .init(value.rawValue, context: .trusted))
     }
@@ -12423,7 +12423,7 @@ extension Anchor: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAt
         return mutate(role: .init(value.rawValue, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> Anchor {
         return mutate(spellcheck: .init(value, context: .trusted))
     }
@@ -12453,7 +12453,7 @@ extension Anchor: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAt
         return mutate(title: .init(value, context: .tainted(.html)))
     }
     
-    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Anchor {
         return mutate(translate: .init(value.rawValue, context: .trusted))
     }
@@ -12899,7 +12899,7 @@ extension Emphasize: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilit
         return mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
     }
 
-    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> Emphasize {
         return mutate(contenteditable: .init(value, context: .trusted))
     }
@@ -12912,7 +12912,7 @@ extension Emphasize: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilit
         return mutate(dir: .init(value.rawValue, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Emphasize {
         return mutate(draggable: .init(value, context: .trusted))
     }
@@ -12921,7 +12921,7 @@ extension Emphasize: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilit
         return mutate(draggable: .init(value, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> Emphasize {
         return mutate(enterkeyhint: .init(value.rawValue, context: .trusted))
     }
@@ -13007,7 +13007,7 @@ extension Emphasize: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilit
         return mutate(role: .init(value.rawValue, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> Emphasize {
         return mutate(spellcheck: .init(value, context: .trusted))
     }
@@ -13037,7 +13037,7 @@ extension Emphasize: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilit
         return mutate(title: .init(value, context: .tainted(.html)))
     }
     
-    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Emphasize {
         return mutate(translate: .init(value.rawValue, context: .trusted))
     }
@@ -13430,7 +13430,7 @@ extension Strong: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAt
         return mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
     }
 
-    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> Strong {
         return mutate(contenteditable: .init(value, context: .trusted))
     }
@@ -13443,7 +13443,7 @@ extension Strong: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAt
         return mutate(dir: .init(value.rawValue, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Strong {
         return mutate(draggable: .init(value, context: .trusted))
     }
@@ -13452,7 +13452,7 @@ extension Strong: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAt
         return mutate(draggable: .init(value, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> Strong {
         return mutate(enterkeyhint: .init(value.rawValue, context: .trusted))
     }
@@ -13538,7 +13538,7 @@ extension Strong: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAt
         return mutate(role: .init(value.rawValue, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> Strong {
         return mutate(spellcheck: .init(value, context: .trusted))
     }
@@ -13568,7 +13568,7 @@ extension Strong: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAt
         return mutate(title: .init(value, context: .tainted(.html)))
     }
     
-    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Strong {
         return mutate(translate: .init(value.rawValue, context: .trusted))
     }
@@ -13961,7 +13961,7 @@ extension Small: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAtt
         return mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
     }
 
-    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> Small {
         return mutate(contenteditable: .init(value, context: .trusted))
     }
@@ -13978,12 +13978,12 @@ extension Small: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAtt
         return mutate(draggable: .init(value, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Small {
         return mutate(draggable: .init(value, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> Small {
         return mutate(enterkeyhint: .init(value.rawValue, context: .trusted))
     }
@@ -14069,7 +14069,7 @@ extension Small: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAtt
         return mutate(role: .init(value.rawValue, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> Small {
         return mutate(spellcheck: .init(value, context: .trusted))
     }
@@ -14099,7 +14099,7 @@ extension Small: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAtt
         return mutate(title: .init(value, context: .tainted(.html)))
     }
     
-    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Small {
         return mutate(translate: .init(value.rawValue, context: .trusted))
     }
@@ -14501,7 +14501,7 @@ extension StrikeThrough: GlobalAttributes, GlobalEventAttributes {
         return mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
     }
 
-    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> StrikeThrough {
         return mutate(contenteditable: .init(value, context: .trusted))
     }
@@ -14514,7 +14514,7 @@ extension StrikeThrough: GlobalAttributes, GlobalEventAttributes {
         return mutate(dir: .init(value.rawValue, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> StrikeThrough {
         return mutate(draggable: .init(value, context: .trusted))
     }
@@ -14523,7 +14523,7 @@ extension StrikeThrough: GlobalAttributes, GlobalEventAttributes {
         return mutate(draggable: .init(value, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> StrikeThrough {
         return mutate(enterkeyhint: .init(value.rawValue, context: .trusted))
     }
@@ -14609,7 +14609,7 @@ extension StrikeThrough: GlobalAttributes, GlobalEventAttributes {
         return mutate(role: .init(value.rawValue, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> StrikeThrough {
         return mutate(spellcheck: .init(value, context: .trusted))
     }
@@ -14639,7 +14639,7 @@ extension StrikeThrough: GlobalAttributes, GlobalEventAttributes {
         return mutate(title: .init(value, context: .tainted(.html)))
     }
     
-    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> StrikeThrough {
         return mutate(translate: .init(value.rawValue, context: .trusted))
     }
@@ -14819,7 +14819,7 @@ extension Main: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttr
         return mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
     }
 
-    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> Main {
         return mutate(contenteditable: .init(value, context: .trusted))
     }
@@ -14832,7 +14832,7 @@ extension Main: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttr
         return mutate(dir: .init(value.rawValue, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Main {
         return mutate(draggable: .init(value, context: .trusted))
     }
@@ -14841,7 +14841,7 @@ extension Main: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttr
         return mutate(draggable: .init(value, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> Main {
         return mutate(enterkeyhint: .init(value.rawValue, context: .trusted))
     }
@@ -14927,7 +14927,7 @@ extension Main: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttr
         return mutate(role: .init(value.rawValue, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> Main {
         return mutate(spellcheck: .init(value, context: .trusted))
     }
@@ -14957,7 +14957,7 @@ extension Main: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttr
         return mutate(title: .init(value, context: .tainted(.html)))
     }
     
-    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Main {
         return mutate(translate: .init(value.rawValue, context: .trusted))
     }
@@ -15355,7 +15355,7 @@ extension Search: GlobalAttributes {
         return mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
     }
     
-    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> Search {
         return mutate(contenteditable: .init(value, context: .trusted))
     }
@@ -15368,7 +15368,7 @@ extension Search: GlobalAttributes {
         return mutate(dir: .init(value.rawValue, context: .trusted))
     }
     
-    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Search {
         return mutate(draggable: .init(value, context: .trusted))
     }
@@ -15377,7 +15377,7 @@ extension Search: GlobalAttributes {
         return mutate(draggable: .init(value, context: .trusted))
     }
     
-    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> Search {
         return mutate(enterkeyhint: .init(value.rawValue, context: .trusted))
     }
@@ -15463,7 +15463,7 @@ extension Search: GlobalAttributes {
         return mutate(role: .init(value.rawValue, context: .trusted))
     }
     
-    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> Search {
         return mutate(spellcheck: .init(value, context: .trusted))
     }
@@ -15493,7 +15493,7 @@ extension Search: GlobalAttributes {
         return mutate(title: .init(value, context: .tainted(.html)))
     }
     
-    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Search {
         return mutate(translate: .init(value.rawValue, context: .trusted))
     }
@@ -15634,7 +15634,7 @@ extension Division: GlobalAttributes, GlobalEventAttributes, GlobalAccessibility
         return mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
     }
 
-    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> Division {
         return mutate(contenteditable: .init(value, context: .trusted))
     }
@@ -15647,7 +15647,7 @@ extension Division: GlobalAttributes, GlobalEventAttributes, GlobalAccessibility
         return mutate(dir: .init(value.rawValue, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Division {
         return mutate(draggable: .init(value, context: .trusted))
     }
@@ -15656,7 +15656,7 @@ extension Division: GlobalAttributes, GlobalEventAttributes, GlobalAccessibility
         return mutate(draggable: .init(value, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> Division {
         return mutate(enterkeyhint: .init(value.rawValue, context: .trusted))
     }
@@ -15742,7 +15742,7 @@ extension Division: GlobalAttributes, GlobalEventAttributes, GlobalAccessibility
         return mutate(role: .init(value.rawValue, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> Division {
         return mutate(spellcheck: .init(value, context: .trusted))
     }
@@ -15772,7 +15772,7 @@ extension Division: GlobalAttributes, GlobalEventAttributes, GlobalAccessibility
         return mutate(title: .init(value, context: .tainted(.html)))
     }
     
-    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Division {
         return mutate(translate: .init(value.rawValue, context: .trusted))
     }
@@ -16293,7 +16293,7 @@ extension Definition: GlobalAttributes, GlobalEventAttributes, GlobalAccessibili
         return mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
     }
 
-    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> Definition {
         return mutate(contenteditable: .init(value, context: .trusted))
     }
@@ -16306,7 +16306,7 @@ extension Definition: GlobalAttributes, GlobalEventAttributes, GlobalAccessibili
         return mutate(dir: .init(value.rawValue, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Definition {
         return mutate(draggable: .init(value, context: .trusted))
     }
@@ -16315,7 +16315,7 @@ extension Definition: GlobalAttributes, GlobalEventAttributes, GlobalAccessibili
         return mutate(draggable: .init(value, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> Definition {
         return mutate(enterkeyhint: .init(value.rawValue, context: .trusted))
     }
@@ -16401,7 +16401,7 @@ extension Definition: GlobalAttributes, GlobalEventAttributes, GlobalAccessibili
         return mutate(role: .init(value.rawValue, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> Definition {
         return mutate(spellcheck: .init(value, context: .trusted))
     }
@@ -16431,7 +16431,7 @@ extension Definition: GlobalAttributes, GlobalEventAttributes, GlobalAccessibili
         return mutate(title: .init(value, context: .tainted(.html)))
     }
     
-    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Definition {
         return mutate(translate: .init(value.rawValue, context: .trusted))
     }
@@ -16825,7 +16825,7 @@ extension Cite: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttr
         return mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
     }
 
-    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> Cite {
         return mutate(contenteditable: .init(value, context: .trusted))
     }
@@ -16838,7 +16838,7 @@ extension Cite: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttr
         return mutate(dir: .init(value.rawValue, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Cite {
         return mutate(draggable: .init(value, context: .trusted))
     }
@@ -16847,7 +16847,7 @@ extension Cite: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttr
         return mutate(draggable: .init(value, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> Cite {
         return mutate(enterkeyhint: .init(value.rawValue, context: .trusted))
     }
@@ -16933,7 +16933,7 @@ extension Cite: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttr
         return mutate(role: .init(value.rawValue, context: .trusted))
     }
     
-    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> Cite {
         return mutate(spellcheck: .init(value, context: .trusted))
     }
@@ -16963,7 +16963,7 @@ extension Cite: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttr
         return mutate(title: .init(value, context: .tainted(.html)))
     }
     
-    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Cite {
         return mutate(translate: .init(value.rawValue, context: .trusted))
     }
@@ -17356,7 +17356,7 @@ extension ShortQuote: GlobalAttributes, GlobalEventAttributes, GlobalAccessibili
         return mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
     }
 
-    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> ShortQuote {
         return mutate(contenteditable: .init(value, context: .trusted))
     }
@@ -17369,7 +17369,7 @@ extension ShortQuote: GlobalAttributes, GlobalEventAttributes, GlobalAccessibili
         return mutate(dir: .init(value.rawValue, context: .trusted))
     }
     
-    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> ShortQuote {
         return mutate(draggable: .init(value, context: .trusted))
     }
@@ -17378,7 +17378,7 @@ extension ShortQuote: GlobalAttributes, GlobalEventAttributes, GlobalAccessibili
         return mutate(draggable: .init(value, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> ShortQuote {
         return mutate(enterkeyhint: .init(value.rawValue, context: .trusted))
     }
@@ -17464,7 +17464,7 @@ extension ShortQuote: GlobalAttributes, GlobalEventAttributes, GlobalAccessibili
         return mutate(role: .init(value.rawValue, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> ShortQuote {
         return mutate(spellcheck: .init(value, context: .trusted))
     }
@@ -17494,7 +17494,7 @@ extension ShortQuote: GlobalAttributes, GlobalEventAttributes, GlobalAccessibili
         return mutate(title: .init(value, context: .tainted(.html)))
     }
     
-    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> ShortQuote {
         return mutate(translate: .init(value.rawValue, context: .trusted))
     }
@@ -17892,7 +17892,7 @@ extension Abbreviation: GlobalAttributes, GlobalEventAttributes, GlobalAccessibi
         return mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
     }
 
-    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> Abbreviation {
         return mutate(contenteditable: .init(value, context: .trusted))
     }
@@ -17905,7 +17905,7 @@ extension Abbreviation: GlobalAttributes, GlobalEventAttributes, GlobalAccessibi
         return mutate(dir: .init(value.rawValue, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Abbreviation {
         return mutate(draggable: .init(value, context: .trusted))
     }
@@ -17914,7 +17914,7 @@ extension Abbreviation: GlobalAttributes, GlobalEventAttributes, GlobalAccessibi
         return mutate(draggable: .init(value, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> Abbreviation {
         return mutate(enterkeyhint: .init(value.rawValue, context: .trusted))
     }
@@ -18000,7 +18000,7 @@ extension Abbreviation: GlobalAttributes, GlobalEventAttributes, GlobalAccessibi
         return mutate(role: .init(value.rawValue, context: .trusted))
     }
     
-    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> Abbreviation {
         return mutate(spellcheck: .init(value, context: .trusted))
     }
@@ -18030,7 +18030,7 @@ extension Abbreviation: GlobalAttributes, GlobalEventAttributes, GlobalAccessibi
         return mutate(title: .init(value, context: .tainted(.html)))
     }
     
-    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Abbreviation {
         return mutate(translate: .init(value.rawValue, context: .trusted))
     }
@@ -18424,7 +18424,7 @@ extension Ruby: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttr
         return mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
     }
     
-    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> Ruby {
         return mutate(contenteditable: .init(value, context: .trusted))
     }
@@ -18437,7 +18437,7 @@ extension Ruby: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttr
         return mutate(dir: .init(value.rawValue, context: .trusted))
     }
     
-    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Ruby {
         return mutate(draggable: .init(value, context: .trusted))
     }
@@ -18446,7 +18446,7 @@ extension Ruby: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttr
         return mutate(draggable: .init(value, context: .trusted))
     }
     
-    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> Ruby {
         return mutate(enterkeyhint: .init(value.rawValue, context: .trusted))
     }
@@ -18532,7 +18532,7 @@ extension Ruby: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttr
         return mutate(role: .init(value.rawValue, context: .trusted))
     }
     
-    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> Ruby {
         return mutate(spellcheck: .init(value, context: .trusted))
     }
@@ -18562,7 +18562,7 @@ extension Ruby: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttr
         return mutate(title: .init(value, context: .tainted(.html)))
     }
     
-    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Ruby {
         return mutate(translate: .init(value.rawValue, context: .trusted))
     }
@@ -18958,7 +18958,7 @@ extension Data: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttr
         return mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
     }
 
-    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> Data {
         return mutate(contenteditable: .init(value, context: .trusted))
     }
@@ -18971,7 +18971,7 @@ extension Data: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttr
         return mutate(dir: .init(value.rawValue, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Data {
         return mutate(draggable: .init(value, context: .trusted))
     }
@@ -18980,7 +18980,7 @@ extension Data: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttr
         return mutate(draggable: .init(value, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> Data {
         return mutate(enterkeyhint: .init(value.rawValue, context: .trusted))
     }
@@ -19066,7 +19066,7 @@ extension Data: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttr
         return mutate(role: .init(value.rawValue, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> Data {
         return mutate(spellcheck: .init(value, context: .trusted))
     }
@@ -19096,7 +19096,7 @@ extension Data: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttr
         return mutate(title: .init(value, context: .tainted(.html)))
     }
     
-    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Data {
         return mutate(translate: .init(value.rawValue, context: .trusted))
     }
@@ -19504,7 +19504,7 @@ extension Time: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttr
         return mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
     }
 
-    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> Time {
         return mutate(contenteditable: .init(value, context: .trusted))
     }
@@ -19517,7 +19517,7 @@ extension Time: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttr
         return mutate(dir: .init(value.rawValue, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Time {
         return mutate(draggable: .init(value, context: .trusted))
     }
@@ -19526,7 +19526,7 @@ extension Time: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttr
         return mutate(draggable: .init(value, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> Time {
         return mutate(enterkeyhint: .init(value.rawValue, context: .trusted))
     }
@@ -19612,7 +19612,7 @@ extension Time: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttr
         return mutate(role: .init(value.rawValue, context: .trusted))
     }
     
-    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> Time {
         return mutate(spellcheck: .init(value, context: .trusted))
     }
@@ -19642,7 +19642,7 @@ extension Time: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttr
         return mutate(title: .init(value, context: .tainted(.html)))
     }
     
-    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Time {
         return mutate(translate: .init(value.rawValue, context: .trusted))
     }
@@ -20041,7 +20041,7 @@ extension Code: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttr
         return mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
     }
 
-    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> Code {
         return mutate(contenteditable: .init(value, context: .trusted))
     }
@@ -20054,7 +20054,7 @@ extension Code: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttr
         return mutate(dir: .init(value.rawValue, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Code {
         return mutate(draggable: .init(value, context: .trusted))
     }
@@ -20063,7 +20063,7 @@ extension Code: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttr
         return mutate(draggable: .init(value, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> Code {
         return mutate(enterkeyhint: .init(value.rawValue, context: .trusted))
     }
@@ -20149,7 +20149,7 @@ extension Code: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttr
         return mutate(role: .init(value.rawValue, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> Code {
         return mutate(spellcheck: .init(value, context: .trusted))
     }
@@ -20179,7 +20179,7 @@ extension Code: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttr
         return mutate(title: .init(value, context: .tainted(.html)))
     }
     
-    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Code {
         return mutate(translate: .init(value.rawValue, context: .trusted))
     }
@@ -20574,7 +20574,7 @@ extension Variable: GlobalAttributes, GlobalEventAttributes, GlobalAccessibility
         return mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
     }
 
-    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> Variable {
         return mutate(contenteditable: .init(value, context: .trusted))
     }
@@ -20587,7 +20587,7 @@ extension Variable: GlobalAttributes, GlobalEventAttributes, GlobalAccessibility
         return mutate(dir: .init(value.rawValue, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Variable {
         return mutate(draggable: .init(value, context: .trusted))
     }
@@ -20596,7 +20596,7 @@ extension Variable: GlobalAttributes, GlobalEventAttributes, GlobalAccessibility
         return mutate(draggable: .init(value, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> Variable {
         return mutate(enterkeyhint: .init(value.rawValue, context: .trusted))
     }
@@ -20682,7 +20682,7 @@ extension Variable: GlobalAttributes, GlobalEventAttributes, GlobalAccessibility
         return mutate(role: .init(value.rawValue, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> Variable {
         return mutate(spellcheck: .init(value, context: .trusted))
     }
@@ -20712,7 +20712,7 @@ extension Variable: GlobalAttributes, GlobalEventAttributes, GlobalAccessibility
         return mutate(title: .init(value, context: .tainted(.html)))
     }
     
-    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Variable {
         return mutate(translate: .init(value.rawValue, context: .trusted))
     }
@@ -21103,7 +21103,7 @@ extension SampleOutput: GlobalAttributes, GlobalEventAttributes, GlobalAccessibi
         return mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
     }
 
-    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> SampleOutput {
         return mutate(contenteditable: .init(value, context: .trusted))
     }
@@ -21116,7 +21116,7 @@ extension SampleOutput: GlobalAttributes, GlobalEventAttributes, GlobalAccessibi
         return mutate(dir: .init(value.rawValue, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> SampleOutput {
         return mutate(draggable: .init(value, context: .trusted))
     }
@@ -21125,7 +21125,7 @@ extension SampleOutput: GlobalAttributes, GlobalEventAttributes, GlobalAccessibi
         return mutate(draggable: .init(value, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> SampleOutput {
         return mutate(enterkeyhint: .init(value.rawValue, context: .trusted))
     }
@@ -21211,7 +21211,7 @@ extension SampleOutput: GlobalAttributes, GlobalEventAttributes, GlobalAccessibi
         return mutate(role: .init(value.rawValue, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> SampleOutput {
         return mutate(spellcheck: .init(value, context: .trusted))
     }
@@ -21241,7 +21241,7 @@ extension SampleOutput: GlobalAttributes, GlobalEventAttributes, GlobalAccessibi
         return mutate(title: .init(value, context: .tainted(.html)))
     }
     
-    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> SampleOutput {
         return mutate(translate: .init(value.rawValue, context: .trusted))
     }
@@ -21636,7 +21636,7 @@ extension KeyboardInput: GlobalAttributes, GlobalEventAttributes, GlobalAccessib
         return mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
     }
 
-    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> KeyboardInput {
         return mutate(contenteditable: .init(value, context: .trusted))
     }
@@ -21649,7 +21649,7 @@ extension KeyboardInput: GlobalAttributes, GlobalEventAttributes, GlobalAccessib
         return mutate(dir: .init(value.rawValue, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> KeyboardInput {
         return mutate(draggable: .init(value, context: .trusted))
     }
@@ -21658,7 +21658,7 @@ extension KeyboardInput: GlobalAttributes, GlobalEventAttributes, GlobalAccessib
         return mutate(draggable: .init(value, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> KeyboardInput {
         return mutate(enterkeyhint: .init(value.rawValue, context: .trusted))
     }
@@ -21744,7 +21744,7 @@ extension KeyboardInput: GlobalAttributes, GlobalEventAttributes, GlobalAccessib
         return mutate(role: .init(value.rawValue, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> KeyboardInput {
         return mutate(spellcheck: .init(value, context: .trusted))
     }
@@ -21774,7 +21774,7 @@ extension KeyboardInput: GlobalAttributes, GlobalEventAttributes, GlobalAccessib
         return mutate(title: .init(value, context: .tainted(.html)))
     }
     
-    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> KeyboardInput {
         return mutate(translate: .init(value.rawValue, context: .trusted))
     }
@@ -22169,7 +22169,7 @@ extension Subscript: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilit
         return mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
     }
 
-    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> Subscript {
         return mutate(contenteditable: .init(value, context: .trusted))
     }
@@ -22182,7 +22182,7 @@ extension Subscript: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilit
         return mutate(dir: .init(value.rawValue, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Subscript {
         return mutate(draggable: .init(value, context: .trusted))
     }
@@ -22191,7 +22191,7 @@ extension Subscript: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilit
         return mutate(draggable: .init(value, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> Subscript {
         return mutate(enterkeyhint: .init(value.rawValue, context: .trusted))
     }
@@ -22276,7 +22276,7 @@ extension Subscript: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilit
         return mutate(role: .init(value.rawValue, context: .trusted))
     }
     
-    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> Subscript {
         return mutate(spellcheck: .init(value, context: .trusted))
     }
@@ -22306,7 +22306,7 @@ extension Subscript: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilit
         return mutate(title: .init(value, context: .tainted(.html)))
     }
     
-    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Subscript {
         return mutate(translate: .init(value.rawValue, context: .trusted))
     }
@@ -22701,7 +22701,7 @@ extension Superscript: GlobalAttributes, GlobalEventAttributes, GlobalAccessibil
         return mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
     }
 
-    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> Superscript {
         return mutate(contenteditable: .init(value, context: .trusted))
     }
@@ -22714,7 +22714,7 @@ extension Superscript: GlobalAttributes, GlobalEventAttributes, GlobalAccessibil
         return mutate(dir: .init(value.rawValue, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Superscript {
         return mutate(draggable: .init(value, context: .trusted))
     }
@@ -22723,7 +22723,7 @@ extension Superscript: GlobalAttributes, GlobalEventAttributes, GlobalAccessibil
         return mutate(draggable: .init(value, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> Superscript {
         return mutate(enterkeyhint: .init(value.rawValue, context: .trusted))
     }
@@ -22809,7 +22809,7 @@ extension Superscript: GlobalAttributes, GlobalEventAttributes, GlobalAccessibil
         return mutate(role: .init(value.rawValue, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> Superscript {
         return mutate(spellcheck: .init(value, context: .trusted))
     }
@@ -22839,7 +22839,7 @@ extension Superscript: GlobalAttributes, GlobalEventAttributes, GlobalAccessibil
         return mutate(title: .init(value, context: .tainted(.html)))
     }
     
-    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Superscript {
         return mutate(translate: .init(value.rawValue, context: .trusted))
     }
@@ -23234,7 +23234,7 @@ extension Italic: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAt
         return mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
     }
 
-    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> Italic {
         return mutate(contenteditable: .init(value, context: .trusted))
     }
@@ -23247,7 +23247,7 @@ extension Italic: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAt
         return mutate(dir: .init(value.rawValue, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Italic {
         return mutate(draggable: .init(value, context: .trusted))
     }
@@ -23256,7 +23256,7 @@ extension Italic: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAt
         return mutate(draggable: .init(value, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> Italic {
         return mutate(enterkeyhint: .init(value.rawValue, context: .trusted))
     }
@@ -23342,7 +23342,7 @@ extension Italic: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAt
         return mutate(role: .init(value.rawValue, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> Italic {
         return mutate(spellcheck: .init(value, context: .trusted))
     }
@@ -23372,7 +23372,7 @@ extension Italic: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAt
         return mutate(title: .init(value, context: .tainted(.html)))
     }
     
-    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Italic {
         return mutate(translate: .init(value.rawValue, context: .trusted))
     }
@@ -23776,7 +23776,7 @@ extension Bold: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttr
         return mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
     }
 
-    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> Bold {
         return mutate(contenteditable: .init(value, context: .trusted))
     }
@@ -23789,7 +23789,7 @@ extension Bold: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttr
         return mutate(dir: .init(value.rawValue, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Bold {
         return mutate(draggable: .init(value, context: .trusted))
     }
@@ -23798,7 +23798,7 @@ extension Bold: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttr
         return mutate(draggable: .init(value, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> Bold {
         return mutate(enterkeyhint: .init(value.rawValue, context: .trusted))
     }
@@ -23884,7 +23884,7 @@ extension Bold: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttr
         return mutate(role: .init(value.rawValue, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> Bold {
         return mutate(spellcheck: .init(value, context: .trusted))
     }
@@ -23914,7 +23914,7 @@ extension Bold: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttr
         return mutate(title: .init(value, context: .tainted(.html)))
     }
     
-    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Bold {
         return mutate(translate: .init(value.rawValue, context: .trusted))
     }
@@ -24318,7 +24318,7 @@ extension Underline: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilit
         return mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
     }
 
-    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> Underline {
         return mutate(contenteditable: .init(value, context: .trusted))
     }
@@ -24331,7 +24331,7 @@ extension Underline: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilit
         return mutate(dir: .init(value.rawValue, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Underline {
         return mutate(draggable: .init(value, context: .trusted))
     }
@@ -24340,7 +24340,7 @@ extension Underline: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilit
         return mutate(draggable: .init(value, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> Underline {
         return mutate(enterkeyhint: .init(value.rawValue, context: .trusted))
     }
@@ -24426,7 +24426,7 @@ extension Underline: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilit
         return mutate(role: .init(value.rawValue, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> Underline {
         return mutate(spellcheck: .init(value, context: .trusted))
     }
@@ -24456,7 +24456,7 @@ extension Underline: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilit
         return mutate(title: .init(value, context: .tainted(.html)))
     }
     
-    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Underline {
         return mutate(translate: .init(value.rawValue, context: .trusted))
     }
@@ -24860,7 +24860,7 @@ extension Mark: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttr
         return mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
     }
 
-    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> Mark {
         return mutate(contenteditable: .init(value, context: .trusted))
     }
@@ -24873,7 +24873,7 @@ extension Mark: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttr
         return mutate(dir: .init(value.rawValue, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Mark {
         return mutate(draggable: .init(value, context: .trusted))
     }
@@ -24882,7 +24882,7 @@ extension Mark: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttr
         return mutate(draggable: .init(value, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> Mark {
         return mutate(enterkeyhint: .init(value.rawValue, context: .trusted))
     }
@@ -24968,7 +24968,7 @@ extension Mark: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttr
         return mutate(role: .init(value.rawValue, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> Mark {
         return mutate(spellcheck: .init(value, context: .trusted))
     }
@@ -24998,7 +24998,7 @@ extension Mark: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttr
         return mutate(title: .init(value, context: .tainted(.html)))
     }
     
-    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Mark {
         return mutate(translate: .init(value.rawValue, context: .trusted))
     }
@@ -25393,7 +25393,7 @@ extension Bdi: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttri
         return mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
     }
 
-    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> Bdi {
         return mutate(contenteditable: .init(value, context: .trusted))
     }
@@ -25406,7 +25406,7 @@ extension Bdi: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttri
         return mutate(dir: .init(value.rawValue, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Bdi {
         return mutate(draggable: .init(value, context: .trusted))
     }
@@ -25415,7 +25415,7 @@ extension Bdi: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttri
         return mutate(draggable: .init(value, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> Bdi {
         return mutate(enterkeyhint: .init(value.rawValue, context: .trusted))
     }
@@ -25501,7 +25501,7 @@ extension Bdi: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttri
         return mutate(role: .init(value.rawValue, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> Bdi {
         return mutate(spellcheck: .init(value, context: .trusted))
     }
@@ -25531,7 +25531,7 @@ extension Bdi: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttri
         return mutate(title: .init(value, context: .tainted(.html)))
     }
     
-    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Bdi {
         return mutate(translate: .init(value.rawValue, context: .trusted))
     }
@@ -25914,7 +25914,7 @@ extension Bdo: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttri
         return mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
     }
 
-    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> Bdo {
         return mutate(contenteditable: .init(value, context: .trusted))
     }
@@ -25927,7 +25927,7 @@ extension Bdo: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttri
         return mutate(dir: .init(value.rawValue, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Bdo {
         return mutate(draggable: .init(value, context: .trusted))
     }
@@ -25936,7 +25936,7 @@ extension Bdo: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttri
         return mutate(draggable: .init(value, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> Bdo {
         return mutate(enterkeyhint: .init(value.rawValue, context: .trusted))
     }
@@ -26022,7 +26022,7 @@ extension Bdo: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttri
         return mutate(role: .init(value.rawValue, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> Bdo {
         return mutate(spellcheck: .init(value, context: .trusted))
     }
@@ -26052,7 +26052,7 @@ extension Bdo: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttri
         return mutate(title: .init(value, context: .tainted(.html)))
     }
     
-    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Bdo {
         return mutate(translate: .init(value.rawValue, context: .trusted))
     }
@@ -26443,7 +26443,7 @@ extension Span: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttr
         return mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
     }
 
-    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> Span {
         return mutate(contenteditable: .init(value, context: .trusted))
     }
@@ -26456,7 +26456,7 @@ extension Span: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttr
         return mutate(dir: .init(value.rawValue, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Span {
         return mutate(draggable: .init(value, context: .trusted))
     }
@@ -26465,7 +26465,7 @@ extension Span: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttr
         return mutate(draggable: .init(value, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> Span {
         return mutate(enterkeyhint: .init(value.rawValue, context: .trusted))
     }
@@ -26551,7 +26551,7 @@ extension Span: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttr
         return mutate(role: .init(value.rawValue, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> Span {
         return mutate(spellcheck: .init(value, context: .trusted))
     }
@@ -26581,7 +26581,7 @@ extension Span: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttr
         return mutate(title: .init(value, context: .tainted(.html)))
     }
     
-    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Span {
         return mutate(translate: .init(value.rawValue, context: .trusted))
     }
@@ -26969,7 +26969,7 @@ extension LineBreak: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilit
         return mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
     }
 
-    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> LineBreak {
         return mutate(contenteditable: .init(value, context: .trusted))
     }
@@ -26982,7 +26982,7 @@ extension LineBreak: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilit
         return mutate(dir: .init(value.rawValue, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> LineBreak {
         return mutate(draggable: .init(value, context: .trusted))
     }
@@ -26991,7 +26991,7 @@ extension LineBreak: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilit
         return mutate(draggable: .init(value, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> LineBreak {
         return mutate(enterkeyhint: .init(value.rawValue, context: .trusted))
     }
@@ -27077,7 +27077,7 @@ extension LineBreak: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilit
         return mutate(role: .init(value.rawValue, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> LineBreak {
         return mutate(spellcheck: .init(value, context: .trusted))
     }
@@ -27107,7 +27107,7 @@ extension LineBreak: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilit
         return mutate(title: .init(value, context: .tainted(.html)))
     }
     
-    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> LineBreak {
         return mutate(translate: .init(value.rawValue, context: .trusted))
     }
@@ -27487,7 +27487,7 @@ extension WordBreak: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilit
         return mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
     }
 
-    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> WordBreak {
         return mutate(contenteditable: .init(value, context: .trusted))
     }
@@ -27500,7 +27500,7 @@ extension WordBreak: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilit
         return mutate(dir: .init(value.rawValue, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> WordBreak {
         return mutate(draggable: .init(value, context: .trusted))
     }
@@ -27509,7 +27509,7 @@ extension WordBreak: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilit
         return mutate(draggable: .init(value, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> WordBreak {
         return mutate(enterkeyhint: .init(value.rawValue, context: .trusted))
     }
@@ -27595,7 +27595,7 @@ extension WordBreak: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilit
         return mutate(role: .init(value.rawValue, context: .trusted))
     }
     
-    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> WordBreak {
         return mutate(spellcheck: .init(value, context: .trusted))
     }
@@ -27625,7 +27625,7 @@ extension WordBreak: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilit
         return mutate(title: .init(value, context: .tainted(.html)))
     }
     
-    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> WordBreak {
         return mutate(translate: .init(value.rawValue, context: .trusted))
     }
@@ -28016,7 +28016,7 @@ extension InsertedText: GlobalAttributes, GlobalEventAttributes, GlobalAccessibi
         return mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
     }
 
-    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> InsertedText {
         return mutate(contenteditable: .init(value, context: .trusted))
     }
@@ -28029,7 +28029,7 @@ extension InsertedText: GlobalAttributes, GlobalEventAttributes, GlobalAccessibi
         return mutate(dir: .init(value.rawValue, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> InsertedText {
         return mutate(draggable: .init(value, context: .trusted))
     }
@@ -28038,7 +28038,7 @@ extension InsertedText: GlobalAttributes, GlobalEventAttributes, GlobalAccessibi
         return mutate(draggable: .init(value, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> InsertedText {
         return mutate(enterkeyhint: .init(value.rawValue, context: .trusted))
     }
@@ -28124,7 +28124,7 @@ extension InsertedText: GlobalAttributes, GlobalEventAttributes, GlobalAccessibi
         return mutate(role: .init(value.rawValue, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> InsertedText {
         return mutate(spellcheck: .init(value, context: .trusted))
     }
@@ -28154,7 +28154,7 @@ extension InsertedText: GlobalAttributes, GlobalEventAttributes, GlobalAccessibi
         return mutate(title: .init(value, context: .tainted(.html)))
     }
     
-    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> InsertedText {
         return mutate(translate: .init(value.rawValue, context: .trusted))
     }
@@ -28553,7 +28553,7 @@ extension DeletedText: GlobalAttributes, GlobalEventAttributes, GlobalAccessibil
         return mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
     }
 
-    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> DeletedText {
         return mutate(contenteditable: .init(value, context: .trusted))
     }
@@ -28566,7 +28566,7 @@ extension DeletedText: GlobalAttributes, GlobalEventAttributes, GlobalAccessibil
         return mutate(dir: .init(value.rawValue, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> DeletedText {
         return mutate(draggable: .init(value, context: .trusted))
     }
@@ -28575,7 +28575,7 @@ extension DeletedText: GlobalAttributes, GlobalEventAttributes, GlobalAccessibil
         return mutate(draggable: .init(value, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> DeletedText {
         return mutate(enterkeyhint: .init(value.rawValue, context: .trusted))
     }
@@ -28661,7 +28661,7 @@ extension DeletedText: GlobalAttributes, GlobalEventAttributes, GlobalAccessibil
         return mutate(role: .init(value.rawValue, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> DeletedText {
         return mutate(spellcheck: .init(value, context: .trusted))
     }
@@ -28691,7 +28691,7 @@ extension DeletedText: GlobalAttributes, GlobalEventAttributes, GlobalAccessibil
         return mutate(title: .init(value, context: .tainted(.html)))
     }
     
-    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> DeletedText {
         return mutate(translate: .init(value.rawValue, context: .trusted))
     }
@@ -29095,7 +29095,7 @@ extension Picture: GlobalAttributes, GlobalEventAttributes {
         return mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
     }
 
-    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> Picture {
         return mutate(contenteditable: .init(value, context: .trusted))
     }
@@ -29108,7 +29108,7 @@ extension Picture: GlobalAttributes, GlobalEventAttributes {
         return mutate(dir: .init(value.rawValue, context: .trusted))
     }
     
-    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Picture {
         return mutate(draggable: .init(value, context: .trusted))
     }
@@ -29117,7 +29117,7 @@ extension Picture: GlobalAttributes, GlobalEventAttributes {
         return mutate(draggable: .init(value, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> Picture {
         return mutate(enterkeyhint: .init(value.rawValue, context: .trusted))
     }
@@ -29203,7 +29203,7 @@ extension Picture: GlobalAttributes, GlobalEventAttributes {
         return mutate(role: .init(value.rawValue, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> Picture {
         return mutate(spellcheck: .init(value, context: .trusted))
     }
@@ -29233,7 +29233,7 @@ extension Picture: GlobalAttributes, GlobalEventAttributes {
         return mutate(title: .init(value, context: .tainted(.html)))
     }
     
-    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Picture {
         return mutate(translate: .init(value.rawValue, context: .trusted))
     }
@@ -29386,7 +29386,7 @@ extension Image: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAtt
         return mutate(crossorigin: .init(value.rawValue, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> Image {
         return mutate(contenteditable: .init(value, context: .trusted))
     }
@@ -29399,7 +29399,7 @@ extension Image: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAtt
         return mutate(dir: .init(value.rawValue, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Image {
         return mutate(draggable: .init(value, context: .trusted))
     }
@@ -29408,7 +29408,7 @@ extension Image: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAtt
         return mutate(draggable: .init(value, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> Image {
         return mutate(enterkeyhint: .init(value.rawValue, context: .trusted))
     }
@@ -29498,7 +29498,7 @@ extension Image: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAtt
         return mutate(role: .init(value.rawValue, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> Image {
         return mutate(spellcheck: .init(value, context: .trusted))
     }
@@ -29528,7 +29528,7 @@ extension Image: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAtt
         return mutate(title: .init(value, context: .tainted(.html)))
     }
     
-    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Image {
         return mutate(translate: .init(value.rawValue, context: .trusted))
     }
@@ -29572,7 +29572,7 @@ extension Image: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAtt
         return mutate(source: .init(value, context: .tainted(.html)))
     }
     
-    @available(*, deprecated, message: "Use the sourceSet(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the sourceSet(_:) modifier instead.")
     public func sourceSet(_ value: String) -> Image {
         return mutate(sourceset: .init(value, context: .tainted(.html)))
     }
@@ -29990,7 +29990,7 @@ extension InlineFrame: GlobalAttributes, GlobalEventAttributes, GlobalAccessibil
         return mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
     }
 
-    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> InlineFrame {
         return mutate(contenteditable: .init(value, context: .trusted))
     }
@@ -30003,7 +30003,7 @@ extension InlineFrame: GlobalAttributes, GlobalEventAttributes, GlobalAccessibil
         return mutate(dir: .init(value.rawValue, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> InlineFrame {
         return mutate(draggable: .init(value, context: .trusted))
     }
@@ -30012,7 +30012,7 @@ extension InlineFrame: GlobalAttributes, GlobalEventAttributes, GlobalAccessibil
         return mutate(draggable: .init(value, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> InlineFrame {
         return mutate(enterkeyhint: .init(value.rawValue, context: .trusted))
     }
@@ -30098,7 +30098,7 @@ extension InlineFrame: GlobalAttributes, GlobalEventAttributes, GlobalAccessibil
         return mutate(role: .init(value.rawValue, context: .trusted))
     }
     
-    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> InlineFrame {
         return mutate(spellcheck: .init(value, context: .trusted))
     }
@@ -30128,7 +30128,7 @@ extension InlineFrame: GlobalAttributes, GlobalEventAttributes, GlobalAccessibil
         return mutate(title: .init(value, context: .tainted(.html)))
     }
     
-    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> InlineFrame {
         return mutate(translate: .init(value.rawValue, context: .trusted))
     }
@@ -30550,7 +30550,7 @@ extension Embed: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAtt
         return mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
     }
 
-    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> Embed {
         return mutate(contenteditable: .init(value, context: .trusted))
     }
@@ -30563,7 +30563,7 @@ extension Embed: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAtt
         return mutate(dir: .init(value.rawValue, context: .trusted))
     }
     
-    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Embed {
         return mutate(draggable: .init(value, context: .trusted))
     }
@@ -30572,7 +30572,7 @@ extension Embed: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAtt
         return mutate(draggable: .init(value, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> Embed {
         return mutate(enterkeyhint: .init(value.rawValue, context: .trusted))
     }
@@ -30658,7 +30658,7 @@ extension Embed: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAtt
         return mutate(role: .init(value.rawValue, context: .trusted))
     }
     
-    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> Embed {
         return mutate(spellcheck: .init(value, context: .trusted))
     }
@@ -30688,7 +30688,7 @@ extension Embed: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAtt
         return mutate(title: .init(value, context: .tainted(.html)))
     }
     
-    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Embed {
         return mutate(translate: .init(value.rawValue, context: .trusted))
     }
@@ -31100,7 +31100,7 @@ extension Object: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAt
         return mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
     }
 
-    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> Object {
         return mutate(contenteditable: .init(value, context: .trusted))
     }
@@ -31113,7 +31113,7 @@ extension Object: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAt
         return mutate(dir: .init(value.rawValue, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Object {
         return mutate(draggable: .init(value, context: .trusted))
     }
@@ -31122,7 +31122,7 @@ extension Object: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAt
         return mutate(draggable: .init(value, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> Object {
         return mutate(enterkeyhint: .init(value.rawValue, context: .trusted))
     }
@@ -31208,7 +31208,7 @@ extension Object: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAt
         return mutate(role: .init(value.rawValue, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> Object {
         return mutate(spellcheck: .init(value, context: .trusted))
     }
@@ -31238,7 +31238,7 @@ extension Object: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAt
         return mutate(title: .init(value, context: .tainted(.html)))
     }
     
-    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Object {
         return mutate(translate: .init(value.rawValue, context: .trusted))
     }
@@ -31655,7 +31655,7 @@ extension Video: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAtt
         return mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
     }
 
-    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> Video {
         return mutate(contenteditable: .init(value, context: .trusted))
     }
@@ -31668,7 +31668,7 @@ extension Video: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAtt
         return mutate(dir: .init(value.rawValue, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Video {
         return mutate(draggable: .init(value, context: .trusted))
     }
@@ -31677,7 +31677,7 @@ extension Video: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAtt
         return mutate(draggable: .init(value, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> Video {
         return mutate(enterkeyhint: .init(value.rawValue, context: .trusted))
     }
@@ -31763,7 +31763,7 @@ extension Video: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAtt
         return mutate(role: .init(value.rawValue, context: .trusted))
     }
     
-    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> Video {
         return mutate(spellcheck: .init(value, context: .trusted))
     }
@@ -31793,7 +31793,7 @@ extension Video: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAtt
         return mutate(title: .init(value, context: .tainted(.html)))
     }
     
-    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Video {
         return mutate(translate: .init(value.rawValue, context: .trusted))
     }
@@ -32253,7 +32253,7 @@ extension Audio: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAtt
         return mutate(crossorigin: .init(value.rawValue, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> Audio {
         return mutate(contenteditable: .init(value, context: .trusted))
     }
@@ -32266,7 +32266,7 @@ extension Audio: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAtt
         return mutate(dir: .init(value.rawValue, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Audio {
         return mutate(draggable: .init(value, context: .trusted))
     }
@@ -32275,7 +32275,7 @@ extension Audio: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAtt
         return mutate(draggable: .init(value, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> Audio {
         return mutate(enterkeyhint: .init(value.rawValue, context: .trusted))
     }
@@ -32361,7 +32361,7 @@ extension Audio: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAtt
         return mutate(role: .init(value.rawValue, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> Audio {
         return mutate(spellcheck: .init(value, context: .trusted))
     }
@@ -32391,7 +32391,7 @@ extension Audio: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAtt
         return mutate(title: .init(value, context: .tainted(.html)))
     }
     
-    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Audio {
         return mutate(translate: .init(value.rawValue, context: .trusted))
     }
@@ -32831,7 +32831,7 @@ extension Map: GlobalAttributes, GlobalEventAttributes, NameAttribute {
         return mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
     }
 
-    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> Map {
         return mutate(contenteditable: .init(value, context: .trusted))
     }
@@ -32844,7 +32844,7 @@ extension Map: GlobalAttributes, GlobalEventAttributes, NameAttribute {
         return mutate(dir: .init(value.rawValue, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Map {
         return mutate(draggable: .init(value, context: .trusted))
     }
@@ -32853,7 +32853,7 @@ extension Map: GlobalAttributes, GlobalEventAttributes, NameAttribute {
         return mutate(draggable: .init(value, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> Map {
         return mutate(enterkeyhint: .init(value.rawValue, context: .trusted))
     }
@@ -32939,7 +32939,7 @@ extension Map: GlobalAttributes, GlobalEventAttributes, NameAttribute {
         return mutate(role: .init(value.rawValue, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> Map {
         return mutate(spellcheck: .init(value, context: .trusted))
     }
@@ -32969,7 +32969,7 @@ extension Map: GlobalAttributes, GlobalEventAttributes, NameAttribute {
         return mutate(title: .init(value, context: .tainted(.html)))
     }
     
-    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Map {
         return mutate(translate: .init(value.rawValue, context: .trusted))
     }
@@ -33140,7 +33140,7 @@ extension Form: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttr
         return mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
     }
 
-    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> Form {
         return mutate(contenteditable: .init(value, context: .trusted))
     }
@@ -33153,7 +33153,7 @@ extension Form: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttr
         return mutate(dir: .init(value.rawValue, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Form {
         return mutate(draggable: .init(value, context: .trusted))
     }
@@ -33162,7 +33162,7 @@ extension Form: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttr
         return mutate(draggable: .init(value, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> Form {
         return mutate(enterkeyhint: .init(value.rawValue, context: .trusted))
     }
@@ -33248,7 +33248,7 @@ extension Form: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttr
         return mutate(role: .init(value.rawValue, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> Form {
         return mutate(spellcheck: .init(value, context: .trusted))
     }
@@ -33278,7 +33278,7 @@ extension Form: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttr
         return mutate(title: .init(value, context: .tainted(.html)))
     }
     
-    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Form {
         return mutate(translate: .init(value.rawValue, context: .trusted))
     }
@@ -33717,7 +33717,7 @@ extension DataList: GlobalAttributes, GlobalEventAttributes, GlobalAccessibility
         return mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
     }
 
-    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> DataList {
         return mutate(contenteditable: .init(value, context: .trusted))
     }
@@ -33730,7 +33730,7 @@ extension DataList: GlobalAttributes, GlobalEventAttributes, GlobalAccessibility
         return mutate(dir: .init(value.rawValue, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> DataList {
         return mutate(draggable: .init(value, context: .trusted))
     }
@@ -33739,7 +33739,7 @@ extension DataList: GlobalAttributes, GlobalEventAttributes, GlobalAccessibility
         return mutate(draggable: .init(value, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> DataList {
         return mutate(enterkeyhint: .init(value.rawValue, context: .trusted))
     }
@@ -33825,7 +33825,7 @@ extension DataList: GlobalAttributes, GlobalEventAttributes, GlobalAccessibility
         return mutate(role: .init(value.rawValue, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> DataList {
         return mutate(spellcheck: .init(value, context: .trusted))
     }
@@ -33855,7 +33855,7 @@ extension DataList: GlobalAttributes, GlobalEventAttributes, GlobalAccessibility
         return mutate(title: .init(value, context: .tainted(.html)))
     }
     
-    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> DataList {
         return mutate(translate: .init(value.rawValue, context: .trusted))
     }
@@ -34248,7 +34248,7 @@ extension Output: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAt
         return mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
     }
 
-    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> Output {
         return mutate(contenteditable: .init(value, context: .trusted))
     }
@@ -34261,7 +34261,7 @@ extension Output: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAt
         return mutate(dir: .init(value.rawValue, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Output {
         return mutate(draggable: .init(value, context: .trusted))
     }
@@ -34270,7 +34270,7 @@ extension Output: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAt
         return mutate(draggable: .init(value, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> Output {
         return mutate(enterkeyhint: .init(value.rawValue, context: .trusted))
     }
@@ -34356,7 +34356,7 @@ extension Output: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAt
         return mutate(role: .init(value.rawValue, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> Output {
         return mutate(spellcheck: .init(value, context: .trusted))
     }
@@ -34386,7 +34386,7 @@ extension Output: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAt
         return mutate(title: .init(value, context: .tainted(.html)))
     }
     
-    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Output {
         return mutate(translate: .init(value.rawValue, context: .trusted))
     }
@@ -34791,7 +34791,7 @@ extension Progress: GlobalAttributes, GlobalEventAttributes, GlobalAccessibility
         return mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
     }
 
-    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> Progress {
         return mutate(contenteditable: .init(value, context: .trusted))
     }
@@ -34804,7 +34804,7 @@ extension Progress: GlobalAttributes, GlobalEventAttributes, GlobalAccessibility
         return mutate(dir: .init(value.rawValue, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Progress {
         return mutate(draggable: .init(value, context: .trusted))
     }
@@ -34813,7 +34813,7 @@ extension Progress: GlobalAttributes, GlobalEventAttributes, GlobalAccessibility
         return mutate(draggable: .init(value, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> Progress {
         return mutate(enterkeyhint: .init(value.rawValue, context: .trusted))
     }
@@ -34899,7 +34899,7 @@ extension Progress: GlobalAttributes, GlobalEventAttributes, GlobalAccessibility
         return mutate(role: .init(value.rawValue, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> Progress {
         return mutate(spellcheck: .init(value, context: .trusted))
     }
@@ -34929,7 +34929,7 @@ extension Progress: GlobalAttributes, GlobalEventAttributes, GlobalAccessibility
         return mutate(title: .init(value, context: .tainted(.html)))
     }
     
-    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Progress {
         return mutate(translate: .init(value.rawValue, context: .trusted))
     }
@@ -35341,7 +35341,7 @@ extension Meter: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAtt
         return mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
     }
 
-    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> Meter {
         return mutate(contenteditable: .init(value, context: .trusted))
     }
@@ -35354,7 +35354,7 @@ extension Meter: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAtt
         return mutate(dir: .init(value.rawValue, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Meter {
         return mutate(draggable: .init(value, context: .trusted))
     }
@@ -35363,7 +35363,7 @@ extension Meter: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAtt
         return mutate(draggable: .init(value, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> Meter {
         return mutate(enterkeyhint: .init(value.rawValue, context: .trusted))
     }
@@ -35449,7 +35449,7 @@ extension Meter: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAtt
         return mutate(role: .init(value.rawValue, context: .trusted))
     }
     
-    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> Meter {
         return mutate(spellcheck: .init(value, context: .trusted))
     }
@@ -35479,7 +35479,7 @@ extension Meter: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAtt
         return mutate(title: .init(value, context: .tainted(.html)))
     }
     
-    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Meter {
         return mutate(translate: .init(value.rawValue, context: .trusted))
     }
@@ -35908,7 +35908,7 @@ extension Details: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityA
         return mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
     }
 
-    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> Details {
         return mutate(contenteditable: .init(value, context: .trusted))
     }
@@ -35921,7 +35921,7 @@ extension Details: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityA
         return mutate(dir: .init(value.rawValue, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Details {
         return mutate(draggable: .init(value, context: .trusted))
     }
@@ -35930,7 +35930,7 @@ extension Details: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityA
         return mutate(draggable: .init(value, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> Details {
         return mutate(enterkeyhint: .init(value.rawValue, context: .trusted))
     }
@@ -36016,7 +36016,7 @@ extension Details: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityA
         return mutate(role: .init(value.rawValue, context: .trusted))
     }
     
-    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> Details {
         return mutate(spellcheck: .init(value, context: .trusted))
     }
@@ -36046,7 +36046,7 @@ extension Details: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityA
         return mutate(title: .init(value, context: .tainted(.html)))
     }
     
-    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Details {
         return mutate(translate: .init(value.rawValue, context: .trusted))
     }   
@@ -36069,7 +36069,7 @@ extension Details: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityA
         return self
     }
 
-    @available(*, deprecated, message: "Use the open(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the open(_:) modifier instead.")
     public func isOpen(_ condition: Bool = true) -> Details {
 
         if condition {
@@ -36465,7 +36465,7 @@ extension Dialog: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAt
         return mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
     }
 
-    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> Dialog {
         return mutate(contenteditable: .init(value, context: .trusted))
     }
@@ -36478,7 +36478,7 @@ extension Dialog: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAt
         return mutate(dir: .init(value.rawValue, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Dialog {
         return mutate(draggable: .init(value, context: .trusted))
     }
@@ -36487,7 +36487,7 @@ extension Dialog: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAt
         return mutate(draggable: .init(value, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> Dialog {
         return mutate(enterkeyhint: .init(value.rawValue, context: .trusted))
     }
@@ -36573,7 +36573,7 @@ extension Dialog: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAt
         return mutate(role: .init(value.rawValue, context: .trusted))
     }
     
-    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> Dialog {
         return mutate(spellcheck: .init(value, context: .trusted))
     }
@@ -36603,7 +36603,7 @@ extension Dialog: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAt
         return mutate(title: .init(value, context: .tainted(.html)))
     }
     
-    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Dialog {
         return mutate(translate: .init(value.rawValue, context: .trusted))
     }
@@ -36626,7 +36626,7 @@ extension Dialog: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAt
         return self
     }
 
-    @available(*, deprecated, message: "Use the open(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the open(_:) modifier instead.")
     public func isOpen(_ condition: Bool) -> Dialog {
 
         if condition {
@@ -37017,7 +37017,7 @@ extension Script: GlobalAttributes, GlobalEventAttributes, AsynchronouslyAttribu
         return mutate(crossorigin: .init(value.rawValue, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> Script {
         return mutate(contenteditable: .init(value, context: .trusted))
     }
@@ -37034,7 +37034,7 @@ extension Script: GlobalAttributes, GlobalEventAttributes, AsynchronouslyAttribu
         return mutate(dir: .init(value.rawValue, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Script {
         return mutate(draggable: .init(value, context: .trusted))
     }
@@ -37043,7 +37043,7 @@ extension Script: GlobalAttributes, GlobalEventAttributes, AsynchronouslyAttribu
         return mutate(draggable: .init(value, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> Script {
         return mutate(enterkeyhint: .init(value.rawValue, context: .trusted))
     }
@@ -37137,7 +37137,7 @@ extension Script: GlobalAttributes, GlobalEventAttributes, AsynchronouslyAttribu
         return mutate(role: .init(value.rawValue, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> Script {
         return mutate(spellcheck: .init(value, context: .trusted))
     }
@@ -37167,7 +37167,7 @@ extension Script: GlobalAttributes, GlobalEventAttributes, AsynchronouslyAttribu
         return mutate(title: .init(value, context: .tainted(.html)))
     }
     
-    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Script {
         return mutate(translate: .init(value.rawValue, context: .trusted))
     }
@@ -37358,7 +37358,7 @@ extension NoScript: GlobalAttributes, GlobalEventAttributes {
         return mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
     }
 
-    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> NoScript {
         return mutate(contenteditable: .init(value, context: .trusted))
     }
@@ -37371,7 +37371,7 @@ extension NoScript: GlobalAttributes, GlobalEventAttributes {
         return mutate(dir: .init(value.rawValue, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> NoScript {
         return mutate(draggable: .init(value, context: .trusted))
     }
@@ -37380,7 +37380,7 @@ extension NoScript: GlobalAttributes, GlobalEventAttributes {
         return mutate(draggable: .init(value, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> NoScript {
         return mutate(enterkeyhint: .init(value.rawValue, context: .trusted))
     }
@@ -37466,7 +37466,7 @@ extension NoScript: GlobalAttributes, GlobalEventAttributes {
         return mutate(role: .init(value.rawValue, context: .trusted))
     }
     
-    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> NoScript {
         return mutate(spellcheck: .init(value, context: .trusted))
     }
@@ -37496,7 +37496,7 @@ extension NoScript: GlobalAttributes, GlobalEventAttributes {
         return mutate(title: .init(value, context: .tainted(.html)))
     }
     
-    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> NoScript {
         return mutate(translate: .init(value.rawValue, context: .trusted))
     }
@@ -37664,7 +37664,7 @@ extension Template: GlobalAttributes, GlobalEventAttributes, ShadowRootModeAttri
         return mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
     }
 
-    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> Template {
         return mutate(contenteditable: .init(value, context: .trusted))
     }
@@ -37677,7 +37677,7 @@ extension Template: GlobalAttributes, GlobalEventAttributes, ShadowRootModeAttri
         return mutate(dir: .init(value.rawValue, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Template {
         return mutate(draggable: .init(value, context: .trusted))
     }
@@ -37686,7 +37686,7 @@ extension Template: GlobalAttributes, GlobalEventAttributes, ShadowRootModeAttri
         return mutate(draggable: .init(value, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> Template {
         return mutate(enterkeyhint: .init(value.rawValue, context: .trusted))
     }
@@ -37772,7 +37772,7 @@ extension Template: GlobalAttributes, GlobalEventAttributes, ShadowRootModeAttri
         return mutate(role: .init(value.rawValue, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> Template {
         return mutate(spellcheck: .init(value, context: .trusted))
     }
@@ -37802,7 +37802,7 @@ extension Template: GlobalAttributes, GlobalEventAttributes, ShadowRootModeAttri
         return mutate(title: .init(value, context: .tainted(.html)))
     }
     
-    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Template {
         return mutate(translate: .init(value.rawValue, context: .trusted))
     }
@@ -37963,7 +37963,7 @@ extension Canvas: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAt
         return mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
     }
 
-    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> Canvas {
         return mutate(contenteditable: .init(value, context: .trusted))
     }
@@ -37976,7 +37976,7 @@ extension Canvas: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAt
         return mutate(dir: .init(value.rawValue, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Canvas {
         return mutate(draggable: .init(value, context: .trusted))
     }
@@ -37985,7 +37985,7 @@ extension Canvas: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAt
         return mutate(draggable: .init(value, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> Canvas {
         return mutate(enterkeyhint: .init(value.rawValue, context: .trusted))
     }
@@ -38071,7 +38071,7 @@ extension Canvas: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAt
         return mutate(role: .init(value.rawValue, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> Canvas {
         return mutate(spellcheck: .init(value, context: .trusted))
     }
@@ -38101,7 +38101,7 @@ extension Canvas: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAt
         return mutate(title: .init(value, context: .tainted(.html)))
     }
     
-    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Canvas {
         return mutate(translate: .init(value.rawValue, context: .trusted))
     }
@@ -38507,7 +38507,7 @@ extension Table: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAtt
         return mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
     }
 
-    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> Table {
         return mutate(contenteditable: .init(value, context: .trusted))
     }
@@ -38520,7 +38520,7 @@ extension Table: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAtt
         return mutate(dir: .init(value.rawValue, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Table {
         return mutate(draggable: .init(value, context: .trusted))
     }
@@ -38529,7 +38529,7 @@ extension Table: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAtt
         return mutate(draggable: .init(value, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> Table {
         return mutate(enterkeyhint: .init(value.rawValue, context: .trusted))
     }
@@ -38615,7 +38615,7 @@ extension Table: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAtt
         return mutate(role: .init(value.rawValue, context: .trusted))
     }
 
-    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> Table {
         return mutate(spellcheck: .init(value, context: .trusted))
     }
@@ -38645,7 +38645,7 @@ extension Table: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAtt
         return mutate(title: .init(value, context: .tainted(.html)))
     }
     
-    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Table {
         return mutate(translate: .init(value.rawValue, context: .trusted))
     }
@@ -39066,7 +39066,7 @@ extension Vector: GlobalVectorAttributes, WidthAttribute, HeightAttribute, ViewB
         return self.mutate(style: .init(value, context: .tainted(.css)))
     }
     
-    @available(*, deprecated, message: "Use the viewBox(x:y:width:height:) modifier instead.")
+    @available(*, unavailable, message: "Use the viewBox(x:y:width:height:) modifier instead.")
     public func viewBox(_ value: String) -> Vector {
         return self.mutate(viewbox: .init(value, context: .tainted(.html)))
     }
@@ -39092,7 +39092,7 @@ extension Vector: GlobalVectorAttributes, WidthAttribute, HeightAttribute, ViewB
         return copy
     }
     
-    @available(*, deprecated, message: "Use the stroke(_:width:opacity:cap:join:) modifier instead.")
+    @available(*, unavailable, message: "Use the stroke(_:width:opacity:cap:join:) modifier instead.")
     public func stroke(_ value: String) -> Vector {
         return self.mutate(stroke: .init(value, context: .tainted(.html)))
     }
@@ -39122,27 +39122,27 @@ extension Vector: GlobalVectorAttributes, WidthAttribute, HeightAttribute, ViewB
         return copy
     }
     
-    @available(*, deprecated, message: "Use the stroke(_:width:opacity:cap:join:) modifier instead.")
+    @available(*, unavailable, message: "Use the stroke(_:width:opacity:cap:join:) modifier instead.")
     public func strokeWidth(_ size: Int) -> Vector {
         return self.mutate(strokewidth: .init(size, context: .trusted))
     }
     
-    @available(*, deprecated, message: "Use the fill(_:opacity:) modifier instead.")
+    @available(*, unavailable, message: "Use the fill(_:opacity:) modifier instead.")
     public func fillOpacity(_ value: Double) -> Vector {
         return self.mutate(fillopacity: .init(value, context: .trusted))
     }
     
-    @available(*, deprecated, message: "Use the stroke(_:width:opacity:cap:join:) modifier instead.")
+    @available(*, unavailable, message: "Use the stroke(_:width:opacity:cap:join:) modifier instead.")
     public func strokeOpacity(_ value: Double) -> Vector {
         return self.mutate(strokeopacity: .init(value, context: .trusted))
     }
     
-    @available(*, deprecated, message: "Use the stroke(_:width:opacity:cap:join:) modifier instead.")
+    @available(*, unavailable, message: "Use the stroke(_:width:opacity:cap:join:) modifier instead.")
     public func strokeLineCap(_ value: Values.Linecap) -> Vector {
         return self.mutate(strokelinecap: .init(value.rawValue, context: .trusted))
     }
     
-    @available(*, deprecated, message: "Use the stroke(_:width:opacity:cap:join:) modifier instead.")
+    @available(*, unavailable, message: "Use the stroke(_:width:opacity:cap:join:) modifier instead.")
     public func strokeLineJoin(_ value: Values.Linejoin) -> Vector {
         return self.mutate(strokelinejoin: .init(value.rawValue, context: .trusted))
     }
@@ -39275,7 +39275,7 @@ extension Slot: GlobalAttributes, NameAttribute {
         return mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
     }
     
-    @available(*, deprecated, message: "Use the editable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the editable(_:) modifier instead.")
     public func isEditable(_ value: Bool) -> Slot {
         return mutate(contenteditable: .init(value, context: .trusted))
     }
@@ -39288,7 +39288,7 @@ extension Slot: GlobalAttributes, NameAttribute {
         return mutate(dir: .init(value.rawValue, context: .trusted))
     }
     
-    @available(*, deprecated, message: "Use the draggable(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the draggable(_:) modifier instead.")
     public func isDraggable(_ value: Bool) -> Slot {
         return mutate(draggable: .init(value, context: .trusted))
     }
@@ -39297,7 +39297,7 @@ extension Slot: GlobalAttributes, NameAttribute {
         return mutate(draggable: .init(value, context: .trusted))
     }
     
-    @available(*, deprecated, message: "Use the enterKey(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the enterKey(_:) modifier instead.")
     public func enterKeyHint(_ value: Values.Hint) -> Slot {
         return mutate(enterkeyhint: .init(value.rawValue, context: .trusted))
     }
@@ -39383,7 +39383,7 @@ extension Slot: GlobalAttributes, NameAttribute {
         return mutate(role: .init(value.rawValue, context: .trusted))
     }
     
-    @available(*, deprecated, message: "Use the spellcheck(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the spellcheck(_:) modifier instead.")
     public func hasSpellCheck(_ value: Bool) -> Slot {
         return mutate(spellcheck: .init(value, context: .trusted))
     }
@@ -39413,7 +39413,7 @@ extension Slot: GlobalAttributes, NameAttribute {
         return mutate(title: .init(value, context: .tainted(.html)))
     }
     
-    @available(*, deprecated, message: "Use the translate(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the translate(_:) modifier instead.")
     public func translate(_ value: Values.Decision) -> Slot {
         return mutate(translate: .init(value.rawValue, context: .trusted))
     }
