@@ -12,10 +12,10 @@ import Foundation
 ///         SourceCandiate("...png", width: 1680)
 ///     )
 /// ```
-public struct SourceCandidate {
+public struct SourceCandidate: Sendable {
     
     /// An enumeration of potential pixel densities.
-    public enum PixelDensity {
+    public enum PixelDensity: Sendable {
         
         /// Specifies a 1:1 density.
         case regular
