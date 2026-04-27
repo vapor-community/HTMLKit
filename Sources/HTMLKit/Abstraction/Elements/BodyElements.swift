@@ -39036,7 +39036,7 @@ public struct Vector: ContentNode, HtmlElement, BodyElement, FormElement, Figure
     }
 }
 
-extension Vector: GlobalVectorAttributes, WidthAttribute, HeightAttribute, ViewBoxAttribute, NamespaceAttribute {
+extension Vector: GlobalVectorAttributes, GlobalAccessibilityAttributes, WidthAttribute, HeightAttribute, ViewBoxAttribute, NamespaceAttribute, RoleAttribute {
 
     public func id(_ value: String) -> Vector {
         return self.mutate(id: .init(value, context: .tainted(.html)))
@@ -39151,6 +39151,10 @@ extension Vector: GlobalVectorAttributes, WidthAttribute, HeightAttribute, ViewB
         return self.mutate(namespace: .init(value, context: .tainted(.html)))
     }
     
+    public func role(_ value: Values.Role) -> Vector {
+        return mutate(role: .init(value.rawValue, context: .trusted))
+    }    
+    
     public func custom(key: String, value: String, context: EscapeContext = .tainted(.html)) -> Vector {
         return mutate(key: key, value: .init(value, context: context))
     }
@@ -39173,6 +39177,137 @@ extension Vector: GlobalVectorAttributes, WidthAttribute, HeightAttribute, ViewB
     
     public func custom(key: String, value: EnvironmentValue, context: EscapeContext = .tainted(.html)) -> Vector {
         return mutate(key: key, value: .init(value, context: context))
+    }
+    
+    public func accessibilityAtomic(_ value: Bool = true) -> Vector {
+        return mutate(ariaatomic: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityBusy(_ value: Bool = true) -> Vector {
+        return mutate(ariabusy: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityControls(_ ids: [String]) -> Vector {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityControls(_ ids: String...) -> Vector {
+        return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityCurrent(_ value: Values.Accessibility.Current) -> Vector {
+        return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityCurrent(_ value: Bool = true) -> Vector {
+        return mutate(ariacurrent: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityDescriptions(_ ids: [String]) -> Vector {
+        return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityDescriptions(_ ids: String...) -> Vector {
+        return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityDetail(_ id: String) -> Vector {
+        return mutate(ariadetails: .init(id, context: .tainted(.html)))
+    }
+    
+    public func accessibilityDisabled(_ value: Bool = true) -> Vector {
+        return mutate(ariadisabled: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityFlow(_ ids: [String]) -> Vector {
+        return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityFlow(_ ids: String...) -> Vector {
+        return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityPopup(_ value: Values.Accessibility.Popup) -> Vector {
+        return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityHidden(_ value: Bool = true) -> Vector {
+        return mutate(ariahidden: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> Vector {
+        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> Vector {
+        
+        if let id = id {
+            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+        }
+        
+        return mutate(ariainvalid: .init(value, context: .trusted))
+    }
+    
+    public func accessibilityShortcuts(_ values: [KeyboardShortcut]) -> Vector {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityShortcuts(_ values: KeyboardShortcut...) -> Vector {
+        return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    @_disfavoredOverload
+    public func accessibilityLabel(_ value: String) -> Vector {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Vector {
+        return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabel(verbatim value: String) -> Vector {
+        return mutate(arialabel: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabels(_ ids: [String]) -> Vector {
+        return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLabels(_ ids: String...) -> Vector {
+        return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityLive(_ value: Values.Accessibility.Live) -> Vector {
+        return mutate(arialive: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func accessibilityOwns(_ ids: [String]) -> Vector {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityOwns(_ ids: String...) -> Vector {
+        return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+    }
+    
+    public func accessibilityRelevant(_ values: [Values.Accessibility.Relevant]) -> Vector {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func accessibilityRelevant(_ values: Values.Accessibility.Relevant...) -> Vector {
+        return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    @_disfavoredOverload
+    public func accessibilityRoleDescription(_ value: String) -> Vector {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Vector {
+        return mutate(ariaroledescription: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func accessibilityRoleDescription(verbatim value: String) -> Vector {
+        return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
     }
 }
 
