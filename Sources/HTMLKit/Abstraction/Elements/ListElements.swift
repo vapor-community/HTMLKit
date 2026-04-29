@@ -203,8 +203,12 @@ extension ListItem: GlobalAttributes, GlobalEventAttributes, GlobalAccessibility
         return mutate(nonce: .init(value, context: .tainted(.html)))
     }
 
-    public func role(_ value: Values.Role) -> ListItem {
-        return mutate(role: .init(value.rawValue, context: .trusted))
+    public func role(_ values: [Values.Role]) -> ListItem {
+        return mutate(role: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func role(_ values:  Values.Role...) -> ListItem {
+        return mutate(role: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
     }
     
     @available(*, unavailable, message: "Use the spellcheck(_:) modifier instead.")

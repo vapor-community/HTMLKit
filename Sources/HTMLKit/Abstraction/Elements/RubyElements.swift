@@ -205,8 +205,12 @@ extension RubyText: GlobalAttributes, GlobalEventAttributes, GlobalAccessibility
         return mutate(nonce: .init(value, context: .tainted(.html)))
     }
     
-    public func role(_ value: Values.Role) -> RubyText {
-        return mutate(role: .init(value.rawValue, context: .trusted))
+    public func role(_ values: [Values.Role]) -> RubyText {
+        return mutate(role: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func role(_ values:  Values.Role...) -> RubyText {
+        return mutate(role: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
     }
 
     @available(*, unavailable, message: "Use the spellcheck(_:) modifier instead.")
@@ -743,8 +747,12 @@ extension RubyPronunciation: GlobalAttributes, GlobalEventAttributes, GlobalAcce
         return mutate(nonce: .init(value, context: .tainted(.html)))
     }
     
-    public func role(_ value: Values.Role) -> RubyPronunciation {
-        return mutate(role: .init(value.rawValue, context: .trusted))
+    public func role(_ values: [Values.Role]) -> RubyPronunciation {
+        return mutate(role: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func role(_ values:  Values.Role...) -> RubyPronunciation {
+        return mutate(role: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
     }
 
     @available(*, unavailable, message: "Use the spellcheck(_:) modifier instead.")

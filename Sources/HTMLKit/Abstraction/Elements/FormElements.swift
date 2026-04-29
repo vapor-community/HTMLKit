@@ -185,8 +185,12 @@ extension Input: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAtt
         return mutate(nonce: .init(value, context: .tainted(.html)))
     }
     
-    public func role(_ value: Values.Role) -> Input {
-        return mutate(role: .init(value.rawValue, context: .trusted))
+    public func role(_ values: [Values.Role]) -> Input {
+        return mutate(role: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func role(_ values:  Values.Role...) -> Input {
+        return mutate(role: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
     }
 
     @available(*, unavailable, message: "Use the spellcheck(_:) modifier instead.")
@@ -840,8 +844,12 @@ extension Label: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAtt
         return mutate(nonce: .init(value, context: .tainted(.html)))
     }
     
-    public func role(_ value: Values.Role) -> Label {
-        return mutate(role: .init(value.rawValue, context: .trusted))
+    public func role(_ values: [Values.Role]) -> Label {
+        return mutate(role: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func role(_ values:  Values.Role...) -> Label {
+        return mutate(role: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
     }
 
     @available(*, unavailable, message: "Use the spellcheck(_:) modifier instead.")
@@ -1391,8 +1399,12 @@ extension Select: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAt
         return mutate(nonce: .init(value, context: .tainted(.html)))
     }
     
-    public func role(_ value: Values.Role) -> Select {
-        return mutate(role: .init(value.rawValue, context: .trusted))
+    public func role(_ values: [Values.Role]) -> Select {
+        return mutate(role: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func role(_ values:  Values.Role...) -> Select {
+        return mutate(role: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
     }
 
     @available(*, unavailable, message: "Use the spellcheck(_:) modifier instead.")
@@ -1875,8 +1887,12 @@ extension TextArea: GlobalAttributes, GlobalEventAttributes, GlobalAccessibility
         return mutate(nonce: .init(value, context: .tainted(.html)))
     }
     
-    public func role(_ value: Values.Role) -> TextArea {
-        return mutate(role: .init(value.rawValue, context: .trusted))
+    public func role(_ values: [Values.Role]) -> TextArea {
+        return mutate(role: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func role(_ values:  Values.Role...) -> TextArea {
+        return mutate(role: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
     }
 
     @available(*, unavailable, message: "Use the spellcheck(_:) modifier instead.")
@@ -2492,8 +2508,12 @@ extension Button: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAt
         return mutate(nonce: .init(value, context: .tainted(.html)))
     }
     
-    public func role(_ value: Values.Role) -> Button {
-        return mutate(role: .init(value.rawValue, context: .trusted))
+    public func role(_ values: [Values.Role]) -> Button {
+        return mutate(role: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func role(_ values:  Values.Role...) -> Button {
+        return mutate(role: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
     }
 
     @available(*, unavailable, message: "Use the spellcheck(_:) modifier instead.")
@@ -3107,8 +3127,12 @@ extension Fieldset: GlobalAttributes, GlobalEventAttributes, GlobalAccessibility
         return mutate(nonce: .init(value, context: .tainted(.html)))
     }
     
-    public func role(_ value: Values.Role) -> Fieldset {
-        return mutate(role: .init(value.rawValue, context: .trusted))
+    public func role(_ values: [Values.Role]) -> Fieldset {
+        return mutate(role: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func role(_ values:  Values.Role...) -> Fieldset {
+        return mutate(role: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
     }
 
     @available(*, unavailable, message: "Use the spellcheck(_:) modifier instead.")
