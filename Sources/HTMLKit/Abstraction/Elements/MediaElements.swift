@@ -184,8 +184,12 @@ extension Source: GlobalAttributes, GlobalEventAttributes, TypeAttribute, Source
         return mutate(nonce: .init(value, context: .tainted(.html)))
     }
     
-    public func role(_ value: Values.Role) -> Source {
-        return mutate(role: .init(value.rawValue, context: .trusted))
+    public func role(_ values: [Values.Role]) -> Source {
+        return mutate(role: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func role(_ values:  Values.Role...) -> Source {
+        return mutate(role: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
     }
 
     @available(*, unavailable, message: "Use the spellcheck(_:) modifier instead.")
@@ -529,8 +533,12 @@ extension Track: GlobalAttributes, GlobalEventAttributes, KindAttribute, SourceA
         return mutate(nonce: .init(value, context: .tainted(.html)))
     }
     
-    public func role(_ value: Values.Role) -> Track {
-        return mutate(role: .init(value.rawValue, context: .trusted))
+    public func role(_ values: [Values.Role]) -> Track {
+        return mutate(role: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func role(_ values:  Values.Role...) -> Track {
+        return mutate(role: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
     }
 
     @available(*, unavailable, message: "Use the spellcheck(_:) modifier instead.")

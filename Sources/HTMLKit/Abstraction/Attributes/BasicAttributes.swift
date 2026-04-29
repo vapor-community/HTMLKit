@@ -2813,7 +2813,22 @@ extension ReversedAttribute where Self: EmptyNode {
 @_documentation(visibility: internal)
 public protocol RoleAttribute: Attribute {
     
-    /// Describe the role of an element.
+    /// Describe the roles of an element.
+    ///
+    /// ```swift
+    /// Anchor {
+    ///     "Lorem ipsum..."
+    /// }
+    /// .reference("https://...")
+    /// .role([.button])
+    /// ```
+    ///
+    /// - Parameter value: The role to inform about.
+    ///
+    /// - Returns: The element
+    func role(_ values: [Values.Role]) -> Self
+    
+    /// Describe the roles of an element.
     ///
     /// ```swift
     /// Anchor {
@@ -2826,7 +2841,7 @@ public protocol RoleAttribute: Attribute {
     /// - Parameter value: The role to inform about.
     ///
     /// - Returns: The element
-    func role(_ value: Values.Role) -> Self
+    func role(_ values: Values.Role...) -> Self
 }
 
 extension RoleAttribute where Self: ContentNode {

@@ -153,8 +153,12 @@ final class AttributesTests: XCTestCase {
             return self.mutate(nonce: .init(value, context: .tainted(.html)))
         }
         
-        func role(_ value: Values.Role) -> Tag {
-            return self.mutate(role: .init(value.rawValue, context: .trusted))
+        func role(_ values: [Values.Role]) -> Tag {
+            return mutate(role: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+        }
+        
+        func role(_ values:  Values.Role...) -> Tag {
+            return mutate(role: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
         }
         
         func spellcheck(_ value: Bool = true) -> Tag {
@@ -1364,11 +1368,15 @@ final class AttributesTests: XCTestCase {
         
         let view = TestView {
             Tag {}.role(.alert)
+            Tag {}.role([.alertDialog, .alert])
+            Tag {}.role(.alertDialog, .alert)
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <tag role="alert"></tag>
+                       <tag role="alert"></tag>\
+                       <tag role="alertdialog alert"></tag>\
+                       <tag role="alertdialog alert"></tag>
                        """
         )
     }
