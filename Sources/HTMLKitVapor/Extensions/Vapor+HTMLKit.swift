@@ -50,7 +50,7 @@ extension Application {
         /// The key used to store the configuration in Vapor's storage
         internal struct ConfigurationKey: StorageKey {
             
-            public typealias Value = Configuration
+            internal typealias Value = Configuration
         }
         
         /// The configuration for the view renderer

@@ -1,7 +1,7 @@
 import HTMLKit
 
 /// A type that holds configuration for the renderer
-public final class Configuration {
+public final class Configuration: @unchecked Sendable {
     
     /// Holds the localization configuration
     internal var localization: HTMLKit.Localization
