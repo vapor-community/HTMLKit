@@ -1,8 +1,8 @@
 /// A type that represents a keyboard shortcut.
-public struct KeyboardShortcut {
+public struct KeyboardShortcut: Sendable {
     
     /// A type thats represents an action key.
-    public struct ActionKey: ExpressibleByUnicodeScalarLiteral {
+    public struct ActionKey: ExpressibleByUnicodeScalarLiteral, Sendable {
         
         /// Represents the enter key.
         public static let enter = ActionKey("Enter")
@@ -34,7 +34,7 @@ public struct KeyboardShortcut {
     }
     
     /// An enumeration of modifier keys.
-    public enum ModifierKey: String {
+    public enum ModifierKey: String, Sendable {
         
         /// Represents the alt key.
         case alt = "Alt"
