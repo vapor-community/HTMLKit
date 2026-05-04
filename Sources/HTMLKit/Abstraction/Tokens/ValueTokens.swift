@@ -860,9 +860,6 @@ public enum Values {
         /// Indicates a ressource preload.
         case preload
         
-        @available(*, unavailable, message: "It is no longer part of the web standards.")
-        case prerender
-        
         /// Indicates a page pagination.
         case prev
         
@@ -874,9 +871,6 @@ public enum Values {
         
         /// Indicates a content tag.
         case tag
-        
-        @available(*, unavailable, message: "It is no longer part of the web standards. Use 'icon' instead.")
-        case shortcutIcon = "shortcut icon"
         
         /// Indicates a touch icon.
         case appleTouchIcon = "apple-touch-icon"
@@ -910,14 +904,14 @@ public enum Values {
     }
 
     /// A shape of a map area.
-    ///
+    /// 
     /// ```swift
     /// Area()
     ///     .shape(.polygon)
     /// ```
     public enum Shape: String {
         
-        @available(*, deprecated, message: "Use the shape() modifier instead.")
+        @available(*, unavailable, message: "Use the shape() modifier instead.")
         /// Expects the entire region.
         case `default`
         
@@ -1039,25 +1033,25 @@ public enum Values {
         /// Indicates a html document.
         case html5 = "html"
         
-        @available(*, deprecated, message: "The definition is no longer part of the html standard. Use 'html5' instead.")
+        @available(*, unavailable, message: "The definition is no longer part of the html standard. Use 'html5' instead.")
         case html4Strict = #"HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd""#
         
-        @available(*, deprecated, message: "The definition is no longer part of the html standard. Use 'html5' instead.")
+        @available(*, unavailable, message: "The definition is no longer part of the html standard. Use 'html5' instead.")
         case html4Transitional = #"HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd""#
         
-        @available(*, deprecated, message: "The definition is no longer part of the html standard. Use 'html5' instead.")
+        @available(*, unavailable, message: "The definition is no longer part of the html standard. Use 'html5' instead.")
         case html4Frameset = #"HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN" "http://www.w3.org/TR/html4/frameset.dtd""#
         
-        @available(*, deprecated, message: "The definition is no longer part of the html standard. Use 'html5' instead.")
+        @available(*, unavailable, message: "The definition is no longer part of the html standard. Use 'html5' instead.")
         case xhtmlStrict = #"html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd""#
         
-        @available(*, deprecated, message: "The definition is no longer part of the html standard. Use 'html5' instead.")
+        @available(*, unavailable, message: "The definition is no longer part of the html standard. Use 'html5' instead.")
         case xhtmlTransitional = #"html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd""#
         
-        @available(*, deprecated, message: "The definition is no longer part of the html standard. Use 'html5' instead.")
+        @available(*, unavailable, message: "The definition is no longer part of the html standard. Use 'html5' instead.")
         case xhtmlFrameset = #"html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd""#
         
-        @available(*, deprecated, message: "The definition is no longer part of the html standard. Use 'html5' instead.")
+        @available(*, unavailable, message: "The definition is no longer part of the html standard. Use 'html5' instead.")
         case xhtml = #"html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd""#
     }
 
@@ -1223,17 +1217,11 @@ public enum Values {
         /// Indicates a select list.
         case combobox
         
-        @available(*, unavailable, message: "It is an abstract role and should not be used.")
-        case command
-        
         /// Indicates a text comment.
         case comment
         
         /// Indicates a page aside.
         case complementary
-        
-        @available(*, unavailable, message: "It is an abstract role and should not be used.")
-        case composite
         
         /// Indicates a page footer.
         case contentInfo = "contentinfo"
@@ -1243,9 +1231,6 @@ public enum Values {
         
         /// Indicates a dialog window.
         case dialog
-        
-        @available(*, unavailable, message: "It is no longer part of the web standards. Use 'list' instead.")
-        case directory
         
         /// Indicates a read mode.
         case document
@@ -1273,12 +1258,6 @@ public enum Values {
         
         /// Indicates an image set.
         case img
-        
-        @available(*, unavailable, message: "It is an abstract role and should not be used.")
-        case input
-        
-        @available(*, unavailable, message: "It is an abstract role and should not be used.")
-        case landmark
         
         /// Indicates an item list.
         case list
@@ -1340,14 +1319,8 @@ public enum Values {
         /// Indicates a radio select.
         case radio
         
-        @available(*, unavailable, message: "It is an abstract role and should not be used.")
-        case range
-        
         /// Indicates a content section.
         case region
-        
-        @available(*, unavailable, message: "It is an abstract role and should not be used.")
-        case roleType = "roletype"
         
         /// Indicates a table row.
         case row
@@ -1367,20 +1340,11 @@ public enum Values {
         /// Indicates a search control.
         case searchBox = "searchbox"
         
-        @available(*, unavailable, message: "It is an abstract role and should not be used.")
-        case sectionHead = "sectionhead"
-        
-        @available(*, unavailable, message: "It is an abstract role and should not be used.")
-        case select
-        
         /// Indicates a content divider.
         case separator
         
         /// Indicates a status mesage.
         case status
-        
-        @available(*, unavailable, message: "It is an abstract role and should not be used.")
-        case structure
         
         /// Indicates a content suggestion.
         case suggestion
@@ -1423,12 +1387,6 @@ public enum Values {
         
         /// Indicates a tree item.
         case treeItem = "treeitem"
-        
-        @available(*, unavailable, message: "It is an abstract role and should not be used.")
-        case widget
-        
-        @available(*, unavailable, message: "It is an abstract role and should not be used.")
-        case window
     }
 
     /// The corner shape of the stroke edge.
@@ -1569,7 +1527,13 @@ public enum Values {
         ///
         /// ```swift
         /// Input()
-        ///     .aria(autoComplete: .inline)
+        ///    .accessibilityCompletion(.list, .inline)
+        /// UnorderedList {
+        ///    ListItem {
+        ///       "Lorem ipsum"
+        ///    }
+        /// }
+        /// .id("id")
         /// ```
         public enum Complete: String {
             
@@ -1583,44 +1547,25 @@ public enum Values {
             case list
             
             /// Indicates inline and list suggestions.
+            @available(*, deprecated, message: "Use inline and list instead.")
             case both
-        }
-
-        /// An indicator of checked state.
-        ///
-        /// ```swift
-        /// Division {
-        /// }
-        /// .aria(checked: .mixed)
-        /// ```
-        public enum Check: String {
-            
-            /// Indicates the element is not checked.
-            case `false`
-            
-            /// Indicates the element has three states to check.
-            case `mixed`
-            
-            /// Indicates the element is checked.
-            case `true`
-            
-            /// Indicates the element is not checkable.
-            case `undefined`
         }
 
         /// An indicator of the current position.
         ///
         /// ```swift
-        /// ListItem {
+        /// Division {
         /// }
-        /// .aria(current: .true)
+        /// .accessibilityControls("id", "id")
         /// ```
         public enum Current: String {
             
             /// Does not represent the current item within a set.
+            @available(*, deprecated, message: "Use the accessibilityCurrent(_:) modifier instead.")
             case `false`
             
             /// Represents the current item within a set.
+            @available(*, deprecated, message: "Use the accessibilityCurrent(_:) modifier instead.")
             case `true`
             
             /// Represents the current page within a set of pages.
@@ -1642,16 +1587,18 @@ public enum Values {
         /// An indicator of a popup type.
         ///
         /// ```swift
-        /// Button {
+        /// Division {
         /// }
-        /// .aria(hasPopup: .dialog)
+        /// .accessibilityPopup(.menu)
         /// ```
         public enum Popup: String {
             
             /// Indicates no popup.
+            @available(*, deprecated, message: "Use the accessibilityPopup(_:) modifier instead.")
             case `false`
             
             /// Indicates the popup is a menu.
+            @available(*, deprecated, message: "Use the accessibilityPopup(_:) modifier instead.")
             case `true`
             
             /// Indicates the popup is a menu.
@@ -1673,15 +1620,19 @@ public enum Values {
         /// An indicator of an input validation.
         ///
         /// ```swift
-        /// Input()
-        ///     .aria(invalid: .true)
+        /// Division {
+        /// }
+        /// .editable()
+        /// .accessibilityInvalid(.grammar)
         /// ```
         public enum Invalid: String {
             
             /// Indicates that there are no detected errors.
+            @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
             case `false`
             
             /// Indicates that errors were detected.
+            @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
             case `true`
             
             /// Indicates that a grammatical error was deteced.
@@ -1696,7 +1647,7 @@ public enum Values {
         /// ```swift
         /// Division {
         /// }
-        /// .aria(live: .polite)
+        /// .accessibilityLive(.polite)
         /// ```
         public enum Live: String {
             
@@ -1713,10 +1664,15 @@ public enum Values {
         /// An indicator of the element orientation.
         ///
         /// ```swift
+        /// Division {
+        /// }
+        /// .role(.scrollbar)
+        /// .accessibilityOrientation(.horizontal)
         /// ```
         public enum Orientation: String {
             
             /// Indicates that the element's orientation is unknown.
+            @available(*, deprecated)
             case undefined
             
             /// Indicates that the element is oriented horizontally.
@@ -1726,35 +1682,13 @@ public enum Values {
             case vertical
         }
 
-        /// An indicator of a pressed state.
-        ///
-        /// ```swift
-        /// Button {
-        ///     "Lorem"
-        /// }
-        /// .aria(pressed: .true)
-        /// ```
-        public enum Pressed: String {
-            
-            /// Indicates the element is not pressable.
-            case undefined
-            
-            /// Indicates the element is not pressed.
-            case `false`
-            
-            /// Indicates the element has three states to press.
-            case mixed
-            
-            /// Indicates the element is pressed.
-            case `true`
-        }
-
         /// An indicator of a text revision.
         ///
         /// ```swift
         /// Division {
         /// }
-        /// .aria(relevant: .all)
+        /// .role(.alert)
+        /// .accessibilityRelevant(.additions, .text)
         /// ```
         public enum Relevant: String {
             
@@ -1762,9 +1696,11 @@ public enum Values {
             case additions
             
             /// Indicates node and text additions.
+            @available(*, deprecated, message: "Use additions and text instead.")
             case additionsText
             
             /// Indicates all relevants.
+            @available(*, deprecated, message: "Use additions, removals and text instead.")
             case all
             
             /// Indicates node removals.
@@ -1774,42 +1710,17 @@ public enum Values {
             case text
         }
 
-        /// An indicator of a selected state.
-        ///
-        /// ```swift
-        /// Division {
-        ///     Division {
-        ///         Paragraph {
-        ///             "Lorem ipsum"
-        ///         }
-        ///     }
-        ///     .aria(selected: .true)
-        ///     Division {
-        ///         Paragraph {
-        ///             "Lorem ipsum"
-        ///         }
-        ///     }
-        /// }
-        /// .role(.tablist)
-        /// ```
-        public enum Selected: String {
-            
-            /// Indicates the element is not selectable.
-            case undefined
-            
-            /// Indicates the element is not selected.
-            case `false`
-            
-            /// Indicates the element is selected.
-            case `true`
-        }
-
         /// An indicator of the sort algorithm.
         ///
         /// ```swift
-        /// HeaderCell {
+        /// Table {
+        ///    TableRow {
+        ///       HeaderCell {
+        ///          "Lorem ipsum"
+        ///       }
+        ///       .accessibilitySort(.ascending)
+        ///    }
         /// }
-        /// .aria(sort: .ascending)
         /// ```
         public enum Sort: String {
             
@@ -2015,7 +1926,7 @@ public enum Values {
     }
     
     /// A setting for text completion.
-    ///
+    ///  
     /// ```swift
     /// Select {
     /// }
@@ -2024,9 +1935,11 @@ public enum Values {
     public enum Completion: String {
         
         /// Enables completion.
+        @available(*, deprecated, message: "Use the autocomplete() modifier instead.")
         case on
         
         /// Disables completion.
+        @available(*, deprecated, message: "Use the autocomplete() modifier instead.")
         case off
         
         /// Expects a name.

@@ -15,912 +15,1179 @@ final class AttributesTests: XCTestCase {
         @ContentBuilder<Content> var body: Content
     }
     
-    typealias AllAttributes = AccessKeyAttribute & AcceptAttribute & ActionAttribute & AlternateAttribute & AsynchronouslyAttribute & AutocapitalizeAttribute & AutocompleteAttribute & AutofocusAttribute & AutoplayAttribute & CharsetAttribute & CheckedAttribute & CiteAttribute & ClassAttribute & ColumnsAttribute & ColumnSpanAttribute & ContentAttribute & EditAttribute  & ControlsAttribute & CoordinatesAttribute & DataAttribute & DateTimeAttribute & DefaultAttribute & DeferAttribute & DirectionAttribute & DisabledAttribute & DownloadAttribute & DragAttribute & EncodingAttribute & EnterKeyAttribute & ForAttribute & FormAttribute & FormActionAttribute & EquivalentAttribute & HeadersAttribute & HeightAttribute & HiddenAttribute & HighAttribute & ReferenceAttribute & ReferenceLanguageAttribute & IdentifierAttribute & IsMapAttribute & InputModeAttribute & IsAttribute & ItemAttribute & ItemIdAttribute & ItemPropertyAttribute & ItemReferenceAttribute & ItemScopeAttribute & ItemTypeAttribute & KindAttribute & LabelAttribute & LanguageAttribute & ListAttribute & LoopAttribute & LowAttribute & MaximumValueAttribute & MaximumLengthAttribute & MediaAttribute & MethodAttribute & MinimumValueAttribute & MinimumLengthAttribute & MultipleAttribute & MutedAttribute & NameAttribute & NonceAttribute & NoValidateAttribute & OpenAttribute & OptimumAttribute & PatternAttribute & PartAttribute & PingAttribute & PlaceholderAttribute & PosterAttribute & PreloadAttribute & ReadOnlyAttribute & ReferrerPolicyAttribute & RelationshipAttribute & RequiredAttribute & ReversedAttribute & RoleAttribute & RowsAttribute & RowSpanAttribute & SandboxAttribute & ScopeAttribute & ShapeAttribute & SizeAttribute & SizesAttribute & SlotAttribute & SpanAttribute & SpellCheckAttribute & SourceAttribute & StartAttribute & StepAttribute & StyleAttribute & TabulatorAttribute & TargetAttribute & TitleAttribute & TranslateAttribute & TypeAttribute & ValueAttribute & WidthAttribute & WrapAttribute & PropertyAttribute & SelectedAttribute & WindowEventAttribute & FocusEventAttribute & PointerEventAttribute & MouseEventAttribute & WheelEventAttribute & InputEventAttribute & KeyboardEventAttribute & DragEventAttribute & ClipboardEventAttribute & SelectionEventAttribute & MediaEventAttribute & FormEventAttribute & DetailEventAttribute & AriaAtomicAttribute & AriaBusyAttribute & AriaControlsAttribute & AriaCurrentAttribute & AriaDescribedAttribute & AriaDetailsAttribute & AriaDisabledAttribute & AriaErrorMessageAttribute & AriaFlowToAttribute & AriaPopupAttribute & AriaHiddenAttribute & AriaInvalidAttribute & AriaShortcutsAttribute & AriaLabelAttribute & AriaLabeledAttribute & AriaLiveAttribute & AriaOwnsAttribute & AriaRelevantAttribute & AriaRoleDescriptionAttribute & DrawAttribute & FillAttribute & StrokeAttribute & StrokeWidthAttribute & StrokeOpacityAttribute & StrokeLineCapAttribute & StrokeLineJoinAttribute & RadiusAttribute & PositionPointAttribute & RadiusPointAttribute & CenterPointAttribute & ViewBoxAttribute & NamespaceAttribute & PointsAttribute & ShadowRootModeAttribute & InertAttribute & FetchPriorityAttribute & LoadingAttribute & SourceSetAttribute & DecodingAttribute & BlockingAttribute & PopoverAttribute & PopoverTargetAttribute & PopoverActionAttribute & UseMapAttribute & PlaysInlineAttribute & IntegrityAttribute & AsAttribute & CrossOriginAttribute & SourceLanguageAttribute & SourceDocumentAttribute
+    typealias AllAttributes = AccessKeyAttribute & AcceptAttribute & ActionAttribute & AlternateAttribute & AsynchronouslyAttribute & AutocapitalizeAttribute & AutocompleteAttribute & AutofocusAttribute & AutoplayAttribute & CharsetAttribute & CheckedAttribute & CiteAttribute & ClassAttribute & ColumnsAttribute & ColumnSpanAttribute & ContentAttribute & EditAttribute  & ControlsAttribute & DataAttribute & DateTimeAttribute & DefaultAttribute & DeferAttribute & DirectionAttribute & DisabledAttribute & DownloadAttribute & DragAttribute & EncodingAttribute & EnterKeyAttribute & ForAttribute & FormAttribute & FormActionAttribute & EquivalentAttribute & HeadersAttribute & HeightAttribute & HiddenAttribute & HighAttribute & ReferenceAttribute & ReferenceLanguageAttribute & IdentifierAttribute & IsMapAttribute & InputModeAttribute & IsAttribute & ItemAttribute & ItemPropertyAttribute & KindAttribute & LabelAttribute & LanguageAttribute & ListAttribute & LoopAttribute & LowAttribute & MaximumValueAttribute & MaximumLengthAttribute & MediaAttribute & MethodAttribute & MinimumValueAttribute & MinimumLengthAttribute & MultipleAttribute & MutedAttribute & NameAttribute & NonceAttribute & NoValidateAttribute & OpenAttribute & OptimumAttribute & PatternAttribute & PartAttribute & PingAttribute & PlaceholderAttribute & PosterAttribute & PreloadAttribute & ReadOnlyAttribute & ReferrerPolicyAttribute & RelationshipAttribute & RequiredAttribute & ReversedAttribute & RoleAttribute & RowsAttribute & RowSpanAttribute & SandboxAttribute & ScopeAttribute & ShapeAttribute & SizeAttribute & SizesAttribute & SlotAttribute & SpanAttribute & SpellCheckAttribute & SourceAttribute & StartAttribute & StepAttribute & StyleAttribute & TabulatorAttribute & TargetAttribute & TitleAttribute & TranslateAttribute & TypeAttribute & ValueAttribute & WidthAttribute & WrapAttribute & PropertyAttribute & SelectedAttribute & WindowEventAttribute & FocusEventAttribute & PointerEventAttribute & MouseEventAttribute & WheelEventAttribute & InputEventAttribute & KeyboardEventAttribute & DragEventAttribute & ClipboardEventAttribute & SelectionEventAttribute & MediaEventAttribute & FormEventAttribute & DetailEventAttribute & AtomicAccessibilityAttribute & BusyAccessibilityAttribute & ControlsAccessibilityAttribute & CurrentAccessibilityAttribute & DescriptionsAccessibilityAttribute & DetailAccessibilityAttribute & DisabledAccessibilityAttribute & FlowAccessibilityAttribute & PopupAccessibilityAttribute & HiddenAccessibilityAttribute & InvalidAccessibilityAttribute & ShortcutsAccessibilityAttribute & LabelAccessibilityAttribute & LabelsAccessibilityAttribute & LiveAccessibilityAttribute & OwnsAccessibilityAttribute & MultilineAccessibilityAttribute & RowIndexAccessibilityAttribute & RelevantAccessibilityAttribute & RoleDescriptionAccessibilityAttribute & SortAccessibilityAttribute & OrientationAccessibilityAttribute & RequiredAccessibilityAttribute & ReadOnlyAccessibilityAttribute & ModalAccessibilityAttribute & LevelAccessibilityAttribute & HintAccessibilityAttribute & PositionAccessibilityAttribute & MultiselectAccessibilityAttribute & RowCountAccessibilityAttribute & ColumnIndexAccessibilityAttribute & ColumnCountAccessibilityAttribute & RowSpanAccessibilityAttribute & ColumnSpanAccessibilityAttribute & MaximumValueAccessibilityAttribute & MinimumValueAccessibilityAttribute & ValueAccessibilityAttribute & PressedAccessibilityAttribute & SelectedAccessibilityAttribute & CheckedAccessibilityAttribute & ExpandedAccessibilityAttribute & FocusedAccessibilityAttribute & CompletionAccessibilityAttribute & DrawAttribute & FillAttribute & StrokeAttribute & RadiusAttribute & PositionPointAttribute & RadiusPointAttribute & CenterPointAttribute & ViewBoxAttribute & NamespaceAttribute & PointsAttribute & ShadowRootModeAttribute & InertAttribute & FetchPriorityAttribute & LoadingAttribute & SourceSetAttribute & DecodingAttribute & BlockingAttribute & PopoverAttribute & PopoverTargetAttribute & UseMapAttribute & PlaysInlineAttribute & IntegrityAttribute & AsAttribute & CrossOriginAttribute & SourceLanguageAttribute & SourceDocumentAttribute & AbbreviatedAttribute
     
     struct Tag: ContentNode, GlobalElement, AllAttributes {
 
         var name: String { "tag" }
 
-        var attributes: OrderedDictionary<String, Any>?
+        var attributes: OrderedDictionary<String, AttributeData>?
 
         var content: [Content]
+        
+        var context: EscapeContext
 
         init(@ContentBuilder<Content> content: () -> [Content]) {
+            
+            self.context = .tainted(.html)
             self.content = content()
         }
         
-        init(attributes: OrderedDictionary<String, Any>?, content: [Content]) {
+        init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+            
             self.attributes = attributes
+            self.context = context
             self.content = content
         }
         
         func accessKey(_ value: Character) -> Tag {
-            return self.mutate(accesskey: value)
+            return self.mutate(accesskey: .init("\(value)", context: .trusted))
         }
         
         func `as`(_ value: HTMLKit.Values.Resource) -> Tag {
-            return self.mutate(as: value.rawValue)
+            return self.mutate(as: .init(value.rawValue, context: .trusted))
         }
         
         func autocapitalize(_ value: Values.Capitalization) -> Tag {
-            return self.mutate(autocapitalize: value.rawValue)
+            return self.mutate(autocapitalize: .init(value.rawValue, context: .trusted))
         }
         
         func autofocus() -> Tag {
-            return self.mutate(autofocus: "autofocus")
+            return self.mutate(autofocus: .init("autofocus", context: .trusted))
         }
         
-        func `class`(_ value: String) -> Tag {
-            return self.mutate(class: value)
+        func `class`(_ names: [String]) -> Tag {
+            return self.mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
+        }
+        
+        func `class`(_ names: String...) -> Tag {
+            return self.mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
         }
         
         func direction(_ value: Values.Direction) -> Tag {
-            return self.mutate(dir: value.rawValue)
+            return self.mutate(dir: .init(value.rawValue, context: .trusted))
         }
 
         func draggable(_ value: Bool = true) -> Tag {
-            return self.mutate(draggable: value)
+            return self.mutate(draggable: .init(value, context: .trusted))
         }
         
         func editable(_ value: Bool = true) -> Tag {
-            return self.mutate(contenteditable: value)
+            return self.mutate(contenteditable: .init(value, context: .trusted))
         }
         
         func enterKey(_ value: Values.Hint) -> Tag {
-            return self.mutate(enterkeyhint: value.rawValue)
+            return self.mutate(enterkeyhint: .init(value.rawValue, context: .trusted))
         }
         
         func hidden(_ condition: Bool = true) -> Tag {
             
             if condition {
-                return mutate(hidden: "hidden")
+                return mutate(hidden: .init("hidden", context: .trusted))
             }
             
             return self
         }
         
         func id(_ value: String) -> Tag {
-            return self.mutate(id: value)
+            return self.mutate(id: .init(value, context: .tainted(.html)))
         }
         
         func inputMode(_ value: Values.Mode) -> Tag {
-            return mutate(inputmode: value.rawValue)
+            return mutate(inputmode: .init(value.rawValue, context: .trusted))
         }
         
         func `is`(_ value: String) -> Tag {
-            return self.mutate(is: value)
+            return self.mutate(is: .init(value, context: .tainted(.html)))
         }
         
         func item(id: String? = nil, as schema: URL? = nil, for elements: [String]? = nil) -> Tag {
-            return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements?.joined(separator: " "))
+
+            var copy = self
+            
+            copy = copy.mutate(itemscope: .init("itemscope", context: .trusted))
+            
+            if let id = id {
+                copy = copy.mutate(itemid: .init(id, context: .tainted(.html)))
+            }
+            
+            if let schema = schema {
+                copy = copy.mutate(itemtype: .init(schema.absoluteString, context: .tainted(.html)))
+            }
+            
+            if let elements = elements {
+                copy = copy.mutate(itemref: .init(EnumeratedList(values: elements, separator: " "), context: .tainted(.html)))
+            }
+            
+            return copy
         }
         
         func item(id: String? = nil, as schema: URL? = nil, for elements: String...) -> Tag {
-            return self.mutate(itemscope: "itemscope").mutate(itemid: id).mutate(itemtype: schema?.absoluteString).mutate(itemref: elements.joined( separator: " "))
-        }
-        
-        func itemId(_ value: String) -> Tag {
-            return self.mutate(itemid: value)
+
+            var copy = self
+            
+            copy = copy.mutate(itemscope: .init("itemscope", context: .trusted))
+            
+            if let id = id {
+                copy = copy.mutate(itemid: .init(id, context: .tainted(.html)))
+            }
+            
+            if let schema = schema {
+                copy = copy.mutate(itemtype: .init(schema.absoluteString, context: .tainted(.html)))
+            }
+            
+            copy = copy.mutate(itemref: .init(EnumeratedList(values: elements, separator: " "), context: .tainted(.html)))
+            
+            return copy
         }
         
         func itemProperty(_ value: String) -> Tag {
-            return self.mutate(itemprop: value)
-        }
-        
-        func itemReference(_ value: String) -> Tag {
-            return self.mutate(itemref: value)
-        }
-        
-        func itemScope(_ value: String) -> Tag {
-            return self.mutate(itemscope: value)
-        }
-        
-        func itemType(_ value: String) -> Tag {
-            return self.mutate(itemtype: value)
+            return self.mutate(itemprop: .init(value, context: .tainted(.html)))
         }
         
         func language(_ value: Values.Language) -> Tag {
-            return self.mutate(lang: value.rawValue)
+            return self.mutate(lang: .init(value.rawValue, context: .trusted))
         }
         
         func nonce(_ value: String) -> Tag {
-            return self.mutate(nonce: value)
+            return self.mutate(nonce: .init(value, context: .tainted(.html)))
         }
         
-        func role(_ value: Values.Role) -> Tag {
-            return self.mutate(role: value.rawValue)
+        func role(_ values: [Values.Role]) -> Tag {
+            return mutate(role: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+        }
+        
+        func role(_ values:  Values.Role...) -> Tag {
+            return mutate(role: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
         }
         
         func spellcheck(_ value: Bool = true) -> Tag {
-            return self.mutate(spellcheck: value)
+            return self.mutate(spellcheck: .init(value, context: .trusted))
         }
         
         func style(_ value: String) -> Tag {
-            return self.mutate(style: TaintedString(value, as: .css(.attribute)))
+            return self.mutate(style: .init(value, context: .tainted(.css)))
         }
         
         func tabIndex(_ value: Int) -> Tag {
-            return self.mutate(tabindex: value)
+            return self.mutate(tabindex: .init(value, context: .trusted))
         }
         
         @_disfavoredOverload
         func title(_ value: String) -> Tag {
-            return self.mutate(title: value)
+            return self.mutate(title: .init(value, context: .tainted(.html)))
         }
         
         func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Tag {
-            return self.mutate(title: LocalizedString(key: localizedKey, table: tableName))
+            return self.mutate(title: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
         }
         
         func title(verbatim value: String) -> Tag {
-            return self.mutate(title: value)
+            return self.mutate(title: .init(value, context: .tainted(.html)))
         }
         
         func translate(_ value: Bool = true) -> Tag {
             
             if value {
-                return self.mutate(translate: "yes")
+                return self.mutate(translate: .init("yes", context: .trusted))
             }
             
-            return self.mutate(translate: "no")
+            return self.mutate(translate: .init("no", context: .trusted))
         }
         
         func accept(_ specifiers: [String]) -> Tag {
-            return self.mutate(accept: specifiers.joined(separator: ", "))
+            return self.mutate(accept: .init(EnumeratedList(values: specifiers, separator: ", "), context: .tainted(.html)))
         }
         
         func accept(_ specifiers: String...) -> Tag {
-            return self.mutate(accept: specifiers.joined(separator: ", "))
+            return self.mutate(accept: .init(EnumeratedList(values: specifiers, separator: ", "), context: .tainted(.html)))
         }
         
         func accept(_ specifiers: [Values.Media]) -> Tag {
-            return self.mutate(accept: specifiers.map { $0.rawValue }.joined(separator: ", "))
+            return self.mutate(accept: .init(EnumeratedList(values: specifiers, separator: ", "), context: .trusted))
         }
         
         func accept(_ specifiers: Values.Media...) -> Tag {
-            return self.mutate(accept: specifiers.map { $0.rawValue }.joined(separator: ", "))
+            return self.mutate(accept: .init(EnumeratedList(values: specifiers, separator: ", "), context: .trusted))
         }
         
         func action(_ value: String) -> Tag {
-            return self.mutate(action: value)
+            return self.mutate(action: .init(value, context: .tainted(.html)))
         }
         
         @_disfavoredOverload
         func alternate(_ value: String) -> Tag {
-            return self.mutate(alternate: value)
+            return self.mutate(alternate: .init(value, context: .tainted(.html)))
         }
         
         func alternate(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Tag {
-            return mutate(alternate: LocalizedString(key: localizedKey, table: tableName))
+            return mutate(alternate: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
         }
         
         func alternate(verbatim value: String) -> Tag {
-            return self.mutate(alternate: value)
+            return self.mutate(alternate: .init(value, context: .tainted(.html)))
         }
         
         func asynchronously() -> Tag {
-            return self.mutate(async: "async")
+            return self.mutate(async: .init("async", context: .trusted))
         }
         
-        func autocomplete(_ value: Values.Completion) -> Tag {
-            return mutate(autocomplete: value.rawValue)
+        public func autocomplete(_ value: Bool) -> Tag {
+
+            if value {
+                return mutate(autocomplete: .init("on", context: .trusted))
+            }
+            
+            return mutate(autocomplete: .init("off", context: .trusted))
         }
         
-        func autocomplete(_ values: OrderedSet<Values.Completion>) -> Tag {
-            return mutate(autocomplete: values.map { $0.rawValue }.joined(separator: " "))
+        func autocomplete(_ values: [Values.Completion]) -> Tag {
+            return mutate(autocomplete: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+        }
+        
+        func autocomplete(_ values: Values.Completion...) -> Tag {
+            return mutate(autocomplete: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
         }
         
         func autoplay(_ condition: Bool = true) -> Tag {
             
             if condition {
-                return mutate(autoplay: "autoplay")
+                return mutate(autoplay: .init("autoplay", context: .trusted))
             }
             
             return self
         }
         
         func charset(_ value: Values.Charset) -> Tag {
-            return self.mutate(charset: value.rawValue)
+            return self.mutate(charset: .init(value.rawValue, context: .trusted))
         }
         
         func checked(_ condition: Bool = true) -> Tag {
             
             if condition {
-                return mutate(checked: "checked")
+                return mutate(checked: .init("checked", context: .trusted))
             }
             
             return self
         }
         
         func cite(_ value: String) -> Tag {
-            return self.mutate(cite: value)
+            return self.mutate(cite: .init(value, context: .tainted(.html)))
         }
         
         func columns(_ size: Int) -> Tag {
-            return self.mutate(cols: size)
+            return self.mutate(cols: .init(size, context: .trusted))
         }
         
         func columnSpan(_ size: Int) -> Tag {
-            return self.mutate(colspan: size)
+            return self.mutate(colspan: .init(size, context: .trusted))
         }
         
         func content(_ value: String) -> Tag {
-            return mutate(content: value)
+            return mutate(content: .init(value, context: .tainted(.html)))
         }
         
         func content(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Tag {
-            return mutate(content: LocalizedString(key: localizedKey, table: tableName))
+            return mutate(content: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
         }
         
         func content(verbatim value: String) -> Tag {
-            return mutate(content: value)
+            return mutate(content: .init(value, context: .tainted(.html)))
         }
         
         func controls() -> Tag {
-            return self.mutate(controls: "controls")
-        }
-        
-        func coordinates(_ value: String) -> Tag {
-            return self.mutate(coords: value)
+            return self.mutate(controls: .init("controls", context: .trusted))
         }
         
         func data(_ value: String) -> Tag {
-            return self.mutate(data: value)
+            return self.mutate(data: .init(value, context: .tainted(.html)))
         }
         
         func dateTime(_ value: String) -> Tag {
-            return self.mutate(datetime: value)
+            return self.mutate(datetime: .init(value, context: .tainted(.html)))
         }
         
         func `default`() -> Tag {
-            return self.mutate(default: "default")
+            return self.mutate(default: .init("default", context: .trusted))
         }
         
         func `defer`() -> Tag {
-            return self.mutate(defer: "defer")
+            return self.mutate(defer: .init("defer", context: .trusted))
         }
         
         func disabled(_ condition: Bool = true) -> Tag {
             
             if condition {
-                return mutate(disabled: "disabled")
+                return mutate(disabled: .init("disabled", context: .trusted))
             }
             
             return self
         }
         
         func download() -> Tag {
-            return self.mutate(download: "download")
+            return self.mutate(download: .init("download", context: .trusted))
         }
         
         func encoding(_ value: Values.Encoding) -> Tag {
-            return self.mutate(enctype: value.rawValue)
+            return self.mutate(enctype: .init(value.rawValue, context: .trusted))
         }
         
         func `for`(_ value: String) -> Tag {
-            return self.mutate(for: value)
+            return self.mutate(for: .init(value, context: .tainted(.html)))
         }
         
         func form(_ value: String) -> Tag {
-            return self.mutate(form: value)
+            return self.mutate(form: .init(value, context: .tainted(.html)))
         }
         
         func formAction(_ value: String) -> Tag {
-            return self.mutate(formaction: value)
+            return self.mutate(formaction: .init(value, context: .tainted(.html)))
         }
         
         func equivalent(_ value: Values.Equivalent) -> Tag {
-            return self.mutate(httpequiv: value.rawValue)
+            return self.mutate(httpequiv: .init(value.rawValue, context: .trusted))
         }
         
         func headers(_ ids: [String]) -> Tag {
-            return self.mutate(headers: ids.joined(separator: " "))
+            return self.mutate(headers: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
         }
         
         func headers(_ ids: String...) -> Tag {
-            return self.mutate(headers: ids.joined(separator: " "))
+            return self.mutate(headers: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
         }
         
         func height(_ size: Int) -> Tag {
-            return self.mutate(height: size)
+            return self.mutate(height: .init(size, context: .trusted))
         }
         
         func high(_ size: Float) -> Tag {
-            return self.mutate(high: size)
+            return self.mutate(high: .init(size, context: .trusted))
         }
         
         func reference(_ value: String) -> Tag {
-            return self.mutate(href: value)
+            return self.mutate(href: .init(value, context: .tainted(.url)))
         }
         
         func referenceLanguage(_ value: Values.Language) -> Tag {
-            return self.mutate(hreflang: value.rawValue)
+            return self.mutate(hreflang: .init(value.rawValue, context: .trusted))
         }
         
         func isMap() -> Tag {
-            return self.mutate(ismap: "ismap")
+            return self.mutate(ismap: .init("ismap", context: .trusted))
         }
         
         func kind(_ value: Values.Kind) -> Tag {
-            return self.mutate(kind: value.rawValue)
+            return self.mutate(kind: .init(value.rawValue, context: .trusted))
         }
         
         @_disfavoredOverload
         func label(_ value: String) -> Tag {
-            return self.mutate(label: value)
+            return self.mutate(label: .init(value, context: .tainted(.html)))
         }
         
         func label(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Tag {
-            return self.mutate(label: LocalizedString(key: localizedKey, table: tableName))
+            return self.mutate(label: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
         }
         
         func label(verbatim value: String) -> Tag {
-            return self.mutate(label: value)
+            return self.mutate(label: .init(value, context: .tainted(.html)))
         }
         
         func list(_ value: String) -> Tag {
-            return self.mutate(list: value)
+            return self.mutate(list: .init(value, context: .tainted(.html)))
         }
         
         func loop(_ condition: Bool = true) -> Tag {
             
             if condition {
-                return self.mutate(loop: "loop")
+                return self.mutate(loop: .init("loop", context: .trusted))
             }
             
             return self
         }
         
         func low(_ size: Float) -> Tag {
-            return self.mutate(low: size)
+            return self.mutate(low: .init(size, context: .trusted))
         }
         
         func maximum(_ value: String) -> Tag {
-            return self.mutate(max: value)
+            return self.mutate(max: .init(value, context: .tainted(.html)))
         }
         
         func maximum(length value: Int) -> Tag {
-            return self.mutate(maxlength: value)
+            return self.mutate(maxlength: .init(value, context: .trusted))
         }
         
         func media(_ value: String) -> Tag {
-            return self.mutate(media: value)
+            return self.mutate(media: .init(value, context: .tainted(.html)))
         }
         
         func media(_ queries: [MediaQuery]) -> Tag {
-            return self.mutate(media: queries.map { $0.rawValue }.joined(separator: ", "))
+            return self.mutate(media: .init(EnumeratedList(values: queries, separator: ", "), context: .tainted(.html)))
         }
         
         func media(_ queries: MediaQuery...) -> Tag {
-            return self.mutate(media: queries.map { $0.rawValue }.joined(separator: ", "))
+            return self.mutate(media: .init(EnumeratedList(values: queries, separator: ", "), context: .tainted(.html)))
         }
         
         func method(_ value: HTMLKit.Values.Method) -> Tag {
-            return self.mutate(method: value.rawValue)
+            return self.mutate(method: .init(value.rawValue, context: .trusted))
         }
         
         func minimum(_ value: Float) -> Tag {
-            return self.mutate(min: value)
+            return self.mutate(min: .init(value, context: .trusted))
         }
         
         func minimum(length value: Int) -> Tag {
-            return self.mutate(minlength: value)
+            return self.mutate(minlength: .init(value, context: .trusted))
         }
         
         func multiple() -> Tag {
-            return self.mutate(multiple: "multiple")
+            return self.mutate(multiple: .init("multiple", context: .trusted))
         }
         
         func muted() -> Tag {
-            return self.mutate(muted: "muted")
+            return self.mutate(muted: .init( "muted", context: .trusted))
         }
         
         func name(_ value: String) -> Tag {
-            return self.mutate(name: value)
+            return self.mutate(name: .init(value, context: .tainted(.html)))
         }
         
         func novalidate() -> Tag {
-            return self.mutate(novalidate: "novalidate")
+            return self.mutate(novalidate: .init("novalidate", context: .trusted))
         }
         
         func open(_ condition: Bool = true) -> Tag {
 
             if condition {
-                return self.mutate(open: "open")
+                return self.mutate(open: .init("open", context: .trusted))
             }
             
             return self
         }
         
         func optimum(_ value: Float) -> Tag {
-            return self.mutate(optimum: value)
+            return self.mutate(optimum: .init(value, context: .trusted))
         }
         
         func pattern(_ regex: String) -> Tag {
-            return self.mutate(pattern: regex)
+            return self.mutate(pattern: .init(regex, context: .tainted(.html)))
         }
         
         func part(_ value: String) -> Tag {
-            return self.mutate(part: value)
+            return self.mutate(part: .init(value, context: .tainted(.html)))
         }
         
         func ping(_ value: String) -> Tag {
-            return self.mutate(ping: value)
+            return self.mutate(ping: .init(value, context: .tainted(.html)))
         }
         
         @_disfavoredOverload
         func placeholder(_ value: String) -> Tag {
-            return self.mutate(placeholder: value)
+            return self.mutate(placeholder: .init(value, context: .tainted(.html)))
         }
         
         func placeholder(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Tag {
-            return self.mutate(placeholder: LocalizedString(key: localizedKey, table: tableName))
+            return self.mutate(placeholder: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
         }
         
         func placeholder(verbatim value: String) -> Tag {
-            return self.mutate(placeholder: value)
+            return self.mutate(placeholder: .init(value, context: .tainted(.html)))
         }
         
         func playInline(_ condition: Bool = true) -> Tag {
             
             if condition {
-                return mutate(playsinline: "playsinline")
+                return mutate(playsinline: .init("playsinline", context: .trusted))
             }
             
             return self
         }
         
         func poster(_ value: String) -> Tag {
-            return self.mutate(poster: value)
+            return self.mutate(poster: .init(value, context: .tainted(.html)))
         }
         
         func preload(_ value: Values.Preload) -> Tag {
-            return self.mutate(preload: value.rawValue)
+            return self.mutate(preload: .init(value.rawValue, context: .trusted))
         }
         
         func readonly(_ condition: Bool = true) -> Tag {
             
             if condition {
-                return mutate(readonly: "readonly")
+                return mutate(readonly: .init("readonly", context: .trusted))
             }
             
             return self
         }
         
         func referrerPolicy(_ value: Values.Policy) -> Tag {
-            return self.mutate(referrerpolicy: value.rawValue)
+            return self.mutate(referrerpolicy: .init(value.rawValue, context: .trusted))
         }
         
         func relationship(_ value: Values.Relation) -> Tag {
-            return self.mutate(rel: value.rawValue)
+            return self.mutate(rel: .init(value.rawValue, context: .trusted))
         }
         
         func required(_ condition: Bool = true) -> Tag {
             
             if condition {
-                return mutate(required: "required")
+                return mutate(required: .init("required", context: .trusted))
             }
             
             return self
         }
         
         func reversed() -> Tag {
-            return self.mutate(reversed: "reversed")
+            return self.mutate(reversed: .init("reversed", context: .trusted))
         }
         
         func rows(_ size: Int) -> Tag {
-            return self.mutate(rows: size)
+            return self.mutate(rows: .init(size, context: .trusted))
         }
         
         func rowSpan(_ size: Int) -> Tag {
-            return self.mutate(rowspan: size)
+            return self.mutate(rowspan: .init(size, context: .trusted))
         }
         
         func sandbox() -> Tag {
-            return self.mutate(sandbox: "sandbox")
+            return self.mutate(sandbox: .init("sandbox", context: .trusted))
         }
         
-        func sandbox(_ value: Values.Permission) -> Tag {
-            return self.mutate(sandbox: value.rawValue)
+        func sandbox(_ values: [Values.Permission]) -> Tag {
+            return self.mutate(sandbox: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
         }
         
-        func sandbox(_ values: OrderedSet<Values.Permission>) -> Tag {
-            return self.mutate(sandbox: values.map { $0.rawValue }.joined(separator: " "))
+        func sandbox(_ values: Values.Permission...) -> Tag {
+            return self.mutate(sandbox: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
         }
         
         func scope(_ value: Values.Scope) -> Tag {
-            return self.mutate(scope: value.rawValue)
+            return self.mutate(scope: .init(value.rawValue, context: .trusted))
         }
         
         func shape() -> Tag {
-            return self.mutate(shape: "default")
+            return self.mutate(shape: .init("default", context: .trusted))
         }
         
         func shape(_ value: Values.Shape, coordinates: String) -> Tag {
-            return self.mutate(shape: value.rawValue).mutate(coords: coordinates)
+            return self.mutate(shape: .init(value.rawValue, context: .trusted)).mutate(coords: .init(coordinates, context: .tainted(.html)))
         }
         
         func size(_ size: Int) -> Tag {
-            return self.mutate(size: size)
+            return self.mutate(size: .init(size, context: .trusted))
         }
         
         func sizes(_ candidates: [SizeCandidate]) -> Tag {
-            return self.mutate(sizes: candidates.map { $0.rawValue }.joined(separator: ", "))
+            return self.mutate(sizes: .init(EnumeratedList(values: candidates, separator: ", "), context: .tainted(.html)))
         }
         
         func sizes(_ candidates: SizeCandidate...) -> Tag {
-            return self.mutate(sizes: candidates.map { $0.rawValue }.joined(separator: ", "))
+            return self.mutate(sizes: .init(EnumeratedList(values: candidates, separator: ", "), context: .tainted(.html)))
         }
         
         func slot(_ value: String) -> Tag {
-            return self.mutate(slot: value)
+            return self.mutate(slot: .init(value, context: .tainted(.html)))
         }
         
         func span(_ size: Int) -> Tag {
-            return self.mutate(span: size)
+            return self.mutate(span: .init(size, context: .trusted))
         }
         
         func source(_ value: String) -> Tag {
-            return self.mutate(source: value)
+            return self.mutate(source: .init(value, context: .tainted(.html)))
         }
         
         func source(_ value: EnvironmentValue) -> Tag {
-            return mutate(source: value)
+            return mutate(source: .init(value, context: .tainted(.html)))
         }
         
         func sourceDocument(_ value: String) -> Tag {
-            return mutate(sourcedocument: value)
+            return mutate(sourcedocument: .init(value, context: .tainted(.html)))
         }
         
         func sourceLanguage(_ value: Values.Language) -> Tag {
-            return mutate(sourcelanguage: value.rawValue)
+            return mutate(sourcelanguage: .init(value.rawValue, context: .trusted))
         }
         
         func sourceSet(_ candidates: [SourceCandidate]) -> Tag {
-            return mutate(sourceset: candidates.map { $0.rawValue }.joined(separator: ", "))
+            return mutate(sourceset: .init(EnumeratedList(values: candidates, separator: ", "), context: .tainted(.html)))
         }
         
         func sourceSet(_ candidates: SourceCandidate...) -> Tag {
-            return mutate(sourceset: candidates.map { $0.rawValue }.joined(separator: ", "))
+            return mutate(sourceset: .init(EnumeratedList(values: candidates, separator: ", "), context: .tainted(.html)))
         }
         
         func start(_ size: Int) -> Tag {
-            return self.mutate(start: size)
+            return self.mutate(start: .init(size, context: .trusted))
         }
         
         func step(_ size: Int) -> Tag {
-            return self.mutate(step: size)
+            return self.mutate(step: .init(size, context: .trusted))
         }
         
         func target(_ value: Values.Target) -> Tag {
-            return self.mutate(target: value.rawValue)
+            return self.mutate(target: .init(value.rawValue, context: .trusted))
         }
         
         func type(_ value: String) -> Tag {
-            return self.mutate(type: value)
+            return self.mutate(type: .init(value, context: .tainted(.html)))
         }
         
         @_disfavoredOverload
         func value(_ value: String) -> Tag {
-            return mutate(value: value)
+            return mutate(value: .init(value, context: .tainted(.html)))
         }
         
         func value(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Tag {
-            return mutate(value: LocalizedString(key: localizedKey, table: tableName))
+            return mutate(value: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
         }
         
         func value(verbatim value: String) -> Tag {
-            return mutate(value: value)
+            return mutate(value: .init(value, context: .tainted(.html)))
         }
         
         func width(_ size: Int) -> Tag {
-            return self.mutate(width: size)
+            return self.mutate(width: .init(size, context: .trusted))
         }
         
         func wrap(_ value: Values.Wrapping) -> Tag {
-            return self.mutate(wrap: value.rawValue)
+            return self.mutate(wrap: .init(value.rawValue, context: .trusted))
         }
         
         func property(_ value: Values.Graph) -> Tag {
-            return self.mutate(property: value.rawValue)
+            return self.mutate(property: .init(value.rawValue, context: .trusted))
         }
         
         func selected(_ condition: Bool = true) -> Tag {
             
             if condition {
-                return self.mutate(selected: "selected")
+                return self.mutate(selected: .init("selected", context: .trusted))
             }
             
             return self
         }
         
         func draw(_ value: String) -> Tag {
-            return self.mutate(draw: value)
+            return self.mutate(draw: .init(value, context: .tainted(.html)))
         }
         
         func fill(_ color: String, opacity: Double? = nil) -> Tag {
-            return self.mutate(fill: color).mutate(fillopacity: opacity)
+
+            var copy = self
+            
+            copy = copy.mutate(fill: .init(color, context: .tainted(.html)))
+            
+            if let opacity = opacity {
+                copy = copy.mutate(fillopacity: .init(opacity, context: .trusted))
+            }
+            
+            return copy
         }
         
         public func stroke(_ color: String, width: Int? = nil, opacity: Double? = nil, cap: Values.Linecap? = nil, join: Values.Linejoin? = nil) -> Tag {
-            return self.mutate(stroke: color).mutate(strokewidth: width).mutate(strokeopacity: opacity).mutate(strokelinecap: cap?.rawValue).mutate(strokelinejoin: join?.rawValue)
-        }
-        
-        func strokeWidth(_ size: Int) -> Tag {
-            return self.mutate(strokewidth: size)
-        }
-        
-        func strokeOpacity(_ value: Double) -> Tag {
-            return self.mutate(strokeopacity: value)
-        }
-        
-        func strokeLineCap(_ value: HTMLKit.Values.Linecap) -> Tag {
-            return self.mutate(strokelinecap: value.rawValue)
-        }
-        
-        func strokeLineJoin(_ value: HTMLKit.Values.Linejoin) -> Tag {
-            return self.mutate(strokelinejoin: value.rawValue)
+
+            var copy = self
+            
+            copy = copy.mutate(stroke: .init(color, context: .tainted(.html)))
+            
+            if let width = width {
+                copy = copy.mutate(strokewidth: .init(width, context: .trusted))
+            }
+            
+            if let opacity = opacity {
+                copy = copy.mutate(strokeopacity: .init(opacity, context: .trusted))
+            }
+            
+            if let cap = cap {
+                copy = copy.mutate(strokelinecap: .init(cap.rawValue, context: .trusted))
+            }
+            
+            if let join = join {
+                copy = copy.mutate(strokelinejoin: .init(join.rawValue, context: .trusted))
+            }
+            
+            return copy
         }
         
         func radius(_ size: Int) -> Tag {
-            return self.mutate(radius: size)
-        }
-        
-        func positionPoint(_ point: (Int, Int)) -> Tag {
-            return self.mutate(x: "\(point.0)").mutate(y: "\(point.1)")
+            return self.mutate(radius: .init(size, context: .trusted))
         }
         
         func position(x: Int, y: Int) -> Tag {
-            return self.mutate(x: "\(x)").mutate(y: "\(y)")
+            return self.mutate(x: .init(x, context: .trusted)).mutate(y: .init(x, context: .trusted))
         }
     
         func position(x: Double, y: Double) -> Tag {
-            return self.mutate(x: "\(x)").mutate(y: "\(y)")
+            return self.mutate(x: .init(x, context: .trusted)).mutate(y: .init(y, context: .trusted))
         }
         
         func position(_ point: UnitPoint) -> Tag {
-            return self.mutate(x: point.x).mutate(y: point.y)
-        }
-        
-        func radiusPoint(_ point: (Int, Int)) -> Tag {
-            return self.mutate(rx: "\(point.0)").mutate(ry: "\(point.1)")
+            return self.mutate(x: .init(point.x, context: .trusted)).mutate(y: .init(point.y, context: .trusted))
         }
         
         func radius(x: Int, y: Int) -> Tag {
-            return self.mutate(rx: "\(x)").mutate(ry: "\(y)")
+            return self.mutate(rx: .init(x, context: .trusted)).mutate(ry: .init(y, context: .trusted))
         }
         
         func radius(x: Double, y: Double) -> Tag {
-            return self.mutate(rx: "\(x)").mutate(ry: "\(y)")
+            return self.mutate(rx: .init(x, context: .trusted)).mutate(ry: .init(y, context: .trusted))
         }
         
         func radius(_ point: HTMLKit.UnitPoint) -> Tag {
-            return self.mutate(rx: point.x).mutate(ry: point.y)
-        }
-        
-        func centerPoint(_ point: (Int, Int)) -> Tag {
-            return self.mutate(cx: "\(point.0)").mutate(cy: "\(point.1)")
+            return self.mutate(rx: .init(point.x, context: .trusted)).mutate(ry: .init(point.y, context: .trusted))
         }
         
         func center(x: Int, y: Int) -> Tag {
-            return self.mutate(cx: "\(x)").mutate(cy: "\(y)")
+            return self.mutate(cx: .init(x, context: .trusted)).mutate(cy: .init(y, context: .trusted))
         }
         
         func center(x: Double, y: Double) -> Tag {
-            return self.mutate(cx: "\(x)").mutate(cy: "\(y)")
+            return self.mutate(cx: .init(x, context: .trusted)).mutate(cy: .init(y, context: .trusted))
         }
         
         func center(_ point: UnitPoint) -> Tag {
-            return self.mutate(cx: point.x).mutate(cy: point.y)
+            return self.mutate(cx: .init(point.x, context: .trusted)).mutate(cy: .init(point.y, context: .trusted))
         }
         
         func viewBox(_ value: String) -> Tag {
-            return self.mutate(viewbox: value)
+            return self.mutate(viewbox: .init(value, context: .tainted(.html)))
         }
         
         func viewBox(x: Int, y: Int, width: Int, height: Int) -> Tag {
-            return self.mutate(viewbox: "\(x) \(y) \(width) \(height)")
+            return self.mutate(viewbox: .init("\(x) \(y) \(width) \(height)", context: .trusted))
         }
         
         func viewBox(x: Double, y: Double, width: Double, height: Double) -> Tag {
-            return self.mutate(viewbox: "\(x) \(y) \(width) \(height)")
+            return self.mutate(viewbox: .init("\(x) \(y) \(width) \(height)", context: .trusted))
         }
         
         func namespace(_ value: String) -> Tag {
-            return self.mutate(namespace: value)
+            return self.mutate(namespace: .init(value, context: .tainted(.html)))
         }
         
         func points(_ value: String) -> Tag {
-            return self.mutate(points: value)
+            return self.mutate(points: .init(value, context: .tainted(.html)))
         }
         
         func fetchPriority(_ value: Values.Priority) -> Tag {
-            return self.mutate(fetchpriority: value.rawValue)
+            return self.mutate(fetchpriority: .init(value.rawValue, context: .trusted))
         }
         
         func loading(_ value: Values.Loading) -> Tag {
-            return self.mutate(loading: value.rawValue)
+            return self.mutate(loading: .init(value.rawValue, context: .trusted))
         }
         
         func decoding(_ value: Values.Decoding) -> Tag {
-            return self.mutate(decoding: value.rawValue)
+            return self.mutate(decoding: .init(value.rawValue, context: .trusted))
         }
         
         func popover(_ value: Values.Popover.State) -> Tag {
-            return self.mutate(popover: value.rawValue)
+            return self.mutate(popover: .init(value.rawValue, context: .trusted))
         }
         
         func popoverTarget(_ id: String, action: Values.Popover.Action? = nil) -> Tag {
-            return self.mutate(popovertarget: id).mutate(popovertargetaction: action?.rawValue)
-        }
-        
-        func popoverAction(_ value: Values.Popover.Action) -> Tag {
-            return self.mutate(popoveraction: value.rawValue)
+
+            var copy = self
+            
+            copy = copy.mutate(popovertarget: .init(id, context: .tainted(.html)))
+            
+            if let action = action {
+                copy = copy.mutate(popoveraction: .init(action.rawValue, context: .trusted))
+            }
+            
+            return copy
         }
         
         func useMap(_ id: String) -> Tag {
-            return mutate(usemap: id)
+            return mutate(usemap: .init("#\(id)", context: .tainted(.html)))
         }
         
-        func custom(key: String, value: Any) -> Tag {
-            return self.mutate(key: key, value: value)
+        func custom(key: String, value: String, context: EscapeContext = .tainted(.html)) -> Tag {
+            return mutate(key: key, value: .init(value, context: context))
+        }
+        
+        func custom(key: String, value: Int) -> Tag {
+            return mutate(key: key, value: .init(value, context: .trusted))
+        }
+        
+        func custom(key: String, value: Double) -> Tag {
+            return mutate(key: key, value: .init(value, context: .trusted))
+        }
+        
+        func custom(key: String, value: Bool) -> Tag {
+            return mutate(key: key, value: .init(value, context: .trusted))
+        }
+        
+        func custom(key: String, value: Float) -> Tag {
+            return mutate(key: key, value: .init(value, context: .trusted))
+        }
+        
+        func custom(key: String, value: EnvironmentValue, context: EscapeContext = .tainted(.html)) -> Tag {
+            return mutate(key: key, value: .init(value, context: context))
         }
         
         func blocking(_ value: Values.Blocking) -> Tag {
-            return self.mutate(blocking: value.rawValue)
+            return self.mutate(blocking: .init(value.rawValue, context: .trusted))
         }
         
         func integrity(_ hashes: String...) -> Tag {
-            return self.mutate(integrity: hashes.joined(separator: " "))
+            return self.mutate(integrity: .init(EnumeratedList(values: hashes, separator: " "), context: .tainted(.html)))
         }
         
         func integrity(_ hashes: [String]) -> Tag {
-            return self.mutate(integrity: hashes.joined(separator: " "))
+            return self.mutate(integrity: .init(EnumeratedList(values: hashes, separator: " "), context: .tainted(.html)))
         }
         
         func crossOrigin(_ value: Credential.Mode) -> Tag {
-            return self.mutate(crossorigin: value.rawValue)
+            return self.mutate(crossorigin: .init(value.rawValue, context: .trusted))
         }
         
         func on(event: Events.Window, _ value: String) -> Tag {
-            return self.mutate(key: event.rawValue, value: value)
+            return self.mutate(key: event.rawValue, value: .init(value, context: .tainted(.js)))
         }
         
         func on(event: Events.Focus, _ value: String) -> Tag {
-            return self.mutate(key: event.rawValue, value: value)
+            return self.mutate(key: event.rawValue, value: .init(value, context: .tainted(.js)))
         }
         
         func on(event: Events.Pointer, _ value: String) -> Tag {
-            return self.mutate(key: event.rawValue, value: value)
+            return self.mutate(key: event.rawValue, value: .init(value, context: .tainted(.js)))
         }
         
         func on(event: Events.Mouse, _ value: String) -> Tag {
-            return self.mutate(key: event.rawValue, value: value)
+            return self.mutate(key: event.rawValue, value: .init(value, context: .tainted(.js)))
         }
         
         func on(event: Events.Wheel, _ value: String) -> Tag {
-            return self.mutate(key: event.rawValue, value: value)
+            return self.mutate(key: event.rawValue, value: .init(value, context: .tainted(.js)))
         }
         
         func on(event: Events.Input, _ value: String) -> Tag {
-            return self.mutate(key: event.rawValue, value: value)
+            return self.mutate(key: event.rawValue, value: .init(value, context: .tainted(.js)))
         }
         
         func on(event: Events.Keyboard, _ value: String) -> Tag {
-            return self.mutate(key: event.rawValue, value: value)
+            return self.mutate(key: event.rawValue, value: .init(value, context: .tainted(.js)))
         }
         
         func on(event: Events.Drag, _ value: String) -> Tag {
-            return self.mutate(key: event.rawValue, value: value)
+            return self.mutate(key: event.rawValue, value: .init(value, context: .tainted(.js)))
         }
         
         func on(event: Events.Clipboard, _ value: String) -> Tag {
-            return self.mutate(key: event.rawValue, value: value)
+            return self.mutate(key: event.rawValue, value: .init(value, context: .tainted(.js)))
         }
         
         func on(event: Events.Selection, _ value: String) -> Tag {
-            return self.mutate(key: event.rawValue, value: value)
+            return self.mutate(key: event.rawValue, value: .init(value, context: .tainted(.js)))
         }
         
         func on(event: Events.Media, _ value: String) -> Tag {
-            return self.mutate(key: event.rawValue, value: value)
+            return self.mutate(key: event.rawValue, value: .init(value, context: .tainted(.js)))
         }
         
         func on(event: Events.Form, _ value: String) -> Tag {
-            return self.mutate(key: event.rawValue, value: value)
+            return self.mutate(key: event.rawValue, value: .init(value, context: .tainted(.js)))
         }
         
         func on(event: Events.Detail, _ value: String) -> Tag {
-            return self.mutate(key: event.rawValue, value: value)
+            return self.mutate(key: event.rawValue, value: .init(value, context: .tainted(.js)))
         }
         
-        func aria(atomic value: Bool) -> Tag {
-            return mutate(ariaatomic: value)
+        func accessibilityAtomic(_ value: Bool = true) -> Tag {
+            return mutate(ariaatomic: .init(value, context: .trusted))
         }
         
-        func aria(busy value: Bool) -> Tag {
-            return mutate(ariabusy: value)
+        func accessibilityBusy(_ value: Bool = true) -> Tag {
+            return mutate(ariabusy: .init(value, context: .trusted))
         }
         
-        func aria(controls value: String) -> Tag {
-            return mutate(ariacontrols: value)
+        func accessibilityControls(_ ids: [String]) -> Tag {
+            return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
         }
         
-        func aria(current value: Values.Accessibility.Current) -> Tag {
-            return mutate(ariacurrent: value.rawValue)
+        func accessibilityControls(_ ids: String...) -> Tag {
+            return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
         }
         
-        func aria(describedBy value: String) -> Tag {
-            return mutate(ariadescribedby: value)
+        func accessibilityCurrent(_ value: Bool = true) -> Tag {
+            return mutate(ariacurrent: .init(value, context: .trusted))
+        }
+        
+        func accessibilityCurrent(_ value: Values.Accessibility.Current) -> Tag {
+            return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
+        }
+        
+        public func accessibilityDescriptions(_ ids: [String]) -> Tag {
+            return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+        }
+        
+        public func accessibilityDescriptions(_ ids: String...) -> Tag {
+            return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
         }
         
         func aria(details value: String) -> Tag {
-            return mutate(ariadetails: value)
+            return mutate(ariadetails: .init(value, context: .tainted(.html)))
         }
         
-        func aria(disabled value: Bool) -> Tag {
-            return mutate(ariadisabled: value)
+        func accessibilityDetail(_ id: String) -> Tag {
+            return mutate(ariadetails: .init(id, context: .tainted(.html)))
         }
         
-        func aria(errorMessage value: String) -> Tag {
-            return mutate(ariaerrormessage: value)
+        func accessibilityDisabled(_ value: Bool = true) -> Tag {
+            return mutate(ariadisabled: .init(value, context: .trusted))
         }
         
-        func aria(flowTo value: String) -> Tag {
-            return mutate(ariaflowto: value)
+        func accessibilityFlow(_ ids: [String]) -> Tag {
+            return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
         }
         
-        func aria(hasPopup value: Values.Accessibility.Popup) -> Tag {
-            return mutate(ariahaspopup: value.rawValue)
+        func accessibilityFlow(_ ids: String...) -> Tag {
+            return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
         }
         
-        func aria(hidden value: Bool) -> Tag {
-            return mutate(ariahidden: value)
+        func accessibilityPopup(_ value: Values.Accessibility.Popup) -> Tag {
+            return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
         }
         
-        func aria(invalid value: Values.Accessibility.Invalid) -> Tag {
-            return mutate(ariainvalid: value.rawValue)
+        func accessibilityHidden(_ value: Bool = true) -> Tag {
+            return mutate(ariahidden: .init(value, context: .trusted))
         }
         
-        func aria(keyShortcuts value: String) -> Tag {
-            return mutate(ariakeyshortcuts: value)
+        func accessibilityInvalid(_ value: HTMLKit.Values.Accessibility.Invalid) -> Tag {
+            return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
         }
         
-        func aria(label value: String) -> Tag {
-            return mutate(arialabel: value)
+        func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> Tag {
+            
+            if let id = id {
+                return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+            }
+            
+            return mutate(ariainvalid: .init(value, context: .trusted))
         }
         
-        func aria(labeledBy value: String) -> Tag {
-            return mutate(arialabeledby: value)
+        func accessibilityShortcuts(_ values: [KeyboardShortcut]) -> Tag {
+            return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
         }
         
-        func aria(live value: Values.Accessibility.Live) -> Tag {
-            return mutate(arialive: value.rawValue)
+        func accessibilityShortcuts(_ values: KeyboardShortcut...) -> Tag {
+            return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+        }
+
+        @_disfavoredOverload
+        func accessibilityLabel(_ value: String) -> Tag {
+            return mutate(arialabel: .init(value, context: .tainted(.html)))
         }
         
-        func aria(owns value: String) -> Tag {
-            return mutate(ariaowns: value)
+        func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Tag {
+            return mutate(arialabel: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
         }
         
-        func aria(relevant value: Values.Accessibility.Relevant) -> Tag {
-            return mutate(ariarelevant: value.rawValue)
+        func accessibilityLabel(verbatim value: String) -> Tag {
+            return mutate(arialabel: .init(value, context: .tainted(.html)))
         }
         
-        func aria(roleDescription value: String) -> Tag {
-            return mutate(ariaroledescription: value)
+        func accessibilityLabels(_ ids: [String]) -> Tag {
+            return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+        }
+        
+        func accessibilityLabels(_ ids: String...) -> Tag {
+            return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+        }
+        
+        func accessibilityLive(_ value: Values.Accessibility.Live) -> Tag {
+            return mutate(arialive: .init(value.rawValue, context: .trusted))
+        }
+        
+        func accessibilityOwns(_ ids: [String]) -> Tag {
+            return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+        }
+        
+        func accessibilityOwns(_ ids: String...) -> Tag {
+            return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
+        }
+        
+        func accessibilityRelevant(_ values: [Values.Accessibility.Relevant]) -> Tag {
+            return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+        }
+        
+        func accessibilityRelevant(_ values: Values.Accessibility.Relevant...) -> Tag {
+            return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+        }
+        
+        @_disfavoredOverload
+        func accessibilityRoleDescription(_ value: String) -> Tag {
+            return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
+        }
+        
+        func accessibilityRoleDescription(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Tag {
+            return mutate(ariaroledescription: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+        }
+        
+        func accessibilityRoleDescription(verbatim: String) -> Tag {
+            return mutate(ariaroledescription: .init(verbatim, context: .tainted(.html)))
+        }
+        
+        func accessibilitySort(_ value: Values.Accessibility.Sort) -> Tag {
+            return mutate(ariasort: .init(value.rawValue, context: .trusted))
+        }
+        
+        func accessibilityOrientation(_ value: Values.Accessibility.Orientation) -> Tag {
+            return mutate(ariaorientation: .init(value.rawValue, context: .trusted))
+        }
+        
+        func accessibilityRequired(_ value: Bool = true) -> Tag {
+            return mutate(ariarequired: .init(value, context: .trusted))
+        }
+        
+        func accessibilityReadonly(_ value: Bool = true) -> Tag {
+            return mutate(ariareadonly: .init(value, context: .trusted))
+        }
+        
+        func accessibilityModal(_ value: Bool = true) -> Tag {
+            return mutate(ariamodal: .init(value, context: .trusted))
+        }
+        
+        func accessibilityLevel(_ value: Int) -> Tag {
+            return mutate(arialevel: .init(value, context: .trusted))
+        }
+        
+        @_disfavoredOverload
+        func accessibilityHint(_ value: String) -> Tag {
+            return mutate(ariaplaceholder: .init(value, context: .tainted(.html)))
+        }
+        
+        func accessibilityHint(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Tag {
+            return mutate(ariaplaceholder: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+        }
+        
+        func accessibilityHint(verbatim value: String) -> Tag {
+            return mutate(ariaplaceholder: .init(value, context: .tainted(.html)))
+        }
+        
+        func accessibilityPosition(_ index: Int, in size: Int) -> Tag {
+            return mutate(ariaposinset: .init(index, context: .trusted)).mutate(ariasetsize: .init(size, context: .trusted))
+        }
+        
+        func accessibilityMultiline(_ value: Bool = true) -> Tag {
+            return mutate(ariamultiline: .init(value, context: .trusted))
+        }
+        
+        func accessibilityMultiselect(_ value: Bool = true) -> Tag {
+            return mutate(ariamultiselectable: .init(value, context: .trusted))
+        }
+        
+        func accessibilityRowIndex(_ value: Int) -> Tag {
+            return mutate(ariarowindex: .init(value, context: .trusted))
+        }
+        
+        func accessibilityRowCount(_ value: Int) -> Tag {
+            return mutate(ariarowcount: .init(value, context: .trusted))
+        }
+        
+        func accessibilityColumnIndex(_ value: Int) -> Tag {
+            return mutate(ariacolindex: .init(value, context: .trusted))
+        }
+        
+        func accessibilityColumnCount(_ value: Int) -> Tag {
+            return mutate(ariacolcount: .init(value, context: .trusted))
+        }
+        
+        func accessibilityRowSpan(_ value: Int) -> Tag {
+            return mutate(ariarowspan: .init(value, context: .trusted))
+        }
+        
+        func accessibilityColumnSpan(_ value: Int) -> Tag {
+            return mutate(ariacolspan: .init(value, context: .trusted))
+        }
+        
+        func accessibilityMaximumValue(_ value: Float) -> Tag {
+            return mutate(ariavaluemax: .init(value, context: .trusted))
+        }
+        
+        func accessibilityMinimumValue(_ value: Float) -> Tag {
+            return mutate(ariavaluemin: .init(value, context: .trusted))
+        }
+        
+        @_disfavoredOverload
+        func accessibilityValue(_ value: Float, description text: String? = nil) -> Tag {
+            
+            if let text = text {
+                return mutate(ariavaluenow: .init(value, context: .trusted)).mutate(ariavaluetext: .init(text, context: .tainted(.html)))
+            }
+            
+            return mutate(ariavaluenow: .init(value, context: .trusted))
+        }
+        
+        func accessibilityValue(_ value: Float, description localizedKey: LocalizedStringKey, tableName: String? = nil) -> Tag {
+            return mutate(ariavaluenow: .init(value, context: .trusted)).mutate(ariavaluetext: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+        }
+        
+        func accessibilityPressed(_ value: Bool = true) -> Tag {
+            return mutate(ariapressed: .init(value, context: .trusted))
+        }
+        
+        func accessibilitySelected(_ value: Bool = true) -> Tag {
+            return mutate(ariaselected: .init(value, context: .trusted))
+        }
+        
+        func accessibilityChecked(_ value: Bool = true) -> Tag {
+            return mutate(ariachecked: .init(value, context: .trusted))
+        }
+        
+        func accessibilityExpanded(_ value: Bool = true) -> Tag {
+            return mutate(ariaexpanded: .init(value, context: .trusted))
+        }
+        
+        func accessibilityFocused(_ id: String) -> Tag {
+            return mutate(ariaactivedescendant: .init(id, context: .tainted(.html)))
+        }
+        
+        func accessibilityCompletion(_ values: [Values.Accessibility.Complete]) -> Tag {
+
+            if values == [.list, .inline] || values == [.inline, .list] {
+                return mutate(ariaautocomplete: .init("both", context: .trusted))
+            }
+            
+            return mutate(ariaautocomplete: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+        }
+        
+        func accessibilityCompletion(_ values: Values.Accessibility.Complete...) -> Tag {
+            
+            if values == [.list, .inline] || values == [.inline, .list] {
+                return mutate(ariaautocomplete: .init("both", context: .trusted))
+            }
+            
+            return mutate(ariaautocomplete: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
         }
         
         func shadowRootMode(_ value: Values.Shadow.Mode) -> Tag {
-            return mutate(shadowrootmode: value.rawValue)
+            return mutate(shadowrootmode: .init(value.rawValue, context: .trusted))
         }
         
         func inert(_ condition: Bool = true) -> Tag {
             
             if condition {
-                return mutate(inert: "inert")
+                return mutate(inert: .init("inert", context: .trusted))
             }
             
             return self
+        }
+        
+        @_disfavoredOverload
+        func abbreviated(_ value: String) -> Tag {
+            return self.mutate(abbr: .init(value, context: .tainted(.html)))
+        }
+        
+        func abbreviated(_ localizedKey: HTMLKit.LocalizedStringKey, tableName: String? = nil) -> Tag {
+            return self.mutate(abbr: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+        }
+        
+        func abbreviated(verbatim value: String) -> Tag {
+            return self.mutate(abbr: .init(value, context: .tainted(.html)))
         }
     }
     
@@ -1101,11 +1368,15 @@ final class AttributesTests: XCTestCase {
         
         let view = TestView {
             Tag {}.role(.alert)
+            Tag {}.role([.alertDialog, .alert])
+            Tag {}.role(.alertDialog, .alert)
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <tag role="alert"></tag>
+                       <tag role="alert"></tag>\
+                       <tag role="alertdialog alert"></tag>\
+                       <tag role="alertdialog alert"></tag>
                        """
         )
     }
@@ -1246,10 +1517,10 @@ final class AttributesTests: XCTestCase {
     func testCompleteAttribute() throws {
         
         let view = TestView {
-            Tag {}.autocomplete(.on)
-            Tag {}.autocomplete(.off)
+            Tag {}.autocomplete(true)
+            Tag {}.autocomplete(false)
             Tag {}.autocomplete([.organization, .organizationTitle])
-            Tag {}.autocomplete([.birthday, .birthday])
+            Tag {}.autocomplete(.organization, .organizationTitle)
         }
         
         XCTAssertEqual(try renderer.render(view: view),
@@ -1257,7 +1528,7 @@ final class AttributesTests: XCTestCase {
                        <tag autocomplete="on"></tag>\
                        <tag autocomplete="off"></tag>\
                        <tag autocomplete="organization organization-title"></tag>\
-                       <tag autocomplete="bday"></tag>
+                       <tag autocomplete="organization organization-title"></tag>
                        """
         )
     }
@@ -2480,11 +2751,17 @@ final class AttributesTests: XCTestCase {
         
         let view = TestView {
             Tag {}.custom(key: "data-animal-type", value: "bird")
+            Tag {}.custom(key: "data-row-index", value: 2)
+            Tag {}.custom(key: "data-cart-total", value: 20.0)
+            Tag {}.custom(key: "aria-hidden", value: false)
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <tag data-animal-type="bird"></tag>
+                       <tag data-animal-type="bird"></tag>\
+                       <tag data-row-index="2"></tag>\
+                       <tag data-cart-total="20.0"></tag>\
+                       <tag aria-hidden="false"></tag>
                        """
         )
     }
@@ -2658,10 +2935,10 @@ final class AttributesTests: XCTestCase {
         )
     }
     
-    func testAtomicAriaAttribute() throws {
+    func testAtomicAccessibilityAttribute() throws {
         
         let view = TestView {
-            Tag {}.aria(atomic: true)
+            Tag {}.accessibilityAtomic(true)
         }
         
         XCTAssertEqual(try renderer.render(view: view),
@@ -2671,145 +2948,182 @@ final class AttributesTests: XCTestCase {
         )
     }
     
-    func testBusyAriaAttribute() throws {
+    func testBusyAccessibilityAttribute() throws {
         
         let view = TestView {
-            Tag {}.aria(busy: true)
+            Tag {}.accessibilityBusy()
+            Tag {}.accessibilityBusy(false)
+            Tag {}.accessibilityBusy(true)
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
+                       <tag aria-busy="true"></tag>\
+                       <tag aria-busy="false"></tag>\
                        <tag aria-busy="true"></tag>
                        """
         )
     }
     
-    func testControlsAriaAttribute() throws {
+    func testControlsAccessibilityAttribute() throws {
         
         let view = TestView {
-            Tag {}.aria(controls: "name")
+            Tag {}.accessibilityControls("id")
+            Tag {}.accessibilityControls("id", "id")
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <tag aria-controls="name"></tag>
+                       <tag aria-controls="id"></tag>\
+                       <tag aria-controls="id id"></tag>
                        """
         )
     }
     
-    func testCurrentAriaAttribute() throws {
+    func testCurrentAccessibilityAttribute() throws {
         
         let view = TestView {
-            Tag {}.aria(current: .page)
+            Tag {}.accessibilityCurrent()
+            Tag {}.accessibilityCurrent(false)
+            Tag {}.accessibilityCurrent(true)
+            Tag {}.accessibilityCurrent(.page)
+            Tag {}.accessibilityCurrent(.step)
+            Tag {}.accessibilityCurrent(.time)
+            Tag {}.accessibilityCurrent(.date)
+            Tag {}.accessibilityCurrent(.location)
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <tag aria-current="page"></tag>
+                       <tag aria-current="true"></tag>\
+                       <tag aria-current="false"></tag>\
+                       <tag aria-current="true"></tag>\
+                       <tag aria-current="page"></tag>\
+                       <tag aria-current="step"></tag>\
+                       <tag aria-current="time"></tag>\
+                       <tag aria-current="date"></tag>\
+                       <tag aria-current="location"></tag>
                        """
         )
     }
     
-    func testDescribedByAriaAttribute() throws {
+    func testDescriptionsAccessibilityAttribute() throws {
         
         let view = TestView {
-            Tag {}.aria(describedBy: "description")
+            Tag {}.accessibilityDescriptions("id", "id")
+            Tag {}.accessibilityDescriptions(["id", "id"])
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <tag aria-describedby="description"></tag>
+                       <tag aria-describedby="id id"></tag>\
+                       <tag aria-describedby="id id"></tag>
                        """
         )
     }
     
-    func testDetailsAriaAttribute() throws {
+    func testDetailAccessibilityAttribute() throws {
         
         let view = TestView {
-            Tag {}.aria(details: "details")
+            Tag {}.accessibilityDetail("id")
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <tag aria-details="details"></tag>
+                       <tag aria-details="id"></tag>
                        """
         )
     }
     
-    func testDisabledAriaAttribute() throws {
+    func testDisabledAccessibilityAttribute() throws {
         
         let view = TestView {
-            Tag {}.aria(disabled: true)
+            Tag {}.accessibilityDisabled()
+            Tag {}.accessibilityDisabled(false)
+            Tag {}.accessibilityDisabled(true)
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
+                       <tag aria-disabled="true"></tag>\
+                       <tag aria-disabled="false"></tag>\
                        <tag aria-disabled="true"></tag>
                        """
         )
     }
     
-    func testErrorMessageAriaAttribute() throws {
+    func testFlowAccessibilityAttribute() throws {
         
         let view = TestView {
-            Tag {}.aria(errorMessage: "error")
+            Tag {}.accessibilityFlow("id")
+            Tag {}.accessibilityFlow("id", "id")
+            Tag {}.accessibilityFlow(["id", "id"])
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <tag aria-errormessage="error"></tag>
+                       <tag aria-flowto="id"></tag>\
+                       <tag aria-flowto="id id"></tag>\
+                       <tag aria-flowto="id id"></tag>
                        """
         )
     }
     
-    func testFlowToAriaAttribute() throws {
+    func testPopupAccessibilityAttribute() throws {
         
         let view = TestView {
-            Tag {}.aria(flowTo: "flow")
+            Tag {}.accessibilityPopup(.grid)
+            Tag {}.accessibilityPopup(.dialog)
+            Tag {}.accessibilityPopup(.listbox)
+            Tag {}.accessibilityPopup(.menu)
+            Tag {}.accessibilityPopup(.tree)
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <tag aria-flowto="flow"></tag>
+                       <tag aria-haspopup="grid"></tag>\
+                       <tag aria-haspopup="dialog"></tag>\
+                       <tag aria-haspopup="listbox"></tag>\
+                       <tag aria-haspopup="menu"></tag>\
+                       <tag aria-haspopup="tree"></tag>
                        """
         )
     }
     
-    func testHasPopupAriaAttribute() throws {
+    func testHiddenAccessibilityAttribute() throws {
         
         let view = TestView {
-            Tag {}.aria(hasPopup: .grid)
+            Tag {}.accessibilityHidden()
+            Tag {}.accessibilityHidden(false)
+            Tag {}.accessibilityHidden(true)
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <tag aria-haspopup="grid"></tag>
-                       """
-        )
-    }
-    
-    func testHiddenAriaAttribute() throws {
-        
-        let view = TestView {
-            Tag {}.aria(hidden: true)
-        }
-        
-        XCTAssertEqual(try renderer.render(view: view),
-                       """
+                       <tag aria-hidden="true"></tag>\
+                       <tag aria-hidden="false"></tag>\
                        <tag aria-hidden="true"></tag>
                        """
         )
     }
     
-    func testInvalidAriaAttribute() throws {
+    func testInvalidAccessibilityAttribute() throws {
         
         let view = TestView {
-            Tag {}.aria(invalid: .grammar)
+            Tag {}.accessibilityInvalid(.grammar)
+            Tag {}.accessibilityInvalid(.spelling)
+            Tag {}.accessibilityInvalid()
+            Tag {}.accessibilityInvalid(false)
+            Tag {}.accessibilityInvalid(message: "id")
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <tag aria-invalid="grammar"></tag>
+                       <tag aria-invalid="grammar"></tag>\
+                       <tag aria-invalid="spelling"></tag>\
+                       <tag aria-invalid="true"></tag>\
+                       <tag aria-invalid="false"></tag>\
+                       <tag aria-invalid="true" aria-errormessage="id"></tag>
                        """
         )
     }
@@ -2817,20 +3131,27 @@ final class AttributesTests: XCTestCase {
     func testKeyShortcutsAriaAttribute() throws {
         
         let view = TestView {
-            Tag {}.aria(keyShortcuts: "shortcut")
+            Tag {}.accessibilityShortcuts(KeyboardShortcut("A"))
+            Tag {}.accessibilityShortcuts([KeyboardShortcut("B"), KeyboardShortcut("C")])
+            Tag {}.accessibilityShortcuts(KeyboardShortcut("D"), KeyboardShortcut("E"))
+            Tag {}.accessibilityShortcuts(KeyboardShortcut(.enter, modifiers: .command))
+            
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <tag aria-keyshortcuts="shortcut"></tag>
+                       <tag aria-keyshortcuts="A"></tag>\
+                       <tag aria-keyshortcuts="B C"></tag>\
+                       <tag aria-keyshortcuts="D E"></tag>\
+                       <tag aria-keyshortcuts="Command+Enter"></tag>
                        """
         )
     }
     
-    func testLabelAriaAttribute() throws {
+    func testLabelAccessibilityAttribute() throws {
         
         let view = TestView {
-            Tag {}.aria(label: "label")
+            Tag {}.accessibilityLabel("label")
         }
         
         XCTAssertEqual(try renderer.render(view: view),
@@ -2840,15 +3161,19 @@ final class AttributesTests: XCTestCase {
         )
     }
     
-    func testLabeledByAriaAttribute() throws {
+    func testLabelsByAccessibilityAttribute() throws {
         
         let view = TestView {
-            Tag {}.aria(labeledBy: "label")
+            Tag {}.accessibilityLabels("id")
+            Tag {}.accessibilityLabels("id", "id")
+            Tag {}.accessibilityLabels(["id", "id"])
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <tag aria-labeledby="label"></tag>
+                       <tag aria-labelledby="id"></tag>\
+                       <tag aria-labelledby="id id"></tag>\
+                       <tag aria-labelledby="id id"></tag>
                        """
         )
     }
@@ -2856,12 +3181,16 @@ final class AttributesTests: XCTestCase {
     func testLiveAriaAttribute() throws {
         
         let view = TestView {
-            Tag {}.aria(live: .polite)
+            Tag {}.accessibilityLive(.polite)
+            Tag {}.accessibilityLive(.assertive)
+            Tag {}.accessibilityLive(.off)
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <tag aria-live="polite"></tag>
+                       <tag aria-live="polite"></tag>\
+                       <tag aria-live="assertive"></tag>\
+                       <tag aria-live="off"></tag>
                        """
         )
     }
@@ -2869,38 +3198,417 @@ final class AttributesTests: XCTestCase {
     func testOwnsAriaAttribute() throws {
         
         let view = TestView {
-            Tag {}.aria(owns: "live")
+            Tag {}.accessibilityOwns("id")
+            Tag {}.accessibilityOwns("id", "id")
+            Tag {}.accessibilityOwns(["id", "id"])
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <tag aria-owns="live"></tag>
+                       <tag aria-owns="id"></tag>\
+                       <tag aria-owns="id id"></tag>\
+                       <tag aria-owns="id id"></tag>
                        """
         )
     }
     
-    func testRelevantAriaAttribute() throws {
+    func testRelevantAccessibilityAttribute() throws {
         
         let view = TestView {
-            Tag {}.aria(relevant: .additions)
+            Tag {}.accessibilityRelevant(.additions)
+            Tag {}.accessibilityRelevant(.additions, .text)
+            Tag {}.accessibilityRelevant([.additions, .text])
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <tag aria-relevant="additions"></tag>
+                       <tag aria-relevant="additions"></tag>\
+                       <tag aria-relevant="additions text"></tag>\
+                       <tag aria-relevant="additions text"></tag>
                        """
         )
     }
     
-    func testRoleDescriptionAriaAttribute() throws {
+    func testRoleDescriptionAccessibilityAttribute() throws {
         
         let view = TestView {
-            Tag {}.aria(roleDescription: "description")
+            Tag {}.accessibilityRoleDescription("description")
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
                        <tag aria-roledescription="description"></tag>
+                       """
+        )
+    }
+    
+    func testSortAccessibilityAttribute() throws {
+        
+        let view = TestView {
+            Tag {}.accessibilitySort(.ascending)
+        }
+        
+        XCTAssertEqual(try renderer.render(view: view),
+                       """
+                       <tag aria-sort="ascending"></tag>
+                       """
+        )
+    }
+    
+    func testOrientationAccessibilityAttribute() throws {
+        
+        let view = TestView {
+            Tag {}.accessibilityOrientation(.horizontal)
+            Tag {}.accessibilityOrientation(.vertical)
+        }
+        
+        XCTAssertEqual(try renderer.render(view: view),
+                       """
+                       <tag aria-orientation="horizontal"></tag>\
+                       <tag aria-orientation="vertical"></tag>
+                       """
+        )
+    }
+    
+    func testRequiredAccessibilityAttribute() throws {
+        
+        let view = TestView {
+            Tag {}.accessibilityRequired()
+            Tag {}.accessibilityRequired(false)
+            Tag {}.accessibilityRequired(true)
+        }
+        
+        XCTAssertEqual(try renderer.render(view: view),
+                       """
+                       <tag aria-required="true"></tag>\
+                       <tag aria-required="false"></tag>\
+                       <tag aria-required="true"></tag>
+                       """
+        )
+    }
+    
+    func testReadOnlyAccessibilityAttribute() throws {
+        
+        let view = TestView {
+            Tag {}.accessibilityReadonly()
+            Tag {}.accessibilityReadonly(false)
+            Tag {}.accessibilityReadonly(true)
+        }
+        
+        XCTAssertEqual(try renderer.render(view: view),
+                       """
+                       <tag aria-readonly="true"></tag>\
+                       <tag aria-readonly="false"></tag>\
+                       <tag aria-readonly="true"></tag>
+                       """
+        )
+    }
+    
+    func testModalAccessibilityAttribute() throws {
+        
+        let view = TestView {
+            Tag {}.accessibilityModal()
+            Tag {}.accessibilityModal(false)
+            Tag {}.accessibilityModal(true)
+        }
+        
+        XCTAssertEqual(try renderer.render(view: view),
+                       """
+                       <tag aria-modal="true"></tag>\
+                       <tag aria-modal="false"></tag>\
+                       <tag aria-modal="true"></tag>
+                       """
+        )
+    }
+    
+    func testLevelAccessibilityAttribute() throws {
+        
+        let view = TestView {
+            Tag {}.accessibilityLevel(2)
+        }
+        
+        XCTAssertEqual(try renderer.render(view: view),
+                       """
+                       <tag aria-level="2"></tag>
+                       """
+        )
+    }
+    
+    func testHintAccessibilityAttribute() throws {
+        
+        let view = TestView {
+            Tag {}.accessibilityHint("Lorem ipsum...")
+        }
+        
+        XCTAssertEqual(try renderer.render(view: view),
+                       """
+                       <tag aria-placeholder="Lorem ipsum..."></tag>
+                       """
+        )
+    }
+    
+    func testPositionAccessibilityAttribute() throws {
+        
+        let view = TestView {
+            Tag {}.accessibilityPosition(5, in: 10)
+        }
+        
+        XCTAssertEqual(try renderer.render(view: view),
+                       """
+                       <tag aria-posinset="5" aria-setsize="10"></tag>
+                       """
+        )
+    }
+    
+    func testMultilineAccessibilityAttribute() throws {
+        
+        let view = TestView {
+            Tag {}.accessibilityMultiline()
+            Tag {}.accessibilityMultiline(false)
+            Tag {}.accessibilityMultiline(true)
+        }
+        
+        XCTAssertEqual(try renderer.render(view: view),
+                       """
+                       <tag aria-multiline="true"></tag>\
+                       <tag aria-multiline="false"></tag>\
+                       <tag aria-multiline="true"></tag>
+                       """
+        )
+    }
+    
+    func testMultiselectAccessibilityAttribute() throws {
+        
+        let view = TestView {
+            Tag {}.accessibilityMultiselect()
+            Tag {}.accessibilityMultiselect(false)
+            Tag {}.accessibilityMultiselect(true)
+        }
+        
+        XCTAssertEqual(try renderer.render(view: view),
+                       """
+                       <tag aria-multiselectable="true"></tag>\
+                       <tag aria-multiselectable="false"></tag>\
+                       <tag aria-multiselectable="true"></tag>
+                       """
+        )
+    }
+    
+    func testRowIndexAccessibilityAttribute() throws {
+        
+        let view = TestView {
+            Tag {}.accessibilityRowIndex(10)
+        }
+        
+        XCTAssertEqual(try renderer.render(view: view),
+                       """
+                       <tag aria-rowindex="10"></tag>
+                       """
+        )
+    }
+    
+    func testRowCountAccessibilityAttribute() throws {
+        
+        let view = TestView {
+            Tag {}.accessibilityRowCount(10)
+        }
+        
+        XCTAssertEqual(try renderer.render(view: view),
+                       """
+                       <tag aria-rowcount="10"></tag>
+                       """
+        )
+    }
+    
+    func testColumnIndexAccessibilityAttribute() throws {
+        
+        let view = TestView {
+            Tag {}.accessibilityColumnIndex(10)
+        }
+        
+        XCTAssertEqual(try renderer.render(view: view),
+                       """
+                       <tag aria-colindex="10"></tag>
+                       """
+        )
+    }
+    
+    func testColumnCountAccessibilityAttribute() throws {
+        
+        let view = TestView {
+            Tag {}.accessibilityColumnCount(10)
+        }
+        
+        XCTAssertEqual(try renderer.render(view: view),
+                       """
+                       <tag aria-colcount="10"></tag>
+                       """
+        )
+    }
+    
+    func testRowSpanAccessibilityAttribute() throws {
+        
+        let view = TestView {
+            Tag {}.accessibilityRowSpan(10)
+        }
+        
+        XCTAssertEqual(try renderer.render(view: view),
+                       """
+                       <tag aria-rowspan="10"></tag>
+                       """
+        )
+    }
+    
+    func testColumnSpanAccessibilityAttribute() throws {
+        
+        let view = TestView {
+            Tag {}.accessibilityColumnSpan(10)
+        }
+        
+        XCTAssertEqual(try renderer.render(view: view),
+                       """
+                       <tag aria-colspan="10"></tag>
+                       """
+        )
+    }
+    
+    func testMaximumValueAccessibilityAttribute() throws {
+        
+        let view = TestView {
+            Tag {}.accessibilityMaximumValue(10.0)
+        }
+        
+        XCTAssertEqual(try renderer.render(view: view),
+                       """
+                       <tag aria-valuemax="10.0"></tag>
+                       """
+        )
+    }
+    
+    func testMinimumValueAccessibilityAttribute() throws {
+        
+        let view = TestView {
+            Tag {}.accessibilityMinimumValue(10.0)
+        }
+        
+        XCTAssertEqual(try renderer.render(view: view),
+                       """
+                       <tag aria-valuemin="10.0"></tag>
+                       """
+        )
+    }
+    
+    func testValueAccessibilityAttribute() throws {
+        
+        let view = TestView {
+            Tag {}.accessibilityValue(20.0)
+            Tag {}.accessibilityValue(20.0, description: "Twenty point zero")
+        }
+        
+        XCTAssertEqual(try renderer.render(view: view),
+                       """
+                       <tag aria-valuenow="20.0"></tag>\
+                       <tag aria-valuenow="20.0" aria-valuetext="Twenty point zero"></tag>
+                       """
+        )
+    }
+    
+    func testPressedAccessibilityAttribute() throws {
+        
+        let view = TestView {
+            Tag {}.accessibilityPressed()
+            Tag {}.accessibilityPressed(false)
+            Tag {}.accessibilityPressed(true)
+        }
+        
+        XCTAssertEqual(try renderer.render(view: view),
+                       """
+                       <tag aria-pressed="true"></tag>\
+                       <tag aria-pressed="false"></tag>\
+                       <tag aria-pressed="true"></tag>
+                       """
+        )
+    }
+    
+    func testSelectedAccessibilityAttribute() throws {
+        
+        let view = TestView {
+            Tag {}.accessibilitySelected()
+            Tag {}.accessibilitySelected(false)
+            Tag {}.accessibilitySelected(true)
+        }
+        
+        XCTAssertEqual(try renderer.render(view: view),
+                       """
+                       <tag aria-selected="true"></tag>\
+                       <tag aria-selected="false"></tag>\
+                       <tag aria-selected="true"></tag>
+                       """
+        )
+    }
+    
+    func testCheckedAccessibilityAttribute() throws {
+        
+        let view = TestView {
+            Tag {}.accessibilityChecked()
+            Tag {}.accessibilityChecked(false)
+            Tag {}.accessibilityChecked(true)
+        }
+        
+        XCTAssertEqual(try renderer.render(view: view),
+                       """
+                       <tag aria-checked="true"></tag>\
+                       <tag aria-checked="false"></tag>\
+                       <tag aria-checked="true"></tag>
+                       """
+        )
+    }
+    
+    func testExpandedAccessibilityAttribute() throws {
+        
+        let view = TestView {
+            Tag {}.accessibilityExpanded()
+            Tag {}.accessibilityExpanded(false)
+            Tag {}.accessibilityExpanded(true)
+        }
+        
+        XCTAssertEqual(try renderer.render(view: view),
+                       """
+                       <tag aria-expanded="true"></tag>\
+                       <tag aria-expanded="false"></tag>\
+                       <tag aria-expanded="true"></tag>
+                       """
+        )
+    }
+    
+    func testFocusedAccessibilityAttribute() throws {
+        
+        let view = TestView {
+            Tag {}.accessibilityFocused("id")
+        }
+        
+        XCTAssertEqual(try renderer.render(view: view),
+                       """
+                       <tag aria-activedescendant="id"></tag>
+                       """
+        )
+    }
+    
+    func testCompletionAccessibilityAttribute() throws {
+        
+        let view = TestView {
+            Tag {}.accessibilityCompletion(.inline, .list)
+            Tag {}.accessibilityCompletion(.list)
+            Tag {}.accessibilityCompletion(.inline)
+            Tag {}.accessibilityCompletion(.list, .inline)
+        }
+        
+        XCTAssertEqual(try renderer.render(view: view),
+                       """
+                       <tag aria-autocomplete="both"></tag>\
+                       <tag aria-autocomplete="list"></tag>\
+                       <tag aria-autocomplete="inline"></tag>\
+                       <tag aria-autocomplete="both"></tag>
                        """
         )
     }
@@ -3121,6 +3829,19 @@ final class AttributesTests: XCTestCase {
                        <tag inputmode="search"></tag>\
                        <tag inputmode="text"></tag>\
                        <tag inputmode="url"></tag>
+                       """
+        )
+    }
+    
+    func testAbbreviatedAttribute() throws {
+        
+        let view = TestView {
+            Tag {}.abbreviated("HTML")
+        }
+        
+        XCTAssertEqual(try renderer.render(view: view),
+                       """
+                       <tag abbr="HTML"></tag>
                        """
         )
     }

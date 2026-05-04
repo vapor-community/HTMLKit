@@ -7,14 +7,17 @@ extension HTMLKit.Input {
     /// - Parameter value: A container holding the concrete prompt type.
     ///
     /// - Returns: The input
-    internal func placeholder(_ value: PromptType) -> HTMLKit.Input {
+    internal func placeholder(_ value: DynamicString) -> HTMLKit.Input {
         
         switch value {
-        case .string(let string):
-            return self.placeholder(string)
+        case .localized(let value, let tableName):
+            return self.placeholder(value, tableName: tableName)
             
-        case .value(let value):
+        case .literal(let value):
             return self.placeholder(value)
+            
+        default:
+            return self
         }
     }
 }
@@ -26,14 +29,17 @@ extension HTMLKit.TextArea {
     /// - Parameter value: The container that holds the prompt types.
     ///
     /// - Returns: The text area
-    internal func placeholder(_ value: PromptType) -> HTMLKit.TextArea {
+    internal func placeholder(_ value: DynamicString) -> HTMLKit.TextArea {
         
         switch value {
-        case .string(let string):
-            return self.placeholder(string)
+        case .localized(let value, let tableName):
+            return self.placeholder(value, tableName: tableName)
             
-        case .value(let value):
+        case .literal(let value):
             return self.placeholder(value)
+            
+        default:
+            return self
         }
     }
 }

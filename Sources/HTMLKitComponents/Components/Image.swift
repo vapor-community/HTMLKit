@@ -13,17 +13,20 @@ public struct Image: View, Modifiable, Identifiable {
     internal var id: String?
     
     /// The source path of the image.
-    internal let source: DynamicType
+    internal let source: DynamicSource
     
     /// The class names of the image.
     internal var classes: [String]
+    
+    /// The accessibility label of the image.
+    internal var label: DynamicString?
     
     /// Create an image.
     ///
     /// - Parameter source: The souce path to load from.
     public init(source: String) {
         
-        self.source = .string(source)
+        self.source = .literal(source)
         self.classes = ["image"]
     }
     
@@ -32,17 +35,19 @@ public struct Image: View, Modifiable, Identifiable {
     /// - Parameter source: The souce path to load from.
     public init(source: EnvironmentValue) {
 
-         self.source = .value(source)
+         self.source = .deferred(source)
          self.classes = ["image"]
      }
     
     public var body: Content {
         HTMLKit.Image()
             .source(source)
-            .role(.img)
-            .class(classes.joined(separator: " "))
+            .class(classes)
             .modify(unwrap: id) {
                 $0.id($1)
+            }
+            .modify(unwrap: label) {
+                $0.alternate($1)
             }
     }
     
@@ -62,6 +67,48 @@ public struct Image: View, Modifiable, Identifiable {
     /// - Returns: The image
     public func imageStyle(_ style: ImageConfiguration) -> Image {
         return self.mutate(classes: style.configuration)
+    }
+    
+    /// Add a label to the image.
+    /// 
+    /// - Parameter value: The label to apply.
+    /// 
+    /// - Returns: The image
+    @_disfavoredOverload
+    public func accessibilityLabel(_ value: String) -> Image {
+        
+        var copy = self
+        copy.label = .literal(value)
+        
+        return copy
+    }
+    
+    /// Add a localized label to the image.
+    ///  
+    /// - Parameters:
+    ///   - localizedKey: The label to apply.
+    ///   - tableName: The translation table to look in.
+    ///   
+    /// - Returns: The image
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Image {
+        
+        var copy = self
+        copy.label = .localized(localizedKey, tableName)
+        
+        return copy
+    }
+    
+    /// Add a verbatim label to the image.
+    ///  
+    /// - Parameter value: The label to apply.
+    ///  
+    /// - Returns: The image
+    public func accessibilityLabel(verbatim value: String) -> Image {
+        
+        var copy = self
+        copy.label = .literal(value)
+        
+        return copy
     }
 }
 
@@ -90,7 +137,12 @@ extension Image: ImageModifier {
 
 extension Image: ViewModifier {
     
+    @available(*, deprecated, message: "Use the background(_:) modifier instead.")
     public func backgroundColor(_ color: Tokens.BackgroundColor) -> Image {
+        return self.mutate(backgroundcolor: color.value)
+    }
+    
+    public func background(_ color: Tokens.BackgroundColor) -> Image {
         return self.mutate(backgroundcolor: color.value)
     }
     
@@ -119,16 +171,17 @@ extension Image: ViewModifier {
         return self.mutate(padding: length.value, insets: insets)
     }
     
+    @available(*, deprecated, message: "Use the border(_:width:shape:) modifier instead.")
     public func borderShape(_ shape: Tokens.BorderShape) -> Image {
         return self.mutate(bordershape: shape.value)
     }
     
-    public func border(_ color: Tokens.BorderColor, width: Tokens.BorderWidth = .small) -> Image {
-        return self.mutate(border: color.value, width: width.value)
+    public func border(_ color: Tokens.BorderColor, width: Tokens.BorderWidth = .small, shape: Tokens.BorderShape? = nil) -> Image {
+        return self.mutate(border: color.value, width: width.value, shape: shape?.value)
     }
     
     public func frame(width: Tokens.ViewWidth, height: Tokens.ViewHeight? = nil, alignment: Tokens.FrameAlignment? = nil) -> Image {
-        return mutate(frame: width.value, height: height?.value, alignment: alignment?.value)
+        return self.mutate(frame: width.value, height: height?.value, alignment: alignment?.value)
     }
     
     public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> Image {
@@ -139,26 +192,26 @@ extension Image: ViewModifier {
 extension Image: GraphicsModifier {
     
     public func blur(_ level: Tokens.BlurLevel) -> Image {
-        return mutate(blur: level.value)
+        return self.mutate(blur: level.value)
     }
     
     public func grayscale(_ depth: Tokens.GrayscaleDepth) -> Image {
-        return mutate(grayscale: depth.value)
+        return self.mutate(grayscale: depth.value)
     }
     
     public func brightness(_ level: Tokens.BrightnessLevel) -> Image {
-        return mutate(brightness: level.value)
+        return self.mutate(brightness: level.value)
     }
     
     public func saturation(_ level: Tokens.SaturationLevel) -> Image {
-        return mutate(saturation: level.value)
+        return self.mutate(saturation: level.value)
     }
     
     public func contrast(_ level: Tokens.ContrastLevel) -> Image {
-        return mutate(contrast: level.value)
+        return self.mutate(contrast: level.value)
     }
     
     public func shadow(_ radius: Tokens.BlurRadius = .small, color: Tokens.ShadowColor = .black) -> Image {
-        return mutate(shadow: radius.value, color: color.value)
+        return self.mutate(shadow: radius.value, color: color.value)
     }
 }

@@ -2,7 +2,7 @@ import OrderedCollections
 
 /// The alias combines the global attributes of the vector attributes.
 @_documentation(visibility: internal)
-public typealias GlobalVectorAttributes = IdentifierAttribute & TabulatorAttribute & ClassAttribute & StyleAttribute & FillAttribute & FillOpacityAttribute & StrokeAttribute & StrokeWidthAttribute & StrokeOpacityAttribute & StrokeLineCapAttribute & StrokeLineJoinAttribute
+public typealias GlobalVectorAttributes = IdentifierAttribute & TabulatorAttribute & ClassAttribute & StyleAttribute & FillAttribute & StrokeAttribute
 
 /// A type that provides the `draw` modifier.
 @_documentation(visibility: internal)
@@ -25,7 +25,7 @@ public protocol DrawAttribute: Attribute {
 
 extension DrawAttribute where Self: ContentNode {
 
-    internal func mutate(draw value: String) -> Self {
+    internal func mutate(draw value: AttributeData) -> Self {
         return self.mutate(key: "d", value: value)
     }
 }
@@ -53,43 +53,11 @@ public protocol FillAttribute: Attribute {
 
 extension FillAttribute where Self: ContentNode {
     
-    internal func mutate(fill value: String) -> Self {
+    internal func mutate(fill value: AttributeData) -> Self {
         return self.mutate(key: "fill", value: value)
     }
     
-    internal func mutate(fillopacity value: Double?) -> Self {
-        
-        if let value = value {
-            return self.mutate(key: "fill-opacity", value: value)
-        }
-        
-        return self
-    }
-}
-
-/// A type that provides the `fillOpacity` modifier.
-@_documentation(visibility: internal)
-public protocol FillOpacityAttribute: Attribute {
-    
-    /// Define the opacity of the filling.
-    ///
-    /// ```swift
-    /// Vector {
-    ///     Circle {
-    ///     }
-    ///     .fillOpacity(0.5)
-    /// }
-    /// ```
-    ///
-    /// - Parameter value: The opacity to apply.
-    ///
-    /// - Returns: The element
-    func fillOpacity(_ value: Double) -> Self
-}
-
-extension FillOpacityAttribute where Self: ContentNode {
-    
-    internal func mutate(fillopacity value: Double) -> Self {
+    internal func mutate(fillopacity value: AttributeData) -> Self {
         return self.mutate(key: "fill-opacity", value: value)
     }
 }
@@ -120,151 +88,23 @@ public protocol StrokeAttribute: Attribute {
 
 extension StrokeAttribute where Self: ContentNode {
     
-    internal func mutate(stroke value: String) -> Self {
+    internal func mutate(stroke value: AttributeData) -> Self {
         return self.mutate(key: "stroke", value: value)
     }
     
-    internal func mutate(strokewidth value: Int?) -> Self {
-        
-        if let value = value {
-            return self.mutate(key: "stroke-width", value: value)
-        }
-        
-        return self
-    }
-    
-    internal func mutate(strokeopacity value: Double?) -> Self {
-        
-        if let value = value {
-            return self.mutate(key: "stroke-opacity", value: value)
-        }
-        
-        return self
-    }
-    
-    internal func mutate(strokelinecap value: String?) -> Self {
-        
-        if let value = value {
-            return self.mutate(key: "stroke-linecap", value: value)
-        }
-        
-        return self
-    }
-    
-    internal func mutate(strokelinejoin value: String?) -> Self {
-        
-        if let value = value {
-            return self.mutate(key: "stroke-linejoin", value: value)
-        }
-        
-        return self
-    }
-}
-
-/// A type that provides the `strokeWidth` modifier.
-@_documentation(visibility: internal)
-public protocol StrokeWidthAttribute: Attribute {
-    
-    /// Set the thickness of the stroke.
-    ///
-    /// ```swift
-    /// Vector {
-    ///     Circle {
-    ///     }
-    ///     .strokeWidth(3)
-    /// }
-    /// ```
-    ///
-    /// - Parameter size: The thickness to apply to the stroke.
-    ///
-    /// - Returns: The element
-    func strokeWidth(_ size: Int) -> Self
-}
-
-extension StrokeWidthAttribute where Self: ContentNode {
-    
-    internal func mutate(strokewidth value: Int) -> Self {
+    internal func mutate(strokewidth value: AttributeData) -> Self {
         return self.mutate(key: "stroke-width", value: value)
     }
-}
-
-/// A type that provides the `strokeOpacity` modifier.
-@_documentation(visibility: internal)
-public protocol StrokeOpacityAttribute: Attribute {
     
-    /// Set the opacity for the stroke.
-    ///
-    /// ```swift
-    /// Vector {
-    ///     Line {
-    ///     }
-    ///     .strokeOpacity(0.8)
-    /// }
-    /// ```
-    ///
-    /// - Parameter value: The level to apply to the stroke.
-    ///
-    /// - Returns: The element
-    func strokeOpacity(_ value: Double) -> Self
-}
-
-extension StrokeOpacityAttribute where Self: ContentNode {
-    
-    internal func mutate(strokeopacity value: Double) -> Self {
+    internal func mutate(strokeopacity value: AttributeData) -> Self {
         return self.mutate(key: "stroke-opacity", value: value)
     }
-}
-
-/// A type that provides the `strokeLineCap` modifier.
-@_documentation(visibility: internal)
-public protocol StrokeLineCapAttribute: Attribute {
     
-    /// Set the shape of the stroke end.
-    ///
-    /// ```swift
-    /// Vector {
-    ///     Line {
-    ///     }
-    ///     .strokeLineCap(.butt)
-    /// }
-    /// ```
-    ///
-    /// - Parameter value: The shape to end the stroke.
-    ///
-    /// - Returns: The element
-    func strokeLineCap(_ value: Values.Linecap) -> Self
-}
-
-extension StrokeLineCapAttribute where Self: ContentNode {
-    
-    internal func mutate(strokelinecap value: String) -> Self {
+    internal func mutate(strokelinecap value: AttributeData) -> Self {
         return self.mutate(key: "stroke-linecap", value: value)
     }
-}
-
-/// A type that provides the `strokeLineJoin` modifier.
-@_documentation(visibility: internal)
-public protocol StrokeLineJoinAttribute: Attribute {
     
-    /// Set the shape of the stroke join.
-    ///
-    /// ```swift
-    /// Vector {
-    ///     Line {
-    ///     }
-    ///     .strokeLineJoin(.miter)
-    /// }
-    /// ```
-    ///
-    /// - Parameter value: The shape when two lines meet.
-    ///
-    /// - Returns: The element
-    func strokeLineJoin(_ value: Values.Linejoin) -> Self
-}
-
-extension StrokeLineJoinAttribute where Self: ContentNode {
-    
-    internal func mutate(strokelinejoin value: String) -> Self {
+    internal func mutate(strokelinejoin value: AttributeData) -> Self {
         return self.mutate(key: "stroke-linejoin", value: value)
     }
 }
@@ -291,7 +131,7 @@ public protocol RadiusAttribute: Attribute {
 
 extension RadiusAttribute where Self: ContentNode {
     
-    internal func mutate(radius value: Int) -> Self {
+    internal func mutate(radius value: AttributeData) -> Self {
         return self.mutate(key: "r", value: value)
     }
 }
@@ -351,11 +191,11 @@ public protocol PositionPointAttribute: Attribute {
 
 extension PositionPointAttribute where Self: ContentNode {
     
-    internal func mutate(x value: String) -> Self {
+    internal func mutate(x value: AttributeData) -> Self {
         return self.mutate(key: "x", value: value)
     }
     
-    internal func mutate(y value: String) -> Self {
+    internal func mutate(y value: AttributeData) -> Self {
         return self.mutate(key: "y", value: value)
     }
 }
@@ -415,11 +255,11 @@ public protocol RadiusPointAttribute: Attribute {
 
 extension RadiusPointAttribute where Self: ContentNode {
     
-    internal func mutate(rx value: String) -> Self {
+    internal func mutate(rx value: AttributeData) -> Self {
         return self.mutate(key: "rx", value: value)
     }
     
-    internal func mutate(ry value: String) -> Self {
+    internal func mutate(ry value: AttributeData) -> Self {
         return self.mutate(key: "ry", value: value)
     }
 }
@@ -481,11 +321,11 @@ public protocol CenterPointAttribute: Attribute {
 
 extension CenterPointAttribute where Self: ContentNode {
     
-    internal func mutate(cx value: String) -> Self {
+    internal func mutate(cx value: AttributeData) -> Self {
         return self.mutate(key: "cx", value: value)
     }
     
-    internal func mutate(cy value: String) -> Self {
+    internal func mutate(cy value: AttributeData) -> Self {
         return self.mutate(key: "cy", value: value)
     }
 }
@@ -531,7 +371,7 @@ public protocol ViewBoxAttribute: Attribute {
 
 extension ViewBoxAttribute where Self: ContentNode {
     
-    internal func mutate(viewbox value: String) -> Self {
+    internal func mutate(viewbox value: AttributeData) -> Self {
         return self.mutate(key: "viewbox", value: value)
     }
 }
@@ -556,7 +396,7 @@ public protocol NamespaceAttribute: Attribute {
 
 extension NamespaceAttribute where Self: ContentNode {
     
-    internal func mutate(namespace value: String) -> Self {
+    internal func mutate(namespace value: AttributeData) -> Self {
         return self.mutate(key: "xmlns", value: value)
     }
 }
@@ -583,7 +423,7 @@ public protocol PointsAttribute: Attribute {
 
 extension PointsAttribute where Self: ContentNode {
     
-    internal func mutate(points value: String) -> Self {
+    internal func mutate(points value: AttributeData) -> Self {
         return self.mutate(key: "points", value: value)
     }
 }

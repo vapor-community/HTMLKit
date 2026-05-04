@@ -1,30 +1,30 @@
-/// A type that represents a markdown token
+/// A type that represents a markdown node.
 internal final class MarkdownNode {
     
-    /// A enumeration of different kinds of nodes
+    /// An enumeration of different kinds of nodes.
     internal enum NodeKind {
         
-        /// Indicates a block node
+        /// Indicates a block node.
         ///
-        /// A block node can contain children
+        /// A block node can contain children.
         case block(String)
         
-        /// Indicates a inline node
+        /// Indicates an inline node.
         ///
-        /// A inline node can not contain any children
+        /// An inline node cannot contain any children.
         case inline(String)
     }
     
-    /// The nodes descendants
+    /// The nodes descendants.
     internal var children: [MarkdownNode]
     
-    /// The kind of the node
+    /// The kind of the node.
     internal var kind: NodeKind
     
-    /// The raw content of the node
+    /// The raw content of the node.
     internal var value: String
     
-    /// Initiates a markdown node
+    /// Create a markdown node.
     internal init(kind: NodeKind, value: String) {
         
         self.kind = kind

@@ -181,6 +181,26 @@ final class RenderingTests: XCTestCase {
         )
     }
     
+    func testAttributeConcatenation() throws {
+        
+        let isModified: Bool = true
+        
+        let view = TestView {
+            Division {
+            }
+            .class("lorem")
+            .modify(if: isModified, use: .combining) {
+                $0.class("ipsum")
+            }
+        }
+        
+        XCTAssertEqual(try renderer!.render(view: view),
+                       """
+                       <div class="lorem ipsum"></div>
+                       """
+        )
+    }
+    
     func testUnmodified() throws {
         
         let isModified: Bool = false
@@ -215,6 +235,69 @@ final class RenderingTests: XCTestCase {
         XCTAssertEqual(try renderer!.render(view: view),
                        """
                        <input placeholder="test">
+                       """
+        )
+    }
+    
+    func testUnwrappedAttributeConcatenation() throws {
+        
+        let passcode: String? = "ipsum"
+        
+        let view = TestView {
+            Division {
+            }
+            .class("lorem")
+            .modify(unwrap: passcode, use: .combining) {
+                $0.class($1)
+            }
+        }
+        
+        XCTAssertEqual(try renderer!.render(view: view),
+                       """
+                       <div class="lorem ipsum"></div>
+                       """
+        )
+    }
+    
+    func testUnwrappedAttributeAttachment() throws {
+        
+        let passcode: String? = "ipsum"
+        
+        let view = TestView {
+            Input()
+                .class("lorem")
+                .modify(unwrap: passcode, use: .combining) {
+                    $0.placeholder($1)
+                }
+        }
+        
+        XCTAssertEqual(try renderer!.render(view: view),
+                       """
+                       <input class="lorem" placeholder="ipsum">
+                       """
+        )
+    }
+    
+    func testModifiedAndContextChange() throws {
+        
+        let view = TestView {
+            Input()
+                .class("<h1>lorem</h1>")
+                .modify(if: false, use: .combining) {
+                    $0.custom(key: "class", value: "<h1>ipsum</h1>", context: .trusted)
+                }
+            
+            Input()
+                .class("<h1>lorem</h1>")
+                .modify(if: true, use: .combining) {
+                    $0.custom(key: "class", value: "<h1>ipsum</h1>", context: .trusted)
+                }
+        }
+        
+        XCTAssertEqual(try renderer!.render(view: view),
+                       """
+                       <input class="&lt;h1>lorem&lt;/h1>">\
+                       <input class="<h1>ipsum</h1>">
                        """
         )
     }
@@ -300,17 +383,17 @@ final class RenderingTests: XCTestCase {
     /// Tests the Markdown rendering for inline code emphasis
     ///
     /// The renderer is expected to convert the Markdown syntax into the HTML equivalent
-    func testRenderingMonospaceMarkdown() throws {
+    func testRenderingCodeMarkdown() throws {
         
         let view = TestView {
-            MarkdownString("`code`")
-            MarkdownString("\(code: "code")")
+            MarkdownString("`<div>test</div>`")
+            MarkdownString("\(code: "**test**")")
         }
         
         XCTAssertEqual(try renderer!.render(view: view),
                        """
-                       <code>code</code>\
-                       <code>code</code>
+                       <code>&lt;div&gt;test&lt;/div&gt;</code>\
+                       <code>**test**</code>
                        """
         )
     }
@@ -344,13 +427,17 @@ final class RenderingTests: XCTestCase {
             MarkdownString("[Link](https://www.vapor.codes)")
             MarkdownString("\(link: "https://www.vapor.codes")")
             MarkdownString("\(email: "alone@home.com")")
+            MarkdownString("[Vapor](https://www.vapor.codes) and [Swift](https://www.swift.org)")
+            MarkdownString("\(link: "https://www.vapor.codes") and \(link: "https://www.swift.org")")
         }
         
         XCTAssertEqual(try renderer!.render(view: view),
                        """
                        <a href="https://www.vapor.codes" target="_blank">Link</a>\
                        <a href="https://www.vapor.codes" target="_blank">https://www.vapor.codes</a>\
-                       <a href="mailto:alone@home.com" target="_blank">alone@home.com</a>
+                       <a href="mailto:alone@home.com" target="_blank">alone@home.com</a>\
+                       <a href="https://www.vapor.codes" target="_blank">Vapor</a> and <a href="https://www.swift.org" target="_blank">Swift</a>\
+                       <a href="https://www.vapor.codes" target="_blank">https://www.vapor.codes</a> and <a href="https://www.swift.org" target="_blank">https://www.swift.org</a>
                        """
         )
     }

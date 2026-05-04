@@ -1,6 +1,6 @@
 internal final class MarkdownLexer {
     
-    /// A enumeration of different states of the tokenizer
+    /// An enumeration of different states of the tokenizer.
     ///
     /// Initial is the initial state.
     internal enum InsertionMode {
@@ -14,7 +14,7 @@ internal final class MarkdownLexer {
         case link
     }
     
-    /// A enumeration of different level of logging
+    /// An enumeration of different level of logging.
     ///
     /// None is the initial state.
     internal enum LogLevel {
@@ -24,16 +24,16 @@ internal final class MarkdownLexer {
         case debug
     }
     
-    /// The  current state of the tokenizer
+    /// The current state of the tokenizer.
     private var mode: InsertionMode
     
-    /// The temporary token collection
+    /// The temporary token collection.
     private var tokens: [MarkdownToken]
     
-    /// The level of logging
+    /// The level of logging.
     private var level: LogLevel
     
-    /// Creates a the tokenizer
+    /// Create a tokenizer.
     internal init(mode: InsertionMode = .initial, log level: LogLevel = .none) {
         
         self.mode = .initial
@@ -41,19 +41,19 @@ internal final class MarkdownLexer {
         self.tokens = []
     }
     
-    /// Verboses the steps of the tokenizer depending on the log level
+    /// Verboses the steps of the tokenizer depending on the log level.
     private func verbose(_ message: Any...) {
         
         switch self.level {
         case .information:
-            print("Message:", message)
+            print(message)
             
         default:
             break
         }
     }
     
-    /// Emits a token into the token collection
+    /// Emits a token into the token collection.
     private func emit(token: MarkdownToken) {
         
         self.verbose(#function)
@@ -61,20 +61,20 @@ internal final class MarkdownLexer {
         self.tokens.append(token)
     }
     
-    /// Consumes the content by the state the tokenizer is currently in
+    /// Consumes the content by the state the tokenizer is currently in.
     internal func consume(string: String) -> [MarkdownToken] {
         
         for character in string {
             
             switch mode {
             case .asteriskEmphasis:
-                self.mode = consumeAsteriskEmphisis(character)
+                self.mode = consumeAsteriskEmphasis(character)
                 
             case .tildeEmphasis:
-                self.mode = consumeTildeEmphisis(character)
+                self.mode = consumeTildeEmphasis(character)
                 
             case .underscoreEmphasis:
-                self.mode = consumeUnderscoreEmphisis(character)
+                self.mode = consumeUnderscoreEmphasis(character)
                 
             case .textLiteral:
                 self.mode = consumeTextLiteral(character)
@@ -93,7 +93,7 @@ internal final class MarkdownLexer {
         return self.tokens
     }
     
-    /// Consumes the character
+    /// Consumes the character.
     private func consumeCharacter(_ character: Character) -> InsertionMode {
         
         self.verbose(#function, character)
@@ -160,7 +160,7 @@ internal final class MarkdownLexer {
         return .initial
     }
     
-    /// Consumes a character for a bold or italic emphisis
+    /// Consumes a character for a bold or italic emphasis
     ///
     /// ```
     /// *italic*
@@ -168,7 +168,7 @@ internal final class MarkdownLexer {
     /// ***italic***
     /// ```
     ///
-    private func consumeAsteriskEmphisis(_ character: Character) -> InsertionMode {
+    private func consumeAsteriskEmphasis(_ character: Character) -> InsertionMode {
         
         self.verbose(#function, character)
         
@@ -185,7 +185,7 @@ internal final class MarkdownLexer {
         if character.isUnderscore {
             
             let token = MarkdownToken(kind: .emphasis)
-            token.value.append(character)
+            token.value += String(character)
             
             self.emit(token: token)
             
@@ -219,14 +219,14 @@ internal final class MarkdownLexer {
         return .asteriskEmphasis
     }
     
-    /// Consumes a character for a strikethrough emphisis
+    /// Consumes a character for a strikethrough emphasis.
     ///
     /// ```
     /// ~string~
     /// ~~string~~
     /// ```
     ///
-    private func consumeTildeEmphisis(_ character: Character) -> InsertionMode {
+    private func consumeTildeEmphasis(_ character: Character) -> InsertionMode {
         
         self.verbose(#function, character)
         
@@ -277,7 +277,7 @@ internal final class MarkdownLexer {
         return .tildeEmphasis
     }
     
-    /// Consumes a character for a bold or italic emphisis
+    /// Consumes a character for a bold or italic emphasis.
     ///
     /// ```
     /// _string_
@@ -285,7 +285,7 @@ internal final class MarkdownLexer {
     /// ___string___
     /// ```
     ///
-    private func consumeUnderscoreEmphisis(_ character: Character) -> InsertionMode {
+    private func consumeUnderscoreEmphasis(_ character: Character) -> InsertionMode {
         
         self.verbose(#function, character)
         
@@ -336,7 +336,7 @@ internal final class MarkdownLexer {
         return .underscoreEmphasis
     }
     
-    /// Consumes a character for a text literal
+    /// Consumes a character for a text literal.
     ///
     /// ```
     /// Text
@@ -400,11 +400,6 @@ internal final class MarkdownLexer {
             return .link
         }
         
-        if character.isRightParenthesis {
-            
-            return .initial
-        }
-        
         if let last = self.tokens.last {
             last.value += String(character)
         }
@@ -412,7 +407,7 @@ internal final class MarkdownLexer {
         return .textLiteral
     }
     
-    /// Consumes a character for a code emphisis
+    /// Consumes a character for a code emphasis.
     ///
     /// ```
     /// `code`
@@ -422,20 +417,41 @@ internal final class MarkdownLexer {
         
         self.verbose(#function, character)
         
-        if character.isLetter || character.isWhitespace {
+        if character.isBackTick {
+            
+            let token = MarkdownToken(kind: .code)
+            token.value += String(character)
+            
+            self.emit(token: token)
+            
+            return .initial
+        }
+        
+        if let last = self.tokens.last {
+
+            if last.kind == .code {
+                
+                let token = MarkdownToken(kind: .textLiteral)
+                token.value += String(character)
+                
+                self.emit(token: token)
+                
+            } else {
+                last.value += String(character)
+            }
+            
+        } else {
             
             let token = MarkdownToken(kind: .textLiteral)
             token.value += String(character)
             
             self.emit(token: token)
-            
-            return .textLiteral
         }
         
-        return .initial
+        return .code
     }
     
-    /// Consumes a character for a link emphisis
+    /// Consumes a character for a link emphasis.
     ///
     /// ```
     /// [Vapor](https://www.vapor.codes)
@@ -445,20 +461,49 @@ internal final class MarkdownLexer {
         
         self.verbose(#function, character)
         
-        if character.isLetter {
+        if character.isRightSquareBracket {
+            return .link
+        }
+        
+        if character.isLeftParenthesis {
+            
+            let token = MarkdownToken(kind: .textLiteral)
+            
+            self.emit(token: token)
+            
+            return .link
+        }
+        
+        if character.isRightParenthesis {
+            
+            let token = MarkdownToken(kind: .link)
+            
+            self.emit(token: token)
+            
+            return .initial
+        }
+        
+        if let last = self.tokens.last {
+
+            if last.kind == .link {
+                
+                let token = MarkdownToken(kind: .textLiteral)
+                token.value += String(character)
+                
+                self.emit(token: token)
+                
+            } else {
+                last.value += String(character)
+            }
+            
+        } else {
             
             let token = MarkdownToken(kind: .textLiteral)
             token.value += String(character)
             
             self.emit(token: token)
-            
-            return .textLiteral
         }
         
-        if character.isLeftParenthesis {
-            return .link
-        }
-        
-        return .initial
+        return .link
     }
 }

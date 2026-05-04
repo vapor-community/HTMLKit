@@ -31,7 +31,7 @@ final class SecurityTests: XCTestCase {
     
     func testEncodingActionContext() throws {
         
-        let attack = "test').appendTo(''); $('#test"
+        let attack = "'</script><script> var test = '<b>attack</b>';"
         
         let view = TestView {
             Button(role: .button) {
@@ -48,9 +48,7 @@ final class SecurityTests: XCTestCase {
                        """
                        <button type="button" class="button" id="sender">Show</button>\
                        <script>\
-                       $('#sender').onClick(function(){\
-                       $('#test&apos;).appendTo(&apos;&apos;); $(&apos;#test').show();\
-                       });\
+                       $('#sender').onClick(function(){$('#' var test = '&lt;b&gt;attack&lt;/b&gt;';').show();});\
                        </script>
                        """
         )
@@ -64,7 +62,7 @@ final class SecurityTests: XCTestCase {
             Text {
                 "Text"
             }
-            .backgroundColor(.custom(attack))
+            .background(.custom(attack))
         }
         
         XCTAssertEqual(try renderer.render(view: view),

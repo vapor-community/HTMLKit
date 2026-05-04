@@ -24,13 +24,16 @@ public struct Link: View, Modifiable, Identifiable {
     internal let destination: String
     
     /// The body content of the link.
-    internal var content: [Content]
+    internal let content: [Content]
     
     /// The class names for the link.
     internal var classes: [String]
     
     /// The event handlers on the link.
     internal var events: [String]?
+    
+    /// The accessibility label of the link.
+    internal var label: DynamicString?
     
     /// Create a link.
     ///
@@ -66,9 +69,12 @@ public struct Link: View, Modifiable, Identifiable {
         }
         .reference(destination)
         .target(target)
-        .class(classes.joined(separator: " "))
+        .class(classes)
         .modify(unwrap: id) {
             $0.id($1)
+        }
+        .modify(unwrap: label) {
+            $0.accessibilityLabel($1)
         }
     }
     
@@ -80,12 +86,54 @@ public struct Link: View, Modifiable, Identifiable {
     public func tag(_ value: String) -> Link {
         return self.mutate(id: value)
     }
+    
+    /// Add a label to the link.
+    /// 
+    /// - Parameter value: The label to apply.
+    /// 
+    /// - Returns: The link
+    @_disfavoredOverload
+    public func accessibilityLabel(_ value: String) -> Link {
+        
+        var copy = self
+        copy.label = .literal(value)
+        
+        return copy
+    }
+    
+    /// Add a localized label to the link.
+    ///  
+    /// - Parameters:
+    ///   - localizedKey: The label to apply.
+    ///   - tableName: The translation table to look in.
+    ///   
+    /// - Returns: The link
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Link {
+        
+        var copy = self
+        copy.label = .localized(localizedKey, tableName)
+        
+        return copy
+    }
+    
+    /// Add a verbatim label to the link.
+    ///  
+    /// - Parameter value: The label to apply.
+    ///  
+    /// - Returns: The link
+    public func accessibilityLabel(verbatim value: String) -> Link {
+        
+        var copy = self
+        copy.label = .literal(value)
+        
+        return copy
+    }
 }
 
 extension Link: TextModifier {
     
     public func font(_ family: Tokens.FontFamily) -> Link {
-        return mutate(fontfamily: family.value)
+        return self.mutate(fontfamily: family.value)
     }
     
     public func textStyle(_ style: Tokens.TextStyle) -> Link {
@@ -165,13 +213,18 @@ extension Link: TextModifier {
     }
     
     public func shadow(_ radius: Tokens.BlurRadius, color: Tokens.ShadowColor = .black) -> Link {
-        return mutate(shadow: radius.value, color: color.value)
+        return self.mutate(shadow: radius.value, color: color.value)
     }
 }
 
 extension Link: ViewModifier {
     
+    @available(*, deprecated, message: "Use the background(_:) modifier instead.")
     public func backgroundColor(_ color: Tokens.BackgroundColor) -> Link {
+        return self.mutate(backgroundcolor: color.value)
+    }
+    
+    public func background(_ color: Tokens.BackgroundColor) -> Link {
         return self.mutate(backgroundcolor: color.value)
     }
     
@@ -200,16 +253,17 @@ extension Link: ViewModifier {
         return self.mutate(padding: length.value, insets: insets)
     }
     
+    @available(*, deprecated, message: "Use the border(_:width:shape:) modifier instead.")
     public func borderShape(_ shape: Tokens.BorderShape) -> Link {
         return self.mutate(bordershape: shape.value)
     }
     
-    public func border(_ color: Tokens.BorderColor, width: Tokens.BorderWidth = .small) -> Link {
-        return self.mutate(border: color.value, width: width.value)
+    public func border(_ color: Tokens.BorderColor, width: Tokens.BorderWidth = .small, shape: Tokens.BorderShape? = nil) -> Link {
+        return self.mutate(border: color.value, width: width.value, shape: shape?.value)
     }
     
     public func frame(width: Tokens.ViewWidth, height: Tokens.ViewHeight? = nil, alignment: Tokens.FrameAlignment? = nil) -> Link {
-        return mutate(frame: width.value, height: height?.value, alignment: alignment?.value)
+        return self.mutate(frame: width.value, height: height?.value, alignment: alignment?.value)
     }
     
     public func margin(insets: EdgeSet = .all, length: Tokens.MarginLength = .small) -> Link {

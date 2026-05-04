@@ -216,6 +216,9 @@ public struct Symbol: View, Modifiable {
     /// The class names of the symbol.
     internal var classes: [String]
     
+    /// The accessibility label of the link.
+    internal var label: DynamicString?
+    
     /// Retrieves a symbol.
     ///
     /// - Parameter name: The name of the symbol to use.
@@ -239,10 +242,19 @@ public struct Symbol: View, Modifiable {
     
     public var body: Content {
         Vector {
+            if case .localized(let value, let tableName) = label {
+                Title(value, tableName: tableName)
+            }
+            if case .literal(let value) = label {
+                Title {
+                    value
+                }
+            }
             content
         }
-        .viewBox("0 0 20 16")
-        .class(classes.joined(separator: " "))
+        .viewBox(x: 0, y: 0, width: 20, height: 16)
+        .class(classes)
+        .custom(key: "role", value: "img")
     }
     
     /// Set the size for the symbol.
@@ -251,11 +263,7 @@ public struct Symbol: View, Modifiable {
     ///
     /// - Returns: The symbol
     public func fontSize(_ size: Tokens.FontSize) -> Symbol {
-        
-        var newSelf = self
-        newSelf.classes.append("size:\(size.value)")
-        
-        return newSelf
+        return self.mutate(classes: "size:\(size.value)")
     }
     
     /// Fill the foreground of the symbol.
@@ -264,11 +272,7 @@ public struct Symbol: View, Modifiable {
     ///
     /// - Returns: The symbol
     public func foregroundColor(_ color: Tokens.ForegroundColor) -> Symbol {
-        
-        var newSelf = self
-        newSelf.classes.append("foreground:\(color.value)")
-        
-        return newSelf
+        return self.mutate(classes: "foreground:\(color.value)")
     }
     
     /// Set the drop shadow for the symbol.
@@ -279,9 +283,51 @@ public struct Symbol: View, Modifiable {
     ///
     /// - Returns: The symbol
     public func shadow(_ radius: Tokens.BlurRadius, color: Tokens.ShadowColor = .black) -> Symbol {
-        return mutate(classes: ["shadow:\(radius.value)", "shadow:\(color.value)"])
+        return self.mutate(classes: "shadow:\(radius.value)", "shadow:\(color.value)")
     }
-}
+    
+    /// Add a label to the image.
+    /// 
+    /// - Parameter value: The label to apply.
+    /// 
+    /// - Returns: The image
+    @_disfavoredOverload
+    public func accessibilityLabel(_ value: String) -> Symbol {
+        
+        var copy = self
+        copy.label = .literal(value)
+        
+        return copy
+    }
+    
+    /// Add a localized label to the image.
+    ///  
+    /// - Parameters:
+    ///   - localizedKey: The label to apply.
+    ///   - tableName: The translation table to look in.
+    ///   
+    /// - Returns: The image
+    public func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> Symbol {
+        
+        var copy = self
+        copy.label = .localized(localizedKey, tableName)
+        
+        return copy
+    }
+    
+    /// Add a verbatim label to the image.
+    ///  
+    /// - Parameter value: The label to apply.
+    ///  
+    /// - Returns: The image
+    public func accessibilityLabel(verbatim value: String) -> Symbol {
+        
+        var copy = self
+        copy.label = .literal(value)
+        
+        return copy
+    }
+ }
 
 extension Symbol {
     
@@ -309,7 +355,7 @@ extension Symbol {
     
     fileprivate static func parse(node: XMLNode) throws -> VectorElement? {
         
-        var tempAttributes: OrderedDictionary<String, Any> = [:]
+        var tempAttributes: OrderedDictionary<String, AttributeData> = [:]
         var tempContent: [Content] = []
         
         guard let element = node as? XMLElement else {
@@ -325,7 +371,10 @@ extension Symbol {
             for attribute in attributes {
                 
                 if let attributeName = attribute.localName {
-                    tempAttributes[attributeName] = attribute.stringValue
+                    
+                    if let stringValue = attribute.stringValue {
+                        tempAttributes[attributeName] = AttributeData(stringValue, context: .trusted)
+                    }
                 }
             }
         }
