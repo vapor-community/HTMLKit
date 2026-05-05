@@ -7,7 +7,7 @@ import Foundation
 /// > Note: The encoder does not utilize unicode encoding for some languages, such as JS and CSS. 
 /// > It primarily aims to preserve the code integrity and to protect against code injection within an 
 /// > HTML context.
-internal struct Encoder {
+internal struct Encoder: Sendable {
     
     /// An enumeration of potential encoding mechanism
     internal enum Mechanism {
