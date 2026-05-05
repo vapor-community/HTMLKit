@@ -2,7 +2,7 @@ import HTMLKit
 import Vapor
 
 /// A type responsible for rendering views in Vapor using HTMLKit
-public class ViewRenderer {
+public struct ViewRenderer: Sendable {
     
     /// The event loop that the renderer operates on
     internal var eventLoop: EventLoop
