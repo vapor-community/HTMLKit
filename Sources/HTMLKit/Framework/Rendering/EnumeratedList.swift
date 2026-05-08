@@ -1,6 +1,6 @@
 /// A value type that holds a set of values along with its separator.
 @_documentation(visibility: internal)
-public struct EnumeratedList {
+public struct EnumeratedList: Sendable {
     
     /// The values within the list.
     internal var values: [String]
