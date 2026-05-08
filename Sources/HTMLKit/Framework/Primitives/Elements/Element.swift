@@ -21,7 +21,7 @@ extension Element {
     ///   - value: The value to be stored
     ///
     /// - Returns: The environment modifier
-    public func environment<V>(key: KeyPath<EnvironmentKeys, V>, value: V) -> EnvironmentModifier {
+    public func environment<V: Sendable>(key: KeyPath<EnvironmentKeys, V>, value: V) -> EnvironmentModifier {
         return .init(key: key, value: value, content: [self])
     }
     
@@ -30,7 +30,7 @@ extension Element {
     /// - Parameter object: The object to be stored
     ///
     /// - Returns: The environment modifier
-    public func environment<T>(object: T) -> EnvironmentModifier {
+    public func environment<T: Sendable>(object: T) -> EnvironmentModifier {
         return .init(key: \T.self, value: object, content: [self])
     }
 }

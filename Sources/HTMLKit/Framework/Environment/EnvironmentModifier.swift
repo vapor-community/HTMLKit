@@ -8,7 +8,7 @@ public struct EnvironmentModifier: Content {
     internal let key: AnyKeyPath
     
     /// The environment value
-    internal let value: Any?
+    internal let value: Sendable?
     
     /// The sub-content
     internal let content: [Content]
@@ -19,7 +19,7 @@ public struct EnvironmentModifier: Content {
     ///   - key: The key path of the environment value to be modified
     ///   - value: The new value to update the environment value with
     ///   - content: The sub-content to be rendered
-    public init(key: AnyKeyPath, value: Any? = nil, content: [Content]) {
+    public init(key: AnyKeyPath, value: Sendable? = nil, content: [Content]) {
         
         self.key = key
         self.value = value

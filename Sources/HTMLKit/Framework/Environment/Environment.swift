@@ -42,7 +42,7 @@ public final class Environment: @unchecked Sendable {
     }
     
     /// The storage of the environment
-    private var storage: [AnyKeyPath: Any]
+    private var storage: [AnyKeyPath: Sendable]
     
     /// A lock to get sure, we are thread safe here
     private var lock: NIOLock
@@ -79,7 +79,7 @@ public final class Environment: @unchecked Sendable {
     /// - Parameter path: The key path used to look up the value
     ///
     /// - Returns: The value
-    public func retrieve(for path: AnyKeyPath) -> Any? {
+    public func retrieve(for path: AnyKeyPath) -> Sendable? {
         
         return self.lock.withLock {
             return storage[path]
@@ -91,7 +91,7 @@ public final class Environment: @unchecked Sendable {
     /// - Parameters:
     ///   - value: The value to be stored or updated
     ///   - path: The key path that identifies where the value is stored
-    public func upsert<T>(_ value: T, for path: AnyKeyPath) {
+    public func upsert<T: Sendable>(_ value: T, for path: AnyKeyPath) {
         
         self.lock.withLock {
             storage[path] = value
