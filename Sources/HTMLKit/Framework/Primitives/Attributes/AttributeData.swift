@@ -1,9 +1,9 @@
 /// A type that represents the attribute data.
 @_documentation(visibility: internal)
-public struct AttributeData {
+public struct AttributeData: Sendable {
     
     /// An enumeration of potential values.
-    internal enum Value {
+    internal enum Value: Sendable {
         
         /// A string value.
         case string(String)
