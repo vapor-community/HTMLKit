@@ -4,7 +4,7 @@ import Foundation
 ///
 /// The placeholder will be evaluated and resolved by the renderer when needed.
 @_documentation(visibility: internal)
-public struct EnvironmentValue: Content {
+public struct EnvironmentValue: Content, @unchecked Sendable {
     
     /// The path of the values parent
     internal let parentPath: AnyKeyPath
