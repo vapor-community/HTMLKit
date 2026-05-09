@@ -1,5 +1,5 @@
 /// A type responsible for sanitizing the renderer output
-internal struct Sanitizer {
+internal struct Sanitizer: Sendable {
     
     /// Strip a tag from a given string
     /// 

@@ -9,7 +9,7 @@ extension Application {
     }
     
     /// Represents the provider for Vapor
-    public struct HtmlKit {
+    public struct HtmlKit: Sendable {
         
         /// Manages environment settings
         public var environment: HTMLKit.Environment {

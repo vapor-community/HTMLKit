@@ -1,10 +1,11 @@
 import Foundation
+import NIOConcurrencyHelpers
 
 /// A class that represents the environment
 ///
 /// The environment provides storage for various settings used by the renderer
 @_documentation(visibility: internal)
-public final class Environment {
+public final class Environment: @unchecked Sendable {
     
     /// An enumeration of possible rendering errors.
     public enum Errors: Error {
@@ -43,10 +44,14 @@ public final class Environment {
     /// The storage of the environment
     private var storage: [AnyKeyPath: Any]
     
+    /// A lock to get sure, we are thread safe here
+    private var lock: NIOLock
+    
     /// Initializes the environment
     public init() {
         
         self.storage = [:]
+        self.lock = .init()
     }
     
     /// The current time zone of the environment
@@ -87,7 +92,10 @@ public final class Environment {
     ///
     /// - Returns: The value
     public func retrieve(for path: AnyKeyPath) -> Any? {
-        return storage[path]
+
+        return lock.withLock {
+            return storage[path]
+        }
     }
     
     /// Inserts or updates a value in the environment for the given key path
@@ -96,7 +104,10 @@ public final class Environment {
     ///   - value: The value to be stored or updated
     ///   - path: The key path that identifies where the value is stored
     public func upsert<T>(_ value: T, for path: AnyKeyPath) {
-        storage[path] = value
+
+        lock.withLock {
+            storage[path] = value
+        }
     }
     
     /// Resolves an environment value

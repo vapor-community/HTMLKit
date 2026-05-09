@@ -19,7 +19,7 @@ import Logging
 /// ```
 ///
 @_documentation(visibility: internal)
-public struct Renderer {
+public struct Renderer: Sendable {
     
     /// A enumeration of potential errors during rendering
     public enum Error: Swift.Error {
