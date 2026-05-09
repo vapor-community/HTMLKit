@@ -25,7 +25,8 @@ let package = Package(
         .package(url: "https://github.com/apple/swift-collections.git", from: "1.1.4"),
         .package(url: "https://github.com/apple/swift-docc-plugin", from: "1.4.3"),
         .package(url: "https://github.com/apple/swift-log.git", from: "1.6.3"),
-        .package(url: "https://github.com/vapor/vapor.git", from: "4.114.1")
+        .package(url: "https://github.com/vapor/vapor.git", from: "4.114.1"),
+        .package(url: "https://github.com/apple/swift-nio.git", from: "2.86.2")
     ],
     targets: [
         .target(
@@ -33,6 +34,7 @@ let package = Package(
             dependencies: [
                 .product(name: "Collections", package: "swift-collections"),
                 .product(name: "Logging", package: "swift-log"),
+                .product(name: "NIO", package: "swift-nio")
             ],
             exclude: ["Abstraction/README.md", "Framework/README.md"],
             swiftSettings: [
@@ -59,6 +61,7 @@ let package = Package(
             dependencies: [
                 .target(name: "HTMLKit"),
                 .product(name: "Vapor", package: "vapor"),
+                .product(name: "NIO", package: "swift-nio")
             ],
             swiftSettings: [
                 .enableExperimentalFeature("StrictConcurrency=complete")
