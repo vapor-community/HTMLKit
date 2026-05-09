@@ -93,11 +93,9 @@ final class ProviderTests: XCTestCase {
         }
     }
     
-    func testEventLoopIntegration() throws {
+    func testEventLoopIntegration() async throws {
         
-        let app = Application(.testing)
-        
-        defer { app.shutdown() }
+        let app = try await Application.make(.testing)
         
         app.get("test") { request -> EventLoopFuture<Vapor.View> in
             
@@ -106,7 +104,7 @@ final class ProviderTests: XCTestCase {
             return request.htmlkit.render(TestPage.NephewView(context: context))
         }
         
-        try app.test(.GET, "test") { response in
+        try await app.test(.GET, "test") { response async in
             XCTAssertEqual(response.status, .ok)
             XCTAssertEqual(response.body.string,
                             """
@@ -122,13 +120,13 @@ final class ProviderTests: XCTestCase {
                             """
             )
         }
+        
+        try await app.asyncShutdown()
     }
     
-    func testConcurrencyIntegration() throws {
+    func testConcurrencyIntegration() async throws {
         
-        let app = Application(.testing)
-        
-        defer { app.shutdown() }
+        let app = try await Application.make(.testing)
         
         app.get("test") { request async throws -> Vapor.View in
             
@@ -137,7 +135,7 @@ final class ProviderTests: XCTestCase {
             return try await request.htmlkit.render(TestPage.NephewView(context: context))
         }
         
-        try app.test(.GET, "test") { response in
+        try await app.test(.GET, "test") { response async in
             XCTAssertEqual(response.status, .ok)
             XCTAssertEqual(response.body.string,
                             """
@@ -153,18 +151,18 @@ final class ProviderTests: XCTestCase {
                             """
             )
         }
+        
+        try await app.asyncShutdown()
     }
 
     /// Tests the setup of localization through Vapor
-    func testLocalizationIntegration() throws {
+    func testLocalizationIntegration() async throws {
         
         guard let source = Bundle.module.url(forResource: "Localization", withExtension: nil) else {
             return
         }
         
-        let app = Application(.testing)
-        
-        defer { app.shutdown() }
+        let app = try await Application.make(.testing)
         
         app.htmlkit.localization.set(source: source)
         app.htmlkit.localization.set(locale: "fr")
@@ -174,7 +172,7 @@ final class ProviderTests: XCTestCase {
             return try await request.htmlkit.render(TestPage.ChildView())
         }
         
-        try app.test(.GET, "test") { response in
+        try await app.test(.GET, "test") { response async in
             XCTAssertEqual(response.status, .ok)
             XCTAssertEqual(response.body.string,
                             """
@@ -190,24 +188,24 @@ final class ProviderTests: XCTestCase {
                             """
             )
         }
+        
+        try await app.asyncShutdown()
     }
     
     /// Tests the behavior when localization is not properly configured
     ///
     /// Localization is considered improperly configured when one or both of the essential factors are missing.
     /// In such case the renderer is expected to skip the localization and directly return the fallback string literal.
-    func testLocalizationFallback() throws {
+    func testLocalizationFallback() async throws {
         
-        let app = Application(.testing)
-        
-        defer { app.shutdown() }
+        let app = try await Application.make(.testing)
         
         app.get("test") { request async throws -> Vapor.View in
             
             return try await request.htmlkit.render(TestPage.ChildView())
         }
         
-        try app.test(.GET, "test") { response in
+        try await app.test(.GET, "test") { response async in
             XCTAssertEqual(response.status, .ok)
             XCTAssertEqual(response.body.string,
                             """
@@ -223,21 +221,21 @@ final class ProviderTests: XCTestCase {
                             """
             )
         }
+        
+        try await app.asyncShutdown()
     }
     
     /// Tests the localization behavior based on the accept language of the client
     ///
     /// The environment locale is expected to be changed according to the language given by the provider.
     /// The renderer is expected to localize correctly the content based on the updated environment locale.
-    func testLocalizationByAcceptingHeaders() throws {
+    func testLocalizationByAcceptingHeaders() async throws {
         
         guard let source = Bundle.module.url(forResource: "Localization", withExtension: nil) else {
             return
         }
         
-        let app = Application(.testing)
-        
-        defer { app.shutdown() }
+        let app = try await Application.make(.testing)
         
         app.htmlkit.localization.set(source: source)
         app.htmlkit.localization.set(locale: "en-GB")
@@ -250,7 +248,7 @@ final class ProviderTests: XCTestCase {
             return try await request.htmlkit.render(TestPage.ChildView())
         }
         
-        try app.test(.GET, "test") { response in
+        try await app.test(.GET, "test") { response async in
             XCTAssertEqual(response.status, .ok)
             XCTAssertEqual(response.body.string,
                             """
@@ -266,6 +264,8 @@ final class ProviderTests: XCTestCase {
                             """
             )
         }
+        
+        try await app.asyncShutdown()
     }
     
     /// Tests the localization behavior when the preferred language is unknown.
@@ -314,11 +314,9 @@ final class ProviderTests: XCTestCase {
     /// Tests the access to environment through provider
     ///
     /// The provider is expected to recieve the environment object and resolve it based on the request.
-    func testEnvironmentIntegration() throws {
+    func testEnvironmentIntegration() async throws {
         
-        let app = Application(.testing)
-        
-        defer { app.shutdown() }
+        let app = try await Application.make(.testing)
         
         app.htmlkit.environment.upsert(TestObject(), for: \TestObject.self)
         
@@ -326,7 +324,7 @@ final class ProviderTests: XCTestCase {
             return try await request.htmlkit.render(TestPage.SipplingView())
         }
         
-        try app.test(.GET, "test") { response in
+        try await app.test(.GET, "test") { response async in
             XCTAssertEqual(response.status, .ok)
             XCTAssertEqual(response.body.string,
                             """
@@ -342,13 +340,13 @@ final class ProviderTests: XCTestCase {
                             """
             )
         }
+        
+        try await app.asyncShutdown()
     }
     
-    func testMarkdownSupport() throws {
+    func testMarkdownSupport() async throws {
         
-        let app = Application(.testing)
-        
-        defer { app.shutdown() }
+        let app = try await Application.make(.testing)
         
         app.htmlkit.features = [.markdown]
         
@@ -356,7 +354,7 @@ final class ProviderTests: XCTestCase {
             return try await request.htmlkit.render(TestPage.FriendView())
         }
         
-        try app.test(.GET, "test") { response in
+        try await app.test(.GET, "test") { response async in
             XCTAssertEqual(response.status, .ok)
             XCTAssertEqual(response.body.string,
                             """
@@ -372,12 +370,14 @@ final class ProviderTests: XCTestCase {
                             """
             )
         }
+        
+        try await app.asyncShutdown()
     }
     
     /// Tests the error reporting to Vapor for issues that may occur during environment access.
     ///
     /// The error is expected to be classified as an internal server error and includes a error message.
-    func testEnvironmentErrorReporting() throws {
+    func testEnvironmentErrorReporting() async throws {
         
         struct TestObject {
             
@@ -413,9 +413,7 @@ final class ProviderTests: XCTestCase {
             }
         }
         
-        let app = Application(.testing)
-        
-        defer { app.shutdown() }
+        let app = try await Application.make(.testing)
         
         app.get("unkownobject") { request async throws -> Vapor.View in
             
@@ -427,7 +425,7 @@ final class ProviderTests: XCTestCase {
             return try await request.htmlkit.render(WrongCast())
         }
         
-        try app.test(.GET, "unkownobject") { response in
+        try await app.test(.GET, "unkownobject") { response async throws in
             
             XCTAssertEqual(response.status, .internalServerError)
             
@@ -436,7 +434,7 @@ final class ProviderTests: XCTestCase {
             XCTAssertEqual(abort.reason, "Unable to retrieve environment object.")
         }
         
-        try app.test(.GET, "wrongcast") { response in
+        try await app.test(.GET, "wrongcast") { response async throws in
             
             XCTAssertEqual(response.status, .internalServerError)
             
@@ -444,5 +442,7 @@ final class ProviderTests: XCTestCase {
             
             XCTAssertEqual(abort.reason, "Unable to cast the environment value.")
         }
+        
+        try await app.asyncShutdown()
     }
 }
