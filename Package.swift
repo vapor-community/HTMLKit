@@ -36,7 +36,6 @@ let package = Package(
                 .product(name: "Logging", package: "swift-log"),
                 .product(name: "NIO", package: "swift-nio")
             ],
-            exclude: ["Abstraction/README.md", "Framework/README.md"],
             swiftSettings: [
                 .enableExperimentalFeature("StrictConcurrency=complete")
             ]
