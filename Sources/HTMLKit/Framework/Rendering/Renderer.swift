@@ -21,7 +21,7 @@ import Logging
 @_documentation(visibility: internal)
 public struct Renderer: Sendable {
     
-    /// A enumeration of potential errors during rendering
+    /// An enumeration of potential errors during rendering.
     public enum Error: Swift.Error {
         
         /// Indicates a unknown conten type
@@ -44,25 +44,25 @@ public struct Renderer: Sendable {
     }
     
     /// The context environment used during rendering
-    private var environment: Environment
+    private let environment: Environment
     
     /// The localization configuration
-    private var localization: Localization?
+    private let localization: Localization?
     
     /// The markdown parser
-    private var markdown: Markdown
+    private let markdown: Markdown
     
     /// The feature flag used to manage the visibility of new and untested features
-    private var features: Features
+    private let features: Features
     
     /// The logger used to log all operations
-    private var logger: Logger
+    private let logger: Logger
     
     /// The encoder used to encode html entities
-    private var encoder: Encoder
+    private let encoder: Encoder
     
     /// The sanitizer used to clean up html output
-    private var sanitizer: Sanitizer
+    private let sanitizer: Sanitizer
 
     /// Initializes the renderer
     ///
@@ -321,7 +321,7 @@ public struct Renderer: Sendable {
             
             return try localization.localize(string: string, for: environment.locale)
             
-        } catch let error as Localization.Errors {
+        } catch let error as Localization.Error {
             
             logger.warning("\(error.description)")
             
@@ -593,7 +593,7 @@ public struct Renderer: Sendable {
         let value = try environment.resolve(value: loop.value)
         
         guard let sequence = value as? (any Swift.Sequence) else {
-            throw Environment.Errors.unableToCastEnvironmentValue
+            throw Environment.Error.unableToCastEnvironmentValue
         }
         
         for value in sequence {

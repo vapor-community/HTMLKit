@@ -65,7 +65,7 @@ public struct Area: EmptyNode, MapElement {
     }
 }
 
-extension Area: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes, AlternateAttribute, ShapeAttribute, ReferenceAttribute, TargetAttribute, DownloadAttribute, PingAttribute, RelationshipAttribute, ReferrerPolicyAttribute {
+extension Area: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes, AlternateAttribute, ShapeAttribute, ReferenceAttribute, TargetAttribute, DownloadAttribute, PingAttribute, RelationshipAttribute, ReferrerPolicyAttribute {
         
     public func accessKey(_ value: Character) -> Area {
         return mutate(accesskey: .init("\(value)", context: .trusted))

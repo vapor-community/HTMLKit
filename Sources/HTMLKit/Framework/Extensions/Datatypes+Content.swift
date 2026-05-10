@@ -1,8 +1,3 @@
-/*
- Abstract:
- The file contains extensions for some data types.
- */
-
 import Foundation
 
 extension Array: Content {}

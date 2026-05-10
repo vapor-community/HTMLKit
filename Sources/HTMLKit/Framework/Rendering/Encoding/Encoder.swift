@@ -32,7 +32,7 @@ internal struct Encoder: Sendable {
         case js(Context)
         
         /// The characters to replace based on the mechanism and context
-        var characters: Set<Unicode.Scalar> {
+        internal var characters: Set<Unicode.Scalar> {
             
             switch self {
             case .html(let context):
@@ -68,7 +68,7 @@ internal struct Encoder: Sendable {
         }
         
         /// The characters to replace with based on the mechanism
-        var replacements: [Unicode.Scalar: String] {
+        internal var replacements: [Unicode.Scalar: String] {
             return ["&": "&amp;", "<": "&lt;", ">": "&gt;", "\"": "&quot;", "'": "&apos;"]
         }
     }

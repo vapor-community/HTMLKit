@@ -83,7 +83,7 @@ public struct OptionGroup: ContentNode, InputElement {
     }
 }
 
-extension OptionGroup: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes, DisabledAttribute, LabelAttribute {
+extension OptionGroup: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes, DisabledAttribute, LabelAttribute {
 
     public func accessKey(_ value: Character) -> OptionGroup {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -641,7 +641,7 @@ public struct Option: ContentNode, InputElement {
     }
 }
 
-extension Option: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes, DisabledAttribute, LabelAttribute, ValueAttribute, SelectedAttribute {
+extension Option: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes, DisabledAttribute, LabelAttribute, ValueAttribute, SelectedAttribute {
     
     public func accessKey(_ value: Character) -> Option {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -1231,7 +1231,7 @@ public struct Legend: ContentNode, InputElement {
     }
 }
 
-extension Legend: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
+extension Legend: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
     
     public func accessKey(_ value: Character) -> Legend {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -1769,7 +1769,7 @@ public struct Summary: ContentNode, InputElement {
     }
 }
 
-extension Summary: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
+extension Summary: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
     
     public func accessKey(_ value: Character) -> Summary {
         return mutate(accesskey: .init("\(value)", context: .trusted))

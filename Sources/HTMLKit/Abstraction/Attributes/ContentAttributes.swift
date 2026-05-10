@@ -1,9 +1,9 @@
 import Foundation
 import OrderedCollections
 
-/// The alias combines the global attributes of the basic attributes.
+/// The alias combines the global attributes of content attributes.
 @_documentation(visibility: internal)
-public typealias GlobalAttributes = AccessKeyAttribute & AutocapitalizeAttribute & AutofocusAttribute & ClassAttribute & EditAttribute & DirectionAttribute & DragAttribute & EnterKeyAttribute & HiddenAttribute & InputModeAttribute & IsAttribute & ItemAttribute & ItemPropertyAttribute & IdentifierAttribute & LanguageAttribute & NonceAttribute & RoleAttribute & SpellCheckAttribute & StyleAttribute & TabulatorAttribute & TitleAttribute & TranslateAttribute & InertAttribute & PopoverAttribute
+public typealias GlobalContentAttributes = AccessKeyAttribute & AutocapitalizeAttribute & AutofocusAttribute & ClassAttribute & EditAttribute & DirectionAttribute & DragAttribute & EnterKeyAttribute & HiddenAttribute & InputModeAttribute & IsAttribute & ItemAttribute & ItemPropertyAttribute & IdentifierAttribute & LanguageAttribute & NonceAttribute & RoleAttribute & SpellCheckAttribute & StyleAttribute & TabulatorAttribute & TitleAttribute & TranslateAttribute & InertAttribute & PopoverAttribute
 
 /// A type that provides the `accessKey` modifier.
 @_documentation(visibility: internal)
@@ -175,8 +175,9 @@ public protocol AlternateAttribute: Attribute {
     ///     .alternate("Lorem ipsum...")
     /// ```
     ///
-    /// - Parameter localizedKey: The string key to be translated.
-    /// - Parameter tableName: The translation table to look in.
+    /// - Parameters:
+    ///   - localizedKey: The string key to be translated.
+    ///   - tableName: The translation table to look in.
     ///
     /// - Returns: The element
     func alternate(_ localizedKey: LocalizedStringKey, tableName: String?) -> Self
@@ -656,8 +657,9 @@ public protocol ContentAttribute: Attribute {
     ///     .content("Lorem ipsum...")
     /// ```
     ///
-    /// - Parameter localizedKey: The string key to be translated
-    /// - Parameter tableName: The translation table to look in
+    /// - Parameters:
+    ///   - localizedKey: The string key to be translated
+    ///   - tableName: The translation table to look in
     ///
     /// - Returns: The element
     func content(_ localizedKey: LocalizedStringKey, tableName: String?) -> Self
@@ -1786,8 +1788,9 @@ public protocol LabelAttribute: Attribute {
     ///     .label("lorem")
     /// ```
     ///
-    /// - Parameter localizedKey: The string key to be translated.
-    /// - Parameter tableName: The translation table to look in.
+    /// - Parameters:
+    ///   - localizedKey: The string key to be translated.
+    ///   - tableName: The translation table to look in.
     ///
     /// - Returns: The element
     func label(_ localizedKey: LocalizedStringKey, tableName: String?) -> Self
@@ -2518,8 +2521,9 @@ public protocol PlaceholderAttribute: Attribute {
     ///     .placeholder("Lorem ipsum...")
     /// ```
     ///
-    /// - Parameter localizedKey: The string key to be translated
-    /// - Parameter tableName: The translation table to look in
+    /// - Parameters:
+    ///   - localizedKey: The string key to be translated
+    ///   - tableName: The translation table to look in
     ///
     /// - Returns: The element
     func placeholder(_ localizedKey: LocalizedStringKey, tableName: String?) -> Self
@@ -3032,8 +3036,9 @@ public protocol ShapeAttribute: Attribute {
     ///     .shape(.rect, coordinates: "0, 0, 200, 100")
     /// ```
     ///
-    /// - Parameter value: The shape used to interpret the coordinates.
-    /// - Parameter coordinates: The coordinates on which to base the shape.
+    /// - Parameters:
+    ///   - value: The shape used to interpret the coordinates.
+    ///   - coordinates: The coordinates on which to base the shape.
     ///
     /// - Returns: The element
     func shape(_ value: Values.Shape, coordinates: String) -> Self
@@ -3537,8 +3542,9 @@ public protocol TitleAttribute: Attribute {
     /// .title("Lorem ipsum")
     /// ```
     ///
-    /// - Parameter localizedKey: The string key to be translated.
-    /// - Parameter tableName: The translation table to look in.
+    /// - Parameters:
+    ///   - localizedKey: The string key to be translated.
+    ///   - tableName: The translation table to look in.
     ///
     /// - Returns: The element
     func title(_ localizedKey: LocalizedStringKey, tableName: String?) -> Self
@@ -3697,8 +3703,9 @@ public protocol ValueAttribute: Attribute {
     ///     .value("Lorem ipsum...")
     /// ```
     ///
-    /// - Parameter localizedKey: The string key to be translated
-    /// - Parameter tableName: The translation table to look in
+    /// - Parameters:
+    ///   - localizedKey: The string key to be translated
+    ///   - tableName: The translation table to look in
     ///
     /// - Returns: The element
     func value(_ localizedKey: LocalizedStringKey, tableName: String?) -> Self
@@ -4146,8 +4153,9 @@ public protocol PopoverTargetAttribute: Attribute {
     /// .popoverTarget("id", action: .hide)
     /// ```
     ///
-    /// - Parameter id: The identifier of the target to bind the popover to.
-    /// - Parameter action: The action to perform when triggered.
+    /// - Parameters:
+    ///   - id: The identifier of the target to bind the popover to.
+    ///   - action: The action to perform when triggered.
     ///
     /// - Returns: The element
     func popoverTarget(_ id: String, action: Values.Popover.Action?) -> Self

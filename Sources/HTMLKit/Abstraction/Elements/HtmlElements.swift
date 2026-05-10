@@ -68,7 +68,7 @@ public struct Head: ContentNode, HtmlElement {
     }
 }
 
-extension Head: GlobalAttributes, GlobalEventAttributes {
+extension Head: GlobalContentAttributes, GlobalEventAttributes {
     
     public func accessKey(_ value: Character) -> Head {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -376,7 +376,7 @@ public struct Body: ContentNode, HtmlElement {
     }
 }
 
-extension Body: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes, WindowEventAttribute {
+extension Body: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes, WindowEventAttribute {
 
     public func accessKey(_ value: Character) -> Body {
         return mutate(accesskey: .init("\(value)", context: .trusted))

@@ -10,8 +10,8 @@ internal class Parser {
     internal enum ParserError: Error {
         
         case noLocalName
-        case unkownElement(String)
-        case unkownAttribute(String)
+        case unknownElement(String)
+        case unknownAttribute(String)
         case unknownTag(String)
         
         var description: String {
@@ -20,11 +20,11 @@ internal class Parser {
             case .noLocalName:
                 return "No local name."
                 
-            case .unkownElement(let element):
-                return "Element '\(element) not found."
+            case .unknownElement(let element):
+                return "Element '\(element)' not found."
                 
-            case .unkownAttribute(let attribute):
-                return "Attribute '\(attribute) not found."
+            case .unknownAttribute(let attribute):
+                return "Attribute '\(attribute)' not found."
                 
             case .unknownTag(let tag):
                 return "Tag '\(tag)' not found."
@@ -412,7 +412,7 @@ internal class Parser {
                     return try ContentElement(element: element, indent: indent).build(verbatim: "Vector")
                     
                 default:
-                    throw ParserError.unkownElement(localName)
+                    throw ParserError.unknownElement(localName)
                 }
             }
             
@@ -1196,7 +1196,7 @@ internal class Parser {
                 return try ValueAttribute<String>(node: node, kind: .aria).build(verbatim: "valueText")
                 
             default:
-                throw ParserError.unkownAttribute(localName)
+                throw ParserError.unknownAttribute(localName)
             }
             
         default:

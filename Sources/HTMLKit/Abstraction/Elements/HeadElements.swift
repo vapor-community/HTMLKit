@@ -70,7 +70,7 @@ public struct Title: ContentNode, HeadElement, VectorElement {
     }
 }
 
-extension Title: GlobalAttributes, GlobalEventAttributes {
+extension Title: GlobalContentAttributes, GlobalEventAttributes {
     
     public func accessKey(_ value: Character) -> Title {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -371,7 +371,7 @@ public struct Base: EmptyNode, HeadElement {
     }
 }
 
-extension Base: GlobalAttributes, GlobalEventAttributes, ReferenceAttribute, TargetAttribute {
+extension Base: GlobalContentAttributes, GlobalEventAttributes, ReferenceAttribute, TargetAttribute {
     
     public func accessKey(_ value: Character) -> Base {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -670,7 +670,7 @@ public struct Meta: EmptyNode, HeadElement {
     }
 }
 
-extension Meta: GlobalAttributes, GlobalEventAttributes, ContentAttribute, NameAttribute, PropertyAttribute, CharsetAttribute, EquivalentAttribute {
+extension Meta: GlobalContentAttributes, GlobalEventAttributes, ContentAttribute, NameAttribute, PropertyAttribute, CharsetAttribute, EquivalentAttribute {
     
     public func accessKey(_ value: Character) -> Meta {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -1012,7 +1012,7 @@ public struct Style: ContentNode, HeadElement {
     }
 }
 
-extension Style: GlobalAttributes, GlobalEventAttributes, TypeAttribute, MediaAttribute, BlockingAttribute {
+extension Style: GlobalContentAttributes, GlobalEventAttributes, TypeAttribute, MediaAttribute, BlockingAttribute {
 
     public func accessKey(_ value: Character) -> Style {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -1322,7 +1322,7 @@ public struct Link: EmptyNode, HeadElement, BodyElement {
     }
 }
 
-extension Link: GlobalAttributes, GlobalEventAttributes, ReferenceAttribute, ReferenceLanguageAttribute, MediaAttribute, ReferrerPolicyAttribute, RelationshipAttribute, SizesAttribute, TypeAttribute, FetchPriorityAttribute, BlockingAttribute, FormEventAttribute, IntegrityAttribute, AsAttribute, CrossOriginAttribute {
+extension Link: GlobalContentAttributes, GlobalEventAttributes, ReferenceAttribute, ReferenceLanguageAttribute, MediaAttribute, ReferrerPolicyAttribute, RelationshipAttribute, SizesAttribute, TypeAttribute, FetchPriorityAttribute, BlockingAttribute, FormEventAttribute, IntegrityAttribute, AsAttribute, CrossOriginAttribute {
 
     public func accessKey(_ value: Character) -> Link {
         return mutate(accesskey: .init("\(value)", context: .trusted))

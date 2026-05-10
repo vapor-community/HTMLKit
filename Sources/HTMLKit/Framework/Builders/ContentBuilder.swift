@@ -1,6 +1,3 @@
-// Abstract:
-// The file contains the builder to build up the result from a sequence of elements.
-
 /// The builder builds up a result value from a sequence of elements.
 @resultBuilder public enum ContentBuilder<T> {
     

@@ -77,7 +77,7 @@ public struct ListItem: ContentNode, ListElement {
     }
 }
 
-extension ListItem: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes, ValueAttribute, RequiredAccessibilityAttribute, PositionAccessibilityAttribute, CheckedAccessibilityAttribute {    
+extension ListItem: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes, ValueAttribute, RequiredAccessibilityAttribute, PositionAccessibilityAttribute, CheckedAccessibilityAttribute {    
     
     public func accessKey(_ value: Character) -> ListItem {
         return mutate(accesskey: .init("\(value)", context: .trusted))

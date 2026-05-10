@@ -5,5 +5,4 @@ extension Optional: Nullable {
     }
 }
 
-extension Optional: Content {
-}
+extension Optional: Content {}

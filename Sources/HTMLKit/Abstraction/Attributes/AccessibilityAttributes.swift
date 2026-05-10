@@ -787,8 +787,9 @@ public protocol LabelAccessibilityAttribute: Attribute {
     /// }
     /// .accessibilityLabel("Lorem ipsum")
     /// ```
-    /// - Parameter localizedKey: The localized key to label the element.
-    /// - Parameter tableName: The translation table to look in.
+    /// - Parameters:
+    ///   - localizedKey: The localized key to label the element.
+    ///   - tableName: The translation table to look in.
     /// 
     /// - Returns: The element
     func accessibilityLabel(_ localizedKey: LocalizedStringKey, tableName: String?) -> Self
@@ -1142,8 +1143,9 @@ public protocol HintAccessibilityAttribute: Attribute {
     /// .role(.textbox)
     /// .accessibilityHint("Lorem ipsum")
     /// ```
-    /// - Parameter localizedKey: The localized key to give more context.
-    /// - Parameter tableName: The translation table to look in.
+    /// - Parameters:
+    ///   - localizedKey: The localized key to give more context.
+    ///   - tableName: The translation table to look in.
     ///
     /// - Returns: The element
     func accessibilityHint(_ localizedKey: LocalizedStringKey, tableName: String?) -> Self
@@ -1397,8 +1399,9 @@ public protocol RoleDescriptionAccessibilityAttribute: Attribute {
     /// .accessibilityRoleDescription("Lorem ipsum...")
     /// ```
     /// 
-    /// - Parameter localizedKey: The text to describe the role.
-    /// - Parameter tableName: The translation table to look in.
+    /// - Parameters:
+    ///   - localizedKey: The text to describe the role.
+    ///   - tableName: The translation table to look in.
     /// 
     /// - Returns: The element
     func accessibilityRoleDescription(_ localizedKey: LocalizedStringKey, tableName: String?) -> Self
@@ -1707,9 +1710,10 @@ public protocol ValueAccessibilityAttribute: Attribute {
     /// .accessibilityValue(20.0, alternate: "Lorem ipsum...")
     /// ```
     /// 
-    /// - Parameter value: The current value within the range.
-    /// - Parameter localizedKey:The localized key to describe the value.
-    /// - Parameter tableName: The translation table to look in.
+    /// - Parameters:
+    ///   - value: The current value within the range.
+    ///   - localizedKey:The localized key to describe the value.
+    ///   - tableName: The translation table to look in.
     /// 
     /// - Returns: The element
     func accessibilityValue(_ value: Float, description localizedKey: LocalizedStringKey, tableName: String?) -> Self

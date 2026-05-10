@@ -42,7 +42,7 @@ internal struct ConvertCommand {
                     exit(0)
                     
                 } else {
-                    print("Unkown target path.")
+                    print("Unknown target path.")
                     
                     exit(1)
                 }

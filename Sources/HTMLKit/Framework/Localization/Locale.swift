@@ -1,10 +1,10 @@
-/// A type that represents a locale
+/// A type that represents a locale.
 ///
 /// A locale holds information about language, region and cultural preferences.
 @_documentation(visibility: internal)
 public struct Locale: Hashable, Sendable {
     
-    /// A enumeration of potential language tags
+    /// An enumeration of potential language tags.
     public enum Tag: String, Sendable {
         
         case arabic = "ar"

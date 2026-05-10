@@ -26,19 +26,19 @@ public enum InterpolationArgument {
     internal var placeholder: String {
         
         switch self {
-        case .int(_):
+        case .int:
             return "%lld"
             
-        case .string(_):
+        case .string:
             return "%@"
             
-        case .double(_):
+        case .double:
             return "%f"
             
-        case .float(_):
+        case .float:
             return "%f"
             
-        case .date(_):
+        case .date:
             return "%@"
         }
     }

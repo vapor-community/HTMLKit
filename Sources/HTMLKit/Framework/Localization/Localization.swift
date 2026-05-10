@@ -4,8 +4,8 @@ import Foundation
 @_documentation(visibility: internal)
 public struct Localization: Sendable {
     
-    /// A enumeration of errors regarding the localization rendering
-    public enum Errors: Error, Equatable {
+    /// An enumeration of errors regarding the localization rendering.
+    public enum Error: Swift.Error, Equatable {
         
         /// Indicates a missing key
         ///
@@ -207,27 +207,27 @@ public struct Localization: Sendable {
     public func localize(string: LocalizedString, for locale: Locale? = nil) throws -> String {
         
         guard let fallback = self.locale else {
-            throw Errors.noFallback
+            throw Error.noFallback
         }
         
         guard let localizationTables = self.tables else {
-            throw Errors.missingTables
+            throw Error.missingTables
         }
     
         let currentLocale = locale ?? fallback
         
         guard let translationTables = localizationTables[currentLocale] else {
-            throw Errors.missingTable(currentLocale.tag)
+            throw Error.missingTable(currentLocale.tag)
         }
         
         if let table = string.table {
             
             guard let translationTable = translationTables.first(where: { $0.name == table }) else {
-                throw Errors.unknownTable(table, currentLocale.tag)
+                throw Error.unknownTable(table, currentLocale.tag)
             }
             
             guard var translation = translationTable.retrieve(for: string.key.value) else {
-                throw Errors.missingKey(string.key.value, currentLocale.tag)
+                throw Error.missingKey(string.key.value, currentLocale.tag)
             }
         
             if let interpolation = string.key.interpolation {
@@ -250,7 +250,7 @@ public struct Localization: Sendable {
             }
         }
         
-        throw Errors.missingKey(string.key.value, currentLocale.tag)
+        throw Error.missingKey(string.key.value, currentLocale.tag)
     }
     
     /// Recovers from an error.
@@ -260,13 +260,13 @@ public struct Localization: Sendable {
     ///   - string: The string to localize
     ///
     /// - Returns: The translation or the string literal
-    internal func recover(from priorError: Errors, with string: LocalizedString) throws -> String {
+    internal func recover(from priorError: Error, with string: LocalizedString) throws -> String {
         
         do {
             
             return try localize(string: string)
             
-        } catch let error as Errors {
+        } catch let error as Error {
             
             switch error {
             case .missingKey where error != priorError:

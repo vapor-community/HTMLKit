@@ -1,6 +1,6 @@
 internal class Stylesheet {
     
-    /// A enumeration of different states of the minifier
+    /// An enumeration of different states of the minifier.
     ///
     /// Code is the initial state.
     internal enum InsertionMode: String {
@@ -23,7 +23,7 @@ internal class Stylesheet {
         case argument
     }
     
-    /// A enumeration of different level of the logging
+    /// An enumeration of different level of the logging.
     ///
     /// None is the initial state.
     internal enum LogLevel {
@@ -184,10 +184,10 @@ internal class Stylesheet {
                 self.mode = consumeStringValue(character.element)
                 
             case .unidentified:
-                self.mode = consumeUnkown(character.element)
+                self.mode = consumeUnknown(character.element)
                 
             case .afterunidentified:
-                self.mode = consumeAfterUnkown(character.element)
+                self.mode = consumeAfterUnknown(character.element)
                 
             case .string:
                 self.mode = consumeStringLiteral(character.element)
@@ -622,7 +622,7 @@ internal class Stylesheet {
     }
     
     /// Consumes a unidentified character sequence
-    internal func consumeUnkown(_ character: Character) -> InsertionMode {
+    internal func consumeUnknown(_ character: Character) -> InsertionMode {
         
         self.verbose(function: #function, character: character)
         
@@ -647,7 +647,7 @@ internal class Stylesheet {
         return .unidentified
     }
     
-    func consumeAfterUnkown(_ character: Character) -> InsertionMode {
+    func consumeAfterUnknown(_ character: Character) -> InsertionMode {
         
         self.verbose(function: #function, character: character)
         
@@ -784,7 +784,7 @@ extension Stylesheet {
 
     internal class WhitespaceToken: Token {
         
-        /// A enumeration of the variations of comment tokens
+        /// An enumeration of the variations of comment tokens
         internal enum TokenType {
             
             /// Indicates a single line comment
@@ -822,7 +822,7 @@ extension Stylesheet {
     /// A type that represents a css comment
     internal class CommentToken: Token {
         
-        /// A enumeration of the variations of comment tokens
+        /// An enumeration of the variations of comment tokens.
         internal enum TokenType {
             
             /// Indicates a single line comment
@@ -861,7 +861,7 @@ extension Stylesheet {
     /// A type that represents a css comment
     internal class SelectorToken: Token {
         
-        /// A enumeration of the variations of comment tokens
+        /// An enumeration of the variations of comment tokens.
         internal enum TokenType {
             
             /// Indicates the set is about an type
@@ -930,7 +930,7 @@ extension Stylesheet {
     /// A type that represents a format control token
     internal class FormatToken: Token {
         
-        /// A enumeration of the variation of format tokens
+        /// An enumeration of the variation of format tokens.
         internal enum TokenType {
             
             /// Indicates a punctiation
@@ -968,7 +968,7 @@ extension Stylesheet {
     /// A type that represents a format control token
     internal class PropertyToken: Token {
         
-        /// A enumeration of the variation of format tokens
+        /// An enumeration of the variation of format tokens.
         internal enum TokenType {
             
             /// Indicates a regular property
@@ -1013,7 +1013,7 @@ extension Stylesheet {
     /// A type that represents a format control token
     internal class ValueToken: Token {
         
-        /// A enumeration of the variation of format tokens
+        /// An enumeration of the variation of format tokens.
         internal enum TokenType {
             
             /// Indicates a punctiation

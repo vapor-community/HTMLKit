@@ -5,13 +5,13 @@ import Vapor
 public struct ViewRenderer: Sendable {
     
     /// The event loop that the renderer operates on
-    internal var eventLoop: EventLoop
+    internal let eventLoop: EventLoop
     
     /// The actual renderer
-    internal var renderer: Renderer
+    internal let renderer: Renderer
     
     /// The logger used to log all operations
-    private var logger: Logger
+    private let logger: Logger
     
     /// Initializes the view renderer
     /// 

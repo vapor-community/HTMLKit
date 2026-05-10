@@ -77,7 +77,7 @@ public struct FigureCaption: ContentNode, FigureElement {
     }
 }
 
-extension FigureCaption: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
+extension FigureCaption: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
     
     public func accessKey(_ value: Character) -> FigureCaption {
         return mutate(accesskey: .init("\(value)", context: .trusted))

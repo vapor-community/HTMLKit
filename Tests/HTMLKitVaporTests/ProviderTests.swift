@@ -1,8 +1,3 @@
-/*
- Abstract:
- The file tests the provider.
- */
-
 import XCTVapor
 import HTMLKit
 import HTMLKitVapor
@@ -241,14 +236,10 @@ final class ProviderTests: XCTestCase {
         app.htmlkit.localization.set(locale: "en-GB")
         
         app.get("test") { request async throws -> Vapor.View in
-            
-            // Overwrite the accept language header to simulate a different language
-            request.headers.replaceOrAdd(name: "accept-language", value: "fr")
-            
             return try await request.htmlkit.render(TestPage.ChildView())
         }
         
-        try await app.test(.GET, "test") { response async in
+        try await app.test(.GET, "test", headers: ["accept-language": "fr"]) { response async in
             XCTAssertEqual(response.status, .ok)
             XCTAssertEqual(response.body.string,
                             """
@@ -284,14 +275,10 @@ final class ProviderTests: XCTestCase {
         app.htmlkit.localization.set(locale: "en-GB")
         
         app.get("test") { request async throws -> Vapor.View in
-            
-            // Overwrite the accept language header to simulate a different language
-            request.headers.replaceOrAdd(name: "accept-language", value: "en-US")
-            
             return try await request.htmlkit.render(TestPage.ChildView())
         }
         
-        try await app.test(.GET, "test") { response async in
+        try await app.test(.GET, "test", headers: ["accept-language": "en-US"]) { response async in
             XCTAssertEqual(response.status, .ok)
             XCTAssertEqual(response.body.string,
                             """
@@ -384,7 +371,7 @@ final class ProviderTests: XCTestCase {
             let firstName = "Jane"
         }
         
-        struct UnkownObject: HTMLKit.View {
+        struct UnknownObject: HTMLKit.View {
             
             @EnvironmentObject(TestObject.self)
             var object
@@ -415,9 +402,9 @@ final class ProviderTests: XCTestCase {
         
         let app = try await Application.make(.testing)
         
-        app.get("unkownobject") { request async throws -> Vapor.View in
+        app.get("unknownobject") { request async throws -> Vapor.View in
             
-            return try await request.htmlkit.render(UnkownObject())
+            return try await request.htmlkit.render(UnknownObject())
         }
         
         app.get("wrongcast") { request async throws -> Vapor.View in
@@ -425,7 +412,7 @@ final class ProviderTests: XCTestCase {
             return try await request.htmlkit.render(WrongCast())
         }
         
-        try await app.test(.GET, "unkownobject") { response async throws in
+        try await app.test(.GET, "unknownobject") { response async throws in
             
             XCTAssertEqual(response.status, .internalServerError)
             

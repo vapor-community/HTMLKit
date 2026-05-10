@@ -2099,7 +2099,7 @@ public enum Values {
         case messagingProtocol = "impp"
     }
     
-    /// A enumeration of extra permission
+    /// An enumeration of extra permission.
     ///
     /// ```swift
     /// InlineFrame {

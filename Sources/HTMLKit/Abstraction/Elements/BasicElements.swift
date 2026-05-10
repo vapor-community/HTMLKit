@@ -133,7 +133,7 @@ public struct Html: ContentNode, BasicElement {
     }
 }
 
-extension Html: GlobalAttributes, GlobalEventAttributes {
+extension Html: GlobalContentAttributes, GlobalEventAttributes {
     
     public func accessKey(_ value: Character) -> Html {
         return mutate(accesskey: .init("\(value)", context: .trusted))

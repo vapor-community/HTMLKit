@@ -2,7 +2,7 @@
 @_documentation(visibility: internal)
 public struct Relation {
     
-    /// A enumeration of potential logical terms
+    /// An enumeration of potential logical terms.
     public enum Term {
     
         /// Indicates a conjunction

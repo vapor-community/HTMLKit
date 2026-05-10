@@ -102,7 +102,7 @@ public struct Caption: ContentNode, TableElement {
     }
 }
 
-extension Caption: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
+extension Caption: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
     
     public func accessKey(_ value: Character) -> Caption {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -639,7 +639,7 @@ public struct ColumnGroup: ContentNode, TableElement {
     }
 }
 
-extension ColumnGroup: GlobalAttributes, GlobalEventAttributes, SpanAttribute {
+extension ColumnGroup: GlobalContentAttributes, GlobalEventAttributes, SpanAttribute {
     
     public func accessKey(_ value: Character) -> ColumnGroup {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -941,7 +941,7 @@ public struct Column: EmptyNode, TableElement {
     }
 }
 
-extension Column: GlobalAttributes, GlobalEventAttributes, SpanAttribute {
+extension Column: GlobalContentAttributes, GlobalEventAttributes, SpanAttribute {
     
     public func accessKey(_ value: Character) -> Column {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -1253,7 +1253,7 @@ public struct TableBody: ContentNode, TableElement {
     }
 }
 
-extension TableBody: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes, WidthAttribute, HeightAttribute {
+extension TableBody: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes, WidthAttribute, HeightAttribute {
     
     public func accessKey(_ value: Character) -> TableBody {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -1807,7 +1807,7 @@ public struct TableHead: ContentNode, TableElement {
     }
 }
 
-extension TableHead: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes, WidthAttribute, HeightAttribute {
+extension TableHead: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes, WidthAttribute, HeightAttribute {
     
     public func accessKey(_ value: Character) -> TableHead {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -2361,7 +2361,7 @@ public struct TableFoot: ContentNode, TableElement {
     }
 }
 
-extension TableFoot: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
+extension TableFoot: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
     
     public func accessKey(_ value: Character) -> TableFoot {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -2901,7 +2901,7 @@ public struct TableRow: ContentNode, TableElement {
     }
 }
 
-extension TableRow: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes, WidthAttribute, HeightAttribute, RowIndexAccessibilityAttribute, ColumnIndexAccessibilityAttribute {
+extension TableRow: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes, WidthAttribute, HeightAttribute, RowIndexAccessibilityAttribute, ColumnIndexAccessibilityAttribute {
     
     public func accessKey(_ value: Character) -> TableRow {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -3454,7 +3454,7 @@ public struct DataCell: ContentNode, TableElement {
     }
 }
 
-extension DataCell: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes, ColumnSpanAttribute, RowSpanAttribute, HeadersAttribute, RowSpanAccessibilityAttribute, ColumnSpanAccessibilityAttribute {
+extension DataCell: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes, ColumnSpanAttribute, RowSpanAttribute, HeadersAttribute, RowSpanAccessibilityAttribute, ColumnSpanAccessibilityAttribute {
 
     public func accessKey(_ value: Character) -> DataCell {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -4016,7 +4016,7 @@ public struct HeaderCell: ContentNode, TableElement {
     }
 }
 
-extension HeaderCell: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes, ColumnSpanAttribute, RowSpanAttribute, HeadersAttribute, ScopeAttribute, ColumnIndexAccessibilityAttribute, AbbreviatedAttribute {
+extension HeaderCell: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes, ColumnSpanAttribute, RowSpanAttribute, HeadersAttribute, ScopeAttribute, ColumnIndexAccessibilityAttribute, AbbreviatedAttribute {
     
     public func accessKey(_ value: Character) -> HeaderCell {
         return mutate(accesskey: .init("\(value)", context: .trusted))
