@@ -26,7 +26,7 @@ public struct Area: EmptyNode, MapElement {
     /// Creates a area.
     public init() {}
     
-    @available(*, deprecated, message: "The area element is actually an empty element. Use Area() instead.")
+    @available(*, unavailable, message: "The area element is actually an empty element. Use Area() instead.")
     public init(@ContentBuilder<Content> content: () -> [Content]) {}
     
     internal init(attributes: OrderedDictionary<String, AttributeData>? = nil) {
