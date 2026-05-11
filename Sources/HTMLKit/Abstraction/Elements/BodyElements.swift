@@ -87,7 +87,9 @@ public typealias Abbr = Abbreviation
 
 /// The alias for the element ``Variable``.
 @_documentation(visibility: internal)
+@available(*, deprecated, message: "Use Var() instead.")
 public typealias V = Variable
+public typealias Var = Variable
 
 /// The alias for the element ``SampleOutput``.
 @_documentation(visibility: internal)

@@ -347,7 +347,7 @@ final class ElementTests: XCTestCase {
             Abbr(),
             Rt(),
             Rp(),
-            V(),
+            Var(),
             Samp(),
             Kbd(),
             Sub(),
