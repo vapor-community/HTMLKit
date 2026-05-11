@@ -1257,7 +1257,7 @@ public enum Values {
         case heading
         
         /// Indicates an image set.
-        case img
+        case image = "img"
         
         /// Indicates an item list.
         case list
