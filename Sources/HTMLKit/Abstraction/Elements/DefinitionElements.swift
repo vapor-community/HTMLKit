@@ -42,7 +42,7 @@ public struct TermName: ContentNode, DescriptionElement {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -580,7 +580,7 @@ public struct TermDefinition: ContentNode, DescriptionElement {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context

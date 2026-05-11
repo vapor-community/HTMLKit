@@ -40,7 +40,7 @@ public struct RubyText: ContentNode, RubyElement {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -582,7 +582,7 @@ public struct RubyPronunciation: ContentNode, RubyElement {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context

@@ -178,7 +178,7 @@ public struct Article: ContentNode, HtmlElement, BodyElement, FormElement, Figur
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -716,7 +716,7 @@ public struct Section: ContentNode, HtmlElement, BodyElement, FigureElement, For
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -1256,7 +1256,7 @@ public struct Navigation: ContentNode, HtmlElement, BodyElement, FormElement, Fi
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -1792,7 +1792,7 @@ public struct Aside: ContentNode, HtmlElement, BodyElement, FormElement, FigureE
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -2325,7 +2325,7 @@ public struct Heading1: ContentNode, HtmlElement, BodyElement, FormElement, Figu
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -2866,7 +2866,7 @@ public struct Heading2: ContentNode, HtmlElement, BodyElement, FormElement, Figu
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -3408,7 +3408,7 @@ public struct Heading3: ContentNode, HtmlElement, BodyElement, FormElement, Figu
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -3950,7 +3950,7 @@ public struct Heading4: ContentNode, HtmlElement, BodyElement, FormElement, Figu
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -4492,7 +4492,7 @@ public struct Heading5: ContentNode, HtmlElement, BodyElement, FormElement, Figu
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -5034,7 +5034,7 @@ public struct Heading6: ContentNode, HtmlElement, BodyElement, FormElement, Figu
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -5581,7 +5581,7 @@ public struct HeadingGroup: ContentNode, HtmlElement, BodyElement, FormElement, 
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -6115,7 +6115,7 @@ public struct Header: ContentNode, HtmlElement, BodyElement, FormElement, Figure
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -6647,7 +6647,7 @@ public struct Footer: ContentNode, HtmlElement, BodyElement, FormElement, Figure
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -7186,7 +7186,7 @@ public struct Address: ContentNode, HtmlElement, BodyElement, FormElement, Figur
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -7719,7 +7719,7 @@ public struct Paragraph: ContentNode, HtmlElement, BodyElement, FormElement, Fig
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -8259,7 +8259,7 @@ public struct HorizontalRule: EmptyNode, HtmlElement, BodyElement, FormElement, 
     /// Create a horizontal rule.
     public init() {}
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil) {
         self.attributes = attributes
     }
     
@@ -8795,7 +8795,7 @@ public struct PreformattedText: ContentNode, HtmlElement, BodyElement, FormEleme
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -9328,7 +9328,7 @@ public struct Blockquote: ContentNode, HtmlElement, BodyElement, FormElement, Fi
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -9879,7 +9879,7 @@ public struct OrderedList: ContentNode, HtmlElement, BodyElement, FormElement, F
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [ListElement]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .trusted, content: [ListElement] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -10432,7 +10432,7 @@ public struct UnorderedList: ContentNode, HtmlElement, BodyElement, FormElement,
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [ListElement]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .trusted, content: [ListElement] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -10983,7 +10983,7 @@ public struct Menu: ContentNode, HtmlElement, BodyElement {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [ListElement]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .trusted, content: [ListElement] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -11273,7 +11273,7 @@ public struct DescriptionList: ContentNode, HtmlElement, BodyElement, FormElemen
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [DescriptionElement]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .trusted, content: [DescriptionElement] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -11811,7 +11811,7 @@ public struct Figure: ContentNode, HtmlElement, BodyElement, FormElement, Figure
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [FigureElement]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .trusted, content: [FigureElement] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -12346,7 +12346,7 @@ public struct Anchor: ContentNode, HtmlElement, BodyElement, FormElement, Figure
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -12934,7 +12934,7 @@ public struct Emphasize: ContentNode, HtmlElement, BodyElement, FormElement, Fig
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -13469,7 +13469,7 @@ public struct Strong: ContentNode, HtmlElement, BodyElement, FormElement, Figure
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -14004,7 +14004,7 @@ public struct Small: ContentNode, HtmlElement, BodyElement, FormElement, FigureE
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -14548,7 +14548,7 @@ public struct StrikeThrough: ContentNode, HtmlElement, BodyElement, FormElement,
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -14870,7 +14870,7 @@ public struct Main: ContentNode, HtmlElement, BodyElement, FormElement {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -15410,7 +15410,7 @@ public struct Search: ContentNode, HtmlElement, BodyElement {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -15693,7 +15693,7 @@ public struct Division: ContentNode, HtmlElement, BodyElement, FormElement, Figu
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -16356,7 +16356,7 @@ public struct Definition: ContentNode, HtmlElement, BodyElement, FormElement, Fi
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -16892,7 +16892,7 @@ public struct Cite: ContentNode, HtmlElement, BodyElement, FormElement, FigureEl
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -17427,7 +17427,7 @@ public struct ShortQuote: ContentNode, HtmlElement, BodyElement, FormElement, Fi
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -17967,7 +17967,7 @@ public struct Abbreviation: ContentNode, HtmlElement, BodyElement, FormElement, 
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -18503,7 +18503,7 @@ public struct Ruby: ContentNode, HtmlElement, BodyElement, FormElement, FigureEl
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [RubyElement]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .trusted, content: [RubyElement] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -19041,7 +19041,7 @@ public struct Data: ContentNode, HtmlElement, BodyElement, FormElement, FigureEl
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -19591,7 +19591,7 @@ public struct Time: ContentNode, HtmlElement, BodyElement, FormElement, FigureEl
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -20132,7 +20132,7 @@ public struct Code: ContentNode, HtmlElement, BodyElement, FormElement, FigureEl
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -20669,7 +20669,7 @@ public struct Variable: ContentNode, HtmlElement, BodyElement, FormElement, Figu
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -21202,7 +21202,7 @@ public struct SampleOutput: ContentNode, HtmlElement, BodyElement, FormElement, 
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -21739,7 +21739,7 @@ public struct KeyboardInput: ContentNode, HtmlElement, BodyElement, FormElement,
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -22276,7 +22276,7 @@ public struct Subscript: ContentNode, HtmlElement, BodyElement, FormElement, Fig
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -22812,7 +22812,7 @@ public struct Superscript: ContentNode, HtmlElement, BodyElement, FormElement, F
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -23349,7 +23349,7 @@ public struct Italic: ContentNode, HtmlElement, BodyElement, FormElement, Figure
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -23895,7 +23895,7 @@ public struct Bold: ContentNode, HtmlElement, BodyElement, FormElement, FigureEl
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -24441,7 +24441,7 @@ public struct Underline: ContentNode, HtmlElement, BodyElement, FormElement, Fig
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -24987,7 +24987,7 @@ public struct Mark: ContentNode, HtmlElement, BodyElement, FormElement, FigureEl
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -25524,7 +25524,7 @@ public struct Bdi: ContentNode, HtmlElement, BodyElement, FormElement, FigureEle
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -26052,7 +26052,7 @@ public struct Bdo: EmptyNode, HtmlElement, BodyElement, FormElement, FigureEleme
     /// Create a bidirectional override.
     public init() {}
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil) {
         self.attributes = attributes
     }
     
@@ -26582,7 +26582,7 @@ public struct Span: ContentNode, HtmlElement, BodyElement, FormElement, FigureEl
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -27115,7 +27115,7 @@ public struct LineBreak: EmptyNode, HtmlElement, BodyElement, FormElement, Figur
     /// Create a line break.
     public init() {}
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil) {
         self.attributes = attributes
     }
     
@@ -27637,7 +27637,7 @@ public struct WordBreak: EmptyNode, HtmlElement, BodyElement, FormElement, Figur
     /// Create a word break.
     public init() {}
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil) {
         self.attributes = attributes
     }
     
@@ -28167,7 +28167,7 @@ public struct InsertedText: ContentNode, HtmlElement, BodyElement, FormElement, 
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -28708,7 +28708,7 @@ public struct DeletedText: ContentNode, HtmlElement, BodyElement, FormElement, F
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -29254,7 +29254,7 @@ public struct Picture: ContentNode, HtmlElement, BodyElement, FormElement, Figur
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -29548,7 +29548,7 @@ public struct Image: EmptyNode, HtmlElement, BodyElement, FormElement, FigureEle
     /// Create an image.
     public init() {}
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil) {
         self.attributes = attributes
     }
     
@@ -30157,7 +30157,7 @@ public struct InlineFrame: ContentNode, HtmlElement, BodyElement, FormElement, F
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -30724,7 +30724,7 @@ public struct Embed: EmptyNode, HtmlElement, BodyElement, FormElement, FigureEle
     /// Create an embed.
     public init() {}
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil) {
         self.attributes = attributes
     }
     
@@ -31275,7 +31275,7 @@ public struct Object: ContentNode, HtmlElement, BodyElement, FormElement, Figure
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [ObjectElement]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .trusted, content: [ObjectElement] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -31834,7 +31834,7 @@ public struct Video: ContentNode, HtmlElement, BodyElement, FormElement, FigureE
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [MediaElement]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .trusted, content: [MediaElement] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -32432,7 +32432,7 @@ public struct Audio: ContentNode, HtmlElement, BodyElement, FormElement, FigureE
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [MediaElement]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .trusted, content: [MediaElement] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -33018,7 +33018,7 @@ public struct Map: ContentNode, HtmlElement, BodyElement, FormElement, FigureEle
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [MapElement]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .trusted, content: [MapElement] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -33331,7 +33331,7 @@ public struct Form: ContentNode, HtmlElement, BodyElement, FigureElement, Object
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [FormElement]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .trusted, content: [FormElement] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -33912,7 +33912,7 @@ public struct DataList: ContentNode, HtmlElement, BodyElement, FormElement, Figu
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -34447,7 +34447,7 @@ public struct Output: ContentNode, HtmlElement, BodyElement, FormElement, Figure
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -34994,7 +34994,7 @@ public struct Progress: ContentNode, HtmlElement, BodyElement, FormElement, Figu
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -35548,7 +35548,7 @@ public struct Meter: ContentNode, HtmlElement, BodyElement, FormElement, FigureE
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -36119,7 +36119,7 @@ public struct Details: ContentNode, HtmlElement, BodyElement, FormElement, Figur
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -36680,7 +36680,7 @@ public struct Dialog: ContentNode, BodyElement {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -37232,7 +37232,7 @@ public struct Script: ContentNode, HeadElement, BodyElement, FormElement, Figure
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.js), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -37581,7 +37581,7 @@ public struct NoScript: ContentNode, HtmlElement, HeadElement, BodyElement, Form
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -37891,7 +37891,7 @@ public struct Template: ContentNode, BodyElement, FormElement, FigureElement, Ob
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -38194,7 +38194,7 @@ public struct Canvas: ContentNode, HtmlElement, BodyElement, FormElement, Figure
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -38742,7 +38742,7 @@ public struct Table: ContentNode, HtmlElement, BodyElement, FormElement, FigureE
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [TableElement]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .trusted, content: [TableElement] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -39297,7 +39297,7 @@ public struct Vector: ContentNode, HtmlElement, BodyElement, FormElement, Figure
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [VectorElement]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [VectorElement] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -39653,7 +39653,7 @@ public struct Slot: ContentNode, BodyElement, FormElement, FigureElement, Object
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context

@@ -23,7 +23,7 @@ public struct Input: EmptyNode, FormElement {
     /// Create an input.
     public init() {}
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil) {
         self.attributes = attributes
     }
     
@@ -679,7 +679,7 @@ public struct Label: ContentNode, FormElement {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -1234,7 +1234,7 @@ public struct Select: ContentNode, FormElement {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -1722,7 +1722,7 @@ public struct TextArea: ContentNode, FormElement {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [String]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [String] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -2343,7 +2343,7 @@ public struct Button: ContentNode, FormElement {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -2962,7 +2962,7 @@ public struct Fieldset: ContentNode, FormElement {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context

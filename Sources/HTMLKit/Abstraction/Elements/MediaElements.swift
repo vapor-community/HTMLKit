@@ -22,7 +22,7 @@ public struct Source: EmptyNode, MediaElement {
     /// Create a source.
     public init() {}
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil) {
         self.attributes = attributes
     }
     

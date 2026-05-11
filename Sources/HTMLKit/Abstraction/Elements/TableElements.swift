@@ -63,7 +63,7 @@ public struct Caption: ContentNode, TableElement {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -600,7 +600,7 @@ public struct ColumnGroup: ContentNode, TableElement {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -905,7 +905,7 @@ public struct Column: EmptyNode, TableElement {
     @available(*, deprecated, message: "The column element is actually an empty element. Use Column() instead.")
      public init(@ContentBuilder<Content> content: () -> [Content]) {}
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil) {
         self.attributes = attributes
     }
     
@@ -1214,7 +1214,7 @@ public struct TableBody: ContentNode, TableElement {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -1768,7 +1768,7 @@ public struct TableHead: ContentNode, TableElement {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -2322,7 +2322,7 @@ public struct TableFoot: ContentNode, TableElement {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -2862,7 +2862,7 @@ public struct TableRow: ContentNode, TableElement {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -3415,7 +3415,7 @@ public struct DataCell: ContentNode, TableElement {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -3977,7 +3977,7 @@ public struct HeaderCell: ContentNode, TableElement {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context

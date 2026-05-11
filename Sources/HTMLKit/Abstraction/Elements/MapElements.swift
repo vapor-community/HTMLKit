@@ -29,7 +29,7 @@ public struct Area: EmptyNode, MapElement {
     @available(*, deprecated, message: "The area element is actually an empty element. Use Area() instead.")
     public init(@ContentBuilder<Content> content: () -> [Content]) {}
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil) {
         self.attributes = attributes
     }
     

@@ -29,7 +29,7 @@ public struct Head: ContentNode, HtmlElement {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [HeadElement]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .trusted, content: [HeadElement] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -337,7 +337,7 @@ public struct Body: ContentNode, HtmlElement {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [BodyElement]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .trusted, content: [BodyElement] = []) {
         
         self.attributes = attributes
         self.context = context
