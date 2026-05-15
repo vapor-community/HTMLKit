@@ -82,23 +82,8 @@ extension Application {
 
 extension Request {
     
-    /// The accept language header of the request
-    private var acceptLanguage: String? {
-        
-        if let languageHeader = headers.first(name: .acceptLanguage) {
-            return languageHeader.components(separatedBy: ",").first
-        }
-        
-        return nil
-    }
-    
     /// Access to the view renderer
     public var htmlkit: ViewRenderer {
-        
-        if let acceptLanguage = acceptLanguage {
-            application.htmlkit.environment.upsert(HTMLKit.Locale(tag: acceptLanguage), for: \HTMLKit.EnvironmentKeys.locale)
-        }
-        
         return .init(eventLoop: eventLoop, configuration: application.htmlkit.configuration, logger: logger)
     }
 }
