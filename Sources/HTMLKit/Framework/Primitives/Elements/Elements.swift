@@ -1,8 +1,3 @@
-/*
- Abstract:
- The file contains the default definition of different elements.
- */
-
 @_documentation(visibility: internal)
 public typealias GlobalElement = BodyElement & DescriptionElement & FigureElement & FormElement & BasicElement & HeadElement & ListElement & MapElement & MediaElement & ObjectElement & RubyElement & TableElement & HtmlElement & InputElement & VectorElement
 

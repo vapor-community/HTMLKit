@@ -1,8 +1,3 @@
-/*
- Abstract:
- The file tests the rendering of the attributes.
- */
-
 @testable import HTMLKit
 import Foundation
 import OrderedCollections

@@ -1,8 +1,3 @@
-/*
- Abstract:
- The file tests the annotations.
- */
-
 import HTMLKit
 import XCTest
 

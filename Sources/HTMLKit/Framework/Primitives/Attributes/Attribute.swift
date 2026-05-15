@@ -1,8 +1,3 @@
-/*
- Abstract:
- The file contains the default definition of an attribute. It defines which properties and methods an attribute should come with. A attribute is a part of a element and is contained in a node.
- */
-
 import OrderedCollections
 
 /// A type that represents any html-attribute.

@@ -38,7 +38,7 @@ public struct FigureCaption: ContentNode, FigureElement {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -77,7 +77,7 @@ public struct FigureCaption: ContentNode, FigureElement {
     }
 }
 
-extension FigureCaption: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
+extension FigureCaption: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
     
     public func accessKey(_ value: Character) -> FigureCaption {
         return mutate(accesskey: .init("\(value)", context: .trusted))

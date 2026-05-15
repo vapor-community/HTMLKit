@@ -29,7 +29,7 @@ public struct Head: ContentNode, HtmlElement {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [HeadElement]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .trusted, content: [HeadElement] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -68,7 +68,7 @@ public struct Head: ContentNode, HtmlElement {
     }
 }
 
-extension Head: GlobalAttributes, GlobalEventAttributes {
+extension Head: GlobalContentAttributes, GlobalEventAttributes {
     
     public func accessKey(_ value: Character) -> Head {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -337,7 +337,7 @@ public struct Body: ContentNode, HtmlElement {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [BodyElement]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .trusted, content: [BodyElement] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -376,7 +376,7 @@ public struct Body: ContentNode, HtmlElement {
     }
 }
 
-extension Body: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes, WindowEventAttribute {
+extension Body: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes, WindowEventAttribute {
 
     public func accessKey(_ value: Character) -> Body {
         return mutate(accesskey: .init("\(value)", context: .trusted))

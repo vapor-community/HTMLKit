@@ -42,7 +42,7 @@ public struct TermName: ContentNode, DescriptionElement {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -81,7 +81,7 @@ public struct TermName: ContentNode, DescriptionElement {
     }
 }
 
-extension TermName: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
+extension TermName: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
     
     public func accessKey(_ value: Character) -> TermName {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -580,7 +580,7 @@ public struct TermDefinition: ContentNode, DescriptionElement {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -619,7 +619,7 @@ public struct TermDefinition: ContentNode, DescriptionElement {
     }
 }
 
-extension TermDefinition: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
+extension TermDefinition: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
     
     public func accessKey(_ value: Character) -> TermDefinition {
         return mutate(accesskey: .init("\(value)", context: .trusted))

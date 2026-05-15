@@ -87,7 +87,9 @@ public typealias Abbr = Abbreviation
 
 /// The alias for the element ``Variable``.
 @_documentation(visibility: internal)
+@available(*, deprecated, message: "Use Var() instead.")
 public typealias V = Variable
+public typealias Var = Variable
 
 /// The alias for the element ``SampleOutput``.
 @_documentation(visibility: internal)
@@ -178,7 +180,7 @@ public struct Article: ContentNode, HtmlElement, BodyElement, FormElement, Figur
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -217,7 +219,7 @@ public struct Article: ContentNode, HtmlElement, BodyElement, FormElement, Figur
     }
 }
 
-extension Article: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
+extension Article: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
     
     public func accessKey(_ value: Character) -> Article {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -716,7 +718,7 @@ public struct Section: ContentNode, HtmlElement, BodyElement, FigureElement, For
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -755,7 +757,7 @@ public struct Section: ContentNode, HtmlElement, BodyElement, FigureElement, For
     }
 }
 
-extension Section: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
+extension Section: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
     
     public func accessKey(_ value: Character) -> Section {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -1256,7 +1258,7 @@ public struct Navigation: ContentNode, HtmlElement, BodyElement, FormElement, Fi
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -1295,7 +1297,7 @@ public struct Navigation: ContentNode, HtmlElement, BodyElement, FormElement, Fi
     }
 }
 
-extension Navigation: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
+extension Navigation: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
     
     public func accessKey(_ value: Character) -> Navigation {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -1792,7 +1794,7 @@ public struct Aside: ContentNode, HtmlElement, BodyElement, FormElement, FigureE
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -1831,7 +1833,7 @@ public struct Aside: ContentNode, HtmlElement, BodyElement, FormElement, FigureE
     }
 }
 
-extension Aside: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
+extension Aside: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
     
     public func accessKey(_ value: Character) -> Aside {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -2325,7 +2327,7 @@ public struct Heading1: ContentNode, HtmlElement, BodyElement, FormElement, Figu
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -2364,7 +2366,7 @@ public struct Heading1: ContentNode, HtmlElement, BodyElement, FormElement, Figu
     }
 }
 
-extension Heading1: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
+extension Heading1: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
     
     public func accessKey(_ value: Character) -> Heading1 {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -2866,7 +2868,7 @@ public struct Heading2: ContentNode, HtmlElement, BodyElement, FormElement, Figu
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -2905,7 +2907,7 @@ public struct Heading2: ContentNode, HtmlElement, BodyElement, FormElement, Figu
     }
 }
 
-extension Heading2: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
+extension Heading2: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
     
     public func accessKey(_ value: Character) -> Heading2 {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -3408,7 +3410,7 @@ public struct Heading3: ContentNode, HtmlElement, BodyElement, FormElement, Figu
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -3447,7 +3449,7 @@ public struct Heading3: ContentNode, HtmlElement, BodyElement, FormElement, Figu
     }
 }
 
-extension Heading3: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
+extension Heading3: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
     
     public func accessKey(_ value: Character) -> Heading3 {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -3950,7 +3952,7 @@ public struct Heading4: ContentNode, HtmlElement, BodyElement, FormElement, Figu
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -3989,7 +3991,7 @@ public struct Heading4: ContentNode, HtmlElement, BodyElement, FormElement, Figu
     }
 }
 
-extension Heading4: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
+extension Heading4: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
     
     public func accessKey(_ value: Character) -> Heading4 {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -4492,7 +4494,7 @@ public struct Heading5: ContentNode, HtmlElement, BodyElement, FormElement, Figu
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -4531,7 +4533,7 @@ public struct Heading5: ContentNode, HtmlElement, BodyElement, FormElement, Figu
     }
 }
 
-extension Heading5: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
+extension Heading5: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
     
     public func accessKey(_ value: Character) -> Heading5 {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -5034,7 +5036,7 @@ public struct Heading6: ContentNode, HtmlElement, BodyElement, FormElement, Figu
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -5073,7 +5075,7 @@ public struct Heading6: ContentNode, HtmlElement, BodyElement, FormElement, Figu
     }
 }
 
-extension Heading6: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
+extension Heading6: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
     
     public func accessKey(_ value: Character) -> Heading6 {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -5581,7 +5583,7 @@ public struct HeadingGroup: ContentNode, HtmlElement, BodyElement, FormElement, 
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -5620,7 +5622,7 @@ public struct HeadingGroup: ContentNode, HtmlElement, BodyElement, FormElement, 
     }
 }
 
-extension HeadingGroup: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
+extension HeadingGroup: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
     
     public func accessKey(_ value: Character) -> HeadingGroup {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -6115,7 +6117,7 @@ public struct Header: ContentNode, HtmlElement, BodyElement, FormElement, Figure
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -6154,7 +6156,7 @@ public struct Header: ContentNode, HtmlElement, BodyElement, FormElement, Figure
     }
 }
 
-extension Header: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
+extension Header: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
     
     public func accessKey(_ value: Character) -> Header {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -6647,7 +6649,7 @@ public struct Footer: ContentNode, HtmlElement, BodyElement, FormElement, Figure
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -6686,7 +6688,7 @@ public struct Footer: ContentNode, HtmlElement, BodyElement, FormElement, Figure
     }
 }
 
-extension Footer: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
+extension Footer: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
     
     public func accessKey(_ value: Character) -> Footer {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -7186,7 +7188,7 @@ public struct Address: ContentNode, HtmlElement, BodyElement, FormElement, Figur
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -7225,7 +7227,7 @@ public struct Address: ContentNode, HtmlElement, BodyElement, FormElement, Figur
     }
 }
 
-extension Address: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
+extension Address: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
     
     public func accessKey(_ value: Character) -> Address {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -7719,7 +7721,7 @@ public struct Paragraph: ContentNode, HtmlElement, BodyElement, FormElement, Fig
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -7758,7 +7760,7 @@ public struct Paragraph: ContentNode, HtmlElement, BodyElement, FormElement, Fig
     }
 }
 
-extension Paragraph: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes, RequiredAccessibilityAttribute {
+extension Paragraph: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes, RequiredAccessibilityAttribute {
 
     public func accessKey(_ value: Character) -> Paragraph {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -8259,7 +8261,7 @@ public struct HorizontalRule: EmptyNode, HtmlElement, BodyElement, FormElement, 
     /// Create a horizontal rule.
     public init() {}
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil) {
         self.attributes = attributes
     }
     
@@ -8295,7 +8297,7 @@ public struct HorizontalRule: EmptyNode, HtmlElement, BodyElement, FormElement, 
     }
 }
 
-extension HorizontalRule: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
+extension HorizontalRule: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
     
     public func accessKey(_ value: Character) -> HorizontalRule {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -8795,7 +8797,7 @@ public struct PreformattedText: ContentNode, HtmlElement, BodyElement, FormEleme
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -8834,7 +8836,7 @@ public struct PreformattedText: ContentNode, HtmlElement, BodyElement, FormEleme
     }
 }
 
-extension PreformattedText: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
+extension PreformattedText: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
     
     public func accessKey(_ value: Character) -> PreformattedText {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -9328,7 +9330,7 @@ public struct Blockquote: ContentNode, HtmlElement, BodyElement, FormElement, Fi
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -9367,7 +9369,7 @@ public struct Blockquote: ContentNode, HtmlElement, BodyElement, FormElement, Fi
     }
 }
 
-extension Blockquote: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes, CiteAttribute {
+extension Blockquote: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes, CiteAttribute {
     
     public func accessKey(_ value: Character) -> Blockquote {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -9879,7 +9881,7 @@ public struct OrderedList: ContentNode, HtmlElement, BodyElement, FormElement, F
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [ListElement]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .trusted, content: [ListElement] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -9918,7 +9920,7 @@ public struct OrderedList: ContentNode, HtmlElement, BodyElement, FormElement, F
     }
 }
 
-extension OrderedList: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes, ReversedAttribute, StartAttribute, TypeAttribute, OrientationAccessibilityAttribute {
+extension OrderedList: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes, ReversedAttribute, StartAttribute, TypeAttribute, OrientationAccessibilityAttribute {
     
     public func accessKey(_ value: Character) -> OrderedList {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -10432,7 +10434,7 @@ public struct UnorderedList: ContentNode, HtmlElement, BodyElement, FormElement,
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [ListElement]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .trusted, content: [ListElement] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -10471,7 +10473,7 @@ public struct UnorderedList: ContentNode, HtmlElement, BodyElement, FormElement,
     }
 }
 
-extension UnorderedList: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes, OrientationAccessibilityAttribute, MultiselectAccessibilityAttribute {
+extension UnorderedList: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes, OrientationAccessibilityAttribute, MultiselectAccessibilityAttribute {
     
     public func accessKey(_ value: Character) -> UnorderedList {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -10983,7 +10985,7 @@ public struct Menu: ContentNode, HtmlElement, BodyElement {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [ListElement]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .trusted, content: [ListElement] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -11022,7 +11024,7 @@ public struct Menu: ContentNode, HtmlElement, BodyElement {
     }
 }
 
-extension Menu: GlobalAttributes {
+extension Menu: GlobalContentAttributes {
     
     public func accessKey(_ value: Character) -> Menu {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -11273,7 +11275,7 @@ public struct DescriptionList: ContentNode, HtmlElement, BodyElement, FormElemen
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [DescriptionElement]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .trusted, content: [DescriptionElement] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -11312,7 +11314,7 @@ public struct DescriptionList: ContentNode, HtmlElement, BodyElement, FormElemen
     }
 }
 
-extension DescriptionList: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
+extension DescriptionList: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
     
     public func accessKey(_ value: Character) -> DescriptionList {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -11811,7 +11813,7 @@ public struct Figure: ContentNode, HtmlElement, BodyElement, FormElement, Figure
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [FigureElement]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .trusted, content: [FigureElement] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -11850,7 +11852,7 @@ public struct Figure: ContentNode, HtmlElement, BodyElement, FormElement, Figure
     }
 }
 
-extension Figure: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
+extension Figure: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
     
     public func accessKey(_ value: Character) -> Figure {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -12346,7 +12348,7 @@ public struct Anchor: ContentNode, HtmlElement, BodyElement, FormElement, Figure
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -12385,7 +12387,7 @@ public struct Anchor: ContentNode, HtmlElement, BodyElement, FormElement, Figure
     }
 }
 
-extension Anchor: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes, DownloadAttribute, ReferenceAttribute, ReferenceLanguageAttribute, MediaAttribute, PingAttribute, ReferrerPolicyAttribute, RelationshipAttribute, TargetAttribute, TypeAttribute {
+extension Anchor: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes, DownloadAttribute, ReferenceAttribute, ReferenceLanguageAttribute, MediaAttribute, PingAttribute, ReferrerPolicyAttribute, RelationshipAttribute, TargetAttribute, TypeAttribute {
     
     public func accessKey(_ value: Character) -> Anchor {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -12934,7 +12936,7 @@ public struct Emphasize: ContentNode, HtmlElement, BodyElement, FormElement, Fig
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -12973,7 +12975,7 @@ public struct Emphasize: ContentNode, HtmlElement, BodyElement, FormElement, Fig
     }
 }
 
-extension Emphasize: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
+extension Emphasize: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
     
     public func accessKey(_ value: Character) -> Emphasize {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -13469,7 +13471,7 @@ public struct Strong: ContentNode, HtmlElement, BodyElement, FormElement, Figure
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -13508,7 +13510,7 @@ public struct Strong: ContentNode, HtmlElement, BodyElement, FormElement, Figure
     }
 }
 
-extension Strong: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
+extension Strong: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
     
     public func accessKey(_ value: Character) -> Strong {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -14004,7 +14006,7 @@ public struct Small: ContentNode, HtmlElement, BodyElement, FormElement, FigureE
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -14043,7 +14045,7 @@ public struct Small: ContentNode, HtmlElement, BodyElement, FormElement, FigureE
     }
 }
 
-extension Small: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
+extension Small: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
     
     public func accessKey(_ value: Character) -> Small {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -14548,7 +14550,7 @@ public struct StrikeThrough: ContentNode, HtmlElement, BodyElement, FormElement,
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -14587,7 +14589,7 @@ public struct StrikeThrough: ContentNode, HtmlElement, BodyElement, FormElement,
     }
 }
 
-extension StrikeThrough: GlobalAttributes, GlobalEventAttributes {
+extension StrikeThrough: GlobalContentAttributes, GlobalEventAttributes {
     
     public func accessKey(_ value: Character) -> StrikeThrough {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -14870,7 +14872,7 @@ public struct Main: ContentNode, HtmlElement, BodyElement, FormElement {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -14909,7 +14911,7 @@ public struct Main: ContentNode, HtmlElement, BodyElement, FormElement {
     }
 }
 
-extension Main: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
+extension Main: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
     
     public func accessKey(_ value: Character) -> Main {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -15410,7 +15412,7 @@ public struct Search: ContentNode, HtmlElement, BodyElement {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -15449,7 +15451,7 @@ public struct Search: ContentNode, HtmlElement, BodyElement {
     }
 }
 
-extension Search: GlobalAttributes {
+extension Search: GlobalContentAttributes {
     
     public func accessKey(_ value: Character) -> Search {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -15693,7 +15695,7 @@ public struct Division: ContentNode, HtmlElement, BodyElement, FormElement, Figu
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -15732,7 +15734,7 @@ public struct Division: ContentNode, HtmlElement, BodyElement, FormElement, Figu
     }
 }
 
-extension Division: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes, OrientationAccessibilityAttribute, RequiredAccessibilityAttribute, ReadOnlyAccessibilityAttribute, ModalAccessibilityAttribute, LevelAccessibilityAttribute, HintAccessibilityAttribute, PositionAccessibilityAttribute, MultilineAccessibilityAttribute, MultiselectAccessibilityAttribute, RowIndexAccessibilityAttribute, RowCountAccessibilityAttribute, ColumnIndexAccessibilityAttribute, ColumnCountAccessibilityAttribute, RowSpanAccessibilityAttribute, ColumnSpanAccessibilityAttribute, MaximumValueAccessibilityAttribute, MinimumValueAccessibilityAttribute, ValueAccessibilityAttribute, PressedAccessibilityAttribute, SelectedAccessibilityAttribute, CheckedAccessibilityAttribute, ExpandedAccessibilityAttribute, FocusedAccessibilityAttribute, CompletionAccessibilityAttribute {
+extension Division: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes, OrientationAccessibilityAttribute, RequiredAccessibilityAttribute, ReadOnlyAccessibilityAttribute, ModalAccessibilityAttribute, LevelAccessibilityAttribute, HintAccessibilityAttribute, PositionAccessibilityAttribute, MultilineAccessibilityAttribute, MultiselectAccessibilityAttribute, RowIndexAccessibilityAttribute, RowCountAccessibilityAttribute, ColumnIndexAccessibilityAttribute, ColumnCountAccessibilityAttribute, RowSpanAccessibilityAttribute, ColumnSpanAccessibilityAttribute, MaximumValueAccessibilityAttribute, MinimumValueAccessibilityAttribute, ValueAccessibilityAttribute, PressedAccessibilityAttribute, SelectedAccessibilityAttribute, CheckedAccessibilityAttribute, ExpandedAccessibilityAttribute, FocusedAccessibilityAttribute, CompletionAccessibilityAttribute {
 
     public func accessKey(_ value: Character) -> Division {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -16356,7 +16358,7 @@ public struct Definition: ContentNode, HtmlElement, BodyElement, FormElement, Fi
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -16395,7 +16397,7 @@ public struct Definition: ContentNode, HtmlElement, BodyElement, FormElement, Fi
     }
 }
 
-extension Definition: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
+extension Definition: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
     
     public func accessKey(_ value: Character) -> Definition {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -16892,7 +16894,7 @@ public struct Cite: ContentNode, HtmlElement, BodyElement, FormElement, FigureEl
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -16931,7 +16933,7 @@ public struct Cite: ContentNode, HtmlElement, BodyElement, FormElement, FigureEl
     }
 }
 
-extension Cite: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
+extension Cite: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
     
     public func accessKey(_ value: Character) -> Cite {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -17427,7 +17429,7 @@ public struct ShortQuote: ContentNode, HtmlElement, BodyElement, FormElement, Fi
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -17466,7 +17468,7 @@ public struct ShortQuote: ContentNode, HtmlElement, BodyElement, FormElement, Fi
     }
 }
 
-extension ShortQuote: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes, CiteAttribute {
+extension ShortQuote: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes, CiteAttribute {
     
     public func accessKey(_ value: Character) -> ShortQuote {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -17967,7 +17969,7 @@ public struct Abbreviation: ContentNode, HtmlElement, BodyElement, FormElement, 
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -18006,7 +18008,7 @@ public struct Abbreviation: ContentNode, HtmlElement, BodyElement, FormElement, 
     }
 }
 
-extension Abbreviation: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
+extension Abbreviation: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
     
     public func accessKey(_ value: Character) -> Abbreviation {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -18503,7 +18505,7 @@ public struct Ruby: ContentNode, HtmlElement, BodyElement, FormElement, FigureEl
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [RubyElement]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .trusted, content: [RubyElement] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -18542,7 +18544,7 @@ public struct Ruby: ContentNode, HtmlElement, BodyElement, FormElement, FigureEl
     }
 }
 
-extension Ruby: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
+extension Ruby: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
     
     public func accessKey(_ value: Character) -> Ruby {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -19041,7 +19043,7 @@ public struct Data: ContentNode, HtmlElement, BodyElement, FormElement, FigureEl
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -19080,7 +19082,7 @@ public struct Data: ContentNode, HtmlElement, BodyElement, FormElement, FigureEl
     }
 }
 
-extension Data: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes, ValueAttribute {
+extension Data: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes, ValueAttribute {
     
     public func accessKey(_ value: Character) -> Data {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -19591,7 +19593,7 @@ public struct Time: ContentNode, HtmlElement, BodyElement, FormElement, FigureEl
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -19630,7 +19632,7 @@ public struct Time: ContentNode, HtmlElement, BodyElement, FormElement, FigureEl
     }
 }
 
-extension Time: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes, DateTimeAttribute {
+extension Time: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes, DateTimeAttribute {
 
     public func accessKey(_ value: Character) -> Time {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -20132,7 +20134,7 @@ public struct Code: ContentNode, HtmlElement, BodyElement, FormElement, FigureEl
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -20171,7 +20173,7 @@ public struct Code: ContentNode, HtmlElement, BodyElement, FormElement, FigureEl
     }
 }
 
-extension Code: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
+extension Code: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
     
     public func accessKey(_ value: Character) -> Code {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -20669,7 +20671,7 @@ public struct Variable: ContentNode, HtmlElement, BodyElement, FormElement, Figu
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -20708,7 +20710,7 @@ public struct Variable: ContentNode, HtmlElement, BodyElement, FormElement, Figu
     }
 }
 
-extension Variable: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
+extension Variable: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
     
     public func accessKey(_ value: Character) -> Variable {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -21202,7 +21204,7 @@ public struct SampleOutput: ContentNode, HtmlElement, BodyElement, FormElement, 
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -21241,7 +21243,7 @@ public struct SampleOutput: ContentNode, HtmlElement, BodyElement, FormElement, 
     }
 }
 
-extension SampleOutput: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
+extension SampleOutput: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
     
     public func accessKey(_ value: Character) -> SampleOutput {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -21739,7 +21741,7 @@ public struct KeyboardInput: ContentNode, HtmlElement, BodyElement, FormElement,
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -21778,7 +21780,7 @@ public struct KeyboardInput: ContentNode, HtmlElement, BodyElement, FormElement,
     }
 }
 
-extension KeyboardInput: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
+extension KeyboardInput: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
     
     public func accessKey(_ value: Character) -> KeyboardInput {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -22276,7 +22278,7 @@ public struct Subscript: ContentNode, HtmlElement, BodyElement, FormElement, Fig
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -22315,7 +22317,7 @@ public struct Subscript: ContentNode, HtmlElement, BodyElement, FormElement, Fig
     }
 }
 
-extension Subscript: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
+extension Subscript: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
     
     public func accessKey(_ value: Character) -> Subscript {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -22812,7 +22814,7 @@ public struct Superscript: ContentNode, HtmlElement, BodyElement, FormElement, F
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -22851,7 +22853,7 @@ public struct Superscript: ContentNode, HtmlElement, BodyElement, FormElement, F
     }
 }
 
-extension Superscript: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
+extension Superscript: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
     
     public func accessKey(_ value: Character) -> Superscript {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -23349,7 +23351,7 @@ public struct Italic: ContentNode, HtmlElement, BodyElement, FormElement, Figure
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -23388,7 +23390,7 @@ public struct Italic: ContentNode, HtmlElement, BodyElement, FormElement, Figure
     }
 }
 
-extension Italic: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
+extension Italic: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
     
     public func accessKey(_ value: Character) -> Italic {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -23895,7 +23897,7 @@ public struct Bold: ContentNode, HtmlElement, BodyElement, FormElement, FigureEl
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -23934,7 +23936,7 @@ public struct Bold: ContentNode, HtmlElement, BodyElement, FormElement, FigureEl
     }
 }
 
-extension Bold: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
+extension Bold: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
     
     public func accessKey(_ value: Character) -> Bold {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -24441,7 +24443,7 @@ public struct Underline: ContentNode, HtmlElement, BodyElement, FormElement, Fig
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -24480,7 +24482,7 @@ public struct Underline: ContentNode, HtmlElement, BodyElement, FormElement, Fig
     }
 }
 
-extension Underline: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
+extension Underline: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
     
     public func accessKey(_ value: Character) -> Underline {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -24987,7 +24989,7 @@ public struct Mark: ContentNode, HtmlElement, BodyElement, FormElement, FigureEl
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -25026,7 +25028,7 @@ public struct Mark: ContentNode, HtmlElement, BodyElement, FormElement, FigureEl
     }
 }
 
-extension Mark: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
+extension Mark: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
     
     public func accessKey(_ value: Character) -> Mark {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -25524,7 +25526,7 @@ public struct Bdi: ContentNode, HtmlElement, BodyElement, FormElement, FigureEle
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -25563,7 +25565,7 @@ public struct Bdi: ContentNode, HtmlElement, BodyElement, FormElement, FigureEle
     }
 }
 
-extension Bdi: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
+extension Bdi: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
     
     public func accessKey(_ value: Character) -> Bdi {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -26052,7 +26054,7 @@ public struct Bdo: EmptyNode, HtmlElement, BodyElement, FormElement, FigureEleme
     /// Create a bidirectional override.
     public init() {}
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil) {
         self.attributes = attributes
     }
     
@@ -26088,7 +26090,7 @@ public struct Bdo: EmptyNode, HtmlElement, BodyElement, FormElement, FigureEleme
     }
 }
 
-extension Bdo: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
+extension Bdo: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
     
     public func accessKey(_ value: Character) -> Bdo {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -26582,7 +26584,7 @@ public struct Span: ContentNode, HtmlElement, BodyElement, FormElement, FigureEl
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -26621,7 +26623,7 @@ public struct Span: ContentNode, HtmlElement, BodyElement, FormElement, FigureEl
     }
 }
 
-extension Span: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes, OrientationAccessibilityAttribute, RequiredAccessibilityAttribute, ReadOnlyAccessibilityAttribute {
+extension Span: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes, OrientationAccessibilityAttribute, RequiredAccessibilityAttribute, ReadOnlyAccessibilityAttribute {
     
     public func accessKey(_ value: Character) -> Span {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -27115,7 +27117,7 @@ public struct LineBreak: EmptyNode, HtmlElement, BodyElement, FormElement, Figur
     /// Create a line break.
     public init() {}
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil) {
         self.attributes = attributes
     }
     
@@ -27151,7 +27153,7 @@ public struct LineBreak: EmptyNode, HtmlElement, BodyElement, FormElement, Figur
     }
 }
 
-extension LineBreak: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
+extension LineBreak: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
     
     public func accessKey(_ value: Character) -> LineBreak {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -27637,7 +27639,7 @@ public struct WordBreak: EmptyNode, HtmlElement, BodyElement, FormElement, Figur
     /// Create a word break.
     public init() {}
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil) {
         self.attributes = attributes
     }
     
@@ -27673,7 +27675,7 @@ public struct WordBreak: EmptyNode, HtmlElement, BodyElement, FormElement, Figur
     }
 }
 
-extension WordBreak: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
+extension WordBreak: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
     
     public func accessKey(_ value: Character) -> WordBreak {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -28167,7 +28169,7 @@ public struct InsertedText: ContentNode, HtmlElement, BodyElement, FormElement, 
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -28206,7 +28208,7 @@ public struct InsertedText: ContentNode, HtmlElement, BodyElement, FormElement, 
     }
 }
 
-extension InsertedText: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes, CiteAttribute, DateTimeAttribute {
+extension InsertedText: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes, CiteAttribute, DateTimeAttribute {
     
     public func accessKey(_ value: Character) -> InsertedText {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -28708,7 +28710,7 @@ public struct DeletedText: ContentNode, HtmlElement, BodyElement, FormElement, F
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -28747,7 +28749,7 @@ public struct DeletedText: ContentNode, HtmlElement, BodyElement, FormElement, F
     }
 }
 
-extension DeletedText: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes, CiteAttribute, DateTimeAttribute {
+extension DeletedText: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes, CiteAttribute, DateTimeAttribute {
     
     public func accessKey(_ value: Character) -> DeletedText {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -29254,7 +29256,7 @@ public struct Picture: ContentNode, HtmlElement, BodyElement, FormElement, Figur
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -29293,7 +29295,7 @@ public struct Picture: ContentNode, HtmlElement, BodyElement, FormElement, Figur
     }
 }
 
-extension Picture: GlobalAttributes, GlobalEventAttributes {
+extension Picture: GlobalContentAttributes, GlobalEventAttributes {
     
     public func accessKey(_ value: Character) -> Picture {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -29548,7 +29550,7 @@ public struct Image: EmptyNode, HtmlElement, BodyElement, FormElement, FigureEle
     /// Create an image.
     public init() {}
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil) {
         self.attributes = attributes
     }
     
@@ -29584,7 +29586,7 @@ public struct Image: EmptyNode, HtmlElement, BodyElement, FormElement, FigureEle
     }
 }
 
-extension Image: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes, AlternateAttribute, SourceAttribute, SizesAttribute, WidthAttribute, HeightAttribute, ReferrerPolicyAttribute, FetchPriorityAttribute, LoadingAttribute, SourceSetAttribute, DecodingAttribute, IsMapAttribute, UseMapAttribute, CrossOriginAttribute {
+extension Image: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes, AlternateAttribute, SourceAttribute, SizesAttribute, WidthAttribute, HeightAttribute, ReferrerPolicyAttribute, FetchPriorityAttribute, LoadingAttribute, SourceSetAttribute, DecodingAttribute, IsMapAttribute, UseMapAttribute, CrossOriginAttribute {
     
     public func accessKey(_ value: Character) -> Image {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -30157,7 +30159,7 @@ public struct InlineFrame: ContentNode, HtmlElement, BodyElement, FormElement, F
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -30196,7 +30198,7 @@ public struct InlineFrame: ContentNode, HtmlElement, BodyElement, FormElement, F
     }
 }
 
-extension InlineFrame: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes, SourceAttribute, NameAttribute, WidthAttribute, HeightAttribute, ReferrerPolicyAttribute, LoadingAttribute, SandboxAttribute, SourceDocumentAttribute {
+extension InlineFrame: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes, SourceAttribute, NameAttribute, WidthAttribute, HeightAttribute, ReferrerPolicyAttribute, LoadingAttribute, SandboxAttribute, SourceDocumentAttribute {
     
     public func accessKey(_ value: Character) -> InlineFrame {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -30724,7 +30726,7 @@ public struct Embed: EmptyNode, HtmlElement, BodyElement, FormElement, FigureEle
     /// Create an embed.
     public init() {}
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil) {
         self.attributes = attributes
     }
     
@@ -30760,7 +30762,7 @@ public struct Embed: EmptyNode, HtmlElement, BodyElement, FormElement, FigureEle
     }
 }
 
-extension Embed: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes, SourceAttribute, TypeAttribute, WidthAttribute, HeightAttribute {
+extension Embed: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes, SourceAttribute, TypeAttribute, WidthAttribute, HeightAttribute {
     
     public func accessKey(_ value: Character) -> Embed {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -31275,7 +31277,7 @@ public struct Object: ContentNode, HtmlElement, BodyElement, FormElement, Figure
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [ObjectElement]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .trusted, content: [ObjectElement] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -31314,7 +31316,7 @@ public struct Object: ContentNode, HtmlElement, BodyElement, FormElement, Figure
     }
 }
 
-extension Object: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes, DataAttribute, TypeAttribute, NameAttribute, FormAttribute, WidthAttribute, HeightAttribute {
+extension Object: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes, DataAttribute, TypeAttribute, NameAttribute, FormAttribute, WidthAttribute, HeightAttribute {
     
     public func accessKey(_ value: Character) -> Object {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -31834,7 +31836,7 @@ public struct Video: ContentNode, HtmlElement, BodyElement, FormElement, FigureE
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [MediaElement]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .trusted, content: [MediaElement] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -31873,7 +31875,7 @@ public struct Video: ContentNode, HtmlElement, BodyElement, FormElement, FigureE
     }
 }
 
-extension Video: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes, SourceAttribute, AutoplayAttribute, LoopAttribute, MutedAttribute, ControlsAttribute, WidthAttribute, HeightAttribute, PreloadAttribute, PlaysInlineAttribute, CrossOriginAttribute, LoadingAttribute {
+extension Video: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes, SourceAttribute, AutoplayAttribute, LoopAttribute, MutedAttribute, ControlsAttribute, WidthAttribute, HeightAttribute, PreloadAttribute, PlaysInlineAttribute, CrossOriginAttribute, LoadingAttribute {
     
     public func accessKey(_ value: Character) -> Video {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -32432,7 +32434,7 @@ public struct Audio: ContentNode, HtmlElement, BodyElement, FormElement, FigureE
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [MediaElement]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .trusted, content: [MediaElement] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -32471,7 +32473,7 @@ public struct Audio: ContentNode, HtmlElement, BodyElement, FormElement, FigureE
     }
 }
 
-extension Audio: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes, SourceAttribute, AutoplayAttribute, LoopAttribute, MutedAttribute, ControlsAttribute, PreloadAttribute, CrossOriginAttribute, LoadingAttribute {
+extension Audio: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes, SourceAttribute, AutoplayAttribute, LoopAttribute, MutedAttribute, ControlsAttribute, PreloadAttribute, CrossOriginAttribute, LoadingAttribute {
     
     public func accessKey(_ value: Character) -> Audio {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -33018,7 +33020,7 @@ public struct Map: ContentNode, HtmlElement, BodyElement, FormElement, FigureEle
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [MapElement]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .trusted, content: [MapElement] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -33057,7 +33059,7 @@ public struct Map: ContentNode, HtmlElement, BodyElement, FormElement, FigureEle
     }
 }
 
-extension Map: GlobalAttributes, GlobalEventAttributes, NameAttribute {
+extension Map: GlobalContentAttributes, GlobalEventAttributes, NameAttribute {
     
     public func accessKey(_ value: Character) -> Map {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -33331,7 +33333,7 @@ public struct Form: ContentNode, HtmlElement, BodyElement, FigureElement, Object
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [FormElement]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .trusted, content: [FormElement] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -33370,7 +33372,7 @@ public struct Form: ContentNode, HtmlElement, BodyElement, FigureElement, Object
     }
 }
 
-extension Form: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes, ActionAttribute, AutocompleteAttribute, EncodingAttribute, MethodAttribute, NameAttribute, TargetAttribute, RelationshipAttribute {
+extension Form: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes, ActionAttribute, AutocompleteAttribute, EncodingAttribute, MethodAttribute, NameAttribute, TargetAttribute, RelationshipAttribute {
     
     public func accessKey(_ value: Character) -> Form {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -33912,7 +33914,7 @@ public struct DataList: ContentNode, HtmlElement, BodyElement, FormElement, Figu
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -33951,7 +33953,7 @@ public struct DataList: ContentNode, HtmlElement, BodyElement, FormElement, Figu
     }
 }
 
-extension DataList: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
+extension DataList: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
     
     public func accessKey(_ value: Character) -> DataList {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -34447,7 +34449,7 @@ public struct Output: ContentNode, HtmlElement, BodyElement, FormElement, Figure
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -34486,7 +34488,7 @@ public struct Output: ContentNode, HtmlElement, BodyElement, FormElement, Figure
     }
 }
 
-extension Output: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes, ForAttribute, FormAttribute, NameAttribute {
+extension Output: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes, ForAttribute, FormAttribute, NameAttribute {
     
     public func accessKey(_ value: Character) -> Output {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -34994,7 +34996,7 @@ public struct Progress: ContentNode, HtmlElement, BodyElement, FormElement, Figu
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -35033,7 +35035,7 @@ public struct Progress: ContentNode, HtmlElement, BodyElement, FormElement, Figu
     }
 }
 
-extension Progress: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes, ValueAttribute, MaximumValueAttribute {
+extension Progress: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes, ValueAttribute, MaximumValueAttribute {
     
     public func accessKey(_ value: Character) -> Progress {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -35548,7 +35550,7 @@ public struct Meter: ContentNode, HtmlElement, BodyElement, FormElement, FigureE
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -35587,7 +35589,7 @@ public struct Meter: ContentNode, HtmlElement, BodyElement, FormElement, FigureE
     }
 }
 
-extension Meter: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes, ValueAttribute, MinimumValueAttribute, MaximumValueAttribute, LowAttribute, HighAttribute, OptimumAttribute {
+extension Meter: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes, ValueAttribute, MinimumValueAttribute, MaximumValueAttribute, LowAttribute, HighAttribute, OptimumAttribute {
 
     public func accessKey(_ value: Character) -> Meter {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -36119,7 +36121,7 @@ public struct Details: ContentNode, HtmlElement, BodyElement, FormElement, Figur
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -36158,7 +36160,7 @@ public struct Details: ContentNode, HtmlElement, BodyElement, FormElement, Figur
     }
 }
 
-extension Details: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes, OpenAttribute, DetailEventAttribute {
+extension Details: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes, OpenAttribute, DetailEventAttribute {
     
     public func accessKey(_ value: Character) -> Details {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -36680,7 +36682,7 @@ public struct Dialog: ContentNode, BodyElement {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -36719,7 +36721,7 @@ public struct Dialog: ContentNode, BodyElement {
     }
 }
 
-extension Dialog: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes, OpenAttribute {
+extension Dialog: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes, OpenAttribute {
     
     public func accessKey(_ value: Character) -> Dialog {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -37232,7 +37234,7 @@ public struct Script: ContentNode, HeadElement, BodyElement, FormElement, Figure
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.js), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -37271,7 +37273,7 @@ public struct Script: ContentNode, HeadElement, BodyElement, FormElement, Figure
     }
 }
 
-extension Script: GlobalAttributes, GlobalEventAttributes, AsynchronouslyAttribute, ReferrerPolicyAttribute, SourceAttribute, TypeAttribute, FetchPriorityAttribute, BlockingAttribute, IntegrityAttribute, DeferAttribute, CrossOriginAttribute {
+extension Script: GlobalContentAttributes, GlobalEventAttributes, AsynchronouslyAttribute, ReferrerPolicyAttribute, SourceAttribute, TypeAttribute, FetchPriorityAttribute, BlockingAttribute, IntegrityAttribute, DeferAttribute, CrossOriginAttribute {
 
     public func accessKey(_ value: Character) -> Script {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -37581,7 +37583,7 @@ public struct NoScript: ContentNode, HtmlElement, HeadElement, BodyElement, Form
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -37620,7 +37622,7 @@ public struct NoScript: ContentNode, HtmlElement, HeadElement, BodyElement, Form
     }
 }
 
-extension NoScript: GlobalAttributes, GlobalEventAttributes {
+extension NoScript: GlobalContentAttributes, GlobalEventAttributes {
     
     public func accessKey(_ value: Character) -> NoScript {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -37891,7 +37893,7 @@ public struct Template: ContentNode, BodyElement, FormElement, FigureElement, Ob
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -37930,7 +37932,7 @@ public struct Template: ContentNode, BodyElement, FormElement, FigureElement, Ob
     }
 }
 
-extension Template: GlobalAttributes, GlobalEventAttributes, ShadowRootModeAttribute {
+extension Template: GlobalContentAttributes, GlobalEventAttributes, ShadowRootModeAttribute {
 
     public func accessKey(_ value: Character) -> Template {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -38194,7 +38196,7 @@ public struct Canvas: ContentNode, HtmlElement, BodyElement, FormElement, Figure
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -38233,7 +38235,7 @@ public struct Canvas: ContentNode, HtmlElement, BodyElement, FormElement, Figure
     }
 }
 
-extension Canvas: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes, WidthAttribute, HeightAttribute {
+extension Canvas: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes, WidthAttribute, HeightAttribute {
     
     public func accessKey(_ value: Character) -> Canvas {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -38742,7 +38744,7 @@ public struct Table: ContentNode, HtmlElement, BodyElement, FormElement, FigureE
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [TableElement]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .trusted, content: [TableElement] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -38781,7 +38783,7 @@ public struct Table: ContentNode, HtmlElement, BodyElement, FormElement, FigureE
     }
 }
 
-extension Table: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes, WidthAttribute, HeightAttribute, RowCountAccessibilityAttribute, ColumnCountAccessibilityAttribute {
+extension Table: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes, WidthAttribute, HeightAttribute, RowCountAccessibilityAttribute, ColumnCountAccessibilityAttribute {
     
     public func accessKey(_ value: Character) -> Table {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -39297,7 +39299,7 @@ public struct Vector: ContentNode, HtmlElement, BodyElement, FormElement, Figure
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [VectorElement]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [VectorElement] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -39653,7 +39655,7 @@ public struct Slot: ContentNode, BodyElement, FormElement, FigureElement, Object
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -39692,7 +39694,7 @@ public struct Slot: ContentNode, BodyElement, FormElement, FigureElement, Object
     }
 }
 
-extension Slot: GlobalAttributes, NameAttribute {
+extension Slot: GlobalContentAttributes, NameAttribute {
     
     public func accessKey(_ value: Character) -> Slot {
         return self.mutate(accesskey: .init("\(value)", context: .trusted))

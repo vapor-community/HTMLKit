@@ -44,8 +44,9 @@ public protocol FillAttribute: Attribute {
     /// }
     /// ```
     ///
-    /// - Parameter color: The color to fill shape with.
-    /// - Parameter opacity: The opacity to apply.
+    /// - Parameters: 
+    ///    - color: The color to fill shape with.
+    ///    - opacity: The opacity to apply.
     ///
     /// - Returns: The element
     func fill(_ color: String, opacity: Double?) -> Self
@@ -76,11 +77,12 @@ public protocol StrokeAttribute: Attribute {
     /// }
     /// ```
     ///
-    /// - Parameter color: The color to fill the stroke with.
-    /// - Parameter width: The thickness to apply to the stroke.
-    /// - Parameter opacity: The level to apply to the stroke.
-    /// - Parameter cap: The shape to end the stroke.
-    /// - Parameter join: The shape when two lines meet.
+    /// - Parameters:
+    ///   - color: The color to fill the stroke with.
+    ///   - width: The thickness to apply to the stroke.
+    ///   - opacity: The level to apply to the stroke.
+    ///   - cap: The shape to end the stroke.
+    ///   - join: The shape when two lines meet.
     ///
     /// - Returns: The element    
     func stroke(_ color: String, width: Int?, opacity: Double?, cap: Values.Linecap?, join: Values.Linejoin?) -> Self

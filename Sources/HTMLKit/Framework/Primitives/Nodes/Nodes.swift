@@ -1,8 +1,3 @@
-/*
- Abstract:
- The file contains the default definition of different nodes.
- */
-
 import OrderedCollections
 
 /// A type that defines a node with content.

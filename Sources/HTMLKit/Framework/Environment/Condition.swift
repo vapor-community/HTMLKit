@@ -2,7 +2,7 @@
 @_documentation(visibility: internal)
 public struct Condition {
     
-    /// A enumeration of potential comparison
+    /// An enumeration of potential comparison.
     public enum Comparison {
         
         /// Indicates an equal comparison

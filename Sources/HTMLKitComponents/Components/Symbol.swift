@@ -1,8 +1,3 @@
-/*
- Abstract:
- The file contains everything related to the symbol component.
- */
-
 import Foundation
 import HTMLKit
 import OrderedCollections

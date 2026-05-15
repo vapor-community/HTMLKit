@@ -1257,7 +1257,7 @@ public enum Values {
         case heading
         
         /// Indicates an image set.
-        case img
+        case image = "img"
         
         /// Indicates an item list.
         case list
@@ -2099,7 +2099,7 @@ public enum Values {
         case messagingProtocol = "impp"
     }
     
-    /// A enumeration of extra permission
+    /// An enumeration of extra permission.
     ///
     /// ```swift
     /// InlineFrame {

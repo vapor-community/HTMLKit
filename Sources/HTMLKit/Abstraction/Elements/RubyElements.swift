@@ -40,7 +40,7 @@ public struct RubyText: ContentNode, RubyElement {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -79,7 +79,7 @@ public struct RubyText: ContentNode, RubyElement {
     }
 }
 
-extension RubyText: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
+extension RubyText: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
     
     public func accessKey(_ value: Character) -> RubyText {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -582,7 +582,7 @@ public struct RubyPronunciation: ContentNode, RubyElement {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [Content]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .tainted(.html), content: [Content] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -621,7 +621,7 @@ public struct RubyPronunciation: ContentNode, RubyElement {
     }
 }
 
-extension RubyPronunciation: GlobalAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
+extension RubyPronunciation: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes {
     
     public func accessKey(_ value: Character) -> RubyPronunciation {
         return mutate(accesskey: .init("\(value)", context: .trusted))

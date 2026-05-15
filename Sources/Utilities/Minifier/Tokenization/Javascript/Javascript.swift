@@ -1,6 +1,6 @@
 internal class Javascript {
     
-    /// A enumeration of different states of the minifier
+    /// An enumeration of different states of the minifier.
     ///
     /// Code is the initial state.
     internal enum InsertionMode: String {
@@ -17,7 +17,7 @@ internal class Javascript {
         case numeric
     }
     
-    /// A enumeration of different level of the logging
+    /// An enumeration of different level of the logging
     ///
     /// None is the initial state.
     internal enum LogLevel {
@@ -452,7 +452,7 @@ extension Javascript {
     
     internal class WhitespaceToken: Token {
         
-        /// A enumeration of the variations of comment tokens
+        /// An enumeration of the variations of comment tokens
         internal enum TokenType {
             
             /// Indicates a single line comment
@@ -490,7 +490,7 @@ extension Javascript {
     /// A type that represents a javascript comment
     internal class CommentToken: Token {
         
-        /// A enumeration of the variations of comment tokens
+        /// An enumeration of the variations of comment tokens.
         internal enum TokenType {
             
             /// Indicates a single line comment
@@ -535,7 +535,7 @@ extension Javascript {
     /// A type that represents a javascript literal
     internal class LiteralToken: Token {
         
-        /// A enumeration of the variations of literal tokens
+        /// An enumeration of the variations of literal tokens,
         internal enum TokenType {
             
             /// Indiciates a boolean literal
@@ -589,7 +589,7 @@ extension Javascript {
     /// A type that represents a format control token
     internal class FormatToken: Token {
         
-        /// A enumeration of the variation of format tokens
+        /// An enumeration of the variation of format tokens.
         internal enum TokenType {
             
             /// Indicates a punctiation
@@ -624,7 +624,7 @@ extension Javascript {
     /// A type that represents a word token
     internal class WordToken: Token {
         
-        /// A enumeration of the variations of word tokens
+        /// An enumeration of the variations of word tokens.
         internal enum TokenType {
             
             /// Indicates a reserved word

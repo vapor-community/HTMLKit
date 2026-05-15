@@ -48,7 +48,7 @@ extension Application {
         }
         
         /// The key used to store the configuration in Vapor's storage
-        internal struct ConfigurationKey: StorageKey {
+        private struct ConfigurationKey: StorageKey {
             
             public typealias Value = Configuration
         }
@@ -117,7 +117,7 @@ extension HTMLKit.Renderer.Error: DebuggableError {
     public var debuggableReason: String {  description }
 }
 
-extension HTMLKit.Environment.Errors: AbortError {
+extension HTMLKit.Environment.Error: AbortError {
  
     @_implements(AbortError, reason)
     public var abortReason: String { description }
@@ -125,13 +125,13 @@ extension HTMLKit.Environment.Errors: AbortError {
     public var status: HTTPResponseStatus { .internalServerError }
 }
 
-extension HTMLKit.Environment.Errors: DebuggableError {
+extension HTMLKit.Environment.Error: DebuggableError {
 
     @_implements(DebuggableError, reason)
     public var debuggableReason: String {  description }
 }
 
-extension HTMLKit.Localization.Errors: AbortError {
+extension HTMLKit.Localization.Error: AbortError {
  
     @_implements(AbortError, reason)
     public var abortReason: String { description }
@@ -139,7 +139,7 @@ extension HTMLKit.Localization.Errors: AbortError {
     public var status: HTTPResponseStatus { .internalServerError }
 }
 
-extension HTMLKit.Localization.Errors: DebuggableError {
+extension HTMLKit.Localization.Error: DebuggableError {
     
     @_implements(DebuggableError, reason)
     public var debuggableReason: String { description }

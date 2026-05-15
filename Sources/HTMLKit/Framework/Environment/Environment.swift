@@ -8,7 +8,7 @@ import NIOConcurrencyHelpers
 public final class Environment: @unchecked Sendable {
     
     /// An enumeration of possible rendering errors.
-    public enum Errors: Error {
+    public enum Error: Swift.Error {
         
         /// Indicates a casting error.
         case unableToCastEnvironmentValue
@@ -118,11 +118,11 @@ public final class Environment: @unchecked Sendable {
     internal func resolve(value: EnvironmentValue) throws -> Any {
         
         guard let parent = retrieve(for: value.parentPath) else {
-            throw Errors.environmentObjectNotFound
+            throw Error.environmentObjectNotFound
         }
 
         guard let value = parent[keyPath: value.valuePath] else {
-            throw Errors.environmentValueNotFound
+            throw Error.environmentValueNotFound
         }
         
         return value
@@ -136,7 +136,7 @@ public final class Environment: @unchecked Sendable {
     internal func evaluate(value: EnvironmentValue) throws -> Bool {
         
         guard let boolValue = try resolve(value: value) as? Bool else {
-            throw Errors.unableToCastEnvironmentValue
+            throw Error.unableToCastEnvironmentValue
         }
         
         return boolValue
@@ -283,7 +283,7 @@ public final class Environment: @unchecked Sendable {
     internal func evaluate(optional: EnvironmentValue) throws -> Bool {
         
         guard let optionalValue = try resolve(value: optional) as? Nullable else {
-            throw Errors.unableToCastEnvironmentValue
+            throw Error.unableToCastEnvironmentValue
         }
         
         if !optionalValue.isNull {

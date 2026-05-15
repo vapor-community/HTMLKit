@@ -22,7 +22,7 @@ public struct Source: EmptyNode, MediaElement {
     /// Create a source.
     public init() {}
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil) {
         self.attributes = attributes
     }
     
@@ -58,7 +58,7 @@ public struct Source: EmptyNode, MediaElement {
     }
 }
 
-extension Source: GlobalAttributes, GlobalEventAttributes, TypeAttribute, SourceAttribute, SizesAttribute, MediaAttribute, WidthAttribute, HeightAttribute, SourceSetAttribute {
+extension Source: GlobalContentAttributes, GlobalEventAttributes, TypeAttribute, SourceAttribute, SizesAttribute, MediaAttribute, WidthAttribute, HeightAttribute, SourceSetAttribute {
     
     public func accessKey(_ value: Character) -> Source {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -407,7 +407,7 @@ public struct Track: EmptyNode, MediaElement {
     }
 }
 
-extension Track: GlobalAttributes, GlobalEventAttributes, KindAttribute, SourceAttribute, LabelAttribute, DefaultAttribute, SourceLanguageAttribute {
+extension Track: GlobalContentAttributes, GlobalEventAttributes, KindAttribute, SourceAttribute, LabelAttribute, DefaultAttribute, SourceLanguageAttribute {
     
     public func accessKey(_ value: Character) -> Track {
         return mutate(accesskey: .init("\(value)", context: .trusted))

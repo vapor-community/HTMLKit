@@ -59,10 +59,8 @@ public struct SourceCandidate {
     }
     
     /// Create a source candidate.
-    /// 
-    /// - Parameters:
-    ///   - source: The url path to load from.
-    ///   - width: The width to apply.
+    ///  
+    /// - Parameter source: The url path to load from.
     public init(_ source: String) {
         
         self.source = source

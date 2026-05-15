@@ -94,7 +94,7 @@ public struct Html: ContentNode, BasicElement {
         self.content = content()
     }
     
-    internal init(attributes: OrderedDictionary<String, AttributeData>?, context: EscapeContext, content: [HtmlElement]) {
+    internal init(attributes: OrderedDictionary<String, AttributeData>? = nil, context: EscapeContext = .trusted, content: [HtmlElement] = []) {
         
         self.attributes = attributes
         self.context = context
@@ -133,7 +133,7 @@ public struct Html: ContentNode, BasicElement {
     }
 }
 
-extension Html: GlobalAttributes, GlobalEventAttributes {
+extension Html: GlobalContentAttributes, GlobalEventAttributes {
     
     public func accessKey(_ value: Character) -> Html {
         return mutate(accesskey: .init("\(value)", context: .trusted))

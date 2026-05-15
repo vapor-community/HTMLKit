@@ -31,10 +31,10 @@ public struct AttributeData {
     }
     
     /// The context of the data.
-    internal var context: EscapeContext
+    internal let context: EscapeContext
     
     /// The value of the data.
-    internal var value: Value
+    internal let value: Value
     
     /// Create a string attribute.
     /// 

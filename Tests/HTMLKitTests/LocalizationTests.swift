@@ -58,7 +58,7 @@ final class LocalizationTests: XCTestCase {
         
         XCTAssertThrowsError(try localization!.localize(string: .init(key: "unknown.key")), "unknown.key") { error in
             
-            guard let localizationError = error as? Localization.Errors else {
+            guard let localizationError = error as? Localization.Error else {
                 return XCTFail("Unexpected error type: \(error)")
             }
             
@@ -75,7 +75,7 @@ final class LocalizationTests: XCTestCase {
         
         XCTAssertThrowsError(try localization!.localize(string: .init(key: "hello.world"), for: .init(tag: "unknown.tag"))) { error in
             
-            guard let localizationError = error as? Localization.Errors else {
+            guard let localizationError = error as? Localization.Error else {
                 return XCTFail("Unexpected error type: \(error)")
             }
             
@@ -92,7 +92,7 @@ final class LocalizationTests: XCTestCase {
         
         XCTAssertThrowsError(try localization!.localize(string: .init(key: "hello.world", table: "unknown.table"))) { error in
             
-            guard let localizationError = error as? Localization.Errors else {
+            guard let localizationError = error as? Localization.Error else {
                 return XCTFail("Unexpected error type: \(error)")
             }
             
