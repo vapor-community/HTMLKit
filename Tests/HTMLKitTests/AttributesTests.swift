@@ -319,8 +319,26 @@ final class AttributesTests: XCTestCase {
             return self
         }
         
-        func download() -> Tag {
-            return self.mutate(download: .init("download", context: .trusted))
+        func download(_ condition: Bool = true) -> Tag {
+            
+            if condition {
+                return self.mutate(download: .init("download", context: .trusted))
+            }
+            
+            return self
+        }
+        
+        @_disfavoredOverload
+        func download(_ name: String) -> Tag {
+            return self.mutate(download: .init(name, context: .tainted(.html)))
+        }
+        
+        func download(_ localizedKey: LocalizedStringKey, tableName: String?) -> Tag {
+            return self.mutate(download: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+        }
+        
+        func download(verbatim name: String) -> Tag {
+            return self.mutate(download: .init(name, context: .tainted(.html)))
         }
         
         func encoding(_ value: Values.Encoding) -> Tag {
@@ -1722,11 +1740,17 @@ final class AttributesTests: XCTestCase {
         
         let view = TestView {
             Tag {}.download()
+            Tag {}.download(false)
+            Tag {}.download(true)
+            Tag {}.download("filename")
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <tag download="download"></tag>
+                       <tag download="download"></tag>\
+                       <tag></tag>\
+                       <tag download="download"></tag>\
+                       <tag download="filename"></tag>
                        """
         )
     }

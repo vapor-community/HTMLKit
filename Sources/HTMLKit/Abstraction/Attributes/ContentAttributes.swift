@@ -982,16 +982,62 @@ extension DisabledAttribute where Self: EmptyNode {
 public protocol DownloadAttribute: Attribute {
     
     /// Mark the target as downloadable.
-    ///
+    /// 
     /// ```swift
     /// Anchor {
     ///     "Lorem ipsum..."
     /// }
-    /// .download()
+    /// .download(true)
     /// ```
-    ///
+    /// 
+    /// - Parameter condition: Whether the target is downloadable.
+    /// 
     /// - Returns: The element
-    func download() -> Self
+    func download(_ condition: Bool) -> Self
+    
+    /// Mark the target as downloadable.
+    /// 
+    /// ```swift
+    /// Anchor {
+    ///     "Lorem ipsum..."
+    /// }
+    /// .download("filename")
+    /// ```
+    /// 
+    /// - Parameter value: The name to label the download.
+    /// 
+    /// - Returns: The element
+    func download(_ name: String) -> Self
+    
+    /// Mark the target as downloadable.
+    /// 
+    /// ```swift
+    /// Anchor {
+    ///     "Lorem ipsum..."
+    /// }
+    /// .download("filename")
+    /// ```
+    ///  
+    /// - Parameters:
+    ///   - localizedKey: The string key to be translated.
+    ///   - tableName: The translation table to look in.
+    /// 
+    /// - Returns: The element
+    func download(_ localizedKey: LocalizedStringKey, tableName: String?) -> Self
+    
+    /// Mark the target as downloadable.
+    /// 
+    /// ```swift
+    /// Anchor {
+    ///     "Lorem ipsum..."
+    /// }
+    /// .download("filename")
+    /// ```
+    /// 
+    /// - Parameter value: The name to label the download.
+    /// 
+    /// - Returns: The element
+    func download(verbatim name: String) -> Self
 }
 
 extension DownloadAttribute where Self: ContentNode {

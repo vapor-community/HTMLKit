@@ -12574,8 +12574,26 @@ extension Anchor: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessib
         return self
     }
     
-    public func download() -> Anchor {
-        return mutate(download: .init("download", context: .trusted))
+    public func download(_ condition: Bool = true) -> Anchor {
+
+        if condition {
+            return mutate(download: .init("download", context: .trusted))
+        }
+        
+        return self
+    }
+    
+    @_disfavoredOverload
+    public func download(_ name: String) -> Anchor {
+        return mutate(download: .init(name, context: .tainted(.html)))
+    }
+    
+    public func download(_ localizedKey: LocalizedStringKey, tableName: String?) -> Anchor {
+        return mutate(download: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func download(verbatim name: String) -> Anchor {
+        return mutate(download: .init(name, context: .tainted(.html)))
     }
     
     public func reference(_ value: String) -> Anchor {
