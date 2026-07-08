@@ -120,6 +120,10 @@ extension Source: GlobalContentAttributes, GlobalEventAttributes, TypeAttribute,
         return self
     }
     
+    public func hidden(_ value: Values.Condition) -> Source {
+        return mutate(hidden: .init(value.rawValue, context: .trusted))
+    }
+    
     public func inputMode(_ value: Values.Mode) -> Source {
         return mutate(inputmode: .init(value.rawValue, context: .trusted))
     }
@@ -467,6 +471,10 @@ extension Track: GlobalContentAttributes, GlobalEventAttributes, KindAttribute, 
         }
         
         return self
+    }
+    
+    public func hidden(_ value: Values.Condition) -> Track {
+        return mutate(hidden: .init(value.rawValue, context: .trusted))
     }
     
     public func inputMode(_ value: Values.Mode) -> Track {

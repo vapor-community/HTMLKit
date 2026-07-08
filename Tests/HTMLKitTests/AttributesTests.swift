@@ -83,6 +83,10 @@ final class AttributesTests: XCTestCase {
             
             return self
         }
+    
+        func hidden(_ value: Values.Condition) -> Tag {
+            return mutate(hidden: .init(value.rawValue, context: .trusted))
+        }
         
         func id(_ value: String) -> Tag {
             return self.mutate(id: .init(value, context: .tainted(.html)))
@@ -1321,19 +1325,18 @@ final class AttributesTests: XCTestCase {
     func testHiddenAttribute() throws {
         
         let view = TestView {
-            // unconditionally
             Tag {}.hidden()
-            // with a false condition
             Tag {}.hidden(false)
-            // with a true condition
             Tag {}.hidden(true)
+            Tag {}.hidden(.untilFound)
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
                        <tag hidden="hidden"></tag>\
                        <tag></tag>\
-                       <tag hidden="hidden"></tag>
+                       <tag hidden="hidden"></tag>\
+                       <tag hidden="until-found"></tag>
                        """
         )
     }

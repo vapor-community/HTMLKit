@@ -121,6 +121,10 @@ extension Input: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessibi
         return self
     }
     
+    public func hidden(_ value: Values.Condition) -> Input {
+        return mutate(hidden: .init(value.rawValue, context: .trusted))
+    }
+    
     public func inputMode(_ value: Values.Mode) -> Input {
         return mutate(inputmode: .init(value.rawValue, context: .trusted))
     }
@@ -780,6 +784,10 @@ extension Label: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessibi
         return self
     }
     
+    public func hidden(_ value: Values.Condition) -> Label {
+        return mutate(hidden: .init(value.rawValue, context: .trusted))
+    }
+    
     public func inputMode(_ value: Values.Mode) -> Label {
         return mutate(inputmode: .init(value.rawValue, context: .trusted))
     }
@@ -1335,6 +1343,10 @@ extension Select: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessib
         return self
     }
     
+    public func hidden(_ value: Values.Condition) -> Select {
+        return mutate(hidden: .init(value.rawValue, context: .trusted))
+    }
+    
     public func inputMode(_ value: Values.Mode) -> Select {
         return mutate(inputmode: .init(value.rawValue, context: .trusted))
     }
@@ -1821,6 +1833,10 @@ extension TextArea: GlobalContentAttributes, GlobalEventAttributes, GlobalAccess
         }
         
         return self
+    }
+    
+    public func hidden(_ value: Values.Condition) -> TextArea {
+        return mutate(hidden: .init(value.rawValue, context: .trusted))
     }
     
     public func inputMode(_ value: Values.Mode) -> TextArea {
@@ -2444,6 +2460,10 @@ extension Button: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessib
         return self
     }
     
+    public func hidden(_ value: Values.Condition) -> Button {
+        return mutate(hidden: .init(value.rawValue, context: .trusted))
+    }
+    
     public func inputMode(_ value: Values.Mode) -> Button {
         return mutate(inputmode: .init(value.rawValue, context: .trusted))
     }
@@ -3061,6 +3081,10 @@ extension Fieldset: GlobalContentAttributes, GlobalEventAttributes, GlobalAccess
         }
         
         return self
+    }
+    
+    public func hidden(_ value: Values.Condition) -> Fieldset {
+        return mutate(hidden: .init(value.rawValue, context: .trusted))
     }
     
     public func inputMode(_ value: Values.Mode) -> Fieldset {

@@ -2166,4 +2166,17 @@ public enum Values {
         /// Indicates the script contains json data.
         case data = "application/json"
     }
+    
+    /// An enumeration of hide condition.
+    /// 
+    /// ```swift
+    /// Paragraph {
+    ///     "Lorem ipsum..."
+    /// }
+    /// .hidden(.untilFound)
+    /// ```
+    public enum Condition: String {
+        
+        case untilFound = "until-found"
+    }
 }

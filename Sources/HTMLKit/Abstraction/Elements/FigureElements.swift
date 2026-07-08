@@ -139,6 +139,10 @@ extension FigureCaption: GlobalContentAttributes, GlobalEventAttributes, GlobalA
         return self
     }
     
+    public func hidden(_ value: Values.Condition) -> FigureCaption {
+        return mutate(hidden: .init(value.rawValue, context: .trusted))
+    }
+    
     public func inputMode(_ value: Values.Mode) -> FigureCaption {
         return mutate(inputmode: .init(value.rawValue, context: .trusted))
     }

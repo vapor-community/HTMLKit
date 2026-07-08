@@ -141,6 +141,10 @@ extension RubyText: GlobalContentAttributes, GlobalEventAttributes, GlobalAccess
         return self
     }
     
+    public func hidden(_ value: Values.Condition) -> RubyText {
+        return mutate(hidden: .init(value.rawValue, context: .trusted))
+    }
+    
     public func inputMode(_ value: Values.Mode) -> RubyText {
         return mutate(inputmode: .init(value.rawValue, context: .trusted))
     }
@@ -681,6 +685,10 @@ extension RubyPronunciation: GlobalContentAttributes, GlobalEventAttributes, Glo
         }
         
         return self
+    }
+    
+    public func hidden(_ value: Values.Condition) -> RubyPronunciation {
+        return mutate(hidden: .init(value.rawValue, context: .trusted))
     }
 
     public func inputMode(_ value: Values.Mode) -> RubyPronunciation {

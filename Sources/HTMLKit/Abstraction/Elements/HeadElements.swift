@@ -132,6 +132,10 @@ extension Title: GlobalContentAttributes, GlobalEventAttributes {
         return self
     }
     
+    public func hidden(_ value: Values.Condition) -> Title {
+        return mutate(hidden: .init(value.rawValue, context: .trusted))
+    }
+    
     public func inputMode(_ value: Values.Mode) -> Title {
         return mutate(inputmode: .init(value.rawValue, context: .trusted))
     }
@@ -433,6 +437,10 @@ extension Base: GlobalContentAttributes, GlobalEventAttributes, ReferenceAttribu
         return self
     }
     
+    public func hidden(_ value: Values.Condition) -> Base {
+        return mutate(hidden: .init(value.rawValue, context: .trusted))
+    }
+    
     public func inputMode(_ value: Values.Mode) -> Base {
         return mutate(inputmode: .init(value.rawValue, context: .trusted))
     }
@@ -730,6 +738,10 @@ extension Meta: GlobalContentAttributes, GlobalEventAttributes, ContentAttribute
         }
         
         return self
+    }
+    
+    public func hidden(_ value: Values.Condition) -> Meta {
+        return mutate(hidden: .init(value.rawValue, context: .trusted))
     }
     
     public func inputMode(_ value: Values.Mode) -> Meta {
@@ -1074,6 +1086,10 @@ extension Style: GlobalContentAttributes, GlobalEventAttributes, TypeAttribute, 
         return self
     }
     
+    public func hidden(_ value: Values.Condition) -> Style {
+        return mutate(hidden: .init(value.rawValue, context: .trusted))
+    }
+    
     public func inputMode(_ value: Values.Mode) -> Style {
         return mutate(inputmode: .init(value.rawValue, context: .trusted))
     }
@@ -1390,6 +1406,10 @@ extension Link: GlobalContentAttributes, GlobalEventAttributes, ReferenceAttribu
         }
         
         return self
+    }
+    
+    public func hidden(_ value: Values.Condition) -> Link {
+        return mutate(hidden: .init(value.rawValue, context: .trusted))
     }
     
     public func inputMode(_ value: Values.Mode) -> Link {

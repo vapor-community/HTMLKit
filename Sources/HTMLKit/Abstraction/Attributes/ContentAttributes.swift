@@ -1380,6 +1380,20 @@ public protocol HiddenAttribute: Attribute {
     ///
     /// - Returns: The element
     func hidden(_ condition: Bool) -> Self
+    
+    /// Hide an element.
+    ///
+    /// ```swift
+    /// Paragraph {
+    ///     "Lorem ipsum..."
+    /// }
+    /// .hidden(.untilFound)
+    /// ```
+    ///
+    /// - Parameter value: The condition under which to hide the element.
+    ///
+    /// - Returns: The element
+    func hidden(_ value: Values.Condition) -> Self
 }
 
 extension HiddenAttribute where Self: ContentNode {

@@ -126,6 +126,10 @@ extension Area: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessibil
         
         return self
     }
+    
+    public func hidden(_ value: Values.Condition) -> Area {
+        return mutate(hidden: .init(value.rawValue, context: .trusted))
+    }
 
     public func inputMode(_ value: Values.Mode) -> Area {
         return mutate(inputmode: .init(value.rawValue, context: .trusted))

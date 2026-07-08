@@ -145,6 +145,10 @@ extension OptionGroup: GlobalContentAttributes, GlobalEventAttributes, GlobalAcc
         return self
     }
     
+    public func hidden(_ value: Values.Condition) -> OptionGroup {
+        return mutate(hidden: .init(value.rawValue, context: .trusted))
+    }
+    
     public func inputMode(_ value: Values.Mode) -> OptionGroup {
         return mutate(inputmode: .init(value.rawValue, context: .trusted))
     }
@@ -701,6 +705,10 @@ extension Option: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessib
         }
         
         return self
+    }
+    
+    public func hidden(_ value: Values.Condition) -> Option {
+        return mutate(hidden: .init(value.rawValue, context: .trusted))
     }
     
     public func inputMode(_ value: Values.Mode) -> Option {
@@ -1293,6 +1301,10 @@ extension Legend: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessib
         return self
     }
     
+    public func hidden(_ value: Values.Condition) -> Legend {
+        return mutate(hidden: .init(value.rawValue, context: .trusted))
+    }
+    
     public func inputMode(_ value: Values.Mode) -> Legend {
         return mutate(inputmode: .init(value.rawValue, context: .trusted))
     }
@@ -1829,6 +1841,10 @@ extension Summary: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessi
         }
         
         return self
+    }
+    
+    public func hidden(_ value: Values.Condition) -> Summary {
+        return mutate(hidden: .init(value.rawValue, context: .trusted))
     }
     
     public func inputMode(_ value: Values.Mode) -> Summary {

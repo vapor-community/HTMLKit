@@ -130,6 +130,10 @@ extension Head: GlobalContentAttributes, GlobalEventAttributes {
         return self
     }
     
+    public func hidden(_ value: Values.Condition) -> Head {
+        return mutate(hidden: .init(value.rawValue, context: .trusted))
+    }
+    
     public func inputMode(_ value: Values.Mode) -> Head {
         return mutate(inputmode: .init(value.rawValue, context: .trusted))
     }
@@ -436,6 +440,10 @@ extension Body: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessibil
         }
         
         return self
+    }
+    
+    public func hidden(_ value: Values.Condition) -> Body {
+        return mutate(hidden: .init(value.rawValue, context: .trusted))
     }
     
     public func inputMode(_ value: Values.Mode) -> Body {
