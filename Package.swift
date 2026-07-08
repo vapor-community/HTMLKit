@@ -15,10 +15,6 @@ let package = Package(
         .plugin(
             name: "ComponentsPlugin",
             targets: ["ComponentsPlugin"]
-        ),
-        .plugin(
-            name: "ConverterPlugin",
-            targets: ["ConverterPlugin"]
         )
     ],
     dependencies: [
@@ -38,12 +34,6 @@ let package = Package(
             ],
             swiftSettings: [
                 .enableExperimentalFeature("StrictConcurrency=complete")
-            ]
-        ),
-        .target(
-            name: "HTMLKitConverter",
-            dependencies: [
-                .target(name: "HTMLKit")
             ]
         ),
         .target(
@@ -80,15 +70,6 @@ let package = Package(
             ]
         ),
         .testTarget(
-            name: "HTMLKitConverterTests",
-            dependencies: [
-                .target(name: "HTMLKitConverter")
-            ],
-            resources: [
-                .process("Conversion")
-            ]
-        ),
-        .testTarget(
             name: "HTMLKitComponentsTests",
             dependencies: [
                 .target(name: "HTMLKitComponents"),
@@ -116,31 +97,12 @@ let package = Package(
             ]
         ),
         .executableTarget(
-            name: "ConvertCommand",
-            dependencies: [
-                .target(name: "HTMLKitConverter")
-            ],
-            path: "Sources/Commands/Converter"
-        ),
-        .executableTarget(
             name: "DeployCommand",
             dependencies: [
                 .target(name: "HTMLKitComponents"),
                 .target(name: "Minifier")
             ],
             path: "Sources/Commands/Components"
-        ),
-        .plugin(
-            name: "ConverterPlugin",
-            capability: .command(
-                intent: .custom(
-                    verb: "convert",
-                    description: "Converts HTML markup into Swift syntax."),
-                permissions: [.writeToPackageDirectory(reason: "The command needs the permission to create the file.")]
-            ),
-            dependencies: [
-                .target(name: "ConvertCommand")
-            ]
         ),
         .plugin(
             name: "ComponentsPlugin",
