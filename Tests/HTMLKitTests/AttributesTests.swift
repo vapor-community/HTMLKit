@@ -543,8 +543,12 @@ final class AttributesTests: XCTestCase {
             return self.mutate(referrerpolicy: .init(value.rawValue, context: .trusted))
         }
         
-        func relationship(_ value: Values.Relation) -> Tag {
-            return self.mutate(rel: .init(value.rawValue, context: .trusted))
+        public func relationship(_ values: Values.Relation...) -> Tag {
+            return mutate(rel: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+        }
+        
+        public func relationship(_ values: [Values.Relation]) -> Tag {
+            return mutate(rel: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
         }
         
         func required(_ condition: Bool = true) -> Tag {
@@ -2301,11 +2305,15 @@ final class AttributesTests: XCTestCase {
         
         let view = TestView {
             Tag {}.relationship(.author)
+            Tag {}.relationship(.author, .external)
+            Tag {}.relationship([.author, .external])
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <tag rel="author"></tag>
+                       <tag rel="author"></tag>\
+                       <tag rel="author external"></tag>\
+                       <tag rel="author external"></tag>
                        """
         )
     }

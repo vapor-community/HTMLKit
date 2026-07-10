@@ -321,8 +321,12 @@ extension Area: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessibil
         return mutate(ping: .init(value, context: .tainted(.html)))
     }
     
-    public func relationship(_ value: Values.Relation) -> Area {
-        return mutate(rel: .init(value.rawValue, context: .trusted))
+    public func relationship(_ values: Values.Relation...) -> Area {
+        return mutate(rel: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func relationship(_ values: [Values.Relation]) -> Area {
+        return mutate(rel: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
     }
     
     public func referrerPolicy(_ value: Values.Policy) -> Area {

@@ -803,17 +803,20 @@ public enum Values {
         /// Indicates an alternate presentation.
         case alternate
         
-        /// Indicates the preferred url.
-        case canonical
-        
         /// Indicates an author page.
         case author
         
         /// Indicates a perma link.
         case bookmark
         
+        /// Indicates the preferred url.
+        case canonical
+        
         /// Indicates a dns prefetch.
         case dnsPrefetch = "dns-prefetch"
+        
+        /// Hints to block rendering until fully parsed.
+        case expect
         
         /// Indicates a external resource.
         case external
@@ -824,14 +827,14 @@ public enum Values {
         /// Indicates a document icon.
         case icon
         
+        /// Indicates a licence information.
+        case licence
+        
         /// Indicates a app manifest.
         case manifest
         
         /// Indicates a module preload.
         case modulePreload = "modulepreload"
-        
-        /// Indicates a licence information.
-        case licence
         
         /// Indicates a page pagination.
         case next
@@ -863,6 +866,9 @@ public enum Values {
         /// Indicates a page pagination.
         case prev
         
+        /// Indicates about data collection and usage practices.
+        case privacyPolicy = "privacy-policy"
+        
         /// Indicates a search content.
         case search
         
@@ -872,6 +878,9 @@ public enum Values {
         /// Indicates a content tag.
         case tag
         
+        /// Indicates about agreements.
+        case terms = "terms-of-service"
+
         /// Indicates a touch icon.
         case appleTouchIcon = "apple-touch-icon"
         

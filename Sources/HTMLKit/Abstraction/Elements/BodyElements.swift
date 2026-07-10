@@ -12720,8 +12720,12 @@ extension Anchor: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessib
         return mutate(referrerpolicy: .init(value.rawValue, context: .trusted))
     }
     
-    public func relationship(_ value: Values.Relation) -> Anchor {
-        return mutate(rel: .init(value.rawValue, context: .trusted))
+    public func relationship(_ values: Values.Relation...) -> Anchor {
+        return mutate(rel: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func relationship(_ values: [Values.Relation]) -> Anchor {
+        return mutate(rel: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
     }
     
     public func target(_ value: Values.Target) -> Anchor {
@@ -33870,8 +33874,12 @@ extension Form: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessibil
         return mutate(target: .init(value.rawValue, context: .trusted))
     }
     
-    public func relationship(_ value: Values.Relation) -> Form {
-        return mutate(rel: .init(value.rawValue, context: .trusted))
+    public func relationship(_ values: Values.Relation...) -> Form {
+        return mutate(rel: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func relationship(_ values: [Values.Relation]) -> Form {
+        return mutate(rel: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
     }
     
     public func popover(_ value: Values.Popover.State) -> Form {

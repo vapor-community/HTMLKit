@@ -1569,8 +1569,12 @@ extension Link: GlobalContentAttributes, GlobalEventAttributes, ReferenceAttribu
         return mutate(referrerpolicy: .init(value.rawValue, context: .trusted))
     }
     
-    public func relationship(_ value: Values.Relation) -> Link {
-        return mutate(rel: .init(value.rawValue, context: .trusted))
+    public func relationship(_ values: Values.Relation...) -> Link {
+        return mutate(rel: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func relationship(_ values: [Values.Relation]) -> Link {
+        return mutate(rel: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
     }
     
     public func sizes(_ candidates: [String]) -> Link {

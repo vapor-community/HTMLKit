@@ -2786,13 +2786,28 @@ public protocol RelationshipAttribute: Attribute {
     ///     "Lorem ipsum..."
     /// }
     /// .reference("https://...")
-    /// .relationship(.author)
+    /// .relationship(.author, .external)
     /// ```
     ///
-    /// - Parameter value: The relationship type to associate with.
+    /// - Parameter values: The relationship types to associate with.
     ///
     /// - Returns: The element
-    func relationship(_ value: Values.Relation) -> Self
+    func relationship(_ values: Values.Relation...) -> Self
+    
+    /// Indicate the relationship between documents.
+    ///
+    /// ```swift
+    /// Anchor {
+    ///     "Lorem ipsum..."
+    /// }
+    /// .reference("https://...")
+    /// .relationship([.author, .external])
+    /// ```
+    ///
+    /// - Parameter values: The relationship types to associate with.
+    ///
+    /// - Returns: The element
+    func relationship(_ values: [Values.Relation]) -> Self
 }
 
 extension RelationshipAttribute where Self: ContentNode {
