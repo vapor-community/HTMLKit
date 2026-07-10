@@ -4320,3 +4320,50 @@ extension AbbreviatedAttribute where Self: EmptyNode {
         return self.mutate(key: "abbr", value: value)
     }
 }
+
+/// A type that provides the `imageSources` modifier.
+@_documentation(visibility: internal)
+public protocol ImageSourcesAttribute: Attribute {
+    
+    /// Preload a set of sources.
+    ///
+    /// ```swift
+    /// Link()
+    ///    .relationship(.preload)
+    ///    .as(.image)
+    ///    .imageSources([SourceCandidate("...webp", width: 1024), SourceCandidate("...webp", width: 1680)])
+    /// ```
+    ///
+    /// - Parameter candidates: The candidates to load in advance.
+    ///
+    /// - Returns: The element.
+    func imageSources(_ candidates: [SourceCandidate]) -> Self
+    
+    /// Preload a set of sources.
+    ///
+    /// ```swift
+    /// Link()
+    ///    .relationship(.preload)
+    ///    .as(.image)
+    ///    .imageSources(SourceCandidate("...webp", width: 1024), SourceCandidate("...webp", width: 1680))
+    /// ```
+    ///
+    /// - Parameter candidates: The candidates to load in advance.
+    ///
+    /// - Returns: The element.
+    func imageSources(_ candidates: SourceCandidate...) -> Self
+}
+
+extension ImageSourcesAttribute where Self: ContentNode {
+    
+    internal func mutate(imagesrcset value: AttributeData) -> Self {
+        return self.mutate(key: "imagesrcset", value: value)
+    }
+}
+
+extension ImageSourcesAttribute where Self: EmptyNode {
+    
+    internal func mutate(imagesrcset value: AttributeData) -> Self {
+        return self.mutate(key: "imagesrcset", value: value)
+    }
+}

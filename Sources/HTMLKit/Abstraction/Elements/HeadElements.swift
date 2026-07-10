@@ -1338,7 +1338,7 @@ public struct Link: EmptyNode, HeadElement, BodyElement {
     }
 }
 
-extension Link: GlobalContentAttributes, GlobalEventAttributes, ReferenceAttribute, ReferenceLanguageAttribute, MediaAttribute, ReferrerPolicyAttribute, RelationshipAttribute, SizesAttribute, TypeAttribute, FetchPriorityAttribute, BlockingAttribute, FormEventAttribute, IntegrityAttribute, AsAttribute, CrossOriginAttribute {
+extension Link: GlobalContentAttributes, GlobalEventAttributes, ReferenceAttribute, ReferenceLanguageAttribute, MediaAttribute, ReferrerPolicyAttribute, RelationshipAttribute, SizesAttribute, TypeAttribute, FetchPriorityAttribute, BlockingAttribute, FormEventAttribute, IntegrityAttribute, AsAttribute, CrossOriginAttribute, ImageSourcesAttribute {
 
     public func accessKey(_ value: Character) -> Link {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -1599,6 +1599,14 @@ extension Link: GlobalContentAttributes, GlobalEventAttributes, ReferenceAttribu
     
     public func popover(_ value: Values.Popover.State) -> Link {
         return mutate(popover: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func imageSources(_ candidates: [SourceCandidate]) -> Link {
+        return mutate(imagesrcset: .init(EnumeratedList(values: candidates, separator: ", "), context: .tainted(.html)))
+    }
+    
+    public func imageSources(_ candidates: SourceCandidate...) -> Link {
+        return mutate(imagesrcset: .init(EnumeratedList(values: candidates, separator: ", "), context: .tainted(.html)))
     }
     
     public func custom(key: String, value: String, context: EscapeContext = .tainted(.html)) -> Link {
