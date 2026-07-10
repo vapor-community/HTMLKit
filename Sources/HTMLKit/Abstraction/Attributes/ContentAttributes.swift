@@ -4367,3 +4367,50 @@ extension ImageSourcesAttribute where Self: EmptyNode {
         return self.mutate(key: "imagesrcset", value: value)
     }
 }
+
+/// A type that provides the `imageSizes` modifier.
+@_documentation(visibility: internal)
+public protocol ImageSizesAttribute: Attribute {
+    
+    /// Preload the right source size.
+    ///
+    /// ```swift
+    /// Link()
+    ///    .relationship(.preload)
+    ///    .as(.image)
+    ///    .imageSizes(SizeCandidate("100vw", conditions: .maxWidth("1680px")), SizeCandidate("80vw"))
+    /// ```
+    ///
+    /// - Parameter candidates: The candidates to choose from.
+    ///
+    /// - Returns: The element.
+    func imageSizes(_ candidates: [SizeCandidate]) -> Self
+    
+    /// Preload the right source size.
+    ///
+    /// ```swift
+    /// Link()
+    ///    .relationship(.preload)
+    ///    .as(.image)
+    ///    .imageSizes(SizeCandidate("100vw", conditions: .maxWidth("1680px")), SizeCandidate("80vw"))
+    /// ```
+    ///
+    /// - Parameter candidates: The candidates to choose from.
+    ///
+    /// - Returns: The element.
+    func imageSizes(_ candidates: SizeCandidate...) -> Self
+}
+
+extension ImageSizesAttribute where Self: ContentNode {
+    
+    internal func mutate(imagesizes value: AttributeData) -> Self {
+        return self.mutate(key: "imagesizes", value: value)
+    }
+}
+
+extension ImageSizesAttribute where Self: EmptyNode {
+    
+    internal func mutate(imagesizes value: AttributeData) -> Self {
+        return self.mutate(key: "imagesizes", value: value)
+    }
+}

@@ -10,7 +10,7 @@ final class AttributesTests: XCTestCase {
         @ContentBuilder<Content> var body: Content
     }
     
-    typealias AllAttributes = AccessKeyAttribute & AcceptAttribute & ActionAttribute & AlternateAttribute & AsynchronouslyAttribute & AutocapitalizeAttribute & AutocompleteAttribute & AutofocusAttribute & AutoplayAttribute & CharsetAttribute & CheckedAttribute & CiteAttribute & ClassAttribute & ColumnsAttribute & ColumnSpanAttribute & ContentAttribute & EditAttribute  & ControlsAttribute & DataAttribute & DateTimeAttribute & DefaultAttribute & DeferAttribute & DirectionAttribute & DisabledAttribute & DownloadAttribute & DragAttribute & EncodingAttribute & EnterKeyAttribute & ForAttribute & FormAttribute & FormActionAttribute & EquivalentAttribute & HeadersAttribute & HeightAttribute & HiddenAttribute & HighAttribute & ReferenceAttribute & ReferenceLanguageAttribute & IdentifierAttribute & IsMapAttribute & InputModeAttribute & IsAttribute & ItemAttribute & ItemPropertyAttribute & KindAttribute & LabelAttribute & LanguageAttribute & ListAttribute & LoopAttribute & LowAttribute & MaximumValueAttribute & MaximumLengthAttribute & MediaAttribute & MethodAttribute & MinimumValueAttribute & MinimumLengthAttribute & MultipleAttribute & MutedAttribute & NameAttribute & NonceAttribute & NoValidateAttribute & OpenAttribute & OptimumAttribute & PatternAttribute & PartAttribute & PingAttribute & PlaceholderAttribute & PosterAttribute & PreloadAttribute & ReadOnlyAttribute & ReferrerPolicyAttribute & RelationshipAttribute & RequiredAttribute & ReversedAttribute & RoleAttribute & RowsAttribute & RowSpanAttribute & SandboxAttribute & ScopeAttribute & ShapeAttribute & SizeAttribute & SizesAttribute & SlotAttribute & SpanAttribute & SpellCheckAttribute & SourceAttribute & StartAttribute & StepAttribute & StyleAttribute & TabulatorAttribute & TargetAttribute & TitleAttribute & TranslateAttribute & TypeAttribute & ValueAttribute & WidthAttribute & WrapAttribute & PropertyAttribute & SelectedAttribute & WindowEventAttribute & FocusEventAttribute & PointerEventAttribute & MouseEventAttribute & WheelEventAttribute & InputEventAttribute & KeyboardEventAttribute & DragEventAttribute & ClipboardEventAttribute & SelectionEventAttribute & MediaEventAttribute & FormEventAttribute & DetailEventAttribute & AtomicAccessibilityAttribute & BusyAccessibilityAttribute & ControlsAccessibilityAttribute & CurrentAccessibilityAttribute & DescriptionsAccessibilityAttribute & DetailAccessibilityAttribute & DisabledAccessibilityAttribute & FlowAccessibilityAttribute & PopupAccessibilityAttribute & HiddenAccessibilityAttribute & InvalidAccessibilityAttribute & ShortcutsAccessibilityAttribute & LabelAccessibilityAttribute & LabelsAccessibilityAttribute & LiveAccessibilityAttribute & OwnsAccessibilityAttribute & MultilineAccessibilityAttribute & RowIndexAccessibilityAttribute & RelevantAccessibilityAttribute & RoleDescriptionAccessibilityAttribute & SortAccessibilityAttribute & OrientationAccessibilityAttribute & RequiredAccessibilityAttribute & ReadOnlyAccessibilityAttribute & ModalAccessibilityAttribute & LevelAccessibilityAttribute & HintAccessibilityAttribute & PositionAccessibilityAttribute & MultiselectAccessibilityAttribute & RowCountAccessibilityAttribute & ColumnIndexAccessibilityAttribute & ColumnCountAccessibilityAttribute & RowSpanAccessibilityAttribute & ColumnSpanAccessibilityAttribute & MaximumValueAccessibilityAttribute & MinimumValueAccessibilityAttribute & ValueAccessibilityAttribute & PressedAccessibilityAttribute & SelectedAccessibilityAttribute & CheckedAccessibilityAttribute & ExpandedAccessibilityAttribute & FocusedAccessibilityAttribute & CompletionAccessibilityAttribute & DrawAttribute & FillAttribute & StrokeAttribute & RadiusAttribute & PositionPointAttribute & RadiusPointAttribute & CenterPointAttribute & ViewBoxAttribute & NamespaceAttribute & PointsAttribute & ShadowRootModeAttribute & InertAttribute & FetchPriorityAttribute & LoadingAttribute & SourceSetAttribute & DecodingAttribute & BlockingAttribute & PopoverAttribute & PopoverTargetAttribute & UseMapAttribute & PlaysInlineAttribute & IntegrityAttribute & AsAttribute & CrossOriginAttribute & SourceLanguageAttribute & SourceDocumentAttribute & AbbreviatedAttribute & ImageSourcesAttribute
+    typealias AllAttributes = AccessKeyAttribute & AcceptAttribute & ActionAttribute & AlternateAttribute & AsynchronouslyAttribute & AutocapitalizeAttribute & AutocompleteAttribute & AutofocusAttribute & AutoplayAttribute & CharsetAttribute & CheckedAttribute & CiteAttribute & ClassAttribute & ColumnsAttribute & ColumnSpanAttribute & ContentAttribute & EditAttribute  & ControlsAttribute & DataAttribute & DateTimeAttribute & DefaultAttribute & DeferAttribute & DirectionAttribute & DisabledAttribute & DownloadAttribute & DragAttribute & EncodingAttribute & EnterKeyAttribute & ForAttribute & FormAttribute & FormActionAttribute & EquivalentAttribute & HeadersAttribute & HeightAttribute & HiddenAttribute & HighAttribute & ReferenceAttribute & ReferenceLanguageAttribute & IdentifierAttribute & IsMapAttribute & InputModeAttribute & IsAttribute & ItemAttribute & ItemPropertyAttribute & KindAttribute & LabelAttribute & LanguageAttribute & ListAttribute & LoopAttribute & LowAttribute & MaximumValueAttribute & MaximumLengthAttribute & MediaAttribute & MethodAttribute & MinimumValueAttribute & MinimumLengthAttribute & MultipleAttribute & MutedAttribute & NameAttribute & NonceAttribute & NoValidateAttribute & OpenAttribute & OptimumAttribute & PatternAttribute & PartAttribute & PingAttribute & PlaceholderAttribute & PosterAttribute & PreloadAttribute & ReadOnlyAttribute & ReferrerPolicyAttribute & RelationshipAttribute & RequiredAttribute & ReversedAttribute & RoleAttribute & RowsAttribute & RowSpanAttribute & SandboxAttribute & ScopeAttribute & ShapeAttribute & SizeAttribute & SizesAttribute & SlotAttribute & SpanAttribute & SpellCheckAttribute & SourceAttribute & StartAttribute & StepAttribute & StyleAttribute & TabulatorAttribute & TargetAttribute & TitleAttribute & TranslateAttribute & TypeAttribute & ValueAttribute & WidthAttribute & WrapAttribute & PropertyAttribute & SelectedAttribute & WindowEventAttribute & FocusEventAttribute & PointerEventAttribute & MouseEventAttribute & WheelEventAttribute & InputEventAttribute & KeyboardEventAttribute & DragEventAttribute & ClipboardEventAttribute & SelectionEventAttribute & MediaEventAttribute & FormEventAttribute & DetailEventAttribute & AtomicAccessibilityAttribute & BusyAccessibilityAttribute & ControlsAccessibilityAttribute & CurrentAccessibilityAttribute & DescriptionsAccessibilityAttribute & DetailAccessibilityAttribute & DisabledAccessibilityAttribute & FlowAccessibilityAttribute & PopupAccessibilityAttribute & HiddenAccessibilityAttribute & InvalidAccessibilityAttribute & ShortcutsAccessibilityAttribute & LabelAccessibilityAttribute & LabelsAccessibilityAttribute & LiveAccessibilityAttribute & OwnsAccessibilityAttribute & MultilineAccessibilityAttribute & RowIndexAccessibilityAttribute & RelevantAccessibilityAttribute & RoleDescriptionAccessibilityAttribute & SortAccessibilityAttribute & OrientationAccessibilityAttribute & RequiredAccessibilityAttribute & ReadOnlyAccessibilityAttribute & ModalAccessibilityAttribute & LevelAccessibilityAttribute & HintAccessibilityAttribute & PositionAccessibilityAttribute & MultiselectAccessibilityAttribute & RowCountAccessibilityAttribute & ColumnIndexAccessibilityAttribute & ColumnCountAccessibilityAttribute & RowSpanAccessibilityAttribute & ColumnSpanAccessibilityAttribute & MaximumValueAccessibilityAttribute & MinimumValueAccessibilityAttribute & ValueAccessibilityAttribute & PressedAccessibilityAttribute & SelectedAccessibilityAttribute & CheckedAccessibilityAttribute & ExpandedAccessibilityAttribute & FocusedAccessibilityAttribute & CompletionAccessibilityAttribute & DrawAttribute & FillAttribute & StrokeAttribute & RadiusAttribute & PositionPointAttribute & RadiusPointAttribute & CenterPointAttribute & ViewBoxAttribute & NamespaceAttribute & PointsAttribute & ShadowRootModeAttribute & InertAttribute & FetchPriorityAttribute & LoadingAttribute & SourceSetAttribute & DecodingAttribute & BlockingAttribute & PopoverAttribute & PopoverTargetAttribute & UseMapAttribute & PlaysInlineAttribute & IntegrityAttribute & AsAttribute & CrossOriginAttribute & SourceLanguageAttribute & SourceDocumentAttribute & AbbreviatedAttribute & ImageSourcesAttribute & ImageSizesAttribute
     
     struct Tag: ContentNode, GlobalElement, AllAttributes {
 
@@ -1217,6 +1217,14 @@ final class AttributesTests: XCTestCase {
         
         func imageSources(_ candidates: HTMLKit.SourceCandidate...) -> Tag {
             return mutate(imagesrcset: .init(EnumeratedList(values: candidates, separator: ", "), context: .tainted(.html)))
+        }
+        
+        func imageSizes(_ candidates: [HTMLKit.SizeCandidate]) -> Tag {
+            return mutate(imagesizes: .init(EnumeratedList(values: candidates, separator: ", "), context: .tainted(.html)))
+        }
+        
+        func imageSizes(_ candidates: HTMLKit.SizeCandidate...) -> Tag {
+            return mutate(imagesizes: .init(EnumeratedList(values: candidates, separator: ", "), context: .tainted(.html)))
         }
     }
     
@@ -3902,6 +3910,33 @@ final class AttributesTests: XCTestCase {
                        <tag imagesrcset="img.png 1024w"></tag>\
                        <tag imagesrcset="img.png 1024w, img.png 3x"></tag>
                        """
+        )
+    }
+    
+    func testImageSizesAttribute() throws {
+        
+        let view = TestView {
+            Tag {}.imageSizes(SizeCandidate("auto"))
+            Tag {}.imageSizes(SizeCandidate("100vw", conditions: .orientation(.landscape)))
+            Tag {}.imageSizes(SizeCandidate("100vw", conditions: .orientation(.portrait)))
+            Tag {}.imageSizes(SizeCandidate("100vw", conditions: .orientation(.landscape), .width("50em")))
+            Tag {}.imageSizes(SizeCandidate("calc(100vw - 100px)", conditions: .minWidth("50em")))
+            Tag {}.imageSizes(SizeCandidate("100vw", conditions: .maxWidth("50em")))
+            Tag {}.imageSizes([SizeCandidate("100vw"), SizeCandidate("100vw", conditions: .maxWidth("50em"))])
+            Tag {}.imageSizes(SizeCandidate("100vw"), SizeCandidate("100vw", conditions: .maxWidth("50em")))
+        }
+        
+        XCTAssertEqual(try renderer.render(view: view),
+                     """
+                     <tag imagesizes="auto"></tag>\
+                     <tag imagesizes="(orientation: landscape) 100vw"></tag>\
+                     <tag imagesizes="(orientation: portrait) 100vw"></tag>\
+                     <tag imagesizes="(orientation: landscape) and (width: 50em) 100vw"></tag>\
+                     <tag imagesizes="(min-width: 50em) calc(100vw - 100px)"></tag>\
+                     <tag imagesizes="(max-width: 50em) 100vw"></tag>\
+                     <tag imagesizes="100vw, (max-width: 50em) 100vw"></tag>\
+                     <tag imagesizes="100vw, (max-width: 50em) 100vw"></tag>
+                     """
         )
     }
 }
