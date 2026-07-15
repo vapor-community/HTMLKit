@@ -4066,47 +4066,47 @@ extension LoadingAttribute where Self: EmptyNode {
     }
 }
 
-/// A type that provides the `sourceSet` modifier
+/// A type that provides the `sources` modifier
 @_documentation(visibility: internal)
-public protocol SourceSetAttribute: Attribute {
+public protocol SourcesAttribute: Attribute {
     
     /// Define a set of sources for a picture element.
     ///
     /// ```swift
     /// Picture {
     ///     Source()
-    ///         .sourceSet([SourceCandidate("...webp", width: 1024), SourceCandidate("...webp", width: 1680)])
+    ///         .sources([SourceCandidate("...webp", width: 1024), SourceCandidate("...webp", width: 1680)])
     /// }
     /// ```
     ///
     /// - Parameter candidates: The candidates to choose from.
     ///
     /// - Returns: The element.
-    func sourceSet(_ candidates: [SourceCandidate]) -> Self
+    func sources(_ candidates: [SourceCandidate]) -> Self
     
     /// Define a set of sources for a picture element.
     ///
     /// ```swift
     /// Picture {
     ///     Source()
-    ///         .sourceSet(SourceCandidate("...webp", width: 1024), SourceCandidate("...webp", width: 1680))
+    ///         .sources(SourceCandidate("...webp", width: 1024), SourceCandidate("...webp", width: 1680))
     /// }
     /// ```
     ///
     /// - Parameter candidates: The candidates to choose from.
     ///
     /// - Returns: The element.
-    func sourceSet(_ candidates: SourceCandidate...) -> Self
+    func sources(_ candidates: SourceCandidate...) -> Self
 }
 
-extension SourceSetAttribute where Self: ContentNode {
+extension SourcesAttribute where Self: ContentNode {
     
     internal func mutate(sourceset value: AttributeData) -> Self {
         return self.mutate(key: "srcset", value: value)
     }
 }
 
-extension SourceSetAttribute where Self: EmptyNode {
+extension SourcesAttribute where Self: EmptyNode {
     
     internal func mutate(sourceset value: AttributeData) -> Self {
         return self.mutate(key: "srcset", value: value)

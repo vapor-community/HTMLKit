@@ -29472,7 +29472,7 @@ extension DeletedText: GlobalContentAttributes, GlobalEventAttributes, GlobalAcc
 /// ```swift
 /// Picture {
 ///     Source()
-///         .sourceSet("...jpg")
+///         .sources("...jpg")
 ///         .media("(orientation: portrait)")
 ///     Image()
 ///         .source("...jpg")
@@ -29832,7 +29832,7 @@ public struct Image: EmptyNode, HtmlElement, BodyElement, FormElement, FigureEle
     }
 }
 
-extension Image: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes, AlternateAttribute, SourceAttribute, SizesAttribute, WidthAttribute, HeightAttribute, ReferrerPolicyAttribute, FetchPriorityAttribute, LoadingAttribute, SourceSetAttribute, DecodingAttribute, IsMapAttribute, UseMapAttribute, CrossOriginAttribute {
+extension Image: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes, AlternateAttribute, SourceAttribute, SizesAttribute, WidthAttribute, HeightAttribute, ReferrerPolicyAttribute, FetchPriorityAttribute, LoadingAttribute, SourcesAttribute, DecodingAttribute, IsMapAttribute, UseMapAttribute, CrossOriginAttribute {
     
     public func accessKey(_ value: Character) -> Image {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -30052,16 +30052,26 @@ extension Image: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessibi
         return mutate(source: .init(value, context: .tainted(.html)))
     }
     
-    @available(*, unavailable, message: "Use the sourceSet(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the sources(_:) modifier instead.")
     public func sourceSet(_ value: String) -> Image {
         return mutate(sourceset: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, unavailable, message: "Use the sources(_:) modifier instead.")
     public func sourceSet(_ candidates: [SourceCandidate]) -> Image {
         return mutate(sourceset: .init(EnumeratedList(values: candidates, separator: ", "), context: .tainted(.html)))
     }
     
+    @available(*, unavailable, message: "Use the sources(_:) modifier instead.")
     public func sourceSet(_ candidates: SourceCandidate...) -> Image {
+        return mutate(sourceset: .init(EnumeratedList(values: candidates, separator: ", "), context: .tainted(.html)))
+    }
+    
+    public func sources(_ candidates: [SourceCandidate]) -> Image {
+        return mutate(sourceset: .init(EnumeratedList(values: candidates, separator: ", "), context: .tainted(.html)))
+    }
+    
+    public func sources(_ candidates: SourceCandidate...) -> Image {
         return mutate(sourceset: .init(EnumeratedList(values: candidates, separator: ", "), context: .tainted(.html)))
     }
     

@@ -7,7 +7,7 @@ import Foundation
 /// ```swift
 /// Image()
 ///     .source("...png")
-///     .sourceSet(
+///     .sources(
 ///         SourceCandidate("...png", width: 1024),
 ///         SourceCandiate("...png", width: 1680)
 ///     )

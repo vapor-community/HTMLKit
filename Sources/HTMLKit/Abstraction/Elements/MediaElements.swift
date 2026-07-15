@@ -58,7 +58,7 @@ public struct Source: EmptyNode, MediaElement {
     }
 }
 
-extension Source: GlobalContentAttributes, GlobalEventAttributes, TypeAttribute, SourceAttribute, SizesAttribute, MediaAttribute, WidthAttribute, HeightAttribute, SourceSetAttribute {
+extension Source: GlobalContentAttributes, GlobalEventAttributes, TypeAttribute, SourceAttribute, SizesAttribute, MediaAttribute, WidthAttribute, HeightAttribute, SourcesAttribute {
     
     public func accessKey(_ value: Character) -> Source {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -261,16 +261,26 @@ extension Source: GlobalContentAttributes, GlobalEventAttributes, TypeAttribute,
         return mutate(source: .init(value, context: .tainted(.html)))
     }
     
-    @available(*, unavailable, message: "Use the sourceSet(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the sources(_:) modifier instead.")
     public func sourceSet(_ value: String) -> Source {
         return mutate(sourceset: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, unavailable, message: "Use the sources(_:) modifier instead.")
     public func sourceSet(_ candidates: [SourceCandidate]) -> Source {
         return mutate(sourceset: .init(EnumeratedList(values: candidates, separator: ", "), context: .tainted(.html)))
     }
     
+    @available(*, unavailable, message: "Use the sources(_:) modifier instead.")
     public func sourceSet(_ candidates: SourceCandidate...) -> Source {
+        return mutate(sourceset: .init(EnumeratedList(values: candidates, separator: ", "), context: .tainted(.html)))
+    }
+    
+    public func sources(_ candidates: [SourceCandidate]) -> Source {
+        return mutate(sourceset: .init(EnumeratedList(values: candidates, separator: ", "), context: .tainted(.html)))
+    }
+    
+    public func sources(_ candidates: SourceCandidate...) -> Source {
         return mutate(sourceset: .init(EnumeratedList(values: candidates, separator: ", "), context: .tainted(.html)))
     }
     
