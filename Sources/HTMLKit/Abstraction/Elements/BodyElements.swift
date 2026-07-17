@@ -281,6 +281,10 @@ extension Article: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessi
         return self
     }
     
+    public func hidden(_ value: Values.Condition) -> Article {
+        return mutate(hidden: .init(value.rawValue, context: .trusted))
+    }
+    
     public func inputMode(_ value: Values.Mode) -> Article {
         return mutate(inputmode: .init(value.rawValue, context: .trusted))
     }
@@ -817,6 +821,10 @@ extension Section: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessi
         }
         
         return self
+    }
+    
+    public func hidden(_ value: Values.Condition) -> Section {
+        return mutate(hidden: .init(value.rawValue, context: .trusted))
     }
     
     public func inputMode(_ value: Values.Mode) -> Section {
@@ -1359,6 +1367,10 @@ extension Navigation: GlobalContentAttributes, GlobalEventAttributes, GlobalAcce
         return self
     }
     
+    public func hidden(_ value: Values.Condition) -> Navigation {
+        return mutate(hidden: .init(value.rawValue, context: .trusted))
+    }
+    
     public func inputMode(_ value: Values.Mode) -> Navigation {
         return mutate(inputmode: .init(value.rawValue, context: .trusted))
     }
@@ -1894,6 +1906,10 @@ extension Aside: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessibi
         
         return self
     }
+    
+    public func hidden(_ value: Values.Condition) -> Aside {
+        return mutate(hidden: .init(value.rawValue, context: .trusted))
+    }
 
     public func inputMode(_ value: Values.Mode) -> Aside {
         return mutate(inputmode: .init(value.rawValue, context: .trusted))
@@ -2426,6 +2442,10 @@ extension Heading1: GlobalContentAttributes, GlobalEventAttributes, GlobalAccess
         }
         
         return self
+    }
+    
+    public func hidden(_ value: Values.Condition) -> Heading1 {
+        return mutate(hidden: .init(value.rawValue, context: .trusted))
     }
     
     public func inputMode(_ value: Values.Mode) -> Heading1 {
@@ -2967,6 +2987,10 @@ extension Heading2: GlobalContentAttributes, GlobalEventAttributes, GlobalAccess
         }
         
         return self
+    }
+    
+    public func hidden(_ value: Values.Condition) -> Heading2 {
+        return mutate(hidden: .init(value.rawValue, context: .trusted))
     }
     
     public func inputMode(_ value: Values.Mode) -> Heading2 {
@@ -3511,6 +3535,10 @@ extension Heading3: GlobalContentAttributes, GlobalEventAttributes, GlobalAccess
         return self
     }
     
+    public func hidden(_ value: Values.Condition) -> Heading3 {
+        return mutate(hidden: .init(value.rawValue, context: .trusted))
+    }
+    
     public func inputMode(_ value: Values.Mode) -> Heading3 {
         return mutate(inputmode: .init(value.rawValue, context: .trusted))
     }
@@ -4051,6 +4079,10 @@ extension Heading4: GlobalContentAttributes, GlobalEventAttributes, GlobalAccess
         }
         
         return self
+    }
+    
+    public func hidden(_ value: Values.Condition) -> Heading4 {
+        return mutate(hidden: .init(value.rawValue, context: .trusted))
     }
     
     public func inputMode(_ value: Values.Mode) -> Heading4 {
@@ -4595,6 +4627,10 @@ extension Heading5: GlobalContentAttributes, GlobalEventAttributes, GlobalAccess
         return self
     }
     
+    public func hidden(_ value: Values.Condition) -> Heading5 {
+        return mutate(hidden: .init(value.rawValue, context: .trusted))
+    }
+    
     public func inputMode(_ value: Values.Mode) -> Heading5 {
         return mutate(inputmode: .init(value.rawValue, context: .trusted))
     }
@@ -5135,6 +5171,10 @@ extension Heading6: GlobalContentAttributes, GlobalEventAttributes, GlobalAccess
         }
         
         return self
+    }
+    
+    public func hidden(_ value: Values.Condition) -> Heading6 {
+        return mutate(hidden: .init(value.rawValue, context: .trusted))
     }
     
     public func inputMode(_ value: Values.Mode) -> Heading6 {
@@ -5683,6 +5723,10 @@ extension HeadingGroup: GlobalContentAttributes, GlobalEventAttributes, GlobalAc
         
         return self
     }
+    
+    public func hidden(_ value: Values.Condition) -> HeadingGroup {
+        return mutate(hidden: .init(value.rawValue, context: .trusted))
+    }
 
     public func inputMode(_ value: Values.Mode) -> HeadingGroup {
         return mutate(inputmode: .init(value.rawValue, context: .trusted))
@@ -6218,6 +6262,10 @@ extension Header: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessib
         return self
     }
     
+    public func hidden(_ value: Values.Condition) -> Header {
+        return mutate(hidden: .init(value.rawValue, context: .trusted))
+    }
+    
     public func inputMode(_ value: Values.Mode) -> Header {
         return mutate(inputmode: .init(value.rawValue, context: .trusted))
     }
@@ -6748,6 +6796,10 @@ extension Footer: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessib
         }
         
         return self
+    }
+    
+    public func hidden(_ value: Values.Condition) -> Footer {
+        return mutate(hidden: .init(value.rawValue, context: .trusted))
     }
     
     public func inputMode(_ value: Values.Mode) -> Footer {
@@ -7289,6 +7341,10 @@ extension Address: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessi
         return self
     }
     
+    public func hidden(_ value: Values.Condition) -> Address {
+        return mutate(hidden: .init(value.rawValue, context: .trusted))
+    }
+    
     public func inputMode(_ value: Values.Mode) -> Address {
         return mutate(inputmode: .init(value.rawValue, context: .trusted))
     }
@@ -7820,6 +7876,10 @@ extension Paragraph: GlobalContentAttributes, GlobalEventAttributes, GlobalAcces
         }
         
         return self
+    }
+    
+    public func hidden(_ value: Values.Condition) -> Paragraph {
+        return mutate(hidden: .init(value.rawValue, context: .trusted))
     }
     
     public func inputMode(_ value: Values.Mode) -> Paragraph {
@@ -8357,6 +8417,10 @@ extension HorizontalRule: GlobalContentAttributes, GlobalEventAttributes, Global
         }
         
         return self
+    }
+    
+    public func hidden(_ value: Values.Condition) -> HorizontalRule {
+        return mutate(hidden: .init(value.rawValue, context: .trusted))
     }
     
     public func inputMode(_ value: Values.Mode) -> HorizontalRule {
@@ -8898,6 +8962,10 @@ extension PreformattedText: GlobalContentAttributes, GlobalEventAttributes, Glob
         return self
     }
     
+    public func hidden(_ value: Values.Condition) -> PreformattedText {
+        return mutate(hidden: .init(value.rawValue, context: .trusted))
+    }
+    
     public func inputMode(_ value: Values.Mode) -> PreformattedText {
         return mutate(inputmode: .init(value.rawValue, context: .trusted))
     }
@@ -9429,6 +9497,10 @@ extension Blockquote: GlobalContentAttributes, GlobalEventAttributes, GlobalAcce
         }
         
         return self
+    }
+    
+    public func hidden(_ value: Values.Condition) -> Blockquote {
+        return mutate(hidden: .init(value.rawValue, context: .trusted))
     }
 
     public func inputMode(_ value: Values.Mode) -> Blockquote {
@@ -9980,6 +10052,10 @@ extension OrderedList: GlobalContentAttributes, GlobalEventAttributes, GlobalAcc
         }
         
         return self
+    }
+    
+    public func hidden(_ value: Values.Condition) -> OrderedList {
+        return mutate(hidden: .init(value.rawValue, context: .trusted))
     }
     
     public func inputMode(_ value: Values.Mode) -> OrderedList {
@@ -10535,6 +10611,10 @@ extension UnorderedList: GlobalContentAttributes, GlobalEventAttributes, GlobalA
         return self
     }
     
+    public func hidden(_ value: Values.Condition) -> UnorderedList {
+        return mutate(hidden: .init(value.rawValue, context: .trusted))
+    }
+    
     public func inputMode(_ value: Values.Mode) -> UnorderedList {
         return mutate(inputmode: .init(value.rawValue, context: .trusted))
     }
@@ -11086,6 +11166,10 @@ extension Menu: GlobalContentAttributes {
         return self
     }
     
+    public func hidden(_ value: Values.Condition) -> Menu {
+        return mutate(hidden: .init(value.rawValue, context: .trusted))
+    }
+    
     public func inputMode(_ value: Values.Mode) -> Menu {
         return mutate(inputmode: .init(value.rawValue, context: .trusted))
     }
@@ -11374,6 +11458,10 @@ extension DescriptionList: GlobalContentAttributes, GlobalEventAttributes, Globa
         }
         
         return self
+    }
+    
+    public func hidden(_ value: Values.Condition) -> DescriptionList {
+        return mutate(hidden: .init(value.rawValue, context: .trusted))
     }
     
     public func inputMode(_ value: Values.Mode) -> DescriptionList {
@@ -11914,6 +12002,10 @@ extension Figure: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessib
         return self
     }
     
+    public func hidden(_ value: Values.Condition) -> Figure {
+        return mutate(hidden: .init(value.rawValue, context: .trusted))
+    }
+    
     public func inputMode(_ value: Values.Mode) -> Figure {
         return mutate(inputmode: .init(value.rawValue, context: .trusted))
     }
@@ -12449,6 +12541,10 @@ extension Anchor: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessib
         return self
     }
     
+    public func hidden(_ value: Values.Condition) -> Anchor {
+        return mutate(hidden: .init(value.rawValue, context: .trusted))
+    }
+    
     public func inputMode(_ value: Values.Mode) -> Anchor {
         return mutate(inputmode: .init(value.rawValue, context: .trusted))
     }
@@ -12574,8 +12670,26 @@ extension Anchor: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessib
         return self
     }
     
-    public func download() -> Anchor {
-        return mutate(download: .init("download", context: .trusted))
+    public func download(_ condition: Bool = true) -> Anchor {
+
+        if condition {
+            return mutate(download: .init("download", context: .trusted))
+        }
+        
+        return self
+    }
+    
+    @_disfavoredOverload
+    public func download(_ name: String) -> Anchor {
+        return mutate(download: .init(name, context: .tainted(.html)))
+    }
+    
+    public func download(_ localizedKey: LocalizedStringKey, tableName: String?) -> Anchor {
+        return mutate(download: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func download(verbatim name: String) -> Anchor {
+        return mutate(download: .init(name, context: .tainted(.html)))
     }
     
     public func reference(_ value: String) -> Anchor {
@@ -12606,8 +12720,12 @@ extension Anchor: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessib
         return mutate(referrerpolicy: .init(value.rawValue, context: .trusted))
     }
     
-    public func relationship(_ value: Values.Relation) -> Anchor {
-        return mutate(rel: .init(value.rawValue, context: .trusted))
+    public func relationship(_ values: Values.Relation...) -> Anchor {
+        return mutate(rel: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func relationship(_ values: [Values.Relation]) -> Anchor {
+        return mutate(rel: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
     }
     
     public func target(_ value: Values.Target) -> Anchor {
@@ -13035,6 +13153,10 @@ extension Emphasize: GlobalContentAttributes, GlobalEventAttributes, GlobalAcces
         }
         
         return self
+    }
+    
+    public func hidden(_ value: Values.Condition) -> Emphasize {
+        return mutate(hidden: .init(value.rawValue, context: .trusted))
     }
 
     public func inputMode(_ value: Values.Mode) -> Emphasize {
@@ -13571,6 +13693,10 @@ extension Strong: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessib
         
         return self
     }
+    
+    public func hidden(_ value: Values.Condition) -> Strong {
+        return mutate(hidden: .init(value.rawValue, context: .trusted))
+    }
 
     public func inputMode(_ value: Values.Mode) -> Strong {
         return mutate(inputmode: .init(value.rawValue, context: .trusted))
@@ -14105,6 +14231,10 @@ extension Small: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessibi
         }
         
         return self
+    }
+    
+    public func hidden(_ value: Values.Condition) -> Small {
+        return mutate(hidden: .init(value.rawValue, context: .trusted))
     }
     
     public func inputMode(_ value: Values.Mode) -> Small {
@@ -14651,6 +14781,10 @@ extension StrikeThrough: GlobalContentAttributes, GlobalEventAttributes {
         return self
     }
     
+    public func hidden(_ value: Values.Condition) -> StrikeThrough {
+        return mutate(hidden: .init(value.rawValue, context: .trusted))
+    }
+    
     public func inputMode(_ value: Values.Mode) -> StrikeThrough {
         return mutate(inputmode: .init(value.rawValue, context: .trusted))
     }
@@ -14971,6 +15105,10 @@ extension Main: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessibil
         }
         
         return self
+    }
+    
+    public func hidden(_ value: Values.Condition) -> Main {
+        return mutate(hidden: .init(value.rawValue, context: .trusted))
     }
 
     public func inputMode(_ value: Values.Mode) -> Main {
@@ -15513,6 +15651,10 @@ extension Search: GlobalContentAttributes {
         return self
     }
     
+    public func hidden(_ value: Values.Condition) -> Search {
+        return mutate(hidden: .init(value.rawValue, context: .trusted))
+    }
+    
     public func inputMode(_ value: Values.Mode) -> Search {
         return mutate(inputmode: .init(value.rawValue, context: .trusted))
     }
@@ -15794,6 +15936,10 @@ extension Division: GlobalContentAttributes, GlobalEventAttributes, GlobalAccess
         }
         
         return self
+    }
+    
+    public func hidden(_ value: Values.Condition) -> Division {
+        return mutate(hidden: .init(value.rawValue, context: .trusted))
     }
     
     public func inputMode(_ value: Values.Mode) -> Division {
@@ -16459,6 +16605,10 @@ extension Definition: GlobalContentAttributes, GlobalEventAttributes, GlobalAcce
         return self
     }
     
+    public func hidden(_ value: Values.Condition) -> Definition {
+        return mutate(hidden: .init(value.rawValue, context: .trusted))
+    }
+    
     public func inputMode(_ value: Values.Mode) -> Definition {
         return mutate(inputmode: .init(value.rawValue, context: .trusted))
     }
@@ -16995,6 +17145,10 @@ extension Cite: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessibil
         return self
     }
     
+    public func hidden(_ value: Values.Condition) -> Cite {
+        return mutate(hidden: .init(value.rawValue, context: .trusted))
+    }
+    
     public func inputMode(_ value: Values.Mode) -> Cite {
         return mutate(inputmode: .init(value.rawValue, context: .trusted))
     }
@@ -17528,6 +17682,10 @@ extension ShortQuote: GlobalContentAttributes, GlobalEventAttributes, GlobalAcce
         }
         
         return self
+    }
+    
+    public func hidden(_ value: Values.Condition) -> ShortQuote {
+        return mutate(hidden: .init(value.rawValue, context: .trusted))
     }
     
     public func inputMode(_ value: Values.Mode) -> ShortQuote {
@@ -18070,6 +18228,10 @@ extension Abbreviation: GlobalContentAttributes, GlobalEventAttributes, GlobalAc
         return self
     }
     
+    public func hidden(_ value: Values.Condition) -> Abbreviation {
+        return mutate(hidden: .init(value.rawValue, context: .trusted))
+    }
+    
     public func inputMode(_ value: Values.Mode) -> Abbreviation {
         return mutate(inputmode: .init(value.rawValue, context: .trusted))
     }
@@ -18604,6 +18766,10 @@ extension Ruby: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessibil
         }
         
         return self
+    }
+    
+    public func hidden(_ value: Values.Condition) -> Ruby {
+        return mutate(hidden: .init(value.rawValue, context: .trusted))
     }
     
     public func inputMode(_ value: Values.Mode) -> Ruby {
@@ -19142,6 +19308,10 @@ extension Data: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessibil
         }
         
         return self
+    }
+    
+    public func hidden(_ value: Values.Condition) -> Data {
+        return mutate(hidden: .init(value.rawValue, context: .trusted))
     }
     
     public func inputMode(_ value: Values.Mode) -> Data {
@@ -19694,6 +19864,10 @@ extension Time: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessibil
         return self
     }
     
+    public func hidden(_ value: Values.Condition) -> Time {
+        return mutate(hidden: .init(value.rawValue, context: .trusted))
+    }
+    
     public func inputMode(_ value: Values.Mode) -> Time {
         return mutate(inputmode: .init(value.rawValue, context: .trusted))
     }
@@ -20234,6 +20408,10 @@ extension Code: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessibil
         
         return self
     }
+    
+    public func hidden(_ value: Values.Condition) -> Code {
+        return mutate(hidden: .init(value.rawValue, context: .trusted))
+    }
 
     public func inputMode(_ value: Values.Mode) -> Code {
         return mutate(inputmode: .init(value.rawValue, context: .trusted))
@@ -20772,6 +20950,10 @@ extension Variable: GlobalContentAttributes, GlobalEventAttributes, GlobalAccess
         return self
     }
     
+    public func hidden(_ value: Values.Condition) -> Variable {
+        return mutate(hidden: .init(value.rawValue, context: .trusted))
+    }
+    
     public func inputMode(_ value: Values.Mode) -> Variable {
         return mutate(inputmode: .init(value.rawValue, context: .trusted))
     }
@@ -21303,6 +21485,10 @@ extension SampleOutput: GlobalContentAttributes, GlobalEventAttributes, GlobalAc
         }
         
         return self
+    }
+    
+    public func hidden(_ value: Values.Condition) -> SampleOutput {
+        return mutate(hidden: .init(value.rawValue, context: .trusted))
     }
 
     public func inputMode(_ value: Values.Mode) -> SampleOutput {
@@ -21842,6 +22028,10 @@ extension KeyboardInput: GlobalContentAttributes, GlobalEventAttributes, GlobalA
         return self
     }
     
+    public func hidden(_ value: Values.Condition) -> KeyboardInput {
+        return mutate(hidden: .init(value.rawValue, context: .trusted))
+    }
+    
     public func inputMode(_ value: Values.Mode) -> KeyboardInput {
         return mutate(inputmode: .init(value.rawValue, context: .trusted))
     }
@@ -22377,6 +22567,10 @@ extension Subscript: GlobalContentAttributes, GlobalEventAttributes, GlobalAcces
         }
         
         return self
+    }
+    
+    public func hidden(_ value: Values.Condition) -> Subscript {
+        return mutate(hidden: .init(value.rawValue, context: .trusted))
     }
     
     public func inputMode(_ value: Values.Mode) -> Subscript {
@@ -22915,6 +23109,10 @@ extension Superscript: GlobalContentAttributes, GlobalEventAttributes, GlobalAcc
         return self
     }
     
+    public func hidden(_ value: Values.Condition) -> Superscript {
+        return mutate(hidden: .init(value.rawValue, context: .trusted))
+    }
+    
     public func inputMode(_ value: Values.Mode) -> Superscript {
         return mutate(inputmode: .init(value.rawValue, context: .trusted))
     }
@@ -23450,6 +23648,10 @@ extension Italic: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessib
         }
         
         return self
+    }
+    
+    public func hidden(_ value: Values.Condition) -> Italic {
+        return mutate(hidden: .init(value.rawValue, context: .trusted))
     }
 
     public func inputMode(_ value: Values.Mode) -> Italic {
@@ -23998,6 +24200,10 @@ extension Bold: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessibil
         return self
     }
     
+    public func hidden(_ value: Values.Condition) -> Bold {
+        return mutate(hidden: .init(value.rawValue, context: .trusted))
+    }
+    
     public func inputMode(_ value: Values.Mode) -> Bold {
         return mutate(inputmode: .init(value.rawValue, context: .trusted))
     }
@@ -24542,6 +24748,10 @@ extension Underline: GlobalContentAttributes, GlobalEventAttributes, GlobalAcces
         }
         
         return self
+    }
+    
+    public func hidden(_ value: Values.Condition) -> Underline {
+        return mutate(hidden: .init(value.rawValue, context: .trusted))
     }
     
     public func inputMode(_ value: Values.Mode) -> Underline {
@@ -25090,6 +25300,10 @@ extension Mark: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessibil
         return self
     }
     
+    public func hidden(_ value: Values.Condition) -> Mark {
+        return mutate(hidden: .init(value.rawValue, context: .trusted))
+    }
+    
     public func inputMode(_ value: Values.Mode) -> Mark {
         return mutate(inputmode: .init(value.rawValue, context: .trusted))
     }
@@ -25627,6 +25841,10 @@ extension Bdi: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessibili
         return self
     }
     
+    public func hidden(_ value: Values.Condition) -> Bdi {
+        return mutate(hidden: .init(value.rawValue, context: .trusted))
+    }
+    
     public func inputMode(_ value: Values.Mode) -> Bdi {
         return mutate(inputmode: .init(value.rawValue, context: .trusted))
     }
@@ -26150,6 +26368,10 @@ extension Bdo: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessibili
         }
         
         return self
+    }
+    
+    public func hidden(_ value: Values.Condition) -> Bdo {
+        return mutate(hidden: .init(value.rawValue, context: .trusted))
     }
     
     public func inputMode(_ value: Values.Mode) -> Bdo {
@@ -26685,6 +26907,10 @@ extension Span: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessibil
         return self
     }
     
+    public func hidden(_ value: Values.Condition) -> Span {
+        return mutate(hidden: .init(value.rawValue, context: .trusted))
+    }
+    
     public func inputMode(_ value: Values.Mode) -> Span {
         return mutate(inputmode: .init(value.rawValue, context: .trusted))
     }
@@ -27215,6 +27441,10 @@ extension LineBreak: GlobalContentAttributes, GlobalEventAttributes, GlobalAcces
         return self
     }
     
+    public func hidden(_ value: Values.Condition) -> LineBreak {
+        return mutate(hidden: .init(value.rawValue, context: .trusted))
+    }
+    
     public func inputMode(_ value: Values.Mode) -> LineBreak {
         return mutate(inputmode: .init(value.rawValue, context: .trusted))
     }
@@ -27735,6 +27965,10 @@ extension WordBreak: GlobalContentAttributes, GlobalEventAttributes, GlobalAcces
         }
         
         return self
+    }
+    
+    public func hidden(_ value: Values.Condition) -> WordBreak {
+        return mutate(hidden: .init(value.rawValue, context: .trusted))
     }
 
     public func inputMode(_ value: Values.Mode) -> WordBreak {
@@ -28268,6 +28502,10 @@ extension InsertedText: GlobalContentAttributes, GlobalEventAttributes, GlobalAc
         }
         
         return self
+    }
+    
+    public func hidden(_ value: Values.Condition) -> InsertedText {
+        return mutate(hidden: .init(value.rawValue, context: .trusted))
     }
 
     public func inputMode(_ value: Values.Mode) -> InsertedText {
@@ -28811,6 +29049,10 @@ extension DeletedText: GlobalContentAttributes, GlobalEventAttributes, GlobalAcc
         return self
     }
     
+    public func hidden(_ value: Values.Condition) -> DeletedText {
+        return mutate(hidden: .init(value.rawValue, context: .trusted))
+    }
+    
     public func inputMode(_ value: Values.Mode) -> DeletedText {
         return mutate(inputmode: .init(value.rawValue, context: .trusted))
     }
@@ -29230,7 +29472,7 @@ extension DeletedText: GlobalContentAttributes, GlobalEventAttributes, GlobalAcc
 /// ```swift
 /// Picture {
 ///     Source()
-///         .sourceSet("...jpg")
+///         .sources("...jpg")
 ///         .media("(orientation: portrait)")
 ///     Image()
 ///         .source("...jpg")
@@ -29355,6 +29597,10 @@ extension Picture: GlobalContentAttributes, GlobalEventAttributes {
         }
         
         return self
+    }
+    
+    public func hidden(_ value: Values.Condition) -> Picture {
+        return mutate(hidden: .init(value.rawValue, context: .trusted))
     }
     
     public func inputMode(_ value: Values.Mode) -> Picture {
@@ -29586,7 +29832,7 @@ public struct Image: EmptyNode, HtmlElement, BodyElement, FormElement, FigureEle
     }
 }
 
-extension Image: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes, AlternateAttribute, SourceAttribute, SizesAttribute, WidthAttribute, HeightAttribute, ReferrerPolicyAttribute, FetchPriorityAttribute, LoadingAttribute, SourceSetAttribute, DecodingAttribute, IsMapAttribute, UseMapAttribute, CrossOriginAttribute {
+extension Image: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes, AlternateAttribute, SourceAttribute, SizesAttribute, WidthAttribute, HeightAttribute, ReferrerPolicyAttribute, FetchPriorityAttribute, LoadingAttribute, SourcesAttribute, DecodingAttribute, IsMapAttribute, UseMapAttribute, CrossOriginAttribute {
     
     public func accessKey(_ value: Character) -> Image {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -29650,6 +29896,10 @@ extension Image: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessibi
         }
         
         return self
+    }
+    
+    public func hidden(_ value: Values.Condition) -> Image {
+        return mutate(hidden: .init(value.rawValue, context: .trusted))
     }
 
     public func inputMode(_ value: Values.Mode) -> Image {
@@ -29802,16 +30052,26 @@ extension Image: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessibi
         return mutate(source: .init(value, context: .tainted(.html)))
     }
     
-    @available(*, unavailable, message: "Use the sourceSet(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the sources(_:) modifier instead.")
     public func sourceSet(_ value: String) -> Image {
         return mutate(sourceset: .init(value, context: .tainted(.html)))
     }
     
+    @available(*, unavailable, message: "Use the sources(_:) modifier instead.")
     public func sourceSet(_ candidates: [SourceCandidate]) -> Image {
         return mutate(sourceset: .init(EnumeratedList(values: candidates, separator: ", "), context: .tainted(.html)))
     }
     
+    @available(*, unavailable, message: "Use the sources(_:) modifier instead.")
     public func sourceSet(_ candidates: SourceCandidate...) -> Image {
+        return mutate(sourceset: .init(EnumeratedList(values: candidates, separator: ", "), context: .tainted(.html)))
+    }
+    
+    public func sources(_ candidates: [SourceCandidate]) -> Image {
+        return mutate(sourceset: .init(EnumeratedList(values: candidates, separator: ", "), context: .tainted(.html)))
+    }
+    
+    public func sources(_ candidates: SourceCandidate...) -> Image {
         return mutate(sourceset: .init(EnumeratedList(values: candidates, separator: ", "), context: .tainted(.html)))
     }
     
@@ -30258,6 +30518,10 @@ extension InlineFrame: GlobalContentAttributes, GlobalEventAttributes, GlobalAcc
         }
         
         return self
+    }
+    
+    public func hidden(_ value: Values.Condition) -> InlineFrame {
+        return mutate(hidden: .init(value.rawValue, context: .trusted))
     }
     
     public func inputMode(_ value: Values.Mode) -> InlineFrame {
@@ -30824,6 +31088,10 @@ extension Embed: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessibi
         return self
     }
     
+    public func hidden(_ value: Values.Condition) -> Embed {
+        return mutate(hidden: .init(value.rawValue, context: .trusted))
+    }
+    
     public func inputMode(_ value: Values.Mode) -> Embed {
         return mutate(inputmode: .init(value.rawValue, context: .trusted))
     }
@@ -31376,6 +31644,10 @@ extension Object: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessib
         }
         
         return self
+    }
+    
+    public func hidden(_ value: Values.Condition) -> Object {
+        return mutate(hidden: .init(value.rawValue, context: .trusted))
     }
     
     public func inputMode(_ value: Values.Mode) -> Object {
@@ -31935,6 +32207,10 @@ extension Video: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessibi
         }
         
         return self
+    }
+    
+    public func hidden(_ value: Values.Condition) -> Video {
+        return mutate(hidden: .init(value.rawValue, context: .trusted))
     }
     
     public func inputMode(_ value: Values.Mode) -> Video {
@@ -32539,6 +32815,10 @@ extension Audio: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessibi
         return self
     }
     
+    public func hidden(_ value: Values.Condition) -> Audio {
+        return mutate(hidden: .init(value.rawValue, context: .trusted))
+    }
+    
     public func inputMode(_ value: Values.Mode) -> Audio {
         return mutate(inputmode: .init(value.rawValue, context: .trusted))
     }
@@ -33121,6 +33401,10 @@ extension Map: GlobalContentAttributes, GlobalEventAttributes, NameAttribute {
         return self
     }
     
+    public func hidden(_ value: Values.Condition) -> Map {
+        return mutate(hidden: .init(value.rawValue, context: .trusted))
+    }
+    
     public func inputMode(_ value: Values.Mode) -> Map {
         return mutate(inputmode: .init(value.rawValue, context: .trusted))
     }
@@ -33434,6 +33718,10 @@ extension Form: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessibil
         return self
     }
     
+    public func hidden(_ value: Values.Condition) -> Form {
+        return mutate(hidden: .init(value.rawValue, context: .trusted))
+    }
+    
     public func inputMode(_ value: Values.Mode) -> Form {
         return mutate(inputmode: .init(value.rawValue, context: .trusted))
     }
@@ -33596,8 +33884,12 @@ extension Form: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessibil
         return mutate(target: .init(value.rawValue, context: .trusted))
     }
     
-    public func relationship(_ value: Values.Relation) -> Form {
-        return mutate(rel: .init(value.rawValue, context: .trusted))
+    public func relationship(_ values: Values.Relation...) -> Form {
+        return mutate(rel: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func relationship(_ values: [Values.Relation]) -> Form {
+        return mutate(rel: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
     }
     
     public func popover(_ value: Values.Popover.State) -> Form {
@@ -34013,6 +34305,10 @@ extension DataList: GlobalContentAttributes, GlobalEventAttributes, GlobalAccess
         }
         
         return self
+    }
+    
+    public func hidden(_ value: Values.Condition) -> DataList {
+        return mutate(hidden: .init(value.rawValue, context: .trusted))
     }
 
     public func inputMode(_ value: Values.Mode) -> DataList {
@@ -34548,6 +34844,10 @@ extension Output: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessib
         }
         
         return self
+    }
+    
+    public func hidden(_ value: Values.Condition) -> Output {
+        return mutate(hidden: .init(value.rawValue, context: .trusted))
     }
     
     public func inputMode(_ value: Values.Mode) -> Output {
@@ -35095,6 +35395,10 @@ extension Progress: GlobalContentAttributes, GlobalEventAttributes, GlobalAccess
         }
         
         return self
+    }
+    
+    public func hidden(_ value: Values.Condition) -> Progress {
+        return mutate(hidden: .init(value.rawValue, context: .trusted))
     }
 
     public func inputMode(_ value: Values.Mode) -> Progress {
@@ -35649,6 +35953,10 @@ extension Meter: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessibi
         }
         
         return self
+    }
+    
+    public func hidden(_ value: Values.Condition) -> Meter {
+        return mutate(hidden: .init(value.rawValue, context: .trusted))
     }
 
     public func inputMode(_ value: Values.Mode) -> Meter {
@@ -36221,7 +36529,11 @@ extension Details: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessi
         
         return self
     }
-
+    
+    public func hidden(_ value: Values.Condition) -> Details {
+        return mutate(hidden: .init(value.rawValue, context: .trusted))
+    }
+    
     public func inputMode(_ value: Values.Mode) -> Details {
         return mutate(inputmode: .init(value.rawValue, context: .trusted))
     }
@@ -36781,6 +37093,10 @@ extension Dialog: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessib
         }
         
         return self
+    }
+    
+    public func hidden(_ value: Values.Condition) -> Dialog {
+        return mutate(hidden: .init(value.rawValue, context: .trusted))
     }
     
     public func inputMode(_ value: Values.Mode) -> Dialog {
@@ -37343,6 +37659,10 @@ extension Script: GlobalContentAttributes, GlobalEventAttributes, Asynchronously
         return self
     }
     
+    public func hidden(_ value: Values.Condition) -> Script {
+        return mutate(hidden: .init(value.rawValue, context: .trusted))
+    }
+    
     public func inputMode(_ value: Values.Mode) -> Script {
         return mutate(inputmode: .init(value.rawValue, context: .trusted))
     }
@@ -37683,6 +38003,10 @@ extension NoScript: GlobalContentAttributes, GlobalEventAttributes {
         
         return self
     }
+    
+    public func hidden(_ value: Values.Condition) -> NoScript {
+        return mutate(hidden: .init(value.rawValue, context: .trusted))
+    }
 
     public func inputMode(_ value: Values.Mode) -> NoScript {
         return mutate(inputmode: .init(value.rawValue, context: .trusted))
@@ -37994,6 +38318,10 @@ extension Template: GlobalContentAttributes, GlobalEventAttributes, ShadowRootMo
         return self
     }
     
+    public func hidden(_ value: Values.Condition) -> Template {
+        return mutate(hidden: .init(value.rawValue, context: .trusted))
+    }
+    
     public func inputMode(_ value: Values.Mode) -> Template {
         return mutate(inputmode: .init(value.rawValue, context: .trusted))
     }
@@ -38295,6 +38623,10 @@ extension Canvas: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessib
         }
         
         return self
+    }
+    
+    public func hidden(_ value: Values.Condition) -> Canvas {
+        return mutate(hidden: .init(value.rawValue, context: .trusted))
     }
 
     public func inputMode(_ value: Values.Mode) -> Canvas {
@@ -38843,6 +39175,10 @@ extension Table: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessibi
         }
         
         return self
+    }
+    
+    public func hidden(_ value: Values.Condition) -> Table {
+        return mutate(hidden: .init(value.rawValue, context: .trusted))
     }
 
     public func inputMode(_ value: Values.Mode) -> Table {
@@ -39754,6 +40090,10 @@ extension Slot: GlobalContentAttributes, NameAttribute {
         }
         
         return self
+    }
+    
+    public func hidden(_ value: Values.Condition) -> Slot {
+        return mutate(hidden: .init(value.rawValue, context: .trusted))
     }
     
     public func inputMode(_ value: Values.Mode) -> Slot {

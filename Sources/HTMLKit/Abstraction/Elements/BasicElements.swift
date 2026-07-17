@@ -195,6 +195,10 @@ extension Html: GlobalContentAttributes, GlobalEventAttributes {
         return self
     }
     
+    public func hidden(_ value: Values.Condition) -> Html {
+        return mutate(hidden: .init(value.rawValue, context: .trusted))
+    }
+    
     public func inputMode(_ value: Values.Mode) -> Html {
         return mutate(inputmode: .init(value.rawValue, context: .trusted))
     }

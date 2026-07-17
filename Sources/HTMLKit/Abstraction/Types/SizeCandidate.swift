@@ -5,7 +5,7 @@
 /// ```swift
 /// Image()
 ///     .source("...png")
-///     .sourceSet(..., ...)
+///     .sources(..., ...)
 ///     .sizes(
 ///         SizeCandidate("100vw", conditions: .maxWidth("1680px")), 
 ///         SizeCandidate("80vw")

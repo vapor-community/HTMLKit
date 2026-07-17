@@ -10,7 +10,7 @@ final class AttributesTests: XCTestCase {
         @ContentBuilder<Content> var body: Content
     }
     
-    typealias AllAttributes = AccessKeyAttribute & AcceptAttribute & ActionAttribute & AlternateAttribute & AsynchronouslyAttribute & AutocapitalizeAttribute & AutocompleteAttribute & AutofocusAttribute & AutoplayAttribute & CharsetAttribute & CheckedAttribute & CiteAttribute & ClassAttribute & ColumnsAttribute & ColumnSpanAttribute & ContentAttribute & EditAttribute  & ControlsAttribute & DataAttribute & DateTimeAttribute & DefaultAttribute & DeferAttribute & DirectionAttribute & DisabledAttribute & DownloadAttribute & DragAttribute & EncodingAttribute & EnterKeyAttribute & ForAttribute & FormAttribute & FormActionAttribute & EquivalentAttribute & HeadersAttribute & HeightAttribute & HiddenAttribute & HighAttribute & ReferenceAttribute & ReferenceLanguageAttribute & IdentifierAttribute & IsMapAttribute & InputModeAttribute & IsAttribute & ItemAttribute & ItemPropertyAttribute & KindAttribute & LabelAttribute & LanguageAttribute & ListAttribute & LoopAttribute & LowAttribute & MaximumValueAttribute & MaximumLengthAttribute & MediaAttribute & MethodAttribute & MinimumValueAttribute & MinimumLengthAttribute & MultipleAttribute & MutedAttribute & NameAttribute & NonceAttribute & NoValidateAttribute & OpenAttribute & OptimumAttribute & PatternAttribute & PartAttribute & PingAttribute & PlaceholderAttribute & PosterAttribute & PreloadAttribute & ReadOnlyAttribute & ReferrerPolicyAttribute & RelationshipAttribute & RequiredAttribute & ReversedAttribute & RoleAttribute & RowsAttribute & RowSpanAttribute & SandboxAttribute & ScopeAttribute & ShapeAttribute & SizeAttribute & SizesAttribute & SlotAttribute & SpanAttribute & SpellCheckAttribute & SourceAttribute & StartAttribute & StepAttribute & StyleAttribute & TabulatorAttribute & TargetAttribute & TitleAttribute & TranslateAttribute & TypeAttribute & ValueAttribute & WidthAttribute & WrapAttribute & PropertyAttribute & SelectedAttribute & WindowEventAttribute & FocusEventAttribute & PointerEventAttribute & MouseEventAttribute & WheelEventAttribute & InputEventAttribute & KeyboardEventAttribute & DragEventAttribute & ClipboardEventAttribute & SelectionEventAttribute & MediaEventAttribute & FormEventAttribute & DetailEventAttribute & AtomicAccessibilityAttribute & BusyAccessibilityAttribute & ControlsAccessibilityAttribute & CurrentAccessibilityAttribute & DescriptionsAccessibilityAttribute & DetailAccessibilityAttribute & DisabledAccessibilityAttribute & FlowAccessibilityAttribute & PopupAccessibilityAttribute & HiddenAccessibilityAttribute & InvalidAccessibilityAttribute & ShortcutsAccessibilityAttribute & LabelAccessibilityAttribute & LabelsAccessibilityAttribute & LiveAccessibilityAttribute & OwnsAccessibilityAttribute & MultilineAccessibilityAttribute & RowIndexAccessibilityAttribute & RelevantAccessibilityAttribute & RoleDescriptionAccessibilityAttribute & SortAccessibilityAttribute & OrientationAccessibilityAttribute & RequiredAccessibilityAttribute & ReadOnlyAccessibilityAttribute & ModalAccessibilityAttribute & LevelAccessibilityAttribute & HintAccessibilityAttribute & PositionAccessibilityAttribute & MultiselectAccessibilityAttribute & RowCountAccessibilityAttribute & ColumnIndexAccessibilityAttribute & ColumnCountAccessibilityAttribute & RowSpanAccessibilityAttribute & ColumnSpanAccessibilityAttribute & MaximumValueAccessibilityAttribute & MinimumValueAccessibilityAttribute & ValueAccessibilityAttribute & PressedAccessibilityAttribute & SelectedAccessibilityAttribute & CheckedAccessibilityAttribute & ExpandedAccessibilityAttribute & FocusedAccessibilityAttribute & CompletionAccessibilityAttribute & DrawAttribute & FillAttribute & StrokeAttribute & RadiusAttribute & PositionPointAttribute & RadiusPointAttribute & CenterPointAttribute & ViewBoxAttribute & NamespaceAttribute & PointsAttribute & ShadowRootModeAttribute & InertAttribute & FetchPriorityAttribute & LoadingAttribute & SourceSetAttribute & DecodingAttribute & BlockingAttribute & PopoverAttribute & PopoverTargetAttribute & UseMapAttribute & PlaysInlineAttribute & IntegrityAttribute & AsAttribute & CrossOriginAttribute & SourceLanguageAttribute & SourceDocumentAttribute & AbbreviatedAttribute
+    typealias AllAttributes = AccessKeyAttribute & AcceptAttribute & ActionAttribute & AlternateAttribute & AsynchronouslyAttribute & AutocapitalizeAttribute & AutocompleteAttribute & AutofocusAttribute & AutoplayAttribute & CharsetAttribute & CheckedAttribute & CiteAttribute & ClassAttribute & ColumnsAttribute & ColumnSpanAttribute & ContentAttribute & EditAttribute  & ControlsAttribute & DataAttribute & DateTimeAttribute & DefaultAttribute & DeferAttribute & DirectionAttribute & DisabledAttribute & DownloadAttribute & DragAttribute & EncodingAttribute & EnterKeyAttribute & ForAttribute & FormAttribute & FormActionAttribute & EquivalentAttribute & HeadersAttribute & HeightAttribute & HiddenAttribute & HighAttribute & ReferenceAttribute & ReferenceLanguageAttribute & IdentifierAttribute & IsMapAttribute & InputModeAttribute & IsAttribute & ItemAttribute & ItemPropertyAttribute & KindAttribute & LabelAttribute & LanguageAttribute & ListAttribute & LoopAttribute & LowAttribute & MaximumValueAttribute & MaximumLengthAttribute & MediaAttribute & MethodAttribute & MinimumValueAttribute & MinimumLengthAttribute & MultipleAttribute & MutedAttribute & NameAttribute & NonceAttribute & NoValidateAttribute & OpenAttribute & OptimumAttribute & PatternAttribute & PartAttribute & PingAttribute & PlaceholderAttribute & PosterAttribute & PreloadAttribute & ReadOnlyAttribute & ReferrerPolicyAttribute & RelationshipAttribute & RequiredAttribute & ReversedAttribute & RoleAttribute & RowsAttribute & RowSpanAttribute & SandboxAttribute & ScopeAttribute & ShapeAttribute & SizeAttribute & SizesAttribute & SlotAttribute & SpanAttribute & SpellCheckAttribute & SourceAttribute & StartAttribute & StepAttribute & StyleAttribute & TabulatorAttribute & TargetAttribute & TitleAttribute & TranslateAttribute & TypeAttribute & ValueAttribute & WidthAttribute & WrapAttribute & PropertyAttribute & SelectedAttribute & WindowEventAttribute & FocusEventAttribute & PointerEventAttribute & MouseEventAttribute & WheelEventAttribute & InputEventAttribute & KeyboardEventAttribute & DragEventAttribute & ClipboardEventAttribute & SelectionEventAttribute & MediaEventAttribute & FormEventAttribute & DetailEventAttribute & AtomicAccessibilityAttribute & BusyAccessibilityAttribute & ControlsAccessibilityAttribute & CurrentAccessibilityAttribute & DescriptionsAccessibilityAttribute & DetailAccessibilityAttribute & DisabledAccessibilityAttribute & FlowAccessibilityAttribute & PopupAccessibilityAttribute & HiddenAccessibilityAttribute & InvalidAccessibilityAttribute & ShortcutsAccessibilityAttribute & LabelAccessibilityAttribute & LabelsAccessibilityAttribute & LiveAccessibilityAttribute & OwnsAccessibilityAttribute & MultilineAccessibilityAttribute & RowIndexAccessibilityAttribute & RelevantAccessibilityAttribute & RoleDescriptionAccessibilityAttribute & SortAccessibilityAttribute & OrientationAccessibilityAttribute & RequiredAccessibilityAttribute & ReadOnlyAccessibilityAttribute & ModalAccessibilityAttribute & LevelAccessibilityAttribute & HintAccessibilityAttribute & PositionAccessibilityAttribute & MultiselectAccessibilityAttribute & RowCountAccessibilityAttribute & ColumnIndexAccessibilityAttribute & ColumnCountAccessibilityAttribute & RowSpanAccessibilityAttribute & ColumnSpanAccessibilityAttribute & MaximumValueAccessibilityAttribute & MinimumValueAccessibilityAttribute & ValueAccessibilityAttribute & PressedAccessibilityAttribute & SelectedAccessibilityAttribute & CheckedAccessibilityAttribute & ExpandedAccessibilityAttribute & FocusedAccessibilityAttribute & CompletionAccessibilityAttribute & DrawAttribute & FillAttribute & StrokeAttribute & RadiusAttribute & PositionPointAttribute & RadiusPointAttribute & CenterPointAttribute & ViewBoxAttribute & NamespaceAttribute & PointsAttribute & ShadowRootModeAttribute & InertAttribute & FetchPriorityAttribute & LoadingAttribute & SourcesAttribute & DecodingAttribute & BlockingAttribute & PopoverAttribute & PopoverTargetAttribute & UseMapAttribute & PlaysInlineAttribute & IntegrityAttribute & AsAttribute & CrossOriginAttribute & SourceLanguageAttribute & SourceDocumentAttribute & AbbreviatedAttribute & ImageSourcesAttribute & ImageSizesAttribute
     
     struct Tag: ContentNode, GlobalElement, AllAttributes {
 
@@ -82,6 +82,10 @@ final class AttributesTests: XCTestCase {
             }
             
             return self
+        }
+    
+        func hidden(_ value: Values.Condition) -> Tag {
+            return mutate(hidden: .init(value.rawValue, context: .trusted))
         }
         
         func id(_ value: String) -> Tag {
@@ -319,8 +323,26 @@ final class AttributesTests: XCTestCase {
             return self
         }
         
-        func download() -> Tag {
-            return self.mutate(download: .init("download", context: .trusted))
+        func download(_ condition: Bool = true) -> Tag {
+            
+            if condition {
+                return self.mutate(download: .init("download", context: .trusted))
+            }
+            
+            return self
+        }
+        
+        @_disfavoredOverload
+        func download(_ name: String) -> Tag {
+            return self.mutate(download: .init(name, context: .tainted(.html)))
+        }
+        
+        func download(_ localizedKey: LocalizedStringKey, tableName: String?) -> Tag {
+            return self.mutate(download: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+        }
+        
+        func download(verbatim name: String) -> Tag {
+            return self.mutate(download: .init(name, context: .tainted(.html)))
         }
         
         func encoding(_ value: Values.Encoding) -> Tag {
@@ -521,8 +543,12 @@ final class AttributesTests: XCTestCase {
             return self.mutate(referrerpolicy: .init(value.rawValue, context: .trusted))
         }
         
-        func relationship(_ value: Values.Relation) -> Tag {
-            return self.mutate(rel: .init(value.rawValue, context: .trusted))
+        public func relationship(_ values: Values.Relation...) -> Tag {
+            return mutate(rel: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+        }
+        
+        public func relationship(_ values: [Values.Relation]) -> Tag {
+            return mutate(rel: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
         }
         
         func required(_ condition: Bool = true) -> Tag {
@@ -606,11 +632,11 @@ final class AttributesTests: XCTestCase {
             return mutate(sourcelanguage: .init(value.rawValue, context: .trusted))
         }
         
-        func sourceSet(_ candidates: [SourceCandidate]) -> Tag {
+        func sources(_ candidates: [SourceCandidate]) -> Tag {
             return mutate(sourceset: .init(EnumeratedList(values: candidates, separator: ", "), context: .tainted(.html)))
         }
         
-        func sourceSet(_ candidates: SourceCandidate...) -> Tag {
+        func sources(_ candidates: SourceCandidate...) -> Tag {
             return mutate(sourceset: .init(EnumeratedList(values: candidates, separator: ", "), context: .tainted(.html)))
         }
         
@@ -1184,6 +1210,22 @@ final class AttributesTests: XCTestCase {
         func abbreviated(verbatim value: String) -> Tag {
             return self.mutate(abbr: .init(value, context: .tainted(.html)))
         }
+        
+        func imageSources(_ candidates: [HTMLKit.SourceCandidate]) -> Tag {
+            return mutate(imagesrcset: .init(EnumeratedList(values: candidates, separator: ", "), context: .tainted(.html)))
+        }
+        
+        func imageSources(_ candidates: HTMLKit.SourceCandidate...) -> Tag {
+            return mutate(imagesrcset: .init(EnumeratedList(values: candidates, separator: ", "), context: .tainted(.html)))
+        }
+        
+        func imageSizes(_ candidates: [HTMLKit.SizeCandidate]) -> Tag {
+            return mutate(imagesizes: .init(EnumeratedList(values: candidates, separator: ", "), context: .tainted(.html)))
+        }
+        
+        func imageSizes(_ candidates: HTMLKit.SizeCandidate...) -> Tag {
+            return mutate(imagesizes: .init(EnumeratedList(values: candidates, separator: ", "), context: .tainted(.html)))
+        }
     }
     
     var renderer = Renderer()
@@ -1303,19 +1345,18 @@ final class AttributesTests: XCTestCase {
     func testHiddenAttribute() throws {
         
         let view = TestView {
-            // unconditionally
             Tag {}.hidden()
-            // with a false condition
             Tag {}.hidden(false)
-            // with a true condition
             Tag {}.hidden(true)
+            Tag {}.hidden(.untilFound)
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
                        <tag hidden="hidden"></tag>\
                        <tag></tag>\
-                       <tag hidden="hidden"></tag>
+                       <tag hidden="hidden"></tag>\
+                       <tag hidden="until-found"></tag>
                        """
         )
     }
@@ -1722,11 +1763,17 @@ final class AttributesTests: XCTestCase {
         
         let view = TestView {
             Tag {}.download()
+            Tag {}.download(false)
+            Tag {}.download(true)
+            Tag {}.download("filename")
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <tag download="download"></tag>
+                       <tag download="download"></tag>\
+                       <tag></tag>\
+                       <tag download="download"></tag>\
+                       <tag download="filename"></tag>
                        """
         )
     }
@@ -2274,11 +2321,15 @@ final class AttributesTests: XCTestCase {
         
         let view = TestView {
             Tag {}.relationship(.author)
+            Tag {}.relationship(.author, .external)
+            Tag {}.relationship([.author, .external])
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <tag rel="author"></tag>
+                       <tag rel="author"></tag>\
+                       <tag rel="author external"></tag>\
+                       <tag rel="author external"></tag>
                        """
         )
     }
@@ -2498,14 +2549,14 @@ final class AttributesTests: XCTestCase {
         )
     }
     
-    func testSourceSetAttribute() throws {
+    func testSourcesAttribute() throws {
         
         let view = TestView {
-            Tag {}.sourceSet(SourceCandidate("img.webp"))
-            Tag {}.sourceSet(SourceCandidate("img.png", density: 4))
-            Tag {}.sourceSet(SourceCandidate("img.png", density: .ultra))
-            Tag {}.sourceSet(SourceCandidate("img.png", width: 1024))
-            Tag {}.sourceSet(SourceCandidate("img.png", width: 1024), SourceCandidate("img.png", density: .ultra))
+            Tag {}.sources(SourceCandidate("img.webp"))
+            Tag {}.sources(SourceCandidate("img.png", density: 4))
+            Tag {}.sources(SourceCandidate("img.png", density: .ultra))
+            Tag {}.sources(SourceCandidate("img.png", width: 1024))
+            Tag {}.sources(SourceCandidate("img.png", width: 1024), SourceCandidate("img.png", density: .ultra))
         }
         
         XCTAssertEqual(try renderer.render(view: view),
@@ -3838,6 +3889,54 @@ final class AttributesTests: XCTestCase {
                        """
                        <tag abbr="HTML"></tag>
                        """
+        )
+    }
+    
+    func testImageSourcesAttribute() throws {
+        
+        let view = TestView {
+            Tag {}.imageSources(SourceCandidate("img.webp"))
+            Tag {}.imageSources(SourceCandidate("img.png", density: 4))
+            Tag {}.imageSources(SourceCandidate("img.png", density: .ultra))
+            Tag {}.imageSources(SourceCandidate("img.png", width: 1024))
+            Tag {}.imageSources(SourceCandidate("img.png", width: 1024), SourceCandidate("img.png", density: .ultra))
+        }
+        
+        XCTAssertEqual(try renderer.render(view: view),
+                       """
+                       <tag imagesrcset="img.webp"></tag>\
+                       <tag imagesrcset="img.png 4x"></tag>\
+                       <tag imagesrcset="img.png 3x"></tag>\
+                       <tag imagesrcset="img.png 1024w"></tag>\
+                       <tag imagesrcset="img.png 1024w, img.png 3x"></tag>
+                       """
+        )
+    }
+    
+    func testImageSizesAttribute() throws {
+        
+        let view = TestView {
+            Tag {}.imageSizes(SizeCandidate("auto"))
+            Tag {}.imageSizes(SizeCandidate("100vw", conditions: .orientation(.landscape)))
+            Tag {}.imageSizes(SizeCandidate("100vw", conditions: .orientation(.portrait)))
+            Tag {}.imageSizes(SizeCandidate("100vw", conditions: .orientation(.landscape), .width("50em")))
+            Tag {}.imageSizes(SizeCandidate("calc(100vw - 100px)", conditions: .minWidth("50em")))
+            Tag {}.imageSizes(SizeCandidate("100vw", conditions: .maxWidth("50em")))
+            Tag {}.imageSizes([SizeCandidate("100vw"), SizeCandidate("100vw", conditions: .maxWidth("50em"))])
+            Tag {}.imageSizes(SizeCandidate("100vw"), SizeCandidate("100vw", conditions: .maxWidth("50em")))
+        }
+        
+        XCTAssertEqual(try renderer.render(view: view),
+                     """
+                     <tag imagesizes="auto"></tag>\
+                     <tag imagesizes="(orientation: landscape) 100vw"></tag>\
+                     <tag imagesizes="(orientation: portrait) 100vw"></tag>\
+                     <tag imagesizes="(orientation: landscape) and (width: 50em) 100vw"></tag>\
+                     <tag imagesizes="(min-width: 50em) calc(100vw - 100px)"></tag>\
+                     <tag imagesizes="(max-width: 50em) 100vw"></tag>\
+                     <tag imagesizes="100vw, (max-width: 50em) 100vw"></tag>\
+                     <tag imagesizes="100vw, (max-width: 50em) 100vw"></tag>
+                     """
         )
     }
 }

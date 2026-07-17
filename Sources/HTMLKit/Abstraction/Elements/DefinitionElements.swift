@@ -143,6 +143,10 @@ extension TermName: GlobalContentAttributes, GlobalEventAttributes, GlobalAccess
         return self
     }
     
+    public func hidden(_ value: Values.Condition) -> TermName {
+        return mutate(hidden: .init(value.rawValue, context: .trusted))
+    }
+    
     public func inputMode(_ value: Values.Mode) -> TermName {
         return mutate(inputmode: .init(value.rawValue, context: .trusted))
     }
@@ -679,6 +683,10 @@ extension TermDefinition: GlobalContentAttributes, GlobalEventAttributes, Global
         }
         
         return self
+    }
+    
+    public func hidden(_ value: Values.Condition) -> TermDefinition {
+        return mutate(hidden: .init(value.rawValue, context: .trusted))
     }
     
     public func inputMode(_ value: Values.Mode) -> TermDefinition {

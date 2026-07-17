@@ -982,16 +982,62 @@ extension DisabledAttribute where Self: EmptyNode {
 public protocol DownloadAttribute: Attribute {
     
     /// Mark the target as downloadable.
-    ///
+    /// 
     /// ```swift
     /// Anchor {
     ///     "Lorem ipsum..."
     /// }
-    /// .download()
+    /// .download(true)
     /// ```
-    ///
+    /// 
+    /// - Parameter condition: Whether the target is downloadable.
+    /// 
     /// - Returns: The element
-    func download() -> Self
+    func download(_ condition: Bool) -> Self
+    
+    /// Mark the target as downloadable.
+    /// 
+    /// ```swift
+    /// Anchor {
+    ///     "Lorem ipsum..."
+    /// }
+    /// .download("filename")
+    /// ```
+    /// 
+    /// - Parameter value: The name to label the download.
+    /// 
+    /// - Returns: The element
+    func download(_ name: String) -> Self
+    
+    /// Mark the target as downloadable.
+    /// 
+    /// ```swift
+    /// Anchor {
+    ///     "Lorem ipsum..."
+    /// }
+    /// .download("filename")
+    /// ```
+    ///  
+    /// - Parameters:
+    ///   - localizedKey: The string key to be translated.
+    ///   - tableName: The translation table to look in.
+    /// 
+    /// - Returns: The element
+    func download(_ localizedKey: LocalizedStringKey, tableName: String?) -> Self
+    
+    /// Mark the target as downloadable.
+    /// 
+    /// ```swift
+    /// Anchor {
+    ///     "Lorem ipsum..."
+    /// }
+    /// .download("filename")
+    /// ```
+    /// 
+    /// - Parameter value: The name to label the download.
+    /// 
+    /// - Returns: The element
+    func download(verbatim name: String) -> Self
 }
 
 extension DownloadAttribute where Self: ContentNode {
@@ -1334,6 +1380,20 @@ public protocol HiddenAttribute: Attribute {
     ///
     /// - Returns: The element
     func hidden(_ condition: Bool) -> Self
+    
+    /// Hide an element.
+    ///
+    /// ```swift
+    /// Paragraph {
+    ///     "Lorem ipsum..."
+    /// }
+    /// .hidden(.untilFound)
+    /// ```
+    ///
+    /// - Parameter value: The condition under which to hide the element.
+    ///
+    /// - Returns: The element
+    func hidden(_ value: Values.Condition) -> Self
 }
 
 extension HiddenAttribute where Self: ContentNode {
@@ -2726,13 +2786,28 @@ public protocol RelationshipAttribute: Attribute {
     ///     "Lorem ipsum..."
     /// }
     /// .reference("https://...")
-    /// .relationship(.author)
+    /// .relationship(.author, .external)
     /// ```
     ///
-    /// - Parameter value: The relationship type to associate with.
+    /// - Parameter values: The relationship types to associate with.
     ///
     /// - Returns: The element
-    func relationship(_ value: Values.Relation) -> Self
+    func relationship(_ values: Values.Relation...) -> Self
+    
+    /// Indicate the relationship between documents.
+    ///
+    /// ```swift
+    /// Anchor {
+    ///     "Lorem ipsum..."
+    /// }
+    /// .reference("https://...")
+    /// .relationship([.author, .external])
+    /// ```
+    ///
+    /// - Parameter values: The relationship types to associate with.
+    ///
+    /// - Returns: The element
+    func relationship(_ values: [Values.Relation]) -> Self
 }
 
 extension RelationshipAttribute where Self: ContentNode {
@@ -3991,47 +4066,47 @@ extension LoadingAttribute where Self: EmptyNode {
     }
 }
 
-/// A type that provides the `sourceSet` modifier
+/// A type that provides the `sources` modifier
 @_documentation(visibility: internal)
-public protocol SourceSetAttribute: Attribute {
+public protocol SourcesAttribute: Attribute {
     
     /// Define a set of sources for a picture element.
     ///
     /// ```swift
     /// Picture {
     ///     Source()
-    ///         .sourceSet([SourceCandidate("...webp", width: 1024), SourceCandidate("...webp", width: 1680)])
+    ///         .sources([SourceCandidate("...webp", width: 1024), SourceCandidate("...webp", width: 1680)])
     /// }
     /// ```
     ///
     /// - Parameter candidates: The candidates to choose from.
     ///
     /// - Returns: The element.
-    func sourceSet(_ candidates: [SourceCandidate]) -> Self
+    func sources(_ candidates: [SourceCandidate]) -> Self
     
     /// Define a set of sources for a picture element.
     ///
     /// ```swift
     /// Picture {
     ///     Source()
-    ///         .sourceSet(SourceCandidate("...webp", width: 1024), SourceCandidate("...webp", width: 1680))
+    ///         .sources(SourceCandidate("...webp", width: 1024), SourceCandidate("...webp", width: 1680))
     /// }
     /// ```
     ///
     /// - Parameter candidates: The candidates to choose from.
     ///
     /// - Returns: The element.
-    func sourceSet(_ candidates: SourceCandidate...) -> Self
+    func sources(_ candidates: SourceCandidate...) -> Self
 }
 
-extension SourceSetAttribute where Self: ContentNode {
+extension SourcesAttribute where Self: ContentNode {
     
     internal func mutate(sourceset value: AttributeData) -> Self {
         return self.mutate(key: "srcset", value: value)
     }
 }
 
-extension SourceSetAttribute where Self: EmptyNode {
+extension SourcesAttribute where Self: EmptyNode {
     
     internal func mutate(sourceset value: AttributeData) -> Self {
         return self.mutate(key: "srcset", value: value)
@@ -4243,5 +4318,99 @@ extension AbbreviatedAttribute where Self: EmptyNode {
     
     internal func mutate(abbr value: AttributeData) -> Self {
         return self.mutate(key: "abbr", value: value)
+    }
+}
+
+/// A type that provides the `imageSources` modifier.
+@_documentation(visibility: internal)
+public protocol ImageSourcesAttribute: Attribute {
+    
+    /// Preload a set of sources.
+    ///
+    /// ```swift
+    /// Link()
+    ///    .relationship(.preload)
+    ///    .as(.image)
+    ///    .imageSources([SourceCandidate("...webp", width: 1024), SourceCandidate("...webp", width: 1680)])
+    /// ```
+    ///
+    /// - Parameter candidates: The candidates to load in advance.
+    ///
+    /// - Returns: The element.
+    func imageSources(_ candidates: [SourceCandidate]) -> Self
+    
+    /// Preload a set of sources.
+    ///
+    /// ```swift
+    /// Link()
+    ///    .relationship(.preload)
+    ///    .as(.image)
+    ///    .imageSources(SourceCandidate("...webp", width: 1024), SourceCandidate("...webp", width: 1680))
+    /// ```
+    ///
+    /// - Parameter candidates: The candidates to load in advance.
+    ///
+    /// - Returns: The element.
+    func imageSources(_ candidates: SourceCandidate...) -> Self
+}
+
+extension ImageSourcesAttribute where Self: ContentNode {
+    
+    internal func mutate(imagesrcset value: AttributeData) -> Self {
+        return self.mutate(key: "imagesrcset", value: value)
+    }
+}
+
+extension ImageSourcesAttribute where Self: EmptyNode {
+    
+    internal func mutate(imagesrcset value: AttributeData) -> Self {
+        return self.mutate(key: "imagesrcset", value: value)
+    }
+}
+
+/// A type that provides the `imageSizes` modifier.
+@_documentation(visibility: internal)
+public protocol ImageSizesAttribute: Attribute {
+    
+    /// Preload the right source size.
+    ///
+    /// ```swift
+    /// Link()
+    ///    .relationship(.preload)
+    ///    .as(.image)
+    ///    .imageSizes(SizeCandidate("100vw", conditions: .maxWidth("1680px")), SizeCandidate("80vw"))
+    /// ```
+    ///
+    /// - Parameter candidates: The candidates to choose from.
+    ///
+    /// - Returns: The element.
+    func imageSizes(_ candidates: [SizeCandidate]) -> Self
+    
+    /// Preload the right source size.
+    ///
+    /// ```swift
+    /// Link()
+    ///    .relationship(.preload)
+    ///    .as(.image)
+    ///    .imageSizes(SizeCandidate("100vw", conditions: .maxWidth("1680px")), SizeCandidate("80vw"))
+    /// ```
+    ///
+    /// - Parameter candidates: The candidates to choose from.
+    ///
+    /// - Returns: The element.
+    func imageSizes(_ candidates: SizeCandidate...) -> Self
+}
+
+extension ImageSizesAttribute where Self: ContentNode {
+    
+    internal func mutate(imagesizes value: AttributeData) -> Self {
+        return self.mutate(key: "imagesizes", value: value)
+    }
+}
+
+extension ImageSizesAttribute where Self: EmptyNode {
+    
+    internal func mutate(imagesizes value: AttributeData) -> Self {
+        return self.mutate(key: "imagesizes", value: value)
     }
 }

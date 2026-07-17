@@ -139,6 +139,10 @@ extension ListItem: GlobalContentAttributes, GlobalEventAttributes, GlobalAccess
         return self
     }
 
+    public func hidden(_ value: Values.Condition) -> ListItem {
+        return mutate(hidden: .init(value.rawValue, context: .trusted))
+    }
+    
     public func inputMode(_ value: Values.Mode) -> ListItem {
         return mutate(inputmode: .init(value.rawValue, context: .trusted))
     }

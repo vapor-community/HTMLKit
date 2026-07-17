@@ -126,6 +126,10 @@ extension Area: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessibil
         
         return self
     }
+    
+    public func hidden(_ value: Values.Condition) -> Area {
+        return mutate(hidden: .init(value.rawValue, context: .trusted))
+    }
 
     public func inputMode(_ value: Values.Mode) -> Area {
         return mutate(inputmode: .init(value.rawValue, context: .trusted))
@@ -291,16 +295,38 @@ extension Area: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessibil
         return mutate(target: .init(value.rawValue, context: .trusted))
     }
     
-    public func download() -> Area {
-        return mutate(download: .init("download", context: .trusted))
+    public func download(_ condition: Bool = true) -> Area {
+        
+        if condition {
+            return mutate(download: .init("download", context: .trusted))
+        }
+        
+        return self
+    }
+    
+    @_disfavoredOverload
+    public func download(_ name: String) -> Area {
+        return mutate(download: .init(name, context: .tainted(.html)))
+    }
+    
+    public func download(_ localizedKey: LocalizedStringKey, tableName: String?) -> Area {
+        return mutate(download: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
+    }
+    
+    public func download(verbatim name: String) -> Area {
+        return mutate(download: .init(name, context: .tainted(.html)))
     }
     
     public func ping(_ value: String) -> Area {
         return mutate(ping: .init(value, context: .tainted(.html)))
     }
     
-    public func relationship(_ value: Values.Relation) -> Area {
-        return mutate(rel: .init(value.rawValue, context: .trusted))
+    public func relationship(_ values: Values.Relation...) -> Area {
+        return mutate(rel: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func relationship(_ values: [Values.Relation]) -> Area {
+        return mutate(rel: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
     }
     
     public func referrerPolicy(_ value: Values.Policy) -> Area {

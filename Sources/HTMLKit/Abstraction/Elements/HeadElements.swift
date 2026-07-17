@@ -132,6 +132,10 @@ extension Title: GlobalContentAttributes, GlobalEventAttributes {
         return self
     }
     
+    public func hidden(_ value: Values.Condition) -> Title {
+        return mutate(hidden: .init(value.rawValue, context: .trusted))
+    }
+    
     public func inputMode(_ value: Values.Mode) -> Title {
         return mutate(inputmode: .init(value.rawValue, context: .trusted))
     }
@@ -433,6 +437,10 @@ extension Base: GlobalContentAttributes, GlobalEventAttributes, ReferenceAttribu
         return self
     }
     
+    public func hidden(_ value: Values.Condition) -> Base {
+        return mutate(hidden: .init(value.rawValue, context: .trusted))
+    }
+    
     public func inputMode(_ value: Values.Mode) -> Base {
         return mutate(inputmode: .init(value.rawValue, context: .trusted))
     }
@@ -730,6 +738,10 @@ extension Meta: GlobalContentAttributes, GlobalEventAttributes, ContentAttribute
         }
         
         return self
+    }
+    
+    public func hidden(_ value: Values.Condition) -> Meta {
+        return mutate(hidden: .init(value.rawValue, context: .trusted))
     }
     
     public func inputMode(_ value: Values.Mode) -> Meta {
@@ -1074,6 +1086,10 @@ extension Style: GlobalContentAttributes, GlobalEventAttributes, TypeAttribute, 
         return self
     }
     
+    public func hidden(_ value: Values.Condition) -> Style {
+        return mutate(hidden: .init(value.rawValue, context: .trusted))
+    }
+    
     public func inputMode(_ value: Values.Mode) -> Style {
         return mutate(inputmode: .init(value.rawValue, context: .trusted))
     }
@@ -1322,7 +1338,7 @@ public struct Link: EmptyNode, HeadElement, BodyElement {
     }
 }
 
-extension Link: GlobalContentAttributes, GlobalEventAttributes, ReferenceAttribute, ReferenceLanguageAttribute, MediaAttribute, ReferrerPolicyAttribute, RelationshipAttribute, SizesAttribute, TypeAttribute, FetchPriorityAttribute, BlockingAttribute, FormEventAttribute, IntegrityAttribute, AsAttribute, CrossOriginAttribute {
+extension Link: GlobalContentAttributes, GlobalEventAttributes, ReferenceAttribute, ReferenceLanguageAttribute, MediaAttribute, ReferrerPolicyAttribute, RelationshipAttribute, SizesAttribute, TypeAttribute, FetchPriorityAttribute, BlockingAttribute, FormEventAttribute, IntegrityAttribute, AsAttribute, CrossOriginAttribute, ImageSourcesAttribute, ImageSizesAttribute {
 
     public func accessKey(_ value: Character) -> Link {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -1390,6 +1406,10 @@ extension Link: GlobalContentAttributes, GlobalEventAttributes, ReferenceAttribu
         }
         
         return self
+    }
+    
+    public func hidden(_ value: Values.Condition) -> Link {
+        return mutate(hidden: .init(value.rawValue, context: .trusted))
     }
     
     public func inputMode(_ value: Values.Mode) -> Link {
@@ -1549,8 +1569,12 @@ extension Link: GlobalContentAttributes, GlobalEventAttributes, ReferenceAttribu
         return mutate(referrerpolicy: .init(value.rawValue, context: .trusted))
     }
     
-    public func relationship(_ value: Values.Relation) -> Link {
-        return mutate(rel: .init(value.rawValue, context: .trusted))
+    public func relationship(_ values: Values.Relation...) -> Link {
+        return mutate(rel: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
+    }
+    
+    public func relationship(_ values: [Values.Relation]) -> Link {
+        return mutate(rel: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
     }
     
     public func sizes(_ candidates: [String]) -> Link {
@@ -1575,6 +1599,22 @@ extension Link: GlobalContentAttributes, GlobalEventAttributes, ReferenceAttribu
     
     public func popover(_ value: Values.Popover.State) -> Link {
         return mutate(popover: .init(value.rawValue, context: .trusted))
+    }
+    
+    public func imageSources(_ candidates: [SourceCandidate]) -> Link {
+        return mutate(imagesrcset: .init(EnumeratedList(values: candidates, separator: ", "), context: .tainted(.html)))
+    }
+    
+    public func imageSources(_ candidates: SourceCandidate...) -> Link {
+        return mutate(imagesrcset: .init(EnumeratedList(values: candidates, separator: ", "), context: .tainted(.html)))
+    }
+    
+    public func imageSizes(_ candidates: [SizeCandidate]) -> Link {
+        return mutate(imagesizes: .init(EnumeratedList(values: candidates, separator: ", "), context: .tainted(.html)))
+    }
+    
+    public func imageSizes(_ candidates: SizeCandidate...) -> Link {
+        return mutate(imagesizes: .init(EnumeratedList(values: candidates, separator: ", "), context: .tainted(.html)))
     }
     
     public func custom(key: String, value: String, context: EscapeContext = .tainted(.html)) -> Link {
