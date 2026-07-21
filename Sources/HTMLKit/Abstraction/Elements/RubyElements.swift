@@ -293,7 +293,7 @@ extension RubyText: GlobalContentAttributes, GlobalEventAttributes, GlobalAccess
         return mutate(key: event.rawValue, value: .init(value, context: .tainted(.js)))
     }
     
-    @available(*, deprecated, message: "Use the accessibilityAtomic(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the accessibilityAtomic(_:) modifier instead.")
     public func aria(atomic value: Bool) -> RubyText {
         return mutate(ariaatomic: .init(value, context: .trusted))
     }
@@ -302,7 +302,7 @@ extension RubyText: GlobalContentAttributes, GlobalEventAttributes, GlobalAccess
         return mutate(ariaatomic: .init(value, context: .trusted))
     }
     
-    @available(*, deprecated, message: "Use the accessibilityBusy(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the accessibilityBusy(_:) modifier instead.")
     public func aria(busy value: Bool) -> RubyText {
         return mutate(ariabusy: .init(value, context: .trusted))
     }
@@ -311,7 +311,7 @@ extension RubyText: GlobalContentAttributes, GlobalEventAttributes, GlobalAccess
         return mutate(ariabusy: .init(value, context: .trusted))
     }
     
-    @available(*, deprecated, message: "Use the accessibilityControls(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the accessibilityControls(_:) modifier instead.")
     public func aria(controls value: String) -> RubyText {
         return mutate(ariacontrols: .init(value, context: .tainted(.html)))
     }
@@ -324,7 +324,7 @@ extension RubyText: GlobalContentAttributes, GlobalEventAttributes, GlobalAccess
         return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
     }
     
-    @available(*, deprecated, message: "Use the accessibilityCurrent(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the accessibilityCurrent(_:) modifier instead.")
     public func aria(current value: Values.Accessibility.Current) -> RubyText {
         return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
     }
@@ -337,7 +337,7 @@ extension RubyText: GlobalContentAttributes, GlobalEventAttributes, GlobalAccess
         return mutate(ariacurrent: .init(value, context: .trusted))
     }
     
-    @available(*, deprecated, message: "Use the accessibilityDescriptions(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the accessibilityDescriptions(_:) modifier instead.")
     public func aria(describedBy value: String) -> RubyText {
         return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
@@ -350,7 +350,7 @@ extension RubyText: GlobalContentAttributes, GlobalEventAttributes, GlobalAccess
         return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
     }
     
-    @available(*, deprecated, message: "Use the accessibilityDetail(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the accessibilityDetail(_:) modifier instead.")
     public func aria(details value: String) -> RubyText {
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
     }
@@ -359,7 +359,7 @@ extension RubyText: GlobalContentAttributes, GlobalEventAttributes, GlobalAccess
         return mutate(ariadetails: .init(id, context: .tainted(.html)))
     }
     
-    @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the accessibilityDisabled(_:) modifier instead.")
     public func aria(disabled value: Bool) -> RubyText {
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
@@ -369,12 +369,12 @@ extension RubyText: GlobalContentAttributes, GlobalEventAttributes, GlobalAccess
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
-    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> RubyText {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
     
-    @available(*, deprecated, message: "Use the accessibilityFlow(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the accessibilityFlow(_:) modifier instead.")
     public func aria(flowTo value: String) -> RubyText {
         return mutate(ariaflowto: .init(value, context: .tainted(.html)))
     }
@@ -387,7 +387,7 @@ extension RubyText: GlobalContentAttributes, GlobalEventAttributes, GlobalAccess
         return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
     }
     
-    @available(*, deprecated, message: "Use the accessibilityPopup(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the accessibilityPopup(_:) modifier instead.")
     public func aria(hasPopup value: Values.Accessibility.Popup) -> RubyText {
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
@@ -397,7 +397,7 @@ extension RubyText: GlobalContentAttributes, GlobalEventAttributes, GlobalAccess
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
-    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> RubyText {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
@@ -406,7 +406,7 @@ extension RubyText: GlobalContentAttributes, GlobalEventAttributes, GlobalAccess
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
-    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(invalid value: Values.Accessibility.Invalid) -> RubyText {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
     }
@@ -426,7 +426,7 @@ extension RubyText: GlobalContentAttributes, GlobalEventAttributes, GlobalAccess
         return mutate(ariainvalid: .init(value, context: .trusted))
     }
     
-    @available(*, deprecated, message: "Use the accessibilityShortcuts(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the accessibilityShortcuts(_:) modifier instead.")
     public func aria(keyShortcuts value: String) -> RubyText {
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
@@ -439,7 +439,7 @@ extension RubyText: GlobalContentAttributes, GlobalEventAttributes, GlobalAccess
         return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
     }
     
-    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> RubyText {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
@@ -457,7 +457,7 @@ extension RubyText: GlobalContentAttributes, GlobalEventAttributes, GlobalAccess
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
-    @available(*, deprecated, message: "Use the accessibilityLabels(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the accessibilityLabels(_:) modifier instead.")
     public func aria(labeledBy value: String) -> RubyText {
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
@@ -470,7 +470,7 @@ extension RubyText: GlobalContentAttributes, GlobalEventAttributes, GlobalAccess
         return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
     }
     
-    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> RubyText {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
@@ -479,7 +479,7 @@ extension RubyText: GlobalContentAttributes, GlobalEventAttributes, GlobalAccess
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
-    @available(*, deprecated, message: "Use the accessibilityOwns(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the accessibilityOwns(_:) modifier instead.")
     public func aria(owns value: String) -> RubyText {
         return mutate(ariaowns: .init(value, context: .tainted(.html)))
     }
@@ -492,7 +492,7 @@ extension RubyText: GlobalContentAttributes, GlobalEventAttributes, GlobalAccess
         return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
     }
     
-    @available(*, deprecated, message: "Use the accessibilityRelevant(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the accessibilityRelevant(_:) modifier instead.")
     public func aria(relevant value: Values.Accessibility.Relevant) -> RubyText {
         return mutate(ariarelevant: .init(value.rawValue, context: .trusted))
     }
@@ -505,7 +505,7 @@ extension RubyText: GlobalContentAttributes, GlobalEventAttributes, GlobalAccess
         return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
     }
     
-    @available(*, deprecated, message: "Use the accessibilityRoleDescription(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the accessibilityRoleDescription(_:) modifier instead.")
     public func aria(roleDescription value: String) -> RubyText {
         return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
     }
@@ -814,7 +814,7 @@ extension RubyPronunciation: GlobalContentAttributes, GlobalEventAttributes, Glo
         return mutate(key: event.rawValue, value: .init(value, context: .tainted(.js)))
     }
 
-    @available(*, deprecated, message: "Use the accessibilityAtomic(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the accessibilityAtomic(_:) modifier instead.")
     public func aria(atomic value: Bool) -> RubyPronunciation {
         return mutate(ariaatomic: .init(value, context: .trusted))
     }
@@ -823,7 +823,7 @@ extension RubyPronunciation: GlobalContentAttributes, GlobalEventAttributes, Glo
         return mutate(ariaatomic: .init(value, context: .trusted))
     }
     
-    @available(*, deprecated, message: "Use the accessibilityBusy(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the accessibilityBusy(_:) modifier instead.")
     public func aria(busy value: Bool) -> RubyPronunciation {
         return mutate(ariabusy: .init(value, context: .trusted))
     }
@@ -832,7 +832,7 @@ extension RubyPronunciation: GlobalContentAttributes, GlobalEventAttributes, Glo
         return mutate(ariabusy: .init(value, context: .trusted))
     }
     
-    @available(*, deprecated, message: "Use the accessibilityControls(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the accessibilityControls(_:) modifier instead.")
     public func aria(controls value: String) -> RubyPronunciation {
         return mutate(ariacontrols: .init(value, context: .tainted(.html)))
     }
@@ -845,7 +845,7 @@ extension RubyPronunciation: GlobalContentAttributes, GlobalEventAttributes, Glo
         return mutate(ariacontrols: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
     }
     
-    @available(*, deprecated, message: "Use the accessibilityCurrent(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the accessibilityCurrent(_:) modifier instead.")
     public func aria(current value: Values.Accessibility.Current) -> RubyPronunciation {
         return mutate(ariacurrent: .init(value.rawValue, context: .trusted))
     }
@@ -858,7 +858,7 @@ extension RubyPronunciation: GlobalContentAttributes, GlobalEventAttributes, Glo
         return mutate(ariacurrent: .init(value, context: .trusted))
     }
     
-    @available(*, deprecated, message: "Use the accessibilityDescriptions(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the accessibilityDescriptions(_:) modifier instead.")
     public func aria(describedBy value: String) -> RubyPronunciation {
         return mutate(ariadescribedby: .init(value, context: .tainted(.html)))
     }
@@ -871,7 +871,7 @@ extension RubyPronunciation: GlobalContentAttributes, GlobalEventAttributes, Glo
         return mutate(ariadescribedby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
     }
     
-    @available(*, deprecated, message: "Use the accessibilityDetail(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the accessibilityDetail(_:) modifier instead.")
     public func aria(details value: String) -> RubyPronunciation {
         return mutate(ariadetails: .init(value, context: .tainted(.html)))
     }
@@ -880,7 +880,7 @@ extension RubyPronunciation: GlobalContentAttributes, GlobalEventAttributes, Glo
         return mutate(ariadetails: .init(id, context: .tainted(.html)))
     }
     
-    @available(*, deprecated, message: "Use the accessibilityDisabled(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the accessibilityDisabled(_:) modifier instead.")
     public func aria(disabled value: Bool) -> RubyPronunciation {
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
@@ -890,12 +890,12 @@ extension RubyPronunciation: GlobalContentAttributes, GlobalEventAttributes, Glo
         return mutate(ariadisabled: .init(value, context: .trusted))
     }
     
-    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(errorMessage value: String) -> RubyPronunciation {
         return mutate(ariaerrormessage: .init(value, context: .tainted(.html)))
     }
     
-    @available(*, deprecated, message: "Use the accessibilityFlow(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the accessibilityFlow(_:) modifier instead.")
     public func aria(flowTo value: String) -> RubyPronunciation {
         return mutate(ariaflowto: .init(value, context: .tainted(.html)))
     }
@@ -908,7 +908,7 @@ extension RubyPronunciation: GlobalContentAttributes, GlobalEventAttributes, Glo
         return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
     }
     
-    @available(*, deprecated, message: "Use the accessibilityPopup(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the accessibilityPopup(_:) modifier instead.")
     public func aria(hasPopup value: Values.Accessibility.Popup) -> RubyPronunciation {
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
@@ -918,7 +918,7 @@ extension RubyPronunciation: GlobalContentAttributes, GlobalEventAttributes, Glo
         return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
     }
     
-    @available(*, deprecated, message: "Use the accessibilityHidden(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the accessibilityHidden(_:) modifier instead.")
     public func aria(hidden value: Bool) -> RubyPronunciation {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
@@ -927,7 +927,7 @@ extension RubyPronunciation: GlobalContentAttributes, GlobalEventAttributes, Glo
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
-    @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the accessibilityInvalid(_:) modifier instead.")
     public func aria(invalid value: Values.Accessibility.Invalid) -> RubyPronunciation {
         return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
     }
@@ -947,7 +947,7 @@ extension RubyPronunciation: GlobalContentAttributes, GlobalEventAttributes, Glo
         return mutate(ariainvalid: .init(value, context: .trusted))
     }
     
-    @available(*, deprecated, message: "Use the accessibilityShortcuts(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the accessibilityShortcuts(_:) modifier instead.")
     public func aria(keyShortcuts value: String) -> RubyPronunciation {
         return mutate(ariakeyshortcuts: .init(value, context: .tainted(.html)))
     }
@@ -960,7 +960,7 @@ extension RubyPronunciation: GlobalContentAttributes, GlobalEventAttributes, Glo
         return mutate(ariakeyshortcuts: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
     }
     
-    @available(*, deprecated, message: "Use the accessibilityLabel(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the accessibilityLabel(_:) modifier instead.")
     public func aria(label value: String) -> RubyPronunciation {
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
@@ -978,7 +978,7 @@ extension RubyPronunciation: GlobalContentAttributes, GlobalEventAttributes, Glo
         return mutate(arialabel: .init(value, context: .tainted(.html)))
     }
     
-    @available(*, deprecated, message: "Use the accessibilityLabels(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the accessibilityLabels(_:) modifier instead.")
     public func aria(labeledBy value: String) -> RubyPronunciation {
         return mutate(arialabeledby: .init(value, context: .tainted(.html)))
     }
@@ -991,7 +991,7 @@ extension RubyPronunciation: GlobalContentAttributes, GlobalEventAttributes, Glo
         return mutate(arialabeledby: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
     }
     
-    @available(*, deprecated, message: "Use the accessibilityLive(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the accessibilityLive(_:) modifier instead.")
     public func aria(live value: Values.Accessibility.Live) -> RubyPronunciation {
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
@@ -1000,7 +1000,7 @@ extension RubyPronunciation: GlobalContentAttributes, GlobalEventAttributes, Glo
         return mutate(arialive: .init(value.rawValue, context: .trusted))
     }
     
-    @available(*, deprecated, message: "Use the accessibilityOwns(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the accessibilityOwns(_:) modifier instead.")
     public func aria(owns value: String) -> RubyPronunciation {
         return mutate(ariaowns: .init(value, context: .tainted(.html)))
     }
@@ -1013,7 +1013,7 @@ extension RubyPronunciation: GlobalContentAttributes, GlobalEventAttributes, Glo
         return mutate(ariaowns: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
     }
     
-    @available(*, deprecated, message: "Use the accessibilityRelevant(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the accessibilityRelevant(_:) modifier instead.")
     public func aria(relevant value: Values.Accessibility.Relevant) -> RubyPronunciation {
         return mutate(ariarelevant: .init(value.rawValue, context: .trusted))
     }
@@ -1026,7 +1026,7 @@ extension RubyPronunciation: GlobalContentAttributes, GlobalEventAttributes, Glo
         return mutate(ariarelevant: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
     }
     
-    @available(*, deprecated, message: "Use the accessibilityRoleDescription(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the accessibilityRoleDescription(_:) modifier instead.")
     public func aria(roleDescription value: String) -> RubyPronunciation {
         return mutate(ariaroledescription: .init(value, context: .tainted(.html)))
     }

@@ -137,7 +137,7 @@ extension Image: ImageModifier {
 
 extension Image: ViewModifier {
     
-    @available(*, deprecated, message: "Use the background(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the background(_:) modifier instead.")
     public func backgroundColor(_ color: Tokens.BackgroundColor) -> Image {
         return self.mutate(backgroundcolor: color.value)
     }
@@ -171,7 +171,7 @@ extension Image: ViewModifier {
         return self.mutate(padding: length.value, insets: insets)
     }
     
-    @available(*, deprecated, message: "Use the border(_:width:shape:) modifier instead.")
+    @available(*, unavailable, message: "Use the border(_:width:shape:) modifier instead.")
     public func borderShape(_ shape: Tokens.BorderShape) -> Image {
         return self.mutate(bordershape: shape.value)
     }

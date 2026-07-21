@@ -1531,7 +1531,7 @@ public enum Values {
             case list
             
             /// Indicates inline and list suggestions.
-            @available(*, deprecated, message: "Use inline and list instead.")
+            @available(*, unavailable, message: "Use inline and list instead.")
             case both
         }
 
@@ -1545,11 +1545,11 @@ public enum Values {
         public enum Current: String {
             
             /// Does not represent the current item within a set.
-            @available(*, deprecated, message: "Use the accessibilityCurrent(_:) modifier instead.")
+            @available(*, unavailable, message: "Use the accessibilityCurrent(_:) modifier instead.")
             case `false`
             
             /// Represents the current item within a set.
-            @available(*, deprecated, message: "Use the accessibilityCurrent(_:) modifier instead.")
+            @available(*, unavailable, message: "Use the accessibilityCurrent(_:) modifier instead.")
             case `true`
             
             /// Represents the current page within a set of pages.
@@ -1578,11 +1578,11 @@ public enum Values {
         public enum Popup: String {
             
             /// Indicates no popup.
-            @available(*, deprecated, message: "Use the accessibilityPopup(_:) modifier instead.")
+            @available(*, unavailable, message: "Use the accessibilityPopup(_:) modifier instead.")
             case `false`
             
             /// Indicates the popup is a menu.
-            @available(*, deprecated, message: "Use the accessibilityPopup(_:) modifier instead.")
+            @available(*, unavailable, message: "Use the accessibilityPopup(_:) modifier instead.")
             case `true`
             
             /// Indicates the popup is a menu.
@@ -1612,11 +1612,11 @@ public enum Values {
         public enum Invalid: String {
             
             /// Indicates that there are no detected errors.
-            @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
+            @available(*, unavailable, message: "Use the accessibilityInvalid(_:) modifier instead.")
             case `false`
             
             /// Indicates that errors were detected.
-            @available(*, deprecated, message: "Use the accessibilityInvalid(_:) modifier instead.")
+            @available(*, unavailable, message: "Use the accessibilityInvalid(_:) modifier instead.")
             case `true`
             
             /// Indicates that a grammatical error was deteced.
@@ -1680,11 +1680,11 @@ public enum Values {
             case additions
             
             /// Indicates node and text additions.
-            @available(*, deprecated, message: "Use additions and text instead.")
+            @available(*, unavailable, message: "Use additions and text instead.")
             case additionsText
             
             /// Indicates all relevants.
-            @available(*, deprecated, message: "Use additions, removals and text instead.")
+            @available(*, unavailable, message: "Use additions, removals and text instead.")
             case all
             
             /// Indicates node removals.
@@ -1919,11 +1919,11 @@ public enum Values {
     public enum Completion: String {
         
         /// Enables completion.
-        @available(*, deprecated, message: "Use the autocomplete() modifier instead.")
+        @available(*, unavailable, message: "Use the autocomplete() modifier instead.")
         case on
         
         /// Disables completion.
-        @available(*, deprecated, message: "Use the autocomplete() modifier instead.")
+        @available(*, unavailable, message: "Use the autocomplete() modifier instead.")
         case off
         
         /// Expects a name.
