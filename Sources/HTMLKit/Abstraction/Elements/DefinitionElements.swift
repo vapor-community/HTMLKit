@@ -102,11 +102,6 @@ extension TermName: GlobalContentAttributes, GlobalEventAttributes, GlobalAccess
     public func `class`(_ names: String...) -> TermName {
         return mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
     }
-
-    @available(*, unavailable, message: "Use the editable(_:) modifier instead.")
-    public func isEditable(_ value: Bool) -> TermName {
-        return mutate(contenteditable: .init(value, context: .trusted))
-    }
     
     public func editable(_ value: Bool = true) -> TermName {
         return mutate(contenteditable: .init(value, context: .trusted))
@@ -115,19 +110,9 @@ extension TermName: GlobalContentAttributes, GlobalEventAttributes, GlobalAccess
     public func direction(_ value: Values.Direction) -> TermName {
         return mutate(dir: .init(value.rawValue, context: .trusted))
     }
-
-    @available(*, unavailable, message: "Use the draggable(_:) modifier instead.")
-    public func isDraggable(_ value: Bool) -> TermName {
-        return mutate(draggable: .init(value, context: .trusted))
-    }
     
     public func draggable(_ value: Bool = true) -> TermName {
         return mutate(draggable: .init(value, context: .trusted))
-    }
-
-    @available(*, unavailable, message: "Use the enterKey(_:) modifier instead.")
-    public func enterKeyHint(_ value: Values.Hint) -> TermName {
-        return mutate(enterkeyhint: .init(value.rawValue, context: .trusted))
     }
     
     public func enterKey(_ value: Values.Hint) -> TermName {
@@ -219,11 +204,6 @@ extension TermName: GlobalContentAttributes, GlobalEventAttributes, GlobalAccess
         return mutate(role: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
     }
     
-    @available(*, unavailable, message: "Use the spellcheck(_:) modifier instead.")
-    public func hasSpellCheck(_ value: Bool) -> TermName {
-        return mutate(spellcheck: .init(value, context: .trusted))
-    }
-    
     public func spellcheck(_ value: Bool = true) -> TermName {
         return mutate(spellcheck: .init(value, context: .trusted))
     }
@@ -247,11 +227,6 @@ extension TermName: GlobalContentAttributes, GlobalEventAttributes, GlobalAccess
     
     public func title(verbatim value: String) -> TermName {
         return mutate(title: .init(value, context: .tainted(.html)))
-    }
-
-    @available(*, unavailable, message: "Use the translate(_:) modifier instead.")
-    public func translate(_ value: Values.Decision) -> TermName {
-        return mutate(translate: .init(value.rawValue, context: .trusted))
     }
     
     public func translate(_ value: Bool = true) -> TermName {
@@ -644,11 +619,6 @@ extension TermDefinition: GlobalContentAttributes, GlobalEventAttributes, Global
     public func `class`(_ names: String...) -> TermDefinition {
         return mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
     }
-
-    @available(*, unavailable, message: "Use the editable(_:) modifier instead.")
-    public func isEditable(_ value: Bool) -> TermDefinition {
-        return mutate(contenteditable: .init(value, context: .trusted))
-    }
     
     public func editable(_ value: Bool = true) -> TermDefinition {
         return mutate(contenteditable: .init(value, context: .trusted))
@@ -657,19 +627,9 @@ extension TermDefinition: GlobalContentAttributes, GlobalEventAttributes, Global
     public func direction(_ value: Values.Direction) -> TermDefinition {
         return mutate(dir: .init(value.rawValue, context: .trusted))
     }
-
-    @available(*, unavailable, message: "Use the draggable(_:) modifier instead.")
-    public func isDraggable(_ value: Bool) -> TermDefinition {
-        return mutate(draggable: .init(value, context: .trusted))
-    }
     
     public func draggable(_ value: Bool = true) -> TermDefinition {
         return mutate(draggable: .init(value, context: .trusted))
-    }
-
-    @available(*, unavailable, message: "Use the enterKey(_:) modifier instead.")
-    public func enterKeyHint(_ value: Values.Hint) -> TermDefinition {
-        return mutate(enterkeyhint: .init(value.rawValue, context: .trusted))
     }
     
     public func enterKey(_ value: Values.Hint) -> TermDefinition {
@@ -760,12 +720,7 @@ extension TermDefinition: GlobalContentAttributes, GlobalEventAttributes, Global
     public func role(_ values:  Values.Role...) -> TermDefinition {
         return mutate(role: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
     }
-    
-    @available(*, unavailable, message: "Use the spellcheck(_:) modifier instead.")
-    public func hasSpellCheck(_ value: Bool) -> TermDefinition {
-        return mutate(spellcheck: .init(value, context: .trusted))
-    }
-    
+
     public func spellcheck(_ value: Bool = true) -> TermDefinition {
         return mutate(spellcheck: .init(value, context: .trusted))
     }
@@ -789,11 +744,6 @@ extension TermDefinition: GlobalContentAttributes, GlobalEventAttributes, Global
     
     public func title(verbatim value: String) -> TermDefinition {
         return mutate(title: .init(value, context: .tainted(.html)))
-    }
-    
-    @available(*, unavailable, message: "Use the translate(_:) modifier instead.")
-    public func translate(_ value: Values.Decision) -> TermDefinition {
-        return mutate(translate: .init(value.rawValue, context: .trusted))
     }
     
     public func translate(_ value: Bool = true) -> TermDefinition {

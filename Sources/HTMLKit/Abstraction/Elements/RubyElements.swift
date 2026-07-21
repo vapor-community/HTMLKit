@@ -100,11 +100,6 @@ extension RubyText: GlobalContentAttributes, GlobalEventAttributes, GlobalAccess
     public func `class`(_ names: String...) -> RubyText {
         return mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
     }
-
-    @available(*, unavailable, message: "Use the editable(_:) modifier instead.")
-    public func isEditable(_ value: Bool) -> RubyText {
-        return mutate(contenteditable: .init(value, context: .trusted))
-    }
     
     public func editable(_ value: Bool = true) -> RubyText {
         return mutate(contenteditable: .init(value, context: .trusted))
@@ -113,19 +108,9 @@ extension RubyText: GlobalContentAttributes, GlobalEventAttributes, GlobalAccess
     public func direction(_ value: Values.Direction) -> RubyText {
         return mutate(dir: .init(value.rawValue, context: .trusted))
     }
-
-    @available(*, unavailable, message: "Use the draggable(_:) modifier instead.")
-    public func isDraggable(_ value: Bool) -> RubyText {
-        return mutate(draggable: .init(value, context: .trusted))
-    }
     
     public func draggable(_ value: Bool = true) -> RubyText {
         return mutate(draggable: .init(value, context: .trusted))
-    }
-
-    @available(*, unavailable, message: "Use the enterKey(_:) modifier instead.")
-    public func enterKeyHint(_ value: Values.Hint) -> RubyText {
-        return mutate(enterkeyhint: .init(value.rawValue, context: .trusted))
     }
     
     public func enterKey(_ value: Values.Hint) -> RubyText {
@@ -216,11 +201,6 @@ extension RubyText: GlobalContentAttributes, GlobalEventAttributes, GlobalAccess
     public func role(_ values:  Values.Role...) -> RubyText {
         return mutate(role: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
     }
-
-    @available(*, unavailable, message: "Use the spellcheck(_:) modifier instead.")
-    public func hasSpellCheck(_ value: Bool) -> RubyText {
-        return mutate(spellcheck: .init(value, context: .trusted))
-    }
     
     public func spellcheck(_ value: Bool = true) -> RubyText {
         return mutate(spellcheck: .init(value, context: .trusted))
@@ -245,11 +225,6 @@ extension RubyText: GlobalContentAttributes, GlobalEventAttributes, GlobalAccess
     
     public func title(verbatim value: String) -> RubyText {
         return mutate(title: .init(value, context: .tainted(.html)))
-    }
-    
-    @available(*, unavailable, message: "Use the translate(_:) modifier instead.")
-    public func translate(_ value: Values.Decision) -> RubyText {
-        return mutate(translate: .init(value.rawValue, context: .trusted))
     }
     
     public func translate(_ value: Bool = true) -> RubyText {
@@ -646,11 +621,6 @@ extension RubyPronunciation: GlobalContentAttributes, GlobalEventAttributes, Glo
     public func `class`(_ names: String...) -> RubyPronunciation {
         return mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
     }
-
-    @available(*, unavailable, message: "Use the editable(_:) modifier instead.")
-    public func isEditable(_ value: Bool) -> RubyPronunciation {
-        return mutate(contenteditable: .init(value, context: .trusted))
-    }
     
     public func editable(_ value: Bool = true) -> RubyPronunciation {
         return mutate(contenteditable: .init(value, context: .trusted))
@@ -659,19 +629,9 @@ extension RubyPronunciation: GlobalContentAttributes, GlobalEventAttributes, Glo
     public func direction(_ value: Values.Direction) -> RubyPronunciation {
         return mutate(dir: .init(value.rawValue, context: .trusted))
     }
-
-    @available(*, unavailable, message: "Use the draggable(_:) modifier instead.")
-    public func isDraggable(_ value: Bool) -> RubyPronunciation {
-        return mutate(draggable: .init(value, context: .trusted))
-    }
     
     public func draggable(_ value: Bool = true) -> RubyPronunciation {
         return mutate(draggable: .init(value, context: .trusted))
-    }
-
-    @available(*, unavailable, message: "Use the enterKey(_:) modifier instead.")
-    public func enterKeyHint(_ value: Values.Hint) -> RubyPronunciation {
-        return mutate(enterkeyhint: .init(value.rawValue, context: .trusted))
     }
     
     public func enterKey(_ value: Values.Hint) -> RubyPronunciation {
@@ -762,11 +722,6 @@ extension RubyPronunciation: GlobalContentAttributes, GlobalEventAttributes, Glo
     public func role(_ values:  Values.Role...) -> RubyPronunciation {
         return mutate(role: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
     }
-
-    @available(*, unavailable, message: "Use the spellcheck(_:) modifier instead.")
-    public func hasSpellCheck(_ value: Bool) -> RubyPronunciation {
-        return mutate(spellcheck: .init(value, context: .trusted))
-    }
     
     public func spellcheck(_ value: Bool = true) -> RubyPronunciation {
         return mutate(spellcheck: .init(value, context: .trusted))
@@ -791,11 +746,6 @@ extension RubyPronunciation: GlobalContentAttributes, GlobalEventAttributes, Glo
     
     public func title(verbatim value: String) -> RubyPronunciation {
         return mutate(title: .init(value, context: .tainted(.html)))
-    }
-    
-    @available(*, unavailable, message: "Use the translate(_:) modifier instead.")
-    public func translate(_ value: Values.Decision) -> RubyPronunciation {
-        return mutate(translate: .init(value.rawValue, context: .trusted))
     }
     
     public func translate(_ value: Bool = true) -> RubyPronunciation {

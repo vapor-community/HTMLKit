@@ -104,11 +104,6 @@ extension OptionGroup: GlobalContentAttributes, GlobalEventAttributes, GlobalAcc
     public func `class`(_ names: String...) -> OptionGroup {
         return mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
     }
-
-    @available(*, unavailable, message: "Use the editable(_:) modifier instead.")
-    public func isEditable(_ value: Bool) -> OptionGroup {
-        return mutate(contenteditable: .init(value, context: .trusted))
-    }
     
     public func editable(_ value: Bool = true) -> OptionGroup {
         return mutate(contenteditable: .init(value, context: .trusted))
@@ -117,19 +112,9 @@ extension OptionGroup: GlobalContentAttributes, GlobalEventAttributes, GlobalAcc
     public func direction(_ value: Values.Direction) -> OptionGroup {
         return mutate(dir: .init(value.rawValue, context: .trusted))
     }
-
-    @available(*, unavailable, message: "Use the draggable(_:) modifier instead.")
-    public func isDraggable(_ value: Bool) -> OptionGroup {
-        return mutate(draggable: .init(value, context: .trusted))
-    }
     
     public func draggable(_ value: Bool = true) -> OptionGroup {
         return mutate(draggable: .init(value, context: .trusted))
-    }
-
-    @available(*, unavailable, message: "Use the enterKey(_:) modifier instead.")
-    public func enterKeyHint(_ value: Values.Hint) -> OptionGroup {
-        return mutate(enterkeyhint: .init(value.rawValue, context: .trusted))
     }
     
     public func enterKey(_ value: Values.Hint) -> OptionGroup {
@@ -220,11 +205,6 @@ extension OptionGroup: GlobalContentAttributes, GlobalEventAttributes, GlobalAcc
     public func role(_ values:  Values.Role...) -> OptionGroup {
         return mutate(role: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
     }
-
-    @available(*, unavailable, message: "Use the spellcheck(_:) modifier instead.")
-    public func hasSpellCheck(_ value: Bool) -> OptionGroup {
-        return mutate(spellcheck: .init(value, context: .trusted))
-    }
     
     public func spellcheck(_ value: Bool = true) -> OptionGroup {
         return mutate(spellcheck: .init(value, context: .trusted))
@@ -249,11 +229,6 @@ extension OptionGroup: GlobalContentAttributes, GlobalEventAttributes, GlobalAcc
     
     public func title(_ localizedKey: LocalizedStringKey, tableName: String? = nil) -> OptionGroup {
         return mutate(title: .init(LocalizedString(key: localizedKey, table: tableName), context: .tainted(.html)))
-    }
-    
-    @available(*, unavailable, message: "Use the translate(_:) modifier instead.")
-    public func translate(_ value: Values.Decision) -> OptionGroup {
-        return mutate(translate: .init(value.rawValue, context: .trusted))
     }
     
     public func translate(_ value: Bool = true) -> OptionGroup {
@@ -666,11 +641,6 @@ extension Option: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessib
     public func `class`(_ names: String...) -> Option {
         return mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
     }
-
-    @available(*, unavailable, message: "Use the editable(_:) modifier instead.")
-    public func isEditable(_ value: Bool) -> Option {
-        return mutate(contenteditable: .init(value, context: .trusted))
-    }
     
     public func editable(_ value: Bool = true) -> Option {
         return mutate(contenteditable: .init(value, context: .trusted))
@@ -679,19 +649,9 @@ extension Option: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessib
     public func direction(_ value: Values.Direction) -> Option {
         return mutate(dir: .init(value.rawValue, context: .trusted))
     }
-
-    @available(*, unavailable, message: "Use the draggable(_:) modifier instead.")
-    public func isDraggable(_ value: Bool) -> Option {
-        return mutate(draggable: .init(value, context: .trusted))
-    }
     
     public func draggable(_ value: Bool = true) -> Option {
         return mutate(draggable: .init(value, context: .trusted))
-    }
-
-    @available(*, unavailable, message: "Use the enterKey(_:) modifier instead.")
-    public func enterKeyHint(_ value: Values.Hint) -> Option {
-        return mutate(enterkeyhint: .init(value.rawValue, context: .trusted))
     }
     
     public func enterKey(_ value: Values.Hint) -> Option {
@@ -782,11 +742,6 @@ extension Option: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessib
     public func role(_ values:  Values.Role...) -> Option {
         return mutate(role: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
     }
-
-    @available(*, unavailable, message: "Use the spellcheck(_:) modifier instead.")
-    public func hasSpellCheck(_ value: Bool) -> Option {
-        return mutate(spellcheck: .init(value, context: .trusted))
-    }
     
     public func spellcheck(_ value: Bool = true) -> Option {
         return mutate(spellcheck: .init(value, context: .trusted))
@@ -811,11 +766,6 @@ extension Option: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessib
     
     public func title(verbatim value: String) -> Option {
         return mutate(title: .init(value, context: .tainted(.html)))
-    }
-    
-    @available(*, unavailable, message: "Use the translate(_:) modifier instead.")
-    public func translate(_ value: Values.Decision) -> Option {
-        return mutate(translate: .init(value.rawValue, context: .trusted))
     }
     
     public func translate(_ value: Bool = true) -> Option {
@@ -1260,11 +1210,6 @@ extension Legend: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessib
     public func `class`(_ names: String...) -> Legend {
         return mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
     }
-
-    @available(*, unavailable, message: "Use the editable(_:) modifier instead.")
-    public func isEditable(_ value: Bool) -> Legend {
-        return mutate(contenteditable: .init(value, context: .trusted))
-    }
     
     public func editable(_ value: Bool = true) -> Legend {
         return mutate(contenteditable: .init(value, context: .trusted))
@@ -1273,19 +1218,9 @@ extension Legend: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessib
     public func direction(_ value: Values.Direction) -> Legend {
         return mutate(dir: .init(value.rawValue, context: .trusted))
     }
-
-    @available(*, unavailable, message: "Use the draggable(_:) modifier instead.")
-    public func isDraggable(_ value: Bool) -> Legend {
-        return mutate(draggable: .init(value, context: .trusted))
-    }
     
     public func draggable(_ value: Bool = true) -> Legend {
         return mutate(draggable: .init(value, context: .trusted))
-    }
-
-    @available(*, unavailable, message: "Use the enterKey(_:) modifier instead.")
-    public func enterKeyHint(_ value: Values.Hint) -> Legend {
-        return mutate(enterkeyhint: .init(value.rawValue, context: .trusted))
     }
     
     public func enterKey(_ value: Values.Hint) -> Legend {
@@ -1377,11 +1312,6 @@ extension Legend: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessib
         return mutate(role: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
     }
     
-    @available(*, unavailable, message: "Use the spellcheck(_:) modifier instead.")
-    public func hasSpellCheck(_ value: Bool) -> Legend {
-        return mutate(spellcheck: .init(value, context: .trusted))
-    }
-    
     public func spellcheck(_ value: Bool = true) -> Legend {
         return mutate(spellcheck: .init(value, context: .trusted))
     }
@@ -1405,11 +1335,6 @@ extension Legend: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessib
     
     public func title(verbatim value: String) -> Legend {
         return mutate(title: .init(value, context: .tainted(.html)))
-    }
-    
-    @available(*, unavailable, message: "Use the translate(_:) modifier instead.")
-    public func translate(_ value: Values.Decision) -> Legend {
-        return mutate(translate: .init(value.rawValue, context: .trusted))
     }
     
     public func translate(_ value: Bool = true) -> Legend {
@@ -1802,11 +1727,6 @@ extension Summary: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessi
     public func `class`(_ names: String...) -> Summary {
         return mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
     }
-
-    @available(*, unavailable, message: "Use the editable(_:) modifier instead.")
-    public func isEditable(_ value: Bool) -> Summary {
-        return mutate(contenteditable: .init(value, context: .trusted))
-    }
     
     public func editable(_ value: Bool = true) -> Summary {
         return mutate(contenteditable: .init(value, context: .trusted))
@@ -1815,19 +1735,9 @@ extension Summary: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessi
     public func direction(_ value: Values.Direction) -> Summary {
         return mutate(dir: .init(value.rawValue, context: .trusted))
     }
-
-    @available(*, unavailable, message: "Use the draggable(_:) modifier instead.")
-    public func isDraggable(_ value: Bool) -> Summary {
-        return mutate(draggable: .init(value, context: .trusted))
-    }
     
     public func draggable(_ value: Bool = true) -> Summary {
         return mutate(draggable: .init(value, context: .trusted))
-    }
-
-    @available(*, unavailable, message: "Use the enterKey(_:) modifier instead.")
-    public func enterKeyHint(_ value: Values.Hint) -> Summary {
-        return mutate(enterkeyhint: .init(value.rawValue, context: .trusted))
     }
     
     public func enterKey(_ value: Values.Hint) -> Summary {
@@ -1918,11 +1828,6 @@ extension Summary: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessi
     public func role(_ values:  Values.Role...) -> Summary {
         return mutate(role: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
     }
-
-    @available(*, unavailable, message: "Use the spellcheck(_:) modifier instead.")
-    public func hasSpellCheck(_ value: Bool) -> Summary {
-        return mutate(spellcheck: .init(value, context: .trusted))
-    }
     
     public func spellcheck(_ value: Bool = true) -> Summary {
         return mutate(spellcheck: .init(value, context: .trusted))
@@ -1947,11 +1852,6 @@ extension Summary: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessi
     
     public func title(verbatim value: String) -> Summary {
         return mutate(title: .init(value, context: .tainted(.html)))
-    }
-    
-    @available(*, unavailable, message: "Use the translate(_:) modifier instead.")
-    public func translate(_ value: Values.Decision) -> Summary {
-        return mutate(translate: .init(value.rawValue, context: .trusted))
     }
     
     public func translate(_ value: Bool = true) -> Summary {

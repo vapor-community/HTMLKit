@@ -98,11 +98,6 @@ extension FigureCaption: GlobalContentAttributes, GlobalEventAttributes, GlobalA
     public func `class`(_ names: String...) -> FigureCaption {
         return mutate(class: .init(EnumeratedList(values: names, separator: " "), context: .tainted(.html)))
     }
-
-    @available(*, unavailable, message: "Use the editable(_:) modifier instead.")
-    public func isEditable(_ value: Bool) -> FigureCaption {
-        return mutate(contenteditable: .init(value, context: .trusted))
-    }
     
     public func editable(_ value: Bool = true) -> FigureCaption {
         return mutate(contenteditable: .init(value, context: .trusted))
@@ -111,19 +106,9 @@ extension FigureCaption: GlobalContentAttributes, GlobalEventAttributes, GlobalA
     public func direction(_ value: Values.Direction) -> FigureCaption {
         return mutate(dir: .init(value.rawValue, context: .trusted))
     }
-
-    @available(*, unavailable, message: "Use the draggable(_:) modifier instead.")
-    public func isDraggable(_ value: Bool) -> FigureCaption {
-        return mutate(draggable: .init(value, context: .trusted))
-    }
     
     public func draggable(_ value: Bool = true) -> FigureCaption {
         return mutate(draggable: .init(value, context: .trusted))
-    }
-
-    @available(*, unavailable, message: "Use the enterKey(_:) modifier instead.")
-    public func enterKeyHint(_ value: Values.Hint) -> FigureCaption {
-        return mutate(enterkeyhint: .init(value.rawValue, context: .trusted))
     }
     
     public func enterKey(_ value: Values.Hint) -> FigureCaption {
@@ -214,11 +199,6 @@ extension FigureCaption: GlobalContentAttributes, GlobalEventAttributes, GlobalA
     public func role(_ values:  Values.Role...) -> FigureCaption {
         return mutate(role: .init(EnumeratedList(values: values, separator: " "), context: .trusted))
     }
-
-    @available(*, unavailable, message: "Use the spellcheck(_:) modifier instead.")
-    public func hasSpellCheck(_ value: Bool) -> FigureCaption {
-        return mutate(spellcheck: .init(value, context: .trusted))
-    }
     
     public func spellcheck(_ value: Bool = true) -> FigureCaption {
         return mutate(spellcheck: .init(value, context: .trusted))
@@ -243,11 +223,6 @@ extension FigureCaption: GlobalContentAttributes, GlobalEventAttributes, GlobalA
     
     public func title(verbatim value: String) -> FigureCaption {
         return mutate(title: .init(value, context: .tainted(.html)))
-    }
-    
-    @available(*, unavailable, message: "Use the translate(_:) modifier instead.")
-    public func translate(_ value: Values.Decision) -> FigureCaption {
-        return mutate(translate: .init(value.rawValue, context: .trusted))
     }
     
     public func translate(_ value: Bool = true) -> FigureCaption {
