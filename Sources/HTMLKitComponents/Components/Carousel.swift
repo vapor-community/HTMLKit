@@ -104,12 +104,12 @@ extension Carousel: ViewModifier {
         return self.mutate(border: color.value, width: width.value, shape: shape?.value)
     }
     
-    @available(*, deprecated, message: "Use the border(_:width:shape:) modifier instead.")
+    @available(*, unavailable, message: "Use the border(_:width:shape:) modifier instead.")
     public func borderShape(_ shape: Tokens.BorderShape) -> Carousel {
         return self.mutate(bordershape: shape.value)
     }
     
-    @available(*, deprecated, message: "Use the background(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the background(_:) modifier instead.")
     public func backgroundColor(_ color: Tokens.BackgroundColor) -> Carousel {
         return self.mutate(backgroundcolor: color.value)
     }

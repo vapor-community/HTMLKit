@@ -40,7 +40,7 @@ public struct Scroll: View {
     /// - Parameters:
     ///   - showIndicators: Whether the scroll indicators should show up.
     ///   - content: The scroll's content.
-    @available(*, deprecated, message: "Use init(indicators:content:) instead.")
+    @available(*, unavailable, message: "Use init(indicators:content:) instead.")
     @_disfavoredOverload
     public init(showIndicators: Bool = true, @ContentBuilder<Content> content: () -> [Content]) {
         

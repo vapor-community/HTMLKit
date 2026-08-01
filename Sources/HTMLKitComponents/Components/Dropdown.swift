@@ -95,7 +95,7 @@ extension Dropdown: ViewModifier {
         return self.mutate(padding: length.value, insets: insets)
     }
     
-    @available(*, deprecated, message: "Use the border(_:width:shape:) modifier instead.")
+    @available(*, unavailable, message: "Use the border(_:width:shape:) modifier instead.")
     public func borderShape(_ shape: Tokens.BorderShape) -> Dropdown {
         return self.mutate(bordershape: shape.value)
     }
@@ -104,7 +104,7 @@ extension Dropdown: ViewModifier {
         return self.mutate(border: color.value, width: width.value, shape: shape?.value)
     }
     
-    @available(*, deprecated, message: "Use the background(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the background(_:) modifier instead.")
     public func backgroundColor(_ color: Tokens.BackgroundColor) -> Dropdown {
         return self.mutate(backgroundcolor: color.value)
     }

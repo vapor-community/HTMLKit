@@ -116,7 +116,7 @@ extension Grid: MouseEvent {
 
 extension Grid: ViewModifier {
     
-    @available(*, deprecated, message: "Use the background(_:) modifier instead.")
+    @available(*, unavailable, message: "Use the background(_:) modifier instead.")
     public func backgroundColor(_ color: Tokens.BackgroundColor) -> Grid {
         return self.mutate(backgroundcolor: color.value)
     }
@@ -150,7 +150,7 @@ extension Grid: ViewModifier {
         return self.mutate(padding: length.value, insets: insets)
     }
     
-    @available(*, deprecated, message: "Use the border(_:width:shape:) modifier instead.")
+    @available(*, unavailable, message: "Use the border(_:width:shape:) modifier instead.")
     public func borderShape(_ shape: Tokens.BorderShape) -> Grid {
         return self.mutate(bordershape: shape.value)
     }
