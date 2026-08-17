@@ -44,15 +44,16 @@
         counter-increment: line;
 
         &:before {
+            content: counter(line);
             position: relative;
-            margin-inline-end: 0.938rem;
-            padding-inline: 0.938rem;
+            margin-inline-end: 2ch;
+            inline-size: 3ch;
             display: inline-block;
+            font-family: monospace;
+            color: hsla(var(--foregroundColor), 1.0);
             white-space: nowrap;
             text-align: right;
-            content: counter(line);
-            color: hsla(var(--foregroundColor), 1.0);
-            -webkit-user-select: none;
+            user-select: none;
         }
     }
 }
