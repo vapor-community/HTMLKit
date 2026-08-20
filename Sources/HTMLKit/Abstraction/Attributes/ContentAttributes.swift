@@ -4414,3 +4414,39 @@ extension ImageSizesAttribute where Self: EmptyNode {
         return self.mutate(key: "imagesizes", value: value)
     }
 }
+
+/// A type that provides the `command` modifier.
+@_documentation(visibility: internal)
+public protocol CommandAttribute: Attribute {
+    
+    /// Set an action to perform for the button element.
+    ///  
+    /// - Parameters:
+    ///   - action: The action to perform when triggered.
+    ///   - target: The identifier of the target to invoke.
+    ///   
+    /// - Returns: The element
+    func command(_ action: ActionCommand, for target: String) -> Self
+}
+
+extension CommandAttribute where Self: ContentNode {
+    
+    internal func mutate(command value: AttributeData) -> Self {
+        return self.mutate(key: "command", value: value)
+    }
+    
+    internal func mutate(commandfor value: AttributeData) -> Self {
+        return self.mutate(key: "commandfor", value: value)
+    }
+}
+
+extension CommandAttribute where Self: EmptyNode {
+    
+    internal func mutate(command value: AttributeData) -> Self {
+        return self.mutate(key: "command", value: value)
+    }
+    
+    internal func mutate(commandfor value: AttributeData) -> Self {
+        return self.mutate(key: "commandfor", value: value)
+    }
+}
