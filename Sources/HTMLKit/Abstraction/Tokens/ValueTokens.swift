@@ -1,5 +1,34 @@
 import Collections
 
+/// A command of a button element.
+///
+/// ```swift
+/// Button {
+///     "Lorem ipsum"
+/// }
+/// .command(.togglePopover, for: "id")
+/// ```
+public enum ActionCommand: String {    
+    
+    /// Toggles the popover element.
+    case togglePopover = "toggle-popover"
+    
+    /// Shows the popover element.
+    case showPopover = "show-popover"
+    
+    /// Hides the popover element.
+    case hidePopover = "hide-popover"
+    
+    /// Closes the dialog element.
+    case closeDialog = "close"
+    
+    /// Requests to close the dialog element.
+    case requestClose = "request-close"
+    
+    /// Opens the dialog element.
+    case showModal = "show-modal"
+}
+
 public enum Credential {
     
     /// A credential mode for cross-origin requests.

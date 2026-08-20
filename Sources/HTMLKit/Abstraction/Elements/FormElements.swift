@@ -2293,7 +2293,7 @@ public struct Button: ContentNode, FormElement {
     }
 }
 
-extension Button: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes, DisabledAttribute, FormAttribute, FormActionAttribute, NameAttribute, TypeAttribute, ValueAttribute, PopoverTargetAttribute, PressedAccessibilityAttribute, SelectedAccessibilityAttribute, ExpandedAccessibilityAttribute {
+extension Button: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes, DisabledAttribute, FormAttribute, FormActionAttribute, NameAttribute, TypeAttribute, ValueAttribute, PopoverTargetAttribute, CommandAttribute, PressedAccessibilityAttribute, SelectedAccessibilityAttribute, ExpandedAccessibilityAttribute {
     
     public func accessKey(_ value: Character) -> Button {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -2512,6 +2512,10 @@ extension Button: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessib
         }
         
         return copy
+    }
+    
+    public func command(_ action: ActionCommand, for target: String) -> Button {
+        return mutate(command:.init(action.rawValue, context: .trusted)).mutate(commandfor: .init(target, context: .tainted(.html)))
     }
     
     public func custom(key: String, value: String, context: EscapeContext = .tainted(.html)) -> Button {
