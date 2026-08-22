@@ -122,6 +122,19 @@ final class LocalizationTests: XCTestCase {
         XCTAssertEqual(float.fallback, "Hallo 9.41")
         XCTAssertEqual(float.arguments.count, 1)
     }
+    
+    /// Test the correct camparsion of the localized string key
+    func testLocalizedStringKeyComparison() throws {
+        
+        let lhs: LocalizedStringKey = "Hallo \("Universe")"
+        let rhs: LocalizedStringKey = "Hallo \("World")"
+        
+        XCTAssertEqual(lhs.value, rhs.value)
+        XCTAssertNotEqual(lhs.fallback, rhs.fallback)
+        XCTAssertEqual(lhs.arguments.count, rhs.arguments.count)
+        
+        XCTAssertNotEqual(lhs, rhs)
+    }
 }
 
 extension LocalizationTests {
