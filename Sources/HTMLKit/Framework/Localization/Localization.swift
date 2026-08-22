@@ -230,9 +230,7 @@ public struct Localization: Sendable {
                 throw Error.missingKey(string.key.value, currentLocale.tag)
             }
         
-            if let interpolation = string.key.interpolation {
-                interpolate(arguments: interpolation, to: &translation, for: currentLocale)
-            }
+            interpolate(arguments: string.key.arguments, to: &translation, for: currentLocale)
             
             return translation
             
@@ -242,9 +240,7 @@ public struct Localization: Sendable {
             
             if var translation = translationTable.retrieve(for: string.key.value) {
                 
-                if let interpolation = string.key.interpolation {
-                    interpolate(arguments: interpolation, to: &translation, for: currentLocale)
-                }
+                interpolate(arguments: string.key.arguments, to: &translation, for: currentLocale)
                 
                 return translation
             }
@@ -276,7 +272,7 @@ public struct Localization: Sendable {
                 return try recover(from: error, with: string)
                 
             default:
-                return string.key.literal
+                return string.key.fallback
             }
         }
     }

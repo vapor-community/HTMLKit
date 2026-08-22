@@ -309,12 +309,12 @@ public struct Renderer: Sendable {
         
         guard let localization = localization else {
             // Bail early with the fallback since the localization is not in use
-            return string.key.literal
+            return string.key.fallback
         }
         
         if !localization.isConfigured {
             // Bail early, since the localization is not properly configured
-            return string.key.literal
+            return string.key.fallback
         }
         
         do {
@@ -348,7 +348,7 @@ public struct Renderer: Sendable {
                 return try localization.recover(from: error, with: string)
                 
             default:
-                return string.key.literal
+                return string.key.fallback
             }
         }
     }
