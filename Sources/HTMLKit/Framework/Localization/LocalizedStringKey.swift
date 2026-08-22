@@ -131,3 +131,18 @@ extension LocalizedStringKey: StringInterpolationProtocol {
         self.arguments.append(argument)
     }
 }
+
+extension LocalizedStringKey: Hashable {
+    
+    /// Compare two string keys.
+    public static func == (lhs: LocalizedStringKey, rhs: LocalizedStringKey) -> Bool {
+        return lhs.fallback == rhs.fallback
+    }
+}
+
+extension LocalizedStringKey: CustomStringConvertible {
+    
+    public var description: String {
+        return self.value
+    }
+}
