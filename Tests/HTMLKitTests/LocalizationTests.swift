@@ -1,4 +1,4 @@
-import HTMLKit
+@testable import HTMLKit
 import XCTest
 
 final class LocalizationTests: XCTestCase {
@@ -99,6 +99,28 @@ final class LocalizationTests: XCTestCase {
             XCTAssertEqual(localizationError, .unknownTable("unknown.table", "en-GB"))
             XCTAssertEqual(localizationError.description, "Unable to find translation table 'unknown.table' for the locale 'en-GB'.")
         }
+    }
+    
+    /// Test the correct string interpolation of a localized string key
+    func testLocalizedStringKeyInterplation() throws {
+        
+        let string: LocalizedStringKey = "Hallo \("World")"
+        
+        XCTAssertEqual(string.value, "Hallo %@")
+        XCTAssertEqual(string.fallback, "Hallo World")
+        XCTAssertEqual(string.arguments.count, 1)
+        
+        let integer: LocalizedStringKey = "Hallo \(941)"
+        
+        XCTAssertEqual(integer.value, "Hallo %lld")
+        XCTAssertEqual(integer.fallback, "Hallo 941")
+        XCTAssertEqual(integer.arguments.count, 1)
+        
+        let float: LocalizedStringKey = "Hallo \(9.41)"
+        
+        XCTAssertEqual(float.value, "Hallo %f")
+        XCTAssertEqual(float.fallback, "Hallo 9.41")
+        XCTAssertEqual(float.arguments.count, 1)
     }
 }
 

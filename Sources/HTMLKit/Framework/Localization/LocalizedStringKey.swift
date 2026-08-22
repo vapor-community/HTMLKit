@@ -5,16 +5,24 @@ import Foundation
 public struct LocalizedStringKey {
  
     /// The key value
-    internal let value: String
+    /// 
+    /// ```
+    /// Hello %@
+    /// ```
+    internal var value: String
     
     /// A fallback literal string
+    /// 
+    /// ```
+    /// Hello World
+    /// ```
     ///
     /// > Note: This literal is not intended for lookup in the translation table. Instead, it serves as
     /// > a default value if localization is not set up or if the key is not found at all.
-    internal let literal: String
+    internal var fallback: String
     
     /// The arguments for the interpolation
-    internal var interpolation: [InterpolationArgument]?
+    internal var arguments: [InterpolationArgument]
     
     /// Initializes a string key for localization
     /// 
@@ -22,106 +30,104 @@ public struct LocalizedStringKey {
     ///   - value: The key value
     ///   - literal: The default value
     ///   - interpolation: The arguments toreplace placeholders within the translation string
-    public init(value: String, literal: String, interpolation: [InterpolationArgument]? = nil) {
+    public init(value: String, fallback: String, arguments: [InterpolationArgument] = []) {
         
         self.value = value
-        self.literal = literal
-        self.interpolation = interpolation
+        self.fallback = fallback
+        self.arguments = arguments
     }
 }
 
-extension LocalizedStringKey: ExpressibleByStringLiteral, ExpressibleByStringInterpolation {
-    
+extension LocalizedStringKey: ExpressibleByStringLiteral {
+ 
     public init(stringLiteral: String) {
-        self.init(value: stringLiteral, literal: stringLiteral)
+
+        self.value = stringLiteral
+        self.fallback = stringLiteral
+        self.arguments = []
+    }
+}
+
+extension LocalizedStringKey: ExpressibleByStringInterpolation {
+    
+    public init(stringInterpolation: LocalizedStringKey) {
+        
+        self.value = stringInterpolation.value
+        self.fallback = stringInterpolation.fallback
+        self.arguments = stringInterpolation.arguments
+    }
+}
+
+extension LocalizedStringKey: StringInterpolationProtocol {
+    
+    public init(literalCapacity: Int, interpolationCount: Int) {
+
+        self.value = ""
+        self.fallback = ""
+        self.arguments = []
     }
     
-    public init(stringInterpolation: StringInterpolation) {
-        self.init(value: stringInterpolation.key,
-                  literal: stringInterpolation.literal,
-                  interpolation: stringInterpolation.arguments)
+    public mutating func appendLiteral(_ literal: String) {
+        
+        self.value += literal
+        
+        self.fallback += literal
     }
     
-    public struct StringInterpolation: StringInterpolationProtocol {
+    public mutating func appendInterpolation(_ value: String) {
         
-        /// The key to be localized
-        var key = ""
+        let argument = InterpolationArgument.string(value)
         
-        /// The arguments for the interpolation
-        var arguments: [InterpolationArgument] = []
+        self.value += argument.placeholder
         
-        /// The string literal
-        var literal = ""
+        self.fallback += value
         
-        public init(literalCapacity: Int, interpolationCount: Int) {
-            
-            key.reserveCapacity(literalCapacity + interpolationCount * 2)
-            
-            arguments.reserveCapacity(interpolationCount)
-        }
+        self.arguments.append(argument)
+    }
+    
+    public mutating func appendInterpolation(_ value: Int) {
         
-        public mutating func appendLiteral(_ literal: String) {
-            
-            self.literal += literal
-            
-            key.append(literal)
-        }
+        let argument = InterpolationArgument.int(value)
         
-        public mutating func appendInterpolation(_ value: String) {
-            
-            literal += value
-            
-            let argument = InterpolationArgument.string(value)
-            
-            key += argument.placeholder
-            
-            arguments.append(argument)
-        }
+        self.value += argument.placeholder
         
-        public mutating func appendInterpolation(_ value: Int) {
-            
-            literal += String(value)
-            
-            let argument = InterpolationArgument.int(value)
-            
-            key += argument.placeholder
-            
-            arguments.append(argument)
-        }
+        self.fallback += String(value)
         
-        public mutating func appendInterpolation(_ value: Double) {
-            
-            literal += String(value)
-            
-            let argument = InterpolationArgument.double(value)
-            
-            key += argument.placeholder
-            
-            arguments.append(argument)
-        }
+        self.arguments.append(argument)
+    }
+    
+    public mutating func appendInterpolation(_ value: Double) {
         
-        public mutating func appendInterpolation(_ value: Float) {
-            
-            literal += String(value)
-            
-            let argument = InterpolationArgument.float(value)
-            
-            key += argument.placeholder
-            
-            arguments.append(.float(value))
-        }
+        let argument = InterpolationArgument.double(value)
         
-        public mutating func appendInterpolation(_ value: Date) {
-            
-            let formatter = DateFormatter()
-            
-            literal += formatter.string(from: value)
-            
-            let argument = InterpolationArgument.date(value)
-            
-            key += argument.placeholder
-            
-            arguments.append(argument)
-        }
+        self.value += argument.placeholder
+        
+        self.fallback += String(value)
+        
+        self.arguments.append(argument)
+    }
+    
+    public mutating func appendInterpolation(_ value: Float) {
+        
+        let argument = InterpolationArgument.float(value)
+    
+        self.value += argument.placeholder
+        
+        self.fallback += String(value)
+        
+        self.arguments.append(argument)
+    }
+    
+    public mutating func appendInterpolation(_ value: Date) {
+        
+        let argument = InterpolationArgument.date(value)
+        
+        self.value += argument.placeholder
+        
+        let formatter = DateFormatter()
+        
+        self.fallback += formatter.string(from: value)
+        
+        self.arguments.append(argument)
     }
 }
