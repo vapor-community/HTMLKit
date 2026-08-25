@@ -135,6 +135,42 @@ final class LocalizationTests: XCTestCase {
         
         XCTAssertNotEqual(lhs, rhs)
     }
+    
+    /// Test a locale of a language
+    func testLocale() throws {
+    
+        let formatter = DateFormatter()
+        
+        let british = Locale(tag: "en-GB")
+        
+        XCTAssertEqual(british.tag, "en-GB")
+        XCTAssertEqual(british.language, "en")
+        XCTAssertEqual(british.region, "GB")
+        XCTAssertEqual(british.currencyCode, "GBP")
+        XCTAssertEqual(british.currencySymbol, "£")
+        XCTAssertEqual(british.decimalSeparator, ".")
+        XCTAssertEqual(british.dateFormat, "dd/MM/yyyy")
+        XCTAssertEqual(british.timeFormat, "HH:mm:ss")
+        
+        formatter.dateFormat = "\(british.dateFormat!) \(british.timeFormat!)"
+        
+        XCTAssertEqual(formatter.string(from: Date(timeIntervalSince1970: 1)), "01/01/1970 01:00:01")
+        
+        let german = Locale(tag: "de-DE")
+        
+        XCTAssertEqual(german.tag, "de-DE")
+        XCTAssertEqual(german.language, "de")
+        XCTAssertEqual(german.region, "DE")
+        XCTAssertEqual(german.currencyCode, "EUR")
+        XCTAssertEqual(german.currencySymbol, "€")
+        XCTAssertEqual(german.decimalSeparator, ",")
+        XCTAssertEqual(german.dateFormat, "dd.MM.yyyy")
+        XCTAssertEqual(german.timeFormat, "HH:mm:ss")
+        
+        formatter.dateFormat = "\(german.dateFormat!) \(german.timeFormat!)"
+        
+        XCTAssertEqual(formatter.string(from: Date(timeIntervalSince1970: 1)), "01.01.1970 01:00:01")
+    }
 }
 
 extension LocalizationTests {
