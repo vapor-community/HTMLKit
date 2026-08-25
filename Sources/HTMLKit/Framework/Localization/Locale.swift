@@ -2,7 +2,7 @@
 ///
 /// A locale holds information about language, region and cultural preferences.
 @_documentation(visibility: internal)
-public struct Locale: Hashable, Sendable {
+public struct Locale: Sendable {
     
     /// An enumeration of potential language tags.
     public enum Tag: String, Sendable {
@@ -340,5 +340,19 @@ extension Locale {
             "zh-CN": "ah:mm:ss",
             "zh-HK": "ah:mm:ss",
         ]
+    }
+}
+
+extension Locale: Hashable {
+    
+    public static func == (lhs: Locale, rhs: Locale) -> Bool {
+        return lhs.tag == rhs.tag
+    }
+}
+
+extension Locale: CustomStringConvertible {
+    
+    public var description: String {
+        return tag
     }
 }
