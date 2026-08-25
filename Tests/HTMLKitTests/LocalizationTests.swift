@@ -171,6 +171,11 @@ final class LocalizationTests: XCTestCase {
         
         XCTAssertEqual(formatter.string(from: Date(timeIntervalSince1970: 1)), "01.01.1970 01:00:01")
     }
+    
+    /// Test the correct comparison of two locales
+    func testLocaleComparsion() throws {        
+        XCTAssertNotEqual(Locale(tag: .english), Locale(tag: .german))
+    }
 }
 
 extension LocalizationTests {
