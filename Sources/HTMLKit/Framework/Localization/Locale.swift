@@ -58,7 +58,14 @@ public struct Locale: Sendable {
     ///
     /// The region code refers to the regional dialect of a language.
     public var region: String? {
-        return tag.components(separatedBy: "-").last
+        
+        let components = tag.components(separatedBy: "-")
+        
+        if components.count > 1 {
+            return components.last
+        }
+        
+        return nil
     }
     
     /// The currency code of the language.
