@@ -337,9 +337,9 @@ public struct Renderer: Sendable {
                 
                 fallthrough
                 
-            case .missingTable:
+            case .missingCatalog:
                 
-                logger.debug("Trying to recover from missing table")
+                logger.debug("Trying to recover from missing catalog")
                 
                 // Clear the locale on the environment, since it cannot be used for the remainder of the rendering,
                 // otherwise it will throw an error each time

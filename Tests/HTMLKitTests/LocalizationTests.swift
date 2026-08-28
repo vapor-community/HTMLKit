@@ -67,23 +67,6 @@ final class LocalizationTests: XCTestCase {
         }
     }
     
-    /// Tests the behavior when a translation table is missing.
-    ///
-    /// A table is considered as missing if there is no translation table for the given locale. In this case,
-    /// the localization is expected to throw an error.
-    func testMissingTable() throws {
-        
-        XCTAssertThrowsError(try localization!.localize(string: .init(key: "hello.world"), for: .init(tag: "unknown.tag"))) { error in
-            
-            guard let localizationError = error as? Localization.Error else {
-                return XCTFail("Unexpected error type: \(error)")
-            }
-            
-            XCTAssertEqual(localizationError, .missingTable("unknown.tag"))
-            XCTAssertEqual(localizationError.description, "Unable to find a translation table for the locale 'unknown.tag'.")
-        }
-    }
-    
     /// Tests the behavior when a translation table is unknown.
     ///
     /// A table is considered as unknown if it cannot be found by the given table name. In this case,
@@ -96,8 +79,25 @@ final class LocalizationTests: XCTestCase {
                 return XCTFail("Unexpected error type: \(error)")
             }
             
-            XCTAssertEqual(localizationError, .unknownTable("unknown.table", "en-GB"))
+            XCTAssertEqual(localizationError, .missingTable("unknown.table", "en-GB"))
             XCTAssertEqual(localizationError.description, "Unable to find translation table 'unknown.table' for the locale 'en-GB'.")
+        }
+    }
+    
+    /// Tests the behavior when a translation table is missing.
+    ///
+    /// A table is considered as missing if there is no translation table for the given locale. In this case,
+    /// the localization is expected to throw an error.
+    func testMissingCatalog() throws {
+        
+        XCTAssertThrowsError(try localization!.localize(string: .init(key: "hello.world"), for: .init(tag: "unknown.tag"))) { error in
+            
+            guard let localizationError = error as? Localization.Error else {
+                return XCTFail("Unexpected error type: \(error)")
+            }
+            
+            XCTAssertEqual(localizationError, .missingCatalog("unknown.tag"))
+            XCTAssertEqual(localizationError.description, "Unable to find a language catalog for the locale 'unknown.tag'.")
         }
     }
     
