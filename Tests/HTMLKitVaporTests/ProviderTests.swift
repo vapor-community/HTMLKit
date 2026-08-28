@@ -220,6 +220,49 @@ final class ProviderTests: XCTestCase {
         try await app.asyncShutdown()
     }
     
+    func testLocaleChaining() async throws {
+        
+        guard let source = Bundle.module.url(forResource: "Localization", withExtension: nil) else {
+            return
+        }
+        
+        let app = try await Application.make(.testing)
+        
+        app.htmlkit.localization.set(source: source)
+        app.htmlkit.localization.set(locale: "en-GB")
+        
+        app.get("test") { request async throws -> Vapor.View in
+            
+            if let languages = request.headers.first(name: .acceptLanguage) {
+                
+                if let language = languages.components(separatedBy: ",").first {
+                    app.htmlkit.environment.upsert(HTMLKit.Locale(tag: language), for: \EnvironmentKeys.locale)    
+                }
+            }
+            
+            return try await request.htmlkit.render(TestPage.ChildView())
+        }
+        
+        try await app.test(.GET, "test", headers: ["accept-language": "en-US"]) { response async in
+            XCTAssertEqual(response.status, .ok)
+            XCTAssertEqual(response.body.string,
+                            """
+                            <!DOCTYPE html>\
+                            <html>\
+                            <head>\
+                            <title>TestPage</title>\
+                            </head>\
+                            <body>\
+                            <p>Hello Moin</p>\
+                            </body>\
+                            </html>
+                            """
+            )
+        }
+        
+        try await app.asyncShutdown()
+    }
+    
     /// Tests the localization behavior based on the accept languages of the client.
     ///
     /// The environment locale is expected to be changed according to the language. The renderer 

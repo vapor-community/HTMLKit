@@ -90,14 +90,16 @@ final class LocalizationTests: XCTestCase {
     /// the localization is expected to throw an error.
     func testMissingCatalog() throws {
         
-        XCTAssertThrowsError(try localization!.localize(string: .init(key: "hello.world"), for: .init(tag: "unknown.tag"))) { error in
+        localization!.set(locale: "tlh-AA")
+        
+        XCTAssertThrowsError(try localization!.localize(string: .init(key: "hello.world"))) { error in
             
             guard let localizationError = error as? Localization.Error else {
                 return XCTFail("Unexpected error type: \(error)")
             }
             
-            XCTAssertEqual(localizationError, .missingCatalog("unknown.tag"))
-            XCTAssertEqual(localizationError.description, "Unable to find a language catalog for the locale 'unknown.tag'.")
+            XCTAssertEqual(localizationError, .missingCatalog("tlh-AA"))
+            XCTAssertEqual(localizationError.description, "Unable to find a language catalog for the locale 'tlh-AA'.")
         }
     }
     
@@ -186,6 +188,43 @@ final class LocalizationTests: XCTestCase {
     /// Test the correct comparison of two locales
     func testLocaleComparsion() throws {        
         XCTAssertNotEqual(Locale(tag: .english), Locale(tag: .german))
+    }
+    
+    /// Test the correct available languages
+    func testAvailableLanguage() throws {
+    
+        XCTAssertEqual(localization!.availableLanguages.count, 3)
+        XCTAssertEqual(localization!.availableLanguages.contains(Locale(tag: "en")), true)
+        XCTAssertEqual(localization!.availableLanguages.contains(Locale(tag: "en-GB")), true)
+        XCTAssertEqual(localization!.availableLanguages.contains(Locale(tag: "fr")), true)
+    }
+    
+    /// Tests the correct locale chain
+    func testLocaleChain() throws {
+        
+        let american = Locale(tag: "en-US")
+    
+        let missingRegion = localization!.getPossibleLanguage(american, localization!.locale!)
+        
+        XCTAssertEqual(missingRegion.tag, "en")
+        XCTAssertEqual(missingRegion.language, "en")
+        XCTAssertEqual(missingRegion.region, nil)
+        
+        let french = Locale(tag: "fr")
+    
+        let existingLanguage = localization!.getPossibleLanguage(french, localization!.locale!)
+        
+        XCTAssertEqual(existingLanguage.tag, "fr")
+        XCTAssertEqual(existingLanguage.language, "fr")
+        XCTAssertEqual(existingLanguage.region, nil)
+        
+        let german = Locale(tag: "de-DE")
+    
+        let missingLanguage = localization!.getPossibleLanguage(german, localization!.locale!)
+        
+        XCTAssertEqual(missingLanguage.tag, "en-GB")
+        XCTAssertEqual(missingLanguage.language, "en")
+        XCTAssertEqual(missingLanguage.region, "GB")
     }
 }
 
