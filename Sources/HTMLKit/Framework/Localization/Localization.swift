@@ -56,6 +56,16 @@ public struct Localization: Sendable {
         }
     }
     
+    /// The available languages.
+    internal var availableLanguages: [Locale] {
+        
+        guard let catalogs = self.catalogs else {
+            return []
+        }
+        
+        return catalogs.map(\.key)
+    }
+    
     /// Indicates whether the localization is properly configured
     internal var isConfigured: Bool {
         
@@ -214,7 +224,7 @@ public struct Localization: Sendable {
             throw Error.missingCatalogs
         }
     
-        let candidate = locale ?? fallback
+        let candidate = getPossibleLanguage(locale, fallback)
         
         guard let tables = catalogs[candidate] else {
             throw Error.missingCatalog(candidate.tag)
@@ -275,5 +285,29 @@ public struct Localization: Sendable {
                 return string.key.fallback
             }
         }
+    }
+    
+    /// Returns the possible language.
+    /// 
+    /// - Parameter current: The current language.
+    /// 
+    /// - Returns: The possible language.
+    internal func getPossibleLanguage(_ current: Locale?, _ other: Locale) -> Locale {
+        
+        guard let current = current else {
+            return other
+        }
+        
+        if self.availableLanguages.contains(current) {
+            return current
+        }
+        
+        let next = Locale(tag: current.language!)
+        
+        if self.availableLanguages.contains(next) {
+            return next
+        }
+        
+        return other
     }
 }
