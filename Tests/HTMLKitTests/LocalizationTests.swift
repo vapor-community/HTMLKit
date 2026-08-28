@@ -141,6 +141,17 @@ final class LocalizationTests: XCTestCase {
     
         let formatter = DateFormatter()
         
+        let english = Locale(tag: "en")
+        
+        XCTAssertEqual(english.tag, "en")
+        XCTAssertEqual(english.language, "en")
+        XCTAssertEqual(english.region, nil)
+        XCTAssertEqual(english.currencyCode, nil)
+        XCTAssertEqual(english.currencySymbol, nil)
+        XCTAssertEqual(english.decimalSeparator, nil)
+        XCTAssertEqual(english.dateFormat, nil)
+        XCTAssertEqual(english.timeFormat, nil)
+        
         let british = Locale(tag: "en-GB")
         
         XCTAssertEqual(british.tag, "en-GB")
