@@ -16,7 +16,7 @@ final class LocalizationTests: XCTestCase {
     /// The test expects the key to exist in the default translation table and to be rendered correctly.
     func testLocalization() throws {
         
-        XCTAssertEqual(try localization!.localize(string: .init(key: "hello.world")), "Hello World")
+        XCTAssertEqual(try localization!.localize(string: .init(key: "hello.world")), "Hiya World")
     }
     
     /// Tests the localization of a translation key in a specified translation table
@@ -24,7 +24,7 @@ final class LocalizationTests: XCTestCase {
     /// The test expects the key to exist in the specified translation table and to be rendered accurately.
     func testLocalizationWithTable() throws {
         
-        XCTAssertEqual(try localization!.localize(string: .init(key: "hello.world", table: "web")), "Hello World")
+        XCTAssertEqual(try localization!.localize(string: .init(key: "hello", table: "mobile")), "Hiya")
     }
     
     /// Tests the localization of string interpolation
@@ -71,7 +71,7 @@ final class LocalizationTests: XCTestCase {
     ///
     /// A table is considered as unknown if it cannot be found by the given table name. In this case,
     /// the localization is expected to throw an error.
-    func testUnknownTable() throws {
+    func testMissingTable() throws {
         
         XCTAssertThrowsError(try localization!.localize(string: .init(key: "hello.world", table: "unknown.table"))) { error in
             

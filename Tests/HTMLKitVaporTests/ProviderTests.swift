@@ -220,6 +220,9 @@ final class ProviderTests: XCTestCase {
         try await app.asyncShutdown()
     }
     
+    /// Tests the locale chaining.
+    /// 
+    /// Before the fallback on the default locale, the localization should look up first whether the base language for the locale exists.
     func testLocaleChaining() async throws {
         
         guard let source = Bundle.module.url(forResource: "Localization", withExtension: nil) else {
@@ -253,7 +256,7 @@ final class ProviderTests: XCTestCase {
                             <title>TestPage</title>\
                             </head>\
                             <body>\
-                            <p>Hello Moin</p>\
+                            <p>Hello World</p>\
                             </body>\
                             </html>
                             """
@@ -291,7 +294,7 @@ final class ProviderTests: XCTestCase {
             return try await request.htmlkit.render(TestPage.ChildView())
         }
         
-        let languages = ["fr": "Bonjour le monde", "en-GB": "Hello World", "de-DE": "Hallo Welt"]
+        let languages = ["fr": "Bonjour le monde", "en-GB": "Hiya World", "de-DE": "Hallo Welt"]
         
         for language in languages {
             
@@ -413,7 +416,7 @@ final class ProviderTests: XCTestCase {
                             <title>TestPage</title>\
                             </head>\
                             <body>\
-                            <p>Hello World</p>\
+                            <p>Hiya World</p>\
                             </body>\
                             </html>
                             """
