@@ -7,7 +7,7 @@ internal struct TranslationTable: Sendable {
     internal let name: String
     
     /// The translations in the table
-    private let translations: [String: String]
+    private var translations: [String: String]
     
     /// Initializes a translation table
     ///
@@ -20,12 +20,21 @@ internal struct TranslationTable: Sendable {
         self.translations = translations
     }
     
-    /// Retrieves the translation for the specified key
+    /// Retrieves the translation for the given key.
     ///
-    /// - Parameter key: The string key
+    /// - Parameter key: The string key to look up.
     /// 
     /// - Returns: The translation
     internal func retrieve(for key: String) -> String? {
         return translations[key]
+    }
+    
+    /// Inserts or updates a value in the table for the given key
+    ///
+    /// - Parameters:
+    ///   - value: The value to be stored or updated.
+    ///   - key: The key to store at.
+    internal mutating func upsert(_ value: String, for key: String) {
+        return translations[key] = value
     }
 }
