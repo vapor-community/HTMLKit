@@ -1,5 +1,5 @@
 /* String key with namespace pattern */
-"hello.world" = "Hello World";
+"hello.world" = "Hiya World";
 
 /* String key with namespace pattern and string interpolation */
 "cheers.person %@" = "Cheers %@";
