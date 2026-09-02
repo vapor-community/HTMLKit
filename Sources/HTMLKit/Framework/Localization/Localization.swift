@@ -133,23 +133,68 @@ public struct Localization: Sendable {
                         
                     } else {
                         
-                        let locale = Locale(tag: path.deletingPathExtension().deletingLastPathComponent().lastPathComponent)
-                        
-                        if var tables = catalogs[locale] {
+                        if path.pathExtension == "strings" {
                             
-                            if let data = try? Foundation.Data(contentsOf: path) {
+                            let locale = Locale(tag: path.deletingPathExtension().deletingLastPathComponent().lastPathComponent)
+                            
+                            if var tables = catalogs[locale] {
                                 
-                                if let translations = try? PropertyListSerialization.propertyList(from: data, options: .mutableContainers, format: nil) as? [String: String] {
-                                    tables.append(TranslationTable(name: path.deletingPathExtension().lastPathComponent, translations: translations))
+                                if let data = try? Foundation.Data(contentsOf: path) {
+                                    
+                                    if let translations = try? PropertyListSerialization.propertyList(from: data, options: .mutableContainers, format: nil) as? [String: String] {
+                                        tables.append(TranslationTable(name: path.deletingPathExtension().lastPathComponent, translations: translations))
+                                    }
+                                    
+                                    catalogs[locale] = tables
                                 }
                                 
-                                catalogs[locale] = tables
+                            } else {
+                                
+                                if let data = try? Foundation.Data(contentsOf: path) {
+                                    
+                                    if let translations = try? PropertyListSerialization.propertyList(from: data, options: .mutableContainers, format: nil) as? [String: String] {
+                                        catalogs[locale] = [TranslationTable(name: path.deletingPathExtension().lastPathComponent, translations: translations)]
+                                    }
+                                }
+                            }
+                        }
+                        
+                        if path.pathExtension == "xcstrings" {
+                           
+                            if let data = try? Foundation.Data(contentsOf: path) {
+                                
+                                if let catalog = try? JSONDecoder().decode(StringCatalog.self, from: data) {
+                                    
+                                    for (key, entry) in catalog.entries {
+                                        
+                                        for (tag, localization) in entry.localizations {
+                                            
+                                            if let unit = localization.unit {
+                                                
+                                                let locale = Locale(tag: tag)
+                                                
+                                                if let tables = catalogs[locale] {
+                                                    
+                                                    for var table in tables {
+                                                        
+                                                        if table.name == path.deletingPathExtension().lastPathComponent {
+                                                            table.upsert(unit.value, for: key)
+                                                        }
+                                                    }
+                                                    
+                                                    catalogs[locale] = tables
+                                                    
+                                                } else {
+                                            
+                                                    catalogs[locale] = [TranslationTable(name: path.deletingPathExtension().lastPathComponent, translations: [key: unit.value])]
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
                             }
                         }
                     }
-                    
-                } else {
-                    catalogs[Locale(tag: path.lastPathComponent)] = [TranslationTable]()
                 }
             }
         }

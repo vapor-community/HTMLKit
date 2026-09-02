@@ -17,6 +17,7 @@ final class LocalizationTests: XCTestCase {
     func testLocalization() throws {
         
         XCTAssertEqual(try localization!.localize(string: .init(key: "hello.world")), "Hiya World")
+        XCTAssertEqual(try localization!.localize(string: .init(key: "hello.xcstrings")), "Hiya String Catalog")
     }
     
     /// Tests the localization of a translation key in a specified translation table
@@ -24,7 +25,7 @@ final class LocalizationTests: XCTestCase {
     /// The test expects the key to exist in the specified translation table and to be rendered accurately.
     func testLocalizationWithTable() throws {
         
-        XCTAssertEqual(try localization!.localize(string: .init(key: "hello", table: "mobile")), "Hiya")
+        XCTAssertEqual(try localization!.localize(string: .init(key: "hello", table: "mobile")), "Hiya")        
     }
     
     /// Tests the localization of string interpolation
