@@ -220,11 +220,10 @@ final class ProviderTests: XCTestCase {
         try await app.asyncShutdown()
     }
     
-    /// Tests the localization behavior based on the accept language of the client
-    ///
-    /// The environment locale is expected to be changed according to the language given by the provider.
-    /// The renderer is expected to localize correctly the content based on the updated environment locale.
-    func testLocalizationByAcceptingHeaders() async throws {
+    /// Tests the locale chaining.
+    /// 
+    /// Before the fallback on the default locale, the localization should look up first whether the base language for the locale exists.
+    func testLocaleChaining() async throws {
         
         guard let source = Bundle.module.url(forResource: "Localization", withExtension: nil) else {
             return
@@ -236,10 +235,138 @@ final class ProviderTests: XCTestCase {
         app.htmlkit.localization.set(locale: "en-GB")
         
         app.get("test") { request async throws -> Vapor.View in
+            
+            if let languages = request.headers.first(name: .acceptLanguage) {
+                
+                if let language = languages.components(separatedBy: ",").first {
+                    app.htmlkit.environment.upsert(HTMLKit.Locale(tag: language), for: \EnvironmentKeys.locale)    
+                }
+            }
+            
             return try await request.htmlkit.render(TestPage.ChildView())
         }
         
-        try await app.test(.GET, "test", headers: ["accept-language": "fr"]) { response async in
+        try await app.test(.GET, "test", headers: ["accept-language": "en-US"]) { response async in
+            XCTAssertEqual(response.status, .ok)
+            XCTAssertEqual(response.body.string,
+                            """
+                            <!DOCTYPE html>\
+                            <html>\
+                            <head>\
+                            <title>TestPage</title>\
+                            </head>\
+                            <body>\
+                            <p>Hello World</p>\
+                            </body>\
+                            </html>
+                            """
+            )
+        }
+        
+        try await app.asyncShutdown()
+    }
+    
+    /// Tests the localization behavior based on the accept languages of the client.
+    ///
+    /// The environment locale is expected to be changed according to the language. The renderer 
+    /// is expected to localize correctly the view based on the updated environment locale.
+    func testHeaderBasedLocalization() async throws {
+        
+        guard let source = Bundle.module.url(forResource: "Localization", withExtension: nil) else {
+            return
+        }
+        
+        let app = try await Application.make(.testing)
+        
+        app.htmlkit.localization.set(source: source)
+        app.htmlkit.localization.set(locale: "en-GB")
+        
+        app.get("test") { request async throws -> Vapor.View in
+            
+            if let languages = request.headers.first(name: .acceptLanguage) {
+                
+                if let language = languages.components(separatedBy: ",").first {
+                    request.application.htmlkit.environment.upsert(HTMLKit.Locale(tag: language), for: \EnvironmentKeys.locale)    
+                }
+            }
+            
+            return try await request.htmlkit.render(TestPage.ChildView())
+        }
+        
+        let languages = ["fr": "Bonjour le monde", "en-GB": "Hiya World", "de-DE": "Hallo Welt"]
+        
+        for language in languages {
+            
+            try await app.test(.GET, "test", headers: ["accept-language": language.key]) { response async in
+                XCTAssertEqual(response.status, .ok)
+                XCTAssertEqual(response.body.string,
+                                """
+                                <!DOCTYPE html>\
+                                <html>\
+                                <head>\
+                                <title>TestPage</title>\
+                                </head>\
+                                <body>\
+                                <p>\(language.value)</p>\
+                                </body>\
+                                </html>
+                                """
+                )
+            }
+        }
+        
+        try await app.asyncShutdown()
+    }
+    
+    /// Tests the localization behavior based on the called route endpoint.
+    /// 
+    /// The environment locale is expected to be changed according to the language. The renderer 
+    /// is expected to localize correctly the view based on the updated environment locale.
+    func testRoutingBasedLocalization() async throws {
+        
+        guard let source = Bundle.module.url(forResource: "Localization", withExtension: nil) else {
+            return
+        }
+        
+        let app = try await Application.make(.testing)
+        
+        app.htmlkit.localization.set(source: source)
+        app.htmlkit.localization.set(locale: "en-GB")
+        
+        app.get("test", "de") { request async throws -> Vapor.View in
+            
+            request.application.htmlkit.environment.upsert(HTMLKit.Locale(tag: "de-DE"), for: \EnvironmentKeys.locale)
+            
+            return try await request.htmlkit.render(TestPage.ChildView())
+        }
+        
+        app.get("test", "fr") { request async throws -> Vapor.View in
+            
+            request.application.htmlkit.environment.upsert(HTMLKit.Locale(tag: "fr"), for: \EnvironmentKeys.locale)
+            
+            return try await request.htmlkit.render(TestPage.ChildView())
+        }
+        
+        try await app.test(.GET, "test/de", headers: ["accept-language": "en-GB"]) { response async in
+            
+            XCTAssertEqual(response.status, .ok)
+            XCTAssertEqual(response.body.string,
+                            """
+                            <!DOCTYPE html>\
+                            <html>\
+                            <head>\
+                            <title>TestPage</title>\
+                            </head>\
+                            <body>\
+                            <p>Hallo Welt</p>\
+                            </body>\
+                            </html>
+                            """
+            )
+        }
+        
+        try await app.test(.GET, "test/fr", headers: ["accept-language": "en-GB"]) { response async in
+            
             XCTAssertEqual(response.status, .ok)
             XCTAssertEqual(response.body.string,
                             """
@@ -288,7 +415,7 @@ final class ProviderTests: XCTestCase {
                             <title>TestPage</title>\
                             </head>\
                             <body>\
-                            <p>Hello World</p>\
+                            <p>Hiya World</p>\
                             </body>\
                             </html>
                             """

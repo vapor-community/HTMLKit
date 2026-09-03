@@ -488,12 +488,12 @@ final class RenderingTests: XCTestCase {
         
         XCTAssertEqual(try renderer!.render(view: MainView()),
                        """
-                       <h1>Hello World</h1>
+                       <h1>Hiya World</h1>
                        """
         )
     }
     
-    /// Tests the localization of a attribute
+    /// Tests the localization of a attribute.
     ///
     /// The test expects the key to exist in the default translation table and to be rendered correctly.
     func testLocalizationAttribute() throws {
@@ -506,15 +506,15 @@ final class RenderingTests: XCTestCase {
                 Input()
                     .placeholder("hello.world", tableName: nil)
                     .alternate(LocalizedStringKey("hello.world"))
-                    .value(LocalizedStringKey("hello.world"), tableName: "web")
-                    .title("hello.world", tableName: "mobile")
+                    .value(LocalizedStringKey("hello.world"), tableName: "desktop")
+                    .title("hello", tableName: "mobile")
                 Meta()
                     .content("hello.world")
                 Input()
                     .placeholder(verbatim: "hello.world")
                     .alternate(verbatim: "hello.world")
                     .value(verbatim: placeholder)
-                    .title(verbatim: "hello.world")
+                    .title(verbatim: "hello")
                 TextArea {}
                     .placeholder(placeholder)
             }
@@ -522,9 +522,9 @@ final class RenderingTests: XCTestCase {
         
         XCTAssertEqual(try renderer!.render(view: TestView()),
                        """
-                       <input placeholder="Hello World" alt="Hello World" value="Hello World" title="Hello World">\
-                       <meta content="Hello World">\
-                       <input placeholder="hello.world" alt="hello.world" value="hello.world" title="hello.world">\
+                       <input placeholder="Hiya World" alt="Hiya World" value="Hiya World" title="Hiya">\
+                       <meta content="Hiya World">\
+                       <input placeholder="hello.world" alt="hello.world" value="hello.world" title="hello">\
                        <textarea placeholder="hello.world"></textarea>
                        """
         )
@@ -630,7 +630,7 @@ final class RenderingTests: XCTestCase {
         XCTAssertEqual(try renderer!.render(view: TestView()),
                        """
                        <div>\
-                       <h1>Hello World</h1>\
+                       <h1>Hiya World</h1>\
                        </div>
                        """
         )

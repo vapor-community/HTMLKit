@@ -1,2 +1,3 @@
 /* A string key with a namespace pattern */
-"hello" = "Hiya";
+"hello.world" = "Hiya World";
+
