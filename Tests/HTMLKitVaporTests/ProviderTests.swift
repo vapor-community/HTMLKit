@@ -283,11 +283,10 @@ final class ProviderTests: XCTestCase {
         
         app.get("test") { request async throws -> Vapor.View in
             
-            
             if let languages = request.headers.first(name: .acceptLanguage) {
                 
                 if let language = languages.components(separatedBy: ",").first {
-                    app.htmlkit.environment.upsert(HTMLKit.Locale(tag: language), for: \EnvironmentKeys.locale)    
+                    request.application.htmlkit.environment.upsert(HTMLKit.Locale(tag: language), for: \EnvironmentKeys.locale)    
                 }
             }
             

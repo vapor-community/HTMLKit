@@ -173,13 +173,10 @@ public struct Localization: Sendable {
                                                 
                                                 let locale = Locale(tag: tag)
                                                 
-                                                if let tables = catalogs[locale] {
+                                                if var tables = catalogs[locale] {
                                                     
-                                                    for var table in tables {
-                                                        
-                                                        if table.name == path.deletingPathExtension().lastPathComponent {
-                                                            table.upsert(unit.value, for: key)
-                                                        }
+                                                    if let index = tables.firstIndex(where: { $0.name == path.deletingPathExtension().lastPathComponent }) {
+                                                        tables[index].upsert(unit.value, for: key)
                                                     }
                                                     
                                                     catalogs[locale] = tables
