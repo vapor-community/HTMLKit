@@ -37,7 +37,7 @@ final class LocalizationTests: XCTestCase {
         XCTAssertEqual(try localization!.localize(string: .init(key: "String: \("John Doe")")), "String: John Doe")
         XCTAssertEqual(try localization!.localize(string: .init(key: "Integer: \(31)")), "Integer: 31")
         XCTAssertEqual(try localization!.localize(string: .init(key: "Double: \(12.5)")), "Double: 12.5")
-        XCTAssertEqual(try localization!.localize(string: .init(key: "Date: \(Date(timeIntervalSince1970: 50000))")), "Date: 01/01/1970")
+        XCTAssertEqual(try localization!.localize(string: .init(key: "Date: \(Date(timeIntervalSince1970: 0))")), "Date: 01/01/1970")
     }
     
     /// Tests the localization of string interpolation with multiple arguments and various data types
@@ -47,7 +47,7 @@ final class LocalizationTests: XCTestCase {
     func testStringInterpolationWithMultipleArguments() throws {
         
         XCTAssertEqual(try localization!.localize(string: .init(key: "Hello \("Jane") and \("John Doe")")), "Hello Jane and John Doe")
-        XCTAssertEqual(try localization!.localize(string: .init(key: "Do you \(2) have time at \(Date(timeIntervalSince1970: 50000))?")), "Do you 2 have time at 01/01/1970?")
+        XCTAssertEqual(try localization!.localize(string: .init(key: "Do you \(2) have time at \(Date(timeIntervalSince1970: 0))?")), "Do you 2 have time at 01/01/1970?")
         XCTAssertEqual(try localization!.localize(string: .init(key: "cheers.person \("Jean")")), "Cheers Jean")
     }
     
@@ -143,6 +143,7 @@ final class LocalizationTests: XCTestCase {
     func testLocale() throws {
     
         let formatter = DateFormatter()
+        formatter.timeZone = TimeZone(secondsFromGMT: 0)
         
         let english = Locale(tag: "en")
         
@@ -168,7 +169,7 @@ final class LocalizationTests: XCTestCase {
         
         formatter.dateFormat = "\(british.dateFormat!) \(british.timeFormat!)"
         
-        XCTAssertEqual(formatter.string(from: Date(timeIntervalSince1970: 1)), "01/01/1970 01:00:01")
+        XCTAssertEqual(formatter.string(from: Date(timeIntervalSince1970: 0)), "01/01/1970 00:00:00")
         
         let german = Locale(tag: "de-DE")
         
@@ -183,7 +184,7 @@ final class LocalizationTests: XCTestCase {
         
         formatter.dateFormat = "\(german.dateFormat!) \(german.timeFormat!)"
         
-        XCTAssertEqual(formatter.string(from: Date(timeIntervalSince1970: 1)), "01.01.1970 01:00:01")
+        XCTAssertEqual(formatter.string(from: Date(timeIntervalSince1970: 0)), "01.01.1970 00:00:00")
     }
     
     /// Test the correct comparison of two locales
