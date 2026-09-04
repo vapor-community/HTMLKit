@@ -28,7 +28,7 @@ public struct Disclosure: View, Modifiable {
     ///   - label: The label to describe the content.
     ///   - content: The disclosure's content.
     @_disfavoredOverload
-    public init(_ label: String, @ContentBuilder<Content> content: () -> [Content]) {
+    public init(_ label: any StringProtocol & Content, @ContentBuilder<Content> content: () -> [Content]) {
         
         self.label = label
         self.content = content()
