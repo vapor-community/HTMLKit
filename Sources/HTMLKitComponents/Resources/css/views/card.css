@@ -23,6 +23,7 @@
     border-color: hsla(var(--borderColor), var(--borderOpacity));
     border-radius: var(--borderRadius);
     background-color: hsla(var(--backgroundColor), var(--backgroundOpacity));
+    overflow: clip;
 
     .card-header {
         border-start-start-radius: var(--borderRadius);
@@ -30,6 +31,8 @@
     }
 
     .card-body {
+        flex-grow: 1;
+
         padding-block-start: var(--paddingBlockStart);
         padding-block-end: var(--paddingBlockEnd);
         padding-inline-start: var(--paddingInlineStart);

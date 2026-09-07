@@ -418,10 +418,14 @@ final class ComponentTests: XCTestCase {
         
         let view = TestView {
             Card {}
+            Card {} header: {}
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
+                       <div class="card">\
+                       <div class="card-body"></div>\
+                       </div>\
                        <div class="card">\
                        <div class="card-header"></div>\
                        <div class="card-body"></div>\

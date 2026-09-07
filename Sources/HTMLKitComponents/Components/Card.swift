@@ -51,10 +51,12 @@ public struct Card: View, Modifiable, Identifiable {
     
     public var body: Content {
         Division {
-            Division {
-                header
+            if let header = header {
+                Division {
+                    header
+                }
+                .class("card-header")
             }
-            .class("card-header")
             Division {
                 content
             }
