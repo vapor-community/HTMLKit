@@ -39,8 +39,6 @@
         border-color: hsla(var(--borderColor), var(--borderOpacity));
         border-radius: 50%;
         background-color: hsla(var(--backgroundColor), var(--backgroundOpacity));
-        -webkit-appearance: none;
-        -moz-appearance: none;
         appearance: none;
 
         &:checked {

@@ -65,7 +65,7 @@ public struct Disclosure: View, Modifiable {
                 .viewBox(x: 0, y: 0, width: 20, height: 16)
                 .namespace("http://www.w3.org/2000/svg")
                 .class("state-indicator")
-                .custom(key: "aria-hidden", value: true)
+                .accessibilityHidden()
             }
             .class("disclosure-head")
             Division {

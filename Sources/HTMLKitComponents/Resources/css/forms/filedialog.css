@@ -36,7 +36,5 @@
     border-color: hsla(var(--borderColor), var(--borderOpacity));
     border-radius: var(--borderRadius);
     background-color: hsla(var(--backgroundColor), var(--backgroundOpacity));
-    -webkit-appearance: none;
-    -moz-appearance: none;
     appearance: none;
 }

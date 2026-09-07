@@ -90,7 +90,7 @@ public struct DatePicker: View, Modifiable, Identifiable {
                         .namespace("http://www.w3.org/2000/svg")
                         .fill("currentColor")
                         .stroke("currentColor", width: 2, cap: .round, join: .round)
-                        .custom(key: "aria-hidden", value: true)
+                        .accessibilityHidden()
                     }
                     .type(.button)
                     .value(verbatim: "previous")
@@ -112,7 +112,7 @@ public struct DatePicker: View, Modifiable, Identifiable {
                         .namespace("http://www.w3.org/2000/svg")
                         .fill("currentColor")
                         .stroke("currentColor", width: 2, cap: .round, join: .round)
-                        .custom(key: "aria-hidden", value: true)
+                        .accessibilityHidden()
                     }
                     .type(.button)
                     .value(verbatim: "next")

@@ -26,6 +26,7 @@
         border-radius: var(--borderRadius);
         background-color: hsla(var(--backgroundColor), var(--backgroundOpacity));
         overflow: hidden;
+        scrollbar-width: none;
 
         &::-webkit-scrollbar {
             display: none;

@@ -40,8 +40,6 @@
         border-color: hsla(var(--borderColor), var(--borderOpacity));
         border-radius: var(--borderRadius);
         background-color: hsla(var(--backgroundColor), var(--backgroundOpacity));
-        -webkit-appearance: none;
-        -moz-appearance: none;
         appearance: none;
 
         &:focus {
@@ -107,8 +105,6 @@
                 color: hsla(var(--foregroundColor), 1.0);
                 border-style: none;
                 background-color: transparent;
-                -webkit-appearance: none;
-                -moz-appearance: none;
                 appearance: none;
                 cursor: pointer;
 

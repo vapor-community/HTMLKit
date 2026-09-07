@@ -21,8 +21,6 @@
     border-style: solid;
     border-color: hsla(var(--borderColor), var(--borderOpacity));
     background-color: hsla(var(--backgroundColor), var(--backgroundOpacity));
-    -webkit-appearance: none;
-    -moz-appearance: none;
     appearance: none;
 
     &:focus {
@@ -37,8 +35,6 @@
         block-size: 1em;
         background-color: hsla(var(--controlColor), 1.0);
         cursor: pointer;
-        -webkit-appearance: none;
-        -moz-appearance: none;
         appearance: none;
     }
 
@@ -47,8 +43,6 @@
         block-size: 1em;
         background-color: hsla(var(--controlColor), 1.0);
         cursor: pointer;
-        -webkit-appearance: none;
-        -moz-appearance: none;
         appearance: none;
     }
 }
