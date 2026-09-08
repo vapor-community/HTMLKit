@@ -15,32 +15,24 @@
 
         .tabs-tabs {
             flex-direction: row;
+            overflow-x: scroll;
+            overflow-y: clip;
+            overscroll-behavior: contain;
+            scroll-snap-type: x mandatory;
 
             .tabs-tab {
+                scroll-snap-align: start;
+
+                border-bottom-width: 1px;
+                border-bottom-style: solid;
+                border-bottom-color: hsla(var(--silverColor), 1.0);
+
                 &:hover {
-                    &:after {
-                        content: "";
-                        position: absolute;
-                        left: 0;
-                        bottom: -1px;
-                        inline-size: 100%;
-                        border-bottom-width: 1px;
-                        border-bottom-style: solid;
-                        border-bottom-color: hsla(var(--accentColor), 0.1);
-                    }
+                    border-bottom-color: hsla(var(--accentColor), 0.1);
                 }
 
                 &.state\:active {
-                    &:after {
-                        content: "";
-                        position: absolute;
-                        left: 0;
-                        bottom: -1px;
-                        inline-size: 100%;
-                        border-bottom-width: 2px;
-                        border-bottom-style: solid;
-                        border-bottom-color: hsla(var(--accentColor), 1.0);
-                    }
+                    border-bottom-color: hsla(var(--accentColor), 1.0);
 
                     .tab-label {
                         --foregroundColor: var(--accentColor);
@@ -59,19 +51,30 @@
 
         .tabs-tabs {
             flex-direction: column;
+            overflow-x: clip;
+            overflow-y: scroll;
+            overscroll-behavior: contain;
+            scroll-snap-type: y mandatory;
 
             .tabs-tab {
+                scroll-snap-align: start;
+
                 &:hover {
-                    border-radius: 5px;
+                    border-radius: var(--borderRadius);
                     background-color: hsla(var(--accentColor), 0.1);
                 }
 
                 &.state\:active {
-                    border-radius: 5px;
+                    border-radius: var(--borderRadius);
                     background-color: hsla(var(--accentColor), 1.0);
 
                     .tab-label {
                         --foregroundColor: var(--whiteColor);
+                    }
+
+                    .tab-badge {
+                        color: hsla(var(--whiteColor), 1.0);
+                        background-color: hsla(var(--whiteColor), 0.1);
                     }
                 }
             }
@@ -84,9 +87,11 @@
 
     .tabs-tabs {
         display: flex;
-        border-bottom-width: 1px;
-        border-bottom-style: solid;
-        border-bottom-color: hsla(var(--silverColor), 1.0);
+        scrollbar-width: none;
+
+        &::-webkit-scrollbar {
+            display: none;
+        }
 
         .tabs-tab {
             position: relative;
@@ -95,12 +100,16 @@
             display: flex;
             flex-direction: row;
             align-items: center;
+            justify-content: space-between;
             gap: 1rem;
 
             .tab-label {
-                display: inline-flex;
+                flex-grow: 1;
+
+                display: flex;
                 flex-direction: row;
                 align-items: center;
+                white-space: nowrap;
                 text-decoration: none;
 
                 > * {
@@ -109,11 +118,16 @@
             }
 
             .tab-badge {
+                padding-inline: 5px;
+                padding-block: 1px;
                 font-family: var(--fontFamily);
-                font-size: var(--fontSize);
+                font-size: 14px;
                 font-weight: var(--fontWeight);
                 line-height: var(--lineHeight);
                 color: hsla(var(--foregroundColor), 1.0);
+                border-radius: 5px;
+                background-color: hsla(var(--accentColor), 0.1);
+                user-select: none;
             }
         }
     }
