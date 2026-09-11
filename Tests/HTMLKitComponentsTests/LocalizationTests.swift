@@ -212,11 +212,11 @@ extension LocalizationTests {
     
     func setupLocalization() throws {
         
-        let currentFile = URL(fileURLWithPath: #file).deletingLastPathComponent()
+        guard let source = Bundle.module.url(forResource: "Localization", withExtension: nil) else {
+            return
+        }
         
-        let currentDirectory = currentFile.appendingPathComponent("Localization")
-        
-        let localization = Localization(source: currentDirectory, locale: Locale(tag: "fr"))
+        let localization = Localization(source: source, locale: Locale(tag: "fr"))
         
         self.renderer = Renderer(localization: localization)
     }

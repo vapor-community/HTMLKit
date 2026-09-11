@@ -95,9 +95,7 @@ var $ = (function () {
      * Shows the target.
      */
     Self.prototype.show = function() {
-        
-        const elements = document.getElementsByClassName('state:visible');
-        
+    
         this.elems[0].classList.add('state:visible');
     };
     
