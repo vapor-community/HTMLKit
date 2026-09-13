@@ -2,139 +2,141 @@
  * The rulesets for the snippet component.
  */
 
-.tabs {
-    --fontSize: 1.0rem;
-    --fontWeight: 400;
-    --lineHeight: 1.5;
-    --foregroundColor: var(--systemTextColor);
+@layer htmlkit.components {
+    .tabs {
+        --fontSize: 1.0rem;
+        --fontWeight: 400;
+        --lineHeight: 1.5;
+        --foregroundColor: var(--systemTextColor);
 
-    display: flex;
-
-    &.direction\:horizontal {
-        flex-direction: column;
-
-        .tabs-tabs {
-            flex-direction: row;
-            overflow-x: scroll;
-            overflow-y: clip;
-            overscroll-behavior: contain;
-            scroll-snap-type: x mandatory;
-
-            .tabs-tab {
-                scroll-snap-align: start;
-
-                border-bottom-width: 1px;
-                border-bottom-style: solid;
-                border-bottom-color: hsla(var(--silverColor), 1.0);
-
-                &:hover {
-                    border-bottom-color: hsla(var(--accentColor), 0.1);
-                }
-
-                &.state\:active {
-                    border-bottom-color: hsla(var(--accentColor), 1.0);
-
-                    .tab-label {
-                        --foregroundColor: var(--accentColor);
-                    }
-                }
-            }
-        }
-
-        .tabs-panes {
-            padding-block: 1rem;
-        }
-    }
-
-    &.direction\:vertical {
-        flex-direction: row;
-
-        .tabs-tabs {
-            flex-direction: column;
-            overflow-x: clip;
-            overflow-y: scroll;
-            overscroll-behavior: contain;
-            scroll-snap-type: y mandatory;
-
-            .tabs-tab {
-                scroll-snap-align: start;
-
-                &:hover {
-                    border-radius: var(--borderRadius);
-                    background-color: hsla(var(--accentColor), 0.1);
-                }
-
-                &.state\:active {
-                    border-radius: var(--borderRadius);
-                    background-color: hsla(var(--accentColor), 1.0);
-
-                    .tab-label {
-                        --foregroundColor: var(--whiteColor);
-                    }
-
-                    .tab-badge {
-                        color: hsla(var(--whiteColor), 1.0);
-                        background-color: hsla(var(--whiteColor), 0.1);
-                    }
-                }
-            }
-        }
-
-        .tabs-panes {
-            padding-inline: 1rem;
-        }
-    }
-
-    .tabs-tabs {
         display: flex;
-        scrollbar-width: none;
 
-        &::-webkit-scrollbar {
-            display: none;
+        &.direction\:horizontal {
+            flex-direction: column;
+
+            .tabs-tabs {
+                flex-direction: row;
+                overflow-x: scroll;
+                overflow-y: clip;
+                overscroll-behavior: contain;
+                scroll-snap-type: x mandatory;
+
+                .tabs-tab {
+                    scroll-snap-align: start;
+
+                    border-bottom-width: 1px;
+                    border-bottom-style: solid;
+                    border-bottom-color: hsla(var(--silverColor), 1.0);
+
+                    &:hover {
+                        border-bottom-color: hsla(var(--accentColor), 0.1);
+                    }
+
+                    &.state\:active {
+                        border-bottom-color: hsla(var(--accentColor), 1.0);
+
+                        .tab-label {
+                            --foregroundColor: var(--accentColor);
+                        }
+                    }
+                }
+            }
+
+            .tabs-panes {
+                padding-block: 1rem;
+            }
         }
 
-        .tabs-tab {
-            position: relative;
-            padding-block: 0.5rem;
-            padding-inline: 1.0rem;
-            display: flex;
+        &.direction\:vertical {
             flex-direction: row;
-            align-items: center;
-            justify-content: space-between;
-            gap: 1rem;
 
-            .tab-label {
-                flex-grow: 1;
+            .tabs-tabs {
+                flex-direction: column;
+                overflow-x: clip;
+                overflow-y: scroll;
+                overscroll-behavior: contain;
+                scroll-snap-type: y mandatory;
 
+                .tabs-tab {
+                    scroll-snap-align: start;
+
+                    &:hover {
+                        border-radius: var(--borderRadius);
+                        background-color: hsla(var(--accentColor), 0.1);
+                    }
+
+                    &.state\:active {
+                        border-radius: var(--borderRadius);
+                        background-color: hsla(var(--accentColor), 1.0);
+
+                        .tab-label {
+                            --foregroundColor: var(--whiteColor);
+                        }
+
+                        .tab-badge {
+                            color: hsla(var(--whiteColor), 1.0);
+                            background-color: hsla(var(--whiteColor), 0.1);
+                        }
+                    }
+                }
+            }
+
+            .tabs-panes {
+                padding-inline: 1rem;
+            }
+        }
+
+        .tabs-tabs {
+            display: flex;
+            scrollbar-width: none;
+
+            &::-webkit-scrollbar {
+                display: none;
+            }
+
+            .tabs-tab {
+                position: relative;
+                padding-block: 0.5rem;
+                padding-inline: 1.0rem;
                 display: flex;
                 flex-direction: row;
                 align-items: center;
-                white-space: nowrap;
-                text-decoration: none;
+                justify-content: space-between;
+                gap: 1rem;
 
-                > * {
-                    pointer-events: none;
+                .tab-label {
+                    flex-grow: 1;
+
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    white-space: nowrap;
+                    text-decoration: none;
+
+                    > * {
+                        pointer-events: none;
+                    }
+                }
+
+                .tab-badge {
+                    padding-inline: 5px;
+                    padding-block: 1px;
+                    font-family: var(--fontFamily);
+                    font-size: 14px;
+                    font-weight: var(--fontWeight);
+                    line-height: var(--lineHeight);
+                    color: hsla(var(--foregroundColor), 1.0);
+                    border-radius: 5px;
+                    background-color: hsla(var(--accentColor), 0.1);
+                    user-select: none;
                 }
             }
-
-            .tab-badge {
-                padding-inline: 5px;
-                padding-block: 1px;
-                font-family: var(--fontFamily);
-                font-size: 14px;
-                font-weight: var(--fontWeight);
-                line-height: var(--lineHeight);
-                color: hsla(var(--foregroundColor), 1.0);
-                border-radius: 5px;
-                background-color: hsla(var(--accentColor), 0.1);
-                user-select: none;
-            }
         }
-    }
 
-    .tabs-panes {
-        > * {
-            display: none;
+        .tabs-panes {
+            > * {
+                display: none;
+            }
         }
     }
 }

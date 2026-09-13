@@ -2,88 +2,90 @@
  * The rulesets for the dropdown component.
  */
 
-.dropdown {
-    --paddingBlockStart: 0.5rem;
-    --paddingBlockEnd: 0.5rem;
-    --paddingInlineStart: 1.0rem;
-    --paddingInlineEnd: 1.0rem;
-    --fontSize: 1.0rem;
-    --fontWeight: 400;
-    --lineHeight: 1.5;
-    --foregroundColor: var(--systemTextColor);
-    --borderWidth: 1px;
-    --borderColor: var(--systemBorderColor);
-    --borderRadius: 0;
-    --borderOpacity: 1.0;
-    --backgroundColor: var(--systemBackgroundColor);
-    --backgroundOpacity: 1.0;
-    
-    position: relative;
-    display: inline-block;
+@layer htmlkit.components {
+    .dropdown {
+        --paddingBlockStart: 0.5rem;
+        --paddingBlockEnd: 0.5rem;
+        --paddingInlineStart: 1.0rem;
+        --paddingInlineEnd: 1.0rem;
+        --fontSize: 1.0rem;
+        --fontWeight: 400;
+        --lineHeight: 1.5;
+        --foregroundColor: var(--systemTextColor);
+        --borderWidth: 1px;
+        --borderColor: var(--systemBorderColor);
+        --borderRadius: 0;
+        --borderOpacity: 1.0;
+        --backgroundColor: var(--systemBackgroundColor);
+        --backgroundOpacity: 1.0;
 
-    .dropdown-label {
-        display: inline-flex;
-        align-items: center;
-        cursor: pointer;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        user-select: none;
-    }
+        position: relative;
+        display: inline-block;
 
-    .dropdown-content {
-        position: absolute;
-        z-index: 1;
-        margin-block: 0.5rem;
-        inline-size: max-content;
-        display: block;
-        border-width: var(--borderWidth);
-        border-style: solid;
-        border-color: hsla(var(--borderColor), 1.0);
-        border-radius: var(--borderRadius);
-        background-color: hsla(var(--backgroundColor), var(--backgroundOpacity));
-        overflow: hidden;
-        visibility: hidden;
-
-        &.position\:right {
-            right: 0;
+        .dropdown-label {
+            display: inline-flex;
+            align-items: center;
+            cursor: pointer;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
         }
 
-        &.position\:bottom {
-            bottom: 0;
-        }
+        .dropdown-content {
+            position: absolute;
+            z-index: 1;
+            margin-block: 0.5rem;
+            inline-size: max-content;
+            display: block;
+            border-width: var(--borderWidth);
+            border-style: solid;
+            border-color: hsla(var(--borderColor), 1.0);
+            border-radius: var(--borderRadius);
+            background-color: hsla(var(--backgroundColor), var(--backgroundOpacity));
+            overflow: hidden;
+            visibility: hidden;
 
-        .list {
-            .list-row {
-                &:hover {
-                    background-color: hsla(var(--borderColor), 0.5);
-                }
-
-                > .link {
-                    padding-inline: 1.0rem;
-                    padding-block: 0.5rem;
-                    display: flex;
-                    align-items: center;
-                }
-
-                > .text {
-                    padding-inline: 1.0rem;
-                    padding-block: 0.5rem;
-                    display: flex;
-                    align-items: center;
-                    cursor: pointer;
-                }
-
-                > .grouping {
-                    padding-inline: 1.0rem;
-                    padding-block: 0.5rem;
-                    display: flex;
-                    align-items: center;
-                    cursor: pointer;
-                }
+            &.position\:right {
+                right: 0;
             }
 
-            .divider {
-                --backgroundColor: var(--borderColor) !important;
+            &.position\:bottom {
+                bottom: 0;
+            }
+
+            .list {
+                .list-row {
+                    &:hover {
+                        background-color: hsla(var(--borderColor), 0.5);
+                    }
+
+                    > .link {
+                        padding-inline: 1.0rem;
+                        padding-block: 0.5rem;
+                        display: flex;
+                        align-items: center;
+                    }
+
+                    > .text {
+                        padding-inline: 1.0rem;
+                        padding-block: 0.5rem;
+                        display: flex;
+                        align-items: center;
+                        cursor: pointer;
+                    }
+
+                    > .grouping {
+                        padding-inline: 1.0rem;
+                        padding-block: 0.5rem;
+                        display: flex;
+                        align-items: center;
+                        cursor: pointer;
+                    }
+                }
+
+                .divider {
+                    --backgroundColor: var(--borderColor) !important;
+                }
             }
         }
     }

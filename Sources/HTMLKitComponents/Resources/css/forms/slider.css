@@ -2,48 +2,50 @@
  * The rulesets for the slider component.
  */
 
-.slider {
-    --borderWidth: 1px;
-    --borderColor: var(--systemBorderColor);
-    --borderOpacity: 1.0;
-    --controlColor: 0, 0%, 0%;
-    --focusColor: var(--systemFocusColor);
-    --backgroundColor: var(--systemBackgroundColor);
-    --backgroundOpacity: 1.0;
+@layer htmlkit.components {
+    .slider {
+        --borderWidth: 1px;
+        --borderColor: var(--systemBorderColor);
+        --borderOpacity: 1.0;
+        --controlColor: 0, 0%, 0%;
+        --focusColor: var(--systemFocusColor);
+        --backgroundColor: var(--systemBackgroundColor);
+        --backgroundOpacity: 1.0;
 
-    margin-inline: 0;
-    margin-block: 0;
-    padding-inline: 0;
-    padding-block: 0;
-    inline-size: 100%;
-    display: block;
-    border-width: var(--borderWidth);
-    border-style: solid;
-    border-color: hsla(var(--borderColor), var(--borderOpacity));
-    background-color: hsla(var(--backgroundColor), var(--backgroundOpacity));
-    appearance: none;
-
-    &:focus {
-        --borderColor: var(--focusColor) !important;
-
-        outline-style: none;
-        box-shadow: 0 0 0 0.125rem hsla(var(--focusColor), 0.1);
-    }
-
-    &::-webkit-slider-thumb {
-        inline-size: 1em;
-        block-size: 1em;
-        background-color: hsla(var(--controlColor), 1.0);
-        cursor: pointer;
+        margin-inline: 0;
+        margin-block: 0;
+        padding-inline: 0;
+        padding-block: 0;
+        inline-size: 100%;
+        display: block;
+        border-width: var(--borderWidth);
+        border-style: solid;
+        border-color: hsla(var(--borderColor), var(--borderOpacity));
+        background-color: hsla(var(--backgroundColor), var(--backgroundOpacity));
         appearance: none;
-    }
 
-    &::-moz-range-thumb {
-        inline-size: 1em;
-        block-size: 1em;
-        background-color: hsla(var(--controlColor), 1.0);
-        cursor: pointer;
-        appearance: none;
+        &:focus {
+            --borderColor: var(--focusColor) !important;
+
+            outline-style: none;
+            box-shadow: 0 0 0 0.125rem hsla(var(--focusColor), 0.1);
+        }
+
+        &::-webkit-slider-thumb {
+            inline-size: 1em;
+            block-size: 1em;
+            background-color: hsla(var(--controlColor), 1.0);
+            cursor: pointer;
+            appearance: none;
+        }
+
+        &::-moz-range-thumb {
+            inline-size: 1em;
+            block-size: 1em;
+            background-color: hsla(var(--controlColor), 1.0);
+            cursor: pointer;
+            appearance: none;
+        }
     }
 }
 

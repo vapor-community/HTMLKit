@@ -2,58 +2,60 @@
  * The rulesets for the snippet component.
  */
 
-.snippet {
-    --paddingInlineStart: 1.0em;
-    --paddingInlineEnd: 1.0em;
-    --paddingBlockStart: 0.5rem;
-    --paddingBlockEnd: 0.5rem;
-    --fontSize: 1.0rem;
-    --fontWeight: 400;
-    --lineHeight: 1.5;
-    --foregroundColor: var(--systemTextColor);
-    --borderWidth: 1px;
-    --borderColor: var(--systemBorderColor);
-    --borderRadius: 0;
-    --borderOpacity: 1.0;
-    --backgroundColor: var(--systemBackgroundColor);
-    --backgroundOpacity: 1.0;
+@layer htmlkit.components {
+    .snippet {
+        --paddingInlineStart: 1.0em;
+        --paddingInlineEnd: 1.0em;
+        --paddingBlockStart: 0.5rem;
+        --paddingBlockEnd: 0.5rem;
+        --fontSize: 1.0rem;
+        --fontWeight: 400;
+        --lineHeight: 1.5;
+        --foregroundColor: var(--systemTextColor);
+        --borderWidth: 1px;
+        --borderColor: var(--systemBorderColor);
+        --borderRadius: 0;
+        --borderOpacity: 1.0;
+        --backgroundColor: var(--systemBackgroundColor);
+        --backgroundOpacity: 1.0;
 
-    position: relative;
-    padding-block-start: var(--paddingBlockStart);
-    padding-block-end: var(--paddingBlockEnd);
-    padding-inline-start: var(--paddingInlineStart);
-    padding-inline-end: var(--paddingInlineEnd);
-    display: block;
-    inline-size: 100%;
-    block-size: auto;
-    counter-reset: line;
-    border-width: var(--borderWidth);
-    border-style: solid;
-    border-color: hsla(var(--borderColor), var(--borderOpacity));
-    border-radius: var(--borderRadius);
-    background-color: hsla(var(--backgroundColor), var(--backgroundOpacity));
-    overflow-inline: auto;
-
-    p {
+        position: relative;
+        padding-block-start: var(--paddingBlockStart);
+        padding-block-end: var(--paddingBlockEnd);
+        padding-inline-start: var(--paddingInlineStart);
+        padding-inline-end: var(--paddingInlineEnd);
         display: block;
-        font-size: var(--fontSize);
-        line-height: var(--lineHeight);
-        color: hsla(var(--foregroundColor), 1.0);
-        word-wrap: normal;
-        white-space: pre;
-        counter-increment: line;
+        inline-size: 100%;
+        block-size: auto;
+        counter-reset: line;
+        border-width: var(--borderWidth);
+        border-style: solid;
+        border-color: hsla(var(--borderColor), var(--borderOpacity));
+        border-radius: var(--borderRadius);
+        background-color: hsla(var(--backgroundColor), var(--backgroundOpacity));
+        overflow-inline: auto;
 
-        &:before {
-            content: counter(line);
-            position: relative;
-            margin-inline-end: 2ch;
-            inline-size: 3ch;
-            display: inline-block;
-            font-family: monospace;
+        p {
+            display: block;
+            font-size: var(--fontSize);
+            line-height: var(--lineHeight);
             color: hsla(var(--foregroundColor), 1.0);
-            white-space: nowrap;
-            text-align: right;
-            user-select: none;
+            word-wrap: normal;
+            white-space: pre;
+            counter-increment: line;
+
+            &:before {
+                content: counter(line);
+                position: relative;
+                margin-inline-end: 2ch;
+                inline-size: 3ch;
+                display: inline-block;
+                font-family: monospace;
+                color: hsla(var(--foregroundColor), 1.0);
+                white-space: nowrap;
+                text-align: right;
+                user-select: none;
+            }
         }
     }
 }

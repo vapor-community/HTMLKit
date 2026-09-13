@@ -2,14 +2,18 @@
  * The rulesets for the divider component.
  */
 
-.divider {
-    --backgroundColor: var(--systemBorderColor);
-    --backgroundOpacity: 1.0;
-    
-    position: relative;
-    inline-size: 100%;
-    block-size: 1px;
-    display: block;
-    border-style: none;
-    background-color: hsla(var(--backgroundColor), var(--backgroundOpacity));
+@layer htmlkit {
+    @layer components {
+        .divider {
+            --backgroundColor: var(--systemBorderColor);
+            --backgroundOpacity: 1.0;
+
+            position: relative;
+            inline-size: 100%;
+            block-size: 1px;
+            display: block;
+            border-style: none;
+            background-color: hsla(var(--backgroundColor), var(--backgroundOpacity));
+        }
+    }
 }

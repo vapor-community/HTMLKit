@@ -2,92 +2,94 @@
  * The rulesets for the image component.
  */
 
-.image {
-    --inlineSize: 100%;
-    --borderWidth: 0;
-    --borderRadius: 0;
-    --borderColor: 0, 0%, 0%;
-    --borderOpacity: 0.0;
-    --backgroundColor: 0, 0%, 0%;
-    --backgroundOpacity: 0.0;
-    --blurLevel: 0;
-    --contrastLevel: 100%;
-    --brightnessLevel: 100%;
-    --grayscaleDepth: 0;
-    --saturationLevel: 100%;
-    
-    position: relative;
-    max-inline-size: var(--inlineSize);
-    block-size: auto;
-    font-style: italic;
-    border-width: var(--borderWidth);
-    border-style: solid;
-    border-color: hsla(var(--borderColor), var(--borderOpacity));
-    border-radius: var(--borderRadius);
-    background-color: hsla(var(--backgroundColor), var(--backgroundOpacity));
-    filter: blur(var(--blurLevel)) contrast(var(--contrastLevel)) brightness(var(--brightnessLevel)) grayscale(var(--grayscaleDepth)) saturate(var(--saturationLevel));
+@layer htmlkit.components {
+    .image {
+        --inlineSize: 100%;
+        --borderWidth: 0;
+        --borderRadius: 0;
+        --borderColor: 0, 0%, 0%;
+        --borderOpacity: 0.0;
+        --backgroundColor: 0, 0%, 0%;
+        --backgroundOpacity: 0.0;
+        --blurLevel: 0;
+        --contrastLevel: 100%;
+        --brightnessLevel: 100%;
+        --grayscaleDepth: 0;
+        --saturationLevel: 100%;
 
-    &.aspect\:equal {
-        aspect-ratio: 1/1;
-    }
+        position: relative;
+        max-inline-size: var(--inlineSize);
+        block-size: auto;
+        font-style: italic;
+        border-width: var(--borderWidth);
+        border-style: solid;
+        border-color: hsla(var(--borderColor), var(--borderOpacity));
+        border-radius: var(--borderRadius);
+        background-color: hsla(var(--backgroundColor), var(--backgroundOpacity));
+        filter: blur(var(--blurLevel)) contrast(var(--contrastLevel)) brightness(var(--brightnessLevel)) grayscale(var(--grayscaleDepth)) saturate(var(--saturationLevel));
 
-    &.aspect\:unequal {
-        aspect-ratio: 2/1;
-    }
+        &.aspect\:equal {
+            aspect-ratio: 1/1;
+        }
 
-    &.fit\:contain {
-        object-fit: contain;
-    }
+        &.aspect\:unequal {
+            aspect-ratio: 2/1;
+        }
 
-    &.fit\:cover {
-        object-fit: cover;
-    }
+        &.fit\:contain {
+            object-fit: contain;
+        }
 
-    &.fit\:fill {
-        object-fit: fill;
-    }
+        &.fit\:cover {
+            object-fit: cover;
+        }
 
-    &.fit\:scaledown {
-        object-fit: scale-down;
-    }
+        &.fit\:fill {
+            object-fit: fill;
+        }
 
-    &.fit\:none {
-        object-fit: none;
-    }
+        &.fit\:scaledown {
+            object-fit: scale-down;
+        }
 
-    &.opacity\:transparent {
-        opacity: 0;
-    }
+        &.fit\:none {
+            object-fit: none;
+        }
 
-    &.opacity\:intransparent {
-        opacity: 1;
-    }
+        &.opacity\:transparent {
+            opacity: 0;
+        }
 
-    &.scale\:small {
-        --inlineSize: 3.125rem;
-    }
+        &.opacity\:intransparent {
+            opacity: 1;
+        }
 
-    &.scale\:medium {
-        --inlineSize: 12.5rem;
-    }
+        &.scale\:small {
+            --inlineSize: 3.125rem;
+        }
 
-    &.scale\:large {
-        --inlineSize: 25rem;
-    }
+        &.scale\:medium {
+            --inlineSize: 12.5rem;
+        }
 
-    &.shape\:circle {
-        --borderRadius: 50%;
-    }
+        &.scale\:large {
+            --inlineSize: 25rem;
+        }
 
-    &.shadow\:small {
-        box-shadow: 0 1px 3px hsla(var(--shadowColor), 0.12), 0 1px 2px hsla(var(--shadowColor), 0.24);
-    }
+        &.shape\:circle {
+            --borderRadius: 50%;
+        }
 
-    &.shadow\:medium {
-        box-shadow: 0 3px 3px -3px hsla(var(--shadowColor), 0.3), 0 4px 4px -4px hsla(var(--shadowColor), 0.3);
-    }
+        &.shadow\:small {
+            box-shadow: 0 1px 3px hsla(var(--shadowColor), 0.12), 0 1px 2px hsla(var(--shadowColor), 0.24);
+        }
 
-    &.shadow\:large {
-        box-shadow: 0 5px 5px -5px hsla(var(--shadowColor), 0.3), 0 6px 6px -6px hsla(var(--shadowColor), 0.3);
+        &.shadow\:medium {
+            box-shadow: 0 3px 3px -3px hsla(var(--shadowColor), 0.3), 0 4px 4px -4px hsla(var(--shadowColor), 0.3);
+        }
+
+        &.shadow\:large {
+            box-shadow: 0 5px 5px -5px hsla(var(--shadowColor), 0.3), 0 6px 6px -6px hsla(var(--shadowColor), 0.3);
+        }
     }
 }

@@ -2,31 +2,33 @@
  * The rulesets for the grouping component.
  */
 
-.grouping {
-    display: inline-flex;
-    flex-direction: row;
-    align-items: center;
+@layer htmlkit.components {
+    .grouping {
+        display: inline-flex;
+        flex-direction: row;
+        align-items: center;
 
-    .button {
-        &:first-child {
-            border-top-right-radius: 0;
-            border-bottom-right-radius: 0;
-            border-right: 0;
+        .button {
+            &:first-child {
+                border-top-right-radius: 0;
+                border-bottom-right-radius: 0;
+                border-right: 0;
+            }
+
+            &:last-child {
+                border-top-left-radius: 0;
+                border-bottom-left-radius: 0;
+                border-left: 0;
+            }
         }
 
-        &:last-child {
-            border-top-left-radius: 0;
-            border-bottom-left-radius: 0;
-            border-left: 0;
-        }
-    }
+        .image {
+            flex-direction: row-reverse;
+            justify-content: start;
 
-    .image {
-        flex-direction: row-reverse;
-        justify-content: start;
-
-        &:not(:first-child) {
-            margin-right: -10%;
+            &:not(:first-child) {
+                margin-right: -10%;
+            }
         }
     }
 }

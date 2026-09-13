@@ -2,89 +2,91 @@
  * The rulesets for the navigation component.
  */
 
-.navigation {
-    --borderWidth: 0;
-    --borderColor: 0, 0%, 0%;
-    --borderOpacity: 0,0;
-    --borderRadius: 0;
-    --backgroundColor: 0, 0%, 0%;
-    --backgroundOpacity: 0.0;
-    
-    position: relative;
-    border-width: var(--borderWidth);
-    border-style: solid;
-    border-color: hsla(var(--borderColor), var(--borderOpacity));
-    border-radius: var(--borderRadius);
-    background-color: hsla(var(--backgroundColor), var(--backgroundOpacity));
+@layer htmlkit.components {
+    .navigation {
+        --borderWidth: 0;
+        --borderColor: 0, 0%, 0%;
+        --borderOpacity: 0,0;
+        --borderRadius: 0;
+        --backgroundColor: 0, 0%, 0%;
+        --backgroundOpacity: 0.0;
 
-    .list {
-        .list-row {
-            .link {
-                padding-block: 0.5rem;
-                padding-inline: 1.0rem;
-                display: flex;
-                align-items: center;
+        position: relative;
+        border-width: var(--borderWidth);
+        border-style: solid;
+        border-color: hsla(var(--borderColor), var(--borderOpacity));
+        border-radius: var(--borderRadius);
+        background-color: hsla(var(--backgroundColor), var(--backgroundOpacity));
 
-                &:hover {
-                    background-color: hsla(0, 0%, 100%, 0.1);
+        .list {
+            .list-row {
+                .link {
+                    padding-block: 0.5rem;
+                    padding-inline: 1.0rem;
+                    display: flex;
+                    align-items: center;
+
+                    &:hover {
+                        background-color: hsla(0, 0%, 100%, 0.1);
+                    }
                 }
             }
         }
     }
-}
 
-.navigation.style\:menu {
-    .list {
-        .list-row {
-            .link {
-                &.state\:active {
-                    --borderColor: var(--accentColor);
-                    --backgroundColor: var(--accentColor);
-                    --foregroundColor: var(--whiteColor);
-                    --backgroundOpacity: 1.0;
+    .navigation.style\:menu {
+        .list {
+            .list-row {
+                .link {
+                    &.state\:active {
+                        --borderColor: var(--accentColor);
+                        --backgroundColor: var(--accentColor);
+                        --foregroundColor: var(--whiteColor);
+                        --backgroundOpacity: 1.0;
 
-                    border-radius: 5px;
+                        border-radius: 5px;
+                    }
                 }
             }
         }
     }
-}
 
-.navigation.style\:pagination {
-    --borderWidth: 1px;
-    --borderColor: var(--systemBorderColor);
-    --borderRadius: 0;
-    --borderOpacity: 1.0;
-    --backgroundColor: var(--systemBackgroundColor);
-    --backgroundOpacity: 1.0;
+    .navigation.style\:pagination {
+        --borderWidth: 1px;
+        --borderColor: var(--systemBorderColor);
+        --borderRadius: 0;
+        --borderOpacity: 1.0;
+        --backgroundColor: var(--systemBackgroundColor);
+        --backgroundOpacity: 1.0;
 
-    .list {
-        &.direction\:horizontal {
-            .list-row {
-                &:not(:last-child) {
-                    border-right: 1px;
-                    border-right-style: solid;
-                    border-right-color: hsla(var(--borderColor), var(--borderOpacity));
+        .list {
+            &.direction\:horizontal {
+                .list-row {
+                    &:not(:last-child) {
+                        border-right: 1px;
+                        border-right-style: solid;
+                        border-right-color: hsla(var(--borderColor), var(--borderOpacity));
+                    }
                 }
             }
-        }
 
-        &.direction\:vertical {
-            .list-row {
-                &:not(:last-child) {
-                    border-bottom: 1px;
-                    border-bottom-style: solid;
-                    border-bottom-color: hsla(var(--borderColor), var(--borderOpacity));
+            &.direction\:vertical {
+                .list-row {
+                    &:not(:last-child) {
+                        border-bottom: 1px;
+                        border-bottom-style: solid;
+                        border-bottom-color: hsla(var(--borderColor), var(--borderOpacity));
+                    }
                 }
             }
-        }
 
-        .list-row {
-            .link {
-                padding-block: 0.5rem;
-                padding-inline: 1.0rem;
-                display: flex;
-                align-items: center;
+            .list-row {
+                .link {
+                    padding-block: 0.5rem;
+                    padding-inline: 1.0rem;
+                    display: flex;
+                    align-items: center;
+                }
             }
         }
     }

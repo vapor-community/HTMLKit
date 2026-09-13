@@ -2,60 +2,62 @@
  * The rulesets for the symbol component.
  */
 
-.symbol {
-    --fontSize: 1.0rem;
-    --lineHeight: 1.5;
-    
-    display: inline-block;
-    inline-size: 1.25em;
-    block-size: 1.0em;
-    fill: hsla(var(--foregroundColor), 1.0);
-    font-size: var(--fontSize);
-    line-height: var(--lineHeight);
-    vertical-align: middle;
+@layer htmlkit.components {
+    .symbol {
+        --fontSize: 1.0rem;
+        --lineHeight: 1.5;
 
-    &.size\:tiny {
-        --fontSize: 0.67rem;
-        --lineHeight: 1.25;
-    }
+        display: inline-block;
+        inline-size: 1.25em;
+        block-size: 1.0em;
+        fill: hsla(var(--foregroundColor), 1.0);
+        font-size: var(--fontSize);
+        line-height: var(--lineHeight);
+        vertical-align: middle;
 
-    &.size\:small {
-        --fontSize: 0.83rem;
-        --lineHeight: 1.25;
-    }
+        &.size\:tiny {
+            --fontSize: 0.67rem;
+            --lineHeight: 1.25;
+        }
 
-    &.size\:medium {
-        --fontSize: 1.17rem;
-        --lineHeight: 1.75;
-    }
+        &.size\:small {
+            --fontSize: 0.83rem;
+            --lineHeight: 1.25;
+        }
 
-    &.size\:large {
-        --fontSize: 1.5rem;
-        --lineHeight: 2.0;
-    }
+        &.size\:medium {
+            --fontSize: 1.17rem;
+            --lineHeight: 1.75;
+        }
 
-    &.size\:extralarge {
-        --fontSize: 2rem;
-        --lineHeight: 2.25;
-    }
+        &.size\:large {
+            --fontSize: 1.5rem;
+            --lineHeight: 2.0;
+        }
 
-    &.shadow\:small {
-        filter: drop-shadow(0 1px 1px hsla(var(--shadowColor), 0.3)) drop-shadow(0 2px 2px hsla(var(--shadowColor), 0.3));
-    }
+        &.size\:extralarge {
+            --fontSize: 2rem;
+            --lineHeight: 2.25;
+        }
 
-    &.shadow\:medium {
-        filter: drop-shadow(0 3px 3px hsla(var(--shadowColor), 0.3)) drop-shadow(0 4px 4px hsla(var(--shadowColor), 0.3));
-    }
+        &.shadow\:small {
+            filter: drop-shadow(0 1px 1px hsla(var(--shadowColor), 0.3)) drop-shadow(0 2px 2px hsla(var(--shadowColor), 0.3));
+        }
 
-    &.shadow\:large {
-        filter: drop-shadow(0 5px 5px hsla(var(--shadowColor), 0.3)) drop-shadow(0 6px 6px hsla(var(--shadowColor), 0.3));
-    }
+        &.shadow\:medium {
+            filter: drop-shadow(0 3px 3px hsla(var(--shadowColor), 0.3)) drop-shadow(0 4px 4px hsla(var(--shadowColor), 0.3));
+        }
 
-    + .text {
-        margin-inline-start: 0.75rem;
-    }
+        &.shadow\:large {
+            filter: drop-shadow(0 5px 5px hsla(var(--shadowColor), 0.3)) drop-shadow(0 6px 6px hsla(var(--shadowColor), 0.3));
+        }
 
-    + .symbol {
-        margin-inline-start: 0.75rem;
+        + .text {
+            margin-inline-start: 0.75rem;
+        }
+
+        + .symbol {
+            margin-inline-start: 0.75rem;
+        }
     }
 }

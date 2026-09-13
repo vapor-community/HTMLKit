@@ -2,42 +2,34 @@
  * The rulesets for the chart component.
  */
 
-.chart {
-    --fontSize: 1.0rem;
-    --fontWeight: 400;
-    --lineHeight: 1.5;
-    --foregroundColor: var(--systemTextColor);
-    --borderColor: var(--systemBorderColor);
-    --backgroundColor: var(--systemBackgroundColor);
-    --backgroundOpacity: 1.0;
+@layer htmlkit.components {
+    .chart {
+        --fontSize: 1.0rem;
+        --fontWeight: 400;
+        --lineHeight: 1.5;
+        --foregroundColor: var(--systemTextColor);
+        --borderColor: var(--systemBorderColor);
+        --backgroundColor: var(--systemBackgroundColor);
+        --backgroundOpacity: 1.0;
 
-    position: relative;
-    inline-size: 100%;
-    block-size: inherit;
-    display: block;
+        position: relative;
+        inline-size: 100%;
+        block-size: inherit;
+        display: block;
 
-    .chart-guide {
-        stroke-width: 1px;
-        stroke-dasharray: 5;
-        stroke: hsla(var(--borderColor), 1.0);
-    }
+        .chart-guide {
+            stroke-width: 1px;
+            stroke-dasharray: 5;
+            stroke: hsla(var(--borderColor), 1.0);
+        }
 
-    .chart-axis {
-        stroke-width: 1px;
-        stroke-dasharray: 0;
-        stroke: hsla(var(--borderColor), 1.0);
-    }
+        .chart-axis {
+            stroke-width: 1px;
+            stroke-dasharray: 0;
+            stroke: hsla(var(--borderColor), 1.0);
+        }
 
-    .chart-label {
-        font-size: var(--fontSize);
-        font-weight: var(--fontWeight);
-        line-height: var(--lineHeight);
-        fill: hsla(var(--foregroundColor), 1.0);
-        stroke-width: 0;
-    }
-
-    .mark {
-        &.type\:bar {
+        .chart-label {
             font-size: var(--fontSize);
             font-weight: var(--fontWeight);
             line-height: var(--lineHeight);
@@ -45,13 +37,23 @@
             stroke-width: 0;
         }
 
-        &.type\:pie {
-            font-size: var(--fontSize);
-            font-weight: var(--fontWeight);
-            line-height: var(--lineHeight);
-
-            path {
+        .mark {
+            &.type\:bar {
+                font-size: var(--fontSize);
+                font-weight: var(--fontWeight);
+                line-height: var(--lineHeight);
                 fill: hsla(var(--foregroundColor), 1.0);
+                stroke-width: 0;
+            }
+
+            &.type\:pie {
+                font-size: var(--fontSize);
+                font-weight: var(--fontWeight);
+                line-height: var(--lineHeight);
+
+                path {
+                    fill: hsla(var(--foregroundColor), 1.0);
+                }
             }
         }
     }

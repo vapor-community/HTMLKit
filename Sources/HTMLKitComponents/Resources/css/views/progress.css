@@ -2,21 +2,23 @@
  * The rulesets for the progress component.
  */
 
-.progress {
-    --borderWidth: 1px;
-    --borderColor: var(--systemBorderColor);
-    --borderOpacity: 1.0;
-    --tintColor: var(--accentColor);
+@layer htmlkit.components {
+    .progress {
+        --borderWidth: 1px;
+        --borderColor: var(--systemBorderColor);
+        --borderOpacity: 1.0;
+        --tintColor: var(--accentColor);
 
-    .mark {
-        &:first-child {
-            fill: hsla(var(--systemBackgroundColor), 1.0);
-            stroke-width: var(--borderWidth);
-            stroke: hsla(var(--borderColor), var(--borderOpacity));
-        }
+        .mark {
+            &:first-child {
+                fill: hsla(var(--systemBackgroundColor), 1.0);
+                stroke-width: var(--borderWidth);
+                stroke: hsla(var(--borderColor), var(--borderOpacity));
+            }
 
-        &:last-child {
-            fill: hsla(var(--tintColor), 1.0);
+            &:last-child {
+                fill: hsla(var(--tintColor), 1.0);
+            }
         }
     }
 }

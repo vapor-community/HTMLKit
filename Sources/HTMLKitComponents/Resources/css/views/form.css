@@ -2,8 +2,10 @@
  * The rulesets for the form component.
  */
 
-.form {
-    display: block;
-    inline-size: 100%;
-    block-size: auto;
+@layer htmlkit.components {
+    .form {
+        display: block;
+        inline-size: 100%;
+        block-size: auto;
+    }
 }

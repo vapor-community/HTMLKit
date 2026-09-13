@@ -2,42 +2,44 @@
  * The rulesets for the card component.
  */
 
-.card {
-    --paddingInlineStart: 1.0rem;
-    --paddingInlineEnd: 1.0rem;
-    --paddingBlockStart: 0.5rem;
-    --paddingBlockEnd: 0.5rem;
-    --foregroundColor: var(--systemTextColor);
-    --borderWidth: 1px;
-    --borderColor: var(--systemBorderColor);
-    --borderRadius: 0;
-    --borderOpacity: 1.0;
-    --backgroundColor: var(--systemBackgroundColor);
-    --backgroundOpacity: 1.0;
-    
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    border-width: var(--borderWidth);
-    border-style: solid;
-    border-color: hsla(var(--borderColor), var(--borderOpacity));
-    border-radius: var(--borderRadius);
-    background-color: hsla(var(--backgroundColor), var(--backgroundOpacity));
-    overflow: clip;
+@layer htmlkit.components {
+    .card {
+        --paddingInlineStart: 1.0rem;
+        --paddingInlineEnd: 1.0rem;
+        --paddingBlockStart: 0.5rem;
+        --paddingBlockEnd: 0.5rem;
+        --foregroundColor: var(--systemTextColor);
+        --borderWidth: 1px;
+        --borderColor: var(--systemBorderColor);
+        --borderRadius: 0;
+        --borderOpacity: 1.0;
+        --backgroundColor: var(--systemBackgroundColor);
+        --backgroundOpacity: 1.0;
 
-    .card-header {
-        border-start-start-radius: var(--borderRadius);
-        border-start-end-radius: var(--borderRadius);
-    }
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        border-width: var(--borderWidth);
+        border-style: solid;
+        border-color: hsla(var(--borderColor), var(--borderOpacity));
+        border-radius: var(--borderRadius);
+        background-color: hsla(var(--backgroundColor), var(--backgroundOpacity));
+        overflow: clip;
 
-    .card-body {
-        flex-grow: 1;
+        .card-header {
+            border-start-start-radius: var(--borderRadius);
+            border-start-end-radius: var(--borderRadius);
+        }
 
-        padding-block-start: var(--paddingBlockStart);
-        padding-block-end: var(--paddingBlockEnd);
-        padding-inline-start: var(--paddingInlineStart);
-        padding-inline-end: var(--paddingInlineEnd);
-        border-end-start-radius: var(--borderRadius);
-        border-end-end-radius: var(--borderRadius);
+        .card-body {
+            flex-grow: 1;
+
+            padding-block-start: var(--paddingBlockStart);
+            padding-block-end: var(--paddingBlockEnd);
+            padding-inline-start: var(--paddingInlineStart);
+            padding-inline-end: var(--paddingInlineEnd);
+            border-end-start-radius: var(--borderRadius);
+            border-end-end-radius: var(--borderRadius);
+        }
     }
 }
