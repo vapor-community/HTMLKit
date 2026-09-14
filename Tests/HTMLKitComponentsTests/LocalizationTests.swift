@@ -180,6 +180,21 @@ final class LocalizationTests: XCTestCase {
                        """
         )
     }
+    
+    func testBarMarkLocalization() throws {
+        
+        let view = TestView {
+            BarMark("Folder", value: 941)
+        }
+        
+        XCTAssertEqual(try renderer!.render(view: view),
+                       """
+                       <g class="mark type:bar">\
+                       <rect>941</rect>\
+                       <text class="mark-label">Dossier</text>\
+                       </g>
+                       """)
+    }
 }
 
 extension LocalizationTests {

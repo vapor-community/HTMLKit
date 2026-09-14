@@ -6,19 +6,19 @@ import HTMLKit
 ///
 /// ```swift
 /// Chart {
-///     BarMark(value: 50, label: "Lorem ipsum")
+///     BarMark("Lorem ipsum", value: 50)
 ///         .foregroundColor(.random)
-///     BarMark(value: 50, label: "Lorem ipsum")
+///     BarMark("Lorem ipsum", value: 50)
 ///         .foregroundColor(.random)
 /// }
 /// ```
 public struct BarMark: View, Modifiable {
     
+    /// The title of the mark.
+    internal let label: DynamicString
+    
     /// The value of the mark.
     internal let value: Int
-    
-    /// The title of the mark.
-    internal let label: String
     
     /// The class names of the bar mark.
     internal var classes: [String]
@@ -28,20 +28,51 @@ public struct BarMark: View, Modifiable {
     /// - Parameters:
     ///   - value: The value at which to plot the mark.
     ///   - label: The title used to label the mark.
+    @available(*, deprecated, message: "Use the init(label:value:) initializer instead.")
     public init(value: Int, label: String) {
         
+        self.label = .literal(label)
         self.value = value
-        self.label = label
-        self.classes = ["mark type:bar"]
+        self.classes = ["mark", "type:bar"]
+    }
+    
+    /// Create a bar mark.
+    ///
+    /// - Parameters:
+    ///   - label: The title used to label the mark.
+    ///   - value: The value at which to plot the mark.
+    @_disfavoredOverload
+    public init(_ label: any StringProtocol & Content, value: Int) {
+        
+        self.label = .literal(String(label))
+        self.value = value
+        self.classes = ["mark", "type:bar"]
+    }
+    
+    /// Create a bar mark.
+    ///
+    /// - Parameters:
+    ///   - localizedStringKey: The key of the localized string to look for.
+    ///   - value: The value at which to plot the mark.
+    public init(_ localizedStringKey: LocalizedStringKey, value: Int) {
+        
+        self.label = .localized(localizedStringKey, nil)
+        self.value = value
+        self.classes = ["mark", "type:bar"]
     }
     
     public var body: Content {
-        HTMLKit.Group {
+        Group {
             Rectangle {
-                "\(value)"
+                value
             }
             Custom(name: "text") {
-                label
+                if case .localized(let value, let table) = label {
+                    LocalizedString(key: value, table: table)
+                }
+                if case .literal(let string) = label {
+                    string
+                }
             }
             .custom(key: "class", value: "mark-label", context: .trusted)
         }
