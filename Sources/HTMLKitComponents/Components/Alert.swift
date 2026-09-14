@@ -30,10 +30,10 @@ public struct Alert: View, Identifiable, Modifiable {
     }
     
     public var body: Content {
-        Division {
+        Output {
             content
         }
-        .role(.alert)
+        .role(.status)
         .class(classes)
         .modify(unwrap: id) {
             $0.id($1)
@@ -95,7 +95,7 @@ extension Alert: ViewModifier {
         return self.mutate(border: color.value, width: width.value, shape: shape?.value)
     }
     
-    public func frame(width: Tokens.ViewWidth, height: Tokens.ViewHeight?, alignment: Tokens.FrameAlignment?) -> Alert {
+    public func frame(width: Tokens.ViewWidth, height: Tokens.ViewHeight? = nil, alignment: Tokens.FrameAlignment? = nil) -> Alert {
         return self.mutate(frame: width.value, height: height?.value, alignment: alignment?.value)
     }
     
