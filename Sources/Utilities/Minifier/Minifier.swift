@@ -2,7 +2,7 @@ import Foundation
 
 public struct Minifier {
     
-    public struct Compression: OptionSet {
+    public struct Compression: OptionSet, Sendable {
         
         public var rawValue: Int
         
