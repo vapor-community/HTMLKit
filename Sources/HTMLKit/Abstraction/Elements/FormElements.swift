@@ -2518,6 +2518,10 @@ extension Button: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessib
         return mutate(command:.init(action.rawValue, context: .trusted)).mutate(commandfor: .init(target, context: .tainted(.html)))
     }
     
+    public func command(_ action: String, for target: String) -> Button {
+        return mutate(command:.init("--\(action)", context: .tainted(.html))).mutate(commandfor: .init(target, context: .tainted(.html)))
+    }
+    
     public func custom(key: String, value: String, context: EscapeContext = .tainted(.html)) -> Button {
         return mutate(key: key, value: .init(value, context: context))
     }

@@ -4427,6 +4427,15 @@ public protocol CommandAttribute: Attribute {
     ///   
     /// - Returns: The element
     func command(_ action: ActionCommand, for target: String) -> Self
+    
+    /// Set an action to perform for the button element.
+    ///  
+    /// - Parameters:
+    ///   - action: The action to perform when triggered.
+    ///   - target: The identifier of the target to invoke.
+    ///   
+    /// - Returns: The element
+    func command(_ action: String, for target: String) -> Self
 }
 
 extension CommandAttribute where Self: ContentNode {

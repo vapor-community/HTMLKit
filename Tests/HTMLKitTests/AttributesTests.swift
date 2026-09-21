@@ -1230,6 +1230,10 @@ final class AttributesTests: XCTestCase {
         func command(_ action: ActionCommand, for target: String) -> Tag {
             return mutate(command:.init(action.rawValue, context: .trusted)).mutate(commandfor: .init(target, context: .tainted(.html)))
         }
+        
+        func command(_ action: String, for target: String) -> Tag {
+            return mutate(command:.init("--\(action)", context: .tainted(.html))).mutate(commandfor: .init(target, context: .tainted(.html)))
+        }
     }
     
     var renderer = Renderer()
@@ -3947,12 +3951,14 @@ final class AttributesTests: XCTestCase {
     func testCommandAttribute() throws {
         
         let view = TestView {
-            Tag {}.command(.hidePopover, for: "test")
+            Tag {}.command(.hidePopover, for: "id")
+            Tag {}.command("show-text", for: "id")
         }
         
         XCTAssertEqual(try renderer.render(view: view),
                        """
-                       <tag command="hide-popover" commandfor="test"></tag>
+                       <tag command="hide-popover" commandfor="id"></tag>\
+                       <tag command="--show-text" commandfor="id"></tag>
                        """
         )
     }
