@@ -23,7 +23,7 @@ public enum ActionCommand: String {
     case closeDialog = "close"
     
     /// Requests to close the dialog element.
-    case requestClose = "request-close"
+    case requestDialogClosure = "request-close"
     
     /// Opens the dialog element.
     case showModal = "show-modal"
