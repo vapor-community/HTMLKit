@@ -6,19 +6,19 @@ import HTMLKit
 ///
 /// ```swift
 /// Chart {
-///     SectorMark(value: 50, label: "Lorem ipsum")
+///     SectorMark("Lorem ipsum", value: 50)
 ///         .foregroundColor(.random)
-///     SectorMark(value: 50, label: "Lorem ipsum")
+///     SectorMark("Lorem ipsum", value: 50)
 ///         .foregroundColor(.random)
 /// }
 /// ```
 public struct SectorMark: View, Modifiable {
     
+    /// The title of the mark.
+    internal let label: DynamicString
+    
     /// The value of the mark.
     internal let value: Int
-    
-    /// The title of the mark.
-    internal let label: String
     
     /// The class names of the sector mark.
     internal var classes: [String]
@@ -28,18 +28,53 @@ public struct SectorMark: View, Modifiable {
     /// - Parameters:
     ///   - value: The value at which to plot the mark.
     ///   - label: The title used to label the mark.
+    @available(*, deprecated, message: "Use the init(label:value:) initializer instead.")
     public init(value: Int, label: String) {
         
         self.value = value
-        self.label = label
-        self.classes = ["mark type:pie"]
+        self.label = .literal(label)
+        self.classes = ["mark", "type:pie"]
+    }
+    
+    /// Create a sector mark.
+    ///
+    /// - Parameters:
+    ///   - label: The title used to label the mark.
+    ///   - value: The value at which to plot the mark.
+    @_disfavoredOverload
+    public init(label: any StringProtocol & Content, value: Int) {
+        
+        self.label = .literal(String(label))
+        self.value = value
+        self.classes = ["mark", "type:pie"]
+    }
+    
+    /// Create a sector mark.
+    ///
+    /// - Parameters:
+    ///   - localizedStringKey: The key of the localized string to look for.
+    ///   - value: The value at which to plot the mark.
+    public init(_ localizedStringKey: LocalizedStringKey, value: Int) {
+        
+        self.label = .localized(localizedStringKey, nil)
+        self.value = value
+        self.classes = ["mark", "type:pie"]
     }
     
     public var body: Content {
-        HTMLKit.Group {
+        Group {
             Path {
-                "\(value)"
+                value
             }
+            Custom(name: "text") {
+                if case .localized(let value, let table) = label {
+                    LocalizedString(key: value, table: table)
+                }
+                if case .literal(let string) = label {
+                    string
+                }
+            }
+            .custom(key: "class", value: "mark-label", context: .trusted)
         }
         .class(classes)
     }

@@ -18,11 +18,9 @@ internal struct DeployCommand {
         return CommandLine.arguments[2]
     }
     
-    private static let manager = FileManager.default
-    
     internal static func main() throws {
         
-        if !manager.fileExists(atPath: sourcePath) {
+        if !FileManager.default.fileExists(atPath: sourcePath) {
             print("No valid source path.")
             
             exit(1)
@@ -47,15 +45,15 @@ internal struct DeployCommand {
         /* Copyright (c) 2019 - 2026 Vapor Community - Licensed under MIT (https://github.com/vapor-community/HTMLKit/blob/main/LICENSE) */
         """
         
-        if !manager.fileExists(atPath: target) {
-            try manager.createDirectory(atPath: target, withIntermediateDirectories: true)
+        if !FileManager.default.fileExists(atPath: target) {
+            try FileManager.default.createDirectory(atPath: target, withIntermediateDirectories: true)
         }
         
-        if !manager.fileExists(atPath: target + filename) {
-            manager.createFile(atPath: target + filename, contents: template.data(using: .utf8))
+        if !FileManager.default.fileExists(atPath: target + filename) {
+            FileManager.default.createFile(atPath: target + filename, contents: template.data(using: .utf8))
         }
         
-        if let enumerator = manager.enumerator(at: URL(fileURLWithPath: source), includingPropertiesForKeys: nil, options: [.skipsHiddenFiles]) {
+        if let enumerator = FileManager.default.enumerator(at: URL(fileURLWithPath: source), includingPropertiesForKeys: nil, options: [.skipsHiddenFiles]) {
             
             for case let path as URL in enumerator {
                 
@@ -97,15 +95,15 @@ internal struct DeployCommand {
         /* Copyright (c) 2019 - 2026 Vapor Community - Licensed under MIT (https://github.com/vapor-community/HTMLKit/blob/main/LICENSE) */
         """
         
-        if !manager.fileExists(atPath: target) {
-            try manager.createDirectory(atPath: target, withIntermediateDirectories: true)
+        if !FileManager.default.fileExists(atPath: target) {
+            try FileManager.default.createDirectory(atPath: target, withIntermediateDirectories: true)
         }
         
-        if !manager.fileExists(atPath: target + filename) {
-            manager.createFile(atPath: target + filename, contents: template.data(using: .utf8))
+        if !FileManager.default.fileExists(atPath: target + filename) {
+            FileManager.default.createFile(atPath: target + filename, contents: template.data(using: .utf8))
         }
         
-        if let enumerator = manager.enumerator(at: URL(fileURLWithPath: source), includingPropertiesForKeys: nil, options: [.skipsHiddenFiles]) {
+        if let enumerator = FileManager.default.enumerator(at: URL(fileURLWithPath: source), includingPropertiesForKeys: nil, options: [.skipsHiddenFiles]) {
             
             for case let path as URL in enumerator {
                 

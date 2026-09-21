@@ -2,104 +2,106 @@
  * The rulesets for the grid component.
  */
 
-.grid {
-    --paddingInlineStart: 0;
-    --paddingInlineEnd: 0;
-    --paddingBlockStart: 0;
-    --paddingBlockEnd: 0;
-    --backgroundColor: 0, 0%, 0%;
-    --backgroundOpacity: 0.0;
-    
-    position: relative;
-    padding-block-start: var(--paddingBlockStart);
-    padding-block-end: var(--paddingBlockEnd);
-    padding-inline-start: var(--paddingInlineStart);
-    padding-inline-end: var(--paddingInlineEnd);
-    inline-size: 100%;
-    display: grid;
-    background-color: hsla(var(--backgroundColor), var(--backgroundOpacity));
+@layer htmlkit.components {
+    .grid {
+        --paddingInlineStart: 0;
+        --paddingInlineEnd: 0;
+        --paddingBlockStart: 0;
+        --paddingBlockEnd: 0;
+        --backgroundColor: 0, 0%, 0%;
+        --backgroundOpacity: 0.0;
 
-    &.ratio\:fit {
-        grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
-    }
+        position: relative;
+        padding-block-start: var(--paddingBlockStart);
+        padding-block-end: var(--paddingBlockEnd);
+        padding-inline-start: var(--paddingInlineStart);
+        padding-inline-end: var(--paddingInlineEnd);
+        inline-size: 100%;
+        display: grid;
+        background-color: hsla(var(--backgroundColor), var(--backgroundOpacity));
 
-    &.ratio\:half {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
+        &.ratio\:fit {
+            grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
+        }
 
-    &.ratio\:third {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
+        &.ratio\:half {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
 
-    &.ratio\:quarter {
-        grid-template-columns: repeat(4, minmax(0, 1fr));
-    }
+        &.ratio\:third {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
 
-    &.ratio\:fifth {
-        grid-template-columns: repeat(5, minmax(0, 1fr));
-    }
+        &.ratio\:quarter {
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+        }
 
-    &.ratio\:sixth {
-        grid-template-columns: repeat(6, minmax(0, 1fr));
-    }
+        &.ratio\:fifth {
+            grid-template-columns: repeat(5, minmax(0, 1fr));
+        }
 
-    &.vertical-spacing\:around {
-        align-content: space-around;
-    }
+        &.ratio\:sixth {
+            grid-template-columns: repeat(6, minmax(0, 1fr));
+        }
 
-    &.vertical-spacing\:between {
-        align-content: space-between;
-    }
+        &.vertical-spacing\:around {
+            align-content: space-around;
+        }
 
-    &.vertical-spacing\:evenly {
-        align-content: space-evenly;
-    }
+        &.vertical-spacing\:between {
+            align-content: space-between;
+        }
 
-    &.vertical-spacing\:large {
-        row-gap: 2.25rem;
-    }
+        &.vertical-spacing\:evenly {
+            align-content: space-evenly;
+        }
 
-    &.vertical-spacing\:medium {
-        row-gap: 1.5rem;
-    }
+        &.vertical-spacing\:large {
+            row-gap: 2.25rem;
+        }
 
-    &.vertical-spacing\:small {
-        row-gap: 1rem;
-    }
+        &.vertical-spacing\:medium {
+            row-gap: 1.5rem;
+        }
 
-    &.horizontal-spacing\:around {
-        justify-content: space-around;
-    }
+        &.vertical-spacing\:small {
+            row-gap: 1rem;
+        }
 
-    &.horizontal-spacing\:between {
-        justify-content: space-between;
-    }
+        &.horizontal-spacing\:around {
+            justify-content: space-around;
+        }
 
-    &.horizontal-spacing\:evenly {
-        justify-content: space-evenly;
-    }
+        &.horizontal-spacing\:between {
+            justify-content: space-between;
+        }
 
-    &.horizontal-spacing\:large {
-        column-gap: 2.25rem;
-    }
+        &.horizontal-spacing\:evenly {
+            justify-content: space-evenly;
+        }
 
-    &.horizontal-spacing\:medium {
-        column-gap: 1.5rem;
-    }
+        &.horizontal-spacing\:large {
+            column-gap: 2.25rem;
+        }
 
-    &.horizontal-spacing\:small {
-        column-gap: 1rem;
-    }
+        &.horizontal-spacing\:medium {
+            column-gap: 1.5rem;
+        }
 
-    > .frame-alignment\:leading {
-        align-self: start;
-    }
+        &.horizontal-spacing\:small {
+            column-gap: 1rem;
+        }
 
-    > .frame-alignment\:center {
-        align-self: center;
-    }
+        > .frame-alignment\:leading {
+            align-self: start;
+        }
 
-    > .frame-alignment\:trailing {
-        align-self: end;
+        > .frame-alignment\:center {
+            align-self: center;
+        }
+
+        > .frame-alignment\:trailing {
+            align-self: end;
+        }
     }
 }

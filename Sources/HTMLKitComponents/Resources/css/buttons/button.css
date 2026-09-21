@@ -2,82 +2,84 @@
  * The rulesets for the button component.
  */
 
-.button {
-    --paddingBlockStart: 0.5rem;
-    --paddingBlockEnd: 0.5rem;
-    --paddingInlineStart: 1.0rem;
-    --paddingInlineEnd: 1.0rem;
-    --inlineSize: fit-content;
-    --fontSize: 1.0rem;
-    --fontWeight: 400;
-    --lineHeight: 1.5;
-    --borderWidth: 1px;
-    --borderColor: var(--systemBorderColor);
-    --borderRadius: 0;
-    --borderOpacity: 1.0;
-    --foregroundColor: var(--systemTextColor);
-    --backgroundColor: var(--systemBackgroundColor);
-    --backgroundOpacity: 1.0;
-    
-    position: relative;
-    padding-block-start: var(--paddingBlockStart);
-    padding-block-end: var(--paddingBlockEnd);
-    padding-inline-start: var(--paddingInlineStart);
-    padding-inline-end: var(--paddingInlineEnd);
-    inline-size: var(--inlineSize);
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    font-family: var(--fontFamily);
-    font-size: var(--fontSize);
-    font-weight: var(--fontWeight);
-    line-height: var(--lineHeight);
-    color: hsla(var(--foregroundColor), 1.0);
-    text-decoration: none;
-    white-space: nowrap;
-    border-width: var(--borderWidth);
-    border-style: solid;
-    border-color: hsla(var(--borderColor), var(--borderOpacity));
-    border-radius: var(--borderRadius);
-    background-color: hsla(var(--backgroundColor), var(--backgroundOpacity));
-    cursor: pointer;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    user-select: none;
+@layer htmlkit.components {
+    .button {
+        --paddingBlockStart: 0.5rem;
+        --paddingBlockEnd: 0.5rem;
+        --paddingInlineStart: 1.0rem;
+        --paddingInlineEnd: 1.0rem;
+        --inlineSize: fit-content;
+        --fontSize: 1.0rem;
+        --fontWeight: 400;
+        --lineHeight: 1.5;
+        --borderWidth: 1px;
+        --borderColor: var(--systemBorderColor);
+        --borderRadius: 0;
+        --borderOpacity: 1.0;
+        --foregroundColor: var(--systemTextColor);
+        --backgroundColor: var(--systemBackgroundColor);
+        --backgroundOpacity: 1.0;
 
-    &:hover {
-        filter: brightness(90%) saturate(90%);
-    }
+        position: relative;
+        padding-block-start: var(--paddingBlockStart);
+        padding-block-end: var(--paddingBlockEnd);
+        padding-inline-start: var(--paddingInlineStart);
+        padding-inline-end: var(--paddingInlineEnd);
+        inline-size: var(--inlineSize);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-family: var(--fontFamily);
+        font-size: var(--fontSize);
+        font-weight: var(--fontWeight);
+        line-height: var(--lineHeight);
+        color: hsla(var(--foregroundColor), 1.0);
+        text-decoration: none;
+        white-space: nowrap;
+        border-width: var(--borderWidth);
+        border-style: solid;
+        border-color: hsla(var(--borderColor), var(--borderOpacity));
+        border-radius: var(--borderRadius);
+        background-color: hsla(var(--backgroundColor), var(--backgroundOpacity));
+        cursor: pointer;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
 
-    &.style\:primary {
-        --foregroundColor: var(--whiteColor) !important;
-        --borderColor: var(--accentColor) !important;
-        --backgroundColor: var(--accentColor) !important;
-    }
+        &:hover {
+            filter: brightness(90%) saturate(90%);
+        }
 
-    &.style\:outline {
-        --foregroundColor: var(--systemTextColor) !important;
-        --borderColor: var(--systemBorderColor) !important;
-        --backgroundOpacity: 0.0 !important;
-    }
+        &.style\:primary {
+            --foregroundColor: var(--whiteColor) !important;
+            --borderColor: var(--accentColor) !important;
+            --backgroundColor: var(--accentColor) !important;
+        }
 
-    &.size\:full {
-        --inlineSize: 100%;
-    }
+        &.style\:outline {
+            --foregroundColor: var(--systemTextColor) !important;
+            --borderColor: var(--systemBorderColor) !important;
+            --backgroundOpacity: 0.0 !important;
+        }
 
-    &.size\:large {
-        --inlineSize: 75%;
-    }
+        &.size\:full {
+            --inlineSize: 100%;
+        }
 
-    &.size\:medium {
-        --inlineSize: 50%;
-    }
+        &.size\:large {
+            --inlineSize: 75%;
+        }
 
-    &.size\:small {
-        --inlineSize: 25%;
-    }
+        &.size\:medium {
+            --inlineSize: 50%;
+        }
 
-    .symbol {
-        height: 24px; /* Temporary fix */
+        &.size\:small {
+            --inlineSize: 25%;
+        }
+
+        .symbol {
+            height: 24px; /* Temporary fix */
+        }
     }
 }

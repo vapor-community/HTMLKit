@@ -2,165 +2,163 @@
  * The rulesets for the datepicker component.
  */
 
-.datepicker {
-    --paddingBlockStart: 0.5rem;
-    --paddingBlockEnd: 0.5rem;
-    --paddingInlineStart: 1.0rem;
-    --paddingInlineEnd: 1.0rem;
-    --fontSize: 1.0rem;
-    --fontWeight: normal;
-    --lineHeight: 1.5;
-    --foregroundColor: var(--systemTextColor);
-    --borderWidth: 1px;
-    --borderColor: var(--systemBorderColor);
-    --borderRadius: 0;
-    --borderOpacity: 1.0;
-    --focusColor: var(--systemFocusColor);
-    --backgroundColor: var(--systemBackgroundColor);
-    --backgroundOpacity: 1.0;
-    
-    position: relative;
-    display: block;
-    inline-size: 100%;
+@layer htmlkit.components {
+    .datepicker {
+        --paddingBlockStart: 0.5rem;
+        --paddingBlockEnd: 0.5rem;
+        --paddingInlineStart: 1.0rem;
+        --paddingInlineEnd: 1.0rem;
+        --fontSize: 1.0rem;
+        --fontWeight: normal;
+        --lineHeight: 1.5;
+        --foregroundColor: var(--systemTextColor);
+        --borderWidth: 1px;
+        --borderColor: var(--systemBorderColor);
+        --borderRadius: 0;
+        --borderOpacity: 1.0;
+        --focusColor: var(--systemFocusColor);
+        --backgroundColor: var(--systemBackgroundColor);
+        --backgroundOpacity: 1.0;
 
-    .datepicker-datefield {
+        position: relative;
         display: block;
         inline-size: 100%;
-        padding-block-start: var(--paddingBlockStart);
-        padding-block-end: var(--paddingBlockEnd);
-        padding-inline-start: var(--paddingInlineStart);
-        padding-inline-end: var(--paddingInlineEnd);
-        font-family: system-ui;
-        font-size: var(--fontSize);
-        font-weight: var(--fontWeight);
-        line-height: var(--lineHeight);
-        color: hsla(var(--foregroundColor), 1.0);
-        border-width: var(--borderWidth);
-        border-style: solid;
-        border-color: hsla(var(--borderColor), var(--borderOpacity));
-        border-radius: var(--borderRadius);
-        background-color: hsla(var(--backgroundColor), var(--backgroundOpacity));
-        -webkit-appearance: none;
-        -moz-appearance: none;
-        appearance: none;
 
-        &:focus {
-            --borderColor: var(--focusColor) !important;
-
-            outline-style: none;
-            box-shadow: 0 0 0 0.125rem hsla(var(--focusColor), 0.1);
-
-            .datepicker-picker {
-                display: inline-block;
-            }
-        }
-
-        &:invalid {
-            --borderColor: var(--redColor);
-        }
-    }
-
-    .datepicker-calendar {
-        position: absolute;
-        z-index: 1;
-        padding-inline: 0.5rem;
-        padding-block: 0.5rem;
-        margin-block: 0.75rem;
-        inline-size: 100%;
-        display: block;
-        font-family: system-ui;
-        font-size: var(--fontSize);
-        font-weight: var(--fontWeight);
-        line-height: var(--lineHeight);
-        color: hsla(var(--foregroundColor), 1.0);
-        border-width: var(--borderWidth);
-        border-style: solid;
-        border-color: hsla(var(--borderColor), 1.0);
-        border-radius: var(--borderRadius);
-        background-color: hsla(var(--backgroundColor), 1.0);
-        visibility: hidden;
-        overflow: hidden;
-
-        &.position\:bottom {
-            bottom: 0;
-            margin-block: 3.375rem !important;
-        }
-
-        .calendar-navigation {
+        .datepicker-datefield {
+            display: block;
+            inline-size: 100%;
             padding-block-start: var(--paddingBlockStart);
             padding-block-end: var(--paddingBlockEnd);
             padding-inline-start: var(--paddingInlineStart);
             padding-inline-end: var(--paddingInlineEnd);
-            display: flex;
-            align-items : center;
-            justify-content: space-between;
-            list-style-type: none;
+            font-family: system-ui;
+            font-size: var(--fontSize);
+            font-weight: var(--fontWeight);
+            line-height: var(--lineHeight);
+            color: hsla(var(--foregroundColor), 1.0);
+            border-width: var(--borderWidth);
+            border-style: solid;
+            border-color: hsla(var(--borderColor), var(--borderOpacity));
+            border-radius: var(--borderRadius);
+            background-color: hsla(var(--backgroundColor), var(--backgroundOpacity));
+            appearance: none;
 
-            button {
-                padding-inline: 0.5rem;
-                padding-block: 0.5rem;
-                display: inline-block;
-                font-family: system-ui;
-                font-size: var(--fontSize);
-                font-weight: var(--fontWeight);
-                line-height: var(--lineHeight);
-                color: hsla(var(--foregroundColor), 1.0);
-                border-style: none;
-                background-color: transparent;
-                -webkit-appearance: none;
-                -moz-appearance: none;
-                appearance: none;
-                cursor: pointer;
+            &:focus {
+                --borderColor: var(--focusColor) !important;
 
-                svg {
-                    inline-size: 1rem;
-                    block-size: 1rem;
-                    pointer-events: none;
+                outline-style: none;
+                box-shadow: 0 0 0 0.125rem hsla(var(--focusColor), 0.1);
+
+                .datepicker-picker {
+                    display: inline-block;
                 }
             }
-        }
 
-        .calendar-week {
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            grid-auto-rows: 1fr;
-            list-style-type: none;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            user-select: none;
-
-            li {
-                padding-inline: 0.5rem;
-                padding-block: 0.5rem;
-                font-weight: bold;
-                text-align: center;
+            &:invalid {
+                --borderColor: var(--redColor);
             }
         }
 
-        .calendar-days {
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            grid-auto-rows: 1fr;
-            list-style-type: none;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            user-select: none;
+        .datepicker-calendar {
+            position: absolute;
+            z-index: 1;
+            padding-inline: 0.5rem;
+            padding-block: 0.5rem;
+            margin-block: 0.75rem;
+            inline-size: 100%;
+            display: block;
+            font-family: system-ui;
+            font-size: var(--fontSize);
+            font-weight: var(--fontWeight);
+            line-height: var(--lineHeight);
+            color: hsla(var(--foregroundColor), 1.0);
+            border-width: var(--borderWidth);
+            border-style: solid;
+            border-color: hsla(var(--borderColor), 1.0);
+            border-radius: var(--borderRadius);
+            background-color: hsla(var(--backgroundColor), 1.0);
+            visibility: hidden;
+            overflow: hidden;
 
-            li {
-                padding-inline: 0.5rem;
-                padding-block: 0.5rem;
-                font-weight: bold;
-                text-align: center;
+            &.position\:bottom {
+                bottom: 0;
+                margin-block: 3.375rem !important;
+            }
 
-                &:has(time) {
+            .calendar-navigation {
+                padding-block-start: var(--paddingBlockStart);
+                padding-block-end: var(--paddingBlockEnd);
+                padding-inline-start: var(--paddingInlineStart);
+                padding-inline-end: var(--paddingInlineEnd);
+                display: flex;
+                align-items : center;
+                justify-content: space-between;
+                list-style-type: none;
+
+                button {
                     padding-inline: 0.5rem;
                     padding-block: 0.5rem;
-                    text-align: center;
+                    display: inline-block;
+                    font-family: system-ui;
+                    font-size: var(--fontSize);
+                    font-weight: var(--fontWeight);
+                    line-height: var(--lineHeight);
+                    color: hsla(var(--foregroundColor), 1.0);
+                    border-style: none;
+                    background-color: transparent;
+                    appearance: none;
                     cursor: pointer;
 
-                    &:hover {
-                        border-radius: var(--borderRadius);
-                        background-color: hsla(var(--borderColor), 0.5);
+                    svg {
+                        inline-size: 1rem;
+                        block-size: 1rem;
+                        pointer-events: none;
+                    }
+                }
+            }
+
+            .calendar-week {
+                display: grid;
+                grid-template-columns: repeat(7, 1fr);
+                grid-auto-rows: 1fr;
+                list-style-type: none;
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                user-select: none;
+
+                li {
+                    padding-inline: 0.5rem;
+                    padding-block: 0.5rem;
+                    font-weight: bold;
+                    text-align: center;
+                }
+            }
+
+            .calendar-days {
+                display: grid;
+                grid-template-columns: repeat(7, 1fr);
+                grid-auto-rows: 1fr;
+                list-style-type: none;
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                user-select: none;
+
+                li {
+                    padding-inline: 0.5rem;
+                    padding-block: 0.5rem;
+                    font-weight: bold;
+                    text-align: center;
+
+                    &:has(time) {
+                        padding-inline: 0.5rem;
+                        padding-block: 0.5rem;
+                        text-align: center;
+                        cursor: pointer;
+
+                        &:hover {
+                            border-radius: var(--borderRadius);
+                            background-color: hsla(var(--borderColor), 0.5);
+                        }
                     }
                 }
             }

@@ -19,7 +19,7 @@ public struct TextEditor: View, Modifiable, Identifiable {
     /// The content hint for the field.
     internal let prompt: DynamicString?
     
-    /// The number of  visible text lines.
+    /// The number of visible text lines.
     internal var rows: Int = 3
     
     /// The body content of the editor.

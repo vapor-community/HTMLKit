@@ -2,69 +2,72 @@
  * The rulesets for the carousel component.
  */
 
-.carousel {
-    --borderWidth: 1px;
-    --borderColor: var(--systemBorderColor);
-    --borderRadius: 0;
-    --borderOpacity: 1.0;
-    --backgroundColor: var(--systemBackgroundColor);
-    --backgroundOpacity: 1.0;
+@layer htmlkit.components {
+    .carousel {
+        --borderWidth: 1px;
+        --borderColor: var(--systemBorderColor);
+        --borderRadius: 0;
+        --borderOpacity: 1.0;
+        --backgroundColor: var(--systemBackgroundColor);
+        --backgroundOpacity: 1.0;
 
-    max-inline-size: 100%;
-    block-size: auto;
-    display: flex;
-    flex-direction: column;
-
-    .carousel-content {
-        block-size: 350px;
-        display: grid;
-        grid-auto-flow: column;
-        grid-auto-columns: 100%;
-        border-width: var(--borderWidth);
-        border-style: solid;
-        border-color: hsla(var(--borderColor), var(--borderOpacity));
-        border-radius: var(--borderRadius);
-        background-color: hsla(var(--backgroundColor), var(--backgroundOpacity));
-        overflow: hidden;
-
-        &::-webkit-scrollbar {
-            display: none;
-        }
-    }
-
-    .carousel-indication {
-        block-size: 50px;
+        max-inline-size: 100%;
+        block-size: auto;
         display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 10px;
+        flex-direction: column;
 
-        .indicator {
-            --borderRadius: 5px;
-            --borderColor: var(--systemBorderColor);
-            --borderOpacity: 1.0;
-            --backgroundColor: var(--systemBorderColor);
-            --backgroundOpacity: 1.0;
-
-            position: relative;
-            inline-size: 40px;
-            block-size: 6px;
-            display: inline-block;
-            border-width: 1px;
+        .carousel-content {
+            block-size: 350px;
+            display: grid;
+            grid-auto-flow: column;
+            grid-auto-columns: 100%;
+            border-width: var(--borderWidth);
             border-style: solid;
             border-color: hsla(var(--borderColor), var(--borderOpacity));
             border-radius: var(--borderRadius);
             background-color: hsla(var(--backgroundColor), var(--backgroundOpacity));
-            cursor: pointer;
+            overflow: hidden;
+            scrollbar-width: none;
 
-            &:hover {
-                --borderColor: var(--accentColor);
-                --backgroundColor: var(--accentColor);
+            &::-webkit-scrollbar {
+                display: none;
             }
+        }
 
-            &.state\:active {
-                --borderColor: var(--accentColor);
-                --backgroundColor: var(--accentColor);
+        .carousel-indication {
+            block-size: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+
+            .indicator {
+                --borderRadius: 5px;
+                --borderColor: var(--systemBorderColor);
+                --borderOpacity: 1.0;
+                --backgroundColor: var(--systemBorderColor);
+                --backgroundOpacity: 1.0;
+
+                position: relative;
+                inline-size: 40px;
+                block-size: 6px;
+                display: inline-block;
+                border-width: 1px;
+                border-style: solid;
+                border-color: hsla(var(--borderColor), var(--borderOpacity));
+                border-radius: var(--borderRadius);
+                background-color: hsla(var(--backgroundColor), var(--backgroundOpacity));
+                cursor: pointer;
+
+                &:hover {
+                    --borderColor: var(--accentColor);
+                    --backgroundColor: var(--accentColor);
+                }
+
+                &.state\:active {
+                    --borderColor: var(--accentColor);
+                    --backgroundColor: var(--accentColor);
+                }
             }
         }
     }
@@ -74,13 +77,15 @@
  * The rulesets for the slide component.
  */
 
-.slide {
-    --backgroundColor: var(--systemBackgroundColor);
-    --backgroundOpacity: 1.0;
+@layer htmlkit.components {
+    .slide {
+        --backgroundColor: var(--systemBackgroundColor);
+        --backgroundOpacity: 1.0;
 
-    position: relative;
-    block-size: inherit;
-    display: flex;
-    background-color: hsla(var(--backgroundColor), var(--backgroundOpacity));
-    overflow: hidden;
+        position: relative;
+        block-size: inherit;
+        display: flex;
+        background-color: hsla(var(--backgroundColor), var(--backgroundOpacity));
+        overflow: hidden;
+    }
 }

@@ -1,0 +1,57 @@
+@layer htmlkit.resets {
+    *,
+    *::before,
+    *::after {
+        box-sizing: border-box;
+    }
+
+    blockquote,
+    dl,
+    dd,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    hr,
+    figure,
+    p,
+    pre,
+    body {
+        margin-inline: 0;
+        margin-block: 0;
+    }
+
+    ol,
+    ul,
+    menu {
+        margin-inline: 0;
+        margin-block: 0;
+        padding-inline: 0;
+        padding-block: 0;
+    }
+
+    img,
+    video,
+    canvas,
+    audio,
+    iframe,
+    embed,
+    object {
+        display: block;
+        vertical-align: middle;
+    }
+
+    img,
+    video {
+        max-inline-size: 100%;
+        block-size: auto;
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+        html:focus-within {
+            scroll-behavior: smooth;
+        }
+    }
+}

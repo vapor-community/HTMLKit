@@ -2,83 +2,83 @@
  * The rulesets for the selectfield component.
  */
 
-.selectfield {
-    --paddingBlockStart: 0.5rem;
-    --paddingBlockEnd: 0.5rem;
-    --paddingInlineStart: 1.0rem;
-    --paddingInlineEnd: 1.0rem;
-    --fontSize: 1.0rem;
-    --fontWeight: 400;
-    --lineHeight: 1.5;
-    --foregroundColor: var(--systemTextColor);
-    --borderWidth: 1px;
-    --borderColor: var(--systemBorderColor);
-    --borderRadius: 0;
-    --borderOpacity: 1.0;
-    --focusColor: var(--systemFocusColor);
-    --backgroundColor: var(--systemBackgroundColor);
-    --backgroundOpacity: 1.0;
-    
-    position: relative;
-    display: block;
-    inline-size: 100%;
+@layer htmlkit.components {
+    .selectfield {
+        --paddingBlockStart: 0.5rem;
+        --paddingBlockEnd: 0.5rem;
+        --paddingInlineStart: 1.0rem;
+        --paddingInlineEnd: 1.0rem;
+        --fontSize: 1.0rem;
+        --fontWeight: 400;
+        --lineHeight: 1.5;
+        --foregroundColor: var(--systemTextColor);
+        --borderWidth: 1px;
+        --borderColor: var(--systemBorderColor);
+        --borderRadius: 0;
+        --borderOpacity: 1.0;
+        --focusColor: var(--systemFocusColor);
+        --backgroundColor: var(--systemBackgroundColor);
+        --backgroundOpacity: 1.0;
 
-    .selectfield-textfield {
-        padding-block-start: var(--paddingBlockStart);
-        padding-block-end: var(--paddingBlockEnd);
-        padding-inline-start: var(--paddingInlineStart);
-        padding-inline-end: var(--paddingInlineEnd);
-        inline-size: 100%;
+        position: relative;
         display: block;
-        font-family: system-ui;
-        font-size: var(--fontSize);
-        font-weight: var(--fontWeight);
-        line-height: var(--lineHeight);
-        color: hsla(var(--foregroundColor), 1.0);
-        border-width: var(--borderWidth);
-        border-style: solid;
-        border-color: hsla(var(--borderColor), var(--borderOpacity));
-        border-radius: var(--borderRadius);
-        background-color: hsla(var(--backgroundColor), var(--backgroundOpacity));
-        -webkit-appearance: none;
-        -moz-appearance: none;
-        appearance: none;
-
-        &:focus {
-            --borderColor: var(--focusColor) !important;
-
-            outline-style: none;
-            box-shadow: 0 0 0 0.125rem hsla(var(--focusColor), 0.1);
-        }
-
-        &:invalid {
-            --borderColor: var(--redColor);
-        }
-    }
-
-    .selectfield-optionlist {
-        position: absolute;
-        z-index: 1;
-        margin-block: 0.75rem;
         inline-size: 100%;
-        display: block;
-        color: hsla(var(--foregroundColor), 1.0);
-        border-width: var(--borderWidth);
-        border-style: solid;
-        border-color: hsla(var(--borderColor), 1.0);
-        border-radius: var(--borderRadius);
-        background-color: hsla(var(--backgroundColor), 1.0);
-        list-style-type: none;
-        visibility: hidden;
 
-        &.position\:bottom {
-            bottom: 0;
-            margin-block: 3.375rem !important;
+        .selectfield-textfield {
+            padding-block-start: var(--paddingBlockStart);
+            padding-block-end: var(--paddingBlockEnd);
+            padding-inline-start: var(--paddingInlineStart);
+            padding-inline-end: var(--paddingInlineEnd);
+            inline-size: 100%;
+            display: block;
+            font-family: system-ui;
+            font-size: var(--fontSize);
+            font-weight: var(--fontWeight);
+            line-height: var(--lineHeight);
+            color: hsla(var(--foregroundColor), 1.0);
+            border-width: var(--borderWidth);
+            border-style: solid;
+            border-color: hsla(var(--borderColor), var(--borderOpacity));
+            border-radius: var(--borderRadius);
+            background-color: hsla(var(--backgroundColor), var(--backgroundOpacity));
+            appearance: none;
+
+            &:focus {
+                --borderColor: var(--focusColor) !important;
+
+                outline-style: none;
+                box-shadow: 0 0 0 0.125rem hsla(var(--focusColor), 0.1);
+            }
+
+            &:invalid {
+                --borderColor: var(--redColor);
+            }
         }
 
-        > * {
-            &:hover {
-                background-color: hsla(var(--borderColor), 0.5);
+        .selectfield-optionlist {
+            position: absolute;
+            z-index: 1;
+            margin-block: 0.75rem;
+            inline-size: 100%;
+            display: block;
+            color: hsla(var(--foregroundColor), 1.0);
+            border-width: var(--borderWidth);
+            border-style: solid;
+            border-color: hsla(var(--borderColor), 1.0);
+            border-radius: var(--borderRadius);
+            background-color: hsla(var(--backgroundColor), 1.0);
+            list-style-type: none;
+            visibility: hidden;
+
+            &.position\:bottom {
+                bottom: 0;
+                margin-block: 3.375rem !important;
+            }
+
+            > * {
+                &:hover {
+                    background-color: hsla(var(--borderColor), 0.5);
+                }
             }
         }
     }

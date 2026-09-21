@@ -73,7 +73,7 @@ public struct TextPad: View, Modifiable, Identifiable {
                         }
                         .namespace("http://www.w3.org/2000/svg")
                         .viewBox(x: 0, y: 0, width: 20, height: 16)
-                        .custom(key: "aria-hidden", value: true)
+                        .accessibilityHidden()
                     }
                     UnorderedList {
                         ListItem {
@@ -88,7 +88,7 @@ public struct TextPad: View, Modifiable, Identifiable {
                                 }
                                 .namespace("http://www.w3.org/2000/svg")
                                 .viewBox(x: 0, y: 0, width: 20, height: 16)
-                                .custom(key: "aria-hidden", value: true)
+                                .accessibilityHidden()
                             }
                             .type(.button)
                             .class("toolbar-tool")
@@ -111,7 +111,7 @@ public struct TextPad: View, Modifiable, Identifiable {
                                 }
                                 .namespace("http://www.w3.org/2000/svg")
                                 .viewBox(x: 0, y: 0, width: 20, height: 16)
-                                .custom(key: "aria-hidden", value: true)
+                                .accessibilityHidden()
                             }
                             .type(.button)
                             .class("toolbar-tool")
@@ -134,7 +134,7 @@ public struct TextPad: View, Modifiable, Identifiable {
                                 }
                                 .namespace("http://www.w3.org/2000/svg")
                                 .viewBox(x: 0, y: 0, width: 20, height: 16)
-                                .custom(key: "aria-hidden", value: true)
+                                .accessibilityHidden()
                             }
                             .type(.button)
                             .class("toolbar-tool")
@@ -157,7 +157,7 @@ public struct TextPad: View, Modifiable, Identifiable {
                                 }
                                 .namespace("http://www.w3.org/2000/svg")
                                 .viewBox(x: 0, y: 0, width: 20, height: 16)
-                                .custom(key: "aria-hidden", value: true)
+                                .accessibilityHidden()
                             }
                             .type(.button)
                             .class("toolbar-tool")
@@ -180,7 +180,7 @@ public struct TextPad: View, Modifiable, Identifiable {
                                 }
                                 .namespace("http://www.w3.org/2000/svg")
                                 .viewBox(x: 0, y: 0, width: 20, height: 16)
-                                .custom(key: "aria-hidden", value: true)
+                                .accessibilityHidden()
                             }
                             .type(.button)
                             .class("toolbar-tool")
@@ -208,7 +208,7 @@ public struct TextPad: View, Modifiable, Identifiable {
                             }
                             .namespace("http://www.w3.org/2000/svg")
                             .viewBox(x: 0, y: 0, width: 20, height: 16)
-                            .custom(key: "aria-hidden", value: true)
+                            .accessibilityHidden()
                         }
                         .type(.button)
                         .class("toolbar-tool")
@@ -231,7 +231,7 @@ public struct TextPad: View, Modifiable, Identifiable {
                             }
                             .namespace("http://www.w3.org/2000/svg")
                             .viewBox(x: 0, y: 0, width: 20, height: 16)
-                            .custom(key: "aria-hidden", value: true)
+                            .accessibilityHidden()
                         }
                         .type(.button)
                         .class("toolbar-tool")
@@ -254,7 +254,7 @@ public struct TextPad: View, Modifiable, Identifiable {
                             }
                             .namespace("http://www.w3.org/2000/svg")
                             .viewBox(x: 0, y: 0, width: 20, height: 16)
-                            .custom(key: "aria-hidden", value: true)
+                            .accessibilityHidden()
                         }
                         .type(.button)
                         .class("toolbar-tool")
@@ -277,7 +277,7 @@ public struct TextPad: View, Modifiable, Identifiable {
                             }
                             .namespace("http://www.w3.org/2000/svg")
                             .viewBox(x: 0, y: 0, width: 20, height: 16)
-                            .custom(key: "aria-hidden", value: true)
+                            .accessibilityHidden()
                         }
                         .type(.button)
                         .class("toolbar-tool")
@@ -300,7 +300,7 @@ public struct TextPad: View, Modifiable, Identifiable {
                             }
                             .namespace("http://www.w3.org/2000/svg")
                             .viewBox(x: 0, y: 0, width: 20, height: 16)
-                            .custom(key: "aria-hidden", value: true)
+                            .accessibilityHidden()
                         }
                         .type(.button)
                         .class("toolbar-tool")
@@ -326,7 +326,7 @@ public struct TextPad: View, Modifiable, Identifiable {
                             }
                             .namespace("http://www.w3.org/2000/svg")
                             .viewBox(x: 0, y: 0, width: 20, height: 16)
-                            .custom(key: "aria-hidden", value: true)
+                            .accessibilityHidden()
                         }
                         .type(.button)
                         .class("toolbar-tool", "state:disabled")
@@ -349,7 +349,7 @@ public struct TextPad: View, Modifiable, Identifiable {
                             }
                             .namespace("http://www.w3.org/2000/svg")
                             .viewBox(x: 0, y: 0, width: 20, height: 16)
-                            .custom(key: "aria-hidden", value: true)
+                            .accessibilityHidden()
                         }
                         .type(.button)
                         .class("toolbar-tool", "state:disabled")

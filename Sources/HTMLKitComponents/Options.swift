@@ -1,4 +1,4 @@
-public struct EdgeSet: OptionSet {
+public struct EdgeSet: OptionSet, Sendable {
     
     public var rawValue: Int
     

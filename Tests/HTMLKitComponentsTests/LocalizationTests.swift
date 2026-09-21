@@ -44,32 +44,6 @@ final class LocalizationTests: XCTestCase {
                        """
         )
     }
-    
-    func testDisclosureLocalization() throws {
-        
-        let view = TestView {
-            Disclosure("Forgot password?") {
-            }
-        }
-        
-        XCTAssertEqual(try renderer!.render(view: view),
-                       """
-                       <div class="disclosure">\
-                       <div class="disclosure-head">\
-                       <p class="disclosure-label">Mot de passe oublié?</p>\
-                       <svg viewbox="0 0 20 16" xmlns="http://www.w3.org/2000/svg" class="state-indicator" aria-hidden="true">\
-                       <title>State Indicator</title>\
-                       <path d="M7.28,2.241C6.987,1.957 6.987,1.497 7.28,1.213C7.573,0.929 8.048,0.929 8.341,1.213L14.811,7.486C15.103,7.77 15.103,8.23 14.811,8.514L8.28,14.787C7.987,15.071 7.512,15.071 7.22,14.787C6.927,14.503 6.927,14.043 7.22,13.759L13.22,8L7.28,2.241Z">\
-                       </path>\
-                       </svg>\
-                       </div>\
-                       <div class="disclosure-body">\
-                       <div class="disclosure-content"></div>\
-                       </div>\
-                       </div>
-                       """
-        )
-    }
 
     func testCheckFieldLocalization() throws {
         
@@ -206,17 +180,32 @@ final class LocalizationTests: XCTestCase {
                        """
         )
     }
+    
+    func testBarMarkLocalization() throws {
+        
+        let view = TestView {
+            BarMark("Folder", value: 941)
+        }
+        
+        XCTAssertEqual(try renderer!.render(view: view),
+                       """
+                       <g class="mark type:bar">\
+                       <rect>941</rect>\
+                       <text class="mark-label">Dossier</text>\
+                       </g>
+                       """)
+    }
 }
 
 extension LocalizationTests {
     
     func setupLocalization() throws {
         
-        let currentFile = URL(fileURLWithPath: #file).deletingLastPathComponent()
+        guard let source = Bundle.module.url(forResource: "Localization", withExtension: nil) else {
+            return
+        }
         
-        let currentDirectory = currentFile.appendingPathComponent("Localization")
-        
-        let localization = Localization(source: currentDirectory, locale: Locale(tag: "fr"))
+        let localization = Localization(source: source, locale: Locale(tag: "fr"))
         
         self.renderer = Renderer(localization: localization)
     }

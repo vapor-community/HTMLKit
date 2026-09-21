@@ -141,7 +141,7 @@ extension Tabs: ViewModifier {
         return self.mutate(border: color.value, width: width.value, shape: shape?.value)
     }
     
-    public func frame(width: Tokens.ViewWidth, height: Tokens.ViewHeight?, alignment: Tokens.FrameAlignment?) -> Tabs {
+    public func frame(width: Tokens.ViewWidth, height: Tokens.ViewHeight? = nil, alignment: Tokens.FrameAlignment? = nil) -> Tabs {
         return self.mutate(frame: width.value, height: height?.value, alignment: alignment?.value)
     }
     

@@ -1,0 +1,1019 @@
+@layer htmlkit.utilities {
+
+    /**
+     * States
+     */
+
+    .state\:disabled {
+        pointer-events: none;
+    }
+
+    .state\:hidden {
+        visibility: hidden;
+    }
+
+    .state\:visible {
+        visibility: visible;
+    }
+
+    .state\:attached {
+        display: block;
+    }
+
+    .state\:detached {
+        display: none;
+    }
+
+    /**
+     * Foreground
+     */
+
+    .foreground\:black {
+        --foregroundColor: var(--blackColor);
+    }
+
+    .foreground\:blue {
+        --foregroundColor: var(--blueColor);
+    }
+
+    .foreground\:brown {
+        --foregroundColor: var(--brownColor);
+    }
+
+    .foreground\:cyan {
+        --foregroundColor: var(--cyanColor);
+    }
+
+    .foreground\:gray {
+        --foregroundColor: var(--grayColor);
+    }
+
+    .foreground\:green {
+        --foregroundColor: var(--greenColor);
+    }
+
+    .foreground\:indigo {
+        --foregroundColor: var(--indigoColor);
+    }
+
+    .foreground\:mint {
+        --foregroundColor: var(--mintColor);
+    }
+
+    .foreground\:orange {
+        --foregroundColor: var(--orangeColor);
+    }
+
+    .foreground\:pink {
+        --foregroundColor: var(--pinkColor);
+    }
+
+    .foreground\:purple {
+        --foregroundColor: var(--purpleColor);
+    }
+
+    .foreground\:red {
+        --foregroundColor: var(--redColor);
+    }
+
+    .foreground\:teal {
+        --foregroundColor: var(--tealColor);
+    }
+
+    .foreground\:white {
+        --foregroundColor: var(--whiteColor);
+    }
+
+    .foreground\:yellow {
+        --foregroundColor: var(--yellowColor);
+    }
+
+    .foreground\:silver {
+        --foregroundColor: var(--silverColor);
+    }
+
+    .foreground\:accent {
+        --foregroundColor: var(--accentColor);
+    }
+
+    .foreground\:system {
+        --foregroundColor: var(--systemTextColor);
+    }
+
+    /**
+     * Borders
+     */
+
+    .border\:black {
+        --borderColor: var(--blackColor);
+        --borderOpacity: 1.0;
+    }
+
+    .border\:blue {
+        --borderColor: var(--blueColor);
+        --borderOpacity: 1.0;
+    }
+
+    .border\:brown {
+        --borderColor: var(--brownColor);
+        --borderOpacity: 1.0;
+    }
+
+    .border\:cyan {
+        --borderColor: var(--cyanColor);
+        --borderOpacity: 1.0;
+    }
+
+    .border\:gray {
+        --borderColor: var(--grayColor);
+        --borderOpacity: 1.0;
+    }
+
+    .border\:green {
+        --borderColor: var(--greenColor);
+        --borderOpacity: 1.0;
+    }
+
+    .border\:indigo {
+        --borderColor: var(--indigoColor);
+        --borderOpacity: 1.0;
+    }
+
+    .border\:mint {
+        --borderColor: var(--mintColor);
+        --borderOpacity: 1.0;
+    }
+
+    .border\:orange {
+        --borderColor: var(--orangeColor);
+        --borderOpacity: 1.0;
+    }
+
+    .border\:pink {
+        --borderColor: var(--pinkColor);
+        --borderOpacity: 1.0;
+    }
+
+    .border\:purple {
+        --borderColor: var(--purpleColor);
+        --borderOpacity: 1.0;
+    }
+
+    .border\:red {
+        --borderColor: var(--redColor);
+        --borderOpacity: 1.0;
+    }
+
+    .border\:teal {
+        --borderColor: var(--tealColor);
+        --borderOpacity: 1.0;
+    }
+
+    .border\:white {
+        --borderColor: var(--whiteColor);
+        --borderOpacity: 1.0;
+    }
+
+    .border\:yellow {
+        --borderColor: var(--yellowColor);
+        --borderOpacity: 1.0;
+    }
+
+    .border\:silver {
+        --borderColor: var(--silverColor);
+        --borderOpacity: 1.0;
+    }
+
+    .border\:accent {
+        --borderColor: var(--accentColor);
+        --borderOpacity: 1.0;
+    }
+
+    .border\:system {
+        --borderColor: var(--systemBorderColor);
+        --borderOpacity: 1.0;
+    }
+
+    .border\:transparent {
+        --borderOpacity: 0.0;
+    }
+
+    .border\:small {
+        --borderWidth: 1px;
+    }
+
+    .border\:medium {
+        --borderWidth: 2px;
+    }
+
+    .border\:large {
+        --borderWidth: 3px;
+    }
+
+    /**
+     * Background
+     */
+
+    .background\:black {
+        --backgroundColor: var(--blackColor);
+        --backgroundOpacity: 1.0;
+    }
+
+    .background\:blue {
+        --backgroundColor: var(--blueColor);
+        --backgroundOpacity: 1.0;
+    }
+
+    .background\:brown {
+        --backgroundColor: var(--brownColor);
+        --backgroundOpacity: 1.0;
+    }
+
+    .background\:cyan {
+        --backgroundColor: var(--cyanColor);
+        --backgroundOpacity: 1.0;
+    }
+
+    .background\:gray {
+        --backgroundColor: var(--grayColor);
+        --backgroundOpacity: 1.0;
+    }
+
+    .background\:green {
+        --backgroundColor: var(--greenColor);
+        --backgroundOpacity: 1.0;
+    }
+
+    .background\:indigo {
+        --backgroundColor: var(--indigoColor);
+        --backgroundOpacity: 1.0;
+    }
+
+    .background\:mint {
+        --backgroundColor: var(--mintColor);
+        --backgroundOpacity: 1.0;
+    }
+
+    .background\:orange {
+        --backgroundColor: var(--orangeColor);
+        --backgroundOpacity: 1.0;
+    }
+
+    .background\:pink {
+        --backgroundColor: var(--pinkColor);
+        --backgroundOpacity: 1.0;
+    }
+
+    .background\:purple {
+        --backgroundColor: var(--purpleColor);
+        --backgroundOpacity: 1.0;
+    }
+
+    .background\:red {
+        --backgroundColor: var(--redColor);
+        --backgroundOpacity: 1.0;
+    }
+
+    .background\:teal {
+        --backgroundColor: var(--tealColor);
+        --backgroundOpacity: 1.0;
+    }
+
+    .background\:white {
+        --backgroundColor: var(--whiteColor);
+        --backgroundOpacity: 1.0;
+    }
+
+    .background\:yellow {
+        --backgroundColor: var(--yellowColor);
+        --backgroundOpacity: 1.0;
+    }
+
+    .background\:silver {
+        --backgroundColor: var(--silverColor);
+        --backgroundOpacity: 1.0;
+    }
+
+    .background\:accent {
+        --backgroundColor: var(--accentColor);
+        --backgroundOpacity: 1.0;
+    }
+
+    .background\:system {
+        --backgroundColor: var(--systemBackgroundColor);
+        --backgroundOpacity: 1.0;
+    }
+
+    .background\:transparent {
+        --backgroundOpacity: 0.0;
+    }
+
+    /**
+     * Focus
+     */
+
+    .focus\:black {
+        --focusColor: var(--blackColor);
+    }
+
+    .focus\:blue {
+        --focusColor: var(--blueColor);
+    }
+
+    .focus\:brown {
+        --focusColor: var(--brownColor);
+    }
+
+    .focus\:cyan {
+        --focusColor: var(--cyanColor);
+    }
+
+    .focus\:gray {
+        --focusColor: var(--grayColor);
+    }
+
+    .focus\:green {
+        --focusColor: var(--greenColor);
+    }
+
+    .focus\:indigo {
+        --focusColor: var(--indigoColor);
+    }
+
+    .focus\:mint {
+        --focusColor: var(--mintColor);
+    }
+
+    .focus\:orange {
+        --focusColor: var(--orangeColor);
+    }
+
+    .focus\:pink {
+        --focusColor: var(--pinkColor);
+    }
+
+    .focus\:purple {
+        --focusColor: var(--purpleColor);
+    }
+
+    .focus\:red {
+        --focusColor: var(--redColor);
+    }
+
+    .focus\:teal {
+        --focusColor: var(--tealColor);
+    }
+
+    .focus\:white {
+        --focusColor: var(--whiteColor);
+    }
+
+    .focus\:yellow {
+        --focusColor: var(--yellowColor);
+    }
+
+    .focus\:silver {
+        --focusColor: var(--silverColor);
+    }
+
+    .focus\:accent {
+        --focusColor: var(--accentColor);
+    }
+
+    .focus\:system {
+        --focusColor: var(--systemFocusColor);
+    }
+
+    /**
+     * padding
+     */
+
+    .padding\:large {
+        --paddingInlineStart: 2.25rem;
+        --paddingInlineEnd: 2.25rem;
+        --paddingBlockStart: 2.25rem;
+        --paddingBlockEnd: 2.25rem;
+    }
+
+    .padding\:medium {
+        --paddingInlineStart: 1.5rem;
+        --paddingInlineEnd: 1.5rem;
+        --paddingBlockStart: 1.5rem;
+        --paddingBlockEnd: 1.5rem;
+    }
+
+    .padding\:small {
+        --paddingInlineStart: 1rem;
+        --paddingInlineEnd: 1rem;
+        --paddingBlockStart: 1rem;
+        --paddingBlockEnd: 1rem;
+    }
+
+    .padding-inline\:large {
+        --paddingInlineStart: 2.25rem;
+        --paddingInlineEnd: 2.25rem;
+    }
+
+    .padding-inline\:medium {
+        --paddingInlineStart: 1.5rem;
+        --paddingInlineEnd: 1.5rem;
+    }
+
+    .padding-inline\:small {
+        --paddingInlineStart: 1rem;
+        --paddingInlineEnd: 1rem;
+    }
+
+    .padding-block\:large {
+        --paddingBlockStart: 2.25rem;
+        --paddingBlockEnd: 2.25rem;
+    }
+
+    .padding-block\:medium {
+        --paddingBlockStart: 1.5rem;
+        --paddingBlockEnd: 1.5rem;
+    }
+
+    .padding-block\:small {
+        --paddingBlockStart: 1rem;
+        --paddingBlockEnd: 1rem;
+    }
+
+    .padding-top\:large {
+        --paddingBlockStart: 2.25rem;
+    }
+
+    .padding-top\:medium {
+        --paddingBlockStart: 1.5rem;
+    }
+
+    .padding-top\:small {
+        --paddingBlockStart: 1rem;
+    }
+
+    .padding-bottom\:large {
+        --paddingBlockEnd: 2.25rem;
+    }
+
+    .padding-bottom\:medium {
+        --paddingBlockEnd: 1.5rem;
+    }
+
+    .padding-bottom\:small {
+        --paddingBlockEnd: 1rem;
+    }
+
+    .padding-leading\:large {
+        --paddingInlineStart: 2.25rem;
+    }
+
+    .padding-leading\:medium {
+        --paddingInlineStart: 1.5rem;
+    }
+
+    .padding-leading\:small {
+        --paddingInlineStart: 1rem;
+    }
+
+    .padding-trailing\:large {
+        --paddingInlineEnd: 2.25rem;
+    }
+
+    .padding-trailing\:medium {
+        --paddingInlineEnd: 1.5rem;
+    }
+
+    .padding-trailing\:small {
+        --paddingInlineEnd: 1rem;
+    }
+
+    /**
+     * Margin
+     */
+
+    .margin\:auto {
+        margin-inline: auto;
+        margin-block: auto;
+    }
+
+    .margin\:large {
+        margin-inline: 2.25rem;
+        margin-block: 2.25rem;
+    }
+
+    .margin\:medium {
+        margin-inline: 1.5rem;
+        margin-block: 1.5rem;
+    }
+
+    .margin\:small {
+        margin-inline: 1rem;
+        margin-block: 1rem;
+    }
+
+    .margin-inline\:auto {
+        margin-inline-start: auto;
+        margin-inline-end: auto;
+    }
+
+    .margin-inline\:large {
+        margin-inline-start: 2.25rem;
+        margin-inline-end: 2.25rem;
+    }
+
+    .margin-inline\:medium {
+        margin-inline-start: 1.5rem;
+        margin-inline-end: 1.5rem;
+    }
+
+    .margin-inline\:small {
+        margin-inline-start: 1rem;
+        margin-inline-end: 1rem;
+    }
+
+    .margin-block\:auto {
+        margin-block-start: auto;
+        margin-block-end: auto;
+    }
+
+    .margin-block\:large {
+        margin-block-start: 2.25rem;
+        margin-block-end: 2.25rem;
+    }
+
+    .margin-block\:medium {
+        margin-block-start: 1.5rem;
+        margin-block-end: 1.5rem;
+    }
+
+    .margin-block\:small {
+        margin-block-start: 1rem;
+        margin-block-end: 1rem;
+    }
+
+    .margin-top\:auto {
+        margin-block-start: auto;
+    }
+
+    .margin-top\:large {
+        margin-block-start: 2.25rem;
+    }
+
+    .margin-top\:medium {
+        margin-block-start: 1.5rem;
+    }
+
+    .margin-top\:small {
+        margin-block-start: 1rem;
+    }
+
+    .margin-bottom\:auto {
+        margin-block-end: auto;
+    }
+
+    .margin-bottom\:large {
+        margin-block-end: 2.25rem;
+    }
+
+    .margin-bottom\:medium {
+        margin-block-end: 1.5rem;
+    }
+
+    .margin-bottom\:small {
+        margin-block-end: 1rem;
+    }
+
+    .margin-leading\:auto {
+        margin-inline-start: auto;
+    }
+
+    .margin-leading\:large {
+        margin-inline-start: 2.25rem;
+    }
+
+    .margin-leading\:medium {
+        margin-inline-start: 1.5rem;
+    }
+
+    .margin-leading\:small {
+        margin-inline-start: 1rem;
+    }
+
+    .margin-trailing\:auto {
+        margin-inline-end: auto;
+    }
+
+    .margin-trailing\:large {
+        margin-inline-end: 2.25rem;
+    }
+
+    .margin-trailing\:medium {
+        margin-inline-end: 1.5rem;
+    }
+
+    .margin-trailing\:small {
+        margin-inline-end: 1rem;
+    }
+
+    /**
+     * Shape
+     */
+
+    .shape\:smallrounded {
+        --borderRadius: 0.313rem;
+    }
+
+    .shape\:largerounded {
+        --borderRadius: 0.625rem;
+    }
+
+    .shape\:fullrounded {
+        --borderRadius: 1.563rem;
+    }
+
+    /**
+     * Size
+     */
+
+    .width\:one {
+        flex-grow: 0;
+        flex-shrink: 1;
+        flex-basis: auto;
+        inline-size: 8.3333333333%;
+    }
+
+    .width\:two {
+        flex-grow: 0;
+        flex-shrink: 1;
+        flex-basis: auto;
+        inline-size: 16.6666666667%;
+    }
+
+    .width\:three {
+        flex-grow: 0;
+        flex-shrink: 1;
+        flex-basis: auto;
+        inline-size: 25%;
+    }
+
+    .width\:four {
+        flex-grow: 0;
+        flex-shrink: 1;
+        flex-basis: auto;
+        inline-size: 33.3333333333%;
+    }
+
+    .width\:five {
+        flex-grow: 0;
+        flex-shrink: 1;
+        flex-basis: auto;
+        inline-size: 41.6666666667%;
+    }
+
+    .width\:six {
+        flex-grow: 0;
+        flex-shrink: 1;
+        flex-basis: auto;
+        inline-size: 50%;
+    }
+
+    .width\:seven {
+        flex-grow: 0;
+        flex-shrink: 1;
+        flex-basis: auto;
+        inline-size: 58.3333333333%;
+    }
+
+    .width\:eight {
+        flex-grow: 0;
+        flex-shrink: 1;
+        flex-basis: auto;
+        inline-size: 66.6666666667%;
+    }
+
+    .width\:nine {
+        flex-grow: 0;
+        flex-shrink: 1;
+        flex-basis: auto;
+        inline-size: 75%;
+    }
+
+    .width\:ten {
+        flex-grow: 0;
+        flex-shrink: 1;
+        flex-basis: auto;
+        inline-size: 83.3333333333%;
+    }
+
+    .width\:eleven {
+        flex-grow: 0;
+        flex-shrink: 1;
+        flex-basis: auto;
+        inline-size: 91.6666666667%;
+    }
+
+    .width\:twelve {
+        flex-grow: 0;
+        flex-shrink: 1;
+        flex-basis: auto;
+        inline-size: 100%;
+    }
+
+    .width\:minimum {
+        flex-grow: 0;
+        flex-shrink: 1;
+        flex-basis: auto;
+        inline-size: auto;
+    }
+
+    .width\:maximum {
+        flex-grow: 0;
+        flex-shrink: 1;
+        flex-basis: auto;
+        inline-size: max-content;
+    }
+
+    .height\:one {
+        block-size: 8.3333333333%;
+    }
+
+    .height\:two {
+        block-size: 16.6666666667%;
+    }
+
+    .height\:three {
+        block-size: 25%;
+    }
+
+    .height\:four {
+        block-size: 33.3333333333%;
+    }
+
+    .height\:five {
+        block-size: 41.6666666667%;
+    }
+
+    .height\:six {
+        block-size: 50%;
+    }
+
+    .height\:seven {
+        block-size: 58.3333333333%;
+    }
+
+    .height\:eight {
+        block-size: 66.6666666667%;
+    }
+
+    .height\:nine {
+        block-size: 75%;
+    }
+
+    .height\:ten {
+        block-size: 83.3333333333%;
+    }
+
+    .height\:eleven {
+        block-size: 91.6666666667%;
+    }
+
+    .height\:twelve {
+        block-size: 100%;
+    }
+
+    .height\:minimum {
+        block-size: auto;
+    }
+
+    .height\:maximum {
+        block-size: max-content;
+    }
+
+    /**
+     * Blur
+     */
+
+    .blur\:light {
+        --blurLevel: 4px;
+    }
+
+    .blur\:medium {
+        --blurLevel: 8px;
+    }
+
+    .blur\:strong {
+        --blurLevel: 12px;
+    }
+
+    .grayscale\:light {
+        --grayscaleDepth: 25%;
+    }
+
+    .grayscale\:neutral {
+        --grayscaleDepth: 50%;
+    }
+
+    .grayscale\:dark {
+        --grayscaleDepth: 100%;
+    }
+
+    .brightness\:low {
+        --brightnessLevel: 0.5;
+    }
+
+    .brightness\:medium {
+        --brightnessLevel: 1.5;
+    }
+
+    .brightness\:high {
+        --brightnessLevel: 2.0;
+    }
+
+    .saturation\:low {
+        --saturationLevel: 0.5;
+    }
+
+    .saturation\:medium {
+        --saturationLevel: 1.5;
+    }
+
+    .saturation\:high{
+        --saturationLevel: 2.0;
+    }
+
+    .contrast\:low {
+        --contrastLevel: 0.5;
+    }
+
+    .contrast\:medium {
+        --contrastLevel: 1.5;
+    }
+
+    .contrast\:high {
+        --contrastLevel: 2.0;
+    }
+
+    /**
+     * Shadow
+     */
+
+    .shadow\:black {
+        --shadowColor: var(--blackColor);
+    }
+
+    .shadow\:blue {
+        --shadowColor: var(--blueColor);
+    }
+
+    .shadow\:brown {
+        --shadowColor: var(--brownColor);
+    }
+
+    .shadow\:cyan {
+        --shadowColor: var(--cyanColor);
+    }
+
+    .shadow\:gray {
+        --shadowColor: var(--grayColor);
+    }
+
+    .shadow\:green {
+        --shadowColor: var(--greenColor);
+    }
+
+    .shadow\:indigo {
+        --shadowColor: var(--indigoColor);
+    }
+
+    .shadow\:mint {
+        --shadowColor: var(--mintColor);
+    }
+
+    .shadow\:orange {
+        --shadowColor: var(--orangeColor);
+    }
+
+    .shadow\:pink {
+        --shadowColor: var(--pinkColor);
+    }
+
+    .shadow\:purple {
+        --shadowColor: var(--purpleColor);
+    }
+
+    .shadow\:red {
+        --shadowColor: var(--redColor);
+    }
+
+    .shadow\:teal {
+        --shadowColor: var(--tealColor);
+    }
+
+    .shadow\:white {
+        --shadowColor: var(--whiteColor);
+    }
+
+    .shadow\:yellow {
+        --shadowColor: var(--yellowColor);
+    }
+
+    .shadow\:silver {
+        --shadowColor: var(--silverColor);
+    }
+
+    .overflow\:clip {
+        overflow: hidden;
+    }
+
+    /**
+     * Tint
+     */
+
+    .tint\:black {
+        --tintColor: var(--blackColor);
+    }
+
+    .tint\:blue {
+        --tintColor: var(--blueColor);
+    }
+
+    .tint\:brown {
+        --tintColor: var(--brownColor);
+    }
+
+    .tint\:cyan {
+        --tintColor: var(--cyanColor);
+    }
+
+    .tint\:gray {
+        --tintColor: var(--grayColor);
+    }
+
+    .tint\:green {
+        --tintColor: var(--greenColor);
+    }
+
+    .tint\:indigo {
+        --tintColor: var(--indigoColor);
+    }
+
+    .tint\:mint {
+        --tintColor: var(--mintColor);
+    }
+
+    .tint\:orange {
+        --tintColor: var(--orangeColor);
+    }
+
+    .tint\:pink {
+        --tintColor: var(--pinkColor);
+    }
+
+    .tint\:purple {
+        --tintColor: var(--purpleColor);
+    }
+
+    .tint\:red {
+        --tintColor: var(--redColor);
+    }
+
+    .tint\:teal {
+        --tintColor: var(--tealColor);
+    }
+
+    .tint\:white {
+        --tintColor: var(--whiteColor);
+    }
+
+    .tint\:yellow {
+        --tintColor: var(--yellowColor);
+    }
+
+    .tint\:silver {
+        --tintColor: var(--silverColor);
+    }
+
+    .tint\:accent {
+        --tintColor: var(--accentColor);
+    }
+
+    .zindex\:one {
+        z-index: 1;
+    }
+
+    .zindex\:two {
+        z-index: 2;
+    }
+
+    .zindex\:three {
+        z-index: 3;
+    }
+
+    .zindex\:four {
+        z-index: 4;
+    }
+
+    .zindex\:five {
+        z-index: 5;
+    }
+}

@@ -2,29 +2,31 @@
  * The rulesets for the modal component.
  */
 
-.modal {
-    --paddingBlockStart: 0.75rem;
-    --paddingBlockEnd: 0.75rem;
-    --paddingInlineStart: 1.0rem;
-    --paddingInlineEnd: 1.0rem;
-    --foregroundColor: var(--systemTextColor);
-    --borderWidth: 1px;
-    --borderColor: var(--systemBorderColor);
-    --borderRadius: 0;
-    --borderOpacity: 1.0;
-    --backgroundColor: var(--systemBackgroundColor);
-    --backgroundOpacity: 1.0;
-    
-    margin-inline: auto;
-    margin-block: auto;
-    padding-block-start: var(--paddingBlockStart);
-    padding-block-end: var(--paddingBlockEnd);
-    padding-inline-start: var(--paddingInlineStart);
-    padding-inline-end: var(--paddingInlineEnd);
-    border-width: var(--borderWidth);
-    border-style: solid;
-    border-color: hsla(var(--borderColor), var(--borderOpacity));
-    border-radius: var(--borderRadius);
-    background-color: hsla(var(--backgroundColor), var(--backgroundOpacity));
-    box-shadow: 0 15px 35px hsla(0,0%, 0%, 0.2);
+@layer htmlkit.components {
+    .modal {
+        --paddingBlockStart: 0.75rem;
+        --paddingBlockEnd: 0.75rem;
+        --paddingInlineStart: 1.0rem;
+        --paddingInlineEnd: 1.0rem;
+        --foregroundColor: var(--systemTextColor);
+        --borderWidth: 1px;
+        --borderColor: var(--systemBorderColor);
+        --borderRadius: 0;
+        --borderOpacity: 1.0;
+        --backgroundColor: var(--systemBackgroundColor);
+        --backgroundOpacity: 1.0;
+
+        margin-inline: auto;
+        margin-block: auto;
+        padding-block-start: var(--paddingBlockStart);
+        padding-block-end: var(--paddingBlockEnd);
+        padding-inline-start: var(--paddingInlineStart);
+        padding-inline-end: var(--paddingInlineEnd);
+        border-width: var(--borderWidth);
+        border-style: solid;
+        border-color: hsla(var(--borderColor), var(--borderOpacity));
+        border-radius: var(--borderRadius);
+        background-color: hsla(var(--backgroundColor), var(--backgroundOpacity));
+        box-shadow: 0 15px 35px hsla(0,0%, 0%, 0.2);
+    }
 }

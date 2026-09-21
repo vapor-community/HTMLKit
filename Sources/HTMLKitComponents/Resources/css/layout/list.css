@@ -2,78 +2,80 @@
  * The rulesets for the list component.
  */
 
-.list {
-    --paddingBlockStart: 0;
-    --paddingBlockEnd: 0;
-    --paddingInlineStart: 0;
-    --paddingInlineEnd: 0;
-    --foregroundColor: var(--systemTextColor);
-    --borderColor: var(--systemBorderColor);
-    --borderOpacity: 1.0;
-    --backgroundColor: 0, 0%, 0%;
-    --backgroundOpacity: 0.0;
-    
-    display: flex;
-    padding-block-start: var(--paddingBlockStart);
-    padding-block-end: var(--paddingBlockEnd);
-    padding-inline-start: var(--paddingInlineStart);
-    padding-inline-end: var(--paddingInlineEnd);
-    list-style-type: none;
-    background-color: hsla(var(--backgroundColor), var(--backgroundOpacity));
-
-    &.direction\:horizontal {
-        flex-direction: row;
-        align-items: center;
-        justify-content: center;
-
-        &.style\:listgroup {
-            .list-row {
-                &:not(:last-child) {
-                    border-right: 1px;
-                    border-right-style: solid;
-                    border-right-color: hsla(var(--borderColor), var(--borderOpacity));
-                }
-            }
-        }
-    }
-
-    &.direction\:vertical {
-        flex-direction: column;
-
-        &.style\:listgroup {
-            .list-row {
-                &:not(:last-child) {
-                    border-bottom: 1px;
-                    border-bottom-style: solid;
-                    border-bottom-color: hsla(var(--borderColor), var(--borderOpacity));
-                }
-            }
-        }
-    }
-
-    &.spacing\:large {
-        gap: 2.25rem;
-    }
-
-    &.spacing\:medium {
-        gap: 1.5rem;
-    }
-
-    &.spacing\:small {
-        gap: 1rem;
-    }
-
-    .list-row {
+@layer htmlkit.components {
+    .list {
         --paddingBlockStart: 0;
         --paddingBlockEnd: 0;
         --paddingInlineStart: 0;
         --paddingInlineEnd: 0;
+        --foregroundColor: var(--systemTextColor);
+        --borderColor: var(--systemBorderColor);
+        --borderOpacity: 1.0;
+        --backgroundColor: 0, 0%, 0%;
+        --backgroundOpacity: 0.0;
 
+        display: flex;
         padding-block-start: var(--paddingBlockStart);
         padding-block-end: var(--paddingBlockEnd);
         padding-inline-start: var(--paddingInlineStart);
         padding-inline-end: var(--paddingInlineEnd);
-        display: flex;
-        flex-direction: column;
+        list-style-type: none;
+        background-color: hsla(var(--backgroundColor), var(--backgroundOpacity));
+
+        &.direction\:horizontal {
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+
+            &.style\:listgroup {
+                .list-row {
+                    &:not(:last-child) {
+                        border-right: 1px;
+                        border-right-style: solid;
+                        border-right-color: hsla(var(--borderColor), var(--borderOpacity));
+                    }
+                }
+            }
+        }
+
+        &.direction\:vertical {
+            flex-direction: column;
+
+            &.style\:listgroup {
+                .list-row {
+                    &:not(:last-child) {
+                        border-bottom: 1px;
+                        border-bottom-style: solid;
+                        border-bottom-color: hsla(var(--borderColor), var(--borderOpacity));
+                    }
+                }
+            }
+        }
+
+        &.spacing\:large {
+            gap: 2.25rem;
+        }
+
+        &.spacing\:medium {
+            gap: 1.5rem;
+        }
+
+        &.spacing\:small {
+            gap: 1rem;
+        }
+
+        .list-row {
+            --paddingBlockStart: 0;
+            --paddingBlockEnd: 0;
+            --paddingInlineStart: 0;
+            --paddingInlineEnd: 0;
+
+            padding-block-start: var(--paddingBlockStart);
+            padding-block-end: var(--paddingBlockEnd);
+            padding-inline-start: var(--paddingInlineStart);
+            padding-inline-end: var(--paddingInlineEnd);
+            display: flex;
+            flex-direction: column;
+        }
     }
 }
