@@ -11,10 +11,10 @@
 ///         SizeCandidate("80vw")
 ///     )
 /// ```
-public struct SizeCandidate {
+public struct SizeCandidate: Sendable {
     
     /// An enumeration of potential interface orientations.
-    public enum InterfaceOrientation {
+    public enum InterfaceOrientation: Sendable {
         
         /// Indicates a landscape orientation.
         case landscape
@@ -36,7 +36,7 @@ public struct SizeCandidate {
     }
     
     /// An enumeration of potential width conditions.
-    public enum SizeCondition {
+    public enum SizeCondition: Sendable {
         
         /// Specifies the maximum width.
         case maxWidth(String)

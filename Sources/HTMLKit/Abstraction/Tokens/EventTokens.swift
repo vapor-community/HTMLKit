@@ -2,7 +2,7 @@
 public enum Events {
     
     /// A event for the window element.
-    public enum Window: String {
+    public enum Window: String, Sendable {
         
         /// Occurs, when the document has started printing or the print preview has been closed.
         case afterprint = "onafterprint"
@@ -57,7 +57,7 @@ public enum Events {
     }
     
     /// A event
-    public enum Focus: String {
+    public enum Focus: String, Sendable {
         
         /// Occurs, when a element has lost focus.
         case blur = "onblur"
@@ -70,7 +70,7 @@ public enum Events {
     }
     
     /// A event for a pointing device.
-    public enum Pointer: String {
+    public enum Pointer: String, Sendable {
         
         /// Occurs, when
         case pointercancel = "onpointercancel"
@@ -107,7 +107,7 @@ public enum Events {
     }
     
     /// A event for a mouse device.
-    public enum Mouse: String {
+    public enum Mouse: String, Sendable {
         
         /// Occurs, when a element is being clicked.
         case click = "onclick"
@@ -144,7 +144,7 @@ public enum Events {
     }
     
     /// A event for a mouse device.
-    public enum Wheel: String {
+    public enum Wheel: String, Sendable {
         
         /// Occurs, when the mouse wheel rotates.
         case wheel = "onwheel"
@@ -154,7 +154,7 @@ public enum Events {
     }
     
     /// A event
-    public enum Input: String {
+    public enum Input: String, Sendable {
         
         /// Occurs, when the value of the element is about to be modified.
         case beforeinput = "onbeforeinput"
@@ -170,7 +170,7 @@ public enum Events {
     }
     
     /// A event for a keyboard device.
-    public enum Keyboard: String {
+    public enum Keyboard: String, Sendable {
         
         /// Occurs, when a key is pressed and not yet released.
         case keydown = "onkeydown"
@@ -183,7 +183,7 @@ public enum Events {
     }
     
     /// A event
-    public enum Drag: String {
+    public enum Drag: String, Sendable {
         
         /// Occurs, when a element is being dragged.
         case drag = "ondrag"
@@ -211,7 +211,7 @@ public enum Events {
     }
     
     /// A event
-    public enum Clipboard: String {
+    public enum Clipboard: String, Sendable {
         
         /// Occurs, when a copy action is initated.
         case copy = "oncopy"
@@ -227,7 +227,7 @@ public enum Events {
     }
     
     /// A event
-    public enum Selection: String {
+    public enum Selection: String, Sendable {
         
         /// Occurs, when
         case selectionchange = "onselectionchange"
@@ -240,7 +240,7 @@ public enum Events {
     }
     
     /// A event for the audio and video element.
-    public enum Media: String {
+    public enum Media: String, Sendable {
         
         /// Occurs, when the ressource cannot be loaded.
         case abort = "onabort"
@@ -298,7 +298,7 @@ public enum Events {
     }
     
     /// A event for the form element.
-    public enum Form: String {
+    public enum Form: String, Sendable {
         
         /// Occurs, when the reset button within the form element is clicked.
         case reset = "onreset"
@@ -311,7 +311,7 @@ public enum Events {
     }
     
     /// A event for the dialog element.
-    public enum Detail: String {
+    public enum Detail: String, Sendable {
         
         /// Occurs, when the detail element is toggled (open/closed).
         case toggle = "ontoggle"

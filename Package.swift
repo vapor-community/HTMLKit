@@ -1,4 +1,4 @@
-// swift-tools-version:5.10
+// swift-tools-version:6.0.3
 
 import PackageDescription
 
@@ -31,9 +31,6 @@ let package = Package(
                 .product(name: "Collections", package: "swift-collections"),
                 .product(name: "Logging", package: "swift-log"),
                 .product(name: "NIO", package: "swift-nio")
-            ],
-            swiftSettings: [
-                .enableExperimentalFeature("StrictConcurrency=complete")
             ]
         ),
         .target(
@@ -51,9 +48,6 @@ let package = Package(
                 .target(name: "HTMLKit"),
                 .product(name: "Vapor", package: "vapor"),
                 .product(name: "NIO", package: "swift-nio")
-            ],
-            swiftSettings: [
-                .enableExperimentalFeature("StrictConcurrency=complete")
             ]
         ),
         .target(

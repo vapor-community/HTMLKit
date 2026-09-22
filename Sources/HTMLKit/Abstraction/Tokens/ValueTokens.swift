@@ -8,7 +8,7 @@ import Collections
 /// }
 /// .command(.togglePopover, for: "id")
 /// ```
-public enum ActionCommand: String {    
+public enum ActionCommand: String, Sendable {    
     
     /// Toggles the popover element.
     case togglePopover = "toggle-popover"
@@ -38,7 +38,7 @@ public enum Credential {
     ///     .reference("https://...")
     ///     .crossOrigin(.useCredentials)
     /// ```
-    public enum Mode: String {
+    public enum Mode: String, Sendable {
         
         /// Requests without credentials.
         case anonymous
@@ -57,7 +57,7 @@ public enum Values {
     /// Meta()
     ///     .name(.viewport)
     /// ```
-    public enum Name: String {
+    public enum Name: String, Sendable {
         
         /// Indicates the application name.
         case applicationName = "application-name"
@@ -98,7 +98,7 @@ public enum Values {
     /// }
     /// .type(.button)
     /// ```
-    public enum Button: String {
+    public enum Button: String, Sendable {
 
         /// Submits form data.
         case submit
@@ -117,7 +117,7 @@ public enum Values {
     /// }
     /// .encoding(.plain)
     /// ```
-    public enum Encoding: String {
+    public enum Encoding: String, Sendable {
         
         /// Encodes the data before sent to server.
         case urlEncoded = "application/x-www-form-urlencoded"
@@ -136,7 +136,7 @@ public enum Values {
     /// }
     /// .method(.post)
     /// ```
-    public enum Method: String {
+    public enum Method: String, Sendable {
         
         /// Sends the form data as a post transaction.
         case post
@@ -156,7 +156,7 @@ public enum Values {
     ///     .name("lorem")
     ///     .id("lorem")
     /// ```
-    public enum Input: String {
+    public enum Input: String, Sendable {
         
         /// Indicates a hidden field.
         case hidden
@@ -232,7 +232,7 @@ public enum Values {
     /// }
     /// .language(.english)
     /// ```
-    public enum Language: String {
+    public enum Language: String, Sendable {
         
         /// Indicates the Abkhazian language.
         case abkhazian = "ab"
@@ -793,7 +793,7 @@ public enum Values {
     /// Link()
     ///     .referrerPolicy(.sameOrigin)
     /// ```
-    public enum Policy: String {
+    public enum Policy: String, Sendable {
         
         /// Sends full referrer for same origin.
         case strictOriginWhenCrossOrigin = "strict-origin-when-cross-origin"
@@ -827,7 +827,7 @@ public enum Values {
     ///     .reference("...ico")
     ///     .relation(.icon)
     /// ```
-    public enum Relation: String {
+    public enum Relation: String, Sendable {
         
         /// Indicates an alternate presentation.
         case alternate
@@ -926,7 +926,7 @@ public enum Values {
     /// .reference("https://...")
     /// .target(.blank)
     /// ```
-    public enum Target: String {
+    public enum Target: String, Sendable {
         
         /// Opens the target in the current tab.
         case current = "_self"
@@ -947,7 +947,7 @@ public enum Values {
     /// Area()
     ///     .shape(.polygon)
     /// ```
-    public enum Shape: String {
+    public enum Shape: String, Sendable {
         
         /// Expects a circular region.
         case circle
@@ -966,7 +966,7 @@ public enum Values {
     /// }
     /// .wrap(.soft)
     /// ```
-    public enum Wrapping: String {
+    public enum Wrapping: String, Sendable {
         
         /// Does not wrap the text after form submission.
         case soft
@@ -983,7 +983,7 @@ public enum Values {
     /// }
     /// .direction(.leftToRight)
     /// ```
-    public enum Direction: String {
+    public enum Direction: String, Sendable {
         
         /// Sets the direction left to right.
         case leftToRight = "ltr"
@@ -1002,7 +1002,7 @@ public enum Values {
     ///     .type(.css)
     ///     .reference("...css")
     /// ```
-    public enum Media: String {
+    public enum Media: String, Sendable {
         
         /// Indicates a html content.
         case html = "text/html"
@@ -1039,7 +1039,7 @@ public enum Values {
     /// }
     /// .type(.lowercaseAlpha)
     /// ```
-    public enum Marker: String {
+    public enum Marker: String, Sendable {
         
         /// Uses numbers e.g. 1, 2, 3
         case decimal = "1"
@@ -1062,7 +1062,7 @@ public enum Values {
     /// ```swift
     /// Document(.html5)
     /// ```
-    public enum Doctype: String {
+    public enum Doctype: String, Sendable {
         
         /// Indicates a html document.
         case html5 = "html"
@@ -1074,7 +1074,7 @@ public enum Values {
     /// Meta()
     ///     .property(.locale)
     /// ```
-    public enum Graph: String {
+    public enum Graph: String, Sendable {
 
         /// Indicates the page title.
         case title = "og:title"
@@ -1104,7 +1104,7 @@ public enum Values {
     /// Input()
     ///     .enterKey(.next)
     /// ```
-    public enum Hint: String {
+    public enum Hint: String, Sendable {
         
         /// Displays Enter as the hint.
         case enter
@@ -1134,7 +1134,7 @@ public enum Values {
     /// Input()
     ///     .autocapitalize(.words)
     /// ```
-    public enum Capitalization: String {
+    public enum Capitalization: String, Sendable {
         
         /// Does not capitlize.
         case off = "off"
@@ -1155,7 +1155,7 @@ public enum Values {
     /// Meta()
     ///     .chartset(.utf8)
     /// ```
-    public enum Charset: String {
+    public enum Charset: String, Sendable {
         
         /// Specifies the encoding for unicode.
         case utf8 = "utf-8"
@@ -1176,7 +1176,7 @@ public enum Values {
     /// Meta()
     ///     .equivalent(.content)
     /// ```
-    public enum Equivalent: String {
+    public enum Equivalent: String, Sendable {
         
         /// Specifies the character encoding.
         case content = "content-type"
@@ -1198,7 +1198,7 @@ public enum Values {
     /// .target(.blank)
     /// .role(.button)
     /// ```
-    public enum Role: String {
+    public enum Role: String, Sendable {
         
         /// Indicates an alert message.
         case alert
@@ -1411,7 +1411,7 @@ public enum Values {
     ///     .strokeLineCap(.butt)
     /// }
     /// ```
-    public enum Linecap: String {
+    public enum Linecap: String, Sendable {
         
         /// Indicates squared edges at the endpoint.
         case butt
@@ -1432,7 +1432,7 @@ public enum Values {
     ///     .strokeLineJoin(.miter)
     /// }
     /// ```
-    public enum Linejoin: String {
+    public enum Linejoin: String, Sendable {
         
         /// Indicates a sharp join.
         case miter
@@ -1452,7 +1452,7 @@ public enum Values {
     /// }
     /// .translate(.no)
     /// ```
-    public enum Decision: String {
+    public enum Decision: String, Sendable {
         
         /// Tells a affirmative decision.
         case yes
@@ -1467,7 +1467,7 @@ public enum Values {
     /// Track()
     ///     .kind(.captions)
     /// ```
-    public enum Kind: String {
+    public enum Kind: String, Sendable {
         
         /// Indicates a caption track.
         case captions
@@ -1495,7 +1495,7 @@ public enum Values {
     /// }
     /// .preload(.auto)
     /// ```
-    public enum Preload: String {
+    public enum Preload: String, Sendable {
         
         /// Should load on page load.
         case auto
@@ -1513,7 +1513,7 @@ public enum Values {
     /// Link()
     ///     .as(.fetch)
     /// ```
-    public enum Resource: String {
+    public enum Resource: String, Sendable {
         
         /// Hints a fetch response.
         case fetch
@@ -1548,7 +1548,7 @@ public enum Values {
         /// }
         /// .id("id")
         /// ```
-        public enum Complete: String {
+        public enum Complete: String, Sendable {
             
             /// Indicates no suggestions.
             case none
@@ -1571,7 +1571,7 @@ public enum Values {
         /// }
         /// .accessibilityControls("id", "id")
         /// ```
-        public enum Current: String {
+        public enum Current: String, Sendable {
             
             /// Does not represent the current item within a set.
             @available(*, unavailable, message: "Use the accessibilityCurrent(_:) modifier instead.")
@@ -1604,7 +1604,7 @@ public enum Values {
         /// }
         /// .accessibilityPopup(.menu)
         /// ```
-        public enum Popup: String {
+        public enum Popup: String, Sendable {
             
             /// Indicates no popup.
             @available(*, unavailable, message: "Use the accessibilityPopup(_:) modifier instead.")
@@ -1638,7 +1638,7 @@ public enum Values {
         /// .editable()
         /// .accessibilityInvalid(.grammar)
         /// ```
-        public enum Invalid: String {
+        public enum Invalid: String, Sendable {
             
             /// Indicates that there are no detected errors.
             @available(*, unavailable, message: "Use the accessibilityInvalid(_:) modifier instead.")
@@ -1662,7 +1662,7 @@ public enum Values {
         /// }
         /// .accessibilityLive(.polite)
         /// ```
-        public enum Live: String {
+        public enum Live: String, Sendable {
             
             /// Indicates that updates to the region should be presented the user immediately.
             case assertive
@@ -1682,7 +1682,7 @@ public enum Values {
         /// .role(.scrollbar)
         /// .accessibilityOrientation(.horizontal)
         /// ```
-        public enum Orientation: String {
+        public enum Orientation: String, Sendable {
             
             /// Indicates that the element's orientation is unknown.
             @available(*, deprecated)
@@ -1703,7 +1703,7 @@ public enum Values {
         /// .role(.alert)
         /// .accessibilityRelevant(.additions, .text)
         /// ```
-        public enum Relevant: String {
+        public enum Relevant: String, Sendable {
             
             /// Indicates node additions.
             case additions
@@ -1735,7 +1735,7 @@ public enum Values {
         ///    }
         /// }
         /// ```
-        public enum Sort: String {
+        public enum Sort: String, Sendable {
             
             /// Indicates that there is no sort algorithm defined.
             case none
@@ -1760,7 +1760,7 @@ public enum Values {
         /// }
         /// .shadowRootMode(.open)
         /// ```
-        public enum Mode: String {
+        public enum Mode: String, Sendable {
             
             /// Opens the shadow root. It can be reached via javascript.
             case open
@@ -1778,7 +1778,7 @@ public enum Values {
     ///     .alternate("Lorem ipsum...")
     ///     .fetchPriority(.high)
     /// ```
-    public enum Priority: String {
+    public enum Priority: String, Sendable {
         
         /// Signals a higher priority for fetching relative to other resources.
         case high
@@ -1798,7 +1798,7 @@ public enum Values {
     ///     .alternate("Lorem ipsum...")
     ///     .loading(.eager)
     /// ```
-    public enum Loading: String {
+    public enum Loading: String, Sendable {
         
         /// Defers fetching a resource until some conditions are met.
         case lazy
@@ -1815,7 +1815,7 @@ public enum Values {
     ///     .alternate("Lorem ipsum...")
     ///     .decoding(.async)
     /// ```
-    public enum Decoding: String {
+    public enum Decoding: String, Sendable {
         
         /// Hints a preference to decode synchronously.
         case sync
@@ -1837,7 +1837,7 @@ public enum Values {
     /// }
     /// .blocking(.render)
     /// ```
-    public enum Blocking: String {
+    public enum Blocking: String, Sendable {
         
         /// Indicates a render-blocking element.
         case render
@@ -1852,7 +1852,7 @@ public enum Values {
         /// }
         /// .popover(.manual)
         /// ```
-        public enum State: String {
+        public enum State: String, Sendable {
             
             /// Closes other popovers when opened.
             case auto
@@ -1869,7 +1869,7 @@ public enum Values {
         /// }
         /// .popoverTarget("id", action: .hide)
         /// ```
-        public enum Action: String {
+        public enum Action: String, Sendable {
             
             /// Toggles between showing and hidden.
             case toggle
@@ -1890,7 +1890,7 @@ public enum Values {
     /// }
     /// .scope(.column)
     /// ```
-    public enum Scope: String {
+    public enum Scope: String, Sendable {
         
         /// The cell applies to subsequent cells in the same row.
         case row
@@ -1911,7 +1911,7 @@ public enum Values {
     /// Input()
     ///     .inputMode(.numeric)
     /// ```
-    public enum Mode: String {
+    public enum Mode: String, Sendable {
         
         /// Displays a virtual keyboard for text input in the user's locale.
         case text
@@ -1945,7 +1945,7 @@ public enum Values {
     /// }
     /// .autocomplete([.organization, .organizationTitle])
     /// ```
-    public enum Completion: String {
+    public enum Completion: String, Sendable {
         
         /// Enables completion.
         @available(*, unavailable, message: "Use the autocomplete() modifier instead.")
@@ -2119,7 +2119,7 @@ public enum Values {
     /// }
     /// .sandbox([.allowDownloads, .allowForms])
     /// ```
-    public enum Permission: String {
+    public enum Permission: String, Sendable {
         
         /// Permits downloads.
         case allowDownloads = "allow-downloads"
@@ -2165,7 +2165,7 @@ public enum Values {
     /// }
     /// .type(.module)
     /// ```
-    public enum Script: String {
+    public enum Script: String, Sendable {
         
         /// Indicates the script is used as importmap.
         case importMap = "importmap"
@@ -2188,7 +2188,7 @@ public enum Values {
     /// }
     /// .hidden(.untilFound)
     /// ```
-    public enum Condition: String {
+    public enum Condition: String, Sendable {
         
         case untilFound = "until-found"
     }

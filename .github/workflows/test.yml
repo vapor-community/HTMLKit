@@ -9,8 +9,13 @@ on:
 jobs:
   test-pushpull:
     runs-on: ubuntu-latest
-    container: swift:5.10.1-jammy
+    strategy:
+      matrix:
+        image: [ "swift:6.0.3-jammy", "swift:6.0.3-noble" ]
+    container:
+      image: ${{ matrix.image }}
     steps:
-    - uses: actions/checkout@v3
-    - name: Run tests
-      run: swift test
+      - name: Check out code
+        uses: actions/checkout@v4
+      - name: Run tests
+        run: swift test
