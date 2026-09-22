@@ -1,9 +1,9 @@
 /// A companion type that informs about trusted or tainted content.
 @_documentation(visibility: internal)
-public enum EscapeContext {
+public enum EscapeContext: Sendable {
     
     /// The subcontext that describes the content.
-    public enum Subcontext {
+    public enum Subcontext: Sendable {
         
         /// Consider an HTML context.
         case html

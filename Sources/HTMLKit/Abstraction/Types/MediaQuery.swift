@@ -10,10 +10,10 @@
 ///         MediaQuery(.print, features: .resolution("300dpi"))
 ///     )
 /// ```
-public struct MediaQuery {
+public struct MediaQuery: Sendable {
     
     /// An enumeration of potential interface orientations.
-    public enum InterfaceOrientation {
+    public enum InterfaceOrientation: Sendable {
         
         /// Indicates a landscape orientation.
         case landscape
@@ -34,7 +34,7 @@ public struct MediaQuery {
     }
     
     /// An enumeration of potential media features.
-    public enum MediaFeature {
+    public enum MediaFeature: Sendable {
         
         /// Specifies the minimum target width.
         case minWidth(String)
@@ -120,7 +120,7 @@ public struct MediaQuery {
     }
     
     /// An enumeration of potential media devices.
-    public enum MediaTarget: String {
+    public enum MediaTarget: String, Sendable {
         
         /// Matches all devices.
         case all
