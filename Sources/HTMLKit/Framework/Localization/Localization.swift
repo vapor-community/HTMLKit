@@ -7,26 +7,26 @@ public struct Localization: Sendable {
     /// An enumeration of errors regarding the localization rendering.
     public enum Error: Swift.Error, Equatable {
         
-        /// Indicates a missing key
+        /// Indicates a missing key.
         ///
         /// A key is considered as missing if it cannot be found in the translation table.
         case missingKey(String, String)
         
-        /// Indicates a missing table
+        /// Indicates a missing table.
         ///
-        /// A table is considered as missing if there is no translation table for the given locale.
-        case missingTable(String)
+        /// A table is considered as missing if it cannot be found in the language catalog.
+        case missingTable(String, String)
         
-        /// Indicates missing tables
-        case missingTables
-        
-        /// Indicates a unknown table
+        /// Indicates a missing catalog.
         ///
-        /// A table is considered as unknown if it cannot be found by the given table name.
-        case unknownTable(String, String)
+        /// A catalog is considered as missing if it cannot be found in the localization folder.
+        case missingCatalog(String)
+        
+        /// Indicates missing language catalogs.
+        case missingCatalogs
         
         /// Indicates there is no fallback configuration set up.
-        case noFallback
+        case missingFallback
         
         /// Indicates a loading failure
         case loadingDataFailed
@@ -38,17 +38,17 @@ public struct Localization: Sendable {
             case .missingKey(let key, let tag):
                 return "Unable to find translation key '\(key)' for the locale '\(tag)'."
                 
-            case .missingTable(let tag):
-                return "Unable to find a translation table for the locale '\(tag)'."
-                
-            case .missingTables:
-                return "Unable to find any translation tables."
-                
-            case .unknownTable(let table, let tag):
+            case .missingTable(let table, let tag):
                 return "Unable to find translation table '\(table)' for the locale '\(tag)'."
                 
-            case .noFallback:
-                return "The fallback needs to be set up first."
+            case .missingCatalog(let tag):
+                return "Unable to find a language catalog for the locale '\(tag)'."
+                
+            case .missingCatalogs:
+                return "Unable to find any language catalog."  
+                
+            case .missingFallback:
+                return "The fallback locale is not set up."
                 
             case .loadingDataFailed:
                 return "Unable to load data."
@@ -56,10 +56,20 @@ public struct Localization: Sendable {
         }
     }
     
+    /// The available languages.
+    internal var availableLanguages: [Locale] {
+        
+        guard let catalogs = self.catalogs else {
+            return []
+        }
+        
+        return catalogs.map(\.key)
+    }
+    
     /// Indicates whether the localization is properly configured
     internal var isConfigured: Bool {
         
-        if self.tables != nil && self.locale != nil {
+        if self.catalogs != nil && self.locale != nil {
             return true
         }
         
@@ -67,7 +77,7 @@ public struct Localization: Sendable {
     }
     
     /// The translations tables
-    internal var tables: [Locale: [TranslationTable]]?
+    internal var catalogs: [Locale: [TranslationTable]]?
     
     /// The default locale
     ///
@@ -82,7 +92,7 @@ public struct Localization: Sendable {
     ///
     /// - Parameter source: The directory where the translations should be loaded from.
     public mutating func set(source: URL) {
-        self.tables = load(source: source)
+        self.catalogs = load(source: source)
     }
     
     /// Sets the default locale
@@ -100,7 +110,7 @@ public struct Localization: Sendable {
     public init(source: URL, locale: Locale) {
         
         self.locale = locale
-        self.tables = load(source: source)
+        self.catalogs = load(source: source)
     }
     
     /// Loads the translation tables from a given directory
@@ -110,7 +120,7 @@ public struct Localization: Sendable {
     /// - Returns: The translation tables mapped to their locale
     private func load(source: URL) -> [Locale: [TranslationTable]] {
         
-        var localizationTables = [Locale: [TranslationTable]]()
+        var catalogs = [Locale: [TranslationTable]]()
         
         if let enumerator = FileManager.default.enumerator(at: source, includingPropertiesForKeys: nil) {
             
@@ -123,28 +133,70 @@ public struct Localization: Sendable {
                         
                     } else {
                         
-                        let locale = Locale(tag: path.deletingPathExtension().deletingLastPathComponent().lastPathComponent)
-                        
-                        if var translationTables = localizationTables[locale] {
+                        if path.pathExtension == "strings" {
                             
-                            if let data = try? Foundation.Data(contentsOf: path) {
+                            let locale = Locale(tag: path.deletingPathExtension().deletingLastPathComponent().lastPathComponent)
+                            
+                            if var tables = catalogs[locale] {
                                 
-                                if let translations = try? PropertyListSerialization.propertyList(from: data, options: .mutableContainers, format: nil) as? [String: String] {
-                                    translationTables.append(TranslationTable(name: path.deletingPathExtension().lastPathComponent, translations: translations))
+                                if let data = try? Foundation.Data(contentsOf: path) {
+                                    
+                                    if let translations = try? PropertyListSerialization.propertyList(from: data, options: .mutableContainers, format: nil) as? [String: String] {
+                                        tables.append(TranslationTable(name: path.deletingPathExtension().lastPathComponent, translations: translations))
+                                    }
+                                    
+                                    catalogs[locale] = tables
                                 }
                                 
-                                localizationTables[locale] = translationTables
+                            } else {
+                                
+                                if let data = try? Foundation.Data(contentsOf: path) {
+                                    
+                                    if let translations = try? PropertyListSerialization.propertyList(from: data, options: .mutableContainers, format: nil) as? [String: String] {
+                                        catalogs[locale] = [TranslationTable(name: path.deletingPathExtension().lastPathComponent, translations: translations)]
+                                    }
+                                }
+                            }
+                        }
+                        
+                        if path.pathExtension == "xcstrings" {
+                           
+                            if let data = try? Foundation.Data(contentsOf: path) {
+                                
+                                if let catalog = try? JSONDecoder().decode(StringCatalog.self, from: data) {
+                                    
+                                    for (key, entry) in catalog.entries {
+                                        
+                                        for (tag, localization) in entry.localizations {
+                                            
+                                            if let unit = localization.unit {
+                                                
+                                                let locale = Locale(tag: tag)
+                                                
+                                                if var tables = catalogs[locale] {
+                                                    
+                                                    if let index = tables.firstIndex(where: { $0.name == path.deletingPathExtension().lastPathComponent }) {
+                                                        tables[index].upsert(unit.value, for: key)
+                                                    }
+                                                    
+                                                    catalogs[locale] = tables
+                                                    
+                                                } else {
+                                            
+                                                    catalogs[locale] = [TranslationTable(name: path.deletingPathExtension().lastPathComponent, translations: [key: unit.value])]
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
                             }
                         }
                     }
-                    
-                } else {
-                    localizationTables[Locale(tag: path.lastPathComponent)] = [TranslationTable]()
                 }
             }
         }
         
-        return localizationTables
+        return catalogs
     }
     
     /// Replace the value with the placeholder
@@ -207,50 +259,46 @@ public struct Localization: Sendable {
     public func localize(string: LocalizedString, for locale: Locale? = nil) throws -> String {
         
         guard let fallback = self.locale else {
-            throw Error.noFallback
+            throw Error.missingFallback
         }
         
-        guard let localizationTables = self.tables else {
-            throw Error.missingTables
+        guard let catalogs = self.catalogs else {
+            throw Error.missingCatalogs
         }
     
-        let currentLocale = locale ?? fallback
+        let candidate = getPossibleLanguage(locale, fallback)
         
-        guard let translationTables = localizationTables[currentLocale] else {
-            throw Error.missingTable(currentLocale.tag)
+        guard let tables = catalogs[candidate] else {
+            throw Error.missingCatalog(candidate.tag)
         }
         
         if let table = string.table {
             
-            guard let translationTable = translationTables.first(where: { $0.name == table }) else {
-                throw Error.unknownTable(table, currentLocale.tag)
+            guard let match = tables.first(where: { $0.name == table }) else {
+                throw Error.missingTable(table, candidate.tag)
             }
             
-            guard var translation = translationTable.retrieve(for: string.key.value) else {
-                throw Error.missingKey(string.key.value, currentLocale.tag)
+            guard var translation = match.retrieve(for: string.key.value) else {
+                throw Error.missingKey(string.key.value, candidate.tag)
             }
         
-            if let interpolation = string.key.interpolation {
-                interpolate(arguments: interpolation, to: &translation, for: currentLocale)
-            }
+            interpolate(arguments: string.key.arguments, to: &translation, for: candidate)
             
             return translation
             
         }
         
-        for translationTable in translationTables {
+        for table in tables {
             
-            if var translation = translationTable.retrieve(for: string.key.value) {
+            if var translation = table.retrieve(for: string.key.value) {
                 
-                if let interpolation = string.key.interpolation {
-                    interpolate(arguments: interpolation, to: &translation, for: currentLocale)
-                }
+                interpolate(arguments: string.key.arguments, to: &translation, for: candidate)
                 
                 return translation
             }
         }
         
-        throw Error.missingKey(string.key.value, currentLocale.tag)
+        throw Error.missingKey(string.key.value, candidate.tag)
     }
     
     /// Recovers from an error.
@@ -276,8 +324,32 @@ public struct Localization: Sendable {
                 return try recover(from: error, with: string)
                 
             default:
-                return string.key.literal
+                return string.key.fallback
             }
         }
+    }
+    
+    /// Returns the possible language.
+    /// 
+    /// - Parameter current: The current language.
+    /// 
+    /// - Returns: The possible language.
+    internal func getPossibleLanguage(_ current: Locale?, _ other: Locale) -> Locale {
+        
+        guard let current = current else {
+            return other
+        }
+        
+        if self.availableLanguages.contains(current) {
+            return current
+        }
+        
+        let next = Locale(tag: current.language!)
+        
+        if self.availableLanguages.contains(next) {
+            return next
+        }
+        
+        return other
     }
 }

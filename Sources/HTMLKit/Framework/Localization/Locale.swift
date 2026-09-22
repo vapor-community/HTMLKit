@@ -2,7 +2,7 @@
 ///
 /// A locale holds information about language, region and cultural preferences.
 @_documentation(visibility: internal)
-public struct Locale: Hashable, Sendable {
+public struct Locale: Sendable {
     
     /// An enumeration of potential language tags.
     public enum Tag: String, Sendable {
@@ -47,14 +47,14 @@ public struct Locale: Hashable, Sendable {
         case chinese = "zh"
     }
     
-    /// The language code of the language
+    /// The language code of the language.
     ///
     /// The language code represents the generic language.
     public var language: String? {
         return tag.components(separatedBy: "-").first
     }
     
-    /// The region code of the language
+    /// The region code of the language.
     ///
     /// The region code refers to the regional dialect of a language.
     public var region: String? {
@@ -68,44 +68,44 @@ public struct Locale: Hashable, Sendable {
         return nil
     }
     
-    /// The currency code of the language
+    /// The currency code of the language.
     public var currencyCode: String? {
         return currencyCodes[tag]
     }
     
-    /// The currency symbol of the language
+    /// The currency symbol of the language.
     public var currencySymbol: String? {
         return currencySymbols[tag]
     }
     
-    /// The decimal seperator of the language
+    /// The decimal seperator of the language.
     public var decimalSeparator: String? {
         return decimalSeparators[tag]
     }
     
-    /// The date format of the language
+    /// The date format of the language.
     public var dateFormat: String? {
         return dateFormats[tag]
     }
     
-    /// The time format of the language
+    /// The time format of the language.
     public var timeFormat: String? {
         return timeFormats[tag]
     }
     
-    /// The locale identifier
-    public let tag: String
+    /// The locale identifier.
+    internal let tag: String
     
-    /// Initializes a locale
+    /// Create a locale.
     ///
-    /// - Parameter tag: A locale tag e.g. en-US
+    /// - Parameter tag: A locale tag e.g. en-US.
     public init(tag: String) {
         self.tag = tag
     }
     
-    /// Initializes a locale with a predefined tag
+    /// Create a locale with a predefined tag.
     ///
-    /// - Parameter tag: A locale tag e.g. en-US
+    /// - Parameter tag: A locale tag e.g. en-US.
     public init(tag: Tag) {
         self.tag = tag.rawValue
     }
@@ -256,8 +256,7 @@ extension Locale {
     }
     
     internal var dateFormats: [String: String] {
-        return  [
-            
+        return [
             "ar-AE": "dd‏/MM‏/yyyy",
             "ar_QA": "dd‏/MM‏/yyyy",
             "be-BY": "dd.MM.yyyy",
@@ -304,12 +303,63 @@ extension Locale {
     }
     
     internal var timeFormats: [String: String] {
-        return  [
+        return [
+            "ar-AE": "h:mm:ss tt",
+            "ar_QA": "h:mm:ss tt",
+            "be-BY": "H:mm:ss",
+            "bg-BG": "H:mm:ss",
+            "ca-ES": "H:mm:ss",
+            "cs-CZ": "H:mm:ss",
+            "da-DK": "H.mm.ss",
+            "de-DE": "HH:mm:ss",
+            "el-GR": "H:mm:ss",
             "en-GB": "HH:mm:ss",
             "en-US": "h:mm:ss tt",
-            "de-DE": "HH:mm:ss",
+            "es-ES": "H:mm:ss",
+            "fi-FI": "H.mm.ss",
             "fr-FR": "HH:mm:ss",
+            "is-IS": "H:mm:ss",
+            "it-IT": "H:mm:ss",
+            "ja-JP": "H:mm:ss",
+            "he-IL": "H:mm:ss",
+            "hi-IN": "h:mm:ss a",
+            "hr-HR": "H:mm:ss",
+            "hu-HU": "H:mm:ss",
+            "ko-KP": "H:mm:ss",
+            "ko-KR": "a h:mm:ss",
+            "lt-LT": "HH:mm:ss",
+            "lv-LV": "HH:mm:ss",
+            "mk-MK": "H:mm:ss",
+            "nl-NL": "HH:mm:ss",
+            "nb-NO": "HH:mm:ss",
+            "pl-PL": "HH:mm:ss",
+            "pt-PT": "HH:mm:ss",
+            "ro-RO": "HH:mm:ss",
             "ru-RU": "H:mm:ss",
+            "sr_RS": "H:mm:ss",
+            "sk-SK": "H:mm:ss",
+            "sl-SI": "H:mm:ss",
+            "sq-AL": "HH:mm:ss",
+            "sv-SE": "HH:mm:ss",
+            "th-TH": "H:mm:ss",
+            "tr-TR": "HH:mm:ss",
+            "uk-UA": "HH:mm:ss",
+            "zh-CN": "ah:mm:ss",
+            "zh-HK": "ah:mm:ss",
         ]
+    }
+}
+
+extension Locale: Hashable {
+    
+    public static func == (lhs: Locale, rhs: Locale) -> Bool {
+        return lhs.tag == rhs.tag
+    }
+}
+
+extension Locale: CustomStringConvertible {
+    
+    public var description: String {
+        return tag
     }
 }
