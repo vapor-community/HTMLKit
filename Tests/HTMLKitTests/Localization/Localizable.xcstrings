@@ -2,6 +2,7 @@
   "sourceLanguage" : "en",
   "strings" : {
     "hello.xcstrings" : {
+      "comment" : "One more thing",
       "extractionState" : "manual",
       "localizations" : {
         "en" : {

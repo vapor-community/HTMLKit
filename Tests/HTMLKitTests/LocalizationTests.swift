@@ -228,6 +228,28 @@ final class LocalizationTests: XCTestCase {
         XCTAssertEqual(missingLanguage.language, "en")
         XCTAssertEqual(missingLanguage.region, "GB")
     }
+    
+    /// Tests the correct loading of the associated comments from the string catalog.
+    func testLoadingAssociatedComment() throws {
+        
+        guard let catalogs = localization!.catalogs else {
+            return XCTFail("No catalogs available")
+        }
+        
+        guard let tables = catalogs[Locale(tag: "en-GB")] else {
+            return XCTFail("No tables available")
+        }
+            
+        guard let table = tables.first(where: { $0.name == "Localizable" }) else {
+            return XCTFail("No table available")
+        }
+        
+        guard let translation = table.retrieve(for: "hello.xcstrings") else {
+            return XCTFail("No translation available")
+        }
+        
+        XCTAssertEqual(translation.comment, "One more thing")
+    }
 }
 
 extension LocalizationTests {

@@ -142,7 +142,14 @@ public struct Localization: Sendable {
                                 if let data = try? Foundation.Data(contentsOf: path) {
                                     
                                     if let translations = try? PropertyListSerialization.propertyList(from: data, options: .mutableContainers, format: nil) as? [String: String] {
-                                        tables.append(TranslationTable(name: path.deletingPathExtension().lastPathComponent, translations: translations))
+                                        
+                                        var entries = [String: Translation]()
+
+                                        for (key, value) in translations {
+                                            entries[key] = Translation(value: value)
+                                        }
+                                        
+                                        tables.append(TranslationTable(name: path.deletingPathExtension().lastPathComponent, translations: entries))
                                     }
                                     
                                     catalogs[locale] = tables
@@ -153,7 +160,14 @@ public struct Localization: Sendable {
                                 if let data = try? Foundation.Data(contentsOf: path) {
                                     
                                     if let translations = try? PropertyListSerialization.propertyList(from: data, options: .mutableContainers, format: nil) as? [String: String] {
-                                        catalogs[locale] = [TranslationTable(name: path.deletingPathExtension().lastPathComponent, translations: translations)]
+                                        
+                                        var entries = [String: Translation]()
+
+                                        for (key, value) in translations {
+                                            entries[key] = Translation(value: value)
+                                        }
+                                        
+                                        catalogs[locale] = [TranslationTable(name: path.deletingPathExtension().lastPathComponent, translations: entries)]
                                     }
                                 }
                             }
@@ -176,14 +190,19 @@ public struct Localization: Sendable {
                                                 if var tables = catalogs[locale] {
                                                     
                                                     if let index = tables.firstIndex(where: { $0.name == path.deletingPathExtension().lastPathComponent }) {
-                                                        tables[index].upsert(unit.value, for: key)
+                                                        
+                                                        let translation = Translation(value: unit.value, comment: entry.comment)
+                                                        
+                                                        tables[index].upsert(translation, for: key)
                                                     }
                                                     
                                                     catalogs[locale] = tables
                                                     
                                                 } else {
+                                                    
+                                                    let translation = Translation(value: unit.value, comment: entry.comment)
                                             
-                                                    catalogs[locale] = [TranslationTable(name: path.deletingPathExtension().lastPathComponent, translations: [key: unit.value])]
+                                                    catalogs[locale] = [TranslationTable(name: path.deletingPathExtension().lastPathComponent, translations: [key: translation])]
                                                 }
                                             }
                                         }
@@ -278,23 +297,27 @@ public struct Localization: Sendable {
                 throw Error.missingTable(table, candidate.tag)
             }
             
-            guard var translation = match.retrieve(for: string.key.value) else {
+            guard let translation = match.retrieve(for: string.key.value) else {
                 throw Error.missingKey(string.key.value, candidate.tag)
             }
-        
-            interpolate(arguments: string.key.arguments, to: &translation, for: candidate)
             
-            return translation
+            var value = translation.value
+        
+            interpolate(arguments: string.key.arguments, to: &value, for: candidate)
+            
+            return value
             
         }
         
         for table in tables {
             
-            if var translation = table.retrieve(for: string.key.value) {
+            if let translation = table.retrieve(for: string.key.value) {
                 
-                interpolate(arguments: string.key.arguments, to: &translation, for: candidate)
+                var value = translation.value
                 
-                return translation
+                interpolate(arguments: string.key.arguments, to: &value, for: candidate)
+                
+                return value
             }
         }
         

@@ -11,6 +11,8 @@ internal struct StringCatalog: Codable {
     internal struct Entry: Codable {
         
         let localizations: [String: StringCatalog.Localization]
+        
+        let comment: String?
     }
     
     internal struct Localization: Codable {
