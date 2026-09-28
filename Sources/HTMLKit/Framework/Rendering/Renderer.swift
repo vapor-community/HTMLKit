@@ -309,12 +309,12 @@ public struct Renderer: Sendable {
         
         guard let localization = localization else {
             // Bail early with the fallback since the localization is not in use
-            return string.key.literal
+            return string.key.fallback
         }
         
         if !localization.isConfigured {
             // Bail early, since the localization is not properly configured
-            return string.key.literal
+            return string.key.fallback
         }
         
         do {
@@ -337,9 +337,9 @@ public struct Renderer: Sendable {
                 
                 fallthrough
                 
-            case .missingTable:
+            case .missingCatalog:
                 
-                logger.debug("Trying to recover from missing table")
+                logger.debug("Trying to recover from missing catalog")
                 
                 // Clear the locale on the environment, since it cannot be used for the remainder of the rendering,
                 // otherwise it will throw an error each time
@@ -348,7 +348,7 @@ public struct Renderer: Sendable {
                 return try localization.recover(from: error, with: string)
                 
             default:
-                return string.key.literal
+                return string.key.fallback
             }
         }
     }
