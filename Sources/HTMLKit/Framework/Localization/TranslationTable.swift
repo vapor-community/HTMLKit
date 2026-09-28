@@ -1,19 +1,19 @@
-/// A type that represents a translation table
+/// A type that represents a translation table.
 ///
-/// A translation table stores multiple localized strings, mapping unique string keys to their corresponding translations
+/// A translation table stores multiple localized strings, mapping unique string keys to their corresponding translations.
 internal struct TranslationTable: Sendable {
     
-    /// The name of the table
+    /// The name of the table.
     internal let name: String
     
-    /// The translations in the table
+    /// The translations in the table.
     private var translations: [String: Translation]
     
-    /// Initializes a translation table
+    /// Initializes a translation table.
     ///
     /// - Parameters:
-    ///   - name: The name of the translation table
-    ///   - translations: The translations
+    ///   - name: The name of the translation table.
+    ///   - translations: The translations.
     internal init(name: String, translations: [String: Translation]) {
         
         self.name = name
@@ -29,12 +29,12 @@ internal struct TranslationTable: Sendable {
         return translations[key]
     }
     
-    /// Inserts or updates a value in the table for the given key
+    /// Inserts or updates a value in the table for the given key.
     ///
     /// - Parameters:
-    ///   - value: The value to be stored or updated.
+    ///   - translation: The value to be stored or updated.
     ///   - key: The key to store at.
-    internal mutating func upsert(_ value: Translation, for key: String) {
-        return translations[key] = value
+    internal mutating func upsert(_ translation: Translation, for key: String) {
+        return translations[key] = translation
     }
 }

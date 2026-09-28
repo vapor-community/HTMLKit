@@ -1,6 +1,6 @@
 import Foundation
 
-/// A type that represents the localization
+/// A type that represents the localization.
 @_documentation(visibility: internal)
 public struct Localization: Sendable {
     
@@ -10,17 +10,27 @@ public struct Localization: Sendable {
         /// Indicates a missing key.
         ///
         /// A key is considered as missing if it cannot be found in the translation table.
-        case missingKey(String, String)
+        /// 
+        /// - Parameters:
+        ///   - identifier: The identifier of the involved key.
+        ///   - locale: The involved locale.
+        case missingKey(identifier: String, locale: Locale)
         
         /// Indicates a missing table.
         ///
         /// A table is considered as missing if it cannot be found in the language catalog.
-        case missingTable(String, String)
+        /// 
+        /// - Parameters:
+        ///   - name: The name of the involved table.
+        ///   - locale: The involved locale.
+        case missingTable(name: String, locale: Locale)
         
         /// Indicates a missing catalog.
         ///
         /// A catalog is considered as missing if it cannot be found in the localization folder.
-        case missingCatalog(String)
+        /// 
+        /// - Parameter locale: The involved locale.
+        case missingCatalog(locale: Locale)
         
         /// Indicates missing language catalogs.
         case missingCatalogs
@@ -28,21 +38,21 @@ public struct Localization: Sendable {
         /// Indicates there is no fallback configuration set up.
         case missingFallback
         
-        /// Indicates a loading failure
+        /// Indicates a loading failure.
         case loadingDataFailed
         
-        /// Returns a description about the failure reason
+        /// Returns a description about the failure reason.
         public var description: String {
             
             switch self {
-            case .missingKey(let key, let tag):
-                return "Unable to find translation key '\(key)' for the locale '\(tag)'."
+            case .missingKey(let key, let locale):
+                return "Unable to find translation key '\(key)' for the locale '\(locale.tag)'."
                 
-            case .missingTable(let table, let tag):
-                return "Unable to find translation table '\(table)' for the locale '\(tag)'."
+            case .missingTable(let table, let locale):
+                return "Unable to find translation table '\(table)' for the locale '\(locale.tag)'."
                 
-            case .missingCatalog(let tag):
-                return "Unable to find a language catalog for the locale '\(tag)'."
+            case .missingCatalog(let locale):
+                return "Unable to find a language catalog for the locale '\(locale.tag)'."
                 
             case .missingCatalogs:
                 return "Unable to find any language catalog."  
@@ -242,13 +252,13 @@ public struct Localization: Sendable {
         for argument in arguments {
             
             switch argument {
-            case .int(let int):
-                
-                replace(placeholder: argument.placeholder, with: String(int), on: &translation)
-                
             case .string(let string):
                 
                 replace(placeholder: argument.placeholder, with: string, on: &translation)
+                
+            case .int(let int):
+                
+                replace(placeholder: argument.placeholder, with: String(int), on: &translation)
                 
             case .double(let double):
                 
@@ -288,17 +298,17 @@ public struct Localization: Sendable {
         let candidate = getPossibleLanguage(locale, fallback)
         
         guard let tables = catalogs[candidate] else {
-            throw Error.missingCatalog(candidate.tag)
+            throw Error.missingCatalog(locale: candidate)
         }
         
         if let table = string.table {
             
             guard let match = tables.first(where: { $0.name == table }) else {
-                throw Error.missingTable(table, candidate.tag)
+                throw Error.missingTable(name: table, locale: candidate)
             }
             
             guard let translation = match.retrieve(for: string.key.value) else {
-                throw Error.missingKey(string.key.value, candidate.tag)
+                throw Error.missingKey(identifier: string.key.value, locale: candidate)
             }
             
             var value = translation.value
@@ -321,7 +331,7 @@ public struct Localization: Sendable {
             }
         }
         
-        throw Error.missingKey(string.key.value, candidate.tag)
+        throw Error.missingKey(identifier: string.key.value, locale: candidate)
     }
     
     /// Recovers from an error.

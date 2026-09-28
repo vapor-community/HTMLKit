@@ -1,17 +1,17 @@
 import Foundation
 
-/// A string key for the localization
+/// A string key for the localization.
 @_documentation(visibility: internal)
-public struct LocalizedStringKey {
+public struct LocalizedStringKey: Sendable {
  
-    /// The key value
+    /// The key value.
     /// 
     /// ```
     /// Hello %@
     /// ```
     internal var value: String
     
-    /// A fallback literal string
+    /// A fallback literal string.
     /// 
     /// ```
     /// Hello World
@@ -24,12 +24,12 @@ public struct LocalizedStringKey {
     /// The arguments for the interpolation
     internal var arguments: [InterpolationArgument]
     
-    /// Initializes a string key for localization
+    /// Initializes a string key for localization.
     /// 
     /// - Parameters:
-    ///   - value: The key value
-    ///   - literal: The default value
-    ///   - interpolation: The arguments toreplace placeholders within the translation string
+    ///   - value: The key value.
+    ///   - fallback: The default value.
+    ///   - arguments: The arguments toreplace placeholders within the translation string.
     public init(value: String, fallback: String, arguments: [InterpolationArgument] = []) {
         
         self.value = value

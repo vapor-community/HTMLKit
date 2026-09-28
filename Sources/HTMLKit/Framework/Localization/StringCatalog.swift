@@ -1,33 +1,42 @@
 /// A type that represents a string catalog.
 internal struct StringCatalog: Codable {
     
-    enum CodingKeys: String, CodingKey {
+    internal enum CodingKeys: String, CodingKey {
          
         case entries = "strings"
     }
     
-    let entries: [String: StringCatalog.Entry]
+    /// The entries within the catalog.
+    internal let entries: [String: StringCatalog.Entry]
+}
+
+extension StringCatalog {
     
+    /// A type that represents a catalog entry.
     internal struct Entry: Codable {
         
-        let localizations: [String: StringCatalog.Localization]
+        /// The associated values.
+        internal let localizations: [String: StringCatalog.Localization]
         
-        let comment: String?
+        /// The associated comment.
+        internal let comment: String?
     }
     
+    /// A type that represents a entry value.
     internal struct Localization: Codable {
         
-        enum CodingKeys: String, CodingKey {
+        internal enum CodingKeys: String, CodingKey {
              
             case unit = "stringUnit"
         }
         
-        let unit: StringCatalog.Unit?
+        internal let unit: StringCatalog.Unit?
     }
     
+    /// A type that represents a value representation.
     internal struct Unit: Codable {
         
-        let value: String
+        internal let value: String
     }
 }
 

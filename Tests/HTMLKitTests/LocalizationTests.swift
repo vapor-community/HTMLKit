@@ -57,13 +57,13 @@ final class LocalizationTests: XCTestCase {
     /// the localization is expected to throw an error.
     func testMissingKey() throws {
         
-        XCTAssertThrowsError(try localization!.localize(string: .init(key: "unknown.key")), "unknown.key") { error in
+        XCTAssertThrowsError(try localization!.localize(string: .init(key: "unknown.key")), "unknown.table") { error in
             
             guard let localizationError = error as? Localization.Error else {
                 return XCTFail("Unexpected error type: \(error)")
             }
             
-            XCTAssertEqual(localizationError, .missingKey("unknown.key", "en-GB"))
+            XCTAssertEqual(localizationError, .missingKey(identifier: "unknown.key", locale: Locale(tag: "en-GB")))
             XCTAssertEqual(localizationError.description, "Unable to find translation key 'unknown.key' for the locale 'en-GB'.")
         }
     }
@@ -80,7 +80,7 @@ final class LocalizationTests: XCTestCase {
                 return XCTFail("Unexpected error type: \(error)")
             }
             
-            XCTAssertEqual(localizationError, .missingTable("unknown.table", "en-GB"))
+            XCTAssertEqual(localizationError, .missingTable(name: "unknown.table", locale: Locale(tag: "en-GB")))
             XCTAssertEqual(localizationError.description, "Unable to find translation table 'unknown.table' for the locale 'en-GB'.")
         }
     }
@@ -99,7 +99,7 @@ final class LocalizationTests: XCTestCase {
                 return XCTFail("Unexpected error type: \(error)")
             }
             
-            XCTAssertEqual(localizationError, .missingCatalog("tlh-AA"))
+            XCTAssertEqual(localizationError, .missingCatalog(locale: Locale(tag: "tlh-AA")))
             XCTAssertEqual(localizationError.description, "Unable to find a language catalog for the locale 'tlh-AA'.")
         }
     }
