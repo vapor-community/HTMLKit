@@ -1,11 +1,13 @@
-import XCTest
+import Testing
 import Minifier
 
-final class StylesheetTests: XCTestCase {
+@Suite
+struct StylesheetTests {
     
     let minifier = Minifier(compression: [.stripComments, .removeWhitespaces])
     
     // Tests minifing a
+    @Test
     func testStripComments() throws {
         
         // ...comment outside of a selector
@@ -17,7 +19,7 @@ final class StylesheetTests: XCTestCase {
         }
         """
         
-        XCTAssertEqual(minifier.minify(css: commentoutside), ".selector{}")
+        #expect(minifier.minify(css: commentoutside) == ".selector{}")
         
         // ...comment inside of a selector
         
@@ -30,7 +32,7 @@ final class StylesheetTests: XCTestCase {
         }
         """
         
-        XCTAssertEqual(minifier.minify(css: commentinside), ".selector{.selector{}}")
+        #expect(minifier.minify(css: commentinside) == ".selector{.selector{}}")
         
         
         let commentinsideinside = """
@@ -43,55 +45,58 @@ final class StylesheetTests: XCTestCase {
         }
         """
         
-        XCTAssertEqual(minifier.minify(css: commentinsideinside), "@media(rule){:selector{}}")
+        #expect(minifier.minify(css: commentinsideinside) == "@media(rule){:selector{}}")
     }
     
     // Tests minifing a
+    @Test
     func testMinifySelectors() throws {
         
         // ...class selector
-        XCTAssertEqual(minifier.minify(css: ".selector {}"), ".selector{}")
+        #expect(minifier.minify(css: ".selector {}") == ".selector{}")
         
         // ...id selector
-        XCTAssertEqual(minifier.minify(css: "#selector {}"), "#selector{}")
+        #expect(minifier.minify(css: "#selector {}") == "#selector{}")
         
         // ...type selector
-        XCTAssertEqual(minifier.minify(css: "selector {}"), "selector{}")
+        #expect(minifier.minify(css: "selector {}") == "selector{}")
         
         // ...root selector
-        XCTAssertEqual(minifier.minify(css: ":selector {}"), ":selector{}")
+        #expect(minifier.minify(css: ":selector {}") == ":selector{}")
         
         // ...attribute selector
-        XCTAssertEqual(minifier.minify(css: "[attribute] {}"), "[attribute]{}")
+        #expect(minifier.minify(css: "[attribute] {}") == "[attribute]{}")
         
         // ...universal selector
-        XCTAssertEqual(minifier.minify(css: "* {}"), "*{}")
+        #expect(minifier.minify(css: "* {}") == "*{}")
     }
     
     // Tests minifing a
+    @Test
     func testMinifyCombinators() throws {
         
         // ...descendant combinator
-        XCTAssertEqual(minifier.minify(css: ".selector .selector {}"), ".selector .selector{}")
+        #expect(minifier.minify(css: ".selector .selector {}") == ".selector .selector{}")
         
         // ...adjacent sibling combinator
-        XCTAssertEqual(minifier.minify(css: ".selector + .selector {}"), ".selector+.selector{}")
+        #expect(minifier.minify(css: ".selector + .selector {}") == ".selector+.selector{}")
         
         // ...child combinator
-        XCTAssertEqual(minifier.minify(css: ".selector > .selector {}"), ".selector>.selector{}")
+        #expect(minifier.minify(css: ".selector > .selector {}") == ".selector>.selector{}")
         
         // ...general sibling combinator
-        XCTAssertEqual(minifier.minify(css: ".selector ~ .selector {}"), ".selector~.selector{}")
+        #expect(minifier.minify(css: ".selector ~ .selector {}") == ".selector~.selector{}")
         
         // ...parent combinator
-        XCTAssertEqual(minifier.minify(css: "& .selector {}"), "& .selector{}")
+        #expect(minifier.minify(css: "& .selector {}") == "& .selector{}")
         
-        XCTAssertEqual(minifier.minify(css: "&.selector {}"), "&.selector{}")
+        #expect(minifier.minify(css: "&.selector {}") == "&.selector{}")
         
-        XCTAssertEqual(minifier.minify(css: ".selector & {}"), ".selector &{}")
+        #expect(minifier.minify(css: ".selector & {}") == ".selector &{}")
     }
     
     // Tests minifing a
+    @Test
     func testMinifyProperties() throws {
         
         // ...standard property
@@ -102,7 +107,7 @@ final class StylesheetTests: XCTestCase {
         }
         """
         
-        XCTAssertEqual(minifier.minify(css: standard), ".selector{property:value;}")
+        #expect(minifier.minify(css: standard) == ".selector{property:value;}")
         
         // ...browser property
         
@@ -112,7 +117,7 @@ final class StylesheetTests: XCTestCase {
         }
         """
         
-        XCTAssertEqual(minifier.minify(css: browser), ".selector{-browser-property:value;}")
+        #expect(minifier.minify(css: browser) == ".selector{-browser-property:value;}")
         
         // ...custom property
         
@@ -122,10 +127,11 @@ final class StylesheetTests: XCTestCase {
         }
         """
     
-        XCTAssertEqual(minifier.minify(css: custom), ".selector{--custom-property:value;}")
+        #expect(minifier.minify(css: custom) == ".selector{--custom-property:value;}")
     }
     
     // Tests minifing
+    @Test
     func testMinifyAtrules() throws {
         
         // a layer rule
@@ -139,7 +145,7 @@ final class StylesheetTests: XCTestCase {
         }
         """
         
-        XCTAssertEqual(minifier.minify(css: layerrule), "@layer module{.selector{property:value;}}")
+        #expect(minifier.minify(css: layerrule) == "@layer module{.selector{property:value;}}")
         
         // a media rule
         
@@ -152,7 +158,7 @@ final class StylesheetTests: XCTestCase {
         }
         """
         
-        XCTAssertEqual(minifier.minify(css: mediarule), "@media(condition){.selector{property:value;}}")
+        #expect(minifier.minify(css: mediarule) == "@media(condition){.selector{property:value;}}")
         
         // a import rule
         
@@ -165,10 +171,11 @@ final class StylesheetTests: XCTestCase {
         }
         """
         
-        XCTAssertEqual(minifier.minify(css: importrule), "@import \"file\"{.selector{property:value;}}")
+        #expect(minifier.minify(css: importrule) == "@import \"file\"{.selector{property:value;}}")
     }
     
     // Tests minifing
+    @Test
     func testMinifyPseudos() throws {
         
         // ...a pseudo class
@@ -179,7 +186,7 @@ final class StylesheetTests: XCTestCase {
         }
         """
         
-        XCTAssertEqual(minifier.minify(css: pseudoclass), ".selector:pseudo-class{property:value;}")
+        #expect(minifier.minify(css: pseudoclass) == ".selector:pseudo-class{property:value;}")
         
         // ...a pseudo selector
         
@@ -189,7 +196,7 @@ final class StylesheetTests: XCTestCase {
         }
         """
         
-        XCTAssertEqual(minifier.minify(css: pseudoselector), ".selector:has(rule){property:value;}")
+        #expect(minifier.minify(css: pseudoselector) == ".selector:has(rule){property:value;}")
         
         // ...a pseudo element
         
@@ -199,10 +206,11 @@ final class StylesheetTests: XCTestCase {
         }
         """
         
-        XCTAssertEqual(minifier.minify(css: pseudoelement), ".selector::pseudo-element{property:value;}")
+        #expect(minifier.minify(css: pseudoelement) == ".selector::pseudo-element{property:value;}")
     }
     
     // Tests minifing a whole document
+    @Test
     func testMinifyDocument() throws {
         
         let document = """
@@ -213,10 +221,11 @@ final class StylesheetTests: XCTestCase {
         }
         """
         
-        XCTAssertEqual(minifier.minify(css: document), ".selector{property:value;}")
+        #expect(minifier.minify(css: document) == ".selector{property:value;}")
     }
     
     // Tests the destinction between a property, a type selector, and type selector with a pseudeo-element
+    @Test
     func testElementDestinction() throws {
         
         let destinction = """
@@ -239,11 +248,12 @@ final class StylesheetTests: XCTestCase {
         }
         """
         
-        XCTAssertEqual(minifier.minify(css: destinction), ".selector{property:value;selector{}selector::pseudo-element{}selector:pseudo-selector{}}selector::pseudo-element{}")
+        #expect(minifier.minify(css: destinction) == ".selector{property:value;selector{}selector::pseudo-element{}selector:pseudo-selector{}}selector::pseudo-element{}")
     }
     
     
     // Tests minifing a
+    @Test
     func testMinfiyValues() throws {
         
         // ...dimension value
@@ -255,7 +265,7 @@ final class StylesheetTests: XCTestCase {
         }
         """
         
-        XCTAssertEqual(minifier.minify(css: dimensionvalue), ".selector{property:0px;}")
+        #expect(minifier.minify(css: dimensionvalue) == ".selector{property:0px;}")
         
         // ...numeric value
         
@@ -266,7 +276,7 @@ final class StylesheetTests: XCTestCase {
         }
         """
         
-        XCTAssertEqual(minifier.minify(css: numbervalue), ".selector{property:0.00em;}")
+        #expect(minifier.minify(css: numbervalue) == ".selector{property:0.00em;}")
         
         // ...percentage value
         
@@ -277,7 +287,7 @@ final class StylesheetTests: XCTestCase {
         }
         """
         
-        XCTAssertEqual(minifier.minify(css: percentagevalue), ".selector{property:0%;}")
+        #expect(minifier.minify(css: percentagevalue) == ".selector{property:0%;}")
         
         // ...string value
         
@@ -288,7 +298,7 @@ final class StylesheetTests: XCTestCase {
         }
         """
         
-        XCTAssertEqual(minifier.minify(css: stringvalue), ".selector{property:\"content\";}")
+        #expect(minifier.minify(css: stringvalue) == ".selector{property:\"content\";}")
         
         // ...shorthand value
         
@@ -299,7 +309,7 @@ final class StylesheetTests: XCTestCase {
         }
         """
         
-        XCTAssertEqual(minifier.minify(css: shorthandvalue), ".selector{property:0px 0px 0px 0px;}")
+        #expect(minifier.minify(css: shorthandvalue) == ".selector{property:0px 0px 0px 0px;}")
         
         // ...multiple values seperated by commas
         
@@ -309,7 +319,7 @@ final class StylesheetTests: XCTestCase {
         }
         """
         
-        XCTAssertEqual(minifier.minify(css: multiplevalues), ".selector{property:value,value,\"string string\",value;}")
+        #expect(minifier.minify(css: multiplevalues) == ".selector{property:value,value,\"string string\",value;}")
         
         // ...function value
         
@@ -319,7 +329,7 @@ final class StylesheetTests: XCTestCase {
         }
         """
         
-        XCTAssertEqual(minifier.minify(css: functionvalue), ".selector{property:function();}")
+        #expect(minifier.minify(css: functionvalue) == ".selector{property:function();}")
         
         // ...rule mark
         
@@ -329,7 +339,7 @@ final class StylesheetTests: XCTestCase {
         }
         """
         
-        XCTAssertEqual(minifier.minify(css: rulemark), ".selector{property:function()!important;}")
+        #expect(minifier.minify(css: rulemark) == ".selector{property:function()!important;}")
         
         // ...negative margin
         
@@ -339,7 +349,7 @@ final class StylesheetTests: XCTestCase {
         }
         """
         
-        XCTAssertEqual(minifier.minify(css: negativevalue), ".selector{property:-0.0px;}")
+        #expect(minifier.minify(css: negativevalue) == ".selector{property:-0.0px;}")
         
         // ...multiple values seperated by solidus
         
@@ -349,7 +359,7 @@ final class StylesheetTests: XCTestCase {
         }
         """
         
-        XCTAssertEqual(minifier.minify(css: multiplevaluesandsolidus), ".selector{property:1/1;}")
+        #expect(minifier.minify(css: multiplevaluesandsolidus) == ".selector{property:1/1;}")
     }
     
     // Tests minifing a funtion
@@ -364,7 +374,7 @@ final class StylesheetTests: XCTestCase {
         }
         """
         
-        XCTAssertEqual(minifier.minify(css: stringargument), ".selector{property:function(\"argument\");}")
+        #expect(minifier.minify(css: stringargument) == ".selector{property:function(\"argument\");}")
         
         
         // ...with a custom property
@@ -376,7 +386,7 @@ final class StylesheetTests: XCTestCase {
         }
         """
         
-        XCTAssertEqual(minifier.minify(css: propertyargument), ".selector{property:function(--customProperty);}")
+        #expect(minifier.minify(css: propertyargument) == ".selector{property:function(--customProperty);}")
         
         // ...with arimethical operation
         
@@ -387,7 +397,7 @@ final class StylesheetTests: XCTestCase {
         }
         """
         
-        XCTAssertEqual(minifier.minify(css: arimethicargument), ".selector{property:function(0px + 0px);}")
+        #expect(minifier.minify(css: arimethicargument) == ".selector{property:function(0px + 0px);}")
         
         // ...with a numeric value
         
@@ -398,7 +408,7 @@ final class StylesheetTests: XCTestCase {
         }
         """
         
-        XCTAssertEqual(minifier.minify(css: numericargument), ".selector{property:function(25deg);}")
+        #expect(minifier.minify(css: numericargument) == ".selector{property:function(25deg);}")
         
         
         // ...with a function within
@@ -410,6 +420,6 @@ final class StylesheetTests: XCTestCase {
         }
         """
         
-        XCTAssertEqual(minifier.minify(css: functionargument), ".selector{property:function(function(argument), argument);}")
+        #expect(minifier.minify(css: functionargument) == ".selector{property:function(function(argument), argument);}")
     }
 }

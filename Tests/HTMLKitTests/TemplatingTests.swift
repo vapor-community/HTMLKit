@@ -1,12 +1,13 @@
 import HTMLKit
-import XCTest
-import OrderedCollections
+import Testing
 
-final class TemplatingTests: XCTestCase {
+@Suite
+struct TemplatingTests {
     
     var renderer = Renderer()
     
-    func testEmbeding() throws {
+    @Test
+    func testPartialEmbedding() throws {
         
         struct ParentView: View {
             
@@ -41,7 +42,7 @@ final class TemplatingTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(try renderer.render(view: ParentView(context: "Hello World!")),
+        #expect(try renderer.render(view: ParentView(context: "Hello World!")) ==
                        """
                        <!DOCTYPE html>\
                        <html>\
@@ -57,7 +58,8 @@ final class TemplatingTests: XCTestCase {
         )
     }
     
-    func testExtending() throws {
+    @Test
+    func testViewExtending() throws {
         
         struct ParentView: View {
             
@@ -98,7 +100,7 @@ final class TemplatingTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(try renderer.render(view: ChildView(context: "Hello World!")),
+        #expect(try renderer.render(view: ChildView(context: "Hello World!")) ==
                        """
                        <!DOCTYPE html>\
                        <html>\
@@ -114,6 +116,7 @@ final class TemplatingTests: XCTestCase {
         )
     }
     
+    @Test
     func testExtendingWithSingles() throws {
         
         struct ParentView: View {
@@ -159,7 +162,7 @@ final class TemplatingTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(try renderer.render(view: ChildView(context: "Hello World!")),
+        #expect(try renderer.render(view: ChildView(context: "Hello World!")) ==
                        """
                        <!DOCTYPE html>\
                        <html>\

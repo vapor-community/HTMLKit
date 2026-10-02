@@ -1,8 +1,9 @@
 import HTMLKit
 import HTMLKitComponents
-import XCTest
+import Testing
 
-final class SecurityTests: XCTestCase {
+@Suite
+struct SecurityTests {
     
     struct TestView: View {
         
@@ -11,6 +12,7 @@ final class SecurityTests: XCTestCase {
     
     var renderer = Renderer()
     
+    @Test
     func testEncodingAttributeContext() throws {
         
         let attack = "\" onclick=\"alert(1);\""
@@ -22,13 +24,14 @@ final class SecurityTests: XCTestCase {
             .tag(attack)
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <button type="button" class="button" id="&quot; onclick=&quot;alert(1);&quot;">Show</button>
                        """
         )
     }
     
+    @Test
     func testEncodingActionContext() throws {
         
         let attack = "'</script><script> var test = '<b>attack</b>';"
@@ -44,7 +47,7 @@ final class SecurityTests: XCTestCase {
             
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <button type="button" class="button" id="sender">Show</button>\
                        <script>\
@@ -54,6 +57,7 @@ final class SecurityTests: XCTestCase {
         )
     }
     
+    @Test
     func testEncodingCssContext() throws {
         
         let attack = "test\" style=\"property: unsafe\""
@@ -65,7 +69,7 @@ final class SecurityTests: XCTestCase {
             .background(.custom(attack))
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <p class="text alignment:leading background:test&quot; style=&quot;property: unsafe&quot;">Text</p>
                        """

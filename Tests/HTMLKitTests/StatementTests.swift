@@ -1,9 +1,9 @@
 import HTMLKit
-import XCTest
-
+import Testing
 import Foundation
 
-final class StatementTests: XCTestCase {
+@Suite
+struct StatementTests {
     
     struct TestView: View {
         
@@ -12,6 +12,7 @@ final class StatementTests: XCTestCase {
     
     var renderer = Renderer()
     
+    @Test
     func testIfCondition() throws {
         
         let valid: Bool = true
@@ -28,13 +29,14 @@ final class StatementTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <p>true</p>
                        """
         )
     }
     
+    @Test
     func testElseCondition() throws {
         
         let valid: Bool = false
@@ -51,13 +53,14 @@ final class StatementTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <p>false</p>
                        """
         )
     }
     
+    @Test
     func testLoopStatement() throws {
         
         let planets: [String] = ["Neptun", "Jupiter"]
@@ -70,7 +73,7 @@ final class StatementTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <p>Neptun</p>\
                        <p>Jupiter</p>
@@ -78,6 +81,7 @@ final class StatementTests: XCTestCase {
         )
     }
     
+    @Test
     func testOptional() throws {
         
         let name: String? = "Mattes"
@@ -90,13 +94,14 @@ final class StatementTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <p>Mattes</p>
                        """
         )
     }
     
+    @Test
     func testOptionalBeforeElement() throws {
         
         let name: String? = "Tony"
@@ -111,7 +116,7 @@ final class StatementTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <p>Tony</p>\
                        <div></div>
@@ -119,6 +124,7 @@ final class StatementTests: XCTestCase {
         )
     }
     
+    @Test
     func testOptionalAfterElement() throws {
         
         let name: String? = "Tony"
@@ -133,7 +139,7 @@ final class StatementTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <div></div>\
                        <p>Tony</p>
@@ -141,6 +147,7 @@ final class StatementTests: XCTestCase {
         )
     }
     
+    @Test
     func testOptionalWithExpectedResult() throws {
         
         let name: String? = "Tony"
@@ -155,7 +162,7 @@ final class StatementTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <body>\
                        <p>Tony</p>\

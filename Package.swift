@@ -78,7 +78,7 @@ let package = Package(
             dependencies: [
                 .target(name: "HTMLKitVapor"),
                 .target(name: "HTMLKit"),
-                .product(name: "XCTVapor", package: "vapor")
+                .product(name: "VaporTesting", package: "vapor"),
             ],
             resources: [
                 .copy("Localization")

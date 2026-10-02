@@ -1,13 +1,15 @@
 import HTMLKit
-import XCTest
+import Testing
 
-final class EnvironmentTests: XCTestCase {
+@Suite
+struct EnvironmentTests {
     
     var renderer = Renderer()
     
     /// Tests the environment access through the environment object
     ///
     /// The renderer is expected to evaluate the placeholder and renderer the resulting value.
+    @Test
     func testEnvironmentAccess() throws {
         
         struct FamilyObject: ViewModel {
@@ -59,7 +61,7 @@ final class EnvironmentTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(try renderer.render(view: ChildView()),
+        #expect(try renderer.render(view: ChildView()) ==
                        """
                        <div>\
                        <section>\
@@ -75,6 +77,7 @@ final class EnvironmentTests: XCTestCase {
     /// Tests condtion evaluation for the environment
     ///
     /// The renderer is expected to evaluated the condition correctly and renderer the right statement based on the condition.
+    @Test
     func testEnvironmentCondition() throws {
         
         struct TestObject: ViewModel {
@@ -156,7 +159,7 @@ final class EnvironmentTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(try renderer.render(view: TestView()),
+        #expect(try renderer.render(view: TestView()) ==
                        """
                        <p>TrueFalseFalseTrueTrueFalseFalseTrueTrueFalse</p>
                        """
@@ -164,6 +167,7 @@ final class EnvironmentTests: XCTestCase {
     }
     
     /// Tests the evaluation of a statement with a conjunctional relation
+    @Test
     func testConditionConjuction() throws {
         
         struct TestObject: ViewModel {
@@ -211,7 +215,7 @@ final class EnvironmentTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(try renderer.render(view: TestView()),
+        #expect(try renderer.render(view: TestView()) ==
                        """
                        <p>TrueFalseFalseFalse</p>
                        """
@@ -219,6 +223,7 @@ final class EnvironmentTests: XCTestCase {
     }
     
     /// Tests the evaluation of a statement with a disjunctional relation
+    @Test
     func testConditionDisjunction() throws {
         
         struct TestObject: ViewModel {
@@ -259,7 +264,7 @@ final class EnvironmentTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(try renderer.render(view: TestView()),
+        #expect(try renderer.render(view: TestView()) ==
                        """
                        <p>TrueTrueFalse</p>
                        """
@@ -267,6 +272,7 @@ final class EnvironmentTests: XCTestCase {
     }
     
     /// Tests the evaluation of various relation combinations
+    @Test
     func testConditionConjunctionAndDisjunction() throws {
         
         struct TestObject: ViewModel {
@@ -300,7 +306,7 @@ final class EnvironmentTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(try renderer.render(view: TestView()),
+        #expect(try renderer.render(view: TestView()) ==
                        """
                        <p>TrueTrue</p>
                        """
@@ -308,6 +314,7 @@ final class EnvironmentTests: XCTestCase {
     }
     
     /// Tests the iteration over a sequence of environment values
+    @Test
     func testEnvironmentLoop() throws {
         
         struct TestObject: ViewModel {
@@ -332,7 +339,7 @@ final class EnvironmentTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(try renderer.render(view: TestView()),
+        #expect(try renderer.render(view: TestView()) ==
                        """
                        <p>\
                        <p>Janek</p>\
@@ -346,6 +353,7 @@ final class EnvironmentTests: XCTestCase {
     ///
     /// The renderer is expected to evaluate the presence of the value and render the right content
     /// accordingly.
+    @Test
     func testEnvironmentUnwrap() throws {
         
         struct TestObject: ViewModel {
@@ -378,7 +386,7 @@ final class EnvironmentTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(try renderer.render(view: TestView()),
+        #expect(try renderer.render(view: TestView()) ==
                        """
                        <p>NoneSome</p>
                        """
@@ -388,6 +396,7 @@ final class EnvironmentTests: XCTestCase {
     /// Tests the string interpolation with an environment value
     ///
     /// The renderer is expected to render the string correctly
+    @Test
     func testStringInterpolationWithEnvironment() throws {
         
         struct TestObject: ViewModel {
@@ -408,7 +417,7 @@ final class EnvironmentTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(try renderer.render(view: TestView()),
+        #expect(try renderer.render(view: TestView()) ==
                        """
                        <p>Hello, how are you Jane?</p>
                        """
