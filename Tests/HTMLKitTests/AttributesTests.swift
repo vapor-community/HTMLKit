@@ -1,9 +1,10 @@
 @testable import HTMLKit
 import Foundation
 import OrderedCollections
-import XCTest
+import Testing
 
-final class AttributesTests: XCTestCase {
+@Suite
+struct AttributesTests {
     
     struct TestView: View {
         
@@ -1238,71 +1239,77 @@ final class AttributesTests: XCTestCase {
     
     var renderer = Renderer()
     
+    @Test
     func testAccesskeyAttribute() throws {
         
         let view = TestView {
             Tag {}.accessKey("s")
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag accesskey="s"></tag>
                        """
         )
     }
     
+    @Test
     func testAutocapitalizeAttribute() throws {
         
         let view = TestView {
             Tag {}.autocapitalize(.words)
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag autocapitalize="words"></tag>
                        """
         )
     }
     
+    @Test
     func testAutofocusAttribute() throws {
         
         let view = TestView {
             Tag {}.autofocus()
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag autofocus="autofocus"></tag>
                        """
         )
     }
     
+    @Test
     func testClassAttribute() throws {
         
         let view = TestView {
             Tag {}.class("container")
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag class="container"></tag>
                        """
         )
     }
     
+    @Test
     func testDirectionAttribute() throws {
         
         let view = TestView {
             Tag {}.direction(.leftToRight)
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag dir="ltr"></tag>
                        """
         )
     }
     
+    @Test
     func testDraggableAttribute() throws {
         
         let view = TestView {
@@ -1311,7 +1318,7 @@ final class AttributesTests: XCTestCase {
             Tag {}.draggable(true)
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag draggable="true"></tag>\
                        <tag draggable="false"></tag>\
@@ -1320,6 +1327,7 @@ final class AttributesTests: XCTestCase {
         )
     }
     
+    @Test
     func testEditableAttribute() throws {
         
         let view = TestView {
@@ -1328,7 +1336,7 @@ final class AttributesTests: XCTestCase {
             Tag {}.editable(true)
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag contenteditable="true"></tag>\
                        <tag contenteditable="false"></tag>\
@@ -1337,19 +1345,21 @@ final class AttributesTests: XCTestCase {
         )
     }
     
+    @Test
     func testEnterkeyhintAttribute() throws {
         
         let view = TestView {
             Tag {}.enterKey(.enter)
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag enterkeyhint="enter"></tag>
                        """
         )
     }
     
+    @Test
     func testHiddenAttribute() throws {
         
         let view = TestView {
@@ -1359,7 +1369,7 @@ final class AttributesTests: XCTestCase {
             Tag {}.hidden(.untilFound)
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag hidden="hidden"></tag>\
                        <tag></tag>\
@@ -1369,45 +1379,49 @@ final class AttributesTests: XCTestCase {
         )
     }
     
+    @Test
     func testIdentifierAttribute() throws {
         
         let view = TestView {
             Tag {}.id("navigation")
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag id="navigation"></tag>
                        """
         )
     }
     
+    @Test
     func testLanguageAttribute() throws {
         
         let view = TestView {
             Tag {}.language(.german)
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag lang="de"></tag>
                        """
         )
     }
     
+    @Test
     func testNonceAttribute() throws {
         
         let view = TestView {
             Tag {}.nonce("84a97f593e589c45")
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag nonce="84a97f593e589c45"></tag>
                        """
         )
     }
     
+    @Test
     func testRoleAttribute() throws {
         
         let view = TestView {
@@ -1416,7 +1430,7 @@ final class AttributesTests: XCTestCase {
             Tag {}.role(.alertDialog, .alert)
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag role="alert"></tag>\
                        <tag role="alertdialog alert"></tag>\
@@ -1425,6 +1439,7 @@ final class AttributesTests: XCTestCase {
         )
     }
     
+    @Test
     func testHasSpellCheckAttribute() throws {
         
         let view = TestView {
@@ -1433,7 +1448,7 @@ final class AttributesTests: XCTestCase {
             Tag {}.spellcheck(true)
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag spellcheck="true"></tag>\
                        <tag spellcheck="false"></tag>\
@@ -1442,45 +1457,49 @@ final class AttributesTests: XCTestCase {
         )
     }
     
+    @Test
     func testStyleAttribute() throws {
         
         let view = TestView {
             Tag {}.style("background-color:powderblue;")
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag style="background-color:powderblue;"></tag>
                        """
         )
     }
     
+    @Test
     func testTabIndexAttribute() throws {
         
         let view = TestView {
             Tag {}.tabIndex(3)
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag tabindex="3"></tag>
                        """
         )
     }
     
+    @Test
     func testTitleAttribute() throws {
         
         let view = TestView {
             Tag {}.title("homeview")
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag title="homeview"></tag>
                        """
         )
     }
     
+    @Test
     func testTranslateAttribute() throws {
         
         let view = TestView {
@@ -1489,7 +1508,7 @@ final class AttributesTests: XCTestCase {
             Tag {}.translate(true)
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag translate="yes"></tag>\
                        <tag translate="no"></tag>\
@@ -1498,6 +1517,7 @@ final class AttributesTests: XCTestCase {
         )
     }
     
+    @Test
     func testAcceptAttribute() throws {
         
         let view = TestView {
@@ -1508,7 +1528,7 @@ final class AttributesTests: XCTestCase {
             Tag {}.accept(.ogg, .mpeg)
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag accept="image/*"></tag>\
                        <tag accept=".jpg, .png, .svg"></tag>\
@@ -1519,45 +1539,49 @@ final class AttributesTests: XCTestCase {
         )
     }
     
+    @Test
     func testActionAttribute() throws {
         
         let view = TestView {
             Tag {}.action("action")
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag action="action"></tag>
                        """
         )
     }
     
+    @Test
     func testAlternateAttribute() throws {
         
         let view = TestView {
             Tag {}.alternate("a tag and a attribute")
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag alt="a tag and a attribute"></tag>
                        """
         )
     }
     
+    @Test
     func testAsynchronouslyAttribute() throws {
         
         let view = TestView {
             Tag {}.asynchronously()
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag async="async"></tag>
                        """
         )
     }
     
+    @Test
     func testCompleteAttribute() throws {
         
         let view = TestView {
@@ -1567,7 +1591,7 @@ final class AttributesTests: XCTestCase {
             Tag {}.autocomplete(.organization, .organizationTitle)
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag autocomplete="on"></tag>\
                        <tag autocomplete="off"></tag>\
@@ -1577,6 +1601,7 @@ final class AttributesTests: XCTestCase {
         )
     }
     
+    @Test
     func testAutoplayAttribute() throws {
         
         let view = TestView {
@@ -1588,7 +1613,7 @@ final class AttributesTests: XCTestCase {
             Tag {}.autoplay(true)
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag autoplay="autoplay"></tag>\
                        <tag></tag>\
@@ -1597,19 +1622,21 @@ final class AttributesTests: XCTestCase {
         )
     }
     
+    @Test
     func testCharsetAttribute() throws {
         
         let view = TestView {
             Tag {}.charset(.utf8)
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag charset="utf-8"></tag>
                        """
         )
     }
     
+    @Test
     func testCheckedAttribute() throws {
         
         let view = TestView {
@@ -1621,7 +1648,7 @@ final class AttributesTests: XCTestCase {
             Tag {}.checked(true)
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag checked="checked"></tag>\
                        <tag></tag>\
@@ -1630,123 +1657,133 @@ final class AttributesTests: XCTestCase {
         )
     }
     
+    @Test
     func testCiteAttribute() throws {
         
         let view = TestView {
             Tag {}.cite("cite")
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag cite="cite"></tag>
                        """
         )
     }
     
+    @Test
     func testColumnsAttribute() throws {
         
         let view = TestView {
             Tag {}.columns(2)
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag cols="2"></tag>
                        """
         )
     }
     
+    @Test
     func testColumnSpanAttribute() throws {
         
         let view = TestView {
             Tag {}.columnSpan(2)
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag colspan="2"></tag>
                        """
         )
     }
     
+    @Test
     func testContentAttribute() throws {
         
         let view = TestView {
             Tag {}.content("content")
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag content="content"></tag>
                        """
         )
     }
     
+    @Test
     func testControlsAttribute() throws {
         
         let view = TestView {
             Tag {}.controls()
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag controls="controls"></tag>
                        """
         )
     }
     
+    @Test
     func testDataAttribute() throws {
         
         let view = TestView {
             Tag {}.data("https://www.github.com")
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag data="https://www.github.com"></tag>
                        """
         )
     }
     
+    @Test
     func testDateTimeAttribute() throws {
         
         let view = TestView {
             Tag {}.dateTime("YYYY-MM-DDThh:mm:ssTZD")
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag datetime="YYYY-MM-DDThh:mm:ssTZD"></tag>
                        """
         )
     }
     
+    @Test
     func testDefaultAttribute() throws {
         
         let view = TestView {
             Tag {}.default()
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag default="default"></tag>
                        """
         )
     }
     
+    @Test
     func testDeferAttribute() throws {
         
         let view = TestView {
             Tag {}.defer()
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag defer="defer"></tag>
                        """
         )
     }
     
+    @Test
     func testDisabledAttribute() throws {
         
         let view = TestView {
@@ -1758,7 +1795,7 @@ final class AttributesTests: XCTestCase {
             Tag {}.disabled(true)
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag disabled="disabled"></tag>\
                        <tag></tag>\
@@ -1767,6 +1804,7 @@ final class AttributesTests: XCTestCase {
         )
     }
     
+    @Test
     func testDownloadAttribute() throws {
         
         let view = TestView {
@@ -1776,7 +1814,7 @@ final class AttributesTests: XCTestCase {
             Tag {}.download("filename")
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag download="download"></tag>\
                        <tag></tag>\
@@ -1786,71 +1824,77 @@ final class AttributesTests: XCTestCase {
         )
     }
     
+    @Test
     func testEncodingAttribute() throws {
         
         let view = TestView {
             Tag {}.encoding(.plainText)
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag enctype="text/plain"></tag>
                        """
         )
     }
     
+    @Test
     func testForAttribute() throws {
         
         let view = TestView {
             Tag {}.for("for")
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag for="for"></tag>
                        """
         )
     }
     
+    @Test
     func testFormAttribute() throws {
         
         let view = TestView {
             Tag {}.form("/action.php")
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag form="/action.php"></tag>
                        """
         )
     }
     
+    @Test
     func testFormActionAttribute() throws {
         
         let view = TestView {
             Tag {}.formAction("/action.php")
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag formaction="/action.php"></tag>
                        """
         )
     }
     
+    @Test
     func testEquivalentAttribute() throws {
         
         let view = TestView {
             Tag {}.equivalent(.refresh)
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag http-equiv="refresh"></tag>
                        """
         )
     }
     
+    @Test
     func testHeadersAttribute() throws {
         
         let view = TestView {
@@ -1859,7 +1903,7 @@ final class AttributesTests: XCTestCase {
             Tag {}.headers(["id", "id"])
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag headers="id"></tag>\
                        <tag headers="id id"></tag>\
@@ -1868,32 +1912,35 @@ final class AttributesTests: XCTestCase {
         )
     }
     
+    @Test
     func testHeightAttribute() throws {
         
         let view = TestView {
             Tag {}.height(2)
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag height="2"></tag>
                        """
         )
     }
     
+    @Test
     func testHighAttribute() throws {
         
         let view = TestView {
             Tag {}.high(2.0)
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag high="2.0"></tag>
                        """
         )
     }
     
+    @Test
     func testItemAttribute() throws {
         
         let view = TestView {
@@ -1906,7 +1953,7 @@ final class AttributesTests: XCTestCase {
             
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag itemscope="itemscope"></tag>\
                        <tag itemscope="itemscope" itemid="id"></tag>\
@@ -1918,84 +1965,91 @@ final class AttributesTests: XCTestCase {
         )
     }
     
+    @Test
     func testReferenceAttribute() throws {
         
         let view = TestView {
             Tag {}.reference("/index.html")
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag href="/index.html"></tag>
                        """
         )
     }
     
+    @Test
     func testReferenceLanguageAttribute() throws {
         
         let view = TestView {
             Tag {}.referenceLanguage(.german)
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag hreflang="de"></tag>
                        """
         )
     }
     
+    @Test
     func testIsMapAttribute() throws {
         
         let view = TestView {
             Tag {}.isMap()
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag ismap="ismap"></tag>
                        """
         )
     }
     
+    @Test
     func testKindAttribute() throws {
         
         let view = TestView {
             Tag {}.kind(.subtitles)
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag kind="subtitles"></tag>
                        """
         )
     }
     
+    @Test
     func testLabelAttribute() throws {
         
         let view = TestView {
             Tag {}.label("Soccer")
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag label="Soccer"></tag>
                        """
         )
     }
     
+    @Test
     func testListAttribute() throws {
         
         let view = TestView {
             Tag {}.list("browsers")
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag list="browsers"></tag>
                        """
         )
     }
     
+    @Test
     func testLoopAttribute() throws {
         
         let view = TestView {
@@ -2007,7 +2061,7 @@ final class AttributesTests: XCTestCase {
             Tag {}.loop(true)
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag loop="loop"></tag>\
                        <tag></tag>\
@@ -2016,45 +2070,49 @@ final class AttributesTests: XCTestCase {
         )
     }
     
+    @Test
     func testLowAttribute() throws {
         
         let view = TestView {
             Tag {}.low(2.0)
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag low="2.0"></tag>
                        """
         )
     }
     
+    @Test
     func testMaximumAttribute() throws {
         
         let view = TestView {
             Tag {}.maximum("1948-01-01")
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag max="1948-01-01"></tag>
                        """
         )
     }
     
+    @Test
     func testMaximumLengthAttribute() throws {
         
         let view = TestView {
             Tag {}.maximum(length: 2)
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag maxlength="2"></tag>
                        """
         )
     }
 
+    @Test
     func testMediaAttribute() throws {
         
         let view = TestView {
@@ -2063,7 +2121,7 @@ final class AttributesTests: XCTestCase {
             Tag {}.media(MediaQuery(.all), MediaQuery(.print, features: [.maxHeight("20vh")]))
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag media="all and (orientation: landscape) and (resolution: 300dpi)"></tag>\
                        <tag media="all, print"></tag>\
@@ -2072,6 +2130,7 @@ final class AttributesTests: XCTestCase {
         )
     }
     
+    @Test
     func testMethodAttribute() throws {
         
         let view = TestView {
@@ -2080,7 +2139,7 @@ final class AttributesTests: XCTestCase {
             Tag {}.method(.dialog)
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag method="get"></tag>\
                        <tag method="post"></tag>\
@@ -2089,84 +2148,91 @@ final class AttributesTests: XCTestCase {
         )
     }
     
+    @Test
     func testMinimumAttribute() throws {
         
         let view = TestView {
             Tag {}.minimum(2.0)
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag min="2.0"></tag>
                        """
         )
     }
     
+    @Test
     func testMinimumLengthAttribute() throws {
         
         let view = TestView {
             Tag {}.minimum(length: 2)
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag minlength="2"></tag>
                        """
         )
     }
     
+    @Test
     func testMultipleAttribute() throws {
         
         let view = TestView {
             Tag {}.multiple()
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag multiple="multiple"></tag>
                        """
         )
     }
     
+    @Test
     func testMutedAttribute() throws {
         
         let view = TestView {
             Tag {}.muted()
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag muted="muted"></tag>
                        """
         )
     }
     
+    @Test
     func testNameAttribute() throws {
         
         let view = TestView {
             Tag {}.name("name")
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag name="name"></tag>
                        """
         )
     }
     
+    @Test
     func testNoValidateAttribute() throws {
         
         let view = TestView {
             Tag {}.novalidate()
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag novalidate="novalidate"></tag>
                        """
         )
     }
     
+    @Test
     func testIsOpenAttribute() throws {
         
         let view = TestView {
@@ -2175,7 +2241,7 @@ final class AttributesTests: XCTestCase {
             Tag {}.open(true)
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag open="open"></tag>\
                        <tag></tag>\
@@ -2184,71 +2250,77 @@ final class AttributesTests: XCTestCase {
         )
     }
     
+    @Test
     func testOptimumAttribute() throws {
         
         let view = TestView {
             Tag {}.optimum(2.0)
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag optimum="2.0"></tag>
                        """
         )
     }
     
+    @Test
     func testPatternAttribute() throws {
         
         let view = TestView {
             Tag {}.pattern("[A-Za-z]{3}")
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag pattern="[A-Za-z]{3}"></tag>
                        """
         )
     }
     
+    @Test
     func testPartAttribute() throws {
         
         let view = TestView {
             Tag {}.part("part")
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag part="part"></tag>
                        """
         )
     }
     
+    @Test
     func testPingAttribute() throws {
         
         let view = TestView {
             Tag {}.ping("https://www.github.com")
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag ping="https://www.github.com"></tag>
                        """
         )
     }
     
+    @Test
     func testPlaceholderAttribute() throws {
         
         let view = TestView {
             Tag {}.placeholder("123-45-678")
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag placeholder="123-45-678"></tag>
                        """
         )
     }
     
+    @Test
     func testPlaysInlineAttribute() throws {
         
         let view = TestView {
@@ -2257,7 +2329,7 @@ final class AttributesTests: XCTestCase {
             Tag {}.playInline(true)
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag playsinline="playsinline"></tag>\
                        <tag></tag>\
@@ -2266,32 +2338,35 @@ final class AttributesTests: XCTestCase {
         )
     }
     
+    @Test
     func testPosterAttribute() throws {
         
         let view = TestView {
             Tag {}.poster("https://www.github.com")
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag poster="https://www.github.com"></tag>
                        """
         )
     }
     
+    @Test
     func testPreloadAttribute() throws {
         
         let view = TestView {
             Tag {}.preload(.metadata)
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag preload="metadata"></tag>
                        """
         )
     }
     
+    @Test
     func testReadonlyAttribute() throws {
         
         let view = TestView {
@@ -2303,7 +2378,7 @@ final class AttributesTests: XCTestCase {
             Tag {}.readonly(true)
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag readonly="readonly"></tag>\
                        <tag></tag>\
@@ -2312,19 +2387,21 @@ final class AttributesTests: XCTestCase {
         )
     }
     
+    @Test
     func testReferrerPolicyAttribute() throws {
         
         let view = TestView {
             Tag {}.referrerPolicy(.origin)
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag referrerpolicy="origin"></tag>
                        """
         )
     }
     
+    @Test
     func testRelationshipAttribute() throws {
         
         let view = TestView {
@@ -2333,7 +2410,7 @@ final class AttributesTests: XCTestCase {
             Tag {}.relationship([.author, .external])
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag rel="author"></tag>\
                        <tag rel="author external"></tag>\
@@ -2342,6 +2419,7 @@ final class AttributesTests: XCTestCase {
         )
     }
     
+    @Test
     func testRequiredAttribute() throws {
         
         let view = TestView {
@@ -2353,7 +2431,7 @@ final class AttributesTests: XCTestCase {
             Tag {}.required(true)
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag required="required"></tag>\
                        <tag></tag>\
@@ -2362,45 +2440,49 @@ final class AttributesTests: XCTestCase {
         )
     }
     
+    @Test
     func testReversedAttribute() throws {
         
         let view = TestView {
             Tag {}.reversed()
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag reversed="reversed"></tag>
                        """
         )
     }
     
+    @Test
     func testRowsAttribute() throws {
         
         let view = TestView {
             Tag {}.rows(2)
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag rows="2"></tag>
                        """
         )
     }
     
+    @Test
     func testRowSpanAttribute() throws {
         
         let view = TestView {
             Tag {}.rowSpan(2)
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag rowspan="2"></tag>
                        """
         )
     }
     
+    @Test
     func testSandboxAttribute() throws {
         
         let view = TestView {
@@ -2409,7 +2491,7 @@ final class AttributesTests: XCTestCase {
             Tag {}.sandbox([.allowDownloads, .allowForms])
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag sandbox="sandbox"></tag>\
                        <tag sandbox="allow-downloads"></tag>\
@@ -2418,6 +2500,7 @@ final class AttributesTests: XCTestCase {
         )
     }
     
+    @Test
     func testScopeAttribute() throws {
         
         let view = TestView {
@@ -2427,7 +2510,7 @@ final class AttributesTests: XCTestCase {
             Tag {}.scope(.rowGroup)
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag scope="col"></tag>\
                        <tag scope="row"></tag>\
@@ -2437,6 +2520,7 @@ final class AttributesTests: XCTestCase {
         )
     }
     
+    @Test
     func testShapeAttribute() throws {
         
         let view = TestView {
@@ -2444,7 +2528,7 @@ final class AttributesTests: XCTestCase {
             Tag {}.shape(.circle, coordinates: "255,132,316,150")
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag shape="default"></tag>\
                        <tag shape="circle" coords="255,132,316,150"></tag>
@@ -2452,19 +2536,21 @@ final class AttributesTests: XCTestCase {
         )
     }
     
+    @Test
     func testSizeAttribute() throws {
         
         let view = TestView {
             Tag {}.size(2)
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag size="2"></tag>
                        """
         )
     }
     
+    @Test
     func testSizesAttribute() throws {
         
         let view = TestView {
@@ -2478,7 +2564,7 @@ final class AttributesTests: XCTestCase {
             Tag {}.sizes(SizeCandidate("100vw"), SizeCandidate("100vw", conditions: .maxWidth("50em")))
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag sizes="auto"></tag>\
                        <tag sizes="(orientation: landscape) 100vw"></tag>\
@@ -2492,71 +2578,77 @@ final class AttributesTests: XCTestCase {
         )
     }
     
+    @Test
     func testSlotAttribute() throws {
         
         let view = TestView {
             Tag {}.slot("slot")
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag slot="slot"></tag>
                        """
         )
     }
     
+    @Test
     func testSpanAttribute() throws {
         
         let view = TestView {
             Tag {}.span(2)
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag span="2"></tag>
                        """
         )
     }
     
+    @Test
     func testSourceAttribute() throws {
         
         let view = TestView {
             Tag {}.source("source")
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag src="source"></tag>
                        """
         )
     }
     
+    @Test
     func testSourceDocumentAttribute() throws {
         
         let view = TestView {
             Tag {}.sourceDocument("<!doctype html><html lang=\"de\"></html>")
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag srcdoc="&lt;!doctype html>&lt;html lang=&quot;de&quot;>&lt;/html>"></tag>
                        """
         )
     }
     
+    @Test
     func testSourceLanguageAttribute() throws {
         
         let view = TestView {
             Tag {}.sourceLanguage(.english)
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag srclang="en"></tag>
                        """
         )
     }
     
+    @Test
     func testSourcesAttribute() throws {
         
         let view = TestView {
@@ -2567,7 +2659,7 @@ final class AttributesTests: XCTestCase {
             Tag {}.sources(SourceCandidate("img.png", width: 1024), SourceCandidate("img.png", density: .ultra))
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag srcset="img.webp"></tag>\
                        <tag srcset="img.png 4x"></tag>\
@@ -2578,71 +2670,77 @@ final class AttributesTests: XCTestCase {
         )
     }
     
+    @Test
     func testStartAttribute() throws {
         
         let view = TestView {
             Tag {}.start(2)
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag start="2"></tag>
                        """
         )
     }
     
+    @Test
     func testStepAttribute() throws {
         
         let view = TestView {
             Tag {}.step(2)
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag step="2"></tag>
                        """
         )
     }
     
+    @Test
     func testTargetAttribute() throws {
         
         let view = TestView {
             Tag {}.target(.blank)
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag target="_blank"></tag>
                        """
         )
     }
     
+    @Test
     func testTypeAttribute() throws {
         
         let view = TestView {
             Tag {}.type("type")
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag type="type"></tag>
                        """
         )
     }
     
+    @Test
     func testUseMapAttribute() throws {
         
         let view = TestView {
             Tag {}.useMap("image_map")
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag usemap="#image_map"></tag>
                        """
         )
     }
     
+    @Test
     func testSelectedAttribute() throws {
         
         let view = TestView {
@@ -2654,7 +2752,7 @@ final class AttributesTests: XCTestCase {
             Tag {}.selected(true)
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag selected="selected"></tag>\
                        <tag></tag>\
@@ -2663,84 +2761,91 @@ final class AttributesTests: XCTestCase {
         )
     }
     
+    @Test
     func testFetchPriorityAttribute() throws {
         
         let view = TestView {
             Tag {}.fetchPriority(.high)
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag fetchpriority="high"></tag>
                        """
         )
     }
     
+    @Test
     func testLoadingAttribute() throws {
         
         let view = TestView {
             Tag {}.loading(.lazy)
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag loading="lazy"></tag>
                        """
         )
     }
     
+    @Test
     func testDecodingAttribute() throws {
         
         let view = TestView {
             Tag {}.decoding(.async)
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag decoding="async"></tag>
                        """
         )
     }
     
+    @Test
     func testValueAttribute() throws {
         
         let view = TestView {
             Tag {}.value("value")
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag value="value"></tag>
                        """
         )
     }
     
+    @Test
     func testBlockingAttribute() throws {
         
         let view = TestView {
             Tag {}.blocking(.render)
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag blocking="render"></tag>
                        """
         )
     }
     
+    @Test
     func testPopoverAttribute() throws {
         
         let view = TestView {
             Tag {}.popover(.auto)
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag popover="auto"></tag>
                        """
         )
     }
     
+    @Test
     func testPopoverTargetAttribute() throws {
         
         let view = TestView {
@@ -2748,7 +2853,7 @@ final class AttributesTests: XCTestCase {
             Tag {}.popoverTarget("id", action: .hide)
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag popovertarget="id"></tag>\
                        <tag popovertarget="id" popovertargetaction="hide"></tag>
@@ -2756,6 +2861,7 @@ final class AttributesTests: XCTestCase {
         )
     }
     
+    @Test
     func testIntegrityAttribute() throws {
         
         let view = TestView {
@@ -2764,7 +2870,7 @@ final class AttributesTests: XCTestCase {
             Tag {}.integrity(["sha384...", "sha384..."])
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag integrity="sha384..."></tag>\
                        <tag integrity="sha384... sha384..."></tag>\
@@ -2773,19 +2879,21 @@ final class AttributesTests: XCTestCase {
         )
     }
     
+    @Test
     func testAsAttribute() throws {
         
         let view = TestView {
             Tag {}.as(.fetch)
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag as="fetch"></tag>
                        """
         )
     }
     
+    @Test
     func testCrossOriginAttribute() throws {
         
         let view = TestView {
@@ -2793,7 +2901,7 @@ final class AttributesTests: XCTestCase {
             Tag {}.crossOrigin(.useCredentials)
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag crossorigin="anonymous"></tag>\
                        <tag crossorigin="use-credentials"></tag>
@@ -2801,6 +2909,7 @@ final class AttributesTests: XCTestCase {
         )
     }
     
+    @Test
     func testCustomAttribute() throws {
         
         let view = TestView {
@@ -2810,7 +2919,7 @@ final class AttributesTests: XCTestCase {
             Tag {}.custom(key: "aria-hidden", value: false)
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag data-animal-type="bird"></tag>\
                        <tag data-row-index="2"></tag>\
@@ -2820,188 +2929,203 @@ final class AttributesTests: XCTestCase {
         )
     }
     
+    @Test
     func testWindowEventAttribute() throws {
         
         let view = TestView {
             Tag {}.on(event: .afterprint, "script")
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag onafterprint="script"></tag>
                        """
         )
     }
     
+    @Test
     func testFocusEventAttribute() throws {
         
         let view = TestView {
             Tag {}.on(event: .focus, "script")
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag onfocus="script"></tag>
                        """
         )
     }
     
+    @Test
     func testPointerEventAttribute() throws {
         
         let view = TestView {
             Tag {}.on(event: .pointerup, "script")
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag onpointerup="script"></tag>
                        """
         )
     }
     
+    @Test
     func testMouseEventAttribute() throws {
         
         let view = TestView {
             Tag {}.on(event: .mouseup, "script")
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag onmouseup="script"></tag>
                        """
         )
     }
     
+    @Test
     func testWheelEventAttribute() throws {
         
         let view = TestView {
             Tag {}.on(event: .wheel, "script")
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag onwheel="script"></tag>
                        """
         )
     }
     
+    @Test
     func testInputEventAttribute() throws {
         
         let view = TestView {
             Tag {}.on(event: .input, "script")
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag oninput="script"></tag>
                        """
         )
     }
     
+    @Test
     func testKeyboardEventAttribute() throws {
         
         let view = TestView {
             Tag {}.on(event: .keyup, "script")
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag onkeyup="script"></tag>
                        """
         )
     }
     
+    @Test
     func testDragEventAttribute() throws {
         
         let view = TestView {
             Tag {}.on(event: .drag, "script")
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag ondrag="script"></tag>
                        """
         )
     }
     
+    @Test
     func testClipboardEventAttribute() throws {
         
         let view = TestView {
             Tag {}.on(event: .paste, "script")
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag onpaste="script"></tag>
                        """
         )
     }
     
+    @Test
     func testSelectionEventAttribute() throws {
         
         let view = TestView {
             Tag {}.on(event: .selectstart, "script")
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag onselectstart="script"></tag>
                        """
         )
     }
     
+    @Test
     func testMediaEventAttribute() throws {
         
         let view = TestView {
             Tag {}.on(event: .play, "script")
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag onplay="script"></tag>
                        """
         )
     }
     
+    @Test
     func testFormEventAttribute() throws {
         
         let view = TestView {
             Tag {}.on(event: .submit, "script")
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag onsubmit="script"></tag>
                        """
         )
     }
     
+    @Test
     func testDetailEventAttribute() throws {
         
         let view = TestView {
             Tag {}.on(event: .toggle, "script")
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag ontoggle="script"></tag>
                        """
         )
     }
     
+    @Test
     func testAtomicAccessibilityAttribute() throws {
         
         let view = TestView {
             Tag {}.accessibilityAtomic(true)
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag aria-atomic="true"></tag>
                        """
         )
     }
     
+    @Test
     func testBusyAccessibilityAttribute() throws {
         
         let view = TestView {
@@ -3010,7 +3134,7 @@ final class AttributesTests: XCTestCase {
             Tag {}.accessibilityBusy(true)
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag aria-busy="true"></tag>\
                        <tag aria-busy="false"></tag>\
@@ -3019,6 +3143,7 @@ final class AttributesTests: XCTestCase {
         )
     }
     
+    @Test
     func testControlsAccessibilityAttribute() throws {
         
         let view = TestView {
@@ -3026,7 +3151,7 @@ final class AttributesTests: XCTestCase {
             Tag {}.accessibilityControls("id", "id")
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag aria-controls="id"></tag>\
                        <tag aria-controls="id id"></tag>
@@ -3034,6 +3159,7 @@ final class AttributesTests: XCTestCase {
         )
     }
     
+    @Test
     func testCurrentAccessibilityAttribute() throws {
         
         let view = TestView {
@@ -3047,7 +3173,7 @@ final class AttributesTests: XCTestCase {
             Tag {}.accessibilityCurrent(.location)
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag aria-current="true"></tag>\
                        <tag aria-current="false"></tag>\
@@ -3061,6 +3187,7 @@ final class AttributesTests: XCTestCase {
         )
     }
     
+    @Test
     func testDescriptionsAccessibilityAttribute() throws {
         
         let view = TestView {
@@ -3068,7 +3195,7 @@ final class AttributesTests: XCTestCase {
             Tag {}.accessibilityDescriptions(["id", "id"])
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag aria-describedby="id id"></tag>\
                        <tag aria-describedby="id id"></tag>
@@ -3076,19 +3203,21 @@ final class AttributesTests: XCTestCase {
         )
     }
     
+    @Test
     func testDetailAccessibilityAttribute() throws {
         
         let view = TestView {
             Tag {}.accessibilityDetail("id")
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag aria-details="id"></tag>
                        """
         )
     }
     
+    @Test
     func testDisabledAccessibilityAttribute() throws {
         
         let view = TestView {
@@ -3097,7 +3226,7 @@ final class AttributesTests: XCTestCase {
             Tag {}.accessibilityDisabled(true)
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag aria-disabled="true"></tag>\
                        <tag aria-disabled="false"></tag>\
@@ -3106,6 +3235,7 @@ final class AttributesTests: XCTestCase {
         )
     }
     
+    @Test
     func testFlowAccessibilityAttribute() throws {
         
         let view = TestView {
@@ -3114,7 +3244,7 @@ final class AttributesTests: XCTestCase {
             Tag {}.accessibilityFlow(["id", "id"])
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag aria-flowto="id"></tag>\
                        <tag aria-flowto="id id"></tag>\
@@ -3123,6 +3253,7 @@ final class AttributesTests: XCTestCase {
         )
     }
     
+    @Test
     func testPopupAccessibilityAttribute() throws {
         
         let view = TestView {
@@ -3133,7 +3264,7 @@ final class AttributesTests: XCTestCase {
             Tag {}.accessibilityPopup(.tree)
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag aria-haspopup="grid"></tag>\
                        <tag aria-haspopup="dialog"></tag>\
@@ -3144,6 +3275,7 @@ final class AttributesTests: XCTestCase {
         )
     }
     
+    @Test
     func testHiddenAccessibilityAttribute() throws {
         
         let view = TestView {
@@ -3152,7 +3284,7 @@ final class AttributesTests: XCTestCase {
             Tag {}.accessibilityHidden(true)
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag aria-hidden="true"></tag>\
                        <tag aria-hidden="false"></tag>\
@@ -3161,6 +3293,7 @@ final class AttributesTests: XCTestCase {
         )
     }
     
+    @Test
     func testInvalidAccessibilityAttribute() throws {
         
         let view = TestView {
@@ -3171,7 +3304,7 @@ final class AttributesTests: XCTestCase {
             Tag {}.accessibilityInvalid(message: "id")
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag aria-invalid="grammar"></tag>\
                        <tag aria-invalid="spelling"></tag>\
@@ -3182,6 +3315,7 @@ final class AttributesTests: XCTestCase {
         )
     }
     
+    @Test
     func testKeyShortcutsAriaAttribute() throws {
         
         let view = TestView {
@@ -3192,7 +3326,7 @@ final class AttributesTests: XCTestCase {
             
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag aria-keyshortcuts="A"></tag>\
                        <tag aria-keyshortcuts="B C"></tag>\
@@ -3202,19 +3336,21 @@ final class AttributesTests: XCTestCase {
         )
     }
     
+    @Test
     func testLabelAccessibilityAttribute() throws {
         
         let view = TestView {
             Tag {}.accessibilityLabel("label")
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag aria-label="label"></tag>
                        """
         )
     }
     
+    @Test
     func testLabelsByAccessibilityAttribute() throws {
         
         let view = TestView {
@@ -3223,7 +3359,7 @@ final class AttributesTests: XCTestCase {
             Tag {}.accessibilityLabels(["id", "id"])
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag aria-labelledby="id"></tag>\
                        <tag aria-labelledby="id id"></tag>\
@@ -3232,6 +3368,7 @@ final class AttributesTests: XCTestCase {
         )
     }
     
+    @Test
     func testLiveAriaAttribute() throws {
         
         let view = TestView {
@@ -3240,7 +3377,7 @@ final class AttributesTests: XCTestCase {
             Tag {}.accessibilityLive(.off)
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag aria-live="polite"></tag>\
                        <tag aria-live="assertive"></tag>\
@@ -3249,6 +3386,7 @@ final class AttributesTests: XCTestCase {
         )
     }
     
+    @Test
     func testOwnsAriaAttribute() throws {
         
         let view = TestView {
@@ -3257,7 +3395,7 @@ final class AttributesTests: XCTestCase {
             Tag {}.accessibilityOwns(["id", "id"])
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag aria-owns="id"></tag>\
                        <tag aria-owns="id id"></tag>\
@@ -3266,6 +3404,7 @@ final class AttributesTests: XCTestCase {
         )
     }
     
+    @Test
     func testRelevantAccessibilityAttribute() throws {
         
         let view = TestView {
@@ -3274,7 +3413,7 @@ final class AttributesTests: XCTestCase {
             Tag {}.accessibilityRelevant([.additions, .text])
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag aria-relevant="additions"></tag>\
                        <tag aria-relevant="additions text"></tag>\
@@ -3283,32 +3422,35 @@ final class AttributesTests: XCTestCase {
         )
     }
     
+    @Test
     func testRoleDescriptionAccessibilityAttribute() throws {
         
         let view = TestView {
             Tag {}.accessibilityRoleDescription("description")
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag aria-roledescription="description"></tag>
                        """
         )
     }
     
+    @Test
     func testSortAccessibilityAttribute() throws {
         
         let view = TestView {
             Tag {}.accessibilitySort(.ascending)
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag aria-sort="ascending"></tag>
                        """
         )
     }
     
+    @Test
     func testOrientationAccessibilityAttribute() throws {
         
         let view = TestView {
@@ -3316,7 +3458,7 @@ final class AttributesTests: XCTestCase {
             Tag {}.accessibilityOrientation(.vertical)
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag aria-orientation="horizontal"></tag>\
                        <tag aria-orientation="vertical"></tag>
@@ -3324,6 +3466,7 @@ final class AttributesTests: XCTestCase {
         )
     }
     
+    @Test
     func testRequiredAccessibilityAttribute() throws {
         
         let view = TestView {
@@ -3332,7 +3475,7 @@ final class AttributesTests: XCTestCase {
             Tag {}.accessibilityRequired(true)
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag aria-required="true"></tag>\
                        <tag aria-required="false"></tag>\
@@ -3341,6 +3484,7 @@ final class AttributesTests: XCTestCase {
         )
     }
     
+    @Test
     func testReadOnlyAccessibilityAttribute() throws {
         
         let view = TestView {
@@ -3349,7 +3493,7 @@ final class AttributesTests: XCTestCase {
             Tag {}.accessibilityReadonly(true)
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag aria-readonly="true"></tag>\
                        <tag aria-readonly="false"></tag>\
@@ -3358,6 +3502,7 @@ final class AttributesTests: XCTestCase {
         )
     }
     
+    @Test
     func testModalAccessibilityAttribute() throws {
         
         let view = TestView {
@@ -3366,7 +3511,7 @@ final class AttributesTests: XCTestCase {
             Tag {}.accessibilityModal(true)
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag aria-modal="true"></tag>\
                        <tag aria-modal="false"></tag>\
@@ -3375,45 +3520,49 @@ final class AttributesTests: XCTestCase {
         )
     }
     
+    @Test
     func testLevelAccessibilityAttribute() throws {
         
         let view = TestView {
             Tag {}.accessibilityLevel(2)
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag aria-level="2"></tag>
                        """
         )
     }
     
+    @Test
     func testHintAccessibilityAttribute() throws {
         
         let view = TestView {
             Tag {}.accessibilityHint("Lorem ipsum...")
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag aria-placeholder="Lorem ipsum..."></tag>
                        """
         )
     }
     
+    @Test
     func testPositionAccessibilityAttribute() throws {
         
         let view = TestView {
             Tag {}.accessibilityPosition(5, in: 10)
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag aria-posinset="5" aria-setsize="10"></tag>
                        """
         )
     }
     
+    @Test
     func testMultilineAccessibilityAttribute() throws {
         
         let view = TestView {
@@ -3422,7 +3571,7 @@ final class AttributesTests: XCTestCase {
             Tag {}.accessibilityMultiline(true)
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag aria-multiline="true"></tag>\
                        <tag aria-multiline="false"></tag>\
@@ -3431,6 +3580,7 @@ final class AttributesTests: XCTestCase {
         )
     }
     
+    @Test
     func testMultiselectAccessibilityAttribute() throws {
         
         let view = TestView {
@@ -3439,7 +3589,7 @@ final class AttributesTests: XCTestCase {
             Tag {}.accessibilityMultiselect(true)
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag aria-multiselectable="true"></tag>\
                        <tag aria-multiselectable="false"></tag>\
@@ -3448,110 +3598,119 @@ final class AttributesTests: XCTestCase {
         )
     }
     
+    @Test
     func testRowIndexAccessibilityAttribute() throws {
         
         let view = TestView {
             Tag {}.accessibilityRowIndex(10)
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag aria-rowindex="10"></tag>
                        """
         )
     }
     
+    @Test
     func testRowCountAccessibilityAttribute() throws {
         
         let view = TestView {
             Tag {}.accessibilityRowCount(10)
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag aria-rowcount="10"></tag>
                        """
         )
     }
     
+    @Test
     func testColumnIndexAccessibilityAttribute() throws {
         
         let view = TestView {
             Tag {}.accessibilityColumnIndex(10)
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag aria-colindex="10"></tag>
                        """
         )
     }
     
+    @Test
     func testColumnCountAccessibilityAttribute() throws {
         
         let view = TestView {
             Tag {}.accessibilityColumnCount(10)
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag aria-colcount="10"></tag>
                        """
         )
     }
     
+    @Test
     func testRowSpanAccessibilityAttribute() throws {
         
         let view = TestView {
             Tag {}.accessibilityRowSpan(10)
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag aria-rowspan="10"></tag>
                        """
         )
     }
     
+    @Test
     func testColumnSpanAccessibilityAttribute() throws {
         
         let view = TestView {
             Tag {}.accessibilityColumnSpan(10)
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag aria-colspan="10"></tag>
                        """
         )
     }
     
+    @Test
     func testMaximumValueAccessibilityAttribute() throws {
         
         let view = TestView {
             Tag {}.accessibilityMaximumValue(10.0)
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag aria-valuemax="10.0"></tag>
                        """
         )
     }
     
+    @Test
     func testMinimumValueAccessibilityAttribute() throws {
         
         let view = TestView {
             Tag {}.accessibilityMinimumValue(10.0)
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag aria-valuemin="10.0"></tag>
                        """
         )
     }
     
+    @Test
     func testValueAccessibilityAttribute() throws {
         
         let view = TestView {
@@ -3559,7 +3718,7 @@ final class AttributesTests: XCTestCase {
             Tag {}.accessibilityValue(20.0, description: "Twenty point zero")
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag aria-valuenow="20.0"></tag>\
                        <tag aria-valuenow="20.0" aria-valuetext="Twenty point zero"></tag>
@@ -3567,6 +3726,7 @@ final class AttributesTests: XCTestCase {
         )
     }
     
+    @Test
     func testPressedAccessibilityAttribute() throws {
         
         let view = TestView {
@@ -3575,7 +3735,7 @@ final class AttributesTests: XCTestCase {
             Tag {}.accessibilityPressed(true)
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag aria-pressed="true"></tag>\
                        <tag aria-pressed="false"></tag>\
@@ -3584,6 +3744,7 @@ final class AttributesTests: XCTestCase {
         )
     }
     
+    @Test
     func testSelectedAccessibilityAttribute() throws {
         
         let view = TestView {
@@ -3592,7 +3753,7 @@ final class AttributesTests: XCTestCase {
             Tag {}.accessibilitySelected(true)
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag aria-selected="true"></tag>\
                        <tag aria-selected="false"></tag>\
@@ -3601,6 +3762,7 @@ final class AttributesTests: XCTestCase {
         )
     }
     
+    @Test
     func testCheckedAccessibilityAttribute() throws {
         
         let view = TestView {
@@ -3609,7 +3771,7 @@ final class AttributesTests: XCTestCase {
             Tag {}.accessibilityChecked(true)
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag aria-checked="true"></tag>\
                        <tag aria-checked="false"></tag>\
@@ -3618,6 +3780,7 @@ final class AttributesTests: XCTestCase {
         )
     }
     
+    @Test
     func testExpandedAccessibilityAttribute() throws {
         
         let view = TestView {
@@ -3626,7 +3789,7 @@ final class AttributesTests: XCTestCase {
             Tag {}.accessibilityExpanded(true)
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag aria-expanded="true"></tag>\
                        <tag aria-expanded="false"></tag>\
@@ -3635,19 +3798,21 @@ final class AttributesTests: XCTestCase {
         )
     }
     
+    @Test
     func testFocusedAccessibilityAttribute() throws {
         
         let view = TestView {
             Tag {}.accessibilityFocused("id")
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag aria-activedescendant="id"></tag>
                        """
         )
     }
     
+    @Test
     func testCompletionAccessibilityAttribute() throws {
         
         let view = TestView {
@@ -3657,7 +3822,7 @@ final class AttributesTests: XCTestCase {
             Tag {}.accessibilityCompletion(.list, .inline)
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag aria-autocomplete="both"></tag>\
                        <tag aria-autocomplete="list"></tag>\
@@ -3667,19 +3832,21 @@ final class AttributesTests: XCTestCase {
         )
     }
     
+    @Test
     func testDrawAttribute() throws {
         
         let view = TestView {
             Tag {}.draw("M 10,30 A 20,20 0,0,1 50,30 A 20,20 0,0,1 90,30 Q 90,60 50,90 Q 10,60 10,30 z")
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag d="M 10,30 A 20,20 0,0,1 50,30 A 20,20 0,0,1 90,30 Q 90,60 50,90 Q 10,60 10,30 z"></tag>
                        """
         )
     }
     
+    @Test
     func testFillAttribute() throws {
         
         let view = TestView {
@@ -3687,7 +3854,7 @@ final class AttributesTests: XCTestCase {
             Tag {}.fill("black", opacity: 0.5)
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag fill="black"></tag>\
                        <tag fill="black" fill-opacity="0.5"></tag>
@@ -3695,6 +3862,7 @@ final class AttributesTests: XCTestCase {
         )
     }
     
+    @Test
     func testStrokeAttribute() throws {
         
         let view = TestView {
@@ -3705,7 +3873,7 @@ final class AttributesTests: XCTestCase {
             Tag {}.stroke("black", width: 1, opacity: 0.5, cap: .butt, join: .round)
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag stroke="black"></tag>\
                        <tag stroke="black" stroke-width="1"></tag>\
@@ -3716,19 +3884,21 @@ final class AttributesTests: XCTestCase {
         )
     }
     
+    @Test
     func testRadiusAttribute() throws {
         
         let view = TestView {
             Tag {}.radius(25)
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag r="25"></tag>
                        """
         )
     }
     
+    @Test
     func testPositionAttribute() throws {
         
         let view = TestView {
@@ -3738,7 +3908,7 @@ final class AttributesTests: XCTestCase {
             Tag {}.position(UnitPoint(x: 50, y: 50, format: .relative))
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag x="50" y="50"></tag>\
                        <tag x="50.0" y="50.0"></tag>\
@@ -3748,6 +3918,7 @@ final class AttributesTests: XCTestCase {
         )
     }
     
+    @Test
     func testRadiusPointAttribute() throws {
         
         let view = TestView {
@@ -3757,7 +3928,7 @@ final class AttributesTests: XCTestCase {
             Tag {}.radius(UnitPoint(x: 10, y: 10, format: .relative))
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag rx="10" ry="10"></tag>\
                        <tag rx="10.0" ry="10.0"></tag>\
@@ -3767,6 +3938,7 @@ final class AttributesTests: XCTestCase {
         )
     }
     
+    @Test
     func testCenterPointAttribute() throws {
         
         let view = TestView {
@@ -3776,7 +3948,7 @@ final class AttributesTests: XCTestCase {
             Tag {}.center(UnitPoint(x: 10, y: 10, format: .relative))
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag cx="10" cy="10"></tag>\
                        <tag cx="10.0" cy="10.0"></tag>\
@@ -3786,6 +3958,7 @@ final class AttributesTests: XCTestCase {
         )
     }
     
+    @Test
     func testViewBoxAttribute() throws {
         
         let view = TestView {
@@ -3793,7 +3966,7 @@ final class AttributesTests: XCTestCase {
             Tag {}.viewBox(x: 0, y: 0, width: 100.0, height: 100.0)
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag viewbox="0 0 100 100"></tag>\
                        <tag viewbox="0.0 0.0 100.0 100.0"></tag>
@@ -3801,45 +3974,49 @@ final class AttributesTests: XCTestCase {
         )
     }
     
+    @Test
     func testNamespaceAttribute() throws {
         
         let view = TestView {
             Tag {}.namespace("http://www.w3.org/2000/svg")
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag xmlns="http://www.w3.org/2000/svg"></tag>
                        """
         )
     }
     
+    @Test
     func testPointsAttribute() throws {
         
         let view = TestView {
             Tag {}.points("50,0 21,90 98,35 2,35 79,90")
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag points="50,0 21,90 98,35 2,35 79,90"></tag>
                        """
         )
     }
     
+    @Test
     func testShadowRootModeAttribute() throws {
         
         let view = TestView {
             Tag {}.shadowRootMode(.open)
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag shadowrootmode="open"></tag>
                        """
         )
     }
     
+    @Test
     func testInertAttribute() throws {
         
         let view = TestView {
@@ -3851,7 +4028,7 @@ final class AttributesTests: XCTestCase {
             Tag {}.inert(true)
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag inert="inert"></tag>\
                        <tag></tag>\
@@ -3860,6 +4037,7 @@ final class AttributesTests: XCTestCase {
         )
     }
     
+    @Test
     func testInputModeAttribute() throws {
         
         let view = TestView {
@@ -3873,7 +4051,7 @@ final class AttributesTests: XCTestCase {
             Tag {}.inputMode(.url)
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag inputmode="decimal"></tag>\
                        <tag inputmode="email"></tag>\
@@ -3887,19 +4065,21 @@ final class AttributesTests: XCTestCase {
         )
     }
     
+    @Test
     func testAbbreviatedAttribute() throws {
         
         let view = TestView {
             Tag {}.abbreviated("HTML")
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag abbr="HTML"></tag>
                        """
         )
     }
     
+    @Test
     func testImageSourcesAttribute() throws {
         
         let view = TestView {
@@ -3910,7 +4090,7 @@ final class AttributesTests: XCTestCase {
             Tag {}.imageSources(SourceCandidate("img.png", width: 1024), SourceCandidate("img.png", density: .ultra))
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag imagesrcset="img.webp"></tag>\
                        <tag imagesrcset="img.png 4x"></tag>\
@@ -3921,6 +4101,7 @@ final class AttributesTests: XCTestCase {
         )
     }
     
+    @Test
     func testImageSizesAttribute() throws {
         
         let view = TestView {
@@ -3934,7 +4115,7 @@ final class AttributesTests: XCTestCase {
             Tag {}.imageSizes(SizeCandidate("100vw"), SizeCandidate("100vw", conditions: .maxWidth("50em")))
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                      """
                      <tag imagesizes="auto"></tag>\
                      <tag imagesizes="(orientation: landscape) 100vw"></tag>\
@@ -3948,6 +4129,7 @@ final class AttributesTests: XCTestCase {
         )
     }
     
+    @Test
     func testCommandAttribute() throws {
         
         let view = TestView {
@@ -3955,7 +4137,7 @@ final class AttributesTests: XCTestCase {
             Tag {}.command("show-text", for: "id")
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <tag command="hide-popover" commandfor="id"></tag>\
                        <tag command="--show-text" commandfor="id"></tag>

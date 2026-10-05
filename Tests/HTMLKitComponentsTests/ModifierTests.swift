@@ -1,8 +1,9 @@
-import XCTest
+import Testing
 import HTMLKit
 import HTMLKitComponents
 
-final class ModifierTests: XCTestCase {
+@Suite
+struct ModifierTests {
     
     struct TestView: View {
         
@@ -11,6 +12,7 @@ final class ModifierTests: XCTestCase {
     
     let renderer = Renderer()
     
+    @Test
     func testBorderColor() throws {
         
         let view = TestView {
@@ -19,7 +21,7 @@ final class ModifierTests: XCTestCase {
             HStack {}.border(.black, width: .large, shape: .fullrounded)
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <div class="hstack vertical-alignment:center border:black border:small"></div>\
                        <div class="hstack vertical-alignment:center border:black border:medium"></div>\
@@ -28,286 +30,308 @@ final class ModifierTests: XCTestCase {
         )
     }
     
+    @Test
     func testBackgroundColor() throws {
         
         let view = TestView {
             HStack {}.background(.black)
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <div class="hstack vertical-alignment:center background:black"></div>
                        """
         )
     }
     
+    @Test
     func testColorScheme() throws {
         
         let view = TestView {
             HStack {}.colorScheme(.dark)
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <div class="hstack vertical-alignment:center scheme:dark"></div>
                        """
         )
     }
     
+    @Test
     func testFrame() throws {
         
         let view = TestView {
             HStack {}.frame(width: .eleven, height: .minimum)
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <div class="hstack vertical-alignment:center height:minimum width:eleven"></div>
                        """
         )
     }
     
+    @Test
     func testBoxMargin() throws {
         
         let view = TestView {
             HStack {}.margin(insets: .all, length: .small)
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <div class="hstack vertical-alignment:center margin:small"></div>
                        """
         )
     }
     
+    @Test
     func testBoxPadding() throws {
         
         let view = TestView {
             HStack {}.padding(insets: .all, length: .large)
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <div class="hstack vertical-alignment:center padding:large"></div>
                        """
         )
     }
     
+    @Test
     func testViewOpacity() throws {
         
         let view = TestView {
             HStack {}.opacity(.transparent)
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <div class="hstack vertical-alignment:center opacity:transparent"></div>
                        """
         )
     }
     
+    @Test
     func testHiddenState() throws {
         
         let view = TestView {
             HStack {}.hidden()
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <div class="hstack vertical-alignment:center state:hidden"></div>
                        """
         )
     }
     
+    @Test
     func testIndexPosition() throws {
         
         let view = TestView {
             HStack {}.zIndex(.five)
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <div class="hstack vertical-alignment:center zindex:five"></div>
                        """
         )
     }
     
+    @Test
     func testButtonSize() throws {
         
         let view = TestView {
             Button(role: .button) {}.controlSize(.large)
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <button type="button" class="button size:large"></button>
                        """
         )
     }
     
+    @Test
     func testButtonStyle() throws {
         
         let view = TestView {
             Button(role: .button) {}.buttonStyle(.primary)
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <button type="button" class="button style:primary"></button>
                        """
         )
     }
     
+    @Test
     func testDisabledState() throws {
         
         let view = TestView {
             Button(role: .button) {}.disabled()
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <button type="button" class="button state:disabled"></button>
                        """
         )
     }
     
+    @Test
     func testTextStyle() throws {
         
         let view = TestView {
             Text {}.textStyle(.code)
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <p class="text alignment:leading style:code"></p>
                        """
         )
     }
     
+    @Test
     func testFontSize() throws {
         
         let view = TestView {
             Text {}.fontSize(.large)
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <p class="text alignment:leading size:large"></p>
                        """
         )
     }
     
+    @Test
     func testFontStyle() throws {
         
         let view = TestView {
             Text {}.fontStyle(.italic)
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <p class="text alignment:leading style:italic"></p>
                        """
         )
     }
     
+    @Test
     func testFontTranformation() throws {
         
         let view = TestView {
             Text {}.textCase(.capitalize)
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <p class="text alignment:leading case:capitalize"></p>
                        """
         )
     }
     
+    @Test
     func testLineLimit() throws {
         
         let view = TestView {
             Text {}.lineLimit(.one)
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <p class="text alignment:leading limit:one"></p>
                        """
         )
     }
     
+    @Test
     func testLineSpacing() throws {
         
         let view = TestView {
             Text {}.lineSpacing(.small)
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <p class="text alignment:leading height:small"></p>
                        """
         )
     }
     
+    @Test
     func testFocusColor() throws {
         
         let view = TestView {
             TextField(name: "textfield").focusColor(.gray)
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <input type="text" name="textfield" class="textfield focus:gray">
                        """
         )
     }
     
+    @Test
     func testAspectRatio() throws {
         
         let view = TestView {
             Image(source: "source").aspectRatio(.equal, fit: .cover)
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <img src="source" class="image aspect:equal fit:cover">
                        """
         )
     }
     
+    @Test
     func testClipShape() throws {
         
         let view = TestView {
             Image(source: "source").clipShape(.circle)
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <img src="source" class="image shape:circle">
                        """
         )
     }
     
+    @Test
     func testCustomCase() throws {
         
         let view = TestView {
             Image(source: "source").clipShape(.custom("rectangle"))
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <img src="source" class="image shape:rectangle">
                        """
         )
     }
     
+    @Test
     func testFontFamily() throws {
         
         let view = TestView {
             Text {}.font(.arial)
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <p class="text alignment:leading font:arial"></p>
                        """

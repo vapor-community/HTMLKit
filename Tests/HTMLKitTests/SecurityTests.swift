@@ -1,7 +1,8 @@
 import HTMLKit
-import XCTest
+import Testing
 
-final class SecurityTests: XCTestCase {
+@Suite
+struct SecurityTests {
     
     struct TestView: View {
         
@@ -13,6 +14,7 @@ final class SecurityTests: XCTestCase {
     /// Tests the escaping within an html context.
     /// 
     /// The renderer is expected to encode unsafe characters into html entities.
+    @Test
     func testEncodingHtmlContext() throws {
         
         let view = TestView {
@@ -31,7 +33,7 @@ final class SecurityTests: XCTestCase {
             Comment("--> <img src=\"\"> <!--")
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <p>&lt;script&gt;&lt;/script&gt;</p>\
                        <p class="&quot; onclick=&quot;alert(1);&quot;"></p>\
@@ -43,6 +45,7 @@ final class SecurityTests: XCTestCase {
     /// Tests the escaping within a environment context.
     /// 
     /// The renderer is expected to proceed as in an html context.
+    @Test
     func testEncodingEnvironmentValue() throws {
         
         struct Attack {
@@ -64,7 +67,7 @@ final class SecurityTests: XCTestCase {
             .environment(object: Attack())
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <article>\
                        <p>&lt;script&gt;&lt;/script&gt;</p>\
@@ -77,6 +80,7 @@ final class SecurityTests: XCTestCase {
     /// Tests the escaping within a markdown context.
     /// 
     /// The renderer is expected to proceed as in an html context.
+    @Test
     func testEncodingMarkdownString() throws {
 
         let view = TestView {
@@ -85,7 +89,7 @@ final class SecurityTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <p>lt;script&gt;&lt;/script&gt;</p>
                        """
@@ -95,6 +99,7 @@ final class SecurityTests: XCTestCase {
     /// Tests the renderers behaviour of a desired unescaped string.
     ///
     /// The renderer is expected to emit the string as-is.
+    @Test
     func testIgnoringHtmlString() throws {
         
         let view = TestView {
@@ -103,7 +108,7 @@ final class SecurityTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <p><script></script></p>
                        """
@@ -113,6 +118,7 @@ final class SecurityTests: XCTestCase {
     /// Tests the escaping within a javascript context.
     /// 
     /// The renderer is expected to remove unwanted tags and to encode only string literals.
+    @Test
     func testEscapingJsContext() throws {
         
         let view = TestView {
@@ -143,7 +149,7 @@ final class SecurityTests: XCTestCase {
             .on(event: .click, "\" onmouseover=\"alert('attack')\"")
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <script> var test = '&lt;b&gt;attack&lt;/b&gt;';</script>\
                        <script> var test = "&lt;b&gt;attack&lt;/b&gt;";</script>\
@@ -157,6 +163,7 @@ final class SecurityTests: XCTestCase {
     /// Tests the escaping within a css context.
     /// 
     /// The renderer is expected to remove unwanted tags and to encode only string literals.
+    @Test
     func testEscapingCssContext() throws {
         
         let view = TestView {
@@ -177,7 +184,7 @@ final class SecurityTests: XCTestCase {
             .style("\" onclick=\"alert('<b>attack</b>');")
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <style> p { background: url('https://...'); }</style>\
                        <style> p { background: url("https://..."); }</style>\

@@ -1,7 +1,8 @@
 import HTMLKit
-import XCTest
+import Testing
 
-final class ContextTests: XCTestCase {
+@Suite
+struct ContextTests {
     
     struct ParentContext {
         
@@ -41,11 +42,12 @@ final class ContextTests: XCTestCase {
     
     var renderer = Renderer()
     
+    @Test
     func testChildView() throws {
         
         let context = ChildContext(headline: "test")
         
-        XCTAssertEqual(try renderer.render(view: ChildView(context: context)),
+        #expect(try renderer.render(view: ChildView(context: context)) ==
                        """
                        <section>\
                        <h2>test</h2>\
@@ -54,11 +56,12 @@ final class ContextTests: XCTestCase {
         )
     }
     
+    @Test
     func testPageContext() throws {
         
         let context = ParentContext(category: "test", viewContext: .init(headline: "test"))
         
-        XCTAssertEqual(try renderer.render(view: ParentView(context: context)),
+        #expect(try renderer.render(view: ParentView(context: context)) ==
                        """
                        <h1>test</h1>\
                        <section>\

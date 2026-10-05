@@ -1,7 +1,9 @@
 import HTMLKit
-import XCTest
+import Testing
+import Foundation
 
-final class RenderingTests: XCTestCase {
+@Suite
+struct RenderingTests {
     
     struct TestView: View {
         
@@ -10,14 +12,12 @@ final class RenderingTests: XCTestCase {
     
     var renderer: Renderer?
     
-    override func setUp() {
-        super.setUp()
-        
-        try! setupRendering()
+    init() {
+        self.renderer = makeRenderer()
     }
     
-    
-    func testRenderingDocument() throws {
+    @Test
+    func testRenderingDocumentTag() throws {
         
         let view = TestView {
             Document(.html5)
@@ -30,7 +30,7 @@ final class RenderingTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(try renderer!.render(view: view),
+        #expect(try renderer!.render(view: view) ==
                        """
                        <!DOCTYPE html>\
                        <html>\
@@ -42,6 +42,7 @@ final class RenderingTests: XCTestCase {
         )
     }
     
+    @Test
     func testRenderingContentTag() throws {
         
         let view = TestView {
@@ -52,7 +53,7 @@ final class RenderingTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(try renderer!.render(view: view),
+        #expect(try renderer!.render(view: view) ==
                        """
                        <div>\
                        <p>text</p>\
@@ -61,26 +62,28 @@ final class RenderingTests: XCTestCase {
         )
     }
     
+    @Test
     func testRenderingEmptyTag() throws {
         
         let view = TestView {
             Input()
         }
         
-        XCTAssertEqual(try renderer!.render(view: view),
+        #expect(try renderer!.render(view: view) ==
                        """
                        <input>
                        """
         )
     }
     
+    @Test
     func testRenderingCommentTag() throws {
         
         let view = TestView {
             Comment("text")
         }
         
-        XCTAssertEqual(try renderer!.render(view: view),
+        #expect(try renderer!.render(view: view) ==
                        """
                        <!--text-->
                        """
@@ -88,6 +91,7 @@ final class RenderingTests: XCTestCase {
         
     }
     
+    @Test
     func testRenderingAttributes() throws {
         
         let view = TestView {
@@ -97,14 +101,14 @@ final class RenderingTests: XCTestCase {
             .class("class")
         }
         
-        XCTAssertEqual(try renderer!.render(view: view),
+        #expect(try renderer!.render(view: view) ==
                        """
                        <p class="class">text</p>
                        """
         )
     }
     
-    
+    @Test
     func testRenderingAttributesWithUnterscore() throws {
         
         let view = TestView {
@@ -114,13 +118,14 @@ final class RenderingTests: XCTestCase {
             .class("cl_ass")
         }
         
-        XCTAssertEqual(try renderer!.render(view: view),
+        #expect(try renderer!.render(view: view) ==
                        """
                        <p class="cl_ass">text</p>
                        """
         )
     }
     
+    @Test
     func testRenderingAttributesWithHyphens() throws {
         
         let view = TestView {
@@ -130,13 +135,14 @@ final class RenderingTests: XCTestCase {
             .class("cl-ass")
         }
         
-        XCTAssertEqual(try renderer!.render(view: view),
+        #expect(try renderer!.render(view: view) ==
                        """
                        <p class="cl-ass">text</p>
                        """
         )
     }
     
+    @Test
     func testNesting() throws {
         
         let view = TestView {
@@ -147,7 +153,7 @@ final class RenderingTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(try renderer!.render(view: view),
+        #expect(try renderer!.render(view: view) ==
                        """
                        <div>\
                        <p>text</p>\
@@ -156,6 +162,7 @@ final class RenderingTests: XCTestCase {
         )
     }
     
+    @Test
     func testModified() throws {
         
         let isModified: Bool = true
@@ -169,13 +176,14 @@ final class RenderingTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(try renderer!.render(view: view),
+        #expect(try renderer!.render(view: view) ==
                        """
                        <div class="modified"></div>
                        """
         )
     }
     
+    @Test
     func testAttributeConcatenation() throws {
         
         let isModified: Bool = true
@@ -189,13 +197,14 @@ final class RenderingTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(try renderer!.render(view: view),
+        #expect(try renderer!.render(view: view) ==
                        """
                        <div class="lorem ipsum"></div>
                        """
         )
     }
     
+    @Test
     func testUnmodified() throws {
         
         let isModified: Bool = false
@@ -209,13 +218,14 @@ final class RenderingTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(try renderer!.render(view: view),
+        #expect(try renderer!.render(view: view) ==
                        """
                        <div class="unmodified"></div>
                        """
         )
     }
     
+    @Test
     func testModifiedAndUnwrapped() throws {
         
         let passcode: String? = "test"
@@ -227,13 +237,14 @@ final class RenderingTests: XCTestCase {
                 }
         }
         
-        XCTAssertEqual(try renderer!.render(view: view),
+        #expect(try renderer!.render(view: view) ==
                        """
                        <input placeholder="test">
                        """
         )
     }
     
+    @Test
     func testUnwrappedAttributeConcatenation() throws {
         
         let passcode: String? = "ipsum"
@@ -247,13 +258,14 @@ final class RenderingTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(try renderer!.render(view: view),
+        #expect(try renderer!.render(view: view) ==
                        """
                        <div class="lorem ipsum"></div>
                        """
         )
     }
     
+    @Test
     func testUnwrappedAttributeAttachment() throws {
         
         let passcode: String? = "ipsum"
@@ -266,13 +278,14 @@ final class RenderingTests: XCTestCase {
                 }
         }
         
-        XCTAssertEqual(try renderer!.render(view: view),
+        #expect(try renderer!.render(view: view) ==
                        """
                        <input class="lorem" placeholder="ipsum">
                        """
         )
     }
     
+    @Test
     func testModifiedAndContextChange() throws {
         
         let view = TestView {
@@ -289,7 +302,7 @@ final class RenderingTests: XCTestCase {
                 }
         }
         
-        XCTAssertEqual(try renderer!.render(view: view),
+        #expect(try renderer!.render(view: view) ==
                        """
                        <input class="&lt;h1>lorem&lt;/h1>">\
                        <input class="<h1>ipsum</h1>">
@@ -297,6 +310,7 @@ final class RenderingTests: XCTestCase {
         )
     }
     
+    @Test
     func testRenderingCustomProperty() throws {
         
         let view = TestView {
@@ -308,7 +322,7 @@ final class RenderingTests: XCTestCase {
             .custom(key: "key", value: "value")
         }
         
-        XCTAssertEqual(try renderer!.render(view: view),
+        #expect(try renderer!.render(view: view) ==
                        """
                        <div key="value">\
                        <p>text</p>\
@@ -320,6 +334,7 @@ final class RenderingTests: XCTestCase {
     /// Tests the Markdown rendering for italic emphasis
     ///
     /// The renderer is expected to convert the Markdown syntax into the HTML equivalent
+    @Test
     func testRenderingItalicMarkdown() throws {
         
         let view = TestView {
@@ -328,7 +343,7 @@ final class RenderingTests: XCTestCase {
             MarkdownString("\(italic: "italic")")
         }
         
-        XCTAssertEqual(try renderer!.render(view: view),
+        #expect(try renderer!.render(view: view) ==
                        """
                        <em>italic</em>\
                        <em>italic</em>\
@@ -340,6 +355,7 @@ final class RenderingTests: XCTestCase {
     /// Tests the Markdown rendering for bold emphasis
     ///
     /// The renderer is expected to convert the Markdown syntax into the HTML equivalent
+    @Test
     func testRenderingBoldMarkdown() throws {
         
         let view = TestView {
@@ -348,7 +364,7 @@ final class RenderingTests: XCTestCase {
             MarkdownString("\(bold: "bold")")
         }
         
-        XCTAssertEqual(try renderer!.render(view: view),
+        #expect(try renderer!.render(view: view) ==
                        """
                        <strong>bold</strong>\
                        <strong>bold</strong>\
@@ -360,6 +376,7 @@ final class RenderingTests: XCTestCase {
     /// Tests the Markdown rendering for bold and italic emphasis
     ///
     /// The renderer is expected to convert the Markdown syntax into the HTML equivalent
+    @Test
     func testRenderingBoldItalicMarkdown() throws {
         
         let view = TestView {
@@ -367,7 +384,7 @@ final class RenderingTests: XCTestCase {
             MarkdownString("___bold and italic___")
         }
         
-        XCTAssertEqual(try renderer!.render(view: view),
+        #expect(try renderer!.render(view: view) ==
                        """
                        <em><strong>bold and italic</strong></em>\
                        <em><strong>bold and italic</strong></em>
@@ -378,6 +395,7 @@ final class RenderingTests: XCTestCase {
     /// Tests the Markdown rendering for inline code emphasis
     ///
     /// The renderer is expected to convert the Markdown syntax into the HTML equivalent
+    @Test
     func testRenderingCodeMarkdown() throws {
         
         let view = TestView {
@@ -385,7 +403,7 @@ final class RenderingTests: XCTestCase {
             MarkdownString("\(code: "**test**")")
         }
         
-        XCTAssertEqual(try renderer!.render(view: view),
+        #expect(try renderer!.render(view: view) ==
                        """
                        <code>&lt;div&gt;test&lt;/div&gt;</code>\
                        <code>**test**</code>
@@ -396,6 +414,7 @@ final class RenderingTests: XCTestCase {
     /// Tests the Markdown rendering for strikethrough emphasis
     ///
     /// The renderer is expected to convert the Markdown syntax into the HTML equivalent
+    @Test
     func testRenderingStrikeThroughMarkdown() throws {
         
         let view = TestView {
@@ -404,7 +423,7 @@ final class RenderingTests: XCTestCase {
             MarkdownString("\(strike: "strikethrough")")
         }
         
-        XCTAssertEqual(try renderer!.render(view: view),
+        #expect(try renderer!.render(view: view) ==
                        """
                        <del>strikethrough</del>\
                        <del>strikethrough</del>\
@@ -416,6 +435,7 @@ final class RenderingTests: XCTestCase {
     /// Tests the Markdown rendering for links
     ///
     /// The renderer is expected to convert the Markdown syntax into the HTML equivalent
+    @Test
     func testRenderingLinkMarkdown() throws {
         
         let view = TestView {
@@ -426,7 +446,7 @@ final class RenderingTests: XCTestCase {
             MarkdownString("\(link: "https://www.vapor.codes") and \(link: "https://www.swift.org")")
         }
         
-        XCTAssertEqual(try renderer!.render(view: view),
+        #expect(try renderer!.render(view: view) ==
                        """
                        <a href="https://www.vapor.codes" target="_blank">Link</a>\
                        <a href="https://www.vapor.codes" target="_blank">https://www.vapor.codes</a>\
@@ -438,6 +458,7 @@ final class RenderingTests: XCTestCase {
     }
     
     /// Tests the Markdown rendering of a paragraph with multiple emphasis elements
+    @Test
     func testRenderingMarkdownParagraph() throws {
         
         let view = TestView {
@@ -446,7 +467,7 @@ final class RenderingTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(try renderer!.render(view: view),
+        #expect(try renderer!.render(view: view) ==
                        """
                        <p>It consists of a list of features, like <strong>declarative syntax</strong>, <strong>language localization</strong>, <strong>dynamic context</strong>.</p>
                        """
@@ -457,6 +478,7 @@ final class RenderingTests: XCTestCase {
     ///
     /// The renderer is expected to convert the Markdown syntax into the HTML equivalent,
     /// while preserving the nesting.
+    @Test
     func testRenderingNestedMarkdown() throws {
         
         let view = TestView {
@@ -467,7 +489,7 @@ final class RenderingTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(try renderer!.render(view: view),
+        #expect(try renderer!.render(view: view) ==
                        """
                        <strong>This text is <em>extremely</em> important.</strong>
                        """
@@ -477,6 +499,7 @@ final class RenderingTests: XCTestCase {
     /// Tests the localization of an element
     ///
     /// The test expects the key to exist in the default translation table and to be rendered correctly.
+    @Test
     func testLocalization() throws {
         
         struct MainView: View {
@@ -486,7 +509,7 @@ final class RenderingTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(try renderer!.render(view: MainView()),
+        #expect(try renderer!.render(view: MainView()) ==
                        """
                        <h1>Hiya World</h1>
                        """
@@ -496,6 +519,7 @@ final class RenderingTests: XCTestCase {
     /// Tests the localization of a attribute.
     ///
     /// The test expects the key to exist in the default translation table and to be rendered correctly.
+    @Test
     func testLocalizationAttribute() throws {
         
         struct TestView: View {
@@ -520,7 +544,7 @@ final class RenderingTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(try renderer!.render(view: TestView()),
+        #expect(try renderer!.render(view: TestView()) ==
                        """
                        <input placeholder="Hiya World" alt="Hiya World" value="Hiya World" title="Hiya">\
                        <meta content="Hiya World">\
@@ -534,6 +558,7 @@ final class RenderingTests: XCTestCase {
     ///
     /// The test expects that the localization environment modifier correctly applies the locale
     /// down to nested views
+    @Test
     func testEnvironmentLocalization() throws {
         
         struct MainView: View {
@@ -562,7 +587,7 @@ final class RenderingTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(try renderer!.render(view: ChildView()),
+        #expect(try renderer!.render(view: ChildView()) ==
                        """
                        <div>\
                        <h1>Bonjour le monde</h1>\
@@ -574,6 +599,7 @@ final class RenderingTests: XCTestCase {
     /// Tests the recovery from a missing key
     ///
     /// The renderer should attempt a secondary lookup in the translation tables of the default locale.
+    @Test
     func testRecoveryFromMissingKey() throws {
         
         struct MainView: View {
@@ -602,7 +628,7 @@ final class RenderingTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(try renderer!.render(view: ChildView()),
+        #expect(try renderer!.render(view: ChildView()) ==
                        """
                        <div>\
                        <h1>Hello John Doe</h1>\
@@ -614,6 +640,7 @@ final class RenderingTests: XCTestCase {
     /// Tests the recovery from a missing table
     ///
     /// The renderer should fallback to the default locale.
+    @Test
     func testRecoveryFromMissingTable() throws {
         
         struct TestView: View {
@@ -627,7 +654,7 @@ final class RenderingTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(try renderer!.render(view: TestView()),
+        #expect(try renderer!.render(view: TestView()) ==
                        """
                        <div>\
                        <h1>Hiya World</h1>\
@@ -639,6 +666,7 @@ final class RenderingTests: XCTestCase {
     /// Tests the recovery from a unknown table.
     ///
     /// The renderer should return the key instead.
+    @Test
     func testRecoveryFromUnknownTable() throws {
         
         struct TestView: View {
@@ -650,7 +678,7 @@ final class RenderingTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(try renderer!.render(view: TestView()),
+        #expect(try renderer!.render(view: TestView()) ==
                        """
                        <div>\
                        <h1>hello.world</h1>\
@@ -662,6 +690,7 @@ final class RenderingTests: XCTestCase {
     /// Tests a cascade of recovery attempts, each triggered by the failure of the last.
     ///
     /// The renderer should bail with the string literal if recovery gets stuck.
+    @Test
     func testRecoveryCascade() throws {
         
         struct TestView: View {
@@ -673,7 +702,7 @@ final class RenderingTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(try renderer!.render(view: TestView()),
+        #expect(try renderer!.render(view: TestView()) ==
                        """
                        <div>\
                        <h1>unknown.key</h1>\
@@ -685,12 +714,12 @@ final class RenderingTests: XCTestCase {
 
 extension RenderingTests {
     
-    func setupRendering() throws {
+    func makeRenderer() -> Renderer? {
         
         guard let sourcePath = Bundle.module.url(forResource: "Localization", withExtension: nil) else {
-            return
+            return nil
         }
         
-        self.renderer = Renderer(localization: .init(source: sourcePath, locale: .init(tag: "en-GB")),features: [.escaping, .markdown])
+        return Renderer(localization: .init(source: sourcePath, locale: .init(tag: "en-GB")),features: [.escaping, .markdown])
     }
 }

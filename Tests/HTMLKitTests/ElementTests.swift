@@ -1,9 +1,11 @@
 @testable import HTMLKit
-import XCTest
+import Testing
 
-final class ElementTests: XCTestCase {
+@Suite
+struct ElementTests {
     
     /// Tests the correct syntax for the content nodes.
+    @Test
     func testContentNodeSyntax() throws {
         
         let names: [String] = [
@@ -223,11 +225,12 @@ final class ElementTests: XCTestCase {
         ]
         
         for (index, node) in nodes.enumerated() {
-            XCTAssertEqual(node.name, names[index])
+            #expect(node.name == names[index])
         }
     }
     
     /// Tests the correct syntax for the empty nodes.
+    @Test
     func testEmptyNodeSyntax() throws {
         
         let names: [String] = [
@@ -265,11 +268,12 @@ final class ElementTests: XCTestCase {
         ]
         
         for (index, node) in nodes.enumerated() {
-            XCTAssertEqual(node.name, names[index])
+            #expect(node.name == names[index])
         }
     }
     
     /// Tests whether the typealias references the correct underlying type.
+    @Test
     func testContentNodeAlias() throws {
         
         let names: [String] = [
@@ -371,11 +375,12 @@ final class ElementTests: XCTestCase {
         ]
         
         for (index, node) in nodes.enumerated() {
-            XCTAssertEqual(node.name, names[index])
+            #expect(node.name == names[index])
         }
     }
     
     /// Tests whether the typealias references the correct underlying type.
+    @Test
     func testEmptyNodeAlias() throws {
         
         let names: [String] = [
@@ -395,7 +400,7 @@ final class ElementTests: XCTestCase {
         ]
         
         for (index, node) in nodes.enumerated() {
-            XCTAssertEqual(node.name, names[index])
+            #expect(node.name == names[index])
         }
     }
 }

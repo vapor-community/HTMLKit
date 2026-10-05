@@ -1,70 +1,76 @@
 @testable import HTMLKit
-import XCTest
+import Testing
+import Foundation
 
-final class LocalizationTests: XCTestCase {
+@Suite
+struct LocalizationTests {
     
     var localization: Localization?
     
-    override func setUp() {
-        super.setUp()
-        
-        try! setupLocalization()
+    init() {
+        self.localization = setupLocalization()
     }
     
     /// Tests the localization of a specified translation key
     ///
     /// The test expects the key to exist in the default translation table and to be rendered correctly.
+    @Test
     func testLocalization() throws {
         
-        XCTAssertEqual(try localization!.localize(string: .init(key: "hello.world")), "Hiya World")
-        XCTAssertEqual(try localization!.localize(string: .init(key: "hello.xcstrings")), "Hiya String Catalog")
+        #expect(try localization!.localize(string: .init(key: "hello.world")) == "Hiya World")
+        #expect(try localization!.localize(string: .init(key: "hello.xcstrings")) == "Hiya String Catalog")
     }
     
     /// Tests the localization of a translation key in a specified translation table
     ///
     /// The test expects the key to exist in the specified translation table and to be rendered accurately.
+    @Test
     func testLocalizationWithTable() throws {
         
-        XCTAssertEqual(try localization!.localize(string: .init(key: "hello", table: "mobile")), "Hiya")        
+        #expect(try localization!.localize(string: .init(key: "hello", table: "mobile")) == "Hiya")        
     }
     
     /// Tests the localization of string interpolation
     ///
     /// The test expects the key to exist in the default translation table and to be correctly formatted
     /// and rendered accurately.
+    @Test
     func testLocalizationWithStringInterpolation() throws {
         
-        XCTAssertEqual(try localization!.localize(string: .init(key: "String: \("John Doe")")), "String: John Doe")
-        XCTAssertEqual(try localization!.localize(string: .init(key: "Integer: \(31)")), "Integer: 31")
-        XCTAssertEqual(try localization!.localize(string: .init(key: "Double: \(12.5)")), "Double: 12.5")
-        XCTAssertEqual(try localization!.localize(string: .init(key: "Date: \(Date(timeIntervalSince1970: 0))")), "Date: 01/01/1970")
+        #expect(try localization!.localize(string: .init(key: "String: \("John Doe")")) == "String: John Doe")
+        #expect(try localization!.localize(string: .init(key: "Integer: \(31)")) == "Integer: 31")
+        #expect(try localization!.localize(string: .init(key: "Double: \(12.5)")) == "Double: 12.5")
+        #expect(try localization!.localize(string: .init(key: "Date: \(Date(timeIntervalSince1970: 0))")) == "Date: 01/01/1970")
     }
     
     /// Tests the localization of string interpolation with multiple arguments and various data types
     ///
     /// The test expects the key to exist in the default translation table, to be correctly formatted
     /// with the arguments in the proper order, and to be rendered accurately.
+    @Test
     func testStringInterpolationWithMultipleArguments() throws {
         
-        XCTAssertEqual(try localization!.localize(string: .init(key: "Hello \("Jane") and \("John Doe")")), "Hello Jane and John Doe")
-        XCTAssertEqual(try localization!.localize(string: .init(key: "Do you \(2) have time at \(Date(timeIntervalSince1970: 0))?")), "Do you 2 have time at 01/01/1970?")
-        XCTAssertEqual(try localization!.localize(string: .init(key: "cheers.person \("Jean")")), "Cheers Jean")
+        #expect(try localization!.localize(string: .init(key: "Hello \("Jane") and \("John Doe")")) == "Hello Jane and John Doe")
+        #expect(try localization!.localize(string: .init(key: "Do you \(2) have time at \(Date(timeIntervalSince1970: 0))?")) == "Do you 2 have time at 01/01/1970?")
+        #expect(try localization!.localize(string: .init(key: "cheers.person \("Jean")")) == "Cheers Jean")
     }
     
     /// Tests the behavior when a localization key is missing
     ///
     /// A key is considered as missing if it cannot be found in the translation table. In this case,
     /// the localization is expected to throw an error.
+    @Test
     func testMissingKey() throws {
         
-        XCTAssertThrowsError(try localization!.localize(string: .init(key: "unknown.key")), "unknown.table") { error in
+        #expect {
+            try localization!.localize(string: .init(key: "unknown.key"))
+        } throws: { error in
             
             guard let localizationError = error as? Localization.Error else {
-                return XCTFail("Unexpected error type: \(error)")
+                return false
             }
             
-            XCTAssertEqual(localizationError, .missingKey(identifier: "unknown.key", locale: Locale(tag: "en-GB")))
-            XCTAssertEqual(localizationError.description, "Unable to find translation key 'unknown.key' for the locale 'en-GB'.")
+            return localizationError == .missingKey(identifier: "unknown.key", locale: Locale(tag: "en-GB")) && localizationError.description == "Unable to find translation key 'unknown.key' for the locale 'en-GB'."
         }
     }
     
@@ -72,16 +78,18 @@ final class LocalizationTests: XCTestCase {
     ///
     /// A table is considered as unknown if it cannot be found by the given table name. In this case,
     /// the localization is expected to throw an error.
+    @Test
     func testMissingTable() throws {
         
-        XCTAssertThrowsError(try localization!.localize(string: .init(key: "hello.world", table: "unknown.table"))) { error in
+        #expect {
+            try localization!.localize(string: .init(key: "hello.world", table: "unknown.table"))
+        } throws: { error in
             
             guard let localizationError = error as? Localization.Error else {
-                return XCTFail("Unexpected error type: \(error)")
+                return false
             }
             
-            XCTAssertEqual(localizationError, .missingTable(name: "unknown.table", locale: Locale(tag: "en-GB")))
-            XCTAssertEqual(localizationError.description, "Unable to find translation table 'unknown.table' for the locale 'en-GB'.")
+            return localizationError == .missingTable(name: "unknown.table", locale: Locale(tag: "en-GB")) && localizationError.description == "Unable to find translation table 'unknown.table' for the locale 'en-GB'."
         }
     }
     
@@ -89,57 +97,62 @@ final class LocalizationTests: XCTestCase {
     ///
     /// A table is considered as missing if there is no translation table for the given locale. In this case,
     /// the localization is expected to throw an error.
-    func testMissingCatalog() throws {
+    @Test
+    mutating func testMissingCatalog() throws {
         
         localization!.set(locale: "tlh-AA")
         
-        XCTAssertThrowsError(try localization!.localize(string: .init(key: "hello.world"))) { error in
+        #expect {
+            try localization!.localize(string: .init(key: "hello.world"))
+        } throws: { error in
             
             guard let localizationError = error as? Localization.Error else {
-                return XCTFail("Unexpected error type: \(error)")
+                return false
             }
             
-            XCTAssertEqual(localizationError, .missingCatalog(locale: Locale(tag: "tlh-AA")))
-            XCTAssertEqual(localizationError.description, "Unable to find a language catalog for the locale 'tlh-AA'.")
+            return localizationError == .missingCatalog(locale: Locale(tag: "tlh-AA")) && localizationError.description == "Unable to find a language catalog for the locale 'tlh-AA'."
         }
     }
     
     /// Test the correct string interpolation of a localized string key
+    @Test
     func testLocalizedStringKeyInterplation() throws {
         
         let string: LocalizedStringKey = "Hallo \("World")"
         
-        XCTAssertEqual(string.value, "Hallo %@")
-        XCTAssertEqual(string.fallback, "Hallo World")
-        XCTAssertEqual(string.arguments.count, 1)
+        #expect(string.value == "Hallo %@")
+        #expect(string.fallback == "Hallo World")
+        #expect(string.arguments.count == 1)
         
         let integer: LocalizedStringKey = "Hallo \(941)"
         
-        XCTAssertEqual(integer.value, "Hallo %lld")
-        XCTAssertEqual(integer.fallback, "Hallo 941")
-        XCTAssertEqual(integer.arguments.count, 1)
+        #expect(integer.value == "Hallo %lld")
+        #expect(integer.fallback == "Hallo 941")
+        #expect(integer.arguments.count == 1)
         
         let float: LocalizedStringKey = "Hallo \(9.41)"
         
-        XCTAssertEqual(float.value, "Hallo %f")
-        XCTAssertEqual(float.fallback, "Hallo 9.41")
-        XCTAssertEqual(float.arguments.count, 1)
+        #expect(float.value == "Hallo %f")
+        #expect(float.fallback == "Hallo 9.41")
+        #expect(float.arguments.count == 1)
     }
     
     /// Test the correct camparsion of the localized string key
+    @Test
     func testLocalizedStringKeyComparison() throws {
         
         let lhs: LocalizedStringKey = "Hallo \("Universe")"
         let rhs: LocalizedStringKey = "Hallo \("World")"
         
-        XCTAssertEqual(lhs.value, rhs.value)
-        XCTAssertNotEqual(lhs.fallback, rhs.fallback)
-        XCTAssertEqual(lhs.arguments.count, rhs.arguments.count)
+        #expect(lhs.value == rhs.value)
+        #expect(lhs.fallback != rhs.fallback)
+        #expect(lhs.arguments.count == rhs.arguments.count)
         
-        XCTAssertNotEqual(lhs, rhs)
+        #expect(lhs != rhs)
     }
     
     /// Test a locale of a language
+    @Test
     func testLocale() throws {
     
         let formatter = DateFormatter()
@@ -147,119 +160,115 @@ final class LocalizationTests: XCTestCase {
         
         let english = Locale(tag: "en")
         
-        XCTAssertEqual(english.tag, "en")
-        XCTAssertEqual(english.language, "en")
-        XCTAssertEqual(english.region, nil)
-        XCTAssertEqual(english.currencyCode, nil)
-        XCTAssertEqual(english.currencySymbol, nil)
-        XCTAssertEqual(english.decimalSeparator, nil)
-        XCTAssertEqual(english.dateFormat, nil)
-        XCTAssertEqual(english.timeFormat, nil)
+        #expect(english.tag == "en")
+        #expect(english.language == "en")
+        #expect(english.region == nil)
+        #expect(english.currencyCode == nil)
+        #expect(english.currencySymbol == nil)
+        #expect(english.decimalSeparator == nil)
+        #expect(english.dateFormat == nil)
+        #expect(english.timeFormat == nil)
         
         let british = Locale(tag: "en-GB")
         
-        XCTAssertEqual(british.tag, "en-GB")
-        XCTAssertEqual(british.language, "en")
-        XCTAssertEqual(british.region, "GB")
-        XCTAssertEqual(british.currencyCode, "GBP")
-        XCTAssertEqual(british.currencySymbol, "£")
-        XCTAssertEqual(british.decimalSeparator, ".")
-        XCTAssertEqual(british.dateFormat, "dd/MM/yyyy")
-        XCTAssertEqual(british.timeFormat, "HH:mm:ss")
+        #expect(british.tag == "en-GB")
+        #expect(british.language == "en")
+        #expect(british.region == "GB")
+        #expect(british.currencyCode == "GBP")
+        #expect(british.currencySymbol == "£")
+        #expect(british.decimalSeparator == ".")
+        #expect(british.dateFormat == "dd/MM/yyyy")
+        #expect(british.timeFormat == "HH:mm:ss")
         
         formatter.dateFormat = "\(british.dateFormat!) \(british.timeFormat!)"
         
-        XCTAssertEqual(formatter.string(from: Date(timeIntervalSince1970: 0)), "01/01/1970 00:00:00")
+        #expect(formatter.string(from: Date(timeIntervalSince1970: 0)) == "01/01/1970 00:00:00")
         
         let german = Locale(tag: "de-DE")
         
-        XCTAssertEqual(german.tag, "de-DE")
-        XCTAssertEqual(german.language, "de")
-        XCTAssertEqual(german.region, "DE")
-        XCTAssertEqual(german.currencyCode, "EUR")
-        XCTAssertEqual(german.currencySymbol, "€")
-        XCTAssertEqual(german.decimalSeparator, ",")
-        XCTAssertEqual(german.dateFormat, "dd.MM.yyyy")
-        XCTAssertEqual(german.timeFormat, "HH:mm:ss")
+        #expect(german.tag == "de-DE")
+        #expect(german.language == "de")
+        #expect(german.region == "DE")
+        #expect(german.currencyCode == "EUR")
+        #expect(german.currencySymbol == "€")
+        #expect(german.decimalSeparator == ",")
+        #expect(german.dateFormat == "dd.MM.yyyy")
+        #expect(german.timeFormat == "HH:mm:ss")
         
         formatter.dateFormat = "\(german.dateFormat!) \(german.timeFormat!)"
         
-        XCTAssertEqual(formatter.string(from: Date(timeIntervalSince1970: 0)), "01.01.1970 00:00:00")
+        #expect(formatter.string(from: Date(timeIntervalSince1970: 0)) == "01.01.1970 00:00:00")
     }
     
     /// Test the correct comparison of two locales
+    @Test
     func testLocaleComparsion() throws {        
-        XCTAssertNotEqual(Locale(tag: .english), Locale(tag: .german))
+        #expect(Locale(tag: .english) != Locale(tag: .german))
     }
     
     /// Test the correct available languages
+    @Test
     func testAvailableLanguage() throws {
     
-        XCTAssertEqual(localization!.availableLanguages.count, 3)
-        XCTAssertEqual(localization!.availableLanguages.contains(Locale(tag: "en")), true)
-        XCTAssertEqual(localization!.availableLanguages.contains(Locale(tag: "en-GB")), true)
-        XCTAssertEqual(localization!.availableLanguages.contains(Locale(tag: "fr")), true)
+        #expect(localization!.availableLanguages.count == 3)
+        #expect(localization!.availableLanguages.contains(Locale(tag: "en")) == true)
+        #expect(localization!.availableLanguages.contains(Locale(tag: "en-GB")) == true)
+        #expect(localization!.availableLanguages.contains(Locale(tag: "fr")) == true)
     }
     
     /// Tests the correct locale chain
+    @Test
     func testLocaleChain() throws {
         
         let american = Locale(tag: "en-US")
     
         let missingRegion = localization!.getPossibleLanguage(american, localization!.locale!)
         
-        XCTAssertEqual(missingRegion.tag, "en")
-        XCTAssertEqual(missingRegion.language, "en")
-        XCTAssertEqual(missingRegion.region, nil)
+        #expect(missingRegion.tag == "en")
+        #expect(missingRegion.language == "en")
+        #expect(missingRegion.region == nil)
         
         let french = Locale(tag: "fr")
     
         let existingLanguage = localization!.getPossibleLanguage(french, localization!.locale!)
         
-        XCTAssertEqual(existingLanguage.tag, "fr")
-        XCTAssertEqual(existingLanguage.language, "fr")
-        XCTAssertEqual(existingLanguage.region, nil)
+        #expect(existingLanguage.tag == "fr")
+        #expect(existingLanguage.language == "fr")
+        #expect(existingLanguage.region == nil)
         
         let german = Locale(tag: "de-DE")
     
         let missingLanguage = localization!.getPossibleLanguage(german, localization!.locale!)
         
-        XCTAssertEqual(missingLanguage.tag, "en-GB")
-        XCTAssertEqual(missingLanguage.language, "en")
-        XCTAssertEqual(missingLanguage.region, "GB")
+        #expect(missingLanguage.tag == "en-GB")
+        #expect(missingLanguage.language == "en")
+        #expect(missingLanguage.region == "GB")
     }
     
     /// Tests the correct loading of the associated comments from the string catalog.
+    @Test
     func testLoadingAssociatedComment() throws {
         
-        guard let catalogs = localization!.catalogs else {
-            return XCTFail("No catalogs available")
-        }
+        let catalogs = try #require(localization!.catalogs)
         
-        guard let tables = catalogs[Locale(tag: "en-GB")] else {
-            return XCTFail("No tables available")
-        }
+        let tables = try #require(catalogs[Locale(tag: "en-GB")])
             
-        guard let table = tables.first(where: { $0.name == "Localizable" }) else {
-            return XCTFail("No table available")
-        }
+        let table = try #require(tables.first(where: { $0.name == "Localizable" }))
         
-        guard let translation = table.retrieve(for: "hello.xcstrings") else {
-            return XCTFail("No translation available")
-        }
+        let translation = try #require(table.retrieve(for: "hello.xcstrings"))
         
-        XCTAssertEqual(translation.comment, "One more thing")
+        #expect(translation.comment == "One more thing")
     }
 }
 
 extension LocalizationTests {
     
-    func setupLocalization() throws {
+    func setupLocalization() -> Localization? {
         
         guard let sourcePath = Bundle.module.url(forResource: "Localization", withExtension: nil) else {
-            return
+            return nil
         }
         
-        self.localization = Localization(source: sourcePath, locale: .init(tag: "en-GB"))
+        return Localization(source: sourcePath, locale: .init(tag: "en-GB"))
     }
 }

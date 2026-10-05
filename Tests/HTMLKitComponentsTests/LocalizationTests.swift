@@ -1,15 +1,15 @@
-import XCTest
+import Testing
 import HTMLKit
 import HTMLKitComponents
+import Foundation
 
-final class LocalizationTests: XCTestCase {
+@Suite
+struct LocalizationTests {
     
     var renderer: Renderer?
     
-    override func setUp() {
-        super.setUp()
-        
-        try! setupLocalization()
+    init() {
+        self.renderer = makeRenderer()
     }
     
     struct TestView: View {
@@ -17,6 +17,7 @@ final class LocalizationTests: XCTestCase {
         @ContentBuilder<Content> var body: Content
     }
     
+    @Test
     func testTextLocalization() throws {
         
         let view = TestView {
@@ -25,33 +26,35 @@ final class LocalizationTests: XCTestCase {
                 .foregroundColor(.red)
         }
         
-        XCTAssertEqual(try renderer!.render(view: view),
+        #expect(try renderer!.render(view: view) ==
                        """
                        <p class="text alignment:leading weight:bold foreground:red">Envoyer le formulaire</p>
                        """
         )
     }
     
+    @Test
     func testFieldLabelLocalization() throws {
         
         let view = TestView {
             FieldLabel("Password", for: "password")
         }
         
-        XCTAssertEqual(try renderer!.render(view: view),
+        #expect(try renderer!.render(view: view) ==
                        """
                        <label for="password" class="label">Mot de passe</label>
                        """
         )
     }
 
+    @Test
     func testCheckFieldLocalization() throws {
         
         let view = TestView {
             CheckField("Password", value: "password")
         }
         
-        XCTAssertEqual(try renderer!.render(view: view),
+        #expect(try renderer!.render(view: view) ==
                        """
                        <div class="checkfield">\
                        <input type="checkbox" value="password" class="checkinput">\
@@ -61,13 +64,14 @@ final class LocalizationTests: XCTestCase {
         )
     }
     
+    @Test
     func testRadioSelectLocalization() throws {
         
         let view = TestView {
             RadioSelect("Password", value: "password")
         }
         
-        XCTAssertEqual(try renderer!.render(view: view),
+        #expect(try renderer!.render(view: view) ==
                        """
                        <div class="radioselect">\
                        <input type="radio" value="password" class="radioinput">\
@@ -77,6 +81,7 @@ final class LocalizationTests: XCTestCase {
         )
     }
     
+    @Test
     func testButtonLocalization() throws {
         
         let view = TestView {
@@ -89,7 +94,7 @@ final class LocalizationTests: XCTestCase {
             .accessibilityLabel(verbatim: "Create")
         }
         
-        XCTAssertEqual(try renderer!.render(view: view),
+        #expect(try renderer!.render(view: view) ==
                        """
                        <button type="submit" class="button">Créer</button>\
                        <button type="submit" class="button" aria-label="Créer"></button>\
@@ -98,32 +103,35 @@ final class LocalizationTests: XCTestCase {
         )
     }
     
+    @Test
     func testLinkLocalization() throws {
         
         let view = TestView {
             LinkButton("Create", destination: "#")
         }
         
-        XCTAssertEqual(try renderer!.render(view: view),
+        #expect(try renderer!.render(view: view) ==
                        """
                        <a href="#" target="_self" class="button" role="button">Créer</a>
                        """
         )
     }
     
+    @Test
     func testPromptLocalization() throws {
         
         let view = TestView {
             TextField(name: "password", prompt: "Password")
         }
         
-        XCTAssertEqual(try renderer!.render(view: view),
+        #expect(try renderer!.render(view: view) ==
                        """
                        <input type="text" name="password" class="textfield" placeholder="Mot de passe">
                        """
         )
     }
     
+    @Test
     func testImageLocalization() throws {
         
         let view = TestView {
@@ -133,7 +141,7 @@ final class LocalizationTests: XCTestCase {
                 .accessibilityLabel(verbatim: "Profile Avatar")
         }
         
-        XCTAssertEqual(try renderer!.render(view: view),
+        #expect(try renderer!.render(view: view) ==
                        """
                        <img src="/" class="image" alt="Avatar de profil">\
                        <img src="/" class="image" alt="Profile Avatar">
@@ -141,6 +149,7 @@ final class LocalizationTests: XCTestCase {
         )
     }
     
+    @Test
     func testVideoLocalization() throws {
         
         let view = TestView {
@@ -150,7 +159,7 @@ final class LocalizationTests: XCTestCase {
                 .accessibilityLabel(verbatim: "Group Interview")
         }
         
-        XCTAssertEqual(try renderer!.render(view: view),
+        #expect(try renderer!.render(view: view) ==
                        """
                        <video src="/" controls="controls" class="video" aria-label="Entretien collectif"></video>\
                        <video src="/" controls="controls" class="video" aria-label="Group Interview"></video>
@@ -158,6 +167,7 @@ final class LocalizationTests: XCTestCase {
         )
     }
     
+    @Test
     func testSymbolLocalization() throws {
         
         let view = TestView {
@@ -167,7 +177,7 @@ final class LocalizationTests: XCTestCase {
                 .accessibilityLabel(verbatim: "Folder")
         }
         
-        XCTAssertEqual(try renderer!.render(view: view),
+        #expect(try renderer!.render(view: view) ==
                        """
                        <svg viewbox="0 0 20 16" class="symbol" role="img">\
                        <title>Dossier</title>\
@@ -181,13 +191,14 @@ final class LocalizationTests: XCTestCase {
         )
     }
     
+    @Test
     func testBarMarkLocalization() throws {
         
         let view = TestView {
             BarMark("Folder", value: 941)
         }
         
-        XCTAssertEqual(try renderer!.render(view: view),
+        #expect(try renderer!.render(view: view) ==
                        """
                        <g class="mark type:bar">\
                        <rect>941</rect>\
@@ -199,14 +210,14 @@ final class LocalizationTests: XCTestCase {
 
 extension LocalizationTests {
     
-    func setupLocalization() throws {
+    func makeRenderer() -> Renderer? {
         
         guard let source = Bundle.module.url(forResource: "Localization", withExtension: nil) else {
-            return
+            return nil
         }
         
         let localization = Localization(source: source, locale: Locale(tag: "fr"))
         
-        self.renderer = Renderer(localization: localization)
+        return Renderer(localization: localization)
     }
 }

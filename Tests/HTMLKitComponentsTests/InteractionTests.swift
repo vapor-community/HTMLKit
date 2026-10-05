@@ -1,8 +1,9 @@
-import XCTest
+import Testing
 import HTMLKit
 import HTMLKitComponents
 
-final class InteractionTests: XCTestCase {
+@Suite
+struct InteractionTests {
  
     struct TestView: View {
         
@@ -11,6 +12,7 @@ final class InteractionTests: XCTestCase {
     
     let renderer = Renderer()
     
+    @Test
     func testOnClick() throws {
         
         let view = TestView {
@@ -23,7 +25,7 @@ final class InteractionTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <p class="text alignment:leading" id="sender">Example</p>\
                        <script>\
@@ -35,6 +37,7 @@ final class InteractionTests: XCTestCase {
         )
     }
     
+    @Test
     func testOnTap() throws {
         
         let view = TestView {
@@ -47,7 +50,7 @@ final class InteractionTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <p class="text alignment:leading" id="sender">Example</p>\
                        <script>\
@@ -59,6 +62,7 @@ final class InteractionTests: XCTestCase {
         )
     }
     
+    @Test
     func testOnHover() throws {
         
         let view = TestView {
@@ -71,7 +75,7 @@ final class InteractionTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <p class="text alignment:leading" id="sender">Example</p>\
                        <script>\
@@ -83,6 +87,7 @@ final class InteractionTests: XCTestCase {
         )
     }
     
+    @Test
     func testOnLeave() throws {
         
         let view = TestView {
@@ -95,7 +100,7 @@ final class InteractionTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <p class="text alignment:leading" id="sender">Example</p>\
                        <script>\
@@ -107,6 +112,7 @@ final class InteractionTests: XCTestCase {
         )
     }
     
+    @Test
     func testOnPress() throws {
         
         let view = TestView {
@@ -119,7 +125,7 @@ final class InteractionTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <p class="text alignment:leading" id="sender">Example</p>\
                        <script>\
@@ -131,6 +137,7 @@ final class InteractionTests: XCTestCase {
         )
     }
     
+    @Test
     func testOnSubmit() throws {
         
         let view = TestView {
@@ -142,7 +149,7 @@ final class InteractionTests: XCTestCase {
             }
         }
         
-        XCTAssertEqual(try renderer.render(view: view),
+        #expect(try renderer.render(view: view) ==
                        """
                        <form method="post" enctype="application/x-www-form-urlencoded" class="form" id="sender">\
                        </form>\
