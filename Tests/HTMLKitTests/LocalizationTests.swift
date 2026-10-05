@@ -62,13 +62,16 @@ struct LocalizationTests {
     @Test
     func testMissingKey() throws {
         
-        let error = #expect(throws: Localization.Error.missingKey(identifier: "unknown.key", locale: Locale(tag: "en-GB"))) { 
+        #expect {
             try localization!.localize(string: .init(key: "unknown.key"))
+        } throws: { error in
+            
+            guard let localizationError = error as? Localization.Error else {
+                return false
+            }
+            
+            return localizationError == .missingKey(identifier: "unknown.key", locale: Locale(tag: "en-GB")) && localizationError.description == "Unable to find translation key 'unknown.key' for the locale 'en-GB'."
         }
-        
-        let unwrapped = try #require(error)
-        
-        #expect(unwrapped.description == "Unable to find translation key 'unknown.key' for the locale 'en-GB'.")
     }
     
     /// Tests the behavior when a translation table is unknown.
@@ -77,14 +80,17 @@ struct LocalizationTests {
     /// the localization is expected to throw an error.
     @Test
     func testMissingTable() throws {
-    
-        let error = #expect(throws: Localization.Error.missingTable(name: "unknown.table", locale: Locale(tag: "en-GB"))) { 
+        
+        #expect {
             try localization!.localize(string: .init(key: "hello.world", table: "unknown.table"))
+        } throws: { error in
+            
+            guard let localizationError = error as? Localization.Error else {
+                return false
+            }
+            
+            return localizationError == .missingTable(name: "unknown.table", locale: Locale(tag: "en-GB")) && localizationError.description == "Unable to find translation table 'unknown.table' for the locale 'en-GB'."
         }
-        
-        let unwrapped = try #require(error)
-        
-        #expect(unwrapped.description == "Unable to find translation table 'unknown.table' for the locale 'en-GB'.")
     }
     
     /// Tests the behavior when a translation table is missing.
@@ -96,13 +102,16 @@ struct LocalizationTests {
         
         localization!.set(locale: "tlh-AA")
         
-        let error = #expect(throws: Localization.Error.missingCatalog(locale: Locale(tag: "tlh-AA"))) { 
+        #expect {
             try localization!.localize(string: .init(key: "hello.world"))
+        } throws: { error in
+            
+            guard let localizationError = error as? Localization.Error else {
+                return false
+            }
+            
+            return localizationError == .missingCatalog(locale: Locale(tag: "tlh-AA")) && localizationError.description == "Unable to find a language catalog for the locale 'tlh-AA'."
         }
-        
-        let unwrapped = try #require(error)
-        
-        #expect(unwrapped.description == "Unable to find a language catalog for the locale 'tlh-AA'.")
     }
     
     /// Test the correct string interpolation of a localized string key
