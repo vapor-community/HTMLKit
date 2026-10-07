@@ -193,25 +193,25 @@ public struct Localization: Sendable {
                                         
                                         for (tag, localization) in entry.localizations {
                                             
+                                            let locale = Locale(tag: tag)
+                                            
                                             if let unit = localization.unit {
                                                 
-                                                let locale = Locale(tag: tag)
+                                                let translation = Translation(value: unit.value, comment: entry.comment)
                                                 
                                                 if var tables = catalogs[locale] {
                                                     
                                                     if let index = tables.firstIndex(where: { $0.name == path.deletingPathExtension().lastPathComponent }) {
-                                                        
-                                                        let translation = Translation(value: unit.value, comment: entry.comment)
-                                                        
                                                         tables[index].upsert(translation, for: key)
+                                                        
+                                                    } else {
+                                                        tables.append(TranslationTable(name: path.deletingPathExtension().lastPathComponent, translations: [key: translation]))
                                                     }
                                                     
                                                     catalogs[locale] = tables
                                                     
                                                 } else {
-                                                    
-                                                    let translation = Translation(value: unit.value, comment: entry.comment)
-                                            
+                                                
                                                     catalogs[locale] = [TranslationTable(name: path.deletingPathExtension().lastPathComponent, translations: [key: translation])]
                                                 }
                                             }
