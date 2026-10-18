@@ -1,4 +1,4 @@
-/// A type that represent a nullable value.
+/// A type that represents a nullable value.
 ///
 /// > Note: This protocol is intended as a temporary workaround.
 @_documentation(visibility: internal)

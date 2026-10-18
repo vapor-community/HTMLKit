@@ -1,9 +1,9 @@
 import Foundation
 import NIOConcurrencyHelpers
 
-/// A class that represents the environment
+/// A type that represents the environment.
 ///
-/// The environment provides storage for various settings used by the renderer
+/// The environment provides storage for various settings used by the renderer.
 @_documentation(visibility: internal)
 public final class Environment: @unchecked Sendable {
     
@@ -54,7 +54,16 @@ public final class Environment: @unchecked Sendable {
         self.lock = .init()
     }
     
-    /// The current time zone of the environment
+    /// Creates an environment.
+    /// 
+    /// - Parameter environment: The environment to derive from.
+    public init(from environment: Environment) {
+        
+        self.storage = environment.storage
+        self.lock = .init()
+    }
+    
+    /// The current time zone of the environment.
     public var timeZone: TimeZone? {
         
         get {
@@ -62,7 +71,7 @@ public final class Environment: @unchecked Sendable {
         }
     }
     
-    /// The current calendar of the environment
+    /// The current calendar of the environment.
     public var calendar: Calendar? {
         
         get {
@@ -70,7 +79,7 @@ public final class Environment: @unchecked Sendable {
         }
     }
     
-    /// The current locale of the environment
+    /// The current locale of the environment.
     public var locale: Locale? {
         
         get {
@@ -78,7 +87,7 @@ public final class Environment: @unchecked Sendable {
         }
     }
     
-    /// The current color scheme of the environment
+    /// The current color scheme of the environment.
     public var colorScheme: String? {
         
         get {
@@ -86,11 +95,11 @@ public final class Environment: @unchecked Sendable {
         }
     }
     
-    /// Retrieves a value from environment for a given key path
+    /// Retrieves a value from environment for a given key path.
     ///
-    /// - Parameter path: The key path used to look up the value
+    /// - Parameter path: The key path used to look up the value.
     ///
-    /// - Returns: The value
+    /// - Returns: The value.
     public func retrieve(for path: AnyKeyPath) -> Any? {
 
         return lock.withLock {
@@ -98,11 +107,11 @@ public final class Environment: @unchecked Sendable {
         }
     }
     
-    /// Inserts or updates a value in the environment for the given key path
+    /// Inserts or updates a value in the environment for the given key path.
     ///
     /// - Parameters:
-    ///   - value: The value to be stored or updated
-    ///   - path: The key path that identifies where the value is stored
+    ///   - value: The value to be stored or updated.
+    ///   - path: The key path that identifies where the value is stored.
     public func upsert<T>(_ value: T, for path: AnyKeyPath) {
 
         lock.withLock {
@@ -110,11 +119,11 @@ public final class Environment: @unchecked Sendable {
         }
     }
     
-    /// Resolves an environment value
+    /// Resolves an environment value.
     ///
-    /// - Parameter value: The environment value to resolve
+    /// - Parameter value: The environment value to resolve.
     ///
-    /// - Returns: The resolved environment value
+    /// - Returns: The resolved environment value.
     internal func resolve(value: EnvironmentValue) throws -> Any {
         
         guard let parent = retrieve(for: value.parentPath) else {
@@ -128,11 +137,11 @@ public final class Environment: @unchecked Sendable {
         return value
     }
     
-    /// Evaluates an environment value
+    /// Evaluates an environment value.
     ///
-    /// - Parameter value: The value to evaluate
+    /// - Parameter value: The value to evaluate.
     ///
-    /// - Returns: The result of evaluation
+    /// - Returns: The result of evaluation.
     internal func evaluate(value: EnvironmentValue) throws -> Bool {
         
         guard let boolValue = try resolve(value: value) as? Bool else {
@@ -142,11 +151,11 @@ public final class Environment: @unchecked Sendable {
         return boolValue
     }
     
-    /// Evaluates an environment relation
+    /// Evaluates an environment relation.
     ///
-    /// - Parameter relation: The relation to evaluate
+    /// - Parameter relation: The relation to evaluate.
     ///
-    /// - Returns: The result of the evaluation
+    /// - Returns: The result of the evaluation.
     internal func evaluate(relation: Relation) throws -> Bool {
         
         switch relation.term {
@@ -242,11 +251,11 @@ public final class Environment: @unchecked Sendable {
         }
     }
     
-    /// Evaluates an environment condition
+    /// Evaluates an environment condition.
     ///
-    /// - Parameter condition: The condition to evaluate
+    /// - Parameter condition: The condition to evaluate.
     ///
-    /// - Returns: The result of the evaluation
+    /// - Returns: The result of the evaluation.
     internal func evaluate(condition: Condition) throws -> Bool {
         
         let value = try resolve(value: condition.lhs)
@@ -266,20 +275,20 @@ public final class Environment: @unchecked Sendable {
         }
     }
     
-    /// Evaluates an environment negation
+    /// Evaluates an environment negation.
     ///
-    /// - Parameter negation: The negation to evaluate
+    /// - Parameter negation: The negation to evaluate.
     ///
-    /// - Returns: The result of the evaluation
+    /// - Returns: The result of the evaluation.
     internal func evaluate(negation: Negation) throws -> Bool {
         return try !evaluate(value: negation.value)
     }
     
-    /// Evaluates an environment optional
+    /// Evaluates an environment optional.
     ///
-    /// - Parameter optional: The optional to evaluate
+    /// - Parameter optional: The optional to evaluate.
     ///
-    /// - Returns: The result of the evaluation
+    /// - Returns: The result of the evaluation.
     internal func evaluate(optional: EnvironmentValue) throws -> Bool {
         
         guard let optionalValue = try resolve(value: optional) as? Nullable else {
@@ -296,82 +305,82 @@ public final class Environment: @unchecked Sendable {
 
 extension Environment {
     
-    /// Evaluates one condition
+    /// Evaluates one condition.
     ///
     /// - Parameters:
-    ///   - condition: The condition to evaluate
-    ///   - content: The content for the true statement
+    ///   - condition: The condition to evaluate.
+    ///   - content: The content for the true statement.
     ///
-    /// - Returns: A environment statement
+    /// - Returns: An environment statement.
     public static func check(_ condition: EnvironmentValue, @ContentBuilder<Content> content: () -> [Content]) -> Statement {
         return Statement(compound: .value(condition), first: content(), second: [])
     }
     
-    /// Evaluates one condition
+    /// Evaluates one condition.
     ///
     /// - Parameters:
-    ///   - condition: The condition to evaluate
-    ///   - content: The content for the true statement
-    ///   - then: The content for the false statement
+    ///   - condition: The condition to evaluate.
+    ///   - content: The content for the true statement.
+    ///   - then: The content for the false statement.
     ///
-    /// - Returns: A environment statement
+    /// - Returns: An environment statement.
     public static func check(_ condition: EnvironmentValue, @ContentBuilder<Content> content: () -> [Content], @ContentBuilder<Content> then: () -> [Content]) -> Statement {
         return Statement(compound: .value(condition), first: content(), second: then())
     }
     
-    /// Evaluates one condition
+    /// Evaluates one condition.
     ///
     /// - Parameters:
-    ///   - condition: The condition to evaluate
-    ///   - content: The content for the true statement
+    ///   - condition: The condition to evaluate.
+    ///   - content: The content for the true statement.
     ///
-    /// - Returns: A environment statement
+    /// - Returns: An environment statement.
     public static func check(_ condition: Conditional, @ContentBuilder<Content> content: () -> [Content]) -> Statement {
         return Statement(compound: condition, first: content(), second: [])
     }
     
-    /// Evaluates one condition
+    /// Evaluates one condition.
     ///
     /// - Parameters:
-    ///   - condition: The condition to evaluate
-    ///   - content: The content for the true statement
-    ///   - then: The content for the false statement
+    ///   - condition: The condition to evaluate.
+    ///   - content: The content for the true statement.
+    ///   - then: The content for the false statement.
     ///
-    /// - Returns: A environment statement
+    /// - Returns: An environment statement.
     public static func check(_ condition: Conditional, @ContentBuilder<Content> content: () -> [Content], @ContentBuilder<Content> then: () -> [Content]) -> Statement {
         return Statement(compound: condition, first: content(), second: then())
     }
     
-    /// Unwraps a optional environment value
+    /// Unwraps an optional environment value.
     ///
     /// - Parameters:
-    ///   - value: The optional value to unwrap
-    ///   - content: The content for some statement
+    ///   - value: The optional value to unwrap.
+    ///   - content: The content for some statement.
     ///
-    /// - Returns: A environment statement
+    /// - Returns: An environment statement.
     public static func unwrap(_ value: EnvironmentValue, @ContentBuilder<Content> content: (EnvironmentValue) -> [Content]) -> Statement {
         return Statement(compound: .optional(value), first: content(value), second: [])
     }
     
-    /// Unwraps a optional environment value
+    /// Unwraps a noptional environment value.
     ///
     /// - Parameters:
-    ///   - value: The optional value to unwrap
-    ///   - content: The content for some statement
-    ///   - then: The content for none statement
+    ///   - value: The optional value to unwrap.
+    ///   - content: The content for some statement.
+    ///   - then: The content for none statement.
     ///
-    /// - Returns: A environment statement
+    /// - Returns: An environment statement.
     public static func unwrap(_ value: EnvironmentValue, @ContentBuilder<Content> content: (EnvironmentValue) -> [Content], @ContentBuilder<Content> then: () -> [Content]) -> Statement {
         return Statement(compound: .optional(value), first: content(value), second: then())
     }
     
-    /// Iterates through a sequence of values
+    /// Iterates through a sequence of values.
     ///
     /// - Parameters:
-    ///   - sequence: The sequence to iterate over
-    ///   - content: The content for the iteration
+    ///   - sequence: The sequence to iterate over.
+    ///   - content: The content for the iteration.
     ///
-    /// - Returns: A environment sequence
+    /// - Returns: An environment sequence.
     public static func loop(_ sequence: EnvironmentValue, @ContentBuilder<Content> content: (EnvironmentValue) -> [Content]) -> Sequence {
         return Sequence(value: sequence, content: content(sequence))
     }

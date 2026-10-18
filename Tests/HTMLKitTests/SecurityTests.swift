@@ -42,7 +42,7 @@ struct SecurityTests {
         )
     }
     
-    /// Tests the escaping within a environment context.
+    /// Tests the escaping within an environment context.
     /// 
     /// The renderer is expected to proceed as in an html context.
     @Test
