@@ -1,8 +1,8 @@
 /// A type that represents the translation within the translation table.
 internal struct Translation: Sendable {
     
-    /// The value of the translation.
-    internal let value: String
+    /// The plural cases of the translation.
+    internal var cases: [PluralCategory: String]
     
     /// The comment describing the context.
     internal let comment: String?
@@ -12,9 +12,16 @@ internal struct Translation: Sendable {
     /// - Parameters:
     ///   - value: The value for the translation.
     ///   - comment: The comment for some context.
-    internal init(value: String, comment: String? = nil) {
+    internal init(default value: String, comment: String? = nil) {
         
-        self.value = value
+        self.cases = [.other: value]
         self.comment = comment
+    }
+    
+    internal mutating func append(_ value: String?, for category: PluralCategory) {
+        
+        if let value = value {
+            self.cases[category] = value
+        }
     }
 }

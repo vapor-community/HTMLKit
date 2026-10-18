@@ -156,7 +156,7 @@ public struct Localization: Sendable {
                                         var entries = [String: Translation]()
 
                                         for (key, value) in translations {
-                                            entries[key] = Translation(value: value)
+                                            entries[key] = Translation(default: value)
                                         }
                                         
                                         tables.append(TranslationTable(name: path.deletingPathExtension().lastPathComponent, translations: entries))
@@ -174,7 +174,7 @@ public struct Localization: Sendable {
                                         var entries = [String: Translation]()
 
                                         for (key, value) in translations {
-                                            entries[key] = Translation(value: value)
+                                            entries[key] = Translation(default: value)
                                         }
                                         
                                         catalogs[locale] = [TranslationTable(name: path.deletingPathExtension().lastPathComponent, translations: entries)]
@@ -195,9 +195,35 @@ public struct Localization: Sendable {
                                             
                                             let locale = Locale(tag: tag)
                                             
-                                            if let unit = localization.unit {
+                                            if let singular = localization.singular {
                                                 
-                                                let translation = Translation(value: unit.value, comment: entry.comment)
+                                                let translation = Translation(default: singular.value, comment: entry.comment)
+                                                
+                                                if var tables = catalogs[locale] {
+                                                    
+                                                    if let index = tables.firstIndex(where: { $0.name == path.deletingPathExtension().lastPathComponent }) {
+                                                        tables[index].upsert(translation, for: key)
+                                                        
+                                                    } else {
+                                                        tables.append(TranslationTable(name: path.deletingPathExtension().lastPathComponent, translations: [key: translation]))
+                                                    }
+                                                    
+                                                    catalogs[locale] = tables
+                                                    
+                                                } else {
+                                                
+                                                    catalogs[locale] = [TranslationTable(name: path.deletingPathExtension().lastPathComponent, translations: [key: translation])]
+                                                }
+                                            }
+                                            
+                                            if let plural = localization.plural {
+                                                
+                                                var translation = Translation(default: plural.other.value, comment: entry.comment)
+                                                translation.append(plural.zero?.value, for: .zero)
+                                                translation.append(plural.one?.value, for: .one)
+                                                translation.append(plural.two?.value, for: .two)
+                                                translation.append(plural.few?.value, for: .few)
+                                                translation.append(plural.many?.value, for: .many)
                                                 
                                                 if var tables = catalogs[locale] {
                                                     
@@ -311,7 +337,7 @@ public struct Localization: Sendable {
                 throw Error.missingKey(identifier: string.key.value, locale: candidate)
             }
             
-            var value = translation.value
+            var value = translation.cases[.other]!
         
             interpolate(arguments: string.key.arguments, to: &value, for: candidate)
             
@@ -323,7 +349,7 @@ public struct Localization: Sendable {
             
             if let translation = table.retrieve(for: string.key.value) {
                 
-                var value = translation.value
+                var value = translation.cases[.other]!
                 
                 interpolate(arguments: string.key.arguments, to: &value, for: candidate)
                 
