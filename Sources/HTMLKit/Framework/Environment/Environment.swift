@@ -54,6 +54,15 @@ public final class Environment: @unchecked Sendable {
         self.lock = .init()
     }
     
+    /// Creates an environment.
+    /// 
+    /// - Parameter environment: The environment to derive from.
+    public init(from environment: Environment) {
+        
+        self.storage = environment.storage
+        self.lock = .init()
+    }
+    
     /// The current time zone of the environment
     public var timeZone: TimeZone? {
         

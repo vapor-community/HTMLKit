@@ -19,4 +19,12 @@ public final class Configuration: @unchecked Sendable {
         self.environment = Environment()
         self.features = [.escaping]
     }
+    
+    /// Initializes a configuration
+    public init(localization: Localization, environment: Environment, features: Features) {
+        
+        self.localization = localization
+        self.environment = environment
+        self.features = features
+    }
 }
