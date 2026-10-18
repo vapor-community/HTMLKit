@@ -259,6 +259,15 @@ struct LocalizationTests {
         
         #expect(translation.comment == "One more thing")
     }
+    
+    /// Tests the correct use of pluralization.
+    @Test
+    func testPluralization() throws {
+        
+        #expect(try localization!.localize(string: .init(key: "\(0) iPhone")) == "0 iPhones")
+        #expect(try localization!.localize(string: .init(key: "\(1) iPhone")) == "1 iPhone")
+        #expect(try localization!.localize(string: .init(key: "\(4) iPhone")) == "4 iPhones")
+    }
 }
 
 extension LocalizationTests {

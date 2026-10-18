@@ -93,6 +93,11 @@ public struct Locale: Sendable {
         return timeFormats[tag]
     }
     
+    /// The plural rules of the language.
+    public var pluralRules: [String: Int]? {
+        return Grammar.pluralRules[tag]
+    }
+    
     /// The locale identifier.
     internal let tag: String
     
@@ -112,6 +117,16 @@ public struct Locale: Sendable {
 }
 
 extension Locale {
+    
+    internal enum Grammar {
+        
+        internal static var pluralRules: [String: [String: Int]] {
+            return [
+                "en-GB": ["zero": 0, "one": 1, "two": 2, "few": 3, "many": 4],
+                "de-DE": ["zero": 0, "one": 1, "two": 2, "few": 3, "many": 4]
+            ]
+        }
+    }
     
     internal var currencyCodes: [String: String] {
         return [

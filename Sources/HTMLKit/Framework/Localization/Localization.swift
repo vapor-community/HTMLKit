@@ -349,7 +349,35 @@ public struct Localization: Sendable {
             
             if let translation = table.retrieve(for: string.key.value) {
                 
-                var value = translation.cases[.other]!
+                var value = ""
+                
+                if !string.key.arguments.isEmpty {
+                    
+                    for argument in string.key.arguments {
+                        
+                        switch argument {
+                        case .int(let int):
+                            
+                            for `case` in translation.cases {
+                                
+                                if int == candidate.pluralRules?[`case`.key.rawValue] {
+                                    
+                                    value = `case`.value
+                                    
+                                    break
+                                    
+                                } else {
+                                    value = translation.cases[.other]!
+                                }
+                            }
+                            
+                        default:
+                            value = translation.cases[.other]!
+                        }
+                    }
+                } else {
+                    value = translation.cases[.other]!
+                }
                 
                 interpolate(arguments: string.key.arguments, to: &value, for: candidate)
                 
