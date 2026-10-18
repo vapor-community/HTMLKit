@@ -3,15 +3,15 @@ import Vapor
 
 extension Application {
     
-    /// Provides access to the provider for the application
+    /// Access the provider through the application.
     public var htmlkit: HtmlKit  {
         return .init(application: self)
     }
     
-    /// Represents the provider for Vapor
+    /// A type that represents the provider.
     public struct HtmlKit: Sendable {
         
-        /// Manages environment settings
+        /// Manage the environment for the application.
         public var environment: HTMLKit.Environment {
             
             get {
@@ -23,7 +23,7 @@ extension Application {
             }
         }
         
-        /// Manages localization settings
+        /// Manage the localization for the application.
         public var localization: HTMLKit.Localization {
             
             get {
@@ -35,7 +35,7 @@ extension Application {
             }
         }
         
-        /// Manages feature flags
+        /// Manage the features for the application.
         public var features: HTMLKit.Features {
             
             get {
@@ -47,32 +47,26 @@ extension Application {
             }
         }
         
-        /// The key used to store the configuration in Vapor's storage
-        private struct ConfigurationKey: StorageKey {
+        /// The configuration for the renderer.
+        private var configuration: Configuration {
             
-            public typealias Value = Configuration
-        }
-        
-        /// The configuration for the view renderer
-        internal var configuration: Configuration {
-            
-            if let configuration = application.storage[ConfigurationKey.self] {
+            if let configuration = application.storage[Configuration.StorageKey.self] {
                 return configuration
             }
             
             let configuration = Configuration()
             
-            application.storage[ConfigurationKey.self] = configuration
+            application.storage[Configuration.StorageKey.self] = configuration
             
             return configuration
         }
         
-        /// Holds a reference to the Vapor application
-        internal let application: Application
+        /// Holds a reference to the application.
+        private let application: Application
         
-        /// Initializes the HTMLKit provider for a given Vapor application
+        /// Create the provider.
         ///
-        /// - Parameter application: The application instance from Vapor
+        /// - Parameter application: The application to provide for.
         public init(application: Application) {
 
             self.application = application
@@ -82,21 +76,15 @@ extension Application {
 
 extension Request {
     
-    /// Access the provider on the request.
+    /// Access the provider through the request.
     public var htmlkit: HtmlKit  {
         return .init(request: self)
     }
     
-    /// A type that represents the provider for Vapor.
+    /// A type that represents the provider.
     public struct HtmlKit: Sendable {
         
-        /// The key used to store the configuration in Vapor's storage.
-        private struct ConfigurationKey: StorageKey {
-            
-            public typealias Value = Configuration
-        }
-        
-        /// Manage the environment settings for the request.
+        /// Manage the environment for the request.
         public var environment: HTMLKit.Environment {
             
             get {
@@ -108,36 +96,36 @@ extension Request {
             }
         }
         
-        /// The configuration for renderer.
+        /// The configuration for the renderer.
         private var configuration: Configuration {
             
-            if let configuration = request.storage[ConfigurationKey.self] {
+            if let configuration = request.storage[Configuration.StorageKey.self] {
                 return configuration
             }
             
             let configuration = Configuration(localization: request.application.htmlkit.localization, environment: HTMLKit.Environment(from: request.application.htmlkit.environment), features: request.application.htmlkit.features)
             
-            request.storage[ConfigurationKey.self] = configuration
+            request.storage[Configuration.StorageKey.self] = configuration
             
             return configuration
         }
         
-        /// Holds a reference to the Vapor application
+        /// Holds a reference to the request.
         private let request: Request
         
-        /// Initializes the HTMLKit provider for a given Vapor application
+        /// Create the provider.
         ///
-        /// - Parameter request: The request instance from Vapor
+        /// - Parameter request: The request to provide for.
         public init(request: Request) {
 
             self.request = request
         }
         
-        /// Renders the given view and transforms it into a view response
+        /// Render the view and transform it into a response.
         ///
-        /// - Parameter view: The view to render
+        /// - Parameter view: The view to render.
         ///
-        /// - Returns: The view response
+        /// - Returns: The response.
         public func render(_ view: some HTMLKit.View) -> EventLoopFuture<Vapor.View> {
             
             let renderer = Renderer(localization: configuration.localization,
@@ -157,11 +145,11 @@ extension Request {
             }
         }
         
-        /// Renders the given view and transforms it into a view response.
+        /// Render the view and transform it into a response.
         ///
         /// - Parameter view: The view to render.
         ///
-        /// - Returns: The view response.
+        /// - Returns: The response.
         public func render(_ view: some HTMLKit.View) async throws -> Vapor.View {
             return try await render(view).get()
         }

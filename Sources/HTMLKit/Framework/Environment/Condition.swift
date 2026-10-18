@@ -1,38 +1,38 @@
-/// A type representing a conditional that compares an environment value against another value
+/// A type representing a conditional that compares an environment value against another value.
 @_documentation(visibility: internal)
 public struct Condition {
     
     /// An enumeration of potential comparison.
     public enum Comparison {
         
-        /// Indicates an equal comparison
+        /// Indicates an equal comparison.
         case equal
         
-        /// Indicates a not-equal comparison
+        /// Indicates a not-equal comparison.
         case unequal
         
-        /// Indicates a greater-than comparison
+        /// Indicates a greater-than comparison.
         case greater
         
-        /// Indicates a less-than comparison
+        /// Indicates a less-than comparison.
         case less
     }
     
-    /// The left-hand side value
+    /// The left-hand side value.
     internal let lhs: EnvironmentValue
     
-    /// The right-hand side value to test against
+    /// The right-hand side value to test against.
     internal let rhs: any Comparable
     
-    /// The comparison to perfom
+    /// The comparison to perfom.
     internal let comparison: Comparison
     
-    /// Initializes a condition
+    /// Creates a condition.
     ///
     /// - Parameters:
-    ///   - lhs: The origin value
-    ///   - rhs: The value to atest against
-    ///   - operation: The comparison to perfom
+    ///   - lhs: The origin value.
+    ///   - rhs: The value to atest against.
+    ///   - operation: The comparison to perfom.
     public init(lhs: EnvironmentValue, rhs: any Comparable, comparison: Comparison) {
         
         self.lhs = lhs

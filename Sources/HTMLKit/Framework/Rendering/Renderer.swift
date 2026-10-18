@@ -353,7 +353,7 @@ public struct Renderer: Sendable {
         }
     }
     
-    /// Renders a environment modifier
+    /// Renders an environment modifier
     ///
     /// - Parameter modifier: The modifier to apply to
     ///
@@ -367,7 +367,7 @@ public struct Renderer: Sendable {
         try render(contents: modifier.content, on: &result, within: context)
     }
     
-    /// Renders a environment value
+    /// Renders an environment value
     ///
     /// - Parameter value: The environment value to resolve
     ///
@@ -410,7 +410,7 @@ public struct Renderer: Sendable {
         }
     }
     
-    /// Renders a environment value
+    /// Renders an environment value
     ///
     /// - Parameter value: The environment value to resolve
     ///
@@ -453,7 +453,7 @@ public struct Renderer: Sendable {
         }
     }
 
-    /// Renders a environment statement
+    /// Renders an environment statement
     ///
     /// - Parameter statement: The statement to resolve
     ///
@@ -574,7 +574,7 @@ public struct Renderer: Sendable {
         }
     }
     
-    /// Renders a environment string
+    /// Renders an environment string
     ///
     /// - Parameter envstring: The string to render
     ///
@@ -740,7 +740,7 @@ public struct Renderer: Sendable {
         result += "</\(element.name)>"
     }
     
-    /// Renders an environment string within a environment loop
+    /// Renders an environment string within an environment loop
     ///
     /// - Parameters:
     ///   - envstring: The environment string to render
