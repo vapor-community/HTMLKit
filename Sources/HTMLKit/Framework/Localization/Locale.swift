@@ -94,8 +94,43 @@ public struct Locale: Sendable {
     }
     
     /// The plural rules of the language.
-    public var pluralRules: [String: Int]? {
-        return Grammar.pluralRules[tag]
+    public func pluralCategory(by number: Double) -> PluralCategory {
+        
+        guard let rules = pluralRules[tag] else {
+            return .other
+        }
+        
+        /// The positive value of the number
+        let absolute = abs(number)
+        
+        /// The integral part of the number
+        let integral = Int(absolute)
+        
+        /// The fractional part of the number
+        let fraction = absolute.truncatingRemainder(dividingBy: 1)
+        
+        /// The number of fractional digits
+        let scale = String(absolute).count - String(integral).count - 1
+        
+        /// The exponent value of the number
+        let exponent = absolute.exponent
+        
+        return rules(integral, fraction, scale, exponent)
+    }
+    
+    public func pluralCategory(by number: Int) -> PluralCategory {
+        
+        guard let rules = pluralRules[tag] else {
+            return .other
+        }
+        
+        /// The positive value of the number
+        let absolute = abs(number)
+        
+        /// The integer part of the number
+        let integer = Int(absolute)
+        
+        return rules(integer, 0, 0, 0)
     }
     
     /// The locale identifier.
@@ -118,14 +153,37 @@ public struct Locale: Sendable {
 
 extension Locale {
     
-    internal enum Grammar {
-        
-        internal static var pluralRules: [String: [String: Int]] {
-            return [
-                "en-GB": ["zero": 0, "one": 1, "two": 2, "few": 3, "many": 4],
-                "de-DE": ["zero": 0, "one": 1, "two": 2, "few": 3, "many": 4]
-            ]
-        }
+    private var pluralRules: [String: (_ i: Int, _ f: Double, _ s: Int, _ e: Int) -> PluralCategory] {
+        return [
+            "en-GB": { i, f, s, e in
+                
+                if s == 0 && i == 1 {
+                    return .one
+                }
+                
+                return .other
+            },
+            "de-DE": { i, f, s, e in 
+                
+                if f == 0 && i == 1 {
+                    return .one
+                }
+                
+                return .other
+            },
+            "fr-FR": { i, f, s, e in
+                
+                if (0...1).contains(i) {
+                    return .one
+                }
+                
+                if e == 0 && i != 0 && i % 1000000 == 0 && s == 0 || !(0...5).contains(e) && s == 0 {
+                    return .many
+                }
+                
+                return .other
+            }
+        ]
     }
     
     internal var currencyCodes: [String: String] {

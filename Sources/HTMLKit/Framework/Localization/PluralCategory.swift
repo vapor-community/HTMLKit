@@ -1,5 +1,5 @@
 /// A type that represents a set of plural categories.
-enum PluralCategory: String {
+public enum PluralCategory: String, Sendable {
  
     /// Indicates the empty form.
     case zero

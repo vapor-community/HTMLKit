@@ -2,7 +2,7 @@
 internal struct Translation: Sendable {
     
     /// The plural cases of the translation.
-    internal var cases: [PluralCategory: String]
+    private var cases: [PluralCategory: String]
     
     /// The comment describing the context.
     internal let comment: String?
@@ -23,5 +23,9 @@ internal struct Translation: Sendable {
         if let value = value {
             self.cases[category] = value
         }
+    }
+    
+    internal func retrieve(for key: PluralCategory) -> String {
+        return cases[key] ?? cases[.other]!
     }
 }

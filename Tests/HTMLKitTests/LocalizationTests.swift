@@ -264,9 +264,36 @@ struct LocalizationTests {
     @Test
     func testPluralization() throws {
         
-        #expect(try localization!.localize(string: .init(key: "\(0) iPhone")) == "0 iPhones")
-        #expect(try localization!.localize(string: .init(key: "\(1) iPhone")) == "1 iPhone")
-        #expect(try localization!.localize(string: .init(key: "\(4) iPhone")) == "4 iPhones")
+        #expect(try localization!.localize(string: .init(key: "\(0) day")) == "0 days")
+        #expect(try localization!.localize(string: .init(key: "\(1) day")) == "1 day")
+        #expect(try localization!.localize(string: .init(key: "\(2) day")) == "2 days")
+        #expect(try localization!.localize(string: .init(key: "\(1.0) day")) == "1.0 days")
+        #expect(try localization!.localize(string: .init(key: "\(1.5) day")) == "1.5 days")
+    }
+    
+    /// Tests the correct determination of the plural category.
+    @Test
+    func testPluraCategories() throws {
+        
+        let english = Locale(tag: "en-GB")
+        
+        #expect(english.pluralCategory(by: 1) == .one)
+        #expect(english.pluralCategory(by: 2) == .other)
+        #expect(english.pluralCategory(by: 1.5) == .other)
+        
+        let german = Locale(tag: "de-DE")
+        
+        #expect(german.pluralCategory(by: 1) == .one)
+        #expect(german.pluralCategory(by: 2) == .other)
+        #expect(german.pluralCategory(by: 1.5) == .other)
+        
+        let french = Locale(tag: "fr-FR")
+        
+        #expect(french.pluralCategory(by: 1) == .one)
+        #expect(french.pluralCategory(by: 1.5) == .one)
+        #expect(french.pluralCategory(by: 1000000) == .many)
+        #expect(french.pluralCategory(by: 2) == .other)
+        #expect(french.pluralCategory(by: 2.0) == .other)
     }
 }
 

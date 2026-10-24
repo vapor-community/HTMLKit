@@ -337,7 +337,7 @@ public struct Localization: Sendable {
                 throw Error.missingKey(identifier: string.key.value, locale: candidate)
             }
             
-            var value = translation.cases[.other]!
+            var value = translation.retrieve(for: .other)
         
             interpolate(arguments: string.key.arguments, to: &value, for: candidate)
             
@@ -358,25 +358,19 @@ public struct Localization: Sendable {
                         switch argument {
                         case .int(let int):
                             
-                            for `case` in translation.cases {
-                                
-                                if int == candidate.pluralRules?[`case`.key.rawValue] {
-                                    
-                                    value = `case`.value
-                                    
-                                    break
-                                    
-                                } else {
-                                    value = translation.cases[.other]!
-                                }
-                            }
+                            value = translation.retrieve(for: candidate.pluralCategory(by: int))
+                            
+                        case .double(let double):
+                            
+                            value = translation.retrieve(for: candidate.pluralCategory(by: double))
                             
                         default:
-                            value = translation.cases[.other]!
+                            value = translation.retrieve(for: .other)
                         }
                     }
+                    
                 } else {
-                    value = translation.cases[.other]!
+                    value = translation.retrieve(for: .other)
                 }
                 
                 interpolate(arguments: string.key.arguments, to: &value, for: candidate)
