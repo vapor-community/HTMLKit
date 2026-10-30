@@ -275,17 +275,108 @@ struct LocalizationTests {
     @Test
     func testPluraCategories() throws {
         
+        let albanian = Locale(tag: "sq-AL")
+        
+        #expect(albanian.pluralCategory(by: 1) == .one)
+        #expect(albanian.pluralCategory(by: 1.0) == .one)
+        #expect(albanian.pluralCategory(by: 2) == .other)
+        #expect(albanian.pluralCategory(by: 0.9) == .other)
+        
+        let arabic = Locale(tag: "ar-AE")
+        
+        #expect(arabic.pluralCategory(by: 0) == .zero)
+        #expect(arabic.pluralCategory(by: 0.0) == .zero)
+        #expect(arabic.pluralCategory(by: 1) == .one)
+        #expect(arabic.pluralCategory(by: 1.0) == .one)
+        #expect(arabic.pluralCategory(by: 2) == .two)
+        #expect(arabic.pluralCategory(by: 2.0) == .two)
+        #expect(arabic.pluralCategory(by: 3) == .few)
+        #expect(arabic.pluralCategory(by: 3.0) == .few)
+        #expect(arabic.pluralCategory(by: 11) == .many)
+        #expect(arabic.pluralCategory(by: 11.0) == .many)
+        #expect(arabic.pluralCategory(by: 100) == .other)
+        #expect(arabic.pluralCategory(by: 0.1) == .other)
+        
+        let armenian = Locale(tag: "hy-AM")
+        
+        #expect(armenian.pluralCategory(by: 1) == .one)
+        #expect(armenian.pluralCategory(by: 1.0) == .one)
+        #expect(armenian.pluralCategory(by: 2) == .other)
+        #expect(armenian.pluralCategory(by: 2.0) == .other)
+        
+        let belarusian = Locale(tag: "be-BY")
+        
+        #expect(belarusian.pluralCategory(by: 1) == .one)
+        #expect(belarusian.pluralCategory(by: 21.0) == .one)
+        #expect(belarusian.pluralCategory(by: 3) == .few)
+        #expect(belarusian.pluralCategory(by: 32.0) == .few)
+        #expect(belarusian.pluralCategory(by: 0) == .many)
+        #expect(belarusian.pluralCategory(by: 5.0) == .many)
+        #expect(belarusian.pluralCategory(by: 0.1) == .other)
+        
+        let bulgarian = Locale(tag: "bg-BG")
+        
+        #expect(bulgarian.pluralCategory(by: 1) == .one)
+        #expect(bulgarian.pluralCategory(by: 1.6) == .other)
+        
+        let catalan = Locale(tag: "ca-ES")
+        
+        #expect(catalan.pluralCategory(by: 1) == .one)
+        #expect(catalan.pluralCategory(by: 1000000) == .many)
+        #expect(catalan.pluralCategory(by: 2) == .other)
+        #expect(catalan.pluralCategory(by: 1.5) == .other)
+        
+        let chinese = Locale(tag: "zh-CN")
+        
+        #expect(chinese.pluralCategory(by: 15) == .other)
+        #expect(chinese.pluralCategory(by: 1.5) == .other)
+        
+        let croatian = Locale(tag: "hr-HR")
+        
+        #expect(croatian.pluralCategory(by: 1) == .one)
+        #expect(croatian.pluralCategory(by: 0.1) == .one)
+        #expect(croatian.pluralCategory(by: 2) == .few)
+        #expect(croatian.pluralCategory(by: 0.2) == .few)
+        #expect(croatian.pluralCategory(by: 5) == .other)
+        #expect(croatian.pluralCategory(by: 0.5) == .other)
+        
+        let czech = Locale(tag: "cs-CZ")
+        
+        #expect(czech.pluralCategory(by: 1) == .one)
+        #expect(czech.pluralCategory(by: 3) == .few)
+        #expect(czech.pluralCategory(by: 1.5) == .many)
+        #expect(czech.pluralCategory(by: 5) == .other)
+        
+        let danish = Locale(tag: "da-DK")
+        
+        #expect(danish.pluralCategory(by: 1) == .one)
+        #expect(danish.pluralCategory(by: 1.6) == .one)
+        #expect(danish.pluralCategory(by: 2) == .other)
+        #expect(danish.pluralCategory(by: 10.0) == .other)
+        
+        let dutch = Locale(tag: "nl-NL")
+        
+        #expect(dutch.pluralCategory(by: 1) == .one)
+        #expect(dutch.pluralCategory(by: 2) == .other)
+        #expect(dutch.pluralCategory(by: 1.5) == .other)
+        
         let english = Locale(tag: "en-GB")
         
         #expect(english.pluralCategory(by: 1) == .one)
         #expect(english.pluralCategory(by: 2) == .other)
         #expect(english.pluralCategory(by: 1.5) == .other)
         
-        let german = Locale(tag: "de-DE")
+        let estonian = Locale(tag: "et-EE")
         
-        #expect(german.pluralCategory(by: 1) == .one)
-        #expect(german.pluralCategory(by: 2) == .other)
-        #expect(german.pluralCategory(by: 1.5) == .other)
+        #expect(estonian.pluralCategory(by: 1) == .one)
+        #expect(estonian.pluralCategory(by: 2) == .other)
+        #expect(estonian.pluralCategory(by: 1.5) == .other)
+        
+        let finnish = Locale(tag: "fi-FI")
+        
+        #expect(finnish.pluralCategory(by: 1) == .one)
+        #expect(finnish.pluralCategory(by: 2) == .other)
+        #expect(finnish.pluralCategory(by: 1.5) == .other)
         
         let french = Locale(tag: "fr-FR")
         
@@ -294,6 +385,201 @@ struct LocalizationTests {
         #expect(french.pluralCategory(by: 1000000) == .many)
         #expect(french.pluralCategory(by: 2) == .other)
         #expect(french.pluralCategory(by: 2.0) == .other)
+        
+        let georgian = Locale(tag: "ka-GE")
+        
+        #expect(georgian.pluralCategory(by: 1) == .one)
+        #expect(georgian.pluralCategory(by: 1.0) == .one)
+        #expect(georgian.pluralCategory(by: 2) == .other)
+        #expect(georgian.pluralCategory(by: 0.9) == .other)
+        
+        let german = Locale(tag: "de-DE")
+        
+        #expect(german.pluralCategory(by: 1) == .one)
+        #expect(german.pluralCategory(by: 2) == .other)
+        #expect(german.pluralCategory(by: 1.5) == .other)
+        
+        let greek = Locale(tag: "el-GR")
+        
+        #expect(greek.pluralCategory(by: 1) == .one)
+        #expect(greek.pluralCategory(by: 1.0) == .one)
+        #expect(greek.pluralCategory(by: 2) == .other)
+        #expect(greek.pluralCategory(by: 0.9) == .other)
+        
+        let hebrew = Locale(tag: "he-IL")
+        
+        #expect(hebrew.pluralCategory(by: 1) == .one)
+        #expect(hebrew.pluralCategory(by: 0.9) == .one)
+        #expect(hebrew.pluralCategory(by: 2) == .two)
+        #expect(hebrew.pluralCategory(by: 3) == .other)
+        #expect(hebrew.pluralCategory(by: 1.0) == .other)
+        
+        let hindi = Locale(tag: "hi-IN")
+        
+        #expect(hindi.pluralCategory(by: 1) == .one)
+        #expect(hindi.pluralCategory(by: 1.0) == .one)
+        #expect(hindi.pluralCategory(by: 2) == .other)
+        #expect(hindi.pluralCategory(by: 1.1) == .other)
+        
+        let hungarian = Locale(tag: "hu-HU")
+        
+        #expect(hungarian.pluralCategory(by: 1) == .one)
+        #expect(hungarian.pluralCategory(by: 1.0) == .one)
+        #expect(hungarian.pluralCategory(by: 2) == .other)
+        #expect(hungarian.pluralCategory(by: 0.9) == .other)
+        
+        let icelandic = Locale(tag: "is-IS")
+        
+        #expect(icelandic.pluralCategory(by: 1) == .one)
+        #expect(icelandic.pluralCategory(by: 0.1) == .one)
+        
+        let indonesian = Locale(tag: "id-ID")
+        
+        #expect(indonesian.pluralCategory(by: 15) == .other)
+        #expect(indonesian.pluralCategory(by: 1.5) == .other)
+        
+        let italian = Locale(tag: "it-IT")
+        
+        #expect(italian.pluralCategory(by: 1) == .one)
+        #expect(italian.pluralCategory(by: 1000000) == .many)
+        #expect(italian.pluralCategory(by: 2) == .other)
+        #expect(italian.pluralCategory(by: 1.5) == .other)
+        
+        let japanese = Locale(tag: "ja-JP")
+        
+        #expect(japanese.pluralCategory(by: 15) == .other)
+        #expect(japanese.pluralCategory(by: 1.5) == .other)
+        
+        let korean = Locale(tag: "ko-KP")
+        
+        #expect(korean.pluralCategory(by: 15) == .other)
+        #expect(korean.pluralCategory(by: 1.5) == .other)
+        
+        let latvian = Locale(tag: "lv-LV")
+        
+        #expect(latvian.pluralCategory(by: 10) == .zero)
+        #expect(latvian.pluralCategory(by: 10.0) == .zero)
+        #expect(latvian.pluralCategory(by: 1) == .one)
+        #expect(latvian.pluralCategory(by: 0.1) == .one)
+        #expect(latvian.pluralCategory(by: 2) == .other)
+        #expect(latvian.pluralCategory(by: 0.2) == .other)
+        
+        let lithuanian = Locale(tag: "lt-LT")
+        
+        #expect(lithuanian.pluralCategory(by: 1) == .one)
+        #expect(lithuanian.pluralCategory(by: 1.0) == .one)
+        #expect(lithuanian.pluralCategory(by: 2) == .few)
+        #expect(lithuanian.pluralCategory(by: 2.0) == .few)
+        #expect(lithuanian.pluralCategory(by: 0.1) == .many)
+        #expect(lithuanian.pluralCategory(by: 10) == .other)
+        #expect(lithuanian.pluralCategory(by: 10.0) == .other)
+        
+        let macedonian = Locale(tag: "mk-MK")
+        
+        #expect(macedonian.pluralCategory(by: 1) == .one)
+        #expect(macedonian.pluralCategory(by: 0.1) == .one)
+        #expect(macedonian.pluralCategory(by: 2) == .other)
+        #expect(macedonian.pluralCategory(by: 0.2) == .other)
+        
+        let maltese = Locale(tag: "mt-MT")
+        
+        #expect(maltese.pluralCategory(by: 1) == .one)
+        #expect(maltese.pluralCategory(by: 1.0) == .one)
+        #expect(maltese.pluralCategory(by: 2) == .two)
+        #expect(maltese.pluralCategory(by: 2.0) == .two)
+        #expect(maltese.pluralCategory(by: 3) == .few)
+        #expect(maltese.pluralCategory(by: 3.0) == .few)
+        #expect(maltese.pluralCategory(by: 11) == .many)
+        #expect(maltese.pluralCategory(by: 11.0) == .many)
+        #expect(maltese.pluralCategory(by: 20) == .other)
+        #expect(maltese.pluralCategory(by: 0.1) == .other)
+        
+        let norwegian = Locale(tag: "no-NO")
+        
+        #expect(norwegian.pluralCategory(by: 1) == .one)
+        #expect(norwegian.pluralCategory(by: 1.0) == .one)
+        #expect(norwegian.pluralCategory(by: 2) == .other)
+        #expect(norwegian.pluralCategory(by: 0.9) == .other)
+        
+        let polish = Locale(tag: "pl-PL")
+        
+        #expect(polish.pluralCategory(by: 1) == .one)
+        #expect(polish.pluralCategory(by: 2) == .few)
+        #expect(polish.pluralCategory(by: 5) == .many)
+        #expect(polish.pluralCategory(by: 1.5) == .other)
+        
+        let portuguese = Locale(tag: "pt-PT")
+        
+        #expect(portuguese.pluralCategory(by: 1) == .one)
+        #expect(portuguese.pluralCategory(by: 1.5) == .one)
+        #expect(portuguese.pluralCategory(by: 1000000) == .many)
+        #expect(portuguese.pluralCategory(by: 2) == .other)
+        #expect(portuguese.pluralCategory(by: 2.0) == .other)
+        
+        let romanian = Locale(tag: "ro-RO")
+        
+        #expect(romanian.pluralCategory(by: 1) == .one)
+        #expect(romanian.pluralCategory(by: 2) == .few)
+        #expect(romanian.pluralCategory(by: 1.5) == .few)
+        #expect(romanian.pluralCategory(by: 20) == .other)
+        
+        let russian = Locale(tag: "ru-RU")
+        
+        #expect(russian.pluralCategory(by: 1) == .one)
+        #expect(russian.pluralCategory(by: 2) == .few)
+        #expect(russian.pluralCategory(by: 5) == .many)
+        #expect(russian.pluralCategory(by: 1.5) == .other)
+        
+        let serbian = Locale(tag: "sr-RS")
+        
+        #expect(serbian.pluralCategory(by: 1) == .one)
+        #expect(serbian.pluralCategory(by: 0.1) == .one)
+        #expect(serbian.pluralCategory(by: 2) == .few)
+        #expect(serbian.pluralCategory(by: 0.2) == .few)
+        #expect(serbian.pluralCategory(by: 5) == .other)
+        #expect(serbian.pluralCategory(by: 0.5) == .other)
+        
+        let slovak = Locale(tag: "sk-SK")
+        
+        #expect(slovak.pluralCategory(by: 1) == .one)
+        #expect(slovak.pluralCategory(by: 2) == .few)
+        #expect(slovak.pluralCategory(by: 1.5) == .many)
+        #expect(slovak.pluralCategory(by: 5) == .other)
+        
+        let slovenian = Locale(tag: "sl-SI")
+        
+        #expect(slovenian.pluralCategory(by: 1) == .one)
+        #expect(slovenian.pluralCategory(by: 2) == .two)
+        #expect(slovenian.pluralCategory(by: 3) == .few)
+        #expect(slovenian.pluralCategory(by: 1.5) == .few)
+        #expect(slovenian.pluralCategory(by: 5) == .other)
+        
+        let spanish = Locale(tag: "es-ES")
+        
+        #expect(spanish.pluralCategory(by: 1) == .one)
+        #expect(spanish.pluralCategory(by: 1.0) == .one)
+        #expect(spanish.pluralCategory(by: 1000000) == .many)
+        #expect(spanish.pluralCategory(by: 0.9) == .other)
+        
+        let swedish = Locale(tag: "sv-SE")
+        
+        #expect(swedish.pluralCategory(by: 1) == .one)
+        #expect(swedish.pluralCategory(by: 2) == .other)
+        #expect(swedish.pluralCategory(by: 1.5) == .other)
+        
+        let turkish = Locale(tag: "tr-TR")
+        
+        #expect(turkish.pluralCategory(by: 1) == .one)
+        #expect(turkish.pluralCategory(by: 1.0) == .one)
+        #expect(turkish.pluralCategory(by: 2) == .other)
+        #expect(turkish.pluralCategory(by: 0.9) == .other)
+        
+        let ukrainian = Locale(tag: "uk-UA")
+        
+        #expect(ukrainian.pluralCategory(by: 1) == .one)
+        #expect(ukrainian.pluralCategory(by: 2) == .few)
+        #expect(ukrainian.pluralCategory(by: 5) == .many)
+        #expect(ukrainian.pluralCategory(by: 1.5) == .other)
     }
 }
 
