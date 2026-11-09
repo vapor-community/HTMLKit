@@ -106,11 +106,6 @@ extension Tabs: ViewModifier {
         return self.mutate(zindex: index.value)
     }
     
-    @available(*, unavailable, message: "Use the background(_:) modifier instead.")
-    public func backgroundColor(_ color: Tokens.BackgroundColor) -> Tabs {
-        return self.mutate(backgroundcolor: color.value)
-    }
-    
     public func background(_ color: Tokens.BackgroundColor) -> Tabs {
         return self.mutate(backgroundcolor: color.value)
     }
@@ -130,11 +125,6 @@ extension Tabs: ViewModifier {
     
     public func padding(insets: EdgeSet, length: Tokens.PaddingLength) -> Tabs {
         return self.mutate(padding: length.value, insets: insets)
-    }
-    
-    @available(*, unavailable, message: "Use the border(_:width:shape:) modifier instead.")
-    public func borderShape(_ shape: Tokens.BorderShape) -> Tabs {
-        return self.mutate(bordershape: shape.value)
     }
     
     public func border(_ color: Tokens.BorderColor, width: Tokens.BorderWidth = .small, shape: Tokens.BorderShape? = nil) -> Tabs {

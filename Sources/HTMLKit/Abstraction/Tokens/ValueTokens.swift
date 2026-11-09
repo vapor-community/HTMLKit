@@ -1558,10 +1558,6 @@ public enum Values {
             
             /// Indicates the suggestions shown in a list.
             case list
-            
-            /// Indicates inline and list suggestions.
-            @available(*, unavailable, message: "Use inline and list instead.")
-            case both
         }
 
         /// An indicator of the current position.
@@ -1572,14 +1568,6 @@ public enum Values {
         /// .accessibilityControls("id", "id")
         /// ```
         public enum Current: String, Sendable {
-            
-            /// Does not represent the current item within a set.
-            @available(*, unavailable, message: "Use the accessibilityCurrent(_:) modifier instead.")
-            case `false`
-            
-            /// Represents the current item within a set.
-            @available(*, unavailable, message: "Use the accessibilityCurrent(_:) modifier instead.")
-            case `true`
             
             /// Represents the current page within a set of pages.
             case page
@@ -1606,14 +1594,6 @@ public enum Values {
         /// ```
         public enum Popup: String, Sendable {
             
-            /// Indicates no popup.
-            @available(*, unavailable, message: "Use the accessibilityPopup(_:) modifier instead.")
-            case `false`
-            
-            /// Indicates the popup is a menu.
-            @available(*, unavailable, message: "Use the accessibilityPopup(_:) modifier instead.")
-            case `true`
-            
             /// Indicates the popup is a menu.
             case menu
             
@@ -1639,14 +1619,6 @@ public enum Values {
         /// .accessibilityInvalid(.grammar)
         /// ```
         public enum Invalid: String, Sendable {
-            
-            /// Indicates that there are no detected errors.
-            @available(*, unavailable, message: "Use the accessibilityInvalid(_:) modifier instead.")
-            case `false`
-            
-            /// Indicates that errors were detected.
-            @available(*, unavailable, message: "Use the accessibilityInvalid(_:) modifier instead.")
-            case `true`
             
             /// Indicates that a grammatical error was deteced.
             case grammar
@@ -1707,14 +1679,6 @@ public enum Values {
             
             /// Indicates node additions.
             case additions
-            
-            /// Indicates node and text additions.
-            @available(*, unavailable, message: "Use additions and text instead.")
-            case additionsText
-            
-            /// Indicates all relevants.
-            @available(*, unavailable, message: "Use additions, removals and text instead.")
-            case all
             
             /// Indicates node removals.
             case removals
@@ -1946,14 +1910,6 @@ public enum Values {
     /// .autocomplete([.organization, .organizationTitle])
     /// ```
     public enum Completion: String, Sendable {
-        
-        /// Enables completion.
-        @available(*, unavailable, message: "Use the autocomplete() modifier instead.")
-        case on
-        
-        /// Disables completion.
-        @available(*, unavailable, message: "Use the autocomplete() modifier instead.")
-        case off
         
         /// Expects a name.
         case name
