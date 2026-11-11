@@ -28,7 +28,7 @@ public struct BarMark: View, Modifiable {
     /// - Parameters:
     ///   - value: The value at which to plot the mark.
     ///   - label: The title used to label the mark.
-    @available(*, deprecated, message: "Use the init(label:value:) initializer instead.")
+    @available(*, unavailable, message: "Use the init(label:value:) initializer instead.")
     public init(value: Int, label: String) {
         
         self.label = .literal(label)

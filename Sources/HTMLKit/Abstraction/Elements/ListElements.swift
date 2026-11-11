@@ -77,7 +77,7 @@ public struct ListItem: ContentNode, ListElement {
     }
 }
 
-extension ListItem: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes, ValueAttribute, RequiredAccessibilityAttribute, PositionAccessibilityAttribute, CheckedAccessibilityAttribute {    
+extension ListItem: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessibilityAttributes, ValueAttribute, RequiredAccessibilityAttribute, PositionAccessibilityAttribute, CheckedAccessibilityAttribute, DisabledAccessibilityAttribute, PopupAccessibilityAttribute {    
     
     public func accessKey(_ value: Character) -> ListItem {
         return mutate(accesskey: .init("\(value)", context: .trusted))
@@ -360,19 +360,19 @@ extension ListItem: GlobalContentAttributes, GlobalEventAttributes, GlobalAccess
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
-    @available(*, deprecated)
+    @available(*, unavailable)
     public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> ListItem {
-        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+        return mutate(key: "aria-invalid", value: .init(value.rawValue, context: .trusted))
     }
     
-    @available(*, deprecated)
+    @available(*, unavailable)
     public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> ListItem {
 
         if let id = id {
-            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+            return mutate(key: "aria-invalid", value: .init(value, context: .trusted)).mutate(key: "aria-errormessage", value: .init(id, context: .tainted(.html)))
         }
         
-        return mutate(ariainvalid: .init(value, context: .trusted))
+        return mutate(key: "aria-invalid", value: .init(value, context: .trusted))
     }
     
     public func accessibilityShortcuts(_ values: [KeyboardShortcut]) -> ListItem {

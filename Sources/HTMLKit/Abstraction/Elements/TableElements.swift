@@ -352,9 +352,9 @@ extension Caption: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessi
         return mutate(ariadetails: .init(id, context: .tainted(.html)))
     }
     
-    @available(*, deprecated)
+    @available(*, unavailable)
     public func accessibilityDisabled(_ value: Bool = true) -> Caption {
-        return mutate(ariadisabled: .init(value, context: .trusted))
+        return mutate(key: "aria-disabled", value: .init(value, context: .trusted))
     }
     
     public func accessibilityFlow(_ ids: [String]) -> Caption {
@@ -365,28 +365,28 @@ extension Caption: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessi
         return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
     }
     
-    @available(*, deprecated)
+    @available(*, unavailable)
     public func accessibilityPopup(_ value: Values.Accessibility.Popup) -> Caption {
-        return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
+        return mutate(key: "aria-haspopup", value: .init(value.rawValue, context: .trusted))
     }
     
     public func accessibilityHidden(_ value: Bool = true) -> Caption {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
-    @available(*, deprecated)
+    @available(*, unavailable)
     public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> Caption {
-        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+        return mutate(key: "aria-invalid", value: .init(value.rawValue, context: .trusted))
     }
     
-    @available(*, deprecated)
+    @available(*, unavailable)
     public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> Caption {
 
         if let id = id {
-            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+            return mutate(key: "aria-invalid", value: .init(value, context: .trusted)).mutate(key: "aria-errormessage", value: .init(id, context: .tainted(.html)))
         }
         
-        return mutate(ariainvalid: .init(value, context: .trusted))
+        return mutate(key: "aria-invalid", value: .init(value, context: .trusted))
     }
     
     public func accessibilityShortcuts(_ values: [KeyboardShortcut]) -> Caption {
@@ -1350,9 +1350,9 @@ extension TableBody: GlobalContentAttributes, GlobalEventAttributes, GlobalAcces
         return mutate(ariadetails: .init(id, context: .tainted(.html)))
     }
     
-    @available(*, deprecated)
+    @available(*, unavailable)
     public func accessibilityDisabled(_ value: Bool = true) -> TableBody {
-        return mutate(ariadisabled: .init(value, context: .trusted))
+        return mutate(key: "aria-disabled", value: .init(value, context: .trusted))
     }
     
     public func accessibilityFlow(_ ids: [String]) -> TableBody {
@@ -1363,28 +1363,28 @@ extension TableBody: GlobalContentAttributes, GlobalEventAttributes, GlobalAcces
         return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
     }
     
-    @available(*, deprecated)
+    @available(*, unavailable)
     public func accessibilityPopup(_ value: Values.Accessibility.Popup) -> TableBody {
-        return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
+        return mutate(key: "aria-haspopup", value: .init(value.rawValue, context: .trusted))
     }
     
     public func accessibilityHidden(_ value: Bool = true) -> TableBody {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
-    @available(*, deprecated)
+    @available(*, unavailable)
     public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> TableBody {
-        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+        return mutate(key: "aria-invalid", value: .init(value.rawValue, context: .trusted))
     }
     
-    @available(*, deprecated)
+    @available(*, unavailable)
     public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> TableBody {
 
         if let id = id {
-            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+            return mutate(key: "aria-invalid", value: .init(value, context: .trusted)).mutate(key: "aria-errormessage", value: .init(id, context: .tainted(.html)))
         }
         
-        return mutate(ariainvalid: .init(value, context: .trusted))
+        return mutate(key: "aria-invalid", value: .init(value, context: .trusted))
     }
     
     public func accessibilityShortcuts(_ values: [KeyboardShortcut]) -> TableBody {
@@ -1788,9 +1788,9 @@ extension TableHead: GlobalContentAttributes, GlobalEventAttributes, GlobalAcces
         return mutate(ariadetails: .init(id, context: .tainted(.html)))
     }
     
-    @available(*, deprecated)
+    @available(*, unavailable)
     public func accessibilityDisabled(_ value: Bool = true) -> TableHead {
-        return mutate(ariadisabled: .init(value, context: .trusted))
+        return mutate(key: "aria-disabled", value: .init(value, context: .trusted))
     }
     
     public func accessibilityFlow(_ ids: [String]) -> TableHead {
@@ -1801,28 +1801,28 @@ extension TableHead: GlobalContentAttributes, GlobalEventAttributes, GlobalAcces
         return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
     }
     
-    @available(*, deprecated)
+    @available(*, unavailable)
     public func accessibilityPopup(_ value: Values.Accessibility.Popup) -> TableHead {
-        return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
+        return mutate(key: "aria-haspopup", value: .init(value.rawValue, context: .trusted))
     }
     
     public func accessibilityHidden(_ value: Bool = true) -> TableHead {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
-    @available(*, deprecated)
+    @available(*, unavailable)
     public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> TableHead {
-        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+        return mutate(key: "aria-invalid", value: .init(value.rawValue, context: .trusted))
     }
     
-    @available(*, deprecated)
+    @available(*, unavailable)
     public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> TableHead {
 
         if let id = id {
-            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+            return mutate(key: "aria-invalid", value: .init(value, context: .trusted)).mutate(key: "aria-errormessage", value: .init(id, context: .tainted(.html)))
         }
         
-        return mutate(ariainvalid: .init(value, context: .trusted))
+        return mutate(key: "aria-invalid", value: .init(value, context: .trusted))
     }
     
     public func accessibilityShortcuts(_ values: [KeyboardShortcut]) -> TableHead {
@@ -2218,9 +2218,9 @@ extension TableFoot: GlobalContentAttributes, GlobalEventAttributes, GlobalAcces
         return mutate(ariadetails: .init(id, context: .tainted(.html)))
     }
     
-    @available(*, deprecated)
+    @available(*, unavailable)
     public func accessibilityDisabled(_ value: Bool = true) -> TableFoot {
-        return mutate(ariadisabled: .init(value, context: .trusted))
+        return mutate(key: "aria-disabled", value: .init(value, context: .trusted))
     }
     
     public func accessibilityFlow(_ ids: [String]) -> TableFoot {
@@ -2231,28 +2231,28 @@ extension TableFoot: GlobalContentAttributes, GlobalEventAttributes, GlobalAcces
         return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
     }
     
-    @available(*, deprecated)
+    @available(*, unavailable)
     public func accessibilityPopup(_ value: Values.Accessibility.Popup) -> TableFoot {
-        return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
+        return mutate(key: "aria-haspopup", value: .init(value.rawValue, context: .trusted))
     }
     
     public func accessibilityHidden(_ value: Bool = true) -> TableFoot {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
-    @available(*, deprecated)
+    @available(*, unavailable)
     public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> TableFoot {
-        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+        return mutate(key: "aria-invalid", value: .init(value.rawValue, context: .trusted))
     }
     
-    @available(*, deprecated)
+    @available(*, unavailable)
     public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> TableFoot {
 
         if let id = id {
-            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+            return mutate(key: "aria-invalid", value: .init(value, context: .trusted)).mutate(key: "aria-errormessage", value: .init(id, context: .tainted(.html)))
         }
         
-        return mutate(ariainvalid: .init(value, context: .trusted))
+        return mutate(key: "aria-invalid", value: .init(value, context: .trusted))
     }
     
     public func accessibilityShortcuts(_ values: [KeyboardShortcut]) -> TableFoot {
@@ -2650,9 +2650,9 @@ extension TableRow: GlobalContentAttributes, GlobalEventAttributes, GlobalAccess
         return mutate(ariadetails: .init(id, context: .tainted(.html)))
     }
     
-    @available(*, deprecated)
+    @available(*, unavailable)
     public func accessibilityDisabled(_ value: Bool = true) -> TableRow {
-        return mutate(ariadisabled: .init(value, context: .trusted))
+        return mutate(key: "aria-disabled", value: .init(value, context: .trusted))
     }
     
     public func accessibilityFlow(_ ids: [String]) -> TableRow {
@@ -2663,28 +2663,28 @@ extension TableRow: GlobalContentAttributes, GlobalEventAttributes, GlobalAccess
         return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
     }
     
-    @available(*, deprecated)
+    @available(*, unavailable)
     public func accessibilityPopup(_ value: Values.Accessibility.Popup) -> TableRow {
-        return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
+        return mutate(key: "aria-haspopup", value: .init(value.rawValue, context: .trusted))
     }
     
     public func accessibilityHidden(_ value: Bool = true) -> TableRow {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
-    @available(*, deprecated)
+    @available(*, unavailable)
     public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> TableRow {
-        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+        return mutate(key: "aria-invalid", value: .init(value.rawValue, context: .trusted))
     }
     
-    @available(*, deprecated)
+    @available(*, unavailable)
     public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> TableRow {
 
         if let id = id {
-            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+            return mutate(key: "aria-invalid", value: .init(value, context: .trusted)).mutate(key: "aria-errormessage", value: .init(id, context: .tainted(.html)))
         }
         
-        return mutate(ariainvalid: .init(value, context: .trusted))
+        return mutate(key: "aria-invalid", value: .init(value, context: .trusted))
     }
     
     public func accessibilityShortcuts(_ values: [KeyboardShortcut]) -> TableRow {
@@ -3096,9 +3096,9 @@ extension DataCell: GlobalContentAttributes, GlobalEventAttributes, GlobalAccess
         return mutate(ariadetails: .init(id, context: .tainted(.html)))
     }
     
-    @available(*, deprecated)
+    @available(*, unavailable)
     public func accessibilityDisabled(_ value: Bool = true) -> DataCell {
-        return mutate(ariadisabled: .init(value, context: .trusted))
+        return mutate(key: "aria-disabled", value: .init(value, context: .trusted))
     }
     
     public func accessibilityFlow(_ ids: [String]) -> DataCell {
@@ -3109,28 +3109,28 @@ extension DataCell: GlobalContentAttributes, GlobalEventAttributes, GlobalAccess
         return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
     }
     
-    @available(*, deprecated)
+    @available(*, unavailable)
     public func accessibilityPopup(_ value: Values.Accessibility.Popup) -> DataCell {
-        return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
+        return mutate(key: "aria-haspopup", value: .init(value.rawValue, context: .trusted))
     }
     
     public func accessibilityHidden(_ value: Bool = true) -> DataCell {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
-    @available(*, deprecated)
+    @available(*, unavailable)
     public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> DataCell {
-        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+        return mutate(key: "aria-invalid", value: .init(value.rawValue, context: .trusted))
     }
     
-    @available(*, deprecated)
+    @available(*, unavailable)
     public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> DataCell {
 
         if let id = id {
-            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+            return mutate(key: "aria-invalid", value: .init(value, context: .trusted)).mutate(key: "aria-errormessage", value: .init(id, context: .tainted(.html)))
         }
         
-        return mutate(ariainvalid: .init(value, context: .trusted))
+        return mutate(key: "aria-invalid", value: .init(value, context: .trusted))
     }
     
     public func accessibilityShortcuts(_ values: [KeyboardShortcut]) -> DataCell {
@@ -3558,9 +3558,9 @@ extension HeaderCell: GlobalContentAttributes, GlobalEventAttributes, GlobalAcce
         return mutate(ariadetails: .init(id, context: .tainted(.html)))
     }
     
-    @available(*, deprecated)
+    @available(*, unavailable)
     public func accessibilityDisabled(_ value: Bool = true) -> HeaderCell {
-        return mutate(ariadisabled: .init(value, context: .trusted))
+        return mutate(key: "aria-disabled", value: .init(value, context: .trusted))
     }
     
     public func accessibilityFlow(_ ids: [String]) -> HeaderCell {
@@ -3571,28 +3571,28 @@ extension HeaderCell: GlobalContentAttributes, GlobalEventAttributes, GlobalAcce
         return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
     }
     
-    @available(*, deprecated)
+    @available(*, unavailable)
     public func accessibilityPopup(_ value: Values.Accessibility.Popup) -> HeaderCell {
-        return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
+        return mutate(key: "aria-haspopup", value: .init(value.rawValue, context: .trusted))
     }
     
     public func accessibilityHidden(_ value: Bool = true) -> HeaderCell {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
-    @available(*, deprecated)
+    @available(*, unavailable)
     public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> HeaderCell {
-        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+        return mutate(key: "aria-invalid", value: .init(value.rawValue, context: .trusted))
     }
     
-    @available(*, deprecated)
+    @available(*, unavailable)
     public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> HeaderCell {
 
         if let id = id {
-            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+            return mutate(key: "aria-invalid", value: .init(value, context: .trusted)).mutate(key: "aria-errormessage", value: .init(id, context: .tainted(.html)))
         }
         
-        return mutate(ariainvalid: .init(value, context: .trusted))
+        return mutate(key: "aria-invalid", value: .init(value, context: .trusted))
     }
     
     public func accessibilityShortcuts(_ values: [KeyboardShortcut]) -> HeaderCell {

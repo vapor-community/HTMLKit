@@ -379,9 +379,9 @@ extension Area: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessibil
         return mutate(ariadetails: .init(id, context: .tainted(.html)))
     }
     
-    @available(*, deprecated)
+    @available(*, unavailable)
     public func accessibilityDisabled(_ value: Bool = true) -> Area {
-        return mutate(ariadisabled: .init(value, context: .trusted))
+        return mutate(key: "aria-disabled", value: .init(value, context: .trusted))
     }
     
     public func accessibilityFlow(_ ids: [String]) -> Area {
@@ -392,28 +392,28 @@ extension Area: GlobalContentAttributes, GlobalEventAttributes, GlobalAccessibil
         return mutate(ariaflowto: .init(EnumeratedList(values: ids, separator: " "), context: .tainted(.html)))
     }
     
-    @available(*, deprecated)
+    @available(*, unavailable)
     public func accessibilityPopup(_ value: Values.Accessibility.Popup) -> Area {
-        return mutate(ariahaspopup: .init(value.rawValue, context: .trusted))
+        return mutate(key: "aria-haspopup", value: .init(value.rawValue, context: .trusted))
     }
     
     public func accessibilityHidden(_ value: Bool = true) -> Area {
         return mutate(ariahidden: .init(value, context: .trusted))
     }
     
-    @available(*, deprecated)
+    @available(*, unavailable)
     public func accessibilityInvalid(_ value: Values.Accessibility.Invalid) -> Area {
-        return mutate(ariainvalid: .init(value.rawValue, context: .trusted))
+        return mutate(key: "aria-invalid", value: .init(value.rawValue, context: .trusted))
     }
     
-    @available(*, deprecated)
+    @available(*, unavailable)
     public func accessibilityInvalid(_ value: Bool = true, message id: String? = nil) -> Area {
 
         if let id = id {
-            return mutate(ariainvalid: .init(value, context: .trusted)).mutate(ariaerrormessage: .init(id, context: .tainted(.html)))
+            return mutate(key: "aria-invalid", value: .init(value, context: .trusted)).mutate(key: "aria-errormessage", value: .init(id, context: .tainted(.html)))
         }
         
-        return mutate(ariainvalid: .init(value, context: .trusted))
+        return mutate(key: "aria-invalid", value: .init(value, context: .trusted))
     }
     
     public func accessibilityShortcuts(_ values: [KeyboardShortcut]) -> Area {

@@ -1657,7 +1657,7 @@ public enum Values {
         public enum Orientation: String, Sendable {
             
             /// Indicates that the element's orientation is unknown.
-            @available(*, deprecated)
+            @available(*, unavailable)
             case undefined
             
             /// Indicates that the element is oriented horizontally.
