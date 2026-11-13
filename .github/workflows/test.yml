@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        image: [ "swift:6.0.3-jammy", "swift:6.0.3-noble" ]
+        image: [ "swift:6.1.3-jammy", "swift:6.1.3-noble" ]
     container:
       image: ${{ matrix.image }}
     steps:
