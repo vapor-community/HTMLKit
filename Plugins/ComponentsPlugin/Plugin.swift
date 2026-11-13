@@ -32,7 +32,8 @@ struct ComponentsPlugin: CommandPlugin {
             if let dependency = try context.dependency(named: "HTMLKit") {
                 
                 if let target = try dependency.package.targets(named: ["HTMLKitComponents"]).first {
-                    processArguments.insert(target.directory.string, at: 0)
+                    
+                    processArguments.insert(target.directoryURL.relativePath, at: 0)
                     
                 } else {
                     Diagnostics.error("The target 'HTMLKitComponents' could not be found.")
@@ -48,7 +49,8 @@ struct ComponentsPlugin: CommandPlugin {
             } else {
                 
                 if try context.dependency(named: "vapor") != nil {
-                    processArguments.insert(context.package.directory.appending(subpath: "Public").string, at: 1)
+                    
+                    processArguments.insert(context.package.directoryURL.appending(path: "Public").relativePath, at: 1)
                     
                 } else {
                     Diagnostics.error("Missing argument --target-path.")
@@ -57,7 +59,7 @@ struct ComponentsPlugin: CommandPlugin {
             
             print("The deployment starts...")
             
-            let process = try Process.run(URL(fileURLWithPath: tool.path.string), arguments: processArguments)
+            let process = try Process.run(tool.url, arguments: processArguments)
             process.waitUntilExit()
             
             if process.terminationReason == .exit && process.terminationStatus == 0 {
