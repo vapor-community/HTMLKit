@@ -116,11 +116,6 @@ extension Grid: MouseEvent {
 
 extension Grid: ViewModifier {
     
-    @available(*, unavailable, message: "Use the background(_:) modifier instead.")
-    public func backgroundColor(_ color: Tokens.BackgroundColor) -> Grid {
-        return self.mutate(backgroundcolor: color.value)
-    }
-    
     public func background(_ color: Tokens.BackgroundColor) -> Grid {
         return self.mutate(backgroundcolor: color.value)
     }
@@ -148,11 +143,6 @@ extension Grid: ViewModifier {
     
     public func padding(insets: EdgeSet = .all, length: Tokens.PaddingLength = .small) -> Grid {
         return self.mutate(padding: length.value, insets: insets)
-    }
-    
-    @available(*, unavailable, message: "Use the border(_:width:shape:) modifier instead.")
-    public func borderShape(_ shape: Tokens.BorderShape) -> Grid {
-        return self.mutate(bordershape: shape.value)
     }
     
     public func border(_ color: Tokens.BorderColor, width: Tokens.BorderWidth = .small, shape: Tokens.BorderShape? = nil) -> Grid {

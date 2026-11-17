@@ -34,7 +34,7 @@ public struct Disclosure: View, Modifiable, Identifiable {
     /// - Parameters:
     ///   - label: The label to describe the content.
     ///   - content: The disclosure's content.
-    @available(*, deprecated, message: "Use the init(content:label:) initializer instead.")
+    @available(*, unavailable, message: "Use the init(content:label:) initializer instead.")
     @_disfavoredOverload
     public init(_ label: any StringProtocol & Content, @ContentBuilder<Content> content: () -> [Content]) {
         
@@ -48,7 +48,7 @@ public struct Disclosure: View, Modifiable, Identifiable {
     /// - Parameters:
     ///   - label: The key of the localized string to describe the content.
     ///   - content: The disclosure's content.
-    @available(*, deprecated, message: "Use the init(content:label:) initializer instead.")
+    @available(*, unavailable, message: "Use the init(content:label:) initializer instead.")
     public init(_ label: LocalizedStringKey, @ContentBuilder<Content> content: () -> [Content]) {
         
         self.label = [LocalizedString(key: label)]

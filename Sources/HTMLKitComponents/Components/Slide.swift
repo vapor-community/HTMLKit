@@ -80,16 +80,6 @@ extension Slide: ViewModifier {
         return self.mutate(border: color.value, width: width.value, shape: shape?.value)
     }
     
-    @available(*, unavailable, message: "Use the border(_:width:shape:) modifier instead.")
-    public func borderShape(_ shape: Tokens.BorderShape) -> Slide {
-        return self.mutate(bordershape: shape.value)
-    }
-    
-    @available(*, unavailable, message: "Use the background(_:) modifier instead.")
-    public func backgroundColor(_ color: Tokens.BackgroundColor) -> Slide {
-        return self.mutate(backgroundcolor: color.value)
-    }
-    
     public func background(_ color: Tokens.BackgroundColor) -> Slide {
         return self.mutate(backgroundcolor: color.value)
     }

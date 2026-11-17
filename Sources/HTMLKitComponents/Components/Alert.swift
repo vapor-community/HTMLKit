@@ -60,11 +60,6 @@ extension Alert: ViewModifier {
         return self.mutate(zindex: index.value)
     }
     
-    @available(*, unavailable, message: "Use the background(_:) modifier instead.")
-    public func backgroundColor(_ color: Tokens.BackgroundColor) -> Alert {
-        return self.mutate(backgroundcolor: color.value)
-    }
-    
     public func background(_ color: Tokens.BackgroundColor) -> Alert {
         return self.mutate(backgroundcolor: color.value)
     }
@@ -84,11 +79,6 @@ extension Alert: ViewModifier {
     
     public func padding(insets: EdgeSet, length: Tokens.PaddingLength) -> Alert {
         return self.mutate(padding: length.value, insets: insets)
-    }
-    
-    @available(*, unavailable, message: "Use the border(_:width:shape:) modifier instead.")
-    public func borderShape(_ shape: Tokens.BorderShape) -> Alert {
-        return self.mutate(bordershape: shape.value)
     }
     
     public func border(_ color: Tokens.BorderColor, width: Tokens.BorderWidth = .small, shape: Tokens.BorderShape? = nil) -> Alert {
