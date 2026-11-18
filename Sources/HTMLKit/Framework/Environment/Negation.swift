@@ -1,20 +1,20 @@
-/// A type thats represents an invert conditional
+/// A type that represents an invert conditional.
 @_documentation(visibility: internal)
 public struct Negation {
     
-    /// The left-hand side conditional
+    /// The left-hand side conditional.
     internal let value: EnvironmentValue
     
-    /// Initializes the negation
+    /// Creates a negation.
     ///
-    /// - Parameter lhs: The conditional to evaluate
-    public init(value: EnvironmentValue) {
+    /// - Parameter value: The value to evaluate.
+    internal init(value: EnvironmentValue) {
         
         self.value = value
     }
 }
 
-/// Creates a invert conditional
+/// Creates an invert conditional.
 ///
 /// ```swift
 /// Environment.when(!value) {
@@ -22,9 +22,9 @@ public struct Negation {
 /// ```
 ///
 /// - Parameters:
-///   - lhs: The left-hand side conditional
+///   - lhs: The left-hand side conditional.
 ///
-/// - Returns: A invert conditional
+/// - Returns: An invert conditional.
 public prefix func ! (value: EnvironmentValue) -> Conditional {
     return .negation(Negation(value: value))
 }

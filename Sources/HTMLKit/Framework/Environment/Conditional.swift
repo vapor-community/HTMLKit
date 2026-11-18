@@ -2,18 +2,18 @@
 @_documentation(visibility: internal)
 public indirect enum Conditional {
     
-    /// Holds an optional
+    /// Holds an optional.
     case optional(EnvironmentValue)
     
-    /// Holds an relation
+    /// Holds a relation.
     case relation(Relation)
     
-    /// Holds a condition
+    /// Holds a condition.
     case condition(Condition)
     
-    /// Holds a negation
+    /// Holds a negation.
     case negation(Negation)
     
-    /// Holds a value
+    /// Holds a value.
     case value(EnvironmentValue)
 }

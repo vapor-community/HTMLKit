@@ -246,7 +246,7 @@ struct ProviderTests {
             if let languages = request.headers.first(name: .acceptLanguage) {
                 
                 if let language = languages.components(separatedBy: ",").first {
-                    app.htmlkit.environment.upsert(HTMLKit.Locale(tag: language), for: \EnvironmentKeys.locale)    
+                    request.htmlkit.environment.upsert(HTMLKit.Locale(tag: language), for: \EnvironmentKeys.locale)    
                 }
             }
             
@@ -294,7 +294,7 @@ struct ProviderTests {
             if let languages = request.headers.first(name: .acceptLanguage) {
                 
                 if let language = languages.components(separatedBy: ",").first {
-                    request.application.htmlkit.environment.upsert(HTMLKit.Locale(tag: language), for: \EnvironmentKeys.locale)    
+                    request.htmlkit.environment.upsert(HTMLKit.Locale(tag: language), for: \EnvironmentKeys.locale)    
                 }
             }
             
@@ -344,14 +344,14 @@ struct ProviderTests {
         
         app.get("test", "de") { request async throws -> Vapor.View in
             
-            request.application.htmlkit.environment.upsert(HTMLKit.Locale(tag: "de-DE"), for: \EnvironmentKeys.locale)
+            request.htmlkit.environment.upsert(HTMLKit.Locale(tag: "de-DE"), for: \EnvironmentKeys.locale)
             
             return try await request.htmlkit.render(TestPage.ChildView())
         }
         
         app.get("test", "fr") { request async throws -> Vapor.View in
             
-            request.application.htmlkit.environment.upsert(HTMLKit.Locale(tag: "fr"), for: \EnvironmentKeys.locale)
+            request.htmlkit.environment.upsert(HTMLKit.Locale(tag: "fr"), for: \EnvironmentKeys.locale)
             
             return try await request.htmlkit.render(TestPage.ChildView())
         }
@@ -390,6 +390,63 @@ struct ProviderTests {
                             </html>
                             """
             )
+        }
+        
+        try await app.asyncShutdown()
+    }
+    
+    /// Tests the concurrent localization behavior based on the accept languages of the client.
+    @Test
+    func testHeaderBasedConcurrentLocalization() async throws {
+        
+        guard let source = Bundle.module.url(forResource: "Localization", withExtension: nil) else {
+            return
+        }
+        
+        let app = try await Application.make(.testing)
+        
+        app.htmlkit.localization.set(source: source)
+        app.htmlkit.localization.set(locale: "en-GB")
+        
+        app.get("test") { request async throws -> Vapor.View in
+            
+            if let languages = request.headers.first(name: .acceptLanguage) {
+                
+                if let language = languages.components(separatedBy: ",").first {
+                    request.htmlkit.environment.upsert(HTMLKit.Locale(tag: language), for: \EnvironmentKeys.locale)    
+                }
+            }
+            
+            return try await request.htmlkit.render(TestPage.ChildView())
+        }
+        
+        let languages = ["fr": "Bonjour le monde", "en-GB": "Hiya World", "de-DE": "Hallo Welt"]
+        
+        await withThrowingTaskGroup(of: Void.self) { group in
+            
+            for language in languages {
+                
+                group.addTask {
+                    
+                    try await app.test(.GET, "test", headers: ["accept-language": language.key]) { response async in
+                        
+                        #expect(response.status == .ok)
+                        #expect(response.body.string ==
+                                        """
+                                        <!DOCTYPE html>\
+                                        <html>\
+                                        <head>\
+                                        <title>TestPage</title>\
+                                        </head>\
+                                        <body>\
+                                        <p>\(language.value)</p>\
+                                        </body>\
+                                        </html>
+                                        """
+                        )
+                    }
+                }
+            }            
         }
         
         try await app.asyncShutdown()
