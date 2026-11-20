@@ -1,6 +1,11 @@
+#if canImport(FoundationEssentials)
+import FoundationEssentials
+#else
+import Foundation
+#endif
+
 import HTMLKit
 import Testing
-import Foundation
 
 @Suite
 struct StatementTests {

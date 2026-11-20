@@ -1,5 +1,3 @@
-import Foundation
-
 /// A type that serves as a placeholder for an environment value
 ///
 /// The placeholder will be evaluated and resolved by the renderer when needed.

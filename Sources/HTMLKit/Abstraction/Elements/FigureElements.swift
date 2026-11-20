@@ -1,4 +1,9 @@
+#if canImport(FoundationEssentials)
+import FoundationEssentials
+#else
 import Foundation
+#endif
+
 import OrderedCollections
 
 /// The alias for the element ``FigureCaption``.

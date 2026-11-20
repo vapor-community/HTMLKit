@@ -1,5 +1,3 @@
-import Foundation
-
 extension Character {
     
     /// Whether this character represents an asterisk.

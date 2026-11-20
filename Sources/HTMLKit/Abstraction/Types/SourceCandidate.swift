@@ -1,5 +1,3 @@
-import Foundation
-
 /// A type that represents a source candidate.
 /// 
 /// The candidate is used to define an alternative source with an additional condition.

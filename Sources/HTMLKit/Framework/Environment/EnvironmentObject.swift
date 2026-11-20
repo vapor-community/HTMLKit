@@ -1,5 +1,3 @@
-import Foundation
-
 /// A property wrapper type to provide access to an environment object
 ///
 /// An environment object allows to read shared environment data.

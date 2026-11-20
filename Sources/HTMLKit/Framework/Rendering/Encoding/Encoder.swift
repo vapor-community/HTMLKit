@@ -1,5 +1,3 @@
-import Foundation
-
 /// A type that represents an encoder.
 /// 
 /// The encoder is responsible for encoding characters to their safe equivalents.

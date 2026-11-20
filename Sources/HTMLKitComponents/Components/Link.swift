@@ -1,5 +1,10 @@
-import HTMLKit
+#if canImport(FoundationEssentials)
+import FoundationEssentials
+#else
 import Foundation
+#endif
+
+import HTMLKit
 
 /// A view that represents a text link.
 ///

@@ -1,4 +1,9 @@
+#if canImport(FoundationEssentials)
+import FoundationEssentials
+#else
 import Foundation
+#endif
+
 import NIOConcurrencyHelpers
 
 /// A class that represents the environment
