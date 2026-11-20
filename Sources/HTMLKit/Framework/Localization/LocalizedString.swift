@@ -1,5 +1,3 @@
-import Foundation
-
 /// A type thats holds the information for the localization.
 @_documentation(visibility: internal)
 public struct LocalizedString: Content {

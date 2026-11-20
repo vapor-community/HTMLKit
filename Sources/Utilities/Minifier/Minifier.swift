@@ -1,5 +1,3 @@
-import Foundation
-
 public struct Minifier {
     
     public struct Compression: OptionSet, Sendable {

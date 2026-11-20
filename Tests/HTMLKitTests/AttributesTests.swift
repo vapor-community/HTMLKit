@@ -1,5 +1,4 @@
 @testable import HTMLKit
-import Foundation
 import OrderedCollections
 import Testing
 

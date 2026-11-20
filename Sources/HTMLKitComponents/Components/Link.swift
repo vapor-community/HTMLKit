@@ -1,5 +1,4 @@
 import HTMLKit
-import Foundation
 
 /// A view that represents a text link.
 ///

@@ -1,5 +1,3 @@
-import Foundation
-
 extension Character {
     
     /// A boolean value indicating whether this character represents an ampersand (U+0026).

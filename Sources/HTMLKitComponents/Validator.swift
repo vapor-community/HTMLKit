@@ -1,5 +1,3 @@
-import Foundation
-
 /// The validator for the form validation.
 public struct Validator: Encodable {
     

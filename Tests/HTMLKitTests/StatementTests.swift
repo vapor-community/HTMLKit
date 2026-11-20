@@ -1,6 +1,5 @@
 import HTMLKit
 import Testing
-import Foundation
 
 @Suite
 struct StatementTests {

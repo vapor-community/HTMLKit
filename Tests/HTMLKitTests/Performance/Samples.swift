@@ -1,5 +1,4 @@
 import HTMLKit
-import Foundation
 
 struct SampleContext {
     
